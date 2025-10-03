@@ -1,0 +1,89 @@
+Starting R package installation...
+===========================================
+
+Installing CRAN packages...
+Package already installed: ResourceSelection 
+Package already installed: foreign 
+Installing CRAN package: givitiR 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+also installing the dependencies ‘alabama’, ‘rootSolve’
+
+trying URL 'https://cloud.r-project.org/src/contrib/alabama_2023.1.0.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/rootSolve_1.8.2.4.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/givitiR_1.3.tar.gz'
+* installing *source* package ‘alabama’ ...
+** this is package ‘alabama’ version ‘2023.1.0’
+** package ‘alabama’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** demo
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (alabama)
+* installing *source* package ‘rootSolve’ ...
+** this is package ‘rootSolve’ version ‘1.8.2.4’
+** package ‘rootSolve’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+using Fortran compiler: ‘GNU Fortran (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c R_init_rootSolve.c -o R_init_rootSolve.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c call_runsteady.c -o call_runsteady.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c call_steady.c -o call_steady.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c call_stsparse.c -o call_stsparse.o
+gfortran  -fpic  -g -O2  -c dlinpk.f -o dlinpk.o
+gfortran  -fpic  -g -O2  -c dsparsk.f -o dsparsk.o
+gfortran  -fpic  -g -O2  -c lsodes.f -o lsodes.o
+gfortran  -fpic  -g -O2  -c sparse.f -o sparse.o
+gfortran  -fpic  -g -O2  -c sparsecoeff.f -o sparsecoeff.o
+gfortran  -fpic  -g -O2  -c sparsekit.f -o sparsekit.o
+gfortran  -fpic  -g -O2  -c steady.f -o steady.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c steady_utils.c -o steady_utils.o
+gfortran  -fpic  -g -O2  -c testMap.f -o testMap.o
+gcc -std=gnu2x -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o rootSolve.so R_init_rootSolve.o call_runsteady.o call_steady.o call_stsparse.o dlinpk.o dsparsk.o lsodes.o sparse.o sparsecoeff.o sparsekit.o steady.o steady_utils.o testMap.o -lgfortran -lm -lquadmath -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-rootSolve/00new/rootSolve/libs
+** R
+** demo
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (rootSolve)
+* installing *source* package ‘givitiR’ ...
+** this is package ‘givitiR’ version ‘1.3’
+** package ‘givitiR’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (givitiR)
+
+The downloaded source packages are in
+	‘/tmp/RtmpmNDoEH/downloaded_packages’
+Successfully installed: givitiR 
+Package already installed: rms 
+
+===========================================
+Package installation completed!
+You can now run your R scripts in this directory.

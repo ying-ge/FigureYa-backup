@@ -1,0 +1,30 @@
+开始安装R包...
+Starting R package installation...
+===========================================
+包已安装: ggplot2 
+Package already installed: ggplot2 
+包已安装: scales 
+Package already installed: scales 
+包已安装: dplyr 
+Package already installed: dplyr 
+
+===========================================
+验证安装结果:
+Verifying installation results:
+✓ ggplot2 已成功安装
+✓ ggplot2 installed successfully
+✓ scales 已成功安装
+✓ scales installed successfully
+✓ dplyr 已成功安装
+✓ dplyr installed successfully
+
+所有包已成功安装！
+
+All packages installed successfully!
+您现在可以使用以下代码加载这些包：
+You can now load these packages with the following code:
+library(ggplot2)
+library(scales)  # 提供数据缩放和颜色调整功能 / Provides data scaling and color adjustment functions
+library(dplyr)   # 提供数据操作和管道操作符 %>% / Provides data manipulation and pipe operator %>%
+安装完成！
+Installation completed!

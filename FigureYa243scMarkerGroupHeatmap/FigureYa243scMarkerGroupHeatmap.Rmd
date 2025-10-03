@@ -1,0 +1,252 @@
+---
+title: "FigureYa243scMarkerGroupHeatmap"
+params:
+  author: "Xiao Gu"
+  reviewer: "Ying Ge, Junyi Shen"
+output: html_document
+---
+
+**Author(s)**: `r params$author`  
+**Reviewer(s)**: `r params$reviewer`  
+**Date**: `r Sys.Date()`  
+
+
+# Academic Citation
+If you use this code in your work or research, we kindly request that you cite our publication:
+
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# 需求描述 | Requirement Description
+只要这张图中间的热图部分。scRNA分不同的cluster鉴定细胞类型；两组之间比较markers的表达高低，调整顺序绘制热图。 Only the heatmap portion in the middle of this figure. scRNA identifies cell types by different clusters; compare marker expression levels between two groups, adjust the order, and plot a heatmap.
+
+![](example.png)
+
+出自<https://www.ahajournals.org/doi/10.1161/CIRCULATIONAHA.119.043833>
+From https://www.ahajournals.org/doi/10.1161/CIRCULATIONAHA.119.043833
+
+Figure 1. Neutrophils dominate the heart after myocardial infarction (MI).
+
+D, Gene ontologies of cell-specific differentially expressed genes. The heat maps depict genes ranked by the degree of cell-type specific enrichment. The P value of Gene Ontology enrichment in each gene set is reported. n=4 per sample.
+
+# 应用场景
+应用场景 | Application Scenario
+
+例文该图用的是bulk RNA-seq数据，小伙伴觉得特适合用来展示单细胞marker基因在多个cluster当中的表达模式。 The example figure uses bulk RNA-seq data. Teammates think it is particularly suitable for displaying the expression patterns of single-cell marker genes across multiple clusters.
+
+# 环境设置 | Environment Setup
+
+```{r}
+source("install_dependencies.R")
+
+library(Seurat)
+library(SeuratData)
+library(patchwork)
+library(RColorBrewer)
+library(colorRamps)
+library(pheatmap)
+library(dplyr)
+library(magrittr)
+Sys.setenv(LANGUAGE = "en") #显示英文报错信息 | display error messages in English
+options(stringsAsFactors = FALSE) #禁止chr转成factor | prevent chr from converting to factor
+```
+
+# 输入文件及前期处理 | Input Files and Preprocessing
+
+这里用Seurat的数据，便于小伙伴套用在自己的单细胞数据上。 Here we use Seurat’s data to make it convenient for teammates to apply to their own single-cell data.
+
+```{r}
+# install dataset
+InstallData("ifnb")
+
+# load dataset
+LoadData("ifnb")
+
+# ifnb数据集中包含两个样本数据，分别为CTRL和STIM
+# The ifnb dataset contains two sample datasets, namely CTRL and STIM
+head(ifnb@meta.data)
+table(ifnb@meta.data$stim)
+```
+
+
+```{r}
+# 使用splitobject将ifnb数据集分割成两个seurat对象的列表(STIM和CTRL)
+# Use SplitObject to split the ifnb dataset into a list of two Seurat objects (STIM and CTRL)
+ifnb.list <- SplitObject(ifnb, split.by = "stim")
+
+# 对两个数据集单独进行normalize并识别各自的高变异基因
+# Normalize each dataset separately and identify their respective highly variable genes
+ifnb.list <- lapply(X = ifnb.list, FUN = function(x) {
+  x <- NormalizeData(x)
+  x <- FindVariableFeatures(x, selection.method = "vst", nfeatures = 2000)
+})
+
+
+# 计算两个数据中排完rank后top2000的高变异基因
+# Compute the top 2000 highly variable genes after ranking in both datasets
+features <- SelectIntegrationFeatures(object.list = ifnb.list, nfeatures = 2000)
+
+# 使用上述高变异基因在两个基因集中分别执行PCA
+# Perform PCA separately in the two datasets using the above highly variable genes
+ifnb.list <- lapply(X = ifnb.list, FUN = function(x) {
+  x <- ScaleData(x, features = features, verbose = T)
+  x <- RunPCA(x, features = features, verbose = T)
+})
+
+
+# 对两个数据集进行整合
+# Integrate the two datasets
+# 首先使用findinintegrationanchors函数标识锚点，然后使用IntegrateData函数将两数据集整合在一起
+# First use FindIntegrationAnchors to identify anchors, then use IntegrateData to integrate the two datasets
+# 可以通过调整k.anchor参数调整两个样本整合的强度，默认为5，数字越大整合强度越强
+# You can adjust the k.anchor parameter to change the integration strength between the two samples. The default is 5; the larger the number, the stronger the integration
+immune.anchors <- FindIntegrationAnchors(object.list = ifnb.list, anchor.features = features, reduction = "rpca", k.anchor = 20)
+immune.combined <- IntegrateData(anchorset = immune.anchors)
+
+
+# 对整合后的数据进行后续分析
+# Proceed with downstream analysis on the integrated data
+DefaultAssay(immune.combined) <- "integrated"
+```
+
+# 常规单细胞流程 | Routine scRNA-seq Workflow
+reasonml
+
+```{r}
+# 常规流程，scale数据，跑PCA，使用前30个PC进行降维跑UMAP，计算Neighbors，分cluster
+# Standard workflow: scale data, run PCA, use the first 30 PCs for UMAP, compute neighbors, and cluster
+immune.combined <- ScaleData(immune.combined, verbose = FALSE)
+immune.combined <- RunPCA(immune.combined, npcs = 30, verbose = FALSE)
+immune.combined <- RunUMAP(immune.combined, reduction = "pca", dims = 1:30)
+immune.combined <- FindNeighbors(immune.combined, reduction = "pca", dims = 1:30)
+immune.combined <- FindClusters(immune.combined, resolution = 0.5)
+```
+
+# 计算marker基因 | Compute Marker Genes
+
+```{r}
+### 设置分组和细胞类型颜色 | Set group and cell type colors
+colourCount = length(unique(immune.combined@meta.data$stim))
+getPalette = colorRampPalette(brewer.pal(3, "Dark2"))
+group_color <- getPalette(colourCount)
+
+colourCount = length(unique(immune.combined@meta.data$seurat_annotations))
+getPalette = colorRampPalette(brewer.pal(7, "Set2"))
+celltype_color <- getPalette(colourCount)
+
+# 可视化 | Visualization
+p1 <- DimPlot(immune.combined, reduction = "umap", group.by = "stim", cols=group_color)
+p2 <- DimPlot(immune.combined, reduction = "umap", group.by = "seurat_annotations",cols=celltype_color, label = TRUE,repel = TRUE)
+
+pdf("./immune.combined.UMAP.pdf", height = 5,width = 12)
+p1 + p2
+dev.off()
+
+
+### 为了后续画图简洁，这里将部分细胞类型进行合并，按照自己数据决定
+### For cleaner plotting later, merge some cell types; adjust based on your data
+immune.combined@meta.data$CellType <- ""
+immune.combined@meta.data$CellType[which(immune.combined@meta.data$seurat_annotations%in%c("B", "B Activated"))] <- "B_cell"
+immune.combined@meta.data$CellType[which(immune.combined@meta.data$seurat_annotations%in%c("CD14 Mono", "CD16 Mono"))] <- "Monocyte"
+immune.combined@meta.data$CellType[which(immune.combined@meta.data$seurat_annotations%in%c("CD4 Memory T", "CD4 Naive T", "CD8 T", "T activated"))] <- "T_cell"
+immune.combined@meta.data$CellType[which(immune.combined@meta.data$seurat_annotations%in%c("Eryth"))] <- "Eryth"
+immune.combined@meta.data$CellType[which(immune.combined@meta.data$seurat_annotations%in%c("Mk"))] <- "Mk"
+immune.combined@meta.data$CellType[which(immune.combined@meta.data$seurat_annotations%in%c("NK"))] <- "NK"
+immune.combined@meta.data$CellType[which(immune.combined@meta.data$seurat_annotations%in%c("pDC"))] <- "pDC"
+immune.combined@meta.data$CellType[which(immune.combined@meta.data$seurat_annotations%in%c("DC"))] <- "DC"
+
+
+immune.combined@meta.data$CellType_group <- paste(immune.combined@meta.data$CellType, immune.combined@meta.data$stim, sep = "_")
+
+DefaultAssay(immune.combined) <- "RNA"
+Idents(immune.combined) <- "CellType_group"
+
+# 开启多核进行计算marker基因 | Enable multicore to compute marker genes
+library(future)
+plan("multiprocess", workers = 10)
+
+celltype.markers <- FindAllMarkers(immune.combined, only.pos = TRUE, min.pct = 0.25, logfc.threshold = 0.25)
+
+
+# 筛选用于后续绘图的基因 | Filter genes for downstream plotting
+marker <- subset(celltype.markers, p_val_adj < 0.05 & avg_log2FC>0.5&pct.1>0.5)
+
+
+celltype <- c("B_cell", "DC", "Eryth", "Monocyte", "NK", "Mk", "pDC", "T_cell")
+group <- c("CTRL", "STIM")
+```
+
+# 为热图排序 | Order the Heatmap
+
+```{r}
+# 确定热图按列排布顺序，先分细胞类型，再分group
+# Determine column order: by cell type first, then by group
+celltype_group_all <- c()
+for (i in group) {
+  celltype_group <- paste(celltype, i, sep = "_")
+  celltype_group_all <- c(celltype_group_all, celltype_group)
+}
+
+select_gene <- unique(as.vector(marker$gene))
+
+Idents(immune.combined) <- "CellType_group"
+AveExpression <- AverageExpression(immune.combined, assays = "RNA", 
+                                   features = select_gene,verbose = TRUE) %>% .$RNA %>% .[,celltype_group_all]
+
+
+
+# 确定热图按行排列顺序，同一细胞类型的group放在一起
+# Determine row order: keep groups of the same cell type together
+group_celltype_all <- c()
+for (i in celltype) {
+  celltype_group <- paste(i, group, sep = "_")
+  group_celltype_all <- c(group_celltype_all, celltype_group)
+}
+
+plot_df <- c()
+for (i in group_celltype_all) {
+  gene <- as.vector(subset(marker,cluster %in% i)$gene)
+  avg_df <- AveExpression[gene,]
+  plot_df <- rbind(plot_df,avg_df)
+}
+
+plot_df <- plot_df[,celltype_group_all]
+```
+
+# 开始画图 | Plot the Heatmap
+
+```{r}
+bks <- seq(-2.1, 2.1, by = 0.01)
+hmcols <- blue2green2red(length(bks) - 1)
+
+#确定gap | determine gaps
+marker$cluster %<>% factor(., levels = group_celltype_all)
+marker_num <- table(marker$cluster) %>% as.data.frame
+gaps_row_num <- cumsum(marker_num$Freq)
+
+pheatmap(plot_df, cluster_cols = F, cluster_rows = F, 
+         show_colnames = T, show_rownames = F,
+         color = hmcols,
+         border = T, border_color = "white", 
+         gaps_row = gaps_row_num, gaps_col = length(celltype),
+         breaks = bks,scale = "row", legend_breaks = seq(-2,2,1),
+         filename = "CellType_marker_pheatmap.pdf")
+```
+
+![](CellType_marker_pheatmap.pdf)
+
+# 后期处理 | Post-processing
+输出的pdf文件是矢量图，如果要用代码实现例文那样的连线，可参考FigureYa98的写法，个人认为没必要。如果要用代码添加右侧显著性表格，可参考FigureYa165heatmapPvalue的写法。 The output PDF is a vector graphic. If you want to programmatically add the connecting lines as in the example, you can refer to FigureYa98; personally, it’s not necessary. To add a significance table on the right via code, refer to FigureYa165heatmapPvalue.
+
+下图是用illustrator编辑后的效果： Below is the effect after editing with Illustrator:
+
+![](CellType_marker_pheatmap_AI.pdf)
+
+# Session Info
+
+```{r}
+sessionInfo()
+```

@@ -1,0 +1,136 @@
+Starting R package installation...
+===========================================
+
+Installing CRAN packages...
+Package already installed: ClassDiscovery 
+Package already installed: RColorBrewer 
+Package already installed: gplots 
+
+Installing Bioconductor packages...
+Installing Bioconductor package: NMF 
+'getOption("repos")' replaces Bioconductor standard repositories, see
+'help("repositories", package = "BiocManager")' for details.
+Replacement repositories:
+    CRAN: https://cloud.r-project.org/
+Bioconductor version 3.21 (BiocManager 1.30.26), R 4.5.1 (2025-06-13)
+Installing package(s) 'NMF'
+also installing the dependencies ‘registry’, ‘rngtools’, ‘gridBase’
+
+trying URL 'https://cloud.r-project.org/src/contrib/registry_0.5-1.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/rngtools_1.5.2.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/gridBase_0.4-7.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/NMF_0.28.tar.gz'
+* installing *source* package ‘registry’ ...
+** this is package ‘registry’ version ‘0.5-1’
+** package ‘registry’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** demo
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (registry)
+* installing *source* package ‘rngtools’ ...
+** this is package ‘rngtools’ version ‘1.5.2’
+** package ‘rngtools’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (rngtools)
+* installing *source* package ‘gridBase’ ...
+** this is package ‘gridBase’ version ‘0.4-7’
+** package ‘gridBase’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** demo
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (gridBase)
+* installing *source* package ‘NMF’ ...
+** this is package ‘NMF’ version ‘0.28’
+** package ‘NMF’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+using C++ compiler: ‘g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2   -c distance.cpp -o distance.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2   -c divergence.cpp -o divergence.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2   -c euclidean.cpp -o euclidean.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c registerDynamicSymbol.c -o registerDynamicSymbol.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2   -c utils.cpp -o utils.o
+g++ -std=gnu++17 -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o NMF.so distance.o divergence.o euclidean.o registerDynamicSymbol.o utils.o -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-NMF/00new/NMF/libs
+** R
+** data
+** demo
+** inst
+** byte-compile and prepare package for lazy loading
+Setting package specific options: package:NMF:logger (1 default option(s))
+Setting package specific options: package:NMF (10 default option(s))
+Creating a generic function for ‘plot’ from ‘graphics’ in package ‘NMF’
+    (from the saved implicit definition)
+Creating meta registry in package 'NMF' ... OK
+Creating registry 'extra_handler' in package 'NMF' ... OK
+Creating registry 'extra_action' in package 'NMF' ... OK
+Registering extra handler 'install.packages' [function] ... OK
+Creating registry 'algorithm' in package 'NMF' ... OK
+Registering NMF algorithm '.R#brunet' [NMFStrategyIterative] ... OK
+Registering NMF algorithm 'brunet' [NMFStrategyIterative] based on template '.R#brunet' ... OK
+Registering NMF algorithm 'KL' [NMFStrategyIterative] ... OK
+Registering NMF algorithm '.R#lee' [NMFStrategyIterative] ... OK
+Registering NMF algorithm 'lee' [NMFStrategyIterative] based on template '.R#lee' ... OK
+Registering NMF algorithm 'Frobenius' [NMFStrategyIterative] ... OK
+Registering NMF algorithm '.R#offset' [NMFStrategyIterative] ... OK
+Registering NMF algorithm 'offset' [NMFStrategyIterative] based on template '.R#offset' ... OK
+Registering NMF algorithm '.R#nsNMF' [NMFStrategyIterative] ... OK
+Registering NMF algorithm 'nsNMF' [NMFStrategyIterative] based on template '.R#nsNMF' ... OK
+Registering NMF algorithm 'ls-nmf' [NMFStrategyIterative] ... OK
+Registering NMF algorithm 'pe-nmf' [NMFStrategyIterative] ... OK
+Registering NMF algorithm '.siNMF' [NMFStrategyIterative] based on template 'lee' ... OK
+Registering NMF algorithm 'siNMF' [NMFStrategyIterative] based on template 'lee' ... OK
+Registering NMF algorithm 'snmf/r' [NMFStrategyFunction] ... OK
+Registering NMF algorithm 'snmf/l' [NMFStrategyFunction] ... OK
+Registering extra action 'bigmemory' for handler 'install.packages' ... OK
+Registering extra action 'synchronicity' for handler 'install.packages' ... OK
+Creating registry 'seed' in package 'NMF' ... OK
+Registering NMF seeding method 'none' [NMFSeed] ... OK
+Registering NMF seeding method 'random' [NMFSeed] ... OK
+Registering NMF seeding method 'ica' [NMFSeed] ... OK
+Registering NMF seeding method 'nndsvd' [NMFSeed] ... OK
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (NMF)
+
+The downloaded source packages are in
+	‘/tmp/RtmpvDpGjp/downloaded_packages’
+Successfully installed: NMF 
+Package already installed: edgeR 
+
+===========================================
+Package installation completed!
+You can now run your R scripts in this directory.

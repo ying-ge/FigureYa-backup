@@ -1,0 +1,25 @@
+Starting R package installation...
+===========================================
+
+Installing required CRAN packages...
+✓ Package already installed: tidyverse 
+✓ Package already installed: ggplot2 
+✓ Package already installed: survival 
+✓ Package already installed: stringr 
+✓ Package already installed: viridis 
+✓ Package already installed: scales 
+
+===========================================
+Package installation completed!
+
+Verifying package installation:
+✓ tidyverse is installed
+✓ ggplot2 is installed
+✓ survival is installed
+✓ stringr is installed
+✓ viridis is installed
+✓ scales is installed
+
+Testing package loading...
+
+You can now run your R scripts in this directory.

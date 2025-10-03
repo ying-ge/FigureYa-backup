@@ -1,0 +1,524 @@
+Starting R package installation...
+===========================================
+
+Installing ComplexHeatmap dependency packages 'png' and 'jpeg'...
+Installing CRAN package: png 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+trying URL 'https://cloud.r-project.org/src/contrib/png_0.1-8.tar.gz'
+Content type 'application/x-gzip' length 24880 bytes (24 KB)
+==================================================
+downloaded 24 KB
+
+* installing *source* package ‘png’ ...
+** this is package ‘png’ version ‘0.1-8’
+** package ‘png’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    `libpng-config --cflags` -fpic  -g -O2  -c dummy.c -o dummy.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    `libpng-config --cflags` -fpic  -g -O2  -c read.c -o read.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    `libpng-config --cflags` -fpic  -g -O2  -c write.c -o write.o
+gcc -std=gnu2x -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o png.so dummy.o read.o write.o -lpng16 -lm -lz -lm -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-png/00new/png/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (png)
+
+The downloaded source packages are in
+	‘/tmp/Rtmpe3gP8y/downloaded_packages’
+Successfully installed: png 
+Installing CRAN package: jpeg 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+trying URL 'https://cloud.r-project.org/src/contrib/jpeg_0.1-11.tar.gz'
+Content type 'application/x-gzip' length 19302 bytes (18 KB)
+==================================================
+downloaded 18 KB
+
+* installing *source* package ‘jpeg’ ...
+** this is package ‘jpeg’ version ‘0.1-11’
+** package ‘jpeg’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c read.c -o read.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c reg.c -o reg.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c write.c -o write.o
+gcc -std=gnu2x -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o jpeg.so read.o reg.o write.o -ljpeg -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-jpeg/00new/jpeg/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (jpeg)
+
+The downloaded source packages are in
+	‘/tmp/Rtmpe3gP8y/downloaded_packages’
+Successfully installed: jpeg 
+
+NOTE: If you encounter errors for packages like 'png', 'systemfonts', 'curl', or 'xml2',
+please ensure you have installed the necessary system libraries.
+For Ubuntu/Debian, run this in shell BEFORE using this script:
+  sudo apt-get update
+  sudo apt-get install libpng-dev libjpeg-dev libfontconfig1-dev libcurl4-openssl-dev libxml2-dev libssl-dev
+
+
+Installing CRAN packages...
+Package already installed: RColorBrewer 
+
+Installing Bioconductor packages...
+Installing Bioconductor package: ComplexHeatmap 
+'getOption("repos")' replaces Bioconductor standard repositories, see
+'help("repositories", package = "BiocManager")' for details.
+Replacement repositories:
+    CRAN: https://cloud.r-project.org/
+Bioconductor version 3.21 (BiocManager 1.30.26), R 4.5.1 (2025-06-13)
+Installing package(s) 'ComplexHeatmap'
+also installing the dependencies ‘shape’, ‘rjson’, ‘BiocGenerics’, ‘S4Vectors’, ‘iterators’, ‘circlize’, ‘GetoptLong’, ‘clue’, ‘GlobalOptions’, ‘IRanges’, ‘matrixStats’, ‘foreach’, ‘doParallel’
+
+trying URL 'https://cloud.r-project.org/src/contrib/shape_1.4.6.1.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/rjson_0.2.23.tar.gz'
+trying URL 'https://bioconductor.org//packages/3.21/bioc/src/contrib/BiocGenerics_0.54.0.tar.gz'
+trying URL 'https://bioconductor.org//packages/3.21/bioc/src/contrib/S4Vectors_0.46.0.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/iterators_1.0.14.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/circlize_0.4.16.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/GetoptLong_1.0.5.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/clue_0.3-66.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/GlobalOptions_0.1.2.tar.gz'
+trying URL 'https://bioconductor.org//packages/3.21/bioc/src/contrib/IRanges_2.42.0.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/matrixStats_1.5.0.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/foreach_1.5.2.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/doParallel_1.0.17.tar.gz'
+trying URL 'https://bioconductor.org//packages/3.21/bioc/src/contrib/ComplexHeatmap_2.24.1.tar.gz'
+* installing *source* package ‘shape’ ...
+** this is package ‘shape’ version ‘1.4.6.1’
+** package ‘shape’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** demo
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (shape)
+* installing *source* package ‘rjson’ ...
+** this is package ‘rjson’ version ‘0.2.23’
+** package ‘rjson’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+using C++ compiler: ‘g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2   -c dump.cpp -o dump.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c parser.c -o parser.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c register.c -o register.o
+g++ -std=gnu++17 -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o rjson.so dump.o parser.o register.o -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-rjson/00new/rjson/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (rjson)
+* installing *source* package ‘BiocGenerics’ ...
+** this is package ‘BiocGenerics’ version ‘0.54.0’
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+Creating a new generic function for ‘aperm’ in package ‘BiocGenerics’
+Creating a new generic function for ‘append’ in package ‘BiocGenerics’
+Creating a new generic function for ‘as.data.frame’ in package ‘BiocGenerics’
+Creating a new generic function for ‘cbind’ in package ‘BiocGenerics’
+Creating a new generic function for ‘rbind’ in package ‘BiocGenerics’
+Creating a new generic function for ‘do.call’ in package ‘BiocGenerics’
+Creating a new generic function for ‘duplicated’ in package ‘BiocGenerics’
+Creating a new generic function for ‘anyDuplicated’ in package ‘BiocGenerics’
+Creating a new generic function for ‘eval’ in package ‘BiocGenerics’
+Creating a new generic function for ‘pmax’ in package ‘BiocGenerics’
+Creating a new generic function for ‘pmin’ in package ‘BiocGenerics’
+Creating a new generic function for ‘pmax.int’ in package ‘BiocGenerics’
+Creating a new generic function for ‘pmin.int’ in package ‘BiocGenerics’
+Creating a new generic function for ‘Reduce’ in package ‘BiocGenerics’
+Creating a new generic function for ‘Filter’ in package ‘BiocGenerics’
+Creating a new generic function for ‘Find’ in package ‘BiocGenerics’
+Creating a new generic function for ‘Map’ in package ‘BiocGenerics’
+Creating a new generic function for ‘Position’ in package ‘BiocGenerics’
+Creating a new generic function for ‘get’ in package ‘BiocGenerics’
+Creating a new generic function for ‘mget’ in package ‘BiocGenerics’
+Creating a new generic function for ‘grep’ in package ‘BiocGenerics’
+Creating a new generic function for ‘grepl’ in package ‘BiocGenerics’
+Creating a new generic function for ‘is.unsorted’ in package ‘BiocGenerics’
+Creating a new generic function for ‘lapply’ in package ‘BiocGenerics’
+Creating a new generic function for ‘sapply’ in package ‘BiocGenerics’
+Creating a new generic function for ‘mapply’ in package ‘BiocGenerics’
+Creating a new generic function for ‘match’ in package ‘BiocGenerics’
+Creating a new generic function for ‘order’ in package ‘BiocGenerics’
+Creating a new generic function for ‘paste’ in package ‘BiocGenerics’
+Creating a new generic function for ‘rank’ in package ‘BiocGenerics’
+Creating a new generic function for ‘rownames’ in package ‘BiocGenerics’
+Creating a new generic function for ‘colnames’ in package ‘BiocGenerics’
+Creating a new generic function for ‘saveRDS’ in package ‘BiocGenerics’
+Creating a new generic function for ‘table’ in package ‘BiocGenerics’
+Creating a new generic function for ‘tapply’ in package ‘BiocGenerics’
+Creating a new generic function for ‘unique’ in package ‘BiocGenerics’
+Creating a new generic function for ‘unsplit’ in package ‘BiocGenerics’
+Creating a new generic function for ‘which.min’ in package ‘BiocGenerics’
+Creating a new generic function for ‘which.max’ in package ‘BiocGenerics’
+Creating a new generic function for ‘IQR’ in package ‘BiocGenerics’
+Creating a new generic function for ‘mad’ in package ‘BiocGenerics’
+Creating a new generic function for ‘var’ in package ‘BiocGenerics’
+Creating a new generic function for ‘sd’ in package ‘BiocGenerics’
+Creating a new generic function for ‘xtabs’ in package ‘BiocGenerics’
+Creating a new generic function for ‘basename’ in package ‘BiocGenerics’
+Creating a new generic function for ‘dirname’ in package ‘BiocGenerics’
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (BiocGenerics)
+* installing *source* package ‘iterators’ ...
+** this is package ‘iterators’ version ‘1.0.14’
+** package ‘iterators’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (iterators)
+* installing *source* package ‘clue’ ...
+** this is package ‘clue’ version ‘0.3-66’
+** package ‘clue’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c assignment.c -o assignment.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c clue.c -o clue.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c init.c -o init.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c lsap.c -o lsap.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c trees.c -o trees.o
+gcc -std=gnu2x -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o clue.so assignment.o clue.o init.o lsap.o trees.o -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-clue/00new/clue/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (clue)
+* installing *source* package ‘GlobalOptions’ ...
+** this is package ‘GlobalOptions’ version ‘0.1.2’
+** package ‘GlobalOptions’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (GlobalOptions)
+* installing *source* package ‘matrixStats’ ...
+** this is package ‘matrixStats’ version ‘1.5.0’
+** package ‘matrixStats’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c 000.init.c -o 000.init.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c allocMatrix2.c -o allocMatrix2.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c anyMissing.c -o anyMissing.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c binCounts.c -o binCounts.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c binMeans.c -o binMeans.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c colCounts.c -o colCounts.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c colOrderStats.c -o colOrderStats.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c colRanges.c -o colRanges.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c diff2.c -o diff2.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c indexByRow.c -o indexByRow.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c logSumExp.c -o logSumExp.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c mean2.c -o mean2.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c naming.c -o naming.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c productExpSumLog.c -o productExpSumLog.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c psortKM.c -o psortKM.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c rowCounts.c -o rowCounts.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c rowCummaxs.c -o rowCummaxs.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c rowCummins.c -o rowCummins.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c rowCumprods.c -o rowCumprods.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c rowCumsums.c -o rowCumsums.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c rowDiffs.c -o rowDiffs.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c rowLogSumExp.c -o rowLogSumExp.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c rowMads.c -o rowMads.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c rowMeans2.c -o rowMeans2.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c rowMedians.c -o rowMedians.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c rowOrderStats.c -o rowOrderStats.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c rowRanges.c -o rowRanges.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c rowRanksWithTies.c -o rowRanksWithTies.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c rowSums2.c -o rowSums2.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c rowVars.c -o rowVars.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c signTabulate.c -o signTabulate.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c sum2.c -o sum2.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c validateIndices.c -o validateIndices.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c weightedMean.c -o weightedMean.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c weightedMedian.c -o weightedMedian.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c x_OP_y.c -o x_OP_y.o
+gcc -std=gnu2x -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o matrixStats.so 000.init.o allocMatrix2.o anyMissing.o binCounts.o binMeans.o colCounts.o colOrderStats.o colRanges.o diff2.o indexByRow.o logSumExp.o mean2.o naming.o productExpSumLog.o psortKM.o rowCounts.o rowCummaxs.o rowCummins.o rowCumprods.o rowCumsums.o rowDiffs.o rowLogSumExp.o rowMads.o rowMeans2.o rowMedians.o rowOrderStats.o rowRanges.o rowRanksWithTies.o rowSums2.o rowVars.o signTabulate.o sum2.o validateIndices.o weightedMean.o weightedMedian.o x_OP_y.o -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-matrixStats/00new/matrixStats/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (matrixStats)
+* installing *source* package ‘S4Vectors’ ...
+** this is package ‘S4Vectors’ version ‘0.46.0’
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c AEbufs.c -o AEbufs.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c DataFrame_class.c -o DataFrame_class.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c Hits_class.c -o Hits_class.o
+In file included from /usr/include/string.h:548,
+                 from /opt/R/4.5.1/lib/R/include/R_ext/RS.h:34,
+                 from /opt/R/4.5.1/lib/R/include/Rdefines.h:38,
+                 from ../inst/include/S4Vectors_defines.h:18,
+                 from S4Vectors.h:1,
+                 from Hits_class.c:4:
+In function ‘memcpy’,
+    inlined from ‘tsort_hits’ at Hits_class.c:113:3:
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h:29:10: warning: ‘__builtin_memcpy’ specified bound between 18446744065119617024 and 18446744073709551612 exceeds maximum object size 9223372036854775807 [-Wstringop-overflow=]
+   29 |   return __builtin___memcpy_chk (__dest, __src, __len,
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   30 |                                  __glibc_objsize0 (__dest));
+      |                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c LLint_class.c -o LLint_class.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c List_class.c -o List_class.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c R_init_S4Vectors.c -o R_init_S4Vectors.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c Rle_class.c -o Rle_class.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c Rle_utils.c -o Rle_utils.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c SEXP_utils.c -o SEXP_utils.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c SimpleList_class.c -o SimpleList_class.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c anyMissing.c -o anyMissing.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c character_utils.c -o character_utils.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c eval_utils.c -o eval_utils.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c hash_utils.c -o hash_utils.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c integer_utils.c -o integer_utils.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c logical_utils.c -o logical_utils.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c map_ranges_to_runs.c -o map_ranges_to_runs.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c raw_utils.c -o raw_utils.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c safe_arithm.c -o safe_arithm.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c sort_utils.c -o sort_utils.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c subsetting_utils.c -o subsetting_utils.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c vector_utils.c -o vector_utils.o
+gcc -std=gnu2x -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o S4Vectors.so AEbufs.o DataFrame_class.o Hits_class.o LLint_class.o List_class.o R_init_S4Vectors.o Rle_class.o Rle_utils.o SEXP_utils.o SimpleList_class.o anyMissing.o character_utils.o eval_utils.o hash_utils.o integer_utils.o logical_utils.o map_ranges_to_runs.o raw_utils.o safe_arithm.o sort_utils.o subsetting_utils.o vector_utils.o -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-S4Vectors/00new/S4Vectors/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+in method for ‘normalizeSingleBracketReplacementValue’ with signature ‘"List"’: no definition for class “List”
+Creating a new generic function for ‘unname’ in package ‘S4Vectors’
+Creating a new generic function for ‘expand.grid’ in package ‘S4Vectors’
+Creating a new generic function for ‘findMatches’ in package ‘S4Vectors’
+in method for ‘coerce’ with signature ‘"Hits","DFrame"’: no definition for class “DFrame”
+Creating a generic function for ‘as.factor’ from package ‘base’ in package ‘S4Vectors’
+Creating a generic function for ‘tabulate’ from package ‘base’ in package ‘S4Vectors’
+Creating a generic function for ‘cov’ from package ‘stats’ in package ‘S4Vectors’
+Creating a generic function for ‘cor’ from package ‘stats’ in package ‘S4Vectors’
+Creating a generic function for ‘smoothEnds’ from package ‘stats’ in package ‘S4Vectors’
+Creating a generic function for ‘runmed’ from package ‘stats’ in package ‘S4Vectors’
+Creating a generic function for ‘nchar’ from package ‘base’ in package ‘S4Vectors’
+Creating a generic function for ‘substr’ from package ‘base’ in package ‘S4Vectors’
+Creating a generic function for ‘substring’ from package ‘base’ in package ‘S4Vectors’
+Creating a generic function for ‘chartr’ from package ‘base’ in package ‘S4Vectors’
+Creating a generic function for ‘tolower’ from package ‘base’ in package ‘S4Vectors’
+Creating a generic function for ‘toupper’ from package ‘base’ in package ‘S4Vectors’
+Creating a generic function for ‘sub’ from package ‘base’ in package ‘S4Vectors’
+Creating a generic function for ‘gsub’ from package ‘base’ in package ‘S4Vectors’
+Creating a generic function for ‘nlevels’ from package ‘base’ in package ‘S4Vectors’
+in method for ‘coerce’ with signature ‘"data.table","DFrame"’: no definition for class “data.table”
+Creating a generic function for ‘complete.cases’ from package ‘stats’ in package ‘S4Vectors’
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (S4Vectors)
+* installing *source* package ‘circlize’ ...
+** this is package ‘circlize’ version ‘0.4.16’
+** package ‘circlize’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** demo
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (circlize)
+* installing *source* package ‘GetoptLong’ ...
+** this is package ‘GetoptLong’ version ‘1.0.5’
+** package ‘GetoptLong’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (GetoptLong)
+* installing *source* package ‘foreach’ ...
+** this is package ‘foreach’ version ‘1.5.2’
+** package ‘foreach’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** demo
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (foreach)
+* installing *source* package ‘IRanges’ ...
+** this is package ‘IRanges’ version ‘2.42.0’
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I/usr/local/include    -fpic  -g -O2  -c CompressedAtomicList_utils.c -o CompressedAtomicList_utils.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I/usr/local/include    -fpic  -g -O2  -c CompressedIRangesList_class.c -o CompressedIRangesList_class.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I/usr/local/include    -fpic  -g -O2  -c CompressedList_class.c -o CompressedList_class.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I/usr/local/include    -fpic  -g -O2  -c Grouping_class.c -o Grouping_class.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I/usr/local/include    -fpic  -g -O2  -c IPosRanges_comparison.c -o IPosRanges_comparison.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I/usr/local/include    -fpic  -g -O2  -c IRanges_class.c -o IRanges_class.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I/usr/local/include    -fpic  -g -O2  -c IRanges_constructor.c -o IRanges_constructor.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I/usr/local/include    -fpic  -g -O2  -c NCList.c -o NCList.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I/usr/local/include    -fpic  -g -O2  -c R_init_IRanges.c -o R_init_IRanges.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I/usr/local/include    -fpic  -g -O2  -c Ranges_class.c -o Ranges_class.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I/usr/local/include    -fpic  -g -O2  -c RleViews_utils.c -o RleViews_utils.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I/usr/local/include    -fpic  -g -O2  -c S4Vectors_stubs.c -o S4Vectors_stubs.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I/usr/local/include    -fpic  -g -O2  -c SimpleIRangesList_class.c -o SimpleIRangesList_class.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I/usr/local/include    -fpic  -g -O2  -c coverage_methods.c -o coverage_methods.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I/usr/local/include    -fpic  -g -O2  -c extractListFragments.c -o extractListFragments.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I/usr/local/include    -fpic  -g -O2  -c inter_range_methods.c -o inter_range_methods.o
+gcc -std=gnu2x -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o IRanges.so CompressedAtomicList_utils.o CompressedIRangesList_class.o CompressedList_class.o Grouping_class.o IPosRanges_comparison.o IRanges_class.o IRanges_constructor.o NCList.o R_init_IRanges.o Ranges_class.o RleViews_utils.o S4Vectors_stubs.o SimpleIRangesList_class.o coverage_methods.o extractListFragments.o inter_range_methods.o -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-IRanges/00new/IRanges/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+Creating a generic function for ‘drop’ from package ‘base’ in package ‘IRanges’
+Creating a generic function for ‘runmed’ from package ‘stats’ in package ‘IRanges’
+Creating a generic function for ‘chartr’ from package ‘base’ in package ‘IRanges’
+Creating a generic function for ‘toupper’ from package ‘base’ in package ‘IRanges’
+Creating a generic function for ‘tolower’ from package ‘base’ in package ‘IRanges’
+Creating a generic function for ‘sub’ from package ‘base’ in package ‘IRanges’
+Creating a generic function for ‘gsub’ from package ‘base’ in package ‘IRanges’
+Creating a generic function for ‘startsWith’ from package ‘base’ in package ‘IRanges’
+Creating a generic function for ‘endsWith’ from package ‘base’ in package ‘IRanges’
+Creating a generic function for ‘smoothEnds’ from package ‘stats’ in package ‘IRanges’
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (IRanges)
+* installing *source* package ‘doParallel’ ...
+** this is package ‘doParallel’ version ‘1.0.17’
+** package ‘doParallel’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** demo
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (doParallel)
+* installing *source* package ‘ComplexHeatmap’ ...
+** this is package ‘ComplexHeatmap’ version ‘2.24.1’
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (ComplexHeatmap)
+
+The downloaded source packages are in
+	‘/tmp/Rtmpe3gP8y/downloaded_packages’
+Successfully installed: ComplexHeatmap 
+
+===========================================
+Package installation completed!
+You can now run your R scripts in this directory.

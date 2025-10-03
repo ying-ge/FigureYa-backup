@@ -1,0 +1,21 @@
+Starting R package installation...
+===========================================
+
+Installing core CRAN dependencies...
+Package already installed: curl 
+Package already installed: httr 
+Package already installed: rvest 
+
+Installing core Bioconductor dependencies...
+Package already installed: AnnotationDbi 
+Package already installed: BiocFileCache 
+Package already installed: GenomicRanges 
+Package already installed: SummarizedExperiment 
+
+Installing Bioconductor packages...
+Package already installed: TCGAbiolinks 
+Package already installed: biomaRt 
+
+===========================================
+Package installation completed!
+You can now run your R scripts in this directory.

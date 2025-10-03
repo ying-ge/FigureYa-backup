@@ -1,0 +1,165 @@
+---
+title: "Explore data"
+author: "Jarning"
+date: "2020/11/10"
+output: html_document
+---
+
+## init
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(Seurat)
+library(rhdf5)
+library(tidyverse)
+
+options(stringsAsFactors = F)
+tidyverse_conflicts()
+```
+
+## load data
+### 读取基因名和细胞ID
+```{r}
+genes <- read.csv("../data/GSE154989_mmLungPlate_fQC_geneTable.csv")
+cells <- read.csv("../data/GSE154989_mmLungPlate_fQC_smpTable.csv")
+head(genes)
+head(cells)
+duplicated(genes$ensgID) %>% table
+```
+
+### 读取细胞降维和聚类结果
+```{r}
+cells.annot <- read.csv("../data/GSE154989_mmLungPlate_fQC_dZ_annot_smpTable.csv")
+cells.annot <- cells.annot %>% 
+  left_join(cells, by = "sampleID")
+head(cells.annot)
+```
+
+## plots
+
+### figure 1C
+```{r}
+ggplot(cells.annot, aes(phate_1, phate_2, color = timesimple)) + 
+  geom_point(inherit.aes = F, data = cells.annot %>% select(phate_1, phate_2), aes(phate_1, phate_2), color="grey", size = .2) + 
+  geom_point(size = .2) + 
+  facet_wrap(~timesimple, nrow = 2) + 
+  NoLegend()
+```
+
+### Figure 1D
+```{r, fig.width=8, fig.height=4}
+p1 <- ggplot(cells.annot, aes(tSNE_1, tSNE_2, color = clusterK12 %>% as.factor())) + 
+  scale_color_discrete(name = "KNN(K=12)") + 
+  geom_point()
+
+p2 <- ggplot(cells.annot, aes(phate_1, phate_2, color = clusterK12 %>% as.factor())) + 
+  scale_color_discrete(name = "KNN(K=12)") + 
+  geom_point()
+
+legend <- cowplot::get_legend(p1)
+cowplot::plot_grid(p1+NoLegend(), p2+NoLegend(), legend, nrow = 1, rel_widths = c(3, 3, .5))
+```
+
+## 准备cNMF的输入数据
+
+cNMF接受两种输入格式
+1. h5ad格式(scanpy)
+2. tsv格式(rows=cellID, cols=gene)
+
+通常我们都是用Seurat来处理单细胞数据，在进行cNMF分析之前，我们需要把基因表达矩阵直接保存为tsv文件，作为cNMF的input
+
+### 通过rhdf5读取h5文件内容
+```{r}
+filename <- "../data/GSE154989_mmLungPlate_fQC_dSp_normTPM.h5"
+
+h5ls(file = filename)
+
+i <- h5read(filename, name = "i") %>% as.integer() %>% as.vector()
+j <- h5read(filename, name = "j") %>% as.integer() %>% as.vector()
+v <- h5read(filename, name = "v") %>% as.vector()
+
+TPM <- Matrix::sparseMatrix(i, j, x = v)
+TPM %>% dim
+TPM <- TPM %>% round(digits = 2)
+```
+
+```{r}
+TPM <- as.matrix(TPM)
+rownames(TPM) <- genes$geneSymbol
+colnames(TPM) <- cells$sampleID
+TPM[1:5,1:5]
+```
+
+### 过滤不表达的基因
+```{r}
+rowMeans(TPM) %>% summary()
+rowSums(TPM>0) %>% summary()
+table(rowMeans(TPM) > 0.1)
+table(rowSums(TPM>0)>=10) ## expressed at least in 10 cells
+
+selected.genes <- rowSums(TPM>0) >= 10
+TPM <- TPM[selected.genes, ]
+dim(TPM)
+```
+
+
+### save to *.tsv
+```{r}
+# cNMF的input matrix为(rows=cellID, cols=gene)，因此需要对矩阵转置
+write.table(x = t(TPM), file = "../input/GSE154989_mmLungPlate_fQC_dSp_normTPM.tsv", sep = "\t", quote = F)
+```
+
+## feather selection
+
+### 1. 应该选择多少个特征
+```{r}
+seu <- CreateSeuratObject(counts = TPM)
+table(rownames(seu@meta.data) == cells.annot$sampleID)
+seu@meta.data <- cbind(seu@meta.data, cells.annot)
+seu$batch <- sapply(strsplit(seu@meta.data$plateID, split = "_"), function(xx) xx[6])
+
+seu <- FindVariableFeatures(seu, selection.method = "mvp")
+
+seu[["RNA"]]@meta.features %>% 
+  ggplot(aes(x=1:nrow(.), sort(mvp.dispersion.scaled, decreasing = T))) + 
+  geom_point() + 
+  geom_vline(xintercept = 2000, linetype="dashed", color="blue")
+```
+
+### 2. 通过抽样选择更加稳定的特征
+```{r}
+sample.rates = 0.75
+sample.repeats = 200
+
+features.list <- pbapply::pblapply(1:sample.repeats, function(i) {
+  set.seed(i)
+  cells.sampled <- sample(colnames(seu), size = ncol(seu) * sample.rates, replace = F)
+  seu.subsampled <- subset(seu, cells = cells.sampled)
+  seu.subsampled <- FindVariableFeatures(seu.subsampled, selection.method = "mvp", verbose = F)
+  return(seu.subsampled[["RNA"]]@var.features)
+})
+
+sapply(features.list, length)
+
+features <- UpSetR::fromList(features.list)
+rownames(features) <- unique(unlist(features.list))
+
+features$ratio <- rowSums(features) / sample.repeats
+
+ggplot(features, aes(ratio)) + 
+  geom_histogram() + 
+  geom_vline(xintercept = 0.75)
+```
+
+```{r}
+nrow(subset(features, ratio > 0.75))
+```
+
+```{r}
+select.features <- rownames(subset(features, ratio > 0.75))
+select.features <- intersect(select.features, rownames(TPM))
+writeLines(select.features, "../input/GSE154989_mmLungPlate.feathers.txt")
+```
+

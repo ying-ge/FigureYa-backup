@@ -1,0 +1,93 @@
+name: Sync All Included Folders to Actions Repo
+
+on:
+  push:
+    paths:
+      - .github/docs/all_included.txt
+
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync-folders:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source Repo
+        uses: actions/checkout@v4
+        with:
+          repository: ying-ge/FigureYa
+          path: source-repo
+          fetch-depth: 0
+
+      - name: List source-repo top-level dirs
+        run: ls -l source-repo
+
+      - name: Checkout Target Repo
+        uses: actions/checkout@v4
+        with:
+          repository: ying-ge/FigureYa-Actions
+          path: target-repo
+          token: ${{ secrets.FIGUREYA2ACTION }}
+
+      - name: Determine Changed Folders
+        id: changed
+        run: |
+          cd source-repo
+          git fetch origin main
+          before="${{ github.event.before }}"
+          after="${{ github.sha }}"
+          if [ "$before" = "0000000000000000000000000000000000000000" ] || ! git cat-file -e "$before" 2>/dev/null; then
+            echo "首次运行或 before commit 不存在，全部需要同步"
+            echo "changed_needed=1" >> $GITHUB_OUTPUT
+            git ls-files > changed_files.txt
+          else
+            git diff --name-only "$before" "$after" > changed_files.txt
+          fi
+          cat .github/docs/all_included.txt | grep -v '^\s*$' | grep -v '^#' > folder_list.txt
+          changed_needed=0
+          while read folder; do
+            if grep -q "^$folder/" changed_files.txt; then
+              echo "$folder 发生变化"
+              changed_needed=1
+            fi
+          done < folder_list.txt
+          if grep -q "^.github/docs/all_included.txt$" changed_files.txt; then
+            changed_needed=1
+          fi
+          echo "changed_needed=$changed_needed" >> $GITHUB_OUTPUT
+
+      - name: Debug folder list
+        run: cat source-repo/folder_list.txt
+
+      - name: Debug changed_needed
+        run: echo "${{ steps.changed.outputs.changed_needed }}"
+
+      - name: Sync Folders if Needed
+        if: steps.changed.outputs.changed_needed == '1'
+        run: |
+          cd source-repo
+          while read folder; do
+            if [ -d "$folder" ]; then
+              echo "Copying $folder"
+              rm -rf ../target-repo/"$folder"
+              cp -r "$folder" ../target-repo/
+            else
+              echo "Warning: $folder not found"
+            fi
+          done < .github/docs/all_included.txt
+
+      - name: List target-repo after sync
+        if: steps.changed.outputs.changed_needed == '1'
+        run: ls -l target-repo
+
+      - name: Commit and Push to Target Repo
+        if: steps.changed.outputs.changed_needed == '1'
+        run: |
+          cd target-repo
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "Sync folders from FigureYa via workflow" || echo "No changes to commit"
+          git push

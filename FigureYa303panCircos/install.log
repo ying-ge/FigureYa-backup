@@ -1,0 +1,20 @@
+Starting R package installation...
+===========================================
+
+Installing CRAN packages...
+Package already installed: openxlsx 
+Package already installed: plyr 
+Package already installed: dplyr 
+Package already installed: circlize 
+Package already installed: reshape2 
+Package already installed: ggplot2 
+
+Installing Bioconductor packages...
+Package already installed: ComplexHeatmap 
+
+===========================================
+Package installation completed!
+You can now run your R scripts in this directory.
+
+Testing openxlsx package...
+✅ openxlsx package loaded successfully!

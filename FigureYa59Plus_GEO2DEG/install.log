@@ -1,0 +1,40 @@
+Starting R package installation...
+===========================================
+
+Installing CRAN packages...
+✓ Package already installed: ggplot2 
+✓ Package already installed: ggrepel 
+Installing CRAN package: ggthemes 
+Warning: dependency ‘extrafont’ is not available
+also installing the dependency ‘pander’
+
+✓ Successfully installed: ggthemes 
+✓ Package already installed: dplyr 
+✓ Package already installed: tidyr 
+✓ Package already installed: readr 
+
+Installing Bioconductor packages...
+Installing Bioconductor package: GEOquery 
+'getOption("repos")' replaces Bioconductor standard repositories, see
+'help("repositories", package = "BiocManager")' for details.
+Replacement repositories:
+    CRAN: https://cloud.r-project.org/
+Bioconductor version 3.21 (BiocManager 1.30.26), R 4.5.1 (2025-06-13)
+Installing package(s) 'GEOquery'
+also installing the dependency ‘rentrez’
+
+✓ Successfully installed: GEOquery 
+✓ Package already installed: limma 
+
+===========================================
+Verifying package installation...
+✓ ggplot2 is ready
+✓ ggrepel is ready
+✓ ggthemes is ready
+Setting options('download.file.method.GEOquery'='auto')
+Setting options('GEOquery.inmemory.gpl'=FALSE)
+✓ GEOquery is ready
+✓ limma is ready
+
+✅ All packages installed successfully!
+You can now run your R scripts in this directory.

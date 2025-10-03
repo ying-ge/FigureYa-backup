@@ -1,0 +1,276 @@
+Starting R package installation...
+===========================================
+
+Installing CRAN packages...
+Package already installed: RColorBrewer 
+Package already installed: dplyr 
+Package already installed: ggplot2 
+
+Installing Bioconductor packages...
+Package already installed: TxDb.Hsapiens.UCSC.hg19.knownGene 
+Installing Bioconductor package: TxDb.Hsapiens.UCSC.hg38.knownGene 
+'getOption("repos")' replaces Bioconductor standard repositories, see
+'help("repositories", package = "BiocManager")' for details.
+Replacement repositories:
+    CRAN: https://cloud.r-project.org/
+Bioconductor version 3.21 (BiocManager 1.30.26), R 4.5.1 (2025-06-13)
+Installing package(s) 'TxDb.Hsapiens.UCSC.hg38.knownGene'
+trying URL 'https://bioconductor.org//packages/3.21/data/annotation/src/contrib/TxDb.Hsapiens.UCSC.hg38.knownGene_3.21.0.tar.gz'
+Content type 'application/x-gzip' length 60035861 bytes (57.3 MB)
+==================================================
+downloaded 57.3 MB
+
+* installing *source* package ‘TxDb.Hsapiens.UCSC.hg38.knownGene’ ...
+** this is package ‘TxDb.Hsapiens.UCSC.hg38.knownGene’ version ‘3.21.0’
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (TxDb.Hsapiens.UCSC.hg38.knownGene)
+
+The downloaded source packages are in
+	‘/tmp/Rtmpzp8RQo/downloaded_packages’
+Successfully installed: TxDb.Hsapiens.UCSC.hg38.knownGene 
+Installing Bioconductor package: trackViewer 
+'getOption("repos")' replaces Bioconductor standard repositories, see
+'help("repositories", package = "BiocManager")' for details.
+Replacement repositories:
+    CRAN: https://cloud.r-project.org/
+Bioconductor version 3.21 (BiocManager 1.30.26), R 4.5.1 (2025-06-13)
+Installing package(s) 'trackViewer'
+also installing the dependencies ‘AnnotationFilter’, ‘ProtGenerics’, ‘dichromat’, ‘ensembldb’, ‘biovizBase’, ‘latticeExtra’, ‘Gviz’, ‘grImport’, ‘InteractionSet’, ‘strawr’, ‘txdbmaker’
+
+trying URL 'https://bioconductor.org//packages/3.21/bioc/src/contrib/AnnotationFilter_1.32.0.tar.gz'
+trying URL 'https://bioconductor.org//packages/3.21/bioc/src/contrib/ProtGenerics_1.40.0.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/dichromat_2.0-0.1.tar.gz'
+trying URL 'https://bioconductor.org//packages/3.21/bioc/src/contrib/ensembldb_2.32.0.tar.gz'
+trying URL 'https://bioconductor.org//packages/3.21/bioc/src/contrib/biovizBase_1.56.0.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/latticeExtra_0.6-31.tar.gz'
+trying URL 'https://bioconductor.org//packages/3.21/bioc/src/contrib/Gviz_1.52.0.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/grImport_0.9-7.tar.gz'
+trying URL 'https://bioconductor.org//packages/3.21/bioc/src/contrib/InteractionSet_1.36.1.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/strawr_0.0.92.tar.gz'
+trying URL 'https://bioconductor.org//packages/3.21/bioc/src/contrib/txdbmaker_1.4.2.tar.gz'
+trying URL 'https://bioconductor.org//packages/3.21/bioc/src/contrib/trackViewer_1.44.0.tar.gz'
+* installing *source* package ‘AnnotationFilter’ ...
+** this is package ‘AnnotationFilter’ version ‘1.32.0’
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (AnnotationFilter)
+* installing *source* package ‘ProtGenerics’ ...
+** this is package ‘ProtGenerics’ version ‘1.40.0’
+** using staged installation
+** R
+** byte-compile and prepare package for lazy loading
+Creating a new generic function for ‘smooth’ in package ‘ProtGenerics’
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (ProtGenerics)
+* installing *source* package ‘dichromat’ ...
+** this is package ‘dichromat’ version ‘2.0-0.1’
+** package ‘dichromat’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (dichromat)
+* installing *source* package ‘latticeExtra’ ...
+** this is package ‘latticeExtra’ version ‘0.6-31’
+** package ‘latticeExtra’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (latticeExtra)
+* installing *source* package ‘grImport’ ...
+** this is package ‘grImport’ version ‘0.9-7’
+** package ‘grImport’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+Creating a new generic function for ‘explode’ in package ‘grImport’
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (grImport)
+* installing *source* package ‘InteractionSet’ ...
+** this is package ‘InteractionSet’ version ‘1.36.1’
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+using C++11
+g++ -std=gnu++11 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c box_bounds.cpp -o box_bounds.o
+g++ -std=gnu++11 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c detect_overlaps.cpp -o detect_overlaps.o
+g++ -std=gnu++11 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c init.cpp -o init.o
+g++ -std=gnu++11 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c link_overlaps.cpp -o link_overlaps.o
+g++ -std=gnu++11 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c overlap_utils.cpp -o overlap_utils.o
+g++ -std=gnu++11 -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o InteractionSet.so box_bounds.o detect_overlaps.o init.o link_overlaps.o overlap_utils.o -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-InteractionSet/00new/InteractionSet/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (InteractionSet)
+* installing *source* package ‘strawr’ ...
+** this is package ‘strawr’ version ‘0.0.92’
+** package ‘strawr’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c straw.cpp -o straw.o
+g++ -std=gnu++17 -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o strawr.so RcppExports.o straw.o -lcurl -lz -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-strawr/00new/strawr/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (strawr)
+* installing *source* package ‘txdbmaker’ ...
+** this is package ‘txdbmaker’ version ‘1.4.2’
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (txdbmaker)
+* installing *source* package ‘ensembldb’ ...
+** this is package ‘ensembldb’ version ‘2.32.0’
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+Creating a generic function from function ‘.cds_for_id2’ in package ‘ensembldb’
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (ensembldb)
+* installing *source* package ‘biovizBase’ ...
+** this is package ‘biovizBase’ version ‘1.56.0’
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c R_init_biovizBase.c -o R_init_biovizBase.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c bin_offsets.c -o bin_offsets.o
+gcc -std=gnu2x -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o biovizBase.so R_init_biovizBase.o bin_offsets.o -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-biovizBase/00new/biovizBase/libs
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (biovizBase)
+* installing *source* package ‘Gviz’ ...
+** this is package ‘Gviz’ version ‘1.52.0’
+** using staged installation
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (Gviz)
+* installing *source* package ‘trackViewer’ ...
+** this is package ‘trackViewer’ version ‘1.44.0’
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (trackViewer)
+
+The downloaded source packages are in
+	‘/tmp/Rtmpzp8RQo/downloaded_packages’
+Successfully installed: trackViewer 
+Package already installed: ComplexHeatmap 
+Package already installed: TCGAbiolinks 
+Package already installed: circlize 
+Package already installed: org.Hs.eg.db 
+
+===========================================
+Package installation completed!
+You can now run your R scripts in this directory.
+
+Testing TxDb packages...
+✅ TxDb.Hsapiens.UCSC.hg19.knownGene is available
+✅ TxDb.Hsapiens.UCSC.hg38.knownGene is available

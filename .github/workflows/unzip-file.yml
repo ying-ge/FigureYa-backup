@@ -1,0 +1,39 @@
+name: Unzip and Commit
+
+on:
+  workflow_dispatch: # 允许手动运行 Workflow
+
+jobs:
+  unzip_and_commit:
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: write
+      
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      - name: Set up Git user
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+
+      - name: Find and Unzip .zip File
+        run: |
+          cd FigureYa128Prognostic
+          for zip_file in *.zip; do
+            unzip -o "$zip_file" -d .
+          done
+          
+      - name: Pull latest changes
+        run: |
+          git pull origin main --rebase
+          
+      - name: Commit and Push Changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "Unzipped .zip files and added extracted content"
+          git push

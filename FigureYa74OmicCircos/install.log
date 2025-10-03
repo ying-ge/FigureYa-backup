@@ -1,0 +1,50 @@
+Starting R package installation...
+===========================================
+
+Installing Bioconductor packages...
+Installing Bioconductor package: OmicCircos 
+'getOption("repos")' replaces Bioconductor standard repositories, see
+'help("repositories", package = "BiocManager")' for details.
+Replacement repositories:
+    CRAN: https://cloud.r-project.org/
+Bioconductor version 3.21 (BiocManager 1.30.26), R 4.5.1 (2025-06-13)
+Installing package(s) 'OmicCircos'
+trying URL 'https://bioconductor.org//packages/3.21/bioc/src/contrib/OmicCircos_1.46.0.tar.gz'
+Content type 'application/x-gzip' length 2944317 bytes (2.8 MB)
+==================================================
+downloaded 2.8 MB
+
+* installing *source* package ‘OmicCircos’ ...
+** this is package ‘OmicCircos’ version ‘1.46.0’
+** using staged installation
+** R
+** data
+** demo
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (OmicCircos)
+
+The downloaded source packages are in
+	‘/tmp/RtmpLPa6hM/downloaded_packages’
+Successfully installed: OmicCircos 
+Package already installed: S4Vectors 
+
+Installing CRAN packages...
+Package already installed: tidyverse 
+
+===========================================
+Package installation completed!
+
+Verifying package installation:
+✓ OmicCircos is installed
+✓ S4Vectors is installed
+✓ tidyverse is installed
+
+You can now run your R scripts in this directory.

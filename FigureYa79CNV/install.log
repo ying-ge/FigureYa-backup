@@ -1,0 +1,11 @@
+Starting R package installation...
+===========================================
+
+Installing CRAN packages...
+
+Installing Bioconductor packages...
+Package already installed: BSgenome.Hsapiens.UCSC.hg19 
+
+===========================================
+Package installation completed!
+You can now run your R scripts in this directory.

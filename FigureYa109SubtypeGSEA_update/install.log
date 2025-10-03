@@ -1,0 +1,14 @@
+Starting R package installation...
+===========================================
+
+Installing Bioconductor packages...
+All required Bioconductor packages are already installed.
+
+Installing CRAN packages...
+Package already installed: gplots 
+Package already installed: pheatmap 
+Package already installed: magick 
+
+===========================================
+Package installation completed!
+You can now run your R scripts in this directory.

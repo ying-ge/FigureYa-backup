@@ -1,0 +1,138 @@
+name: Knit Rmd Files (Selective)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  knit-rmd:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: 1. Check out repository (LFS disabled)
+        uses: actions/checkout@v4
+        with:
+          lfs: false # 保持 LFS 禁用
+
+      - name: 2. Install system dependencies and Git LFS
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y git-lfs libmagick++-dev libgeos-dev libgfortran5 liblapack-dev libblas-dev \
+            libpng-dev libjpeg-dev librsvg2-dev libcairo2-dev libnode-dev libproj-dev \
+            libxml2-dev libcurl4-openssl-dev libssl-dev libhdf5-dev libv8-dev \
+            libfontconfig1-dev libharfbuzz-dev libfribidi-dev libgdal-dev \
+            libfreetype6-dev libtiff5-dev libudunits2-dev 
+          git lfs install
+      - name: 3. Set up R
+        uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: 'latest'
+      
+      - name: 4. Set up Java for rJava
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '11'
+
+      - name: 5. Configure R for Java
+        run: sudo R CMD javareconf
+
+      - name: 6. Set up Pandoc
+        uses: r-lib/actions/setup-pandoc@v2
+
+      - name: 7. Install core R dependencies
+        run: Rscript -e 'install.packages(c("rmarkdown", "knitr", "remotes"))'
+
+      - name: 8. Render Rmd files selectively
+        id: render_rmd
+        run: |
+          # Ensure the auto_Knit_online.txt file exists
+          if [ ! -f auto_Knit_online.txt ]; then
+            echo "auto_Knit_online.txt file not found. Please provide this file to specify which Rmd files to knit."
+            exit 1
+          fi
+          # Read auto_Knit_online.txt into a variable
+          TO_KNIT=$(<auto_Knit_online.txt)
+          # Process each .Rmd file
+          ANY_FILE_FAILED=false
+          echo "RMD Render Summary" > summary.txt
+          echo "===================" >> summary.txt
+          echo "" >> summary.txt
+          find . -type f -name "*.Rmd" | while IFS= read -r rmd_file; do
+            rmd_dir=$(dirname "$rmd_file")
+            rmd_basename=$(basename "$rmd_file")
+            # Check if any entry in auto_Knit_online.txt matches the Rmd file path or name
+            MATCHED=false
+            for pattern in $TO_KNIT; do
+              if [[ "$rmd_file" == *"$pattern"* ]]; then
+                MATCHED=true
+                break
+              fi
+            done
+            if [ "$MATCHED" = false ]; then
+              echo "[SKIPPED] - $rmd_file (Not listed in auto_Knit_online.txt)" | tee -a summary.txt
+              continue
+            fi
+            echo "========== START: $rmd_file =========="
+            if [ -f "$rmd_dir/install_dependencies.R" ]; then
+              (cd "$rmd_dir" && Rscript install_dependencies.R > install.log 2>&1 || echo "WARNING: Dependency installation failed for $rmd_file.")
+            fi
+            if Rscript -e "rmarkdown::render('$rmd_file', quiet=TRUE)" > rmd_render.log 2>&1; then
+              echo "[SUCCESS] - $rmd_file" | tee -a summary.txt
+            else
+              ANY_FILE_FAILED=true
+              echo "[FAILED] - $rmd_file" | tee -a summary.txt
+              echo "--- Error Log for $rmd_file ---" | tee -a summary.txt
+              tail -n 20 rmd_render.log | tee -a summary.txt
+              echo "-----------------------------------" | tee -a summary.txt
+            fi
+            echo "=========== END: $rmd_file ==========="; echo ""
+          done
+          # Output job status
+          echo "job_failed=$ANY_FILE_FAILED" >> $GITHUB_OUTPUT
+        continue-on-error: true
+
+      - name: 9. Upload Render Summary
+        uses: actions/upload-artifact@v4
+        with:
+          name: render-summary
+          path: summary.txt
+
+      - name: 10. Update Batch State and Commit Files
+        run: |
+          # 配置 Git 用户信息
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          # 确保拉取最新的更改
+          echo "Pulling latest changes from remote..."
+          git pull origin main --rebase --autostash
+          # 添加生成的 HTML 文件
+          #find . -name "*.html" -not -path "./.git/*" | xargs git add 2>/dev/null || true
+          echo "Adding all generated files to git..."
+          git add --all
+
+          # 添加 summary 文件（如果存在）
+          if [ -f summary.txt ]; then git add summary.txt; fi
+          # 检查是否有任何更改
+          if ! git diff --staged --quiet; then
+            git commit -m "chore: Auto-render selected Rmd files"
+            
+            # 推送更改到远程仓库
+            echo "Pushing changes to remote..."
+            if ! git push origin main; then
+              echo "Push failed, attempting force push after rebase..."
+              git push origin main --force
+            fi
+          else
+            echo "No new files or changes to commit."
+          fi
+          
+      - name: 11. Report Final Status
+        if: always()
+        run: |
+          if [ "${{ steps.render_rmd.outputs.job_failed }}" = "true" ]; then
+            echo "::warning ::One or more Rmd files failed to render. Check the 'render-summary' artifact for details."
+          else
+            echo "All listed Rmd files were processed successfully."
+          fi

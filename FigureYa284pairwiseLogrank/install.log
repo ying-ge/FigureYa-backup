@@ -1,0 +1,107 @@
+Starting R package installation...
+===========================================
+
+Installing CRAN packages...
+Package already installed: RColorBrewer 
+Installing CRAN package: ggpp 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+also installing the dependencies ‘xts’, ‘gginnards’
+
+trying URL 'https://cloud.r-project.org/src/contrib/xts_0.14.1.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/gginnards_0.2.0-1.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/ggpp_0.5.9.tar.gz'
+* installing *source* package ‘xts’ ...
+** this is package ‘xts’ version ‘0.14.1’
+** package ‘xts’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I../inst/include -I'/home/runner/work/_temp/Library/zoo/include' -I/usr/local/include    -fpic  -g -O2  -c add_class.c -o add_class.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I../inst/include -I'/home/runner/work/_temp/Library/zoo/include' -I/usr/local/include    -fpic  -g -O2  -c any.c -o any.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I../inst/include -I'/home/runner/work/_temp/Library/zoo/include' -I/usr/local/include    -fpic  -g -O2  -c attr.c -o attr.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I../inst/include -I'/home/runner/work/_temp/Library/zoo/include' -I/usr/local/include    -fpic  -g -O2  -c binsearch.c -o binsearch.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I../inst/include -I'/home/runner/work/_temp/Library/zoo/include' -I/usr/local/include    -fpic  -g -O2  -c coredata.c -o coredata.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I../inst/include -I'/home/runner/work/_temp/Library/zoo/include' -I/usr/local/include    -fpic  -g -O2  -c dimnames.c -o dimnames.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I../inst/include -I'/home/runner/work/_temp/Library/zoo/include' -I/usr/local/include    -fpic  -g -O2  -c endpoints.c -o endpoints.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I../inst/include -I'/home/runner/work/_temp/Library/zoo/include' -I/usr/local/include    -fpic  -g -O2  -c extract_col.c -o extract_col.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I../inst/include -I'/home/runner/work/_temp/Library/zoo/include' -I/usr/local/include    -fpic  -g -O2  -c init.c -o init.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I../inst/include -I'/home/runner/work/_temp/Library/zoo/include' -I/usr/local/include    -fpic  -g -O2  -c isOrdered.c -o isOrdered.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I../inst/include -I'/home/runner/work/_temp/Library/zoo/include' -I/usr/local/include    -fpic  -g -O2  -c isXts.c -o isXts.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I../inst/include -I'/home/runner/work/_temp/Library/zoo/include' -I/usr/local/include    -fpic  -g -O2  -c lag.c -o lag.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I../inst/include -I'/home/runner/work/_temp/Library/zoo/include' -I/usr/local/include    -fpic  -g -O2  -c merge.c -o merge.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I../inst/include -I'/home/runner/work/_temp/Library/zoo/include' -I/usr/local/include    -fpic  -g -O2  -c na.c -o na.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I../inst/include -I'/home/runner/work/_temp/Library/zoo/include' -I/usr/local/include    -fpic  -g -O2  -c period_apply.c -o period_apply.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I../inst/include -I'/home/runner/work/_temp/Library/zoo/include' -I/usr/local/include    -fpic  -g -O2  -c period_arithmetic.c -o period_arithmetic.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I../inst/include -I'/home/runner/work/_temp/Library/zoo/include' -I/usr/local/include    -fpic  -g -O2  -c period_quantile.c -o period_quantile.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I../inst/include -I'/home/runner/work/_temp/Library/zoo/include' -I/usr/local/include    -fpic  -g -O2  -c rbind.c -o rbind.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I../inst/include -I'/home/runner/work/_temp/Library/zoo/include' -I/usr/local/include    -fpic  -g -O2  -c rollfun.c -o rollfun.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I../inst/include -I'/home/runner/work/_temp/Library/zoo/include' -I/usr/local/include    -fpic  -g -O2  -c runSum.c -o runSum.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I../inst/include -I'/home/runner/work/_temp/Library/zoo/include' -I/usr/local/include    -fpic  -g -O2  -c startofyear.c -o startofyear.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I../inst/include -I'/home/runner/work/_temp/Library/zoo/include' -I/usr/local/include    -fpic  -g -O2  -c subset.c -o subset.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I../inst/include -I'/home/runner/work/_temp/Library/zoo/include' -I/usr/local/include    -fpic  -g -O2  -c subset.old.c -o subset.old.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I../inst/include -I'/home/runner/work/_temp/Library/zoo/include' -I/usr/local/include    -fpic  -g -O2  -c toperiod.c -o toperiod.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I../inst/include -I'/home/runner/work/_temp/Library/zoo/include' -I/usr/local/include    -fpic  -g -O2  -c totalcols.c -o totalcols.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I../inst/include -I'/home/runner/work/_temp/Library/zoo/include' -I/usr/local/include    -fpic  -g -O2  -c tryXts.c -o tryXts.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I../inst/include -I'/home/runner/work/_temp/Library/zoo/include' -I/usr/local/include    -fpic  -g -O2  -c unique.time.c -o unique.time.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I../inst/include -I'/home/runner/work/_temp/Library/zoo/include' -I/usr/local/include    -fpic  -g -O2  -c xts.c -o xts.o
+gcc -std=gnu2x -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o xts.so add_class.o any.o attr.o binsearch.o coredata.o dimnames.o endpoints.o extract_col.o init.o isOrdered.o isXts.o lag.o merge.o na.o period_apply.o period_arithmetic.o period_quantile.o rbind.o rollfun.o runSum.o startofyear.o subset.o subset.old.o toperiod.o totalcols.o tryXts.o unique.time.o xts.o -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-xts/00new/xts/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (xts)
+* installing *source* package ‘gginnards’ ...
+** this is package ‘gginnards’ version ‘0.2.0-1’
+** package ‘gginnards’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (gginnards)
+* installing *source* package ‘ggpp’ ...
+** this is package ‘ggpp’ version ‘0.5.9’
+** package ‘ggpp’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (ggpp)
+
+The downloaded source packages are in
+	‘/tmp/Rtmp27z73m/downloaded_packages’
+Successfully installed: ggpp 
+Package already installed: survival 
+Package already installed: survminer 
+Package already installed: tibble 
+
+===========================================
+Package installation completed!
+You can now run your R scripts in this directory.

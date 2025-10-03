@@ -1,0 +1,17 @@
+Starting R package installation...
+===========================================
+
+Installing CRAN packages...
+Package already installed: RColorBrewer 
+Package already installed: gplots 
+Package already installed: oompaBase 
+Package already installed: pheatmap 
+Package already installed: viridis 
+
+Installing Bioconductor packages...
+Package already installed: ComplexHeatmap 
+Package already installed: circlize 
+
+===========================================
+Package installation completed!
+You can now run your R scripts in this directory.

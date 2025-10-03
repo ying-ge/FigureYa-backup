@@ -1,0 +1,12 @@
+Starting R package installation...
+===========================================
+
+Installing CRAN packages...
+Package already installed: tidyverse 
+
+Installing Bioconductor packages...
+Package already installed: GEOquery 
+
+===========================================
+Package installation completed!
+You can now run your R scripts in this directory.

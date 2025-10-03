@@ -1,0 +1,270 @@
+Starting R package installation...
+===========================================
+
+Installing CRAN packages...
+Installing CRAN package: dodgerblue 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+Successfully installed: dodgerblue 
+Installing CRAN package: firebrick1 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+Successfully installed: firebrick1 
+Installing CRAN package: lightgoldenrod 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+Successfully installed: lightgoldenrod 
+Installing CRAN package: orange2 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+Successfully installed: orange2 
+Installing CRAN package: pROC 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+also installing the dependencies ‘FNN’, ‘kernlab’, ‘multicool’, ‘pracma’, ‘ks’, ‘logcondens’
+
+trying URL 'https://cloud.r-project.org/src/contrib/FNN_1.1.4.1.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/kernlab_0.9-33.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/multicool_1.0.1.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/pracma_2.4.4.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/ks_1.15.1.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/logcondens_2.1.8.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/pROC_1.19.0.1.tar.gz'
+* installing *source* package ‘FNN’ ...
+** this is package ‘FNN’ version ‘1.1.4.1’
+** package ‘FNN’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+using C++ compiler: ‘g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -Iinclude -DUSING_R -DUSING_RPRINT  -I/usr/local/include    -fpic  -g -O2   -c ANN.cpp -o ANN.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -Iinclude -DUSING_R -DUSING_RPRINT  -I/usr/local/include    -fpic  -g -O2   -c KNN_ANN.cpp -o KNN_ANN.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -Iinclude -DUSING_R -DUSING_RPRINT  -I/usr/local/include    -fpic  -g -O2   -c KNN_correlation_distance.cpp -o KNN_correlation_distance.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -Iinclude -DUSING_R -DUSING_RPRINT  -I/usr/local/include    -fpic  -g -O2   -c KNN_cover_test.cpp -o KNN_cover_test.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -Iinclude -DUSING_R -DUSING_RPRINT  -I/usr/local/include    -fpic  -g -O2   -c KNN_cover_tree.cpp -o KNN_cover_tree.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -Iinclude -DUSING_R -DUSING_RPRINT  -I/usr/local/include    -fpic  -g -O2   -c KNN_mutual_information.cpp -o KNN_mutual_information.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -Iinclude -DUSING_R -DUSING_RPRINT  -I/usr/local/include    -fpic  -g -O2   -c bd_fix_rad_search.cpp -o bd_fix_rad_search.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -Iinclude -DUSING_R -DUSING_RPRINT  -I/usr/local/include    -fpic  -g -O2   -c bd_pr_search.cpp -o bd_pr_search.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -Iinclude -DUSING_R -DUSING_RPRINT  -I/usr/local/include    -fpic  -g -O2   -c bd_search.cpp -o bd_search.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -Iinclude -DUSING_R -DUSING_RPRINT  -I/usr/local/include    -fpic  -g -O2   -c bd_tree.cpp -o bd_tree.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -Iinclude -DUSING_R -DUSING_RPRINT  -I/usr/local/include    -fpic  -g -O2   -c brute.cpp -o brute.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -Iinclude -DUSING_R -DUSING_RPRINT  -I/usr/local/include    -fpic  -g -O2  -c init_FNN.c -o init_FNN.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -Iinclude -DUSING_R -DUSING_RPRINT  -I/usr/local/include    -fpic  -g -O2   -c kd_dump.cpp -o kd_dump.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -Iinclude -DUSING_R -DUSING_RPRINT  -I/usr/local/include    -fpic  -g -O2   -c kd_fix_rad_search.cpp -o kd_fix_rad_search.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -Iinclude -DUSING_R -DUSING_RPRINT  -I/usr/local/include    -fpic  -g -O2   -c kd_pr_search.cpp -o kd_pr_search.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -Iinclude -DUSING_R -DUSING_RPRINT  -I/usr/local/include    -fpic  -g -O2   -c kd_search.cpp -o kd_search.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -Iinclude -DUSING_R -DUSING_RPRINT  -I/usr/local/include    -fpic  -g -O2   -c kd_split.cpp -o kd_split.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -Iinclude -DUSING_R -DUSING_RPRINT  -I/usr/local/include    -fpic  -g -O2   -c kd_tree.cpp -o kd_tree.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -Iinclude -DUSING_R -DUSING_RPRINT  -I/usr/local/include    -fpic  -g -O2   -c kd_util.cpp -o kd_util.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -Iinclude -DUSING_R -DUSING_RPRINT  -I/usr/local/include    -fpic  -g -O2   -c label_point.cpp -o label_point.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -Iinclude -DUSING_R -DUSING_RPRINT  -I/usr/local/include    -fpic  -g -O2   -c perf.cpp -o perf.o
+g++ -std=gnu++17 -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o FNN.so ANN.o KNN_ANN.o KNN_correlation_distance.o KNN_cover_test.o KNN_cover_tree.o KNN_mutual_information.o bd_fix_rad_search.o bd_pr_search.o bd_search.o bd_tree.o brute.o init_FNN.o kd_dump.o kd_fix_rad_search.o kd_pr_search.o kd_search.o kd_split.o kd_tree.o kd_util.o label_point.o perf.o -L/opt/R/4.5.1/lib/R/lib -lR
+rm -f *.o core
+installing to /home/runner/work/_temp/Library/00LOCK-FNN/00new/FNN/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (FNN)
+* installing *source* package ‘kernlab’ ...
+** this is package ‘kernlab’ version ‘0.9-33’
+** package ‘kernlab’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+using C++ compiler: ‘g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2   -c brweight.cpp -o brweight.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2   -c ctable.cpp -o ctable.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2   -c cweight.cpp -o cweight.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c dbreakpt.c -o dbreakpt.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c dcauchy.c -o dcauchy.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c dgpnrm.c -o dgpnrm.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c dgpstep.c -o dgpstep.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c dprecond.c -o dprecond.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c dprsrch.c -o dprsrch.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c dspcg.c -o dspcg.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c dtron.c -o dtron.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c dtrpcg.c -o dtrpcg.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c dtrqsol.c -o dtrqsol.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2   -c esa.cpp -o esa.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2   -c expdecayweight.cpp -o expdecayweight.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2   -c inductionsort.cpp -o inductionsort.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c init.c -o init.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2   -c kspectrumweight.cpp -o kspectrumweight.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2   -c lcp.cpp -o lcp.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c misc.c -o misc.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2   -c msufsort.cpp -o msufsort.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c solvebqp.c -o solvebqp.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c stringk.c -o stringk.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2   -c stringkernel.cpp -o stringkernel.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2   -c svm.cpp -o svm.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2   -c wkasailcp.cpp -o wkasailcp.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2   -c wmsufsort.cpp -o wmsufsort.o
+g++ -std=gnu++17 -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o kernlab.so brweight.o ctable.o cweight.o dbreakpt.o dcauchy.o dgpnrm.o dgpstep.o dprecond.o dprsrch.o dspcg.o dtron.o dtrpcg.o dtrqsol.o esa.o expdecayweight.o inductionsort.o init.o kspectrumweight.o lcp.o misc.o msufsort.o solvebqp.o stringk.o stringkernel.o svm.o wkasailcp.o wmsufsort.o -llapack -lblas -lgfortran -lm -lquadmath -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-kernlab/00new/kernlab/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+Creating a new generic function for ‘pattern’ in package ‘kernlab’
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (kernlab)
+* installing *source* package ‘multicool’ ...
+** this is package ‘multicool’ version ‘1.0.1’
+** package ‘multicool’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c compositions.cpp -o compositions.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c multicool.cpp -o multicool.o
+g++ -std=gnu++17 -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o multicool.so RcppExports.o compositions.o multicool.o -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-multicool/00new/multicool/libs
+** R
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (multicool)
+* installing *source* package ‘pracma’ ...
+** this is package ‘pracma’ version ‘2.4.4’
+** package ‘pracma’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+*** moving datasets to lazyload DB
+** demo
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (pracma)
+* installing *source* package ‘pROC’ ...
+** this is package ‘pROC’ version ‘1.19.0.1’
+** package ‘pROC’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c RcppVersion.cpp -o RcppVersion.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c delong.cpp -o delong.o
+g++ -std=gnu++17 -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o pROC.so RcppExports.o RcppVersion.o delong.o -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-pROC/00new/pROC/libs
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (pROC)
+* installing *source* package ‘ks’ ...
+** this is package ‘ks’ version ‘1.15.1’
+** package ‘ks’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c ks.c -o ks.o
+gcc -std=gnu2x -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o ks.so ks.o -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-ks/00new/ks/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (ks)
+* installing *source* package ‘logcondens’ ...
+** this is package ‘logcondens’ version ‘2.1.8’
+** package ‘logcondens’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (logcondens)
+
+The downloaded source packages are in
+	‘/tmp/RtmpBPkqLx/downloaded_packages’
+Successfully installed: pROC 
+Installing CRAN package: seagreen3 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+Successfully installed: seagreen3 
+Installing CRAN package: slateblue 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+Successfully installed: slateblue 
+Warning messages:
+1: package ‘dodgerblue’ is not available for this version of R
+
+A version of this package for your version of R might be available elsewhere,
+see the ideas at
+https://cran.r-project.org/doc/manuals/r-patched/R-admin.html#Installing-packages 
+2: package ‘firebrick1’ is not available for this version of R
+
+A version of this package for your version of R might be available elsewhere,
+see the ideas at
+https://cran.r-project.org/doc/manuals/r-patched/R-admin.html#Installing-packages 
+3: package ‘lightgoldenrod’ is not available for this version of R
+
+A version of this package for your version of R might be available elsewhere,
+see the ideas at
+https://cran.r-project.org/doc/manuals/r-patched/R-admin.html#Installing-packages 
+4: package ‘orange2’ is not available for this version of R
+
+A version of this package for your version of R might be available elsewhere,
+see the ideas at
+https://cran.r-project.org/doc/manuals/r-patched/R-admin.html#Installing-packages 
+5: package ‘seagreen3’ is not available for this version of R
+
+A version of this package for your version of R might be available elsewhere,
+see the ideas at
+https://cran.r-project.org/doc/manuals/r-patched/R-admin.html#Installing-packages 
+6: package ‘slateblue’ is not available for this version of R
+
+A version of this package for your version of R might be available elsewhere,
+see the ideas at
+https://cran.r-project.org/doc/manuals/r-patched/R-admin.html#Installing-packages 
+
+===========================================
+Package installation completed!
+You can now run your R scripts in this directory.

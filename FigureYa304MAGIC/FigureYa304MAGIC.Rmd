@@ -1,0 +1,287 @@
+---
+title: "FigureYa304MAGIC"
+params:
+  author: "Jianing Gao; Yasi Zhang"  
+  reviewer: "Ying Ge"
+output: html_document
+---
+
+**Author(s)**: `r params$author`  
+**Reviewer(s)**: `r params$reviewer`  
+**Date**: `r Sys.Date()` 
+
+# Academic Citation
+If you use this code in your work or research, we kindly request that you cite our publication:
+
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# 需求描述
+
+对于单细胞数据，使用MAGIC-knnDREMI计算与某个基因协同表达的基因模块，这篇文章通篇都用了MAGIC，将MAGIC结果在umap图上展示等。
+
+![](example.png)
+
+出自<https://linkinghub.elsevier.com/retrieve/pii/S1535610821004979>
+
+Figure S3. Related to Figures 3 and 4 and to Table S2.
+(E) Scaled expression (z-score, imputed by MAGIC with k = 30, t = 3) of genes with high knnDREMI conditioned on PLCG2 > 1 (rows), with cells ordered by PLCG2 expression (columns). 
+For visualization, expression was smoothed over the ordered cells with a rolling window of 100 cells. 
+Hierarchical clustering of genes on the unsmoothed, imputed expression was performed with complete linkage and Pearson correlation as a distance metric, identifying 3 gene modules that predict low, medium, and high PLCG2 (purple, gray, and yellow respectively) (Table S13). 
+Top annotations include PLCG2 expression and SCLC subtype.
+
+# 应用场景
+
+MAGIC特别有利于找时序变化基因、度量基因间的关系。发表MAGIC算法的Cell是更加高级的应用，可参考FigureYa177RNAvelocity ，有讲解视频。强烈推荐拖到视频的32分，听Jarning讲解那篇Cell文章使用MAGIC的思路，帮你找单细胞的时序变化基因、度量基因间的关系<https://mp.weixin.qq.com/s/2HRXZicyzHmrsFWUJ9JKdQ>。
+
+# 环境设置
+
+```{r}
+source("install_dependencies.R")
+library(biomaRt)
+# 加载 Seurat 和 SeuratDisk 用于数据转换
+library(SeuratDisk)
+library(Seurat)
+library(tidyverse)
+library(ComplexHeatmap)
+
+Sys.setenv(LANGUAGE = "en") #显示英文报错信息
+options(stringsAsFactors = FALSE) #禁止chr转成factor
+```
+
+# 输入文件
+
+作者已将例文的数据上传至<https://data.humantumoratlas.org/>。
+
+从 CellxGene 下载 `.h5ad` 文件，并使用 `SeuratDisk` 将其转换为 Seurat 对象。
+
+```{r load-data}
+# 1. 下载 H5AD 文件
+h5ad_url <- "https://datasets.cellxgene.cziscience.com/79f80e59-97e7-4f95-b1e9-9767a24b85b0.h5ad"
+h5ad_file <- "SCLC_epithelial_cells.h5ad"
+
+# 检查文件是否已下载，如果未下载则执行下载
+if (!file.exists(h5ad_file)) {
+  download.file(h5ad_url, destfile = h5ad_file, mode = "wb")
+}
+
+# 2. 将 .h5ad 转换为 .h5seurat 格式
+h5seurat_file <- "SCLC_epithelial_cells.h5seurat"
+Convert(h5ad_file, dest = h5seurat_file, overwrite = TRUE)
+
+# 3. 将 .h5seurat 文件加载为 Seurat 对象
+seu <- LoadH5Seurat(h5seurat_file)
+
+# 查看加载后的 Seurat 对象
+print(seu)
+
+# 创建临时目录并保存元数据 (与原流程保持一致)
+dir.create("tmp.data", showWarnings = FALSE)
+saveRDS(seu@meta.data, "tmp.data/SCLC_epithelial_cells.cellmeta.rds")
+head(readRDS("tmp.data/SCLC_epithelial_cells.cellmeta.rds"))
+```
+
+```{r}
+ensembl <- useEnsembl(biomart = "ENSEMBL_MART_ENSEMBL", version = 98)
+hg38.ens <- useDataset(dataset = "hsapiens_gene_ensembl", mart = ensembl, verbose = 98)
+
+results <- getBM(attributes = c('ensembl_gene_id', "external_gene_name", 'gene_biotype', 'chromosome_name'),
+                 filters = 'ensembl_gene_id',
+                 values = rownames(seu), 
+                 mart = hg38.ens)
+
+results$uniq.name <- ifelse(duplicated(results$external_gene_name), 
+                            paste(results$ensembl_gene_id, results$external_gene_name, sep = "-"),
+                            results$external_gene_name)
+rownames(results) <- results$ensembl_gene_id
+results <- results[rownames(seu), ]
+
+saveRDS(results, "data/gene.info.rds")
+```
+
+```{r}
+results <- readRDS("data/gene.info.rds")
+all(results$ensembl_gene_id == rownames(seu)) # should be TRUE
+
+counts <- seu[["RNA"]]@counts
+rownames(counts) <- results$uniq.name
+
+# !important: the unexpressed genes should be removed.
+expr.in.cells <- Matrix::rowSums(counts > 0)
+summary(expr.in.cells)
+selected.genes <- expr.in.cells > 500 # only genes expressed > 500 cells were kept.
+table(selected.genes)
+counts <- counts[selected.genes, ]
+
+seu <- CreateSeuratObject(counts, meta.data = seu@meta.data)
+rm("counts")
+gc()
+```
+
+# MAGIC-knnDREMI
+
+```{r}
+# 参数说明
+# knn = 30 (Default: 30)
+# t = 3    (Default：3)
+# npca = 56 (Default：100) 作者提供的Seurat中包含有56 PCs
+# n.jobs = 20 依据自己的机器配置灵活调整
+
+# Imputation.
+seu <- Rmagic::magic(seu, knn = 30, t = 3, npca = 56, n.jobs = 20)
+
+target.file <- "tmp.data/SCLC_epithelial_cells.MAGIC_RNA.feather"
+
+if (!file.exists(target.file)) {
+  imputed.matrix <- t(as.data.frame(seu[["MAGIC_RNA"]]@data))
+  imputed.matrix <- as_tibble(imputed.matrix)
+  arrow::write_feather(imputed.matrix, target.file)
+  writeLines(colnames(seu), "tmp.data/SCLC_epithelial_cells.MAGIC_RNA.feather.cellnames.txt")
+}
+
+# Calculate DREMI scores
+source("R/magic_utils.R")
+if (!exists("imputed.matrix")) {
+  imputed.matrix <- arrow::read_feather(target.file)
+}
+
+# test: PLCG2 & MTRNR2L12
+dremi.res.1 <- CalculateKnnDREMI(imputed.matrix = imputed.matrix, 
+                                 source.gene = "PLCG2", 
+                                 target.genes = "MTRNR2L12", 
+                                 return.drevi = T,
+                                 n.cores = 1)
+
+DREVIPlot(dremi.res.1$drevi$MTRNR2L12, bins = 20) + labs(x = "PLCG2", y = "MTRNR2L12")
+
+# run KnnDREMI: all genes
+dremi.res <- CalculateKnnDREMI(imputed.matrix = imputed.matrix, 
+                               source.gene = "PLCG2", 
+                               target.genes = NULL, # all genes
+                               return.drevi = F,
+                               n.cores = 20)
+write.table(dremi.res$dremi, "tmp.data/PLCG2.DREMI.tsv", row.names = F, sep = "\t", quote = F)
+```
+
+# 开始画图
+
+复现文中的S3E
+
+```{r, fig.width=5, fig.height=4}
+dremi <- read.table("tmp.data/PLCG2.DREMI.tsv", header = T, sep = "\t")
+
+dremi <- arrange(dremi, desc(dremi_score))
+
+ggplot(dremi, aes(dremi_score)) + 
+  geom_density(color = "red", fill = "red", alpha = .3) + 
+  geom_vline(xintercept = 1, linetype = "dashed", color = "blue") + 
+  theme_classic(base_size = 14)
+```
+
+TableS12.csv，来自例文Supplemental information. Gene modules with high knnDREMI conditioned on PLCG2, divided by low, medium, and high PLCG2 expression, related to Figure S3
+
+```{r}
+PLCG2.related.genes <- dremi %>% 
+  subset(dremi_score > 1)
+
+# 文章一共鉴定出了78个和PLCG2表达相关的基因
+PLCG2.module <- read.csv("data/TableS12.csv", header = F, col.names = c("gene", "module"))
+
+sapply(unique(PLCG2.module$module), function(m) {
+  xx <- subset(PLCG2.module, module == m)$gene
+  length(intersect(xx, PLCG2.related.genes$gene_name)) / length(xx)
+})
+```
+
+> 值得注意的是，MAGIC得到的PLCG2 related genes的重复性并不是很高。由于作者在文章中没有说明其在做imputation时候的详细步骤，因此我们无法判断问题在哪。
+
+```{r}
+PLCG2.expr <- imputed.matrix[["PLCG2"]]
+names(PLCG2.expr) <- readLines("tmp.data/SCLC_epithelial_cells.MAGIC_RNA.feather.cellnames.txt")
+
+genes.use <- PLCG2.related.genes$gene_name %>% head(100) # 我们使用前100个和PLCG2最相关的基因
+
+data.ht <- imputed.matrix[, genes.use] %>% as.data.frame()
+rownames(data.ht) <- names(PLCG2.expr)
+data.ht <- scale(data.ht) %>% t()
+
+# 构建热图所用的矩阵，行为基因，列为细胞(按照PLCG2的表达排列)
+ordered.cells <- names(sort(PLCG2.expr))
+data.ht <- data.ht[, ordered.cells]
+
+# 聚类，距离=1-PCC
+cor.mat <- cor(t(data.ht), method = "pearson")
+hc <- hclust(d = as.dist(1-cor.mat), method = "complete")
+clusters <- dendextend::cutree(hc, k = 3) # dendextend::cutree()
+hc <- dendextend::color_branches(hc, k = 3, col = ggsci::pal_d3("category20")(20))
+plot(hc)
+```
+
+
+自定义函数，Hanning filter function
+
+```{r}
+hanning.flt <- function(n = 100) {
+  # Hanning filter function
+  #
+  # Arguments
+  #   n: hanning filter window size (cells)
+  
+  if (n == 1)
+    c <- 1
+  else {
+    n <- n - 1
+    c <- 0.5 - 0.5 * cos(2 * pi * (0:n)/n)
+  }
+  return(c/sum(c))
+}
+```
+
+```{r, fig.width=7, fig.height=14}
+# 基因表达的平滑（仅用于可视化）
+data.ht.smooth <- apply(data.ht, 1, function(xx) stats::filter(xx, hanning.flt(100)))
+data.ht.smooth <- t(data.ht.smooth)
+
+subtype.col <- ggsci::pal_d3()(3)
+names(subtype.col) <- levels(seu$SCLC_major_subtype_of_sample)
+col_fun = circlize::colorRamp2(c(-1, 0, 1), c("blue", "white", "red"))
+
+column_ha = HeatmapAnnotation(
+  "SCLC subtype" = seu$SCLC_major_subtype_of_sample[ordered.cells],
+  PLCG2 = sort(imputed.matrix[["PLCG2"]]) %>% scale(), 
+  col = list(
+    "SCLC subtype" = subtype.col,
+    PLCG2 = col_fun
+  )
+)
+
+cluster.col <- ggsci::pal_aaas()(3)
+names(cluster.col) <- unique(clusters)
+
+row_ha = rowAnnotation(
+  module = clusters,
+  col = list(
+    module = cluster.col
+  )
+)
+
+#pdf("MAGICHeatmap.pdf", width = 7, height = 14)
+Heatmap(matrix = data.ht.smooth, 
+        cluster_rows = F, cluster_columns = F, 
+        show_row_names = T, show_column_names = F, 
+        row_names_side = "right",
+        top_annotation = column_ha,
+        left_annotation = row_ha,
+        split = clusters,
+        col = col_fun, show_heatmap_legend = F)
+#dev.off()
+```
+
+# Session Info
+
+```{r}
+sessionInfo()
+```

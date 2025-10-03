@@ -1,0 +1,421 @@
+04_cell2location_plot
+In [1]:
+import
+scanpy
+as
+sc
+import
+numpy
+as
+np
+import
+pandas
+as
+pd
+import
+matplotlib.pyplot
+as
+plt
+import
+matplotlib
+as
+mpl
+import
+cell2location
+from
+matplotlib
+import
+rcParams
+rcParams
+[
+'pdf.fonttype'
+]
+=
+42
+# enables correct plotting of text for PDFs
+In [2]:
+results_folder
+=
+'./results/'
+# create paths and names to results folders for reference regression and cell2location models
+run_name
+=
+f
+'
+{
+results_folder
+}
+/cell2location_map'
+In [3]:
+adata_file
+=
+f
+"
+{
+run_name
+}
+/sp.h5ad"
+adata_vis
+=
+sc
+.
+read_h5ad
+(
+adata_file
+)
+In [4]:
+adata_vis
+Out[4]:
+In [5]:
+# add 5% quantile, representing confident cell abundance, 'at least this amount is present',
+# to adata.obs with nice names for plotting
+adata_vis
+.
+obs
+[
+adata_vis
+.
+uns
+[
+'mod'
+][
+'factor_names'
+]]
+=
+adata_vis
+.
+obsm
+[
+'q05_cell_abundance_w_sf'
+]
+当前Anndata对象中包括了不止一张切片的数据
+In [6]:
+adata_vis
+.
+obs
+[[
+"sample"
+,
+"donor_id"
+]]
+.
+value_counts
+()
+Out[6]:
+In [12]:
+list
+(
+adata_vis
+.
+obs
+.
+columns
+)
+Out[12]:
+Figure 7F
+¶
+In [13]:
+# select one slide
+from
+cell2location.utils
+import
+select_slide
+slide
+=
+select_slide
+(
+adata_vis
+,
+'6800STDY12499411'
+)
+# plot in spatial coordinates
+with
+mpl
+.
+rc_context
+({
+'axes.facecolor'
+:
+'black'
+,
+'figure.figsize'
+:
+[
+4.5
+,
+5
+]}):
+sc
+.
+pl
+.
+spatial
+(
+slide
+,
+cmap
+=
+'magma'
+,
+# show first 8 cell types
+color
+=
+[
+'EMT'
+,
+'PT'
+],
+ncols
+=
+2
+,
+size
+=
+1.3
+,
+img_key
+=
+'hires'
+,
+# limit color scale at 99.2% quantile of cell abundance
+vmin
+=
+0
+,
+vmax
+=
+'p99.2'
+)
+Figure S5D
+¶
+In [14]:
+# select one slide
+from
+cell2location.utils
+import
+select_slide
+slide
+=
+select_slide
+(
+adata_vis
+,
+'6800STDY12499506'
+)
+# plot in spatial coordinates
+with
+mpl
+.
+rc_context
+({
+'axes.facecolor'
+:
+'black'
+,
+'figure.figsize'
+:
+[
+4.5
+,
+5
+]}):
+sc
+.
+pl
+.
+spatial
+(
+slide
+,
+cmap
+=
+'magma'
+,
+# show first 8 cell types
+color
+=
+[
+'TR Mac.1'
+,
+'TR Mac.2'
+,
+'TR Mac.3'
+,
+'MHC-II TAM'
+],
+ncols
+=
+2
+,
+size
+=
+1.3
+,
+img_key
+=
+'hires'
+,
+# limit color scale at 99.2% quantile of cell abundance
+vmin
+=
+0
+,
+vmax
+=
+'p99.2'
+)
+Figure 7B
+¶
+In [15]:
+# plot in spatial coordinates
+with
+mpl
+.
+rc_context
+({
+'axes.facecolor'
+:
+'black'
+,
+'figure.figsize'
+:
+[
+4.5
+,
+5
+]}):
+sc
+.
+pl
+.
+spatial
+(
+slide
+,
+cmap
+=
+'magma'
+,
+# show first 8 cell types
+color
+=
+[
+'EMT'
+,
+'PT'
+,
+'TR Mac.2'
+,
+'LoH ATL'
+],
+ncols
+=
+2
+,
+size
+=
+1.3
+,
+img_key
+=
+'hires'
+,
+# limit color scale at 99.2% quantile of cell abundance
+vmin
+=
+0
+,
+vmax
+=
+'p99.2'
+)
+In [28]:
+# Now we use cell2location plotter that allows showing multiple cell types in one panel
+from
+cell2location.plt
+import
+plot_spatial
+# select up to 6 clusters
+clust_labels
+=
+[
+'PT'
+,
+'EMT'
+,
+'LoH ATL'
+,
+'TR Mac.2'
+]
+clust_col
+=
+[
+''
++
+str
+(
+i
+)
+for
+i
+in
+clust_labels
+]
+# in case column names differ from labels
+# slide = select_slide(adata_vis, '6800STDY12499507')
+with
+mpl
+.
+rc_context
+({
+'figure.figsize'
+:
+(
+15
+,
+15
+)}):
+fig
+=
+plot_spatial
+(
+adata
+=
+slide
+,
+# labels to show on a plot
+color
+=
+clust_col
+,
+labels
+=
+clust_labels
+,
+show_img
+=
+True
+,
+# 'fast' (white background) or 'dark_background'
+style
+=
+'fast'
+,
+# limit color scale at 99.2% quantile of cell abundance
+max_color_quantile
+=
+0.992
+,
+# size of locations (adjust depending on figure size)
+circle_diameter
+=
+6
+,
+colorbar_position
+=
+'right'
+)
+fig
+# plt.savefig('figure_cell2location.pdf')
+Out[28]:
+In [ ]:

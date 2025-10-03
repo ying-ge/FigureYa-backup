@@ -1,0 +1,328 @@
+Starting R package installation...
+===========================================
+Installing BiocManager...
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+trying URL 'https://cloud.r-project.org/src/contrib/BiocManager_1.30.26.tar.gz'
+Content type 'application/x-gzip' length 594489 bytes (580 KB)
+==================================================
+downloaded 580 KB
+
+* installing *source* package ‘BiocManager’ ...
+** this is package ‘BiocManager’ version ‘1.30.26’
+** package ‘BiocManager’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (BiocManager)
+
+The downloaded source packages are in
+	‘/tmp/RtmpjwTxUl/downloaded_packages’
+
+Installing CRAN packages...
+Package already installed: ggplot2 
+Package already installed: dplyr 
+Package already installed: tidyverse 
+Package already installed: readr 
+
+Installing Bioconductor packages...
+Installing Bioconductor package: maftools 
+'getOption("repos")' replaces Bioconductor standard repositories, see
+'help("repositories", package = "BiocManager")' for details.
+Replacement repositories:
+    CRAN: https://cloud.r-project.org/
+Bioconductor version 3.21 (BiocManager 1.30.26), R 4.5.1 (2025-06-13)
+Installing package(s) 'BiocVersion', 'maftools'
+also installing the dependencies ‘Rhtslib’, ‘DNAcopy’, ‘pheatmap’, ‘zlibbioc’
+
+trying URL 'https://bioconductor.org//packages/3.21/bioc/src/contrib/Rhtslib_3.4.0.tar.gz'
+trying URL 'https://bioconductor.org//packages/3.21/bioc/src/contrib/DNAcopy_1.82.0.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/pheatmap_1.0.13.tar.gz'
+trying URL 'https://bioconductor.org//packages/3.21/bioc/src/contrib/zlibbioc_1.54.0.tar.gz'
+trying URL 'https://bioconductor.org//packages/3.21/bioc/src/contrib/BiocVersion_3.21.1.tar.gz'
+trying URL 'https://bioconductor.org//packages/3.21/bioc/src/contrib/maftools_2.24.0.tar.gz'
+* installing *source* package ‘Rhtslib’ ...
+** this is package ‘Rhtslib’ version ‘3.4.0’
+** using non-staged installation via StagedInstall field
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+cd "htslib-1.18" && make -f "Makefile.Rhtslib"
+make[1]: Entering directory '/tmp/RtmpnTuyDb/R.INSTALLb51c57c30941/Rhtslib/src/htslib-1.18'
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64 -c -o kfunc.o kfunc.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64 -c -o kstring.o kstring.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64 -c -o bcf_sr_sort.o bcf_sr_sort.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64 -c -o bgzf.o bgzf.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64 -c -o errmod.o errmod.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64 -c -o faidx.o faidx.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64 -c -o header.o header.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64 -c -o hfile.o hfile.c
+echo '#define HTS_VERSION_TEXT "1.18"' > version.h
+printf '#define HTS_CC "%s"\n#define HTS_CPPFLAGS "%s"\n#define HTS_CFLAGS "%s"\n#define HTS_LDFLAGS "%s"\n#define HTS_LIBS "%s"\n' \
+'gcc -std=gnu2x' \
+'-I/usr/local/include -D_FILE_OFFSET_BITS=64' \
+'-g -O2 -fpic -fvisibility=hidden' \
+'-L/usr/local/lib -fvisibility=hidden' \
+'-lz -lm -lbz2 -llzma -lcurl' > config_vars.h
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64 -c -o hts.o hts.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64 -c -o hts_expr.o hts_expr.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64 -c -o hts_os.o hts_os.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64 -c -o md5.o md5.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64 -c -o multipart.o multipart.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64 -c -o probaln.o probaln.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64 -c -o realn.o realn.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64 -c -o regidx.o regidx.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64 -c -o region.o region.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64 -c -o sam.o sam.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64 -c -o sam_mods.o sam_mods.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64 -c -o synced_bcf_reader.o synced_bcf_reader.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64 -c -o vcf_sweep.o vcf_sweep.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64 -c -o tbx.o tbx.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64 -c -o textutils.o textutils.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64 -c -o thread_pool.o thread_pool.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64 -c -o vcf.o vcf.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64 -c -o vcfutils.o vcfutils.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64 -c -o cram/cram_codecs.o cram/cram_codecs.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64 -c -o cram/cram_decode.o cram/cram_decode.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64 -c -o cram/cram_encode.o cram/cram_encode.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64 -c -o cram/cram_external.o cram/cram_external.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64 -c -o cram/cram_index.o cram/cram_index.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64 -c -o cram/cram_io.o cram/cram_io.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64 -c -o cram/cram_stats.o cram/cram_stats.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64 -c -o cram/mFILE.o cram/mFILE.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64 -c -o cram/open_trace_file.o cram/open_trace_file.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64 -c -o cram/pooled_alloc.o cram/pooled_alloc.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64 -c -o cram/string_alloc.o cram/string_alloc.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64 -c -o htscodecs/htscodecs/arith_dynamic.o htscodecs/htscodecs/arith_dynamic.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64 -c -o htscodecs/htscodecs/fqzcomp_qual.o htscodecs/htscodecs/fqzcomp_qual.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64 -c -o htscodecs/htscodecs/htscodecs.o htscodecs/htscodecs/htscodecs.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64 -c -o htscodecs/htscodecs/pack.o htscodecs/htscodecs/pack.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64 -c -o htscodecs/htscodecs/rANS_static4x16pr.o htscodecs/htscodecs/rANS_static4x16pr.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64 -c -o htscodecs/htscodecs/rANS_static32x16pr_avx2.o htscodecs/htscodecs/rANS_static32x16pr_avx2.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64 -c -o htscodecs/htscodecs/rANS_static32x16pr_avx512.o htscodecs/htscodecs/rANS_static32x16pr_avx512.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64 -c -o htscodecs/htscodecs/rANS_static32x16pr_sse4.o htscodecs/htscodecs/rANS_static32x16pr_sse4.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64 -c -o htscodecs/htscodecs/rANS_static32x16pr_neon.o htscodecs/htscodecs/rANS_static32x16pr_neon.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64 -c -o htscodecs/htscodecs/rANS_static32x16pr.o htscodecs/htscodecs/rANS_static32x16pr.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64 -c -o htscodecs/htscodecs/rANS_static.o htscodecs/htscodecs/rANS_static.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64 -c -o htscodecs/htscodecs/rle.o htscodecs/htscodecs/rle.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64 -c -o htscodecs/htscodecs/tokenise_name3.o htscodecs/htscodecs/tokenise_name3.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64 -c -o htscodecs/htscodecs/utils.o htscodecs/htscodecs/utils.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64 -c -o hfile_libcurl.o hfile_libcurl.c
+ar -rc libhts.a kfunc.o kstring.o bcf_sr_sort.o bgzf.o errmod.o faidx.o header.o hfile.o hts.o hts_expr.o hts_os.o md5.o multipart.o probaln.o realn.o regidx.o region.o sam.o sam_mods.o synced_bcf_reader.o vcf_sweep.o tbx.o textutils.o thread_pool.o vcf.o vcfutils.o cram/cram_codecs.o cram/cram_decode.o cram/cram_encode.o cram/cram_external.o cram/cram_index.o cram/cram_io.o cram/cram_stats.o cram/mFILE.o cram/open_trace_file.o cram/pooled_alloc.o cram/string_alloc.o htscodecs/htscodecs/arith_dynamic.o htscodecs/htscodecs/fqzcomp_qual.o htscodecs/htscodecs/htscodecs.o htscodecs/htscodecs/pack.o htscodecs/htscodecs/rANS_static4x16pr.o htscodecs/htscodecs/rANS_static32x16pr_avx2.o htscodecs/htscodecs/rANS_static32x16pr_avx512.o htscodecs/htscodecs/rANS_static32x16pr_sse4.o htscodecs/htscodecs/rANS_static32x16pr_neon.o htscodecs/htscodecs/rANS_static32x16pr.o htscodecs/htscodecs/rANS_static.o htscodecs/htscodecs/rle.o htscodecs/htscodecs/tokenise_name3.o htscodecs/htscodecs/utils.o hfile_libcurl.o
+ranlib libhts.a
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64  -c -o kfunc.pico kfunc.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64  -c -o kstring.pico kstring.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64  -c -o bcf_sr_sort.pico bcf_sr_sort.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64  -c -o bgzf.pico bgzf.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64  -c -o errmod.pico errmod.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64  -c -o faidx.pico faidx.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64  -c -o header.pico header.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64  -c -o hfile.pico hfile.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64  -c -o hts.pico hts.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64  -c -o hts_expr.pico hts_expr.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64  -c -o hts_os.pico hts_os.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64  -c -o md5.pico md5.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64  -c -o multipart.pico multipart.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64  -c -o probaln.pico probaln.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64  -c -o realn.pico realn.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64  -c -o regidx.pico regidx.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64  -c -o region.pico region.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64  -c -o sam.pico sam.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64  -c -o sam_mods.pico sam_mods.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64  -c -o synced_bcf_reader.pico synced_bcf_reader.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64  -c -o vcf_sweep.pico vcf_sweep.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64  -c -o tbx.pico tbx.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64  -c -o textutils.pico textutils.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64  -c -o thread_pool.pico thread_pool.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64  -c -o vcf.pico vcf.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64  -c -o vcfutils.pico vcfutils.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64  -c -o cram/cram_codecs.pico cram/cram_codecs.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64  -c -o cram/cram_decode.pico cram/cram_decode.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64  -c -o cram/cram_encode.pico cram/cram_encode.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64  -c -o cram/cram_external.pico cram/cram_external.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64  -c -o cram/cram_index.pico cram/cram_index.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64  -c -o cram/cram_io.pico cram/cram_io.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64  -c -o cram/cram_stats.pico cram/cram_stats.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64  -c -o cram/mFILE.pico cram/mFILE.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64  -c -o cram/open_trace_file.pico cram/open_trace_file.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64  -c -o cram/pooled_alloc.pico cram/pooled_alloc.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64  -c -o cram/string_alloc.pico cram/string_alloc.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64  -c -o htscodecs/htscodecs/arith_dynamic.pico htscodecs/htscodecs/arith_dynamic.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64  -c -o htscodecs/htscodecs/fqzcomp_qual.pico htscodecs/htscodecs/fqzcomp_qual.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64  -c -o htscodecs/htscodecs/htscodecs.pico htscodecs/htscodecs/htscodecs.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64  -c -o htscodecs/htscodecs/pack.pico htscodecs/htscodecs/pack.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64  -c -o htscodecs/htscodecs/rANS_static4x16pr.pico htscodecs/htscodecs/rANS_static4x16pr.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64  -c -o htscodecs/htscodecs/rANS_static32x16pr_avx2.pico htscodecs/htscodecs/rANS_static32x16pr_avx2.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64  -c -o htscodecs/htscodecs/rANS_static32x16pr_avx512.pico htscodecs/htscodecs/rANS_static32x16pr_avx512.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64  -c -o htscodecs/htscodecs/rANS_static32x16pr_sse4.pico htscodecs/htscodecs/rANS_static32x16pr_sse4.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64  -c -o htscodecs/htscodecs/rANS_static32x16pr_neon.pico htscodecs/htscodecs/rANS_static32x16pr_neon.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64  -c -o htscodecs/htscodecs/rANS_static32x16pr.pico htscodecs/htscodecs/rANS_static32x16pr.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64  -c -o htscodecs/htscodecs/rANS_static.pico htscodecs/htscodecs/rANS_static.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64  -c -o htscodecs/htscodecs/rle.pico htscodecs/htscodecs/rle.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64  -c -o htscodecs/htscodecs/tokenise_name3.pico htscodecs/htscodecs/tokenise_name3.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64  -c -o htscodecs/htscodecs/utils.pico htscodecs/htscodecs/utils.c
+gcc -std=gnu2x -g -O2 -fpic -fvisibility=hidden  -I. -I/usr/local/include -D_FILE_OFFSET_BITS=64  -c -o hfile_libcurl.pico hfile_libcurl.c
+gcc -std=gnu2x -shared -Wl,-soname,libhts.so.3 -Wl,-version-script,htslib.map -L/usr/local/lib -fvisibility=hidden -o libhts.so kfunc.pico kstring.pico bcf_sr_sort.pico bgzf.pico errmod.pico faidx.pico header.pico hfile.pico hts.pico hts_expr.pico hts_os.pico md5.pico multipart.pico probaln.pico realn.pico regidx.pico region.pico sam.pico sam_mods.pico synced_bcf_reader.pico vcf_sweep.pico tbx.pico textutils.pico thread_pool.pico vcf.pico vcfutils.pico cram/cram_codecs.pico cram/cram_decode.pico cram/cram_encode.pico cram/cram_external.pico cram/cram_index.pico cram/cram_io.pico cram/cram_stats.pico cram/mFILE.pico cram/open_trace_file.pico cram/pooled_alloc.pico cram/string_alloc.pico htscodecs/htscodecs/arith_dynamic.pico htscodecs/htscodecs/fqzcomp_qual.pico htscodecs/htscodecs/htscodecs.pico htscodecs/htscodecs/pack.pico htscodecs/htscodecs/rANS_static4x16pr.pico htscodecs/htscodecs/rANS_static32x16pr_avx2.pico htscodecs/htscodecs/rANS_static32x16pr_avx512.pico htscodecs/htscodecs/rANS_static32x16pr_sse4.pico htscodecs/htscodecs/rANS_static32x16pr_neon.pico htscodecs/htscodecs/rANS_static32x16pr.pico htscodecs/htscodecs/rANS_static.pico htscodecs/htscodecs/rle.pico htscodecs/htscodecs/tokenise_name3.pico htscodecs/htscodecs/utils.pico hfile_libcurl.pico -lz -lm -lbz2 -llzma -lcurl -lpthread
+ln -sf libhts.so libhts.so.3
+make[1]: Leaving directory '/tmp/RtmpnTuyDb/R.INSTALLb51c57c30941/Rhtslib/src/htslib-1.18'
+mkdir -p "/home/runner/work/_temp/Library/Rhtslib/include/htslib"
+cd "htslib-1.18/htslib" && cp * "/home/runner/work/_temp/Library/Rhtslib/include/htslib"
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I"/home/runner/work/_temp/Library/Rhtslib/include"  -I/usr/local/include    -fpic  -g -O2  -c R_init_Rhtslib.c -o R_init_Rhtslib.o
+mkdir -p "/home/runner/work/_temp/Library/Rhtslib/usrlib"
+cd "htslib-1.18" && cp libhts.so libhts.a "/home/runner/work/_temp/Library/Rhtslib/usrlib"
+cd "/home/runner/work/_temp/Library/Rhtslib/usrlib" && ln -s libhts.so libhts.so.2
+gcc -std=gnu2x -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o Rhtslib.so R_init_Rhtslib.o /home/runner/work/_temp/Library/Rhtslib/usrlib/libhts.a -lcurl -lbz2 -llzma -lz -L/opt/R/4.5.1/lib/R/lib -lR
+mkdir -p "/home/runner/work/_temp/Library/Rhtslib/testdata/tabix"
+cd "htslib-1.18/test" && (cp *.sam *.bam *.vcf *.bcf *.cram *.fa *.fa.fai *.gff *.bed "/home/runner/work/_temp/Library/Rhtslib/testdata" 2>/dev/null || true) && cd tabix && (cp *.sam *.bam *.vcf *.bcf *.cram *.fa *.fa.fai *.gff *.bed "/home/runner/work/_temp/Library/Rhtslib/testdata/tabix" 2>/dev/null || true)
+installing to /home/runner/work/_temp/Library/Rhtslib/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded
+* DONE (Rhtslib)
+* installing *source* package ‘DNAcopy’ ...
+** this is package ‘DNAcopy’ version ‘1.82.0’
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+using Fortran compiler: ‘GNU Fortran (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gfortran  -fpic  -g -O2  -c cbsWtstats.f -o cbsWtstats.o
+gfortran  -fpic  -g -O2  -c cbststats.f -o cbststats.o
+gfortran  -fpic  -g -O2  -c changepoints-wtd.f -o changepoints-wtd.o
+gfortran  -fpic  -g -O2  -c changepoints.f -o changepoints.o
+gfortran  -fpic  -g -O2  -c esegment.f -o esegment.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c flchoose.c -o flchoose.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c fphyper.c -o fphyper.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c fpnorm.c -o fpnorm.o
+gfortran  -fpic  -g -O2  -c getbdry.f -o getbdry.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c init.c -o init.o
+gfortran  -fpic  -g -O2  -c prune.f -o prune.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c rshared.c -o rshared.o
+gfortran  -fpic  -g -O2  -c segmentp.f -o segmentp.o
+gfortran  -fpic  -g -O2  -c smoothCNA.f -o smoothCNA.o
+gfortran  -fpic  -g -O2  -c tailprobs.f -o tailprobs.o
+gcc -std=gnu2x -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o DNAcopy.so cbsWtstats.o cbststats.o changepoints-wtd.o changepoints.o esegment.o flchoose.o fphyper.o fpnorm.o getbdry.o init.o prune.o rshared.o segmentp.o smoothCNA.o tailprobs.o -lgfortran -lm -lquadmath -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-DNAcopy/00new/DNAcopy/libs
+** R
+** data
+*** moving datasets to lazyload DB
+** demo
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (DNAcopy)
+* installing *source* package ‘pheatmap’ ...
+** this is package ‘pheatmap’ version ‘1.0.13’
+** package ‘pheatmap’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (pheatmap)
+* installing *source* package ‘zlibbioc’ ...
+** this is package ‘zlibbioc’ version ‘1.54.0’
+** using staged installation
+configure: creating ./config.status
+config.status: creating src/Makevars
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+mkdir -p "/home/runner/work/_temp/Library/00LOCK-zlibbioc/00new/zlibbioc/include"
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c R_init_zlibbioc.c -o R_init_zlibbioc.o
+gcc -std=gnu2x -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o zlibbioc.so R_init_zlibbioc.o -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-zlibbioc/00new/zlibbioc/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+Warning in fun(libname, pkgname) :
+  Package 'zlibbioc' is deprecated and will be removed from Bioconductor
+  version 3.22
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+Warning in fun(libname, pkgname) :
+  Package 'zlibbioc' is deprecated and will be removed from Bioconductor
+  version 3.22
+** testing if installed package keeps a record of temporary installation path
+* DONE (zlibbioc)
+* installing *source* package ‘BiocVersion’ ...
+** this is package ‘BiocVersion’ version ‘3.21.1’
+** using staged installation
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (BiocVersion)
+* installing *source* package ‘maftools’ ...
+** this is package ‘maftools’ version ‘2.24.0’
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/runner/work/_temp/Library/Rhtslib/include' -I'/home/runner/work/_temp/Library/zlibbioc/include' -I/usr/local/include    -fpic  -g -O2  -c ntcounts.c -o ntcounts.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/runner/work/_temp/Library/Rhtslib/include' -I'/home/runner/work/_temp/Library/zlibbioc/include' -I/usr/local/include    -fpic  -g -O2  -c snpcounts.c -o snpcounts.o
+snpcounts.c: In function ‘snpcounts’:
+snpcounts.c:89:47: warning: format ‘%llu’ expects argument of type ‘long long unsigned int’, but argument 3 has type ‘uint64_t’ {aka ‘long unsigned int’} [-Wformat=]
+   89 |   fprintf(tsv_fp, "#idxstats_mapped_reads\t%llu\n", tot_mapped);
+      |                                            ~~~^     ~~~~~~~~~~
+      |                                               |     |
+      |                                               |     uint64_t {aka long unsigned int}
+      |                                               long long unsigned int
+      |                                            %lu
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/runner/work/_temp/Library/Rhtslib/include' -I'/home/runner/work/_temp/Library/zlibbioc/include' -I/usr/local/include    -fpic  -g -O2  -c somaticfreq.c -o somaticfreq.o
+gcc -std=gnu2x -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o maftools.so ntcounts.o snpcounts.o somaticfreq.o /home/runner/work/_temp/Library/Rhtslib/usrlib/libhts.a -lcurl -lbz2 -llzma -lz -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-maftools/00new/maftools/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (maftools)
+
+The downloaded source packages are in
+	‘/tmp/RtmpjwTxUl/downloaded_packages’
+Successfully installed: maftools 
+
+===========================================
+Package installation completed!
+
+Checking installed packages:
+✓ ggplot2 is installed
+✓ dplyr is installed
+✓ tidyverse is installed
+✓ readr is installed
+✓ maftools is installed
+You can now run your R scripts in this directory.

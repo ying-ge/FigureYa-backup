@@ -1,0 +1,106 @@
+FigureYa322SSEA
+FigureYa322SSEA
+Author(s)
+: Xiaofan Lu; Yasi Zhang
+Reviewer(s)
+: Ying Ge
+Date
+: 2025-05-20
+Academic Citation
+If you use this code in your work or research, we kindly request that
+you cite our publication:
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization
+Framework for Enhancing Biomedical Data Interpretation and Research
+Efficiency. iMetaMed.
+https://doi.org/10.1002/imm3.70005
+需求描述
+Demand description
+这篇文章中SSEA算法可否复现？数据没有限制，想学习一下这个计算流程。
+Can the SSEA algorithm in this paper be reproduced? There are no data
+restrictions, and I’d like to learn this computational workflow.
+出自：
+https://www.nature.com/articles/ncomms15107
+Source:
+https://www.nature.com/articles/ncomms15107
+应用场景
+Application scenarios
+计算通路的亚型富集得分(SSEA)，并绘制各亚型SSEA得分雷达图。
+如果只想画雷达图，可以套用easy_input_SSEA.txt的格式调整自己的数据，直接前往“开始画图”。
+适合同时展示多组数据的多个特征。
+一组数据多个特征或多组数据一个特征，可参考FigureYa8radar
+，画成花瓣雷达图。
+Calculate the subtype enrichment scores (SSEA) for pathways and plot
+radar charts of SSEA scores for each subtype.
+If you only want to draw the radar chart, you can format your data
+according to the structure of easy_input_SSEA.txt and go directly to the
+“Start plotting” section.
+Suitable for simultaneously displaying multiple features across
+multiple datasets.
+A single dataset with multiple features or multiple datasets with a
+single feature, you can refer to FigureYa8radar to create petal-style
+radar charts.
+环境设置
+Environment Setup
+source("install_dependencies.R")
+library(openxlsx)
+library(GSVA)
+library(org.Hs.eg.db)
+library(ggplot2)
+library(fmsb)
+library(fgsea)
+library(dplyr)
+# 显示英文报错信息
+# Show English error messages
+Sys.setenv(LANGUAGE = "en") 
+
+# 禁止chr转成factor
+# Prevent character-to-factor conversion
+options(stringsAsFactors = FALSE)
+自定义函数
+Custom Functions
+输入文件
+Input Files
+TCGA-READ.htseq_counts.tsv.gz，TCGA-COAD.htseq_counts.tsv.gz，表达谱eset。TCGA其他癌症类型表达数据可以到XENA下载
+https://xenabrowser.net/datapages/
+41467_2017_BFncomms15107_MOESM425_ESM.xlsx，样本分组信息subtype。
+signature.xlsx，基因集signature【包含up和down两个列表】
+TCGA-READ.htseq_counts.tsv.gz, TCGA-COAD.htseq_counts.tsv.gz -
+Expression profiles (eset). For other TCGA cancer type expression data,
+visit XENA:
+https://xenabrowser.net/datapages/
+41467_2017_BFncomms15107_MOESM425_ESM.xlsx - Sample subtype
+classification information.
+signature.xlsx - Gene signatures [contains both UP and DOWN
+lists]
+SYMBOL <- tmp$SYMBOL[match(rownames(eset), tmp$ENSEMBL)]
+eset <- eset[!duplicated(SYMBOL) & !is.na(SYMBOL), ]
+rownames(eset) <- SYMBOL[!duplicated(SYMBOL) & !is.na(SYMBOL)]
+
+### 读取亚型信息
+### Read subtype information
+subtype <- read.xlsx("41467_2017_BFncomms15107_MOESM425_ESM.xlsx",
+                     startRow = 3)
+subtype <- subtype[subtype$Dataset.ID == "TCGA", ]
+rownames(subtype) <- subtype$Sample.ID
+
+### 整理样本信息
+### Process sample information
+comsam <- intersect(colnames(eset), subtype$Sample.ID)
+eset <- eset[, comsam]
+subtype <- subtype[comsam, "CRIS.Assignment"]
+计算通路得分
+Calculate pathway scores
+colnames(score) <- pathway
+
+# 输出各亚型SSEA得分
+# Output SSEA scores for each subtype
+write.table(score, "easy_input_SSEA.txt", 
+            row.names = T, col.names = NA, sep = "\t", quote = F)
+开始画图
+Plotting
+绘制雷达图
+Draw radar chart
+dev.copy2pdf(file = file.path("SSEA.radar.pdf"),
+             width = 8, height = 8)
+Session Info
+sessionInfo()

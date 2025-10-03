@@ -1,0 +1,149 @@
+Starting R package installation...
+===========================================
+
+Installing important dependency packages first...
+Package already installed: devtools 
+Package already installed: httr 
+Package already installed: curl 
+Package already installed: jsonlite 
+
+Installing cgdsr package...
+Installing cgdsr package...
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+Trying to install cgdsr from GitHub...
+Using bundled GitHub PAT. Please add your own PAT using `gitcreds::gitcreds_set()`
+Failed to install cgdsr from GitHub: Failed to install 'unknown package' from GitHub:
+  HTTP error 401.
+  Bad credentials 
+Trying to install older version of cgdsr...
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+trying URL 'https://cran.r-project.org/src/contrib/Archive/cgdsr/cgdsr_1.3.0.tar.gz'
+Content type 'application/x-gzip' length 213159 bytes (208 KB)
+==================================================
+downloaded 208 KB
+
+* installing *source* package ‘cgdsr’ ...
+** this is package ‘cgdsr’ version ‘1.3.0’
+** package ‘cgdsr’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (cgdsr)
+Successfully installed older version of cgdsr
+[1] TRUE
+Warning message:
+package ‘cgdsr’ is not available for this version of R
+
+A version of this package for your version of R might be available elsewhere,
+see the ideas at
+https://cran.r-project.org/doc/manuals/r-patched/R-admin.html#Installing-packages 
+
+Installing potential additional dependencies...
+Package already installed: RCurl 
+Installing CRAN package: RJSONIO 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+trying URL 'https://cloud.r-project.org/src/contrib/RJSONIO_2.0.0.tar.gz'
+Content type 'application/x-gzip' length 703243 bytes (686 KB)
+==================================================
+downloaded 686 KB
+
+* installing *source* package ‘RJSONIO’ ...
+** this is package ‘RJSONIO’ version ‘2.0.0’
+** package ‘RJSONIO’ successfully unpacked and MD5 sums checked
+** using staged installation
+Trying to find libjson.h header file
+checking for gcc... gcc -std=gnu2x
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether the compiler supports GNU C... yes
+checking whether gcc -std=gnu2x accepts -g... yes
+checking for gcc -std=gnu2x option to enable C11 features... none needed
+USE_LOCAL = ""
+Minor Version: 6
+Using local libjson code. Copying files from src/libjson/Source
+/tmp/RtmpCmP6SI/R.INSTALL3496fc626cd2/RJSONIO
+JSONAllocator.cpp
+JSONChildren.cpp
+JSONDebug.cpp
+JSONIterators.cpp
+JSONMemory.cpp
+JSONNode.cpp
+JSONNode_Mutex.cpp
+JSONPreparse.cpp
+JSONStream.cpp
+JSONValidator.cpp
+JSONWorker.cpp
+JSONWriter.cpp
+internalJSONNode.cpp
+libjson.cpp
+configure: creating ./config.status
+config.status: creating src/Makevars
+config.status: creating tools/cleanup
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+using C++ compiler: ‘g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -Ilibjson -Ilibjson/Source -DNEW_JSON_NEW_STREAM -DNDEBUG=1  -DJSON_VALIDATE -DJSON_STREAM=1 -DJSON_READ_PRIORITY=1 -DJSON_LIBRARY=1 -DJSON_ISO_STRICT  -I/usr/local/include    -fpic  -g -O2  -c ConvertUTF.c -o ConvertUTF.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -Ilibjson -Ilibjson/Source -DNEW_JSON_NEW_STREAM -DNDEBUG=1  -DJSON_VALIDATE -DJSON_STREAM=1 -DJSON_READ_PRIORITY=1 -DJSON_LIBRARY=1 -DJSON_ISO_STRICT  -I/usr/local/include    -fpic  -g -O2   -c JSONAllocator.cpp -o JSONAllocator.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -Ilibjson -Ilibjson/Source -DNEW_JSON_NEW_STREAM -DNDEBUG=1  -DJSON_VALIDATE -DJSON_STREAM=1 -DJSON_READ_PRIORITY=1 -DJSON_LIBRARY=1 -DJSON_ISO_STRICT  -I/usr/local/include    -fpic  -g -O2   -c JSONChildren.cpp -o JSONChildren.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -Ilibjson -Ilibjson/Source -DNEW_JSON_NEW_STREAM -DNDEBUG=1  -DJSON_VALIDATE -DJSON_STREAM=1 -DJSON_READ_PRIORITY=1 -DJSON_LIBRARY=1 -DJSON_ISO_STRICT  -I/usr/local/include    -fpic  -g -O2   -c JSONDebug.cpp -o JSONDebug.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -Ilibjson -Ilibjson/Source -DNEW_JSON_NEW_STREAM -DNDEBUG=1  -DJSON_VALIDATE -DJSON_STREAM=1 -DJSON_READ_PRIORITY=1 -DJSON_LIBRARY=1 -DJSON_ISO_STRICT  -I/usr/local/include    -fpic  -g -O2   -c JSONIterators.cpp -o JSONIterators.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -Ilibjson -Ilibjson/Source -DNEW_JSON_NEW_STREAM -DNDEBUG=1  -DJSON_VALIDATE -DJSON_STREAM=1 -DJSON_READ_PRIORITY=1 -DJSON_LIBRARY=1 -DJSON_ISO_STRICT  -I/usr/local/include    -fpic  -g -O2   -c JSONMemory.cpp -o JSONMemory.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -Ilibjson -Ilibjson/Source -DNEW_JSON_NEW_STREAM -DNDEBUG=1  -DJSON_VALIDATE -DJSON_STREAM=1 -DJSON_READ_PRIORITY=1 -DJSON_LIBRARY=1 -DJSON_ISO_STRICT  -I/usr/local/include    -fpic  -g -O2   -c JSONNode.cpp -o JSONNode.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -Ilibjson -Ilibjson/Source -DNEW_JSON_NEW_STREAM -DNDEBUG=1  -DJSON_VALIDATE -DJSON_STREAM=1 -DJSON_READ_PRIORITY=1 -DJSON_LIBRARY=1 -DJSON_ISO_STRICT  -I/usr/local/include    -fpic  -g -O2   -c JSONNode_Mutex.cpp -o JSONNode_Mutex.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -Ilibjson -Ilibjson/Source -DNEW_JSON_NEW_STREAM -DNDEBUG=1  -DJSON_VALIDATE -DJSON_STREAM=1 -DJSON_READ_PRIORITY=1 -DJSON_LIBRARY=1 -DJSON_ISO_STRICT  -I/usr/local/include    -fpic  -g -O2   -c JSONPreparse.cpp -o JSONPreparse.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -Ilibjson -Ilibjson/Source -DNEW_JSON_NEW_STREAM -DNDEBUG=1  -DJSON_VALIDATE -DJSON_STREAM=1 -DJSON_READ_PRIORITY=1 -DJSON_LIBRARY=1 -DJSON_ISO_STRICT  -I/usr/local/include    -fpic  -g -O2   -c JSONStream.cpp -o JSONStream.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -Ilibjson -Ilibjson/Source -DNEW_JSON_NEW_STREAM -DNDEBUG=1  -DJSON_VALIDATE -DJSON_STREAM=1 -DJSON_READ_PRIORITY=1 -DJSON_LIBRARY=1 -DJSON_ISO_STRICT  -I/usr/local/include    -fpic  -g -O2   -c JSONValidator.cpp -o JSONValidator.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -Ilibjson -Ilibjson/Source -DNEW_JSON_NEW_STREAM -DNDEBUG=1  -DJSON_VALIDATE -DJSON_STREAM=1 -DJSON_READ_PRIORITY=1 -DJSON_LIBRARY=1 -DJSON_ISO_STRICT  -I/usr/local/include    -fpic  -g -O2   -c JSONWorker.cpp -o JSONWorker.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -Ilibjson -Ilibjson/Source -DNEW_JSON_NEW_STREAM -DNDEBUG=1  -DJSON_VALIDATE -DJSON_STREAM=1 -DJSON_READ_PRIORITY=1 -DJSON_LIBRARY=1 -DJSON_ISO_STRICT  -I/usr/local/include    -fpic  -g -O2   -c JSONWriter.cpp -o JSONWriter.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -Ilibjson -Ilibjson/Source -DNEW_JSON_NEW_STREAM -DNDEBUG=1  -DJSON_VALIDATE -DJSON_STREAM=1 -DJSON_READ_PRIORITY=1 -DJSON_LIBRARY=1 -DJSON_ISO_STRICT  -I/usr/local/include    -fpic  -g -O2  -c JSON_parser.c -o JSON_parser.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -Ilibjson -Ilibjson/Source -DNEW_JSON_NEW_STREAM -DNDEBUG=1  -DJSON_VALIDATE -DJSON_STREAM=1 -DJSON_READ_PRIORITY=1 -DJSON_LIBRARY=1 -DJSON_ISO_STRICT  -I/usr/local/include    -fpic  -g -O2  -c RJSON.c -o RJSON.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -Ilibjson -Ilibjson/Source -DNEW_JSON_NEW_STREAM -DNDEBUG=1  -DJSON_VALIDATE -DJSON_STREAM=1 -DJSON_READ_PRIORITY=1 -DJSON_LIBRARY=1 -DJSON_ISO_STRICT  -I/usr/local/include    -fpic  -g -O2  -c init.c -o init.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -Ilibjson -Ilibjson/Source -DNEW_JSON_NEW_STREAM -DNDEBUG=1  -DJSON_VALIDATE -DJSON_STREAM=1 -DJSON_READ_PRIORITY=1 -DJSON_LIBRARY=1 -DJSON_ISO_STRICT  -I/usr/local/include    -fpic  -g -O2   -c internalJSONNode.cpp -o internalJSONNode.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -Ilibjson -Ilibjson/Source -DNEW_JSON_NEW_STREAM -DNDEBUG=1  -DJSON_VALIDATE -DJSON_STREAM=1 -DJSON_READ_PRIORITY=1 -DJSON_LIBRARY=1 -DJSON_ISO_STRICT  -I/usr/local/include    -fpic  -g -O2   -c libjson.cpp -o libjson.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -Ilibjson -Ilibjson/Source -DNEW_JSON_NEW_STREAM -DNDEBUG=1  -DJSON_VALIDATE -DJSON_STREAM=1 -DJSON_READ_PRIORITY=1 -DJSON_LIBRARY=1 -DJSON_ISO_STRICT  -I/usr/local/include    -fpic  -g -O2  -c rlibjson.c -o rlibjson.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -Ilibjson -Ilibjson/Source -DNEW_JSON_NEW_STREAM -DNDEBUG=1  -DJSON_VALIDATE -DJSON_STREAM=1 -DJSON_READ_PRIORITY=1 -DJSON_LIBRARY=1 -DJSON_ISO_STRICT  -I/usr/local/include    -fpic  -g -O2  -c rparser.c -o rparser.o
+g++ -std=gnu++17 -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o RJSONIO.so ConvertUTF.o JSONAllocator.o JSONChildren.o JSONDebug.o JSONIterators.o JSONMemory.o JSONNode.o JSONNode_Mutex.o JSONPreparse.o JSONStream.o JSONValidator.o JSONWorker.o JSONWriter.o JSON_parser.o RJSON.o init.o internalJSONNode.o libjson.o rlibjson.o rparser.o -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-RJSONIO/00new/RJSONIO/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (RJSONIO)
+
+The downloaded source packages are in
+	‘/tmp/RtmpF7kdPT/downloaded_packages’
+Successfully installed: RJSONIO 
+Package already installed: plyr 
+Package already installed: stringr 
+
+Verifying installation...
+✓ cgdsr is installed
+Please send questions to cbioportal@googlegroups.com
+  Package loads successfully
+
+===========================================
+Package installation completed successfully!
+You can now run your R scripts in this directory.
+
+Testing cgdsr basic functionality...
+cgdsr package loaded successfully

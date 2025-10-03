@@ -1,0 +1,9 @@
+Starting R package installation...
+===========================================
+
+Installing Bioconductor packages...
+Package already installed: ComplexHeatmap 
+
+===========================================
+Package installation completed!
+You can now run your R scripts in this directory.

@@ -1,0 +1,15 @@
+Starting R package installation...
+===========================================
+
+Installing CRAN packages...
+Package already installed: GOSemSim 
+Package already installed: cowplot 
+Package already installed: ggplot2 
+Package already installed: reshape2 
+
+Installing Bioconductor packages...
+Package already installed: org.Hs.eg.db 
+
+===========================================
+Package installation completed!
+You can now run your R scripts in this directory.

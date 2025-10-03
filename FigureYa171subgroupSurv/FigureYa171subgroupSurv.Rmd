@@ -1,0 +1,192 @@
+---
+title: "FigureYa171subgroupSurv"
+params:
+  author: "Shipeng Guo"
+  reviewer: "Ying Ge, Junyi Shen"
+output: html_document
+---
+
+**Author(s)**: `r params$author`  
+**Reviewer(s)**: `r params$reviewer`  
+**Date**: `r Sys.Date()`  
+
+
+# Academic Citation
+If you use this code in your work or research, we kindly request that you cite our publication:
+
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# 需求描述
+# Requirement
+
+我们对亚组进行分析（比如说，risk signature在不同的年龄、性别、gleason评分等）的时候，区分高危和低危之后，画图把高危和低危的预测放到不同的年龄或肿瘤级别中，看看是否仍然有效。
+目前只能通过手动来做，是否可以帮忙做一个续惯的流程。
+输入survival信息，和不同的临床亚组。
+When performing subgroup analysis (for example, risk signatures for different age groups, genders, Gleason scores, etc.), after distinguishing high-risk from low-risk, we plot these predictions across different age groups or tumor grades to see if they still hold true.
+Currently, this can only be done manually. Could you help me create a custom workflow?
+
+![](example.png)
+
+出自<https://www.onlinelibrary.wiley.com/doi/full/10.1002/cam4.1498>
+From <https://www.onlinelibrary.wiley.com/doi/full/10.1002/cam4.1498>
+
+Figure 7. Subgroup analyses revealed by Kaplan-Meier survival curve. (A) Stratified survival analyses based on the clinicopathological features age, clinical stage, histological stage, and neoplasm histological grade for the 7-miRNA-based OS classifier.
+
+# 应用场景
+# Application Scenario
+
+本质上就是每次按条件筛选数据，然后做生存分析。
+Essentially, we filter the data by condition each time and then perform a survival analysis.
+
+你可能还想看这篇： 8秒完成2万个基因的生存分析，人人都可以！ <https://mp.weixin.qq.com/s/o4e1HzG4zPIQoGT6-7D0ug>
+You may also want to read this article: Complete survival analysis of 20,000 genes in 8 seconds, everyone can do it! <https://mp.weixin.qq.com/s/o4e1HzG4zPIQoGT6-7D0ug>
+
+# 环境设置
+# Environment Setup
+
+
+```{r}
+source("install_dependencies.R")
+
+```
+
+Load the package
+
+```{r}
+library(survival)
+library(survminer)
+Sys.setenv(LANGUAGE = "en") #显示英文报错信息 # Display English error messages
+options(stringsAsFactors = FALSE) #禁止chr转成factor # Disable conversion of chr to factor
+```
+
+# 输入文件
+# Input file
+
+easy_input.csv，包含生存数据和临床亚组信息。
+easy_input.csv, contains survival data and clinical subgroup information.
+
+```{r}
+dd <- data.table::fread("easy_input.csv",data.table = F)
+dd[1:3,]
+
+## 自定义颜色
+## Custom colors
+orange <- "#EB736B"
+blue <- "#57B5AB"
+```
+
+# 以一个亚组为例
+# Take a subgroup as an example
+
+以age>=60为例，提取数据、绘制生存曲线。
+Take age>=60 as an example, extract data, and plot the survival curve.
+
+```{r}
+## 提取数据
+## Extract data
+rt <- dd[dd$age==">=60",] 
+
+## 生存分析
+## Survival analysis
+fit <- survfit(Surv(futime, fustat) ~ Risk, data = rt)
+
+## 作图
+## Plot
+ggsurvplot(fit,
+           pval = TRUE,
+           palette = c(orange, blue),
+           title="age>=60",
+           xlab="Time in days")
+```
+
+# 批量操作
+# Batch operation
+
+本质上就是每次按条件筛选数据，然后做生存分析，重点是在筛选数据
+Essentially, this involves filtering data by condition each time and then performing a survival analysis. The key is in filtering the data.
+
+## 自定义函数
+## Custom function
+
+给一个筛选标准，直接画图。
+Give a filtering criterion and plot directly.
+
+支持单次操作
+Supports single operations
+
+```{r}
+mysurvplot <- function(cols=cols,filter=filter){
+  ## 过滤条件 ## Filter condition
+  index = dd[,cols]==filter
+  ## 按行过滤数据 ## Filter data by row
+  rt = dd[index,]
+  ## 生存分析 ## Survival analysis
+  fit = survfit(Surv(futime, fustat) ~ Risk, data = rt)
+  ## 计算p值 ## Calculate p-value
+  x = survdiff(Surv(futime, fustat) ~ Risk, data = rt)
+  pValue=1-pchisq(x$chisq,df=1)
+  pValue= round(pValue,3)
+  ## 作图 ## Plot
+  p=ggsurvplot(fit,
+             pval = pValue,
+             palette = c(orange, blue),
+             title=paste0(cols,filter),
+             xlab="Time in days")
+  return(p)
+}
+```
+
+## 函数用法 ## Function Usage
+# Test the function with three examples
+
+```{r}
+# 举三个例子测试函数
+## Run in batches, saving the plot results as a list
+mysurvplot("age","<60")
+mysurvplot("gleason",">7")
+mysurvplot("stage","T1+T2")
+```
+
+## 批量运行，把画图结果存为list
+
+```{r}
+# 为了方便批量操作，把筛选条件写成向量形式
+# For ease of batch operation, write the filter criteria as a vector
+cols <- c("age","age","gleason","gleason","psa","psa","stage","stage")
+filter <- c(">=60","<60","<=7",">7","<=10",">10","T1+T2","T3+T4")
+
+p <- list()
+for ( i in 1:length(cols)) {
+  p[[i]] = mysurvplot(cols[i],filter[i])
+}
+```
+
+拼图
+Merge Graph
+
+```{r, fig.width=20, fig.height=10}
+## arrange_ggsurvplots来自于survminer包，用于排列结果
+## print = T，直接显示
+## arrange_ggsurvplots comes from the survminer package and is used to arrange the results.
+## print = T, direct display
+arrange_ggsurvplots(p, print = T,
+                    ncol = 4, nrow = 2,
+                    labels=LETTERS[1:8])
+
+## 或者print = F, 然后保存到PDF文件
+## Or print = F, then save to PDF file
+res <- arrange_ggsurvplots(p, print = F,
+                           ncol = 4, nrow = 2)
+ggsave("subgroupSurv.pdf", res, width = 20, height = 10)
+```
+
+# Session Info
+
+```{r}
+sessionInfo()
+```

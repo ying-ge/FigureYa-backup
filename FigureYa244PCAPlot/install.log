@@ -1,0 +1,281 @@
+Starting R package installation...
+===========================================
+
+Installing CRAN packages...
+Package already installed: tidyverse 
+Installing CRAN package: factoextra 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+also installing the dependencies ‘estimability’, ‘ellipse’, ‘emmeans’, ‘flashClust’, ‘leaps’, ‘multcompView’, ‘scatterplot3d’, ‘pixmap’, ‘dendextend’, ‘FactoMineR’, ‘ade4’, ‘ca’
+
+trying URL 'https://cloud.r-project.org/src/contrib/estimability_1.5.1.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/ellipse_0.5.0.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/emmeans_1.11.2-8.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/flashClust_1.01-2.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/leaps_3.2.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/multcompView_0.1-10.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/scatterplot3d_0.3-44.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/pixmap_0.4-14.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/dendextend_1.19.1.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/FactoMineR_2.12.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/ade4_1.7-23.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/ca_0.71.1.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/factoextra_1.0.7.tar.gz'
+* installing *source* package ‘estimability’ ...
+** this is package ‘estimability’ version ‘1.5.1’
+** package ‘estimability’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (estimability)
+* installing *source* package ‘ellipse’ ...
+** this is package ‘ellipse’ version ‘0.5.0’
+** package ‘ellipse’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (ellipse)
+* installing *source* package ‘flashClust’ ...
+** this is package ‘flashClust’ version ‘1.01-2’
+** package ‘flashClust’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using Fortran compiler: ‘GNU Fortran (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gfortran  -fpic  -g -O2  -c hc.f -o hc.o
+gfortran  -fpic  -g -O2  -c hcass2.f -o hcass2.o
+gcc -std=gnu2x -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o flashClust.so hc.o hcass2.o -lgfortran -lm -lquadmath -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-flashClust/00new/flashClust/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (flashClust)
+* installing *source* package ‘leaps’ ...
+** this is package ‘leaps’ version ‘3.2’
+** package ‘leaps’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+using Fortran compiler: ‘GNU Fortran (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c init.c -o init.o
+gfortran  -fpic  -g -O2  -c leaps.f -o leaps.o
+gfortran  -fpic  -g -O2  -c leapshdr.f -o leapshdr.o
+gcc -std=gnu2x -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o leaps.so init.o leaps.o leapshdr.o -lgfortran -lm -lquadmath -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-leaps/00new/leaps/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (leaps)
+* installing *source* package ‘multcompView’ ...
+** this is package ‘multcompView’ version ‘0.1-10’
+** package ‘multcompView’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (multcompView)
+* installing *source* package ‘scatterplot3d’ ...
+** this is package ‘scatterplot3d’ version ‘0.3-44’
+** package ‘scatterplot3d’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (scatterplot3d)
+* installing *source* package ‘pixmap’ ...
+** this is package ‘pixmap’ version ‘0.4-14’
+** package ‘pixmap’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (pixmap)
+* installing *source* package ‘dendextend’ ...
+** this is package ‘dendextend’ version ‘1.19.1’
+** package ‘dendextend’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+*** moving datasets to lazyload DB
+** demo
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (dendextend)
+* installing *source* package ‘ca’ ...
+** this is package ‘ca’ version ‘0.71.1’
+** package ‘ca’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (ca)
+* installing *source* package ‘emmeans’ ...
+** this is package ‘emmeans’ version ‘1.11.2-8’
+** package ‘emmeans’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (emmeans)
+* installing *source* package ‘ade4’ ...
+** this is package ‘ade4’ version ‘1.7-23’
+** package ‘ade4’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+using C++ compiler: ‘g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I../inst/include -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/RcppArmadillo/include' -I/usr/local/include    -fpic  -g -O2   -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I../inst/include -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/RcppArmadillo/include' -I/usr/local/include    -fpic  -g -O2   -c ade4libCpp.cpp -o ade4libCpp.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I../inst/include -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/RcppArmadillo/include' -I/usr/local/include    -fpic  -g -O2  -c adesub.c -o adesub.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I../inst/include -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/RcppArmadillo/include' -I/usr/local/include    -fpic  -g -O2  -c divsub.c -o divsub.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I../inst/include -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/RcppArmadillo/include' -I/usr/local/include    -fpic  -g -O2  -c fourthcorner.c -o fourthcorner.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I../inst/include -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/RcppArmadillo/include' -I/usr/local/include    -fpic  -g -O2  -c init.c -o init.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I../inst/include -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/RcppArmadillo/include' -I/usr/local/include    -fpic  -g -O2  -c phylog.c -o phylog.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I../inst/include -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/RcppArmadillo/include' -I/usr/local/include    -fpic  -g -O2  -c testamova.c -o testamova.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I../inst/include -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/RcppArmadillo/include' -I/usr/local/include    -fpic  -g -O2  -c testdim.c -o testdim.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I../inst/include -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/RcppArmadillo/include' -I/usr/local/include    -fpic  -g -O2  -c testrlq.c -o testrlq.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I../inst/include -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/RcppArmadillo/include' -I/usr/local/include    -fpic  -g -O2  -c tests.c -o tests.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I../inst/include -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/RcppArmadillo/include' -I/usr/local/include    -fpic  -g -O2   -c testsCpp.cpp -o testsCpp.o
+g++ -std=gnu++17 -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o ade4.so RcppExports.o ade4libCpp.o adesub.o divsub.o fourthcorner.o init.o phylog.o testamova.o testdim.o testrlq.o tests.o testsCpp.o -llapack -lblas -lgfortran -lm -lquadmath -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-ade4/00new/ade4/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (ade4)
+* installing *source* package ‘FactoMineR’ ...
+** this is package ‘FactoMineR’ version ‘2.12’
+** package ‘FactoMineR’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c disjonctif.c -o disjonctif.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c init.c -o init.o
+gcc -std=gnu2x -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o FactoMineR.so disjonctif.o init.o -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-FactoMineR/00new/FactoMineR/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (FactoMineR)
+* installing *source* package ‘factoextra’ ...
+** this is package ‘factoextra’ version ‘1.0.7’
+** package ‘factoextra’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+*** moving datasets to lazyload DB
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (factoextra)
+
+The downloaded source packages are in
+	‘/tmp/Rtmp0DHyYO/downloaded_packages’
+Successfully installed: factoextra 
+
+===========================================
+Package installation completed!
+
+Verifying package installation...
+✓ tidyverse is installed
+✓ factoextra is installed
+
+✅ All required packages are installed successfully!
+You can now use the following code in your R script:
+library(tidyverse)
+library(factoextra)
+
+You can now run your R scripts in this directory.

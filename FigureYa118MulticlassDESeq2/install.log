@@ -1,0 +1,663 @@
+Starting R package installation...
+===========================================
+
+Installing Bioconductor packages...
+Installing Bioconductor package: DESeq2 
+'getOption("repos")' replaces Bioconductor standard repositories, see
+'help("repositories", package = "BiocManager")' for details.
+Replacement repositories:
+    CRAN: https://cloud.r-project.org/
+Bioconductor version 3.21 (BiocManager 1.30.26), R 4.5.1 (2025-06-13)
+Installing package(s) 'DESeq2'
+also installing the dependencies ‘formatR’, ‘UCSC.utils’, ‘GenomeInfoDbData’, ‘SparseArray’, ‘lambda.r’, ‘futile.options’, ‘GenomeInfoDb’, ‘XVector’, ‘S4Arrays’, ‘DelayedArray’, ‘futile.logger’, ‘snow’, ‘BH’, ‘GenomicRanges’, ‘SummarizedExperiment’, ‘Biobase’, ‘BiocParallel’, ‘locfit’, ‘MatrixGenerics’, ‘RcppArmadillo’
+
+trying URL 'https://cloud.r-project.org/src/contrib/formatR_1.14.tar.gz'
+trying URL 'https://bioconductor.org//packages/3.21/bioc/src/contrib/UCSC.utils_1.4.0.tar.gz'
+trying URL 'https://bioconductor.org//packages/3.21/data/annotation/src/contrib/GenomeInfoDbData_1.2.14.tar.gz'
+trying URL 'https://bioconductor.org//packages/3.21/bioc/src/contrib/SparseArray_1.8.1.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/lambda.r_1.2.4.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/futile.options_1.0.1.tar.gz'
+trying URL 'https://bioconductor.org//packages/3.21/bioc/src/contrib/GenomeInfoDb_1.44.2.tar.gz'
+trying URL 'https://bioconductor.org//packages/3.21/bioc/src/contrib/XVector_0.48.0.tar.gz'
+trying URL 'https://bioconductor.org//packages/3.21/bioc/src/contrib/S4Arrays_1.8.1.tar.gz'
+trying URL 'https://bioconductor.org//packages/3.21/bioc/src/contrib/DelayedArray_0.34.1.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/futile.logger_1.4.3.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/snow_0.4-4.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/BH_1.87.0-1.tar.gz'
+trying URL 'https://bioconductor.org//packages/3.21/bioc/src/contrib/GenomicRanges_1.60.0.tar.gz'
+trying URL 'https://bioconductor.org//packages/3.21/bioc/src/contrib/SummarizedExperiment_1.38.1.tar.gz'
+trying URL 'https://bioconductor.org//packages/3.21/bioc/src/contrib/Biobase_2.68.0.tar.gz'
+trying URL 'https://bioconductor.org//packages/3.21/bioc/src/contrib/BiocParallel_1.42.2.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/locfit_1.5-9.12.tar.gz'
+trying URL 'https://bioconductor.org//packages/3.21/bioc/src/contrib/MatrixGenerics_1.20.0.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/RcppArmadillo_15.0.2-2.tar.gz'
+trying URL 'https://bioconductor.org//packages/3.21/bioc/src/contrib/DESeq2_1.48.2.tar.gz'
+* installing *source* package ‘formatR’ ...
+** this is package ‘formatR’ version ‘1.14’
+** package ‘formatR’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (formatR)
+* installing *source* package ‘UCSC.utils’ ...
+** this is package ‘UCSC.utils’ version ‘1.4.0’
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (UCSC.utils)
+* installing *source* package ‘GenomeInfoDbData’ ...
+** this is package ‘GenomeInfoDbData’ version ‘1.2.14’
+** using staged installation
+** data
+** inst
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (GenomeInfoDbData)
+* installing *source* package ‘futile.options’ ...
+** this is package ‘futile.options’ version ‘1.0.1’
+** package ‘futile.options’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (futile.options)
+* installing *source* package ‘XVector’ ...
+** this is package ‘XVector’ version ‘0.48.0’
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I/usr/local/include    -fpic  -g -O2  -c IRanges_stubs.c -o IRanges_stubs.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I/usr/local/include    -fpic  -g -O2  -c Ocopy_byteblocks.c -o Ocopy_byteblocks.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I/usr/local/include    -fpic  -g -O2  -c RDS_random_access.c -o RDS_random_access.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I/usr/local/include    -fpic  -g -O2  -c R_init_XVector.c -o R_init_XVector.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I/usr/local/include    -fpic  -g -O2  -c S4Vectors_stubs.c -o S4Vectors_stubs.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I/usr/local/include    -fpic  -g -O2  -c SharedDouble_class.c -o SharedDouble_class.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I/usr/local/include    -fpic  -g -O2  -c SharedInteger_class.c -o SharedInteger_class.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I/usr/local/include    -fpic  -g -O2  -c SharedRaw_class.c -o SharedRaw_class.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I/usr/local/include    -fpic  -g -O2  -c SharedVector_class.c -o SharedVector_class.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I/usr/local/include    -fpic  -g -O2  -c XDouble_class.c -o XDouble_class.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I/usr/local/include    -fpic  -g -O2  -c XInteger_class.c -o XInteger_class.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I/usr/local/include    -fpic  -g -O2  -c XRawList_comparison.c -o XRawList_comparison.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I/usr/local/include    -fpic  -g -O2  -c XRaw_class.c -o XRaw_class.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I/usr/local/include    -fpic  -g -O2  -c XVectorList_class.c -o XVectorList_class.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I/usr/local/include    -fpic  -g -O2  -c XVector_class.c -o XVector_class.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I/usr/local/include    -fpic  -g -O2  -c io_utils.c -o io_utils.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I/usr/local/include    -fpic  -g -O2  -c slice_methods.c -o slice_methods.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I/usr/local/include    -fpic  -g -O2  -c vector_copy.c -o vector_copy.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I/usr/local/include    -fpic  -g -O2  -c view_summarization_methods.c -o view_summarization_methods.o
+gcc -std=gnu2x -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o XVector.so IRanges_stubs.o Ocopy_byteblocks.o RDS_random_access.o R_init_XVector.o S4Vectors_stubs.o SharedDouble_class.o SharedInteger_class.o SharedRaw_class.o SharedVector_class.o XDouble_class.o XInteger_class.o XRawList_comparison.o XRaw_class.o XVectorList_class.o XVector_class.o io_utils.o slice_methods.o vector_copy.o view_summarization_methods.o -lz -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-XVector/00new/XVector/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (XVector)
+* installing *source* package ‘S4Arrays’ ...
+** this is package ‘S4Arrays’ version ‘1.8.1’
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I/usr/local/include    -fpic  -g -O2  -c R_init_S4Arrays.c -o R_init_S4Arrays.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I/usr/local/include    -fpic  -g -O2  -c S4Vectors_stubs.c -o S4Vectors_stubs.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I/usr/local/include    -fpic  -g -O2  -c abind.c -o abind.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I/usr/local/include    -fpic  -g -O2  -c array_selection.c -o array_selection.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I/usr/local/include    -fpic  -g -O2  -c dim_tuning_utils.c -o dim_tuning_utils.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I/usr/local/include    -fpic  -g -O2  -c rowsum.c -o rowsum.o
+gcc -std=gnu2x -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o S4Arrays.so R_init_S4Arrays.o S4Vectors_stubs.o abind.o array_selection.o dim_tuning_utils.o rowsum.o -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-S4Arrays/00new/S4Arrays/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+Creating a new generic function for ‘rowsum’ in package ‘S4Arrays’
+Creating a new generic function for ‘abind’ in package ‘S4Arrays’
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (S4Arrays)
+* installing *source* package ‘snow’ ...
+** this is package ‘snow’ version ‘0.4-4’
+** package ‘snow’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (snow)
+* installing *source* package ‘BH’ ...
+** this is package ‘BH’ version ‘1.87.0-1’
+** package ‘BH’ successfully unpacked and MD5 sums checked
+** using staged installation
+** inst
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (BH)
+* installing *source* package ‘Biobase’ ...
+** this is package ‘Biobase’ version ‘2.68.0’
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c Rinit.c -o Rinit.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c anyMissing.c -o anyMissing.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c envir.c -o envir.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c matchpt.c -o matchpt.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c rowMedians.c -o rowMedians.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c sublist_extract.c -o sublist_extract.o
+gcc -std=gnu2x -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o Biobase.so Rinit.o anyMissing.o envir.o matchpt.o rowMedians.o sublist_extract.o -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-Biobase/00new/Biobase/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (Biobase)
+* installing *source* package ‘locfit’ ...
+** this is package ‘locfit’ version ‘1.5-9.12’
+** package ‘locfit’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gcc -std=gnu17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c S_enter.c -o S_enter.o
+gcc -std=gnu17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c band.c -o band.o
+gcc -std=gnu17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c dbinom.c -o dbinom.o
+gcc -std=gnu17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c dens_haz.c -o dens_haz.o
+gcc -std=gnu17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c dens_int.c -o dens_int.o
+gcc -std=gnu17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c dens_odi.c -o dens_odi.o
+gcc -std=gnu17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c density.c -o density.o
+gcc -std=gnu17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c ev_atree.c -o ev_atree.o
+gcc -std=gnu17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c ev_interp.c -o ev_interp.o
+gcc -std=gnu17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c ev_kdtre.c -o ev_kdtre.o
+gcc -std=gnu17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c ev_main.c -o ev_main.o
+gcc -std=gnu17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c ev_sphere.c -o ev_sphere.o
+gcc -std=gnu17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c ev_trian.c -o ev_trian.o
+gcc -std=gnu17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c family.c -o family.o
+gcc -std=gnu17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c fitted.c -o fitted.o
+gcc -std=gnu17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c frend.c -o frend.o
+gcc -std=gnu17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c lf_adap.c -o lf_adap.o
+gcc -std=gnu17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c lf_dercor.c -o lf_dercor.o
+gcc -std=gnu17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c lf_fitfun.c -o lf_fitfun.o
+gcc -std=gnu17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c lf_nbhd.c -o lf_nbhd.o
+gcc -std=gnu17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c lf_robust.c -o lf_robust.o
+gcc -std=gnu17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c lf_vari.c -o lf_vari.o
+gcc -std=gnu17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c lf_wdiag.c -o lf_wdiag.o
+gcc -std=gnu17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c lfstr.c -o lfstr.o
+gcc -std=gnu17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c locfit.c -o locfit.o
+gcc -std=gnu17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c m_chol.c -o m_chol.o
+gcc -std=gnu17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c m_eigen.c -o m_eigen.o
+gcc -std=gnu17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c m_icirc.c -o m_icirc.o
+gcc -std=gnu17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c m_imont.c -o m_imont.o
+gcc -std=gnu17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c m_isimp.c -o m_isimp.o
+gcc -std=gnu17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c m_isphr.c -o m_isphr.o
+gcc -std=gnu17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c m_jacob.c -o m_jacob.o
+gcc -std=gnu17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c m_max.c -o m_max.o
+gcc -std=gnu17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c m_qr.c -o m_qr.o
+gcc -std=gnu17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c m_solve.c -o m_solve.o
+gcc -std=gnu17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c m_svd.c -o m_svd.o
+gcc -std=gnu17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c m_vector.c -o m_vector.o
+gcc -std=gnu17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c math.c -o math.o
+gcc -std=gnu17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c minmax.c -o minmax.o
+gcc -std=gnu17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c pcomp.c -o pcomp.o
+gcc -std=gnu17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c preplot.c -o preplot.o
+gcc -std=gnu17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c prob.c -o prob.o
+gcc -std=gnu17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c procv.c -o procv.o
+gcc -std=gnu17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c scb.c -o scb.o
+gcc -std=gnu17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c scb_cons.c -o scb_cons.o
+gcc -std=gnu17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c scb_crit.c -o scb_crit.o
+gcc -std=gnu17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c scb_iface.c -o scb_iface.o
+gcc -std=gnu17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c simul.c -o simul.o
+gcc -std=gnu17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c smisc.c -o smisc.o
+gcc -std=gnu17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c startlf.c -o startlf.o
+gcc -std=gnu17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c weight.c -o weight.o
+gcc -std=gnu17 -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o locfit.so S_enter.o band.o dbinom.o dens_haz.o dens_int.o dens_odi.o density.o ev_atree.o ev_interp.o ev_kdtre.o ev_main.o ev_sphere.o ev_trian.o family.o fitted.o frend.o lf_adap.o lf_dercor.o lf_fitfun.o lf_nbhd.o lf_robust.o lf_vari.o lf_wdiag.o lfstr.o locfit.o m_chol.o m_eigen.o m_icirc.o m_imont.o m_isimp.o m_isphr.o m_jacob.o m_max.o m_qr.o m_solve.o m_svd.o m_vector.o math.o minmax.o pcomp.o preplot.o prob.o procv.o scb.o scb_cons.o scb_crit.o scb_iface.o simul.o smisc.o startlf.o weight.o -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-locfit/00new/locfit/libs
+** R
+** data
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (locfit)
+* installing *source* package ‘MatrixGenerics’ ...
+** this is package ‘MatrixGenerics’ version ‘1.20.0’
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+Creating a new generic function for ‘rowAlls’ in package ‘MatrixGenerics’
+Creating a new generic function for ‘colAlls’ in package ‘MatrixGenerics’
+Creating a new generic function for ‘rowAnyNAs’ in package ‘MatrixGenerics’
+Creating a new generic function for ‘colAnyNAs’ in package ‘MatrixGenerics’
+Creating a new generic function for ‘rowAnys’ in package ‘MatrixGenerics’
+Creating a new generic function for ‘colAnys’ in package ‘MatrixGenerics’
+Creating a new generic function for ‘rowAvgsPerColSet’ in package ‘MatrixGenerics’
+Creating a new generic function for ‘colAvgsPerRowSet’ in package ‘MatrixGenerics’
+Creating a new generic function for ‘rowCollapse’ in package ‘MatrixGenerics’
+Creating a new generic function for ‘colCollapse’ in package ‘MatrixGenerics’
+Creating a new generic function for ‘rowCounts’ in package ‘MatrixGenerics’
+Creating a new generic function for ‘colCounts’ in package ‘MatrixGenerics’
+Creating a new generic function for ‘rowCummaxs’ in package ‘MatrixGenerics’
+Creating a new generic function for ‘colCummaxs’ in package ‘MatrixGenerics’
+Creating a new generic function for ‘rowCummins’ in package ‘MatrixGenerics’
+Creating a new generic function for ‘colCummins’ in package ‘MatrixGenerics’
+Creating a new generic function for ‘rowCumprods’ in package ‘MatrixGenerics’
+Creating a new generic function for ‘colCumprods’ in package ‘MatrixGenerics’
+Creating a new generic function for ‘rowCumsums’ in package ‘MatrixGenerics’
+Creating a new generic function for ‘colCumsums’ in package ‘MatrixGenerics’
+Creating a new generic function for ‘rowDiffs’ in package ‘MatrixGenerics’
+Creating a new generic function for ‘colDiffs’ in package ‘MatrixGenerics’
+Creating a new generic function for ‘rowIQRDiffs’ in package ‘MatrixGenerics’
+Creating a new generic function for ‘colIQRDiffs’ in package ‘MatrixGenerics’
+Creating a new generic function for ‘rowIQRs’ in package ‘MatrixGenerics’
+Creating a new generic function for ‘colIQRs’ in package ‘MatrixGenerics’
+Creating a new generic function for ‘rowLogSumExps’ in package ‘MatrixGenerics’
+Creating a new generic function for ‘colLogSumExps’ in package ‘MatrixGenerics’
+Creating a new generic function for ‘rowMadDiffs’ in package ‘MatrixGenerics’
+Creating a new generic function for ‘colMadDiffs’ in package ‘MatrixGenerics’
+Creating a new generic function for ‘rowMads’ in package ‘MatrixGenerics’
+Creating a new generic function for ‘colMads’ in package ‘MatrixGenerics’
+Creating a new generic function for ‘rowMaxs’ in package ‘MatrixGenerics’
+Creating a new generic function for ‘colMaxs’ in package ‘MatrixGenerics’
+Creating a new generic function for ‘rowMeans2’ in package ‘MatrixGenerics’
+Creating a new generic function for ‘colMeans2’ in package ‘MatrixGenerics’
+Creating a new generic function for ‘rowMedians’ in package ‘MatrixGenerics’
+Creating a new generic function for ‘colMedians’ in package ‘MatrixGenerics’
+Creating a new generic function for ‘rowMins’ in package ‘MatrixGenerics’
+Creating a new generic function for ‘colMins’ in package ‘MatrixGenerics’
+Creating a new generic function for ‘rowOrderStats’ in package ‘MatrixGenerics’
+Creating a new generic function for ‘colOrderStats’ in package ‘MatrixGenerics’
+Creating a new generic function for ‘rowProds’ in package ‘MatrixGenerics’
+Creating a new generic function for ‘colProds’ in package ‘MatrixGenerics’
+Creating a new generic function for ‘rowQuantiles’ in package ‘MatrixGenerics’
+Creating a new generic function for ‘colQuantiles’ in package ‘MatrixGenerics’
+Creating a new generic function for ‘rowRanges’ in package ‘MatrixGenerics’
+Creating a new generic function for ‘colRanges’ in package ‘MatrixGenerics’
+Creating a new generic function for ‘rowRanks’ in package ‘MatrixGenerics’
+Creating a new generic function for ‘colRanks’ in package ‘MatrixGenerics’
+Creating a new generic function for ‘rowSdDiffs’ in package ‘MatrixGenerics’
+Creating a new generic function for ‘colSdDiffs’ in package ‘MatrixGenerics’
+Creating a new generic function for ‘rowSds’ in package ‘MatrixGenerics’
+Creating a new generic function for ‘colSds’ in package ‘MatrixGenerics’
+Creating a new generic function for ‘rowSums2’ in package ‘MatrixGenerics’
+Creating a new generic function for ‘colSums2’ in package ‘MatrixGenerics’
+Creating a new generic function for ‘rowTabulates’ in package ‘MatrixGenerics’
+Creating a new generic function for ‘colTabulates’ in package ‘MatrixGenerics’
+Creating a new generic function for ‘rowVarDiffs’ in package ‘MatrixGenerics’
+Creating a new generic function for ‘colVarDiffs’ in package ‘MatrixGenerics’
+Creating a new generic function for ‘rowVars’ in package ‘MatrixGenerics’
+Creating a new generic function for ‘colVars’ in package ‘MatrixGenerics’
+Creating a new generic function for ‘rowWeightedMads’ in package ‘MatrixGenerics’
+Creating a new generic function for ‘colWeightedMads’ in package ‘MatrixGenerics’
+Creating a new generic function for ‘rowWeightedMeans’ in package ‘MatrixGenerics’
+Creating a new generic function for ‘colWeightedMeans’ in package ‘MatrixGenerics’
+Creating a new generic function for ‘rowWeightedMedians’ in package ‘MatrixGenerics’
+Creating a new generic function for ‘colWeightedMedians’ in package ‘MatrixGenerics’
+Creating a new generic function for ‘rowWeightedSds’ in package ‘MatrixGenerics’
+Creating a new generic function for ‘colWeightedSds’ in package ‘MatrixGenerics’
+Creating a new generic function for ‘rowWeightedVars’ in package ‘MatrixGenerics’
+Creating a new generic function for ‘colWeightedVars’ in package ‘MatrixGenerics’
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (MatrixGenerics)
+* installing *source* package ‘RcppArmadillo’ ...
+** this is package ‘RcppArmadillo’ version ‘15.0.2-2’
+** package ‘RcppArmadillo’ successfully unpacked and MD5 sums checked
+** using staged installation
+checking whether the C++ compiler works... yes
+checking for C++ compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether the compiler supports GNU C++... yes
+checking whether g++ -std=gnu++17 accepts -g... yes
+checking for g++ -std=gnu++17 option to enable C++11 features... none needed
+checking how to run the C++ preprocessor... g++ -std=gnu++17 -E
+checking whether the compiler supports GNU C++... (cached) yes
+checking whether g++ -std=gnu++17 accepts -g... (cached) yes
+checking for g++ -std=gnu++17 option to enable C++11 features... (cached) none needed
+checking whether we have a suitable tempdir... /tmp
+checking whether R CMD SHLIB can already compile programs using OpenMP... yes
+checking LAPACK_LIBS... system LAPACK found
+configure: creating ./config.status
+config.status: creating inst/include/RcppArmadillo/config/RcppArmadilloConfigGenerated.h
+config.status: creating src/Makevars
+** libs
+using C++ compiler: ‘g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I../inst/include -DARMA_USE_CURRENT -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fopenmp -fpic  -g -O2   -c RcppArmadillo.cpp -o RcppArmadillo.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I../inst/include -DARMA_USE_CURRENT -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fopenmp -fpic  -g -O2   -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I../inst/include -DARMA_USE_CURRENT -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fopenmp -fpic  -g -O2   -c fastLm.cpp -o fastLm.o
+g++ -std=gnu++17 -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o RcppArmadillo.so RcppArmadillo.o RcppExports.o fastLm.o -fopenmp -llapack -lblas -lgfortran -lm -lquadmath -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-RcppArmadillo/00new/RcppArmadillo/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (RcppArmadillo)
+* installing *source* package ‘SparseArray’ ...
+** this is package ‘SparseArray’ version ‘1.8.1’
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I'/home/runner/work/_temp/Library/XVector/include' -I/usr/local/include   -fopenmp -fpic  -g -O2  -c ExtendableJaggedArray.c -o ExtendableJaggedArray.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I'/home/runner/work/_temp/Library/XVector/include' -I/usr/local/include   -fopenmp -fpic  -g -O2  -c IRanges_stubs.c -o IRanges_stubs.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I'/home/runner/work/_temp/Library/XVector/include' -I/usr/local/include   -fopenmp -fpic  -g -O2  -c OPBufTree.c -o OPBufTree.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I'/home/runner/work/_temp/Library/XVector/include' -I/usr/local/include   -fopenmp -fpic  -g -O2  -c R_init_SparseArray.c -o R_init_SparseArray.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I'/home/runner/work/_temp/Library/XVector/include' -I/usr/local/include   -fopenmp -fpic  -g -O2  -c Rvector_summarization.c -o Rvector_summarization.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I'/home/runner/work/_temp/Library/XVector/include' -I/usr/local/include   -fopenmp -fpic  -g -O2  -c Rvector_utils.c -o Rvector_utils.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I'/home/runner/work/_temp/Library/XVector/include' -I/usr/local/include   -fopenmp -fpic  -g -O2  -c S4Vectors_stubs.c -o S4Vectors_stubs.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I'/home/runner/work/_temp/Library/XVector/include' -I/usr/local/include   -fopenmp -fpic  -g -O2  -c SBT_utils.c -o SBT_utils.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I'/home/runner/work/_temp/Library/XVector/include' -I/usr/local/include   -fopenmp -fpic  -g -O2  -c SVT_SparseArray_class.c -o SVT_SparseArray_class.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I'/home/runner/work/_temp/Library/XVector/include' -I/usr/local/include   -fopenmp -fpic  -g -O2  -c SparseArray_Arith_methods.c -o SparseArray_Arith_methods.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I'/home/runner/work/_temp/Library/XVector/include' -I/usr/local/include   -fopenmp -fpic  -g -O2  -c SparseArray_Compare_methods.c -o SparseArray_Compare_methods.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I'/home/runner/work/_temp/Library/XVector/include' -I/usr/local/include   -fopenmp -fpic  -g -O2  -c SparseArray_Complex_methods.c -o SparseArray_Complex_methods.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I'/home/runner/work/_temp/Library/XVector/include' -I/usr/local/include   -fopenmp -fpic  -g -O2  -c SparseArray_Logic_methods.c -o SparseArray_Logic_methods.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I'/home/runner/work/_temp/Library/XVector/include' -I/usr/local/include   -fopenmp -fpic  -g -O2  -c SparseArray_Math_methods.c -o SparseArray_Math_methods.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I'/home/runner/work/_temp/Library/XVector/include' -I/usr/local/include   -fopenmp -fpic  -g -O2  -c SparseArray_abind.c -o SparseArray_abind.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I'/home/runner/work/_temp/Library/XVector/include' -I/usr/local/include   -fopenmp -fpic  -g -O2  -c SparseArray_aperm.c -o SparseArray_aperm.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I'/home/runner/work/_temp/Library/XVector/include' -I/usr/local/include   -fopenmp -fpic  -g -O2  -c SparseArray_dim_tuning.c -o SparseArray_dim_tuning.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I'/home/runner/work/_temp/Library/XVector/include' -I/usr/local/include   -fopenmp -fpic  -g -O2  -c SparseArray_matrixStats.c -o SparseArray_matrixStats.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I'/home/runner/work/_temp/Library/XVector/include' -I/usr/local/include   -fopenmp -fpic  -g -O2  -c SparseArray_misc_methods.c -o SparseArray_misc_methods.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I'/home/runner/work/_temp/Library/XVector/include' -I/usr/local/include   -fopenmp -fpic  -g -O2  -c SparseArray_subassignment.c -o SparseArray_subassignment.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I'/home/runner/work/_temp/Library/XVector/include' -I/usr/local/include   -fopenmp -fpic  -g -O2  -c SparseArray_subassignment_OLD.c -o SparseArray_subassignment_OLD.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I'/home/runner/work/_temp/Library/XVector/include' -I/usr/local/include   -fopenmp -fpic  -g -O2  -c SparseArray_subsetting.c -o SparseArray_subsetting.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I'/home/runner/work/_temp/Library/XVector/include' -I/usr/local/include   -fopenmp -fpic  -g -O2  -c SparseArray_summarization.c -o SparseArray_summarization.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I'/home/runner/work/_temp/Library/XVector/include' -I/usr/local/include   -fopenmp -fpic  -g -O2  -c SparseMatrix_mult.c -o SparseMatrix_mult.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I'/home/runner/work/_temp/Library/XVector/include' -I/usr/local/include   -fopenmp -fpic  -g -O2  -c SparseVec.c -o SparseVec.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I'/home/runner/work/_temp/Library/XVector/include' -I/usr/local/include   -fopenmp -fpic  -g -O2  -c SparseVec_Arith.c -o SparseVec_Arith.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I'/home/runner/work/_temp/Library/XVector/include' -I/usr/local/include   -fopenmp -fpic  -g -O2  -c SparseVec_Compare.c -o SparseVec_Compare.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I'/home/runner/work/_temp/Library/XVector/include' -I/usr/local/include   -fopenmp -fpic  -g -O2  -c SparseVec_Logic.c -o SparseVec_Logic.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I'/home/runner/work/_temp/Library/XVector/include' -I/usr/local/include   -fopenmp -fpic  -g -O2  -c SparseVec_Math.c -o SparseVec_Math.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I'/home/runner/work/_temp/Library/XVector/include' -I/usr/local/include   -fopenmp -fpic  -g -O2  -c SparseVec_dotprod.c -o SparseVec_dotprod.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I'/home/runner/work/_temp/Library/XVector/include' -I/usr/local/include   -fopenmp -fpic  -g -O2  -c XVector_stubs.c -o XVector_stubs.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I'/home/runner/work/_temp/Library/XVector/include' -I/usr/local/include   -fopenmp -fpic  -g -O2  -c argcheck_utils.c -o argcheck_utils.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I'/home/runner/work/_temp/Library/XVector/include' -I/usr/local/include   -fopenmp -fpic  -g -O2  -c coerceVector2.c -o coerceVector2.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I'/home/runner/work/_temp/Library/XVector/include' -I/usr/local/include   -fopenmp -fpic  -g -O2  -c leaf_utils.c -o leaf_utils.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I'/home/runner/work/_temp/Library/XVector/include' -I/usr/local/include   -fopenmp -fpic  -g -O2  -c randomSparseArray.c -o randomSparseArray.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I'/home/runner/work/_temp/Library/XVector/include' -I/usr/local/include   -fopenmp -fpic  -g -O2  -c readSparseCSV.c -o readSparseCSV.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I'/home/runner/work/_temp/Library/XVector/include' -I/usr/local/include   -fopenmp -fpic  -g -O2  -c rowsum_methods.c -o rowsum_methods.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I'/home/runner/work/_temp/Library/XVector/include' -I/usr/local/include   -fopenmp -fpic  -g -O2  -c sparseMatrix_utils.c -o sparseMatrix_utils.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I'/home/runner/work/_temp/Library/XVector/include' -I/usr/local/include   -fopenmp -fpic  -g -O2  -c test.c -o test.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I'/home/runner/work/_temp/Library/XVector/include' -I/usr/local/include   -fopenmp -fpic  -g -O2  -c thread_control.c -o thread_control.o
+gcc -std=gnu2x -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o SparseArray.so ExtendableJaggedArray.o IRanges_stubs.o OPBufTree.o R_init_SparseArray.o Rvector_summarization.o Rvector_utils.o S4Vectors_stubs.o SBT_utils.o SVT_SparseArray_class.o SparseArray_Arith_methods.o SparseArray_Compare_methods.o SparseArray_Complex_methods.o SparseArray_Logic_methods.o SparseArray_Math_methods.o SparseArray_abind.o SparseArray_aperm.o SparseArray_dim_tuning.o SparseArray_matrixStats.o SparseArray_misc_methods.o SparseArray_subassignment.o SparseArray_subassignment_OLD.o SparseArray_subsetting.o SparseArray_summarization.o SparseMatrix_mult.o SparseVec.o SparseVec_Arith.o SparseVec_Compare.o SparseVec_Logic.o SparseVec_Math.o SparseVec_dotprod.o XVector_stubs.o argcheck_utils.o coerceVector2.o leaf_utils.o randomSparseArray.o readSparseCSV.o rowsum_methods.o sparseMatrix_utils.o test.o thread_control.o -fopenmp -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-SparseArray/00new/SparseArray/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (SparseArray)
+* installing *source* package ‘lambda.r’ ...
+** this is package ‘lambda.r’ version ‘1.2.4’
+** package ‘lambda.r’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (lambda.r)
+* installing *source* package ‘GenomeInfoDb’ ...
+** this is package ‘GenomeInfoDb’ version ‘1.44.2’
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (GenomeInfoDb)
+* installing *source* package ‘DelayedArray’ ...
+** this is package ‘DelayedArray’ version ‘0.34.1’
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I/usr/local/include    -fpic  -g -O2  -c R_init_DelayedArray.c -o R_init_DelayedArray.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I/usr/local/include    -fpic  -g -O2  -c S4Vectors_stubs.c -o S4Vectors_stubs.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I/usr/local/include    -fpic  -g -O2  -c compress_atomic_vector.c -o compress_atomic_vector.o
+gcc -std=gnu2x -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o DelayedArray.so R_init_DelayedArray.o S4Vectors_stubs.o compress_atomic_vector.o -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-DelayedArray/00new/DelayedArray/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+Creating a new generic function for ‘apply’ in package ‘DelayedArray’
+Creating a new generic function for ‘sweep’ in package ‘DelayedArray’
+Creating a new generic function for ‘scale’ in package ‘DelayedArray’
+Creating a generic function for ‘dnorm’ from package ‘stats’ in package ‘DelayedArray’
+Creating a generic function for ‘pnorm’ from package ‘stats’ in package ‘DelayedArray’
+Creating a generic function for ‘qnorm’ from package ‘stats’ in package ‘DelayedArray’
+Creating a generic function for ‘dbinom’ from package ‘stats’ in package ‘DelayedArray’
+Creating a generic function for ‘pbinom’ from package ‘stats’ in package ‘DelayedArray’
+Creating a generic function for ‘qbinom’ from package ‘stats’ in package ‘DelayedArray’
+Creating a generic function for ‘dpois’ from package ‘stats’ in package ‘DelayedArray’
+Creating a generic function for ‘ppois’ from package ‘stats’ in package ‘DelayedArray’
+Creating a generic function for ‘qpois’ from package ‘stats’ in package ‘DelayedArray’
+Creating a generic function for ‘dlogis’ from package ‘stats’ in package ‘DelayedArray’
+Creating a generic function for ‘plogis’ from package ‘stats’ in package ‘DelayedArray’
+Creating a generic function for ‘qlogis’ from package ‘stats’ in package ‘DelayedArray’
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (DelayedArray)
+* installing *source* package ‘futile.logger’ ...
+** this is package ‘futile.logger’ version ‘1.4.3’
+** package ‘futile.logger’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (futile.logger)
+* installing *source* package ‘GenomicRanges’ ...
+** this is package ‘GenomicRanges’ version ‘1.60.0’
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I/usr/local/include    -fpic  -g -O2  -c IRanges_stubs.c -o IRanges_stubs.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I/usr/local/include    -fpic  -g -O2  -c R_init_GenomicRanges.c -o R_init_GenomicRanges.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I/usr/local/include    -fpic  -g -O2  -c S4Vectors_stubs.c -o S4Vectors_stubs.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I/usr/local/include    -fpic  -g -O2  -c transcript_utils.c -o transcript_utils.o
+gcc -std=gnu2x -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o GenomicRanges.so IRanges_stubs.o R_init_GenomicRanges.o S4Vectors_stubs.o transcript_utils.o -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-GenomicRanges/00new/GenomicRanges/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (GenomicRanges)
+* installing *source* package ‘SummarizedExperiment’ ...
+** this is package ‘SummarizedExperiment’ version ‘1.38.1’
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (SummarizedExperiment)
+* installing *source* package ‘BiocParallel’ ...
+** this is package ‘BiocParallel’ version ‘1.42.2’
+** using staged installation
+checking whether the C++ compiler works... yes
+checking for C++ compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether the compiler supports GNU C++... yes
+checking whether g++ -std=gnu++17 accepts -g... yes
+checking for g++ -std=gnu++17 option to enable C++11 features... none needed
+checking for library containing shm_open... none required
+checking for stdio.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for strings.h... yes
+checking for sys/stat.h... yes
+checking for sys/types.h... yes
+checking for unistd.h... yes
+checking for sys/mman.h... yes
+configure: creating ./config.status
+config.status: creating src/Makevars
+** libs
+using C++ compiler: ‘g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+using C++11
+g++ -std=gnu++11 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I"./" -I'/home/runner/work/_temp/Library/BH/include' -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include    -fpic  -g -O2   -c cpp11.cpp -o cpp11.o
+g++ -std=gnu++11 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I"./" -I'/home/runner/work/_temp/Library/BH/include' -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include    -fpic  -g -O2   -c ipcmutex.cpp -o ipcmutex.o
+g++ -std=gnu++11 -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o BiocParallel.so cpp11.o ipcmutex.o -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-BiocParallel/00new/BiocParallel/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (BiocParallel)
+* installing *source* package ‘DESeq2’ ...
+** this is package ‘DESeq2’ version ‘1.48.2’
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/RcppArmadillo/include' -I/usr/local/include    -fpic  -g -O2   -c DESeq2.cpp -o DESeq2.o
+DESeq2.cpp: In function ‘Rcpp::List fitDispGrid(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP)’:
+DESeq2.cpp:501:19: warning: ‘eT arma::Mat<eT>::max(arma::uword&) const [with eT = double; arma::uword = unsigned int]’ is deprecated: use .index_max() instead [-Wdeprecated-declarations]
+  501 |     logpostvec.max(idxmax);
+      |     ~~~~~~~~~~~~~~^~~~~~~~
+In file included from /home/runner/work/_temp/Library/RcppArmadillo/include/current/armadillo:201,
+                 from /home/runner/work/_temp/Library/RcppArmadillo/include/RcppArmadillo/interface/RcppArmadilloForward.h:57,
+                 from /home/runner/work/_temp/Library/RcppArmadillo/include/RcppArmadillo.h:32,
+                 from DESeq2.cpp:16:
+/home/runner/work/_temp/Library/RcppArmadillo/include/current/armadillo_bits/Mat_bones.hpp:545:56: note: declared here
+  545 |   [[deprecated("use .index_max() instead")]] inline eT max(uword& index_of_max_val) const;
+      |                                                        ^~~
+DESeq2.cpp:508:19: warning: ‘eT arma::Mat<eT>::max(arma::uword&) const [with eT = double; arma::uword = unsigned int]’ is deprecated: use .index_max() instead [-Wdeprecated-declarations]
+  508 |     logpostvec.max(idxmax);
+      |     ~~~~~~~~~~~~~~^~~~~~~~
+In file included from /home/runner/work/_temp/Library/RcppArmadillo/include/current/armadillo:692:
+/home/runner/work/_temp/Library/RcppArmadillo/include/current/armadillo_bits/Mat_meat.hpp:7850:1: note: declared here
+ 7850 | Mat<eT>::max(uword& index_of_max_val) const
+      | ^~~~~~~
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/RcppArmadillo/include' -I/usr/local/include    -fpic  -g -O2   -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++17 -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o DESeq2.so DESeq2.o RcppExports.o -llapack -lblas -lgfortran -lm -lquadmath -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-DESeq2/00new/DESeq2/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (DESeq2)
+
+The downloaded source packages are in
+	‘/tmp/RtmpphE3l9/downloaded_packages’
+Successfully installed: DESeq2 
+
+===========================================
+Package installation completed!
+You can now run your R scripts in this directory.

@@ -1,0 +1,86 @@
+Starting R package installation...
+===========================================
+
+Installing Bioconductor packages...
+Package already installed: clusterProfiler 
+Package already installed: DOSE 
+Package already installed: enrichplot 
+Package already installed: GO.db 
+Package already installed: GOSemSim 
+Package already installed: AnnotationDbi 
+
+Installing CRAN packages...
+Package already installed: dplyr 
+Package already installed: ggplot2 
+Package already installed: jsonlite 
+Installing CRAN package: tidyjson 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+also installing the dependencies ‘listviewer’, ‘wordcloud’
+
+trying URL 'https://cloud.r-project.org/src/contrib/listviewer_4.0.0.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/wordcloud_2.6.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/tidyjson_0.3.2.tar.gz'
+* installing *source* package ‘listviewer’ ...
+** this is package ‘listviewer’ version ‘4.0.0’
+** package ‘listviewer’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (listviewer)
+* installing *source* package ‘wordcloud’ ...
+** this is package ‘wordcloud’ version ‘2.6’
+** package ‘wordcloud’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c layout.cpp -o layout.o
+g++ -std=gnu++17 -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o wordcloud.so RcppExports.o layout.o -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-wordcloud/00new/wordcloud/libs
+** R
+** data
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (wordcloud)
+* installing *source* package ‘tidyjson’ ...
+** this is package ‘tidyjson’ version ‘0.3.2’
+** package ‘tidyjson’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (tidyjson)
+
+The downloaded source packages are in
+	‘/tmp/RtmpHZli92/downloaded_packages’
+Successfully installed: tidyjson 
+Package already installed: tidyr 
+Package already installed: scatterpie 
+Package already installed: httr 
+
+===========================================
+Package installation completed!
+You can now run your R scripts in this directory.

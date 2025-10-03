@@ -1,0 +1,207 @@
+---
+title: "FigureYa242corMethExpr"
+params:
+  author: "Xiaofan Lu"
+  reviewer: "Ying Ge, Junyi Shen"
+output: html_document
+---
+
+**Author(s)**: `r params$author`  
+**Reviewer(s)**: `r params$reviewer`  
+**Date**: `r Sys.Date()`  
+
+
+# Academic Citation
+If you use this code in your work or research, we kindly request that you cite our publication:
+
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# 需求描述 / Requirements Description
+# FPKM跟启动子区甲基化的相关性。输入数据是TCGA的FPKM和DNA甲基化数据。 / Correlation between FPKM and promoter methylation. Input data is TCGA FPKM and DNA methylation data.
+
+# 希望能学习到怎么获取基因启动子区的甲基化探针，自己跑代码时就能灵活自定义将启动子区调整TSS1500，TSS200，甚至分析gene body区域甲基化与基因表达的关系。 / Hope to learn how to obtain methylation probes in gene promoter regions, and be able to flexibly customize promoter regions like TSS1500, TSS200, and even analyze the relationship between gene body methylation and gene expression.
+
+# 出自 / From: https://academic.oup.com/nar/article/48/D1/D856/5584613
+
+# 应用场景 / Application Scenario
+# 计算特定基因启动子DNA甲基化与对应表达谱的相关性并绘图。 / Calculate and plot the correlation between specific gene promoter DNA methylation and corresponding expression profiles.
+
+# 环境设置 / Environment Setup
+
+```{r}
+source("install_dependencies.R")
+library(TCGAbiolinks)    # TCGA数据访问 / TCGA data access
+library(SummarizedExperiment) # 数据对象处理 / Data object handling  
+library(biomaRt)         # 基因长度信息 / Gene length information
+library(edgeR)           # FPKM计算 / FPKM calculation
+library(data.table)      # 数据读写 / Data I/O
+library(ChAMP)           # 甲基化数据分析主流程 / Main pipeline for methylation data analysis
+data(probe.features)     # 加载450甲基化探针注释文件 / Load 450k methylation probe annotation file
+
+Sys.setenv(LANGUAGE = "en") #显示英文报错信息 / Display error messages in English
+options(stringsAsFactors = FALSE) #禁止chr转成factor / Prevent chr from converting to factor
+```
+
+# 输入文件
+
+TCGA-UCEC.methylation450.tsv.gz，UCEC的DNA甲基化数据，下载自XENA<https://xenabrowser.net/datapages/?dataset=TCGA-UCEC.methylation450.tsv&host=https%3A%2F%2Fgdc.xenahubs.net&removeHub=https%3A%2F%2Fxena.treehouse.gi.ucsc.edu%3A443>
+
+```{r}
+# 加载基因表达注释文件 / Load gene expression annotation file
+Ginfo <- read.table("overlapTable27.txt",sep = "\t",row.names = 1,check.names = F,stringsAsFactors = F,header = T)
+
+# 下载UCSC的FPKM数据 / Download UCSC FPKM data
+tumor <- "UCEC"
+expquery <- GDCquery(project = paste0("TCGA-", tumor),
+                     data.category = "Transcriptome Profiling",
+                     data.type = "Gene Expression Quantification",
+                     workflow.type = "STAR - Counts" # 获取counts数据 / Get counts data
+)
+GDCdownload(expquery, directory = "GDCdata")
+expquery2 <- GDCprepare(expquery, directory = "GDCdata", summarizedExperiment = T)
+
+# 获取counts矩阵 / Get counts matrix
+counts <- assay(expquery2)
+
+# 获取基因长度信息 / Get gene length information
+# 首先尝试从rowData获取 / First try to get from rowData
+gene_lengths <- NULL
+if ("gene_length" %in% colnames(rowData(expquery2))) {
+  gene_lengths <- rowData(expquery2)$gene_length
+} else if ("length" %in% colnames(rowData(expquery2))) {
+  gene_lengths <- rowData(expquery2)$length
+}
+
+# 如果无法从数据中获取基因长度，使用biomaRt获取 / If gene length cannot be obtained from data, use biomaRt
+if (is.null(gene_lengths) || all(is.na(gene_lengths))) {
+  cat("Getting gene lengths from biomaRt...\n")
+  
+  # 连接到Ensembl数据库 / Connect to Ensembl database
+  ensembl <- useMart("ensembl", dataset = "hsapiens_gene_ensembl")
+  
+  # 获取基因长度信息 / Get gene length information
+  gene_info <- getBM(attributes = c("ensembl_gene_id", "start_position", "end_position"),
+                    filters = "ensembl_gene_id", 
+                    values = rownames(counts),
+                    mart = ensembl)
+  
+  # 计算基因长度 / Calculate gene length
+  gene_info$length <- abs(gene_info$end_position - gene_info$start_position)
+  
+  # 匹配到counts矩阵的顺序 / Match to the order of counts matrix
+  gene_lengths <- gene_info$length[match(rownames(counts), gene_info$ensembl_gene_id)]
+  
+  # 对于没有长度信息的基因，使用中位数长度 / For genes without length information, use median length
+  median_length <- median(gene_lengths, na.rm = TRUE)
+  gene_lengths[is.na(gene_lengths)] <- median_length
+  
+  cat("Successfully obtained gene lengths from biomaRt\n")
+}
+
+# 使用edgeR计算FPKM / Calculate FPKM using edgeR
+cat("Calculating FPKM using edgeR...\n")
+
+# 创建DGEList对象 / Create DGEList object
+dge <- DGEList(counts = counts)
+dge$genes <- data.frame(Length = gene_lengths, row.names = rownames(counts))
+
+# 计算FPKM / Calculate FPKM
+fpkm <- rpkm(dge, gene.length = dge$genes$Length, log = FALSE)
+
+# 取出FPKM中的gene / Extract genes from FPKM
+comgene <- intersect(rownames(fpkm),rownames(Ginfo)) # 取出共有基因 / Extract common genes
+Ginfo <- Ginfo[comgene,]
+fpkm <- as.data.frame(fpkm[comgene,]) # 取出mRNA的FPKM值 / Extract mRNA FPKM values
+colnames(fpkm) <- substr(colnames(fpkm),1,16) # 取TCGA样本名的前16位 / Take first 16 characters of TCGA sample names
+fpkm <- fpkm[,which(substr(colnames(fpkm), 14, 15) == "01")] # 保留肿瘤样本 / Keep tumor samples only
+
+# 将FPKM的ENSEMBL ID转为Gene Symbol并去重 / Convert FPKM ENSEMBL IDs to Gene Symbols and remove duplicates
+fpkm$Gene <- as.character(Ginfo$genename)
+fpkm <- fpkm[!duplicated(fpkm$Gene),] # 重复基因去重 / Remove duplicate genes
+rownames(fpkm) <- fpkm$Gene; fpkm <- fpkm[,-ncol(fpkm)]
+fpkm <- as.data.frame(round(fpkm,3)) # 取表达的小数点后3位数 / Round expression values to 3 decimal places
+fwrite(fpkm,"UCEC_FPKM.txt",sep = "\t",row.names = T,quote = F)
+
+# 读取UCEC的DNA甲基化数据 / Read UCEC DNA methylation data
+# 这里为了加快速度，已经对甲基化数据做过处理，只读取符合要求的启动子探针数据，不过代码所做的筛选过程依然有效 / To speed up processing, methylation data has been pre-processed to only include required promoter probe data, though the filtering code remains valid
+meth <- fread("TCGA-UCEC.methylation450.tsv.gz",sep = "\t",check.names = F,stringsAsFactors = F,header = T,data.table = F)
+meth <- as.data.frame(meth); rownames(meth) <- meth[,1]; meth <- as.data.frame(na.omit(meth[,-1])) # 去除空值 / Remove NA values
+colnames(meth) <- substr(colnames(meth), start = 1,stop = 16) # 取样本名的前16位 / Take first 16 characters of sample names
+meth <- meth[,which(substr(colnames(meth), 14, 15) == "01")] # 保留肿瘤样本 / Keep tumor samples only
+```
+
+# 计算特点基因启动子表观遗传甲基化与对应表达谱的相关性
+# Calculate the correlation between epigenetic methylation of characteristic gene promoters and corresponding expression profiles
+
+```{r}
+# 根据需要确定启动子探针 / Determine promoter probes as needed
+table(probe.features$feature) # 查看背景集里有多少探针feature / Check how many probe features are in the background set
+table(probe.features$cgi) # 查看背景集里有多少探针region / Check how many probe regions are in the background set
+table(probe.features$feat.cgi) # 查看背景集里有多少探针feature和region的组合 / Check how many probe feature and region combinations exist
+
+# 可自定义启动子区长度 / Can customize promoter region length
+pb <- rownames(probe.features[which(#probe.features$cgi == "island" & # CpG岛 / CpG island
+                                            probe.features$feature %in% c("TSS1500", # from -200 to -1500 bp upstream of TSS
+                                                                          "TSS200", # from -200 bp upstream of TSS
+                                                                          "1stExone", # the first exon
+                                                                          "5'UTR" 
+                                                                          ) &
+                                              !probe.features$CHR %in% c("X","Y") # 不在性染色体 / Not on sex chromosomes
+                                            ),])
+submeth <- round(meth[intersect(pb,rownames(meth)),],3)
+fwrite(submeth,"UCEC_PromMeth_ProbeLevel.tsv",sep = "\t",row.names = T,quote = F)
+
+# 对重复基因的探针取中位数（比较慢请耐心等待） / Calculate median for probes of duplicate genes (please be patient)
+submeth$gene <- as.character(probe.features[rownames(submeth),"gene"])
+Gmeth <- apply(submeth[,setdiff(colnames(submeth), "gene")], 2, function(x) tapply(x, INDEX=factor(submeth$gene), FUN=median, na.rm=TRUE))
+Gmeth <- as.data.frame(round(Gmeth,3)) # 取甲基化的小数点后3位数 / Round methylation values to 3 decimal places
+fwrite(Gmeth,"UCEC_PromMeth_GeneLevel.tsv",sep = "\t",row.names = T,quote = F)
+
+# 取出共有样本 / Extract common samples
+comsam <- intersect(colnames(fpkm),colnames(Gmeth))
+
+# 取出感兴趣基因的表达和启动子甲基化 / Extract expression and promoter methylation for genes of interest
+gene <- "SFN"
+corTab <- data.frame(expr = log2(as.numeric(fpkm[gene,comsam]) + 1),
+                     meth = as.numeric(Gmeth[gene,comsam]),
+                     stringsAsFactors = F)
+
+ct <- cor.test(corTab$expr,corTab$meth)
+reg <- lm(expr~meth, data=corTab) # 计算回归线 / Calculate regression line
+```
+
+# 开始画图
+# Start drawing
+
+```{r}
+pdf(file = paste0("correlation between expression and methylation of ",gene,".pdf"), width = 4.5,height = 4.5)
+par(bty="l", mgp = c(1.5,.33,0), mar=c(3,3,2,2), las=1, tcl=-.25, xpd = F)
+plot(corTab$meth,
+     corTab$expr,
+     xlab = bquote(italic(.(gene))~" (median "~beta~" value of promoter)"),
+     ylab = bquote(italic(.(gene))~" (FPKM)"),
+     main = bquote(.(tumor)~" - "~italic(.(gene))),
+     pch = 19,
+     cex = 0.9,
+     xaxt = "n", # 不绘制x坐标轴刻度 / Don't draw x-axis ticks
+     xlim = c(0,1),
+     col = ggplot2::alpha("#73C485", 0.8))
+axis(side = 1, at = seq(0,1,0.2), labels = seq(0,1,0.2)) # 修改x坐标轴 / Modify x-axis
+abline(reg, lwd = 2, col = "red", lty = 2) # 添加回归线 / Add regression line
+legend("topright", # 图例放在右上角 / Place legend in top right
+       legend = bquote("Pearson "~rho~"="~.(round(ct$estimate,2))~"; "~italic(P)~"-value="~.(formatC(ct$p.value,3))),
+       bty = "n") # 去掉图例边框线 / Remove legend border
+invisible(dev.off())
+```
+
+![](correlation between expression and methylation of SFN.pdf)
+
+# Session Info
+
+```{r}
+sessionInfo()
+```

@@ -1,0 +1,245 @@
+FigureYa61 GSVA
+FigureYa61 GSVA
+Yu Sun, Taojun Ye
+2025-5-20
+需求描述
+模仿paper里方法做GSVA，结果保存到文件，能作为FigureYa39bar的输入文件画出bar
+plot。
+##Requirement description
+Simulate the method in the paper to create GSVA, save the results to
+a file, and use it as the input file for FigureYa39bar to draw a bar
+plot.
+出自
+https://www.nature.com/articles/s41591-018-0096-5/
+from
+https://www.nature.com/articles/s41591-018-0096-5/
+应用场景
+关于GSVA分析，可以这样理解：如果说表达矩阵反映了样本和基因的关系，则GSVA将一个“样本×基因”的矩阵转化为“样本×通路”的矩阵，直接反映了样本和读者感兴趣的通路之间的联系。因此，如果用limma包做差异表达分析可以寻找样本间差异表达的基因，同样地，使用limma包对GSVA的结果（依然是一个矩阵）做同样的分析，则可以寻找样本间有显著差异的通路。这些“差异表达”的通路，相对于基因而言，更加具有生物学意义，更具有可解释性，是统计学与生物学成功结合后，对GSEA结果的一次升华，可以进一步用于肿瘤subtype的分型等等与生物学意义结合密切的探究。
+示例文件easy_input_expr.csv跟FigureYa59volcano用的是同一套表达数据。
+FigureYa59volcano的输入文件easy_input_limma.csv是用
+全体基因
+做差异分析获得的。
+此处gsva_limma.csv文件是用
+通路
+做差异分析获得的。
+##Application scenarios
+Regarding GSVA analysis, it can be understood as follows: if the
+expression matrix reflects the relationship between samples and genes,
+then GSVA transforms a “sample x gene” matrix into a “sample x pathway”
+matrix, directly reflecting the connection between samples and pathways
+of interest to readers. Therefore, if differential expression analysis
+is performed using the limma package, genes with differential expression
+between samples can be identified. Similarly, using the limma package to
+analyze the results of GSVA (still a matrix) in the same way can
+identify pathways with significant differences between samples. These
+“differentially expressed” pathways, compared to genes, have more
+biological significance and interpretability. They are a sublimation of
+GSEA results after the successful combination of statistics and biology,
+and can be further used for the classification of tumor subtypes and
+other closely related explorations with biological significance.
+The example file easyinput-expr.csv uses the same set of expression
+data as FigureYa59volcano.
+-The input file easy_input_imma. csv for FigureYa59volcano was
+obtained through differential analysis using * * all genes *
+. -The
+gsva_imma. csv file here was obtained through differential analysis
+using
+* pathway * *.
+环境设置
+安装包
+##Environment settings
+###Installation package
+#使用国内镜像安装包
+options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
+options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
+install.packages("msigdbr")
+#Use domestic image installation package
+options("repos"= c(CRAN=" https://mirrors.tuna.tsinghua.edu.cn/CRAN/ "))
+options(BioC_mirror=" http://mirrors.ustc.edu.cn/bioc/ ")
+install.packages("msigdbr")
+加载包
+###Load Package
+# 加载必要的R包 | Load necessary R packages
+library(msigdbr)  # 获取基因集数据库 | For accessing gene set databases
+library(dplyr)    # 数据处理和转换 | Data manipulation and transformation
+library(data.table) # 高效处理大型数据集 | Efficient handling of large datasets
+library(GSVA)     # 基因集变异分析 | Gene Set Variation Analysis
+library(limma)    # 微阵列和RNA-seq数据分析 | Microarray and RNA-seq data analysis
+library(stringr)  # 字符串处理 | String manipulation
+library(ggplot2)  # 数据可视化 | Data visualization
+
+# 设置环境为英文以显示英文报错信息 | Set environment to English for error messages
+Sys.setenv(LANGUAGE = "en") 
+# 禁止自动将字符转换为因子 | Prevent automatic conversion of strings to factors
+options(stringsAsFactors = FALSE) 
+# 可选：设置并行计算核心数 | Optional: Set number of cores for parallel computation
+# options(mc.cores = parallel::detectCores())
+输入文件
+GSVA需要两个输入文件：基因表达矩阵和通路里的基因列表。
+hallmark.gs.RData：“整理通路里的基因列表”这部分生成的，同一物种同一版本注释可重复使用。
+easy_input_expr.csv：基因表达矩阵，每行一个基因，每列一个sample。
+##Input file
+GSVA requires two input files: a gene expression matrix and a list of
+genes in the pathway.
+-Hallmark.gs.RData: This section generates a list of genes in the
+pathway, and annotations for the same species and version can be
+reused.
+-Easyinput-expr.csv: Gene expression matrix, with one gene per row
+and one sample per column.
+整理通路里的基因列表
+下面这部分运行后，要保存好生成的hallmark.gs.RData文件，同一物种同一版本注释可重复使用。以后就可以跳过这步，直接进入“GSVA”。
+每次只需要更换表达矩阵，用同一物种同一版本gmt生成的”hallmark.gs.RData”可以一直用。
+为了减少冗余信息的干扰，paper中要求：
+在每个geneset中，不应该出现重复的基因；
+在两个或更多个pathway中出现的基因应该被彻底剔除。
+在实际分析过程中，笔者留意到在单个的geneset中已经很少出现重复的基因，但在两个或更多个pathway中出现的基因则数目相对较多，读者可
+酌情考虑，调整此处过滤的力度
+。
+##Organize the gene list in the pathway
+After running the following section, it is necessary to save the
+generated hallmark.gs.RData file. Annotations of the same species and
+version can be reused. In the future, you can skip this step and
+directly enter “GSVA”.
+Only the expression matrix needs to be changed each time, and
+the “hallmark. gs. RData” generated using the same species and version
+of gmt can be used continuously.
+In order to reduce the interference of redundant information, the
+paper requires:
+-In each gene set, there should be no duplicated genes; -Genes that
+appear in two or more pathways should be completely eliminated.
+In the actual analysis process, the author noticed that duplicate
+genes rarely appear in a single gene set, but the number of genes
+appearing in two or more pathways is relatively large. Readers can
+consider adjusting the filtering intensity at their discretion.
+# 查看msigdbr包支持的物种列表 | View available species in msigdbr package
+msigdbr_species()
+# 从MSigDB数据库获取人类Hallmark基因集 | Retrieve hallmark gene sets for Homo sapiens from MSigDB
+h <- msigdbr(species = "Homo sapiens", # 物种拉丁名 | Latin name of species
+             category = "H") # 此处以hallmark为例，你也可以选择MSigDB的其他注释 | Using hallmark gene sets here, can choose other categories
+# 示例数据表达矩阵的基因名是gene symbol，这里就选gene_symbol。
+# 如果你的表达矩阵以ENTREZ ID作为基因名，就把下面这段的gene_symbol换成entrez_gene
+# Format gene sets into list structure for GSVA input
+h <- select(h, gs_name, gene_symbol) %>% #或entrez_gene | Or use entrez_gene if applicable
+  as.data.frame %>% 
+  split(., .$gs_name) %>% 
+  lapply(., function(x)(x$gene_symbol)) #或entrez_gene | Use entrez_gene if working with ENTREZ IDs
+
+# 在每个geneset里面去掉重复的基因 | Remove duplicate genes within each gene set
+gs <- lapply(h, unique)
+
+# 接下来去掉那些在两个或更多个pathways里出现过的genes
+# Remove genes that appear in two or more pathways
+count <- table(unlist(gs))
+keep <- names(which(table(unlist(gs)) < 2))
+gs <- lapply(gs, function(x) intersect(keep, x))
+
+# 过滤之后，很多pathway一个gene都不剩了，去掉这些
+# Remove pathways that have no genes left after filtering
+gs <- gs[lapply(gs, length) > 0]
+
+# 预览过滤后的结果 | Preview filtered gene sets
+head(gs)
+# 保存到文件，方便以后重复使用 | Save for future reuse
+save(gs, file = "hallmark.gs.RData")
+GSVA
+# 读入前面生成的通路中的基因列表 | Load preprocessed gene sets
+(load("hallmark.gs.RData")) #保存在当前文件夹 | Saved in current directory
+# 读入基因表达矩阵 | Load gene expression matrix
+gsym.expr <- read.csv("easy_input_expr.csv", row.names = 1)
+head(gsym.expr)
+# 这一句就完成了GSVA分析 | Perform GSVA analysis in one line
+# 参数说明 | Arguments:
+# as.matrix(gsym.expr): 表达矩阵，行名为基因，列名为样本 | Expression matrix with genes as rows and samples as columns
+# gs: 基因集列表，由msigdbr生成 | Gene sets generated from msigdbr
+params <- gsvaParam(exprData = as.matrix(gsym.expr), geneSets = gs)
+gsva_es <- gsva(params)
+# 预览GSVA分析返回的矩阵 | Preview GSVA enrichment scores
+head(gsva_es)
+# 把通路的表达量保存到文件 | Save pathway enrichment scores to CSV
+write.csv(gsva_es, "gsva_output.csv", quote = F)
+到这里，GSVA分析就结束了。
+接下来，你可能要对这些通路进行进一步的分析，此处以差异表达分析为例。
+This concludes the GSVA analysis.
+Next, you may need to further analyze these pathways, using
+differential expression analysis as an example.
+通路的差异表达分析
+##Differential expression analysis of pathways
+# 分组 | Define sample groups
+group_list <- data.frame(sample = colnames(gsva_es), group = c(rep("a", 3), rep("b", 3)))
+head(group_list)
+# 设置对比 | Set up design matrix for differential analysis
+design <- model.matrix(~ 0 + factor(group_list$group))
+colnames(design) <- levels(factor(group_list$group))
+rownames(design) <- colnames(gsva_es)
+design
+# 构建差异比较矩阵 | Construct contrast matrix for differential testing
+contrast.matrix <- makeContrasts(b-a, levels = design)
+
+# 差异分析，b vs. a | Differential analysis between group b and a
+# 参数说明 | Arguments:
+# gsva_es: GSVA富集分数矩阵 | GSVA enrichment score matrix
+# design: 实验设计矩阵 | Experimental design matrix
+fit <- lmFit(gsva_es, design)
+fit2 <- contrasts.fit(fit, contrast.matrix)
+fit2 <- eBayes(fit2)
+x <- topTable(fit2, coef = 1, n = Inf, adjust.method = "BH", sort.by = "P")
+head(x)
+# 把通路的limma分析结果保存到文件 | Save limma results to CSV
+write.csv(x, "gsva_limma.csv", quote = F)
+
+# 输出t值，用做FigureYa39bar的输入数据 | Prepare t-values for FigureYa39bar input
+pathway <- str_replace(row.names(x), "HALLMARK_", "")
+df <- data.frame(ID = pathway, score = x$t)
+write.csv(df, "easy_input2_for39bar.csv", quote = F, row.names = F)
+开始画图
+t为柱子的长度（图中横轴），行名为图中pathway的名称。
+如果想做更多细节上的调整，可参考FigureYa39bar。
+##Start drawing
+T is the length of the column (horizontal axis in the figure), and
+the row name is the name of the pathway in the figure.
+If you want to make more detailed adjustments, you can refer to
+FigureYa39bar.
+# 读取用于柱状图分析的数据 | Read data for bar plot analysis
+df <- read.csv("easy_input2_for39bar.csv")
+head(df)
+# 按照score的值分组 | Group data by score values
+cutoff <- 1
+df$group <- cut(df$score, breaks = c(-Inf, -cutoff, cutoff, Inf), labels = c(1,2,3))
+
+# 按照score排序 | Sort data by score
+sortdf <- df[order(df$score),]
+sortdf$ID <- factor(sortdf$ID, levels = sortdf$ID)
+head(sortdf)
+# 绘制分组柱状图 | Create grouped bar plot
+ggplot(sortdf, aes(ID, score, fill = group)) + geom_bar(stat = 'identity') + 
+  coord_flip() + 
+  scale_fill_manual(values = c('palegreen3', 'snow3', 'dodgerblue4'), guide = FALSE) + 
+
+  # 添加两条虚线作为阈值参考 | Add two dashed lines as threshold references
+  geom_hline(yintercept = c(-cutoff, cutoff), 
+             color = "white",
+             linetype = 2, # 虚线类型 | Dashed line type
+             size = 0.3) + # 线宽 | Line width
+  
+  # 添加负分组标签 | Add labels for negative group
+  geom_text(data = subset(df, score < 0),
+            aes(x = ID, y = 0, label = paste0(" ", ID), color = group), 
+            size = 3, # 字体大小 | Font size
+            hjust = "inward") +  # 水平对齐方式 | Horizontal alignment
+  
+  # 添加正分组标签 | Add labels for positive group
+  geom_text(data = subset(df, score > 0),
+            aes(x = ID, y = -0.1, label = ID, color = group),
+            size = 3, hjust = "outward") +  
+  scale_colour_manual(values = c("black", "snow3", "black"), guide = FALSE) +
+  
+  # 设置坐标轴标签 | Set axis labels
+  xlab("") + ylab("t value of GSVA score, tumor \n versus non-malignant") +
+  theme_bw() + # 使用黑白主题 | Use black and white theme
+  theme(panel.grid = element_blank()) + # 去除网格线 | Remove grid lines
+  theme(panel.border = element_rect(size = 0.6)) + # 设置边框粗细 | Set border thickness
+  # 去除Y轴元素 | Remove Y-axis elements
+  theme(axis.line.y = element_blank(), axis.ticks.y = element_blank(), axis.text.y = element_blank())
+# 保存图表为PDF | Save plot as PDF
+ggsave("gsva.pdf", width = 6, height = 8)
+sessionInfo()

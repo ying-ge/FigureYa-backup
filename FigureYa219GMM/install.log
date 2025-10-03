@@ -1,0 +1,74 @@
+Starting R package installation...
+===========================================
+
+Installing CRAN packages...
+Package already installed: mclust 
+Package already installed: pROC 
+
+Installing Bioconductor packages...
+Installing Bioconductor package: miRBaseVersions.db 
+'getOption("repos")' replaces Bioconductor standard repositories, see
+'help("repositories", package = "BiocManager")' for details.
+Replacement repositories:
+    CRAN: https://cloud.r-project.org/
+Bioconductor version 3.21 (BiocManager 1.30.26), R 4.5.1 (2025-06-13)
+Installing package(s) 'miRBaseVersions.db'
+trying URL 'https://bioconductor.org//packages/3.21/data/annotation/src/contrib/miRBaseVersions.db_1.1.0.tar.gz'
+Content type 'application/x-gzip' length 21148003 bytes (20.2 MB)
+==================================================
+downloaded 20.2 MB
+
+* installing *source* package ‘miRBaseVersions.db’ ...
+** this is package ‘miRBaseVersions.db’ version ‘1.1.0’
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (miRBaseVersions.db)
+
+The downloaded source packages are in
+	‘/tmp/RtmpBTSb7D/downloaded_packages’
+Successfully installed: miRBaseVersions.db 
+Installing Bioconductor package: miRBaseConverter 
+'getOption("repos")' replaces Bioconductor standard repositories, see
+'help("repositories", package = "BiocManager")' for details.
+Replacement repositories:
+    CRAN: https://cloud.r-project.org/
+Bioconductor version 3.21 (BiocManager 1.30.26), R 4.5.1 (2025-06-13)
+Installing package(s) 'miRBaseConverter'
+trying URL 'https://bioconductor.org//packages/3.21/bioc/src/contrib/miRBaseConverter_1.32.0.tar.gz'
+Content type 'application/x-gzip' length 2032783 bytes (1.9 MB)
+==================================================
+downloaded 1.9 MB
+
+* installing *source* package ‘miRBaseConverter’ ...
+** this is package ‘miRBaseConverter’ version ‘1.32.0’
+** using staged installation
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (miRBaseConverter)
+
+The downloaded source packages are in
+	‘/tmp/RtmpBTSb7D/downloaded_packages’
+Successfully installed: miRBaseConverter 
+Package already installed: SimDesign 
+
+===========================================
+Package installation completed!
+You can now run your R scripts in this directory.

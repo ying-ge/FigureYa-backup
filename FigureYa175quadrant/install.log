@@ -1,0 +1,58 @@
+Starting R package installation...
+===========================================
+
+Installing CRAN packages...
+Package already installed: cowplot 
+Package already installed: dplyr 
+Installing CRAN package: gene1 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+Successfully installed: gene1 
+Installing CRAN package: gene114 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+Successfully installed: gene114 
+Installing CRAN package: gene2 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+Successfully installed: gene2 
+Installing CRAN package: gene3 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+Successfully installed: gene3 
+Installing CRAN package: gene3552 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+Successfully installed: gene3552 
+Package already installed: ggplot2 
+Package already installed: ggrepel 
+Warning messages:
+1: package ‘gene1’ is not available for this version of R
+
+A version of this package for your version of R might be available elsewhere,
+see the ideas at
+https://cran.r-project.org/doc/manuals/r-patched/R-admin.html#Installing-packages 
+2: package ‘gene114’ is not available for this version of R
+
+A version of this package for your version of R might be available elsewhere,
+see the ideas at
+https://cran.r-project.org/doc/manuals/r-patched/R-admin.html#Installing-packages 
+3: package ‘gene2’ is not available for this version of R
+
+A version of this package for your version of R might be available elsewhere,
+see the ideas at
+https://cran.r-project.org/doc/manuals/r-patched/R-admin.html#Installing-packages 
+4: package ‘gene3’ is not available for this version of R
+
+A version of this package for your version of R might be available elsewhere,
+see the ideas at
+https://cran.r-project.org/doc/manuals/r-patched/R-admin.html#Installing-packages 
+5: package ‘gene3552’ is not available for this version of R
+
+A version of this package for your version of R might be available elsewhere,
+see the ideas at
+https://cran.r-project.org/doc/manuals/r-patched/R-admin.html#Installing-packages 
+
+===========================================
+Package installation completed!
+You can now run your R scripts in this directory.

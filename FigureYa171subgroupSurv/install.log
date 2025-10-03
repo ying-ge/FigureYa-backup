@@ -1,0 +1,50 @@
+Starting R package installation...
+===========================================
+
+Installing CRAN packages...
+Installing CRAN package: age 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+Successfully installed: age 
+Installing CRAN package: gleason 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+Successfully installed: gleason 
+Installing CRAN package: psa 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+Successfully installed: psa 
+Installing CRAN package: stage 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+Successfully installed: stage 
+Package already installed: survival 
+Package already installed: data.table 
+Package already installed: gridtext 
+Package already installed: ggtext 
+Package already installed: survminer 
+Warning messages:
+1: package ‘age’ is not available for this version of R
+
+A version of this package for your version of R might be available elsewhere,
+see the ideas at
+https://cran.r-project.org/doc/manuals/r-patched/R-admin.html#Installing-packages 
+2: package ‘gleason’ is not available for this version of R
+
+A version of this package for your version of R might be available elsewhere,
+see the ideas at
+https://cran.r-project.org/doc/manuals/r-patched/R-admin.html#Installing-packages 
+3: package ‘psa’ is not available for this version of R
+
+A version of this package for your version of R might be available elsewhere,
+see the ideas at
+https://cran.r-project.org/doc/manuals/r-patched/R-admin.html#Installing-packages 
+4: package ‘stage’ is not available for this version of R
+
+A version of this package for your version of R might be available elsewhere,
+see the ideas at
+https://cran.r-project.org/doc/manuals/r-patched/R-admin.html#Installing-packages 
+
+===========================================
+Package installation completed!
+You can now run your R scripts in this directory.

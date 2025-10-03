@@ -1,0 +1,80 @@
+name: Compress FigureYa Folders
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # 每天凌晨 0:00（UTC 时间）定时触发
+  workflow_dispatch: # 手动触发
+
+jobs:
+  compress-folders:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout Source Repo (FigureYa)
+        uses: actions/checkout@v4
+        with:
+          repository: ying-ge/FigureYa
+          path: source
+
+      - name: Checkout Target Repo (FigureYa-compressed)
+        uses: actions/checkout@v4
+        with:
+          repository: ying-ge/FigureYa-compressed
+          token: ${{ secrets.FIGUREYA2ACTION }}
+          path: target
+
+      - name: Determine First Run or Incremental Update
+        id: determine-run
+        run: |
+          if [ -f target/.last_run ]; then
+            echo "Found .last_run file. This is an incremental update."
+            LAST_RUN=$(cat target/.last_run)
+            echo "LAST_RUN=$LAST_RUN" >> $GITHUB_ENV
+            echo "RUN_MODE=incremental" >> $GITHUB_ENV
+          else
+            echo "No .last_run file found. This is the first run."
+            echo "LAST_RUN=1970-01-01T00:00:00" >> $GITHUB_ENV
+            echo "RUN_MODE=first" >> $GITHUB_ENV
+          fi
+
+      - name: Compress Each Folder Individually
+        working-directory: source
+        run: |
+          if [ "$RUN_MODE" = "first" ]; then
+            # First run: Compress all folders
+            for foldername in $(find . -maxdepth 1 -type d -name 'FigureYa*' | sed 's|^\./||'); do
+              zipfile="../target/${foldername}.zip"
+              echo "Compressing $foldername -> $zipfile"
+              zip -r -q "$zipfile" "$foldername"
+            done
+          else
+            # Incremental update: Compress only modified folders
+            MODIFIED=$(find . -maxdepth 1 -type d -name 'FigureYa*' -newermt "$LAST_RUN" | sed 's|^\./||')
+            if [ -z "$MODIFIED" ]; then
+              echo "No modified folders found."
+            else
+              for foldername in $MODIFIED; do
+                zipfile="../target/${foldername}.zip"
+                echo "Compressing $foldername -> $zipfile"
+                zip -r -q "$zipfile" "$foldername"
+              done
+            fi
+          fi
+
+      - name: Update Last Run Timestamp
+        run: |
+          date -u +"%Y-%m-%dT%H:%M:%SZ" > target/.last_run
+
+      - name: Commit and Push Changes
+        working-directory: target
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add . || true
+          if git diff --staged --quiet; then
+            echo "Nothing to commit"
+          else
+            git commit -m "Compress updated FigureYa folders [skip ci]"
+            git push
+          fi

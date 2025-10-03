@@ -1,0 +1,704 @@
+Starting R package installation...
+===========================================
+
+Installing CRAN packages...
+Installing CRAN package: SimDesign 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+also installing the dependencies ‘gmp’, ‘base64url’, ‘conf.design’, ‘vcd’, ‘combinat’, ‘numbers’, ‘partitions’, ‘audio’, ‘gsl’, ‘ADGofTest’, ‘stabledist’, ‘pcaPP’, ‘pspline’, ‘batchtools’, ‘DoE.base’, ‘sfsmisc’, ‘beepr’, ‘copula’, ‘extraDistr’, ‘renv’, ‘job’, ‘future.batchtools’, ‘FrF2’, ‘RPushbullet’
+
+trying URL 'https://cloud.r-project.org/src/contrib/gmp_0.7-5.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/base64url_1.4.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/conf.design_2.0.0.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/vcd_1.4-13.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/combinat_0.0-8.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/numbers_0.8-5.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/partitions_1.10-9.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/audio_0.1-11.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/gsl_2.1-8.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/ADGofTest_0.3.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/stabledist_0.7-2.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/pcaPP_2.0-5.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/pspline_1.0-21.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/batchtools_0.9.18.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/DoE.base_1.2-5.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/sfsmisc_1.1-22.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/beepr_2.0.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/copula_1.1-6.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/extraDistr_1.10.0.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/renv_1.1.5.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/job_0.3.1.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/future.batchtools_0.21.0.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/FrF2_2.3-4.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/RPushbullet_0.3.4.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/SimDesign_2.21.tar.gz'
+* installing *source* package ‘gmp’ ...
+** this is package ‘gmp’ version ‘0.7-5’
+** package ‘gmp’ successfully unpacked and MD5 sums checked
+** using staged installation
+checking for gcc... gcc -std=gnu2x
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc -std=gnu2x accepts -g... yes
+checking for gcc -std=gnu2x option to accept ISO C89... none needed
+checking how to run the C preprocessor... gcc -std=gnu2x -E
+checking whether we are using the GNU C++ compiler... yes
+checking whether g++ -std=gnu++17 accepts -g... yes
+checking for grep that handles long lines and -e... /usr/bin/grep
+checking for egrep... /usr/bin/grep -E
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking gmp.h usability... yes
+checking gmp.h presence... yes
+checking for gmp.h... yes
+checking for __gmpz_ui_sub in -lgmp... yes
+configure: creating ./config.status
+config.status: creating src/Makevars
+** libs
+using C++ compiler: ‘g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include  -I/usr/local/include    -fpic  -g -O2   -c apply.cc -o apply.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include  -I/usr/local/include    -fpic  -g -O2   -c biginteger.cc -o biginteger.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include  -I/usr/local/include    -fpic  -g -O2   -c bigintegerR.cc -o bigintegerR.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include  -I/usr/local/include    -fpic  -g -O2   -c bigmod.cc -o bigmod.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include  -I/usr/local/include    -fpic  -g -O2   -c bigrational.cc -o bigrational.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include  -I/usr/local/include    -fpic  -g -O2   -c bigrationalR.cc -o bigrationalR.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include  -I/usr/local/include    -fpic  -g -O2   -c bigvec.cc -o bigvec.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include  -I/usr/local/include    -fpic  -g -O2   -c bigvec_q.cc -o bigvec_q.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include  -I/usr/local/include    -fpic  -g -O2   -c extract_matrix.cc -o extract_matrix.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include  -I/usr/local/include    -fpic  -g -O2   -c factor.cc -o factor.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include  -I/usr/local/include    -fpic  -g -O2   -c factorize.cc -o factorize.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include  -I/usr/local/include    -fpic  -g -O2   -c init.cc -o init.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include  -I/usr/local/include    -fpic  -g -O2   -c matrix.cc -o matrix.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include  -I/usr/local/include    -fpic  -g -O2   -c matrixq.cc -o matrixq.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include  -I/usr/local/include    -fpic  -g -O2   -c solve.cc -o solve.o
+g++ -std=gnu++17 -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o gmp.so apply.o biginteger.o bigintegerR.o bigmod.o bigrational.o bigrationalR.o bigvec.o bigvec_q.o extract_matrix.o factor.o factorize.o init.o matrix.o matrixq.o solve.o -lgmp -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-gmp/00new/gmp/libs
+** R
+** data
+** byte-compile and prepare package for lazy loading
+Creating a generic function for ‘which.max’ from package ‘base’ in package ‘gmp’
+Creating a generic function for ‘which.min’ from package ‘base’ in package ‘gmp’
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (gmp)
+* installing *source* package ‘base64url’ ...
+** this is package ‘base64url’ version ‘1.4’
+** package ‘base64url’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c base32.c -o base32.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c base64.c -o base64.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c init.c -o init.o
+gcc -std=gnu2x -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o base64url.so base32.o base64.o init.o -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-base64url/00new/base64url/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (base64url)
+* installing *source* package ‘conf.design’ ...
+** this is package ‘conf.design’ version ‘2.0.0’
+** package ‘conf.design’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (conf.design)
+* installing *source* package ‘vcd’ ...
+** this is package ‘vcd’ version ‘1.4-13’
+** package ‘vcd’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+*** moving datasets to lazyload DB
+** demo
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (vcd)
+* installing *source* package ‘combinat’ ...
+** this is package ‘combinat’ version ‘0.0-8’
+** package ‘combinat’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (combinat)
+* installing *source* package ‘numbers’ ...
+** this is package ‘numbers’ version ‘0.8-5’
+** package ‘numbers’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (numbers)
+* installing *source* package ‘audio’ ...
+** this is package ‘audio’ version ‘0.1-11’
+** package ‘audio’ successfully unpacked and MD5 sums checked
+** using staged installation
+checking for gcc... gcc -std=gnu2x
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether the compiler supports GNU C... yes
+checking whether gcc -std=gnu2x accepts -g... yes
+checking for gcc -std=gnu2x option to enable C11 features... none needed
+checking AudioUnits... no
+checking for stdio.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for strings.h... yes
+checking for sys/stat.h... yes
+checking for sys/types.h... yes
+checking for unistd.h... yes
+checking for dlfcn.h... yes
+checking for library containing dlsym... none required
+checking for portaudio.h... no
+configure: creating ./config.status
+config.status: creating src/Makevars
+config.status: creating src/config.h
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DHAS_CONFIG_H=1 -I/usr/local/include  -I/usr/local/include    -fpic  -g -O2  -c au.c -o au.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DHAS_CONFIG_H=1 -I/usr/local/include  -I/usr/local/include    -fpic  -g -O2  -c driver.c -o driver.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DHAS_CONFIG_H=1 -I/usr/local/include  -I/usr/local/include    -fpic  -g -O2  -c file.c -o file.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DHAS_CONFIG_H=1 -I/usr/local/include  -I/usr/local/include    -fpic  -g -O2  -c pa.c -o pa.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DHAS_CONFIG_H=1 -I/usr/local/include  -I/usr/local/include    -fpic  -g -O2  -c reg.c -o reg.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DHAS_CONFIG_H=1 -I/usr/local/include  -I/usr/local/include    -fpic  -g -O2  -c wmm.c -o wmm.o
+gcc -std=gnu2x -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o audio.so au.o driver.o file.o pa.o reg.o wmm.o -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-audio/00new/audio/libs
+** R
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (audio)
+* installing *source* package ‘gsl’ ...
+** this is package ‘gsl’ version ‘2.1-8’
+** package ‘gsl’ successfully unpacked and MD5 sums checked
+** using staged installation
+checking for gcc... gcc -std=gnu2x
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether the compiler supports GNU C... yes
+checking whether gcc -std=gnu2x accepts -g... yes
+checking for gcc -std=gnu2x option to enable C11 features... none needed
+checking for gsl-config... /usr/bin/gsl-config
+checking if GSL version >= 2.5... yes
+configure: creating ./config.status
+config.status: creating src/Makevars
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include -I.  -I/usr/local/include    -fpic  -g -O2  -c airy.c -o airy.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include -I.  -I/usr/local/include    -fpic  -g -O2  -c bessel.c -o bessel.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include -I.  -I/usr/local/include    -fpic  -g -O2  -c clausen.c -o clausen.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include -I.  -I/usr/local/include    -fpic  -g -O2  -c coulomb.c -o coulomb.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include -I.  -I/usr/local/include    -fpic  -g -O2  -c coupling.c -o coupling.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include -I.  -I/usr/local/include    -fpic  -g -O2  -c dawson.c -o dawson.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include -I.  -I/usr/local/include    -fpic  -g -O2  -c debye.c -o debye.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include -I.  -I/usr/local/include    -fpic  -g -O2  -c dilog.c -o dilog.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include -I.  -I/usr/local/include    -fpic  -g -O2  -c ellint.c -o ellint.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include -I.  -I/usr/local/include    -fpic  -g -O2  -c elljac.c -o elljac.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include -I.  -I/usr/local/include    -fpic  -g -O2  -c error.c -o error.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include -I.  -I/usr/local/include    -fpic  -g -O2  -c expint.c -o expint.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include -I.  -I/usr/local/include    -fpic  -g -O2  -c fermi_dirac.c -o fermi_dirac.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include -I.  -I/usr/local/include    -fpic  -g -O2  -c gamma.c -o gamma.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include -I.  -I/usr/local/include    -fpic  -g -O2  -c gegenbauer.c -o gegenbauer.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include -I.  -I/usr/local/include    -fpic  -g -O2  -c hyperg.c -o hyperg.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include -I.  -I/usr/local/include    -fpic  -g -O2  -c init.c -o init.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include -I.  -I/usr/local/include    -fpic  -g -O2  -c laguerre.c -o laguerre.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include -I.  -I/usr/local/include    -fpic  -g -O2  -c lambert.c -o lambert.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include -I.  -I/usr/local/include    -fpic  -g -O2  -c legendre.c -o legendre.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include -I.  -I/usr/local/include    -fpic  -g -O2  -c log.c -o log.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include -I.  -I/usr/local/include    -fpic  -g -O2  -c poly.c -o poly.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include -I.  -I/usr/local/include    -fpic  -g -O2  -c pow_int.c -o pow_int.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include -I.  -I/usr/local/include    -fpic  -g -O2  -c psi.c -o psi.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include -I.  -I/usr/local/include    -fpic  -g -O2  -c qrng.c -o qrng.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include -I.  -I/usr/local/include    -fpic  -g -O2  -c rng.c -o rng.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include -I.  -I/usr/local/include    -fpic  -g -O2  -c synchrotron.c -o synchrotron.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include -I.  -I/usr/local/include    -fpic  -g -O2  -c transport.c -o transport.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include -I.  -I/usr/local/include    -fpic  -g -O2  -c trig.c -o trig.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include -I.  -I/usr/local/include    -fpic  -g -O2  -c vector.c -o vector.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include -I.  -I/usr/local/include    -fpic  -g -O2  -c zeta.c -o zeta.o
+gcc -std=gnu2x -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o gsl.so airy.o bessel.o clausen.o coulomb.o coupling.o dawson.o debye.o dilog.o ellint.o elljac.o error.o expint.o fermi_dirac.o gamma.o gegenbauer.o hyperg.o init.o laguerre.o lambert.o legendre.o log.o poly.o pow_int.o psi.o qrng.o rng.o synchrotron.o transport.o trig.o vector.o zeta.o -L/usr/lib/x86_64-linux-gnu -lgsl -lgslcblas -lm -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-gsl/00new/gsl/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (gsl)
+* installing *source* package ‘ADGofTest’ ...
+** this is package ‘ADGofTest’ version ‘0.3’
+** package ‘ADGofTest’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (ADGofTest)
+* installing *source* package ‘stabledist’ ...
+** this is package ‘stabledist’ version ‘0.7-2’
+** package ‘stabledist’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (stabledist)
+* installing *source* package ‘pcaPP’ ...
+** this is package ‘pcaPP’ version ‘2.0-5’
+** package ‘pcaPP’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+using C++ compiler: ‘g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DR_PACKAGE_FILE   -I/usr/local/include    -fpic  -g -O2   -c L1Median_HoCr.cpp -o L1Median_HoCr.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DR_PACKAGE_FILE   -I/usr/local/include    -fpic  -g -O2   -c L1Median_VardiZhang.cpp -o L1Median_VardiZhang.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DR_PACKAGE_FILE   -I/usr/local/include    -fpic  -g -O2   -c ML_meal.cpp -o ML_meal.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DR_PACKAGE_FILE   -I/usr/local/include    -fpic  -g -O2   -c ML_package.cpp -o ML_package.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DR_PACKAGE_FILE   -I/usr/local/include    -fpic  -g -O2   -c ML_passrng.cpp -o ML_passrng.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DR_PACKAGE_FILE   -I/usr/local/include    -fpic  -g -O2   -c PCAgrid.cpp -o PCAgrid.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DR_PACKAGE_FILE   -I/usr/local/include    -fpic  -g -O2   -c PCAproj.cpp -o PCAproj.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DR_PACKAGE_FILE   -I/usr/local/include    -fpic  -g -O2   -c R_meal.cpp -o R_meal.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DR_PACKAGE_FILE   -I/usr/local/include    -fpic  -g -O2   -c R_meal_BLAS.cpp -o R_meal_BLAS.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DR_PACKAGE_FILE   -I/usr/local/include    -fpic  -g -O2   -c R_package.cpp -o R_package.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DR_PACKAGE_FILE   -I/usr/local/include    -fpic  -g -O2   -c cov.kendall.cpp -o cov.kendall.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DR_PACKAGE_FILE   -I/usr/local/include    -fpic  -g -O2   -c hess.cpp -o hess.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DR_PACKAGE_FILE   -I/usr/local/include    -fpic  -g -O2   -c l1median.cpp -o l1median.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DR_PACKAGE_FILE   -I/usr/local/include    -fpic  -g -O2   -c outSDo.cpp -o outSDo.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DR_PACKAGE_FILE   -I/usr/local/include    -fpic  -g -O2   -c pcaPP.cpp -o pcaPP.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DR_PACKAGE_FILE   -I/usr/local/include    -fpic  -g -O2  -c pcaPP_init.c -o pcaPP_init.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DR_PACKAGE_FILE   -I/usr/local/include    -fpic  -g -O2   -c qnn.cpp -o qnn.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DR_PACKAGE_FILE   -I/usr/local/include    -fpic  -g -O2   -c smat.cpp -o smat.o
+g++ -std=gnu++17 -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o pcaPP.so L1Median_HoCr.o L1Median_VardiZhang.o ML_meal.o ML_package.o ML_passrng.o PCAgrid.o PCAproj.o R_meal.o R_meal_BLAS.o R_package.o cov.kendall.o hess.o l1median.o outSDo.o pcaPP.o pcaPP_init.o qnn.o smat.o -llapack -lblas -lgfortran -lm -lquadmath -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-pcaPP/00new/pcaPP/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (pcaPP)
+* installing *source* package ‘pspline’ ...
+** this is package ‘pspline’ version ‘1.0-21’
+** package ‘pspline’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+using Fortran compiler: ‘GNU Fortran (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gfortran  -fpic  -g -O2  -c Pspline.f -o Pspline.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c init.c -o init.o
+gcc -std=gnu2x -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o pspline.so Pspline.o init.o -lgfortran -lm -lquadmath -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-pspline/00new/pspline/libs
+** R
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (pspline)
+* installing *source* package ‘sfsmisc’ ...
+** this is package ‘sfsmisc’ version ‘1.1-22’
+** package ‘sfsmisc’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+** demo
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (sfsmisc)
+* installing *source* package ‘extraDistr’ ...
+** this is package ‘extraDistr’ version ‘1.10.0’
+** package ‘extraDistr’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c bernoulli-distribution.cpp -o bernoulli-distribution.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c beta-binomial-distribution.cpp -o beta-binomial-distribution.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c beta-negative-binomial-distribution.cpp -o beta-negative-binomial-distribution.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c beta-prime-distribution.cpp -o beta-prime-distribution.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c bhattacharjee-distribution.cpp -o bhattacharjee-distribution.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c birnbaum-saunders-distribution.cpp -o birnbaum-saunders-distribution.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c bivariate-normal-distribution.cpp -o bivariate-normal-distribution.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c bivariate-poisson-distribution.cpp -o bivariate-poisson-distribution.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c categorical-distribution-lp.cpp -o categorical-distribution-lp.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c categorical-distribution.cpp -o categorical-distribution.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c dirichlet-distribution.cpp -o dirichlet-distribution.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c dirichlet-multinomial-distribution.cpp -o dirichlet-multinomial-distribution.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c discrete-gamma-distribution.cpp -o discrete-gamma-distribution.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c discrete-laplace-distribution.cpp -o discrete-laplace-distribution.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c discrete-normal-distribution.cpp -o discrete-normal-distribution.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c discrete-uniform-distribution.cpp -o discrete-uniform-distribution.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c discrete-weibull-distribution.cpp -o discrete-weibull-distribution.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c frechet-distribution.cpp -o frechet-distribution.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c gamma-poisson-distribution.cpp -o gamma-poisson-distribution.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c gev-distribution.cpp -o gev-distribution.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c gompertz-distribution.cpp -o gompertz-distribution.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c gpd-distribution.cpp -o gpd-distribution.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c gumbel-distribution.cpp -o gumbel-distribution.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c half-cauchy-distribution.cpp -o half-cauchy-distribution.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c half-normal-distribution.cpp -o half-normal-distribution.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c half-t-distribution.cpp -o half-t-distribution.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c huber-distribution.cpp -o huber-distribution.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c inverse-gamma-distribution.cpp -o inverse-gamma-distribution.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c kumaraswamy-distribution.cpp -o kumaraswamy-distribution.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c laplace-distribution.cpp -o laplace-distribution.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c location-scale-t-distribution.cpp -o location-scale-t-distribution.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c logarithmic-series-distribution.cpp -o logarithmic-series-distribution.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c lomax-distribution.cpp -o lomax-distribution.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c mixture-of-normal-distributions.cpp -o mixture-of-normal-distributions.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c mixture-of-poisson-distributions.cpp -o mixture-of-poisson-distributions.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c multinomial-distribution.cpp -o multinomial-distribution.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c multivariate-hypergeometric-distribution.cpp -o multivariate-hypergeometric-distribution.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c negative-hypergeometric-distribution.cpp -o negative-hypergeometric-distribution.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c non-standart-beta-distribution.cpp -o non-standart-beta-distribution.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c pareto-distribution.cpp -o pareto-distribution.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c power-distribution.cpp -o power-distribution.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c proportion-distribution.cpp -o proportion-distribution.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c rademacher-distribution.cpp -o rademacher-distribution.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c rayleigh-distribution.cpp -o rayleigh-distribution.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c shared.cpp -o shared.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c shifted-gompertz-distribution.cpp -o shifted-gompertz-distribution.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c skellam-distribution.cpp -o skellam-distribution.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c slash-distribution.cpp -o slash-distribution.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c triangular-distribution.cpp -o triangular-distribution.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c truncated-binomial-distribution.cpp -o truncated-binomial-distribution.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c truncated-normal-distribution.cpp -o truncated-normal-distribution.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c truncated-poisson-distribution.cpp -o truncated-poisson-distribution.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c tuckey-lambda-distribution.cpp -o tuckey-lambda-distribution.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c wald-distribution.cpp -o wald-distribution.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c zero-inflated-binomial-distribution.cpp -o zero-inflated-binomial-distribution.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c zero-inflated-negative-binomial-distribution.cpp -o zero-inflated-negative-binomial-distribution.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c zero-inflated-poisson-distribution.cpp -o zero-inflated-poisson-distribution.o
+g++ -std=gnu++17 -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o extraDistr.so RcppExports.o bernoulli-distribution.o beta-binomial-distribution.o beta-negative-binomial-distribution.o beta-prime-distribution.o bhattacharjee-distribution.o birnbaum-saunders-distribution.o bivariate-normal-distribution.o bivariate-poisson-distribution.o categorical-distribution-lp.o categorical-distribution.o dirichlet-distribution.o dirichlet-multinomial-distribution.o discrete-gamma-distribution.o discrete-laplace-distribution.o discrete-normal-distribution.o discrete-uniform-distribution.o discrete-weibull-distribution.o frechet-distribution.o gamma-poisson-distribution.o gev-distribution.o gompertz-distribution.o gpd-distribution.o gumbel-distribution.o half-cauchy-distribution.o half-normal-distribution.o half-t-distribution.o huber-distribution.o inverse-gamma-distribution.o kumaraswamy-distribution.o laplace-distribution.o location-scale-t-distribution.o logarithmic-series-distribution.o lomax-distribution.o mixture-of-normal-distributions.o mixture-of-poisson-distributions.o multinomial-distribution.o multivariate-hypergeometric-distribution.o negative-hypergeometric-distribution.o non-standart-beta-distribution.o pareto-distribution.o power-distribution.o proportion-distribution.o rademacher-distribution.o rayleigh-distribution.o shared.o shifted-gompertz-distribution.o skellam-distribution.o slash-distribution.o triangular-distribution.o truncated-binomial-distribution.o truncated-normal-distribution.o truncated-poisson-distribution.o tuckey-lambda-distribution.o wald-distribution.o zero-inflated-binomial-distribution.o zero-inflated-negative-binomial-distribution.o zero-inflated-poisson-distribution.o -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-extraDistr/00new/extraDistr/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (extraDistr)
+* installing *source* package ‘renv’ ...
+** this is package ‘renv’ version ‘1.1.5’
+** package ‘renv’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c renv.c -o renv.o
+gcc -std=gnu2x -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o renv.so renv.o -L/opt/R/4.5.1/lib/R/lib -lR
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (renv)
+* installing *source* package ‘job’ ...
+** this is package ‘job’ version ‘0.3.1’
+** package ‘job’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (job)
+* installing *source* package ‘RPushbullet’ ...
+** this is package ‘RPushbullet’ version ‘0.3.4’
+** package ‘RPushbullet’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (RPushbullet)
+* installing *source* package ‘partitions’ ...
+** this is package ‘partitions’ version ‘1.10-9’
+** package ‘partitions’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+using C++ compiler: ‘g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2   -c app.cpp -o app.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c partitions.c -o partitions.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c partitions_init.c -o partitions_init.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c permutations.c -o permutations.o
+g++ -std=gnu++17 -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o partitions.so app.o partitions.o partitions_init.o permutations.o -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-partitions/00new/partitions/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (partitions)
+* installing *source* package ‘batchtools’ ...
+** this is package ‘batchtools’ version ‘0.9.18’
+** package ‘batchtools’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c binpack.c -o binpack.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c count_not_missing.c -o count_not_missing.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c fill_gaps.c -o fill_gaps.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c init.c -o init.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c lpt.c -o lpt.o
+gcc -std=gnu2x -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o batchtools.so binpack.o count_not_missing.o fill_gaps.o init.o lpt.o -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-batchtools/00new/batchtools/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (batchtools)
+* installing *source* package ‘beepr’ ...
+** this is package ‘beepr’ version ‘2.0’
+** package ‘beepr’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (beepr)
+* installing *source* package ‘copula’ ...
+** this is package ‘copula’ version ‘1.1-6’
+** package ‘copula’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I./gsl -I./gsl/specfunc  -I/usr/local/include    -fpic  -g -O2  -c An.c -o An.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I./gsl -I./gsl/specfunc  -I/usr/local/include    -fpic  -g -O2  -c ecIndepTest.c -o ecIndepTest.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I./gsl -I./gsl/specfunc  -I/usr/local/include    -fpic  -g -O2  -c empcop.c -o empcop.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I./gsl -I./gsl/specfunc  -I/usr/local/include    -fpic  -g -O2  -c evtest.c -o evtest.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I./gsl -I./gsl/specfunc  -I/usr/local/include    -fpic  -g -O2  -c exchtest.c -o exchtest.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I./gsl -I./gsl/specfunc  -I/usr/local/include    -fpic  -g -O2  -c fgm.c -o fgm.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I./gsl -I./gsl/specfunc  -I/usr/local/include    -fpic  -g -O2  -c gof.c -o gof.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I./gsl -I./gsl/specfunc  -I/usr/local/include    -fpic  -g -O2  -c indepTest_utils.c -o indepTest_utils.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I./gsl -I./gsl/specfunc  -I/usr/local/include    -fpic  -g -O2  -c init.c -o init.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I./gsl -I./gsl/specfunc  -I/usr/local/include    -fpic  -g -O2  -c logseries.c -o logseries.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I./gsl -I./gsl/specfunc  -I/usr/local/include    -fpic  -g -O2  -c multIndepTest.c -o multIndepTest.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I./gsl -I./gsl/specfunc  -I/usr/local/include    -fpic  -g -O2  -c multSerialIndepTest.c -o multSerialIndepTest.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I./gsl -I./gsl/specfunc  -I/usr/local/include    -fpic  -g -O2  -c polyn_eval.c -o polyn_eval.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I./gsl -I./gsl/specfunc  -I/usr/local/include    -fpic  -g -O2  -c rF01Frank.c -o rF01Frank.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I./gsl -I./gsl/specfunc  -I/usr/local/include    -fpic  -g -O2  -c rF01Joe.c -o rF01Joe.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I./gsl -I./gsl/specfunc  -I/usr/local/include    -fpic  -g -O2  -c rLog.c -o rLog.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I./gsl -I./gsl/specfunc  -I/usr/local/include    -fpic  -g -O2  -c rSibuya.c -o rSibuya.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I./gsl -I./gsl/specfunc  -I/usr/local/include    -fpic  -g -O2  -c retstable.c -o retstable.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I./gsl -I./gsl/specfunc  -I/usr/local/include    -fpic  -g -O2  -c serialIndepTest.c -o serialIndepTest.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I./gsl -I./gsl/specfunc  -I/usr/local/include    -fpic  -g -O2  -c set_utils.c -o set_utils.o
+gcc -std=gnu2x -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o copula.so An.o ecIndepTest.o empcop.o evtest.o exchtest.o fgm.o gof.o indepTest_utils.o init.o logseries.o multIndepTest.o multSerialIndepTest.o polyn_eval.o rF01Frank.o rF01Joe.o rLog.o rSibuya.o retstable.o serialIndepTest.o set_utils.o -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-copula/00new/copula/libs
+** R
+** data
+** demo
+** inst
+** byte-compile and prepare package for lazy loading
+Creating a generic function for ‘%in%’ from package ‘base’ in package ‘copula’
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (copula)
+* installing *source* package ‘DoE.base’ ...
+** this is package ‘DoE.base’ version ‘1.2-5’
+** package ‘DoE.base’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (DoE.base)
+* installing *source* package ‘future.batchtools’ ...
+** this is package ‘future.batchtools’ version ‘0.21.0’
+** package ‘future.batchtools’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** demo
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (future.batchtools)
+* installing *source* package ‘SimDesign’ ...
+** this is package ‘SimDesign’ version ‘2.21’
+** package ‘SimDesign’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (SimDesign)
+* installing *source* package ‘FrF2’ ...
+** this is package ‘FrF2’ version ‘2.3-4’
+** package ‘FrF2’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (FrF2)
+
+The downloaded source packages are in
+	‘/tmp/Rtmp2SKlWr/downloaded_packages’
+Successfully installed: SimDesign 
+Package already installed: pROC 
+
+===========================================
+Package installation completed!
+You can now run your R scripts in this directory.

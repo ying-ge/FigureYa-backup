@@ -1,0 +1,13 @@
+Starting R package installation...
+===========================================
+
+Installing CRAN packages...
+Package already installed: shape 
+
+Installing Bioconductor packages...
+Package already installed: DESeq2 
+Package already installed: TCGAbiolinks 
+
+===========================================
+Package installation completed!
+You can now run your R scripts in this directory.

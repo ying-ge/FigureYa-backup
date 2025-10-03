@@ -1,0 +1,543 @@
+FigureYa226scRNA_cNMF
+FigureYa226scRNA_cNMF
+Author(s)
+: Jianing Gao
+Reviewer(s)
+: Ying Ge, Junyi Shen
+Date
+: 2025-09-23
+Academic Citation
+If you use this code in your work or research, we kindly request that
+you cite our publication:
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization
+Framework for Enhancing Biomedical Data Interpretation and Research
+Efficiency. iMetaMed.
+https://doi.org/10.1002/imm3.70005
+需求描述
+Requirement
+您好，参加了FigureYa194pySCENIC，收获满满，老师在讲课中提到的cNMF方法分析单细胞数据能不能再组织一次课？
+Hello, I participated in FigureYa194pySCENIC and gained a lot. Can you
+organize another class on the cNMF method for analyzing single-cell data
+mentioned by the teacher in the lecture?
+出自
+https://linkinghub.elsevier.com/retrieve/pii/S1535610820303160
+From
+https://linkinghub.elsevier.com/retrieve/pii/S1535610820303160
+Figure 2. Loss of Lung Lineage Fidelity in LUAD Progression and
+Emergence of a Highly Mixed Identity Program (D and E) Five key gene
+programs highlight alternative cell type programs, two key transition
+states and an EMT-like state. PHATE map (as in Figure 1D), with cells
+(dots) colored either by the activity of each program (D) (NMF loading,
+color bar, see Figure S2C for additional programs, STAR Methods) or by
+the expression level (E) Log2(TPX+1), color bar) of a selected marker
+from the corresponding program. (G) Cells from cluster 5 show
+significantly elevated activity of the highly mixed NMF program (t test,
+p < 1 3 1016).
+例文的分析流程
+例文是一个很好的肿瘤单细胞的案例，通讯作者之一是单细胞领域的明星Aviv
+Regev，她的文章的分析方法非常丰富，有很多值得借鉴的地方：
+前面的细胞类型鉴定很经典（可参考FigureYa177RNAvelocity）
+CNV推断（Figure 1G的画法可参考FigureYa166scCNV）
+Single Cell Gene Set Enrichment（可参考FigureYa160scGSVA）
+cNMF提取expression
+program
+，为本文重点内容（FigureYa223scNMF用R版本的NMF做类似的分析，来自不同作者，可对比学习）
+优化传输模型分析发育轨迹（可参考FigureYa40lineage）
+Analysis Process for the Example Paper
+The example paper is a great example of single-cell tumor analysis.
+One of the corresponding authors is Aviv Regev, a leading figure in the
+single-cell field. Her article offers a wealth of analytical methods,
+offering valuable insights:
+The previous section on cell type identification is a classic
+example (see Figure Ya177: RNA velocity)
+CNV inference (see Figure Ya166: scCNV for the plot of Figure
+1G)
+Single Cell Gene Set Enrichment (see Figure Ya160: scGSVA)
+cNMF expression extraction program
+, the focus of
+this article (Figure Ya223: scNMF uses the R version of NMF for similar
+analysis, from different authors, for comparison and learning).
+Optimizing the transmission model to analyze developmental
+trajectories (see Figure Ya40: lineage)
+应用场景
+Application Scenarios
+利用cNMF提取expression programs，并通过整合其它已发表的数据，利用Gene
+set analysis来推断expression programs的生物学意义。 Use cNMF to extract
+expression programs and, by integrating other published data, use gene
+set analysis to infer the biological significance of these expression
+programs.
+想要深入了解cNMF，请看本文档后半部分的“附：cNMF算法概述”。 For a more
+in-depth understanding of cNMF, please see the “Appendix: Overview of
+the cNMF Algorithm” later in this document.
+直播回放 Live Replay
+链接：
+https://pan.baidu.com/s/1qAyEMn7oCjBgbccg_4pHyA
+，提取码：1mwb
+Link:
+https://pan.baidu.com/s/1qAyEMn7oCjBgbccg_4pHyA
+,
+Extraction Code: 1mwb
+环境设置
+Environment Setup
+安装python版本的cNMF，参考
+cNMF@github
+To install the
+Python version of cNMF, refer to
+cNMF@github
+输入文件
+Input file
+例文的实验设计：作者用不同的小鼠模型模拟肺腺癌（lung adenocarcinoma,
+LUAD）的发生过程。样本是time
+series的设计，不同的模型鼠模拟了不同stage的肺癌。通过取不同时间点的AT2细胞（tdTomato+），利用Smart-Seq2进行单细胞建库。
+Experimental Design: The authors used different mouse models to simulate
+the progression of lung adenocarcinoma (LUAD). The sample design was a
+time series, with different mouse models simulating different stages of
+lung cancer. AT2 cells (tdTomato+) were collected at different time
+points and single-cell libraries were constructed using Smart-Seq2.
+数据下载链接：
+GSE154989
+。下载后解压缩，放入data文件夹（同微云里的data.zip，建议从GEO下载）
+Data download link:
+GSE154989
+.
+After downloading, unzip the file and place it in the data folder (the
+same as data.zip in Weiyun, but downloading from GEO is
+recommended).
+富集分析时用到多个gene set，文件较大，已上传至微云
+https://share.weiyun.com/zyb8iF5J
+。下载ref.zip，解压缩后放入当前文件夹。
+Multiple gene sets were used in the enrichment analysis, and the files
+are large. They have been uploaded to Weiyun
+https://share.weiyun.com/zyb8iF5J
+. Download ref.zip,
+unzip it, and place it in the current folder.
+代码目录
+Code Directory
+位于scripts文件夹 Located in the
+scripts
+folder
+特征基因选择
+Feature Gene Selection
+作者对75%的细胞随机抽样200次来鉴定特征基因，这一点值得借鉴（后文详述）。准备cNMF的输入文件。
+The authors randomly sampled 75% of cells 200 times to identify feature
+genes, which is worth learning from (discussed in detail later). Prepare
+the cNMF input file.
+见
+s1-explore_data.Rmd
+See
+s1-explore_data.Rmd
+cNMF
+降维
+：作者选择NMF进行降维。在此基础上进一步进行tSNE和PHATE
+maps进行可视化。
+Dimensionality Reduction
+: The authors
+used NMF for dimensionality reduction. Based on this, tSNE and PHATE
+maps were further used for visualization.
+聚类
+：在NMF上计算cosine距离，kNN稳定优化图聚类。
+Clustering
+: Cosine distance was calculated on NMF, and
+kNN was used for graph clustering.
+见
+s2-run_cNMF.ipynb
+See
+s2-run_cNMF.ipynb
+and
+s3-vis_cNMF.Rmd
+cNMF结果可视化 - Expression program
+作者借鉴了cNMF的方法提取Expression
+programs。这是本教程的重点，我们没有完全使用作者的分析方法，而是使用cNMF这个计算工具，得到了和本文类似的结果。
+见
+s2-run_cNMF.ipynb
+及
+s3-vis_cNMF.Rmd
+基因富集分析 - Gene set analysis
+Gene Enrichment Analysis - Gene Set Analysis
+这是本文又一个值得借鉴的地方，本文整合了多个gene
+set注释信息（见TableS9，以及ref文件夹下的
+makeGMT.Rmd
+代码）对experssion
+program进行富集分析 This is another area where this paper is worth
+learning from. We integrated annotation information from multiple gene
+sets (see Table S9 and
+makeGMT.Rmd
+in the
+ref
+folder) to perform enrichment analysis on the experssion program.
+见
+s3-vis_cNMF.Rmd
+See
+s3-vis_cNMF.Rmd
+将cNMF的结果导入Seurat对象，并用Seurat内置的可视化函数进行可视化。
+Importing cNMF results into a Seurat object and visualizing them
+using Seurat’s built-in visualization functions.
+见
+s4-cNMF2Seurat.Rmd
+See
+s4-cNMF2Seurat.Rmd
+附：cNMF算法概述
+Appendix: Overview of the cNMF Algorithm
+Why NMF
+NMF是一种soft
+clustering方法（即给出样本属于某一类的概率），在无需先验知识的条件下，能够很好地提取矩阵中的特征。通过对特征的进一步分析，我们可以给出样本属于某一类的概率。NMF对于连续发育过程的单细胞分析非常有效，结合传统的聚类分析，可以定义出更加复杂的细胞状态和对应的特征基因集合。另外根据我的经验，NMF对batch
+effect不敏感（batch
+effect通常会被识别为某一/几个components，不会和具有生物学意义的components混合），非常适用于smart-seq这种低通量，多批次的单细胞建库方法的数据分析。
+NMF is a soft clustering method (i.e., giving the probability of a
+sample belonging to a certain class). It effectively extracts features
+from matrices without requiring prior knowledge. Further analysis of
+these features can yield a probability of a sample belonging to a
+certain class. NMF is highly effective for single-cell analysis of
+continuous developmental processes. Combined with traditional cluster
+analysis, it can define more complex cell states and corresponding sets
+of signature genes. Furthermore, in my experience, NMF is insensitive to
+batch effects (which are typically identified as one or a few components
+and not intermingled with biologically meaningful components), making it
+well-suited for data analysis using low-throughput, multi-batch
+single-cell library generation methods such as smart-seq.
+NMF(Non-negative Matrix Factorization)
+NMF本质上是一种矩阵分解的方法，限制条件是分解后的矩阵中的元素不能为负。以下图为例，我们的单细胞基因表达矩阵是一个行为基因，列为细胞的矩阵。分解后，我们得到两个矩阵，在
+cNMF的文章@elife2019
+中，前者称为
+GEP(Gene Expression Program) spectra
+，记录了基因对每个component的贡献，后者称为
+Usage matrix
+，简单理解为每个GEP在每个细胞中的Activity。
+NMF is essentially a matrix factorization method, with the constraint
+that the elements of the decomposed matrix cannot be negative. For
+example, the following figure shows a single-cell gene expression matrix
+consisting of behavioral genes and cells. After decomposition, we obtain
+two matrices. In the
+cNMF article
+@elife2019
+, the former is called the GEP
+(Gene Expression Program) spectra, which records the contribution of
+genes to each component, and the latter is called the usage matrix,
+which simply represents the activity of each GEP in each cell.
+这个矩阵分解形式上可以写为， This matrix decomposition can be
+formally written as:
+\[ C_{m,n} = G_{m,k}\times
+U_{k,n}\]
+C为m个genes，n个cells的基因表达矩阵 C is the gene expression matrix
+for m genes and n cells.
+Trends in Genetics, 2018(Figure 2A)
+NMF结果的生物学意义
+Biological Significance of NMF Results
+Trends in Genetics, 2018(Figure2B)
+我们可以从Usage matrix和GEP spectra
+matrix两方面出发，赋予NMF结果以生物学解释。 We can provide biological
+interpretations for NMF results from two perspectives: the usage matrix
+and the GEP spectra matrix.
+Usage matrix：如上图，Usage Matrix可以将GEP的activity和cell
+meta信息建立关联性，从而赋予GEP以生物学意义。(表型)
+Usage matrix: As shown in the figure above, the usage matrix can
+correlate GEP activity with cell meta-information, thereby assigning
+biological significance to the GEP. (Phenotype)
+GEP spectra
+matrix：我们可以通过每个GEP中的基因按照权重排序，进而通过GSEA等基因功能分析算法来赋予GEP以生物学意义。(机制)
+GEP spectra matrix: We can rank the genes in each GEP by weight
+and then assign biological significance to the GEP using gene function
+analysis algorithms such as GSEA. (Mechanism)
+这两个角度合起来，就可以让我们做到从机制到表型的关联。 Combining
+these two perspectives allows us to link mechanism to phenotype.
+cNMF(consensus NMF)算法
+cNMF (Consensus NMF) Algorithm
+cNMF的提出是为了解决求解NMF分解时结果不唯一的问题。 cNMF was proposed
+to address the issue of non-unique results when solving NMF
+decomposition.
+a) Data preprocessing
+过滤UMI<1000的细胞 (self-define)
+低表达的基因 (1 out of 500 cells)
+Filter cells with UMI < 1000 (self-defined)
+Lowly expressed genes (1 out of 500 cells)
+过滤后的矩阵记为（行为细胞，列为基因的矩阵） The filtered matrix is
+denoted as (behavior cells, gene matrix)
+\[C_{ij} (i=1...N cells, j=1...M
+genes)\]
+选择Top H个高度可变的基因（可以使用内置算法
+V
+score
+来计算，也可以自己提供基因列表)
+对这个子矩阵按基因（列）进行方差标准化 (variance scale)
+Select the top H highly variable genes (you can use the built-in
+algorithm
+V score
+to calculate, or you can provide your own
+gene list)
+Normalize the variance of this submatrix by gene (column) (variance
+scale)
+标准化后的子矩阵记为 The normalized submatrix is denoted as
+\[ \widetilde{C}=\left[ \begin{matrix}...
+\frac{C_j}{\sigma(C_j)} ...\end{matrix} \right] , j \in \{H \
+overdispersed \ genes \}\]
+【备注】 [Notes]
+Ｑ：
+数据的预处理部分为何用
+variance scale
+而非我们常用的
+log transformation
+?
+Q: Why did you use a variance scale instead of the more commonly used
+log transformation for data preprocessing?
+A：作者主要有以下三点考虑 A: The author had the following three main
+considerations:
+log transformation
+会引入pseudo
+count，影响下游分析。
+Log transformation introduces pseudo counts, which can affect
+downstream analysis.
+However, we prefer variance scaling because log transformation
+requires addition of an arbitrary pseudo-count which can substantially
+impact downstream analysis (William Townes et al., 2019).
+在对数空间中，0.1到1的变化和100到1000的变化都是1，但是显然前者更像噪音，后者更可能有生物学意义。
+In logarithmic space, a change from 0.1 to 1 and a change from 100
+to 1000 are both 1, but the former clearly looks more like noise, while
+the latter is more likely to be biologically meaningful.
+In addition log-transformation renders fold-changes of 0.1 to 1, and
+100 to 1000 equivalent in absolute terms. This is undesirable given the
+current resolution of scRNA-Seq data because the former change can
+frequently be attributable to noise while we have much greater
+confidence in the biological significance of the latter.
+最后，GEP在对数空间的加法对应到raw
+matrix上是乘法。作者认为GEP之间的相加比相乘更具有生物学意义。
+Finally, addition of GEPs in logarithmic space corresponds to
+multiplication in the raw matrix. The authors suggest that addition of
+GEPs is more biologically meaningful than multiplication.
+Finally, addition of components in log expression space corresponds
+to multiplication in raw expression space. We believe additivity to be a
+more appropriate model than multiplicativity for most GEPs, and
+therefore do not log-transform the data prior to running cNMF.
+Q：
+input matrix应该用raw count matrix（UMI counts）还是TPM
+matrix（normalized by sequence depth）？
+A：cNMF算法没有对测序深度进行归一化，主要是因为 A: The cNMF algorithm
+does not normalize for sequencing depth, primarily for the following
+reasons:
+测序深度（Technical variation）会体现在Usage
+Matrix中，后续我们直接对Usage Matrix进行归一化即可
+Sequencing depth (technical variation) is reflected in the usage
+matrix, which we can then directly normalize.
+nUMI高的细胞包含的信息更为丰富，相对于nUMI低的细胞（同种类型的细胞）更能影响cNMF的结果。
+Cells with high nUMIs contain richer information and thus have a
+greater impact on cNMF results than cells with low nUMIs (of the same
+cell type).
+值得注意的是，对于全长单细胞测序技术，例如smart-seq，作者的处理方法是直接将TPM矩阵作为input
+matrix It is worth noting that for full-length single-cell sequencing
+technologies, such as smart-seq, the author’s approach is to directly
+use the TPM matrix as the input matrix
+However, for the Tasic et al. (2016) dataset, which is based on
+full-transcript sequencing rather than digital UMI counting, we
+variance-normalized high-variance genes from the TPM matrix directly
+rather than from the raw count matrix as in the other datasets.
+总结来说，就是cNMF算法本身没有对矩阵按照测序深度进行归一化，对于10X数据（或者任何UMI-based
+technology），直接使用raw counts
+matrix作为输入即可。对于smart-seq数据（或者任何full-length
+technology），使用TPM matrix作为输入。  In summary, the cNMF algorithm
+itself does not normalize the matrix according to sequencing depth. For
+10X data (or any UMI-based technology), it is sufficient to use the raw
+counts matrix as input. For smart-seq data (or any full-length
+technology), it is sufficient to use the TPM matrix as input.
+b) Consensus non-negative matrix factorization (cNMF)
+step1：求解GEP spectra matrix Step 1: Solve the GEP spectra
+matrix
+对矩阵
+\(\widetilde{C}\)
+进行R次NMF
+Perform R NMF on the matrix
+\(\widetilde{C}\)
+\[\widetilde{C}=U^{(r)}\times G^{(r)}, for
+\ r = 1...R\]
+其中
+\(U^{(r)}\)
+为Usage matrices（N
+cells
+\(\times\)
+K programs），
+\(G^{(r)}\)
+为program matrices（K programs
+\(\times\)
+H genes） Where
+\(U^{(r)}\)
+is the usage matrix (N cells
+\(\times\)
+K programs),
+\(G^{(r)}\)
+is the program matrix (K programs
+\(\times\)
+H genes).
+对
+\(G^{(r)}\)
+进行L2范数归一化，这一步归一化是为了方便衡量programs之间的相似性。（
+经过L2范数归一化后，一组向量的欧式距离和它们的余弦相似度可以等价
+）
+Perform L2 normalization on
+\(G^{(r)}\)
+. This normalization step
+facilitates measuring the similarity between programs. (
+After L2
+norm normalization, the Euclidean distance of a set of vectors and their
+cosine similarity are equivalent
+)
+\(\widetilde{G}^{(r)} =
+rowL2Nrom(G^{(r)})\)
+按行拼接
+\(\widetilde{G}^{(r)}\)
+，得到矩阵
+\(G\)
+（RK programs
+\(\times\)
+H genes）
+Concatenate
+\(\widetilde{G}^{(r)}\)
+by row to obtain the
+matrix
+\(G\)
+(RK programs
+\(\times\)
+H genes)
+\(G = rbind(\widetilde{G}^{(1)}, ...,
+\widetilde{G}^{(R)})\)
+接下来需要对矩阵G进行过滤，舍弃异常的programs，作者是这样做的 Next,
+we need to filter the matrix G and discard abnormal programs. The author
+does this:
+首先把矩阵G变成一个（RH
+\(\times\)
+RH维）的距离矩阵，接着求出每个program和L个最近邻programs的平均距离，我们可以设定阈值，过滤掉平均距离太大的programs（可理解为不稳定的解）。我们记
+First, convert the matrix G into a (RH
+\(\times\)
+RH dimension) distance matrix,
+then calculate the average distance between each program and its L
+nearest neighbor programs. We can set a threshold to filter out programs
+with a large average distance (which can be understood as an unstable
+solution).
+\(L=\rho
+R\)
+（重复R次NMF，每个program最多有R-1个最近邻的programs，所以
+\(\rho < 1\)
+） Let us denote
+\(L=\rho R\)
+(NMF is repeated R times, and
+each program has at most R-1 nearest neighbors, so
+\(\rho < 1\)
+).
+因此这里有两个超参数：
+\(\rho\)
+控制最近邻个数；
+\(\tau\)
+决定平均距离阈值。 Therefore, there are two hyperparameters:
+\(\rho\)
+controls the number of nearest
+neighbors;
+\(\tau\)
+determines the
+average distance threshold.
+记过滤后的矩阵为： The filtered matrix is:
+\(G^{f} = filter(G_l \ for \ G_l \ in \ G \
+if \ D(Gl,L)<\tau)\)
+随后我们对
+\(G^f\)
+进行KMeans聚类（欧氏距离），聚类的个数等于NMF的components
+(K）。聚类结果记为：
+We then perform KMeans clustering (Euclidean distance) on
+\(G^f\)
+, with the number of clusters equal to
+the components (K) of NMF. The clustering result is recorded as:
+$A_k = $ [
+\(G_l\)
+for
+\(G_l\)
+in
+\(G^f\)
+if
+\(G_l\)
+is assigned to cluster k]，
+\(k=1,2,...,K\)
+我们对同一类的programs的gene loadings进行中值平均
+We median-average the gene loadings of programs in the same
+cluster.
+\(G_{kj}^{c} = median(\{G_{lj}^{f} \ for \
+l \in A_k\})\)
+这样，我们得到了consensus NMF的program matrix
+\(G^{(c)}\)
+(K
+\(\times\)
+H) This gives us the consensus NMF
+program matrix
+\(G^{(c)}\)
+(K
+\(\times\)
+H)
+最后进行一步L1范数归一化
+Finally, we perform L1-norm normalization.
+\(\widetilde{G}^{(c)} =
+rowL1Nrom(G^{(c)})\)
+step2：利用
+\(\widetilde{G}^{(c)}\)
+求解Usage
+matrix，这就变成了一个线性回归问题，只不过线性回归的系数必须为正(NMF的非负性约束)。
+Step 2: Use
+\(\widetilde{G}^{(c)}\)
+to
+solve for the usage matrix. This becomes a linear regression problem,
+except that the coefficients must be positive (NMF’s non-negativity
+constraint).
+对每个细胞，求解以下优化
+For each cell, solve the following optimization:
+\(min_{U_{i1}...U_{iK}}|| \widetilde{C}_i -
+\sum_{i=0}^K U_{ik}\widetilde{G}^{(c)}_k ||_2\)
+, where
+\(U_{i1},...,U_{iK} \geq 0\)
+最终我们得到
+Finally, we obtain:
+\[U^{(c)} = \begin{bmatrix}
+U_{11}&{\cdots}&U_{1K} \\ {\vdots}&{\ddots}&{\vdots} \\
+U_{N1}&{\cdots}&U_{NK} \end{bmatrix}\]
+同样我们对Usage matrix进行L1范数归一化
+Similarly, we perform L1 normalization on the usage matrix.
+\(\widetilde{U}^{(c)} =
+rowL1Nrom(U^{(c)})\)
+step3：类似step2，我们固定
+\(\widetilde{U}^{(c)}\)
+对所有基因在TPM矩阵上，求解GEP
+matrix。最后得到
+\(G^{(TPM)}\)
+Step 3:
+Similar to Step 2, we fix
+\(\widetilde{U}^{(c)}\)
+and solve the GEP
+matrix for all genes on the TPM matrix. Finally, we obtain
+\(G^{(TPM)}\)
+.
+超参数的选择(如何优化模型)
+Hyperparameter Selection (How to Optimize the Model)
+Number of components
+作者建议结合PCA的碎石图以及作者给出的诊断图来判断。实际上在应用的过程中，按照我的经验，一般components的数量不少于细胞聚类的个数。
+The authors recommend combining the PCA scree plot and the diagnostic
+plots provided by the authors to determine the optimal number of
+components. In practice, in my experience, the number of components is
+generally no less than the number of cell clusters.
+我的建议是 My suggestions are:
+取一个范围(1X clusters, 2X clusters)。结合诊断图来判断。
+结合Usage matrix的cell
+score分布，去除具有极端分布的components（只有个别细胞cell
+score非常高）。
+Choose a range (1X clusters, 2X clusters). Use the diagnostic plots
+to determine the optimal number of components.
+Consider the cell score distribution of the usage matrix and remove
+components with extreme distributions (only a few cells have very high
+cell scores).
+Parameters about Programs Filtration
+\(\rho\)
+决定了最近邻programs的数量，作者经过benchmark，锁定为0.3。（用户不可更改，除非修改源码）
+\(\rho\)
+determines the number of
+nearest neighbor programs. The authors benchmarked and set it to 0.3.
+(Users cannot change this value unless modifying the source code.)
+\(\tau\)
+决定平均距离阈值。可以利用作者提供诊断图来判断。
+\(\tau\)
+determines the average distance
+threshold. This can be determined using the diagnostic plots provided by
+the author.
+Session Info
+sessionInfo()

@@ -1,0 +1,70 @@
+Starting R package installation...
+===========================================
+
+Installing CRAN packages...
+Installing CRAN package: rsvg 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+also installing the dependency ‘webp’
+
+trying URL 'https://cloud.r-project.org/src/contrib/webp_1.3.0.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/rsvg_2.7.0.tar.gz'
+* installing *source* package ‘webp’ ...
+** this is package ‘webp’ version ‘1.3.0’
+** package ‘webp’ successfully unpacked and MD5 sums checked
+** using staged installation
+Found pkg-config cflags and libs!
+Using PKG_CFLAGS=-I/usr/include/webp 
+Using PKG_LIBS=-lwebp 
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/webp   -I/usr/local/include    -fpic  -g -O2  -c register.c -o register.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/webp   -I/usr/local/include    -fpic  -g -O2  -c webp.c -o webp.o
+gcc -std=gnu2x -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o webp.so register.o webp.o -lwebp -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-webp/00new/webp/libs
+** R
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (webp)
+* installing *source* package ‘rsvg’ ...
+** this is package ‘rsvg’ version ‘2.7.0’
+** package ‘rsvg’ successfully unpacked and MD5 sums checked
+** using staged installation
+Found pkg-config cflags and libs!
+Using PKG_CFLAGS=-I/usr/include/librsvg-2.0 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/libmount -I/usr/include/blkid -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/libpng16 -I/usr/include/x86_64-linux-gnu -I/usr/include/webp -pthread -I/usr/include/cairo -I/usr/include/freetype2 -I/usr/include/pixman-1 
+Using PKG_LIBS=-lrsvg-2 -lm -lgio-2.0 -lgdk_pixbuf-2.0 -lgobject-2.0 -lglib-2.0 -lcairo 
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+using C++ compiler: ‘g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/librsvg-2.0 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/libmount -I/usr/include/blkid -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/libpng16 -I/usr/include/x86_64-linux-gnu -I/usr/include/webp -pthread -I/usr/include/cairo -I/usr/include/freetype2 -I/usr/include/pixman-1  -DSTRICT_R_HEADERS -DR_NO_REMAP  -I/usr/local/include    -fpic  -g -O2   -c dummy.cc -o dummy.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/librsvg-2.0 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/libmount -I/usr/include/blkid -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/libpng16 -I/usr/include/x86_64-linux-gnu -I/usr/include/webp -pthread -I/usr/include/cairo -I/usr/include/freetype2 -I/usr/include/pixman-1  -DSTRICT_R_HEADERS -DR_NO_REMAP  -I/usr/local/include    -fpic  -g -O2  -c rsvg.c -o rsvg.o
+g++ -std=gnu++17 -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o rsvg.so dummy.o rsvg.o -lrsvg-2 -lm -lgio-2.0 -lgdk_pixbuf-2.0 -lgobject-2.0 -lglib-2.0 -lcairo -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-rsvg/00new/rsvg/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (rsvg)
+
+The downloaded source packages are in
+	‘/tmp/Rtmp4c4G7b/downloaded_packages’
+Successfully installed: rsvg 
+
+===========================================
+Package installation completed!
+You can now run your R scripts in this directory.

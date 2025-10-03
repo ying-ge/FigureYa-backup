@@ -1,0 +1,114 @@
+Starting R package installation...
+===========================================
+
+Installing important dependency packages first...
+Package already installed: devtools 
+Package already installed: remotes 
+Package already installed: httr 
+Package already installed: curl 
+Package already installed: jsonlite 
+Package already installed: RCurl 
+
+Installing CRAN packages...
+Package already installed: cowplot 
+Package already installed: ggplot2 
+Package already installed: ggsci 
+Package already installed: haven 
+Package already installed: magrittr 
+Package already installed: reshape2 
+Package already installed: stringr 
+Package already installed: tidyverse 
+Package already installed: dplyr 
+Package already installed: tidyr 
+
+Installing TCGAbiolinks with all dependencies...
+Package already installed: TCGAbiolinks
+[1] TRUE
+
+Installing other Bioconductor packages...
+Package already installed: BSgenome 
+Installing Bioconductor package: BSgenome.Hsapiens.UCSC.hg38 
+'getOption("repos")' replaces Bioconductor standard repositories, see
+'help("repositories", package = "BiocManager")' for details.
+Replacement repositories:
+    CRAN: https://cloud.r-project.org/
+Bioconductor version 3.21 (BiocManager 1.30.26), R 4.5.1 (2025-06-13)
+Installing package(s) 'BSgenome.Hsapiens.UCSC.hg38'
+trying URL 'https://bioconductor.org//packages/3.21/data/annotation/src/contrib/BSgenome.Hsapiens.UCSC.hg38_1.4.5.tar.gz'
+Content type 'application/x-gzip' length 731245539 bytes (697.4 MB)
+==================================================
+downloaded 697.4 MB
+
+* installing *source* package ‘BSgenome.Hsapiens.UCSC.hg38’ ...
+** this is package ‘BSgenome.Hsapiens.UCSC.hg38’ version ‘1.4.5’
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (BSgenome.Hsapiens.UCSC.hg38)
+
+The downloaded source packages are in
+	‘/tmp/RtmpzVluyJ/downloaded_packages’
+Successfully installed: BSgenome.Hsapiens.UCSC.hg38 
+Installing Bioconductor package: MutationalPatterns 
+'getOption("repos")' replaces Bioconductor standard repositories, see
+'help("repositories", package = "BiocManager")' for details.
+Replacement repositories:
+    CRAN: https://cloud.r-project.org/
+Bioconductor version 3.21 (BiocManager 1.30.26), R 4.5.1 (2025-06-13)
+Installing package(s) 'MutationalPatterns'
+trying URL 'https://bioconductor.org//packages/3.21/bioc/src/contrib/MutationalPatterns_3.18.0.tar.gz'
+Content type 'application/x-gzip' length 5969320 bytes (5.7 MB)
+==================================================
+downloaded 5.7 MB
+
+* installing *source* package ‘MutationalPatterns’ ...
+** this is package ‘MutationalPatterns’ version ‘3.18.0’
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (MutationalPatterns)
+
+The downloaded source packages are in
+	‘/tmp/RtmpzVluyJ/downloaded_packages’
+Successfully installed: MutationalPatterns 
+Package already installed: NMF 
+Package already installed: maftools 
+
+Verifying package installation and loading...
+✓ TCGAbiolinks is installed
+  Package loads successfully
+  WARNING: GDCquery_Maf function not found!
+✓ maftools is installed
+  Package loads successfully
+✓ MutationalPatterns is installed
+  Package loads successfully
+✓ BSgenome.Hsapiens.UCSC.hg38 is installed
+  Package loads successfully
+
+Testing TCGAbiolinks functionality...
+✗ GDCquery_Maf function NOT found
+  Available functions containing 'Maf':
+   No Maf-related functions found
+
+===========================================
+Some packages may have installation or loading issues.
+If GDCquery_Maf is not available, try:
+1. Updating TCGAbiolinks: BiocManager::install('TCGAbiolinks', update = TRUE)
+2. Checking function name: some versions may use different function names
+3. Consult TCGAbiolinks documentation for the correct function name
+You can now run your R scripts in this directory.

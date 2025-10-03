@@ -1,0 +1,37 @@
+Starting R package installation...
+===========================================
+
+Installing CRAN packages...
+Installing CRAN package: epitools 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+trying URL 'https://cloud.r-project.org/src/contrib/epitools_0.5-10.1.tar.gz'
+Content type 'application/x-gzip' length 90973 bytes (88 KB)
+==================================================
+downloaded 88 KB
+
+* installing *source* package ‘epitools’ ...
+** this is package ‘epitools’ version ‘0.5-10.1’
+** package ‘epitools’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (epitools)
+
+The downloaded source packages are in
+	‘/tmp/Rtmp6AwDIv/downloaded_packages’
+Successfully installed: epitools 
+
+Installing Bioconductor packages...
+Package already installed: ComplexHeatmap 
+
+===========================================
+Package installation completed!
+You can now run your R scripts in this directory.

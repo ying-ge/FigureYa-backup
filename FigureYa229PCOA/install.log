@@ -1,0 +1,95 @@
+Starting R package installation...
+===========================================
+
+Installing CRAN packages...
+Package already installed: RColorBrewer 
+Package already installed: ape 
+Installing CRAN package: usedist 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+trying URL 'https://cloud.r-project.org/src/contrib/usedist_0.4.0.tar.gz'
+Content type 'application/x-gzip' length 31701 bytes (30 KB)
+==================================================
+downloaded 30 KB
+
+* installing *source* package ‘usedist’ ...
+** this is package ‘usedist’ version ‘0.4.0’
+** package ‘usedist’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (usedist)
+
+The downloaded source packages are in
+	‘/tmp/RtmpoDp40Y/downloaded_packages’
+Successfully installed: usedist 
+Installing CRAN package: vegan 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+also installing the dependency ‘permute’
+
+trying URL 'https://cloud.r-project.org/src/contrib/permute_0.9-8.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/vegan_2.7-1.tar.gz'
+* installing *source* package ‘permute’ ...
+** this is package ‘permute’ version ‘0.9-8’
+** package ‘permute’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (permute)
+* installing *source* package ‘vegan’ ...
+** this is package ‘vegan’ version ‘2.7-1’
+** package ‘vegan’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+using Fortran compiler: ‘GNU Fortran (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c data2hill.c -o data2hill.o
+gfortran  -fpic  -g -O2  -c decorana.f -o decorana.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c getF.c -o getF.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c goffactor.c -o goffactor.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c init.c -o init.o
+gfortran  -fpic  -g -O2  -c monoMDS.f -o monoMDS.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c nestedness.c -o nestedness.o
+gfortran  -fpic  -g -O2  -c ordering.f -o ordering.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c pnpoly.c -o pnpoly.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c stepacross.c -o stepacross.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c vegdist.c -o vegdist.o
+gcc -std=gnu2x -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o vegan.so data2hill.o decorana.o getF.o goffactor.o init.o monoMDS.o nestedness.o ordering.o pnpoly.o stepacross.o vegdist.o -llapack -lblas -lgfortran -lm -lquadmath -lgfortran -lm -lquadmath -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-vegan/00new/vegan/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (vegan)
+
+The downloaded source packages are in
+	‘/tmp/RtmpoDp40Y/downloaded_packages’
+Successfully installed: vegan 
+
+===========================================
+Package installation completed!
+You can now run your R scripts in this directory.

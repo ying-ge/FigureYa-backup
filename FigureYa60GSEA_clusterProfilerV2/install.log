@@ -1,0 +1,56 @@
+Starting R package installation...
+===========================================
+
+Installing CRAN packages...
+Package already installed: RColorBrewer 
+Installing CRAN package: blueviolet 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+Successfully installed: blueviolet 
+Installing CRAN package: chocolate4 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+Successfully installed: chocolate4 
+Package already installed: cowplot 
+Package already installed: ggplot2 
+Package already installed: ggrepel 
+Package already installed: gridExtra 
+Installing CRAN package: hsa03030 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+Successfully installed: hsa03030 
+Installing CRAN package: hsa03050 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+Successfully installed: hsa03050 
+Package already installed: plyr 
+Warning messages:
+1: package ‘blueviolet’ is not available for this version of R
+
+A version of this package for your version of R might be available elsewhere,
+see the ideas at
+https://cran.r-project.org/doc/manuals/r-patched/R-admin.html#Installing-packages 
+2: package ‘chocolate4’ is not available for this version of R
+
+A version of this package for your version of R might be available elsewhere,
+see the ideas at
+https://cran.r-project.org/doc/manuals/r-patched/R-admin.html#Installing-packages 
+3: package ‘hsa03030’ is not available for this version of R
+
+A version of this package for your version of R might be available elsewhere,
+see the ideas at
+https://cran.r-project.org/doc/manuals/r-patched/R-admin.html#Installing-packages 
+4: package ‘hsa03050’ is not available for this version of R
+
+A version of this package for your version of R might be available elsewhere,
+see the ideas at
+https://cran.r-project.org/doc/manuals/r-patched/R-admin.html#Installing-packages 
+
+Installing Bioconductor packages...
+Package already installed: clusterProfiler 
+Package already installed: enrichplot 
+Package already installed: org.Hs.eg.db 
+
+===========================================
+Package installation completed!
+You can now run your R scripts in this directory.

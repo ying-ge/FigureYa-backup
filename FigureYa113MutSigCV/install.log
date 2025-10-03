@@ -1,0 +1,26 @@
+Starting R package installation...
+===========================================
+
+Installing core CRAN dependencies...
+Package already installed: curl 
+Package already installed: httr 
+Package already installed: gargle 
+Package already installed: googledrive 
+Package already installed: googlesheets4 
+Package already installed: ragg 
+Package already installed: rvest 
+
+Installing CRAN packages...
+Package already installed: RColorBrewer 
+Package already installed: forcats 
+Package already installed: magrittr 
+Package already installed: readxl 
+Package already installed: stringr 
+Package already installed: tidyverse 
+
+Installing Bioconductor packages...
+Package already installed: ComplexHeatmap 
+
+===========================================
+Package installation completed!
+You can now run your R scripts in this directory.

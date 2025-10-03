@@ -1,0 +1,268 @@
+FigureYa109subtypeGSEA_update
+FigureYa109subtypeGSEA_update
+Author(s)
+: Xiaofan Lu, Taojun Ye
+Reviewer(s)
+: Ying Ge
+Date
+: 2025-09-22
+Academic Citation
+If you use this code in your work or research, we kindly request that
+you cite our publication:
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization
+Framework for Enhancing Biomedical Data Interpretation and Research
+Efficiency. iMetaMed.
+https://doi.org/10.1002/imm3.70005
+需求描述
+多组的富集分析及结果展示，用clusterProfiler做GSEA，挑选各组特异性top通路，画出paper里这样的对角热图。图中横坐标的6列对应6个亚型（分组），右侧文字的背景色对应6个亚组（分组）富集的通路。
+Requirement description
+Perform enrichment analysis and result display for multiple groups,
+use clusterProfiler for GSEA, select specific top pathways for each
+group, and draw a diagonal heatmap as shown in the paper. The 6 columns
+on the horizontal axis in the figure correspond to 6 subtypes (groups),
+and the background color of the text on the right corresponds to the
+enriched pathways of the 6 subtypes (groups).
+出自
+https://bmccancer.biomedcentral.com/articles/10.1186/s12885-018-4546-8
+from
+https://bmccancer.biomedcentral.com/articles/10.1186/s12885-018-4546-8
+Fig. 3c GSEA analysis reveals distinct enriched gene sets between
+subtypes. In the heatmap, rows are defined by the selected 60 gene sets,
+and columns by consensus scores for each subtype. Subtype enriched gene
+sets are highlighted by different color, L1 (light red), L2 (light
+brown), L3 (light blue), L4 (light orange), L5 (light purple) and L6
+(light green).
+应用场景
+多组富集分析结果，画在一起对比展示，就能同时看到同一通路在其他分组里的富集状态。
+Application scenarios
+Multiple sets of enrichment analysis results can be compared and
+displayed together to simultaneously see the enrichment status of the
+same pathway in other groups.
+环境设置
+Environment settings
+source("install_dependencies.R")
+# 加载clusterProfiler包：用于基因富集分析和可视化（Load the clusterProfiler package: for gene enrichment analysis and visualization）
+library(clusterProfiler)
+# 加载GSVA包：用于基因集变异分析（Load the GSVA package: for gene set variation analysis）
+library(GSVA)
+
+# 加载pheatmap包：用于绘制精美热图（Load the pheatmap package: for creating beautiful heatmaps）
+library(pheatmap)
+
+# 加载gplots包：提供各种绘图函数（Load the gplots package: provides various plotting functions）
+library(gplots)
+# 设置系统环境语言为英文，使报错信息显示英文（Set system environment language to English to display error messages in English）
+Sys.setenv(LANGUAGE = "en") 
+
+# 禁止字符串自动转换为因子类型，避免数据处理意外（Disable automatic conversion of strings to factors to avoid unexpected data processing issues）
+options(stringsAsFactors = FALSE)
+输入文件
+以TCGA皮肤黑色素瘤为例，输入数据包括cBioPortal下载的标准化表达谱以及TCGA定义的3种亚型（keratin,
+immune，MITF-low），这里按亚型分为3组，将对比展示这三种亚型的富集分析。
+easy_input_expr.csv，表达矩阵
+easy_input_subtype.txt，分组信息，此处是3种亚型
+Input file
+Taking TCGA skin melanoma as an example, the input data includes
+standardized expression profiles downloaded from cBioPortal and three
+subtypes defined by TCGA (keratin, immune, MITF low), which are divided
+into three groups according to subtypes. The enrichment analysis of
+these three subtypes will be compared and displayed.
+easy_input_expr.csv， Expression matrix
+easy_input_subtype.txt， Grouping information, here are 3
+subtypes
+# 读取表达矩阵数据，设置check.names=F避免列名被自动修改，设置row.names=1使用第一列作为行名（Read expression matrix data, set check.names=F to prevent column names from being automatically modified, set row.names=1 to use the first column as row names）
+expr <- read.csv("easy_input_expr.csv", check.names = F, row.names = 1)
+
+# 查看表达矩阵前3行和前3列的数据，用于数据质量检查（View the first 3 rows and 3 columns of the expression matrix for data quality check）
+expr[1:3,1:3]
+# 查看表达矩阵的维度（行数和列数）（Check the dimensions (number of rows and columns) of the expression matrix）
+dim(expr)
+# 读取样本亚型信息，使用制表符分隔，设置check.names=F避免列名被自动修改，stringsAsFactors=F禁止字符串转成因子，header=T表示第一行是列名，row.names=1使用第一列作为行名（Read sample subtype information, use tab as separator, set check.names=F to prevent column names from being automatically modified, stringsAsFactors=F to disable automatic conversion of strings to factors, header=T indicates the first row contains column names, row.names=1 uses the first column as row names）
+subt <- read.table("easy_input_subtype.txt", sep = "\t", check.names = F, stringsAsFactors = F, header = T, row.names = 1)
+
+# 查看样本亚型数据的前几行（View the first few rows of the sample subtype data）
+head(subt)
+# 统计每种亚型的样本数量（Count the number of samples in each subtype）
+table(subt$TCGA_Subtype)
+多组差异表达：One vs. Others
+做GSEA需要样本中所有基因的排序，这里用的是
+每一组
+vs. 所有其他组
+获得的log2FoldChange。下面将用表达矩阵获得每组基因的log2FoldChange排序。
+示例数据样本较多，你的样本可能只有1-3个/组，速度会快很多。
+Multiple differential expressions: One vs. Others
+To do GSEA, it is necessary to sort all genes in the sample, using
+the log2FoldChange obtained from * * each group vs. all other groups *
+*. Below, the expression matrix will be used to obtain the
+log2FoldChange ranking for each group of genes.
+There are many sample sizes for example data, and your sample size
+may only be 1-3 per group, which will result in a much faster speed.
+自定义分析函数
+先自定义一个函数，便于分别计算显著上调的和显著下调的分组的特异性通路。
+重要参数说明：
+msigdb为加载的MSigDB数据库，可从GSEA官网下载gmt格式的文件：
+http://software.broadinstitute.org/gsea/downloads.jsp
+，此处以c5.all.v6.2.symbols.gmt为例，下载链接：
+http://software.broadinstitute.org/gsea/msigdb/download_file.jsp?filePath=/resources/msigdb/6.2/c5.all.v6.2.symbols.gmt
+n.top是选取的
+top通路集的个数
+，默认是10
+mode为寻找模式，up代表上调，dn代表下调，推荐寻找亚型特异性上调通路
+degs.list为配对差异表达基因列表
+subtype.label为亚型名称，顺序及名称必须匹配degs.list
+其余参数为GSEA参数
+Custom analysis function
+First, customize a function to calculate the specific pathways for
+significantly upregulated and significantly downregulated groups
+separately.
+Important parameter description:
+-MSIGDB is the loaded MSigDB database, which can be downloaded in GMT
+format from the GSEA official website<
+http://software.broadinstitute.org/gsea/downloads.jsp
+>Here, taking c5.all.v6.2.symbols.gmt as an example, download
+link:<
+http://software.broadinstitute.org/gsea/msigdb/download_file.jsp?filePath=/resources/msigdb/6.2/c5.all.v6.2.symbols.gmt
+>
+-N.top is the number of selected * * top path sets * *, default is
+10
+-Mode is to search for patterns, up represents upregulation, dn
+represents downregulation, and it is recommended to search for subtype
+specific upregulation pathways
+-Degs.list is a list of paired differentially expressed genes
+-Subtype.label is the subtype name, and the order and name must match
+degs.list
+-The remaining parameters are GSEA parameters
+寻找显著上调的亚型特异性通路(推荐)
+运行上面的函数来寻找显著上调的亚型特异性通路。
+Search for significantly upregulated subtype specific pathways
+(recommended)
+Run the above function to find subtype specific pathways that are
+significantly upregulated.
+# 定义MSigDB基因集文件路径（Define the path to the MSigDB gene set file）
+msigdfFile = "c5.all.v6.2.symbols.gmt"
+
+# 设置富集分析后每个亚型保留的顶级通路数量（Set the number of top pathways to retain for each subtype after enrichment analysis）
+n.top = 10
+
+# 设置富集分析模式，可选"up"（上调通路）或"dn"（下调通路）（Set the enrichment analysis mode, options are "up" (upregulated pathways) or "dn" (downregulated pathways)）
+mode = "up" #"up"和"dn"二选一
+
+# 执行亚型特异性GSEA分析，获取上调通路相关结果（Perform subtype-specific GSEA analysis to obtain results related to upregulated pathways）
+gs.up <- subtype_specific_gsea(msigdb = msigdfFile,
+                               n.top = n.top,
+                               degs.list = degs.list,
+                               subtype.label = n.sub.label,
+                               mode = mode)
+# 计算GSVA得分：基于基因表达矩阵和GSEA分析得到的基因集，使用GSVA方法计算通路富集得分（Calculate GSVA scores: Based on the gene expression matrix and gene sets obtained from GSEA analysis, use the GSVA method to calculate pathway enrichment scores）
+gsva_params <- gsvaParam(exprData = as.matrix(expr),
+                     geneSets = gs.up$gs)
+gsva_gs.up <- gsva(gsva_params)
+# 查看GSVA得分矩阵的维度，确认结果（Check the dimensions of the GSVA score matrix to confirm the results）
+dim(gsva_gs.up)
+# 这里是30条通路，说明top通路无重叠（Here there are 30 pathways, indicating no overlap among the top pathways）
+
+# 初始化数据框，用于存储每个亚型的通路平均GSVA得分（Initialize a data frame to store the average GSVA scores of pathways for each subtype）
+gsva_gs.up_mean <- data.frame(row.names = rownames(gsva_gs.up)) 
+
+# 计算每个亚型内样本的通路GSVA得分均值（也可以换用其他统计量，比如中位数等等）（Calculate the mean of pathway GSVA scores for samples within each subtype (other statistics such as median can also be used)）
+for (i in n.sub.label) {
+  gsva_gs.up_mean <- cbind.data.frame(gsva_gs.up_mean,
+                                   data.frame(rowMeans(gsva_gs.up[,rownames(subt)[which(subt$TCGA_Subtype == i)]])))
+}
+
+# 设置结果数据框的列名为各亚型名称（Set the column names of the result data frame to the names of each subtype）
+colnames(gsva_gs.up_mean) <- n.sub.label
+绘制热图（无聚类）
+Draw a heatmap (without clustering)
+# 自定义分组的颜色（Define custom colors for subgroups）
+jco <- c("#F2CCCC","#E6D8CF","#D5E3F0","#FDE7DA","#E2D6EC", "#CCEFDB")
+
+# 创建行注释数据框，包含通路所属亚型和通路名称（Create row annotation dataframe containing pathway subtype and name）
+annRows <- data.frame(subtype=rep(n.sub.label,each=n.top), 
+                      names = unlist(gs.up$top.gs), 
+                      stringsAsFactors = F)
+# 去除重复通路（如果有通路在多个亚型中均为上调）（Remove duplicate pathways if any appear in multiple subtypes）
+annRows <- annRows[!duplicated(annRows$names),]; rownames(annRows) <- annRows$names 
+
+# 定义亚型分组的颜色映射（Define color mapping for subtype groups）
+# 示例数据是3个分组，有更多组就继续往后添加（Example for 3 subgroups, add more colors for additional subgroups）
+annColors <- list(subtype=c("keratin"=jco[1],"immune"=jco[2],"MITF-low"=jco[3]))
+
+# 设置输出文件名（Set output file name）
+filename <- paste0("subtype_specific_top_",mode,"_gsea.pdf")
+
+# 绘制热图展示亚型特异性通路富集结果（Plot heatmap to visualize subtype-specific pathway enrichment results）
+pheatmap(gsva_gs.up_mean[rownames(annRows),],
+         cellwidth = 10, cellheight = 10,         # 设置单元格尺寸（Set cell dimensions）
+         #color = bluered(64),                    # 自定义颜色方案（Custom color scheme）
+         cluster_rows = F,                       # 不聚类行（Disable row clustering）
+         cluster_cols = F,                       # 不聚类列（Disable column clustering）
+         border_color = NA,                      # 不显示边框（Remove cell borders）
+         annotation_row = annRows[,"subtype",drop = F],  # 添加行注释（Add row annotations）
+         annotation_colors = annColors,          # 设置注释颜色（Set annotation colors）
+         filename = filename)                    # 保存为PDF文件（Save as PDF file）
+寻找显著下调的亚型特异性通路
+Search for subtype specific pathways that are significantly
+downregulated
+# 设置富集分析模式为"dn"，分析下调通路（Set the enrichment analysis mode to "dn" for analyzing downregulated pathways）
+mode = "dn"
+
+# 执行亚型特异性GSEA分析，获取下调通路相关结果（Perform subtype-specific GSEA analysis to obtain results related to downregulated pathways）
+gs.dn <- subtype_specific_gsea(msigdb = msigdfFile,
+                               n.top = n.top,
+                               degs.list = degs.list,
+                               subtype.label = n.sub.label,
+                               mode = mode)
+# 计算GSVA得分：基于基因表达矩阵和GSEA分析得到的下调基因集（Calculate GSVA scores: Based on the gene expression matrix and downregulated gene sets from GSEA analysis）
+gsva_params <- gsvaParam(exprData = as.matrix(expr),
+                     geneSets = gs.dn$gs)
+gsva_gs.dn <- gsva(gsva_params)
+# 注意这里只有27条通路了，说明top通路有重叠（Note that there are only 27 pathways here, indicating overlap among the top pathways）
+
+# 初始化数据框，用于存储每个亚型的下调通路平均GSVA得分（Initialize a data frame to store the average GSVA scores of downregulated pathways for each subtype）
+gsva_gs.dn_mean <- data.frame(row.names = rownames(gsva_gs.dn)) 
+
+# 计算每个亚型内样本的下调通路GSVA得分均值（也可以换用其他统计量，比如中位数等等）（Calculate the mean of downregulated pathway GSVA scores for samples within each subtype (other statistics such as median can also be used)）
+for (i in n.sub.label) {
+  gsva_gs.dn_mean <- cbind.data.frame(gsva_gs.dn_mean,
+                                      data.frame(rowMeans(gsva_gs.dn[,rownames(subt)[which(subt$TCGA_Subtype == i)]])))
+}
+
+# 设置结果数据框的列名为各亚型名称（Set the column names of the result data frame to the names of each subtype）
+colnames(gsva_gs.dn_mean) <- n.sub.label
+绘制热图（无聚类）
+Draw a heatmap (without clustering)
+# 创建行注释数据框，包含通路所属亚型和通路名称（Create row annotation dataframe containing pathway subtype and name）
+annRows <- data.frame(subtype=rep(n.sub.label,each=n.top), 
+                      names = unlist(gs.dn$top.gs), 
+                      stringsAsFactors = F)
+# 去除重复通路（如果有通路在多个亚型中均为下调）（Remove duplicate pathways if any appear in multiple subtypes）
+annRows <- annRows[!duplicated(annRows$names),]; rownames(annRows) <- annRows$names 
+
+# 定义亚型分组的颜色映射（Define color mapping for subtype groups）
+# 示例数据是3个分组，有更多组就继续往后添加（Example for 3 subgroups, add more colors for additional subgroups）
+annColors <- list(subtype=c("keratin"=jco[1],"immune"=jco[2],"MITF-low"=jco[3]))
+
+# 设置输出文件名（Set output file name）
+filename <- paste0("subtype_specific_top_",mode,"_gsea.pdf")
+
+# 绘制热图展示亚型特异性下调通路富集结果（Plot heatmap to visualize subtype-specific downregulated pathway enrichment results）
+pheatmap(gsva_gs.dn_mean[rownames(annRows),],
+         cellwidth = 10, cellheight = 10,         # 设置单元格尺寸（Set cell dimensions）
+         #color = bluered(64),                    # 自定义颜色方案（Custom color scheme）
+         border_color = NA,                      # 不显示边框（Remove cell borders）
+         cluster_rows = F,                       # 不聚类行（Disable row clustering）
+         cluster_cols = F,                       # 不聚类列（Disable column clustering）
+         annotation_row = annRows[,"subtype",drop = F],  # 添加行注释（Add row annotations）
+         annotation_colors = annColors,          # 设置注释颜色（Set annotation colors）
+         filename = filename)                    # 保存为PDF文件（Save as PDF file）
+后期处理
+例文行名的颜色应该是后期加上的。
+生成的pdf文件是矢量图，可以用Illustrator等软件打开编辑，例如把左侧annotation拉到右侧作为行名的背景色。
+Post processing
+The color of the example text name should be added later.
+The generated PDF file is a vector image that can be opened and
+edited using software such as Illustrator, such as pulling the left
+annotation to the right as the background color for row names.
+Session Info
+sessionInfo()

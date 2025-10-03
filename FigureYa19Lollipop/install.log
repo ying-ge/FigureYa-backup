@@ -1,0 +1,43 @@
+Starting R package installation for FigureYa19Lollipop...
+===========================================
+
+Installing Bioconductor packages...
+Package already installed: trackViewer 
+Package already installed: TCGAbiolinks 
+Package already installed: maftools 
+
+Installing CRAN packages...
+Package already installed: RColorBrewer 
+Package already installed: ggplot2 
+Package already installed: grid 
+Package already installed: grDevices 
+
+Checking for system dependencies...
+Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
+Hit:2 http://azure.archive.ubuntu.com/ubuntu noble InRelease
+Hit:6 https://packages.microsoft.com/repos/azure-cli noble InRelease
+Hit:3 http://azure.archive.ubuntu.com/ubuntu noble-updates InRelease
+Hit:4 http://azure.archive.ubuntu.com/ubuntu noble-backports InRelease
+Hit:5 http://azure.archive.ubuntu.com/ubuntu noble-security InRelease
+Hit:7 https://packages.microsoft.com/ubuntu/24.04/prod noble InRelease
+Reading package lists...
+Reading package lists...
+Building dependency tree...
+Reading state information...
+libcairo2-dev is already the newest version (1.18.0-3build1).
+libfreetype-dev is already the newest version (2.13.2+dfsg-1build3).
+libpng-dev is already the newest version (1.6.43-5build1).
+libtiff5-dev is already the newest version (4.5.1+git230720-4ubuntu2.3).
+libjpeg-dev is already the newest version (8c-2ubuntu11).
+0 upgraded, 0 newly installed, 0 to remove and 44 not upgraded.
+
+===========================================
+Package installation completed!
+
+Verifying installation...
+✅ trackViewer installed successfully
+✅ RColorBrewer installed successfully
+✅ TCGAbiolinks installed successfully
+✅ maftools installed successfully
+
+You can now run FigureYa19Lollipop.Rmd script!

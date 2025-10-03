@@ -1,0 +1,51 @@
+Starting R package installation...
+===========================================
+
+Installing CRAN packages...
+Installing CRAN package: ResourceSelection 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+also installing the dependency ‘pbapply’
+
+trying URL 'https://cloud.r-project.org/src/contrib/pbapply_1.7-4.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/ResourceSelection_0.3-6.tar.gz'
+* installing *source* package ‘pbapply’ ...
+** this is package ‘pbapply’ version ‘1.7-4’
+** package ‘pbapply’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (pbapply)
+* installing *source* package ‘ResourceSelection’ ...
+** this is package ‘ResourceSelection’ version ‘0.3-6’
+** package ‘ResourceSelection’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (ResourceSelection)
+
+The downloaded source packages are in
+	‘/tmp/RtmpLFALpt/downloaded_packages’
+Successfully installed: ResourceSelection 
+Package already installed: rms 
+Package already installed: scales 
+
+===========================================
+Package installation completed!
+You can now run your R scripts in this directory.

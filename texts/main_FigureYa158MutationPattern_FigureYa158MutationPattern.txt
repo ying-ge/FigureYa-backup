@@ -1,0 +1,230 @@
+FigureYa158MutationPattern
+FigureYa158MutationPattern
+Author(s)
+: Rongfang Shen
+Reviewer(s)
+: Ying Ge, Junyi Shen
+Date
+: 2025-09-22
+Academic Citation
+If you use this code in your work or research, we kindly request that
+you cite our publication:
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization
+Framework for Enhancing Biomedical Data Interpretation and Research
+Efficiency. iMetaMed.
+https://doi.org/10.1002/imm3.70005
+需求描述
+Requirement Description
+输入TCGA突变数据，用非负矩阵分解方法NMF分析突变特征，重复出如下图。
+Input TCGA mutation data and analyze mutation signatures using the
+non-negative matrix factorization (NMF) method, producing the following
+image.
+出自
+https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4610178/
+From
+https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4610178/
+应用场景
+Application Scenario
+突变特征定义：体细胞突变是多个突变过程如DNA修复缺陷，暴露于外源或内源诱变剂等综合结果。不同的突变过程会产生不同组合的突变类型，即突变特征。利用突变特征分析感兴趣癌种突变特征，探讨其可能的发生病因及机制。
+目前已经有很多的R包可以帮助我们完成mutation
+signature分析如MutationalPatterns,maftools,deconstructSigs
+,SomaticSignatures. Mutation signature definition: Somatic mutations are
+the combined result of multiple mutational processes, such as DNA repair
+defects and exposure to exogenous or endogenous mutagens. Different
+mutational processes produce different combinations of mutation types,
+known as mutation signatures. Mutation signatures are used to analyze
+the mutational characteristics of cancers of interest and explore their
+potential causes and mechanisms. Currently, many R packages exist to
+assist with mutation signature analysis, such as MutationalPatterns,
+maftools, deconstructSigs, and SomaticSignatures.
+在这里我们选用maftools + MutationalPatterns来完成分析。 Here, we use
+maftools + MutationalPatterns to perform this analysis.
+环境设置
+Environment Setup
+source("install_dependencies.R")
+library(MutationalPatterns)
+library(TCGAbiolinks)
+library(maftools)
+library(magrittr)
+library(stringr)
+library(NMF)
+library(ggsci)
+library(BSgenome)
+library(ggplot2)
+library(cowplot)
+library(BSgenome.Hsapiens.UCSC.hg38)
+Sys.setenv(LANGUAGE = "en") #显示英文报错信息
+options(stringsAsFactors = FALSE) #禁止chr转成factor
+输入文件的下载
+Download input files
+用TCGAbiolinks下载突变信息、临床数据 Download mutation information
+and clinical data using TCGAbiolinks
+GDCdownload(query, method = "api", directory = "GDCdata")
+maf_BLCA <- GDCprepare(query, directory = "GDCdata")
+
+#下载一次就好，保存到文件，便于后面加载
+#Download once and save to a file for easy loading later
+save(maf_BLCA, file = "maf_BLCA.RData")
+
+## clinical data 
+blca_clinical <- TCGAquery_subtype(tumor = "blca")
+#非肌层浸润性膀胱癌是指局限于膀胱黏膜层（Tis、Ta）及固有层（T1）
+#Non-muscle invasive bladder cancer refers to cancer confined to the bladder mucosa (Tis, Ta) and lamina propria (T1)
+table(blca_clinical$`AJCC Tumor category`)
+mibc_samples <- blca_clinical[blca_clinical$`AJCC Tumor category` %in%
+                                c("T2", "T3", "T3b", "T4", "T4a"), ]$patient
+NMF分析 # NMF analysis
+# 载入前面下载的MIBC_mutation # Load the previously downloaded MIBC_mutation
+load("maf_BLCA.RData")
+maf_BLCA <- read.maf(maf_BLCA, isTCGA = T) %>% subsetMaf(., tsb = mibc_samples, isTCGA = TRUE)
+#96 mutational profile：4*6*4=96
+#这里useSyn选的不包含同义突变，要包含参数选T
+#包含useSyn画出来的mutation signature跟原文更相似。
+# Here, useSyn excludes synonymous mutations; select T to include them.
+# Including useSyn yields a mutation signature that is more similar to the original text.
+mut_mat <- trinucleotideMatrix(maf = maf_BLCA, 
+                               ref_genome = "BSgenome.Hsapiens.UCSC.hg38",
+                               prefix = NULL, ignoreChr = NULL, 
+                               useSyn = FALSE) %>% .$nmf_matrix %>% t()
+#De novo mutational signature extraction using NMF
+#用于自己的数据run最好在30-50之间，为了加快速度这里用10
+#For your own data, the optimal number of runs is between 30 and 50. For speed, we use 10 here.
+mut_mat <- mut_mat + 0.0001
+estimate <- nmf(mut_mat, rank=2:10, method="brunet", nrun=10, seed=123456)#运行时间久 #Run time is long.
+plot(estimate)
+#最佳个数的选择，一般选择cophenetic correlation开始下降的点，轮廓系数做大的点，详情请仔细阅读NMF说明文档。
+#选择5作为最佳点,extract_signatures设置了seed:123456
+#Choosing the optimal number of runs: generally, choose the point where the cophenetic correlation begins to decrease and the silhouette coefficient is large. Please read the NMF documentation carefully for details.
+#Select 5 as the optimal point, set the seed value for extract_signatures to 123456
+nmf_res <- extract_signatures(mut_mat, rank = 5, nrun = 30)
+colnames(nmf_res$signatures) <- paste0("Signature", LETTERS[1:5])
+rownames(nmf_res$contribution) <- paste0("Signature", LETTERS[1:5])
+跟COSMIC突变特征比较
+Comparison with the COSMIC mutation signature
+COSMIC
+mutation signature
+V2版本
+可直接下载到COSMIC归纳的30种signature.
+V2 version
+allows direct download of the 30 signature
+types summarized by COSMIC.
+V3版本
+在2019年5月份分布,对突变的类型进行了进一步的细分，分为Single
+Base Substitution (SBS) Signatures,Doublet Base Substitution (DBS)
+Signatures,Small Insertion and Deletion (ID) Signatures。
+这里我们用V2版本的来对signature进行注释。
+V3 version
+,
+released in May 2019, further subdivides mutation types into Single Base
+Substitution (SBS) signatures and Double Base Substitution (DBS)
+signatures. (DBS) Signatures, Small Insertion and Deletion (ID)
+Signatures.
+#cancer signature
+sp_url <- paste("https://cancer.sanger.ac.uk/cancergenome/assets/",
+           "signatures_probabilities.txt", sep = "")
+cancer_signatures = read.table(sp_url, sep = "\t", header = TRUE)
+new_order = match(row.names(mut_mat), cancer_signatures$Somatic.Mutation.Type)
+cancer_signatures = cancer_signatures[as.vector(new_order),]
+row.names(cancer_signatures) = cancer_signatures$Somatic.Mutation.Type
+cancer_signatures = as.matrix(cancer_signatures[,4:33])
+all(rownames(cancer_signatures) == rownames(nmf_res$signatures))
+cos_sim_signatures = cos_sim_matrix(nmf_res$signatures, cancer_signatures)
+
+#跟已经发表的cosmic数据库signature比较，注释mutation signature
+# Compare to published Cosmic database signatures and annotate mutation signatures
+plot_cosine_heatmap(cos_sim_signatures,
+                    cluster_rows = FALSE, plot_values = T)
+#重命名signatures
+# Rename signatures
+colnames(nmf_res$signatures) <- c("C>T_CpG", "APOBEC1", "Unknow",  "POLE", "APOBEC2")
+rownames(nmf_res$contribution) <- c("C>T_CpG", "APOBEC1", "Unknow",  "POLE", "APOBEC2")
+
+# 保存到文件，便于后面修改画图代码时直接载入
+# Save to a file for easy loading when modifying the plotting code later
+
+save(nmf_res, file = "nmf_res.RData")
+COSMIC
+提供了每个signature的详细信息，我们可以发现SignatureA-E分别与COSMIC数据库的Signature1,13,5,10,2最相似即分别是:age,APOBEC,Unknow,POLE,APOBEC
+文中提到的signature1是C>T_CpG，查看文章
+Signatures of
+mutational processes in human cancer
+也有提到Signature 1A/B is
+probably related to the relatively elevated rate of spontaneous
+deamination of 5-methyl-cytosine which results in C.T transitions and
+which predominantly occurs at NpCpG
+trinucleotides9.因此命名方面可以多加参考。
+COSMIC
+provides detailed information for each signature. We can see that
+Signatures A-E are most similar to Signatures 1, 13, 5, 10, and 2 in the
+COSMIC database, namely: age, APOBEC, Unknow, POLE, and APOBEC,
+respectively. Signature 1 mentioned in the article is C>T_CpG. The
+article
+Signatures
+of mutational processes in human cancer
+also mentions that
+Signatures 1A/B are probably related to the relatively elevated rate of
+spontaneous deamination of 5-methyl-cytosine, which results in C.T
+transitions and which predominantly occurs at NpCpG trinucleotides.
+Therefore, it is recommended to refer to this for nomenclature.
+开始画图
+Start plotting
+MutationalPatterns
+这个包有两个函数plot_96_profile和plot_contribution，可以直接出图，但是可选的参数很少并且看代码也就是重新包装了一下ggplot2。
+The
+MutationalPatterns
+package has two functions,
+plot_96_profile and plot_contribution, that can directly generate plots.
+However, they have few optional parameters and the code appears to be a
+repackaging of ggplot2.
+下面的绘图，我们就借鉴其数据处理方法，然后用ggplot2画出图，这样可以个性化的调整细节。
+For the following plot, we’ll borrow the data processing methods from
+the package and then use ggplot2 to create the plot, allowing for
+customized adjustments to the details.
+col <- pal_npg("nrc", alpha=0.7)(6) 
+names(col) <- c("C->T", "T->C", "C->A", "C->G", "T->A", "T->G")
+
+## Figure1A
+load("nmf_res.RData")
+signature.col <- c("red", "yellow", "darkorchid2", "steelblue2", "black")
+names(signature.col) <- c("APOBEC1", "APOBEC2", "C>T_CpG", "POLE", "Unknow")
+#mutation pattern输入数据准备
+#mutation pattern input data preparation
+Pattern_input <- function(mut_matrix){
+  CONTEXTS_96 <- rownames(mut_matrix)
+  substitution <- str_sub(rownames(mut_matrix), 3, 5)
+  substitution <- str_replace(substitution, ">", "->")
+  context = CONTEXTS_96
+  context = str_replace(context, "\\[.*]", "_")
+  df = data.frame(substitution = substitution, context = context)
+  df2 = cbind(df, as.data.frame(mut_matrix))
+  df3 = reshape2::melt(df2, id.vars = c("substitution", "context"))
+  return(df3)
+}
+pattern.dat <- Pattern_input(nmf_res$signatures)
+pattern.dat$variable <- factor(pattern.dat$variable,
+                               levels = c("APOBEC1", "APOBEC2", "C>T_CpG", "POLE", "Unknow"))
+
+p1 <- ggplot(data = pattern.dat, aes(x = context, y = value, 
+                       fill = substitution, width = 1)) + 
+  geom_bar(stat = "identity", colour = "black", size = 0.2) + 
+  scale_fill_manual(values = col) + 
+  facet_grid(variable ~ substitution, scales = "free_y") + ylab("Number of mutations \n ") + 
+  xlab("Motifs") +
+  # coord_cartesian(ylim = c(0, ymax)) + scale_y_continuous(breaks = seq(0, ymax, 0.1)) + 
+  guides(fill = FALSE) + theme_bw() + 
+  theme(axis.title.y = element_text(size = 12, vjust = 1), 
+        axis.text.y = element_text(size = 8), axis.title.x = element_text(size = 12), 
+        axis.text.x = element_text(size = 5, angle = 90, 
+                                   vjust = 0.4), strip.text.x = element_text(size = 9), 
+        strip.text.y = element_text(size = 9), panel.grid.major.x = element_blank(), 
+        panel.spacing.x = unit(0, "lines")) + 
+   ggtitle(paste0("Mutation signatures in ", ncol(nmf_res$contribution),
+                  " muscle-invasive TCGA bladder cancers")) + 
+  theme(plot.title = element_text(hjust = 0.5, size = rel(1.5)))
+p2p3 <- plot_grid(p2, p3, align = "hv", ncol = 1)
+p1p2p3 <- plot_grid(p1, p2p3, labels = c("A", "B"), align = "hv", ncol = 1, rel_heights = c(3, 2))
+pdf("MutationPatterns.pdf", width = 12, height = 9)
+p1p2p3
+dev.off()
+Session Info
+sessionInfo()

@@ -1,0 +1,233 @@
+FigureYa192breakpoint
+FigureYa192breakpoint
+Author(s)
+: Xiaofan Lu
+Reviewer(s)
+: Ying Ge, Junyi Shen
+Date
+: 2025-09-22
+Academic Citation
+If you use this code in your work or research, we kindly request that
+you cite our publication:
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization
+Framework for Enhancing Biomedical Data Interpretation and Research
+Efficiency. iMetaMed.
+https://doi.org/10.1002/imm3.70005
+需求描述
+Requirement
+求实现Fig 2，输入seer数据，循环cox模型，lowess平滑并绘图。 To draw
+the Fig 2, input the seer data, loop the cox model, smooth it with
+lowess and plot it.
+出自
+https://ascopubs.org/doi/full/10.1200/JCO.2016.67.5140
+fromhttps://ascopubs.org/doi/full/10.1200/JCO.2016.67.5140
+Fig 2. LOWESS smoother fitting curves of stage migration and overall
+survival and
+determination of structural break points with use
+of the Chow test
+. The fitting bandwidth was 2/3. (A) and (B)
+Stage migration was estimated by logistic regression after adjusting for
+T staging, N staging, histology, tumor location, and operation type in
+both cohorts. (C) and (D) Overall survival was estimated by using the
+Cox proportional hazards regression model after adjusting for sex, age,
+T staging, histology, and operation type. ELN, examined lymph node.
+这里画C图，cox。A图logistic就是对OR做平滑，原理都是一样的。 Here is
+Figure C, cox. logistic in Graph A is smoothing out OR, and the
+principle is the same for both.
+应用场景
+Application Scenarios
+大样本下寻找某计数变量对预后风险的变点。 Search for the change point
+of a certain counting variable on prognostic risk in a large sample.
+这里以SEER数据库的数据为例，也可以用于自己的数据。 Here, we take the
+data from the SEER database as an example, which can also be used for
+our own data.
+环境设置
+Environment Setup
+source("install_dependencies.R")
+library(survival)
+library(strucchange)
+Sys.setenv(LANGUAGE = "en") #显示英文报错信息   # Display an English error message
+options(stringsAsFactors = FALSE) #禁止chr转成factor  # prohibit chr from being converted to factor
+输入文件的获得
+Acquisition of Input Files
+如果你的数据已经整理成easy_input.csv的格式，就跳过这步，直接进入“输入文件”。
+If your data has been organized into the format of easy_input.csv, skip
+this step and go directly to “Input File”.
+加载SEER数据，数据较大，请先解压lung.zip压缩包。 Load the SEER data.
+The data is quite large. Please extract the lung.zip compressed package
+first.
+dat <- read.table("lung.txt",sep = "\t",row.names = NULL,header = T,check.names = F,stringsAsFactors = F)
+View(dat)
+根据例文清洗数据 Clean the data according to the example text
+dat <- dat[which(dat$`Derived AJCC Stage Group, 7th ed (2010-2015)` %in% 
+                   c("IA","IB","IE","IEA","IEB","II","IIA","IIB","IIE","IIEA","IIEB","III","IIIA")),]
+dat <- dat[as.numeric(dat$`Regional nodes examined (1988+)`) >= 1,]
+
+# 保留例文中部分cox回归感兴趣的协变量（我不是很清楚histology和operation type应该看哪列，结果和原文不一样）
+# Retain some covariates of interest in cox regression in the example text (I'm not quite sure which column should be looked at for histology and operation type, and the result is different from the original text)
+dat <- dat[,c("Regional nodes examined (1988+)",
+              "Survival months",
+              "Vital status recode (study cutoff used)",
+              "Age recode with single ages and 85+",
+              "Derived AJCC T, 6th ed (2004-2015)")]
+colnames(dat) <- c("ELN","futime","fustat","Age","Tstage")
+dat <- dat[which(dat$Tstage != "TX" & dat$Age != "85+ years"),]
+dat$Age <- as.numeric(gsub(" years","",dat$Age))
+dat$ELN <- as.numeric(dat$ELN)
+dat$Tstage <- ifelse(dat$Tstage %in% c("T0","T1","T2"), "T012","T34")
+dat <- dat[which(dat$ELN <= 30),]
+dat$fustat <- ifelse(dat$fustat == "Alive", 0 ,1)
+dat$futime <- as.numeric(dat$futime)
+
+# 把清洗后的数据保存到文件，便于套用
+# Save the cleaned data to a file for easy application
+write.csv(dat, "easy_input.csv", quote = F, row.names = F)
+输入文件
+Input File
+easy_input.csv，每行一个sample，每列一个cox回归感兴趣的协变量。
+easy_input.csv, one sample per row, one covariate of interest for cox
+regression per column.
+dat <- read.csv("easy_input.csv")
+head(dat)
+循环cox模型
+Cyclic cox model
+以ELN为1作参照，分别做其他各ELN计数下的cox proportial hazards
+regression model Taking ELN as 1 as the reference, the cox proportional
+hazards regression models under each other ELN count were conducted
+respectively
+ctrl <- dat[which(dat$ELN == 1),]
+ELN.count <- sort(unique(dat$ELN))
+Coxoutput <- NULL
+
+for (count in ELN.count) {
+  if(count == 1) {
+    next()
+  } else {
+    treat <- dat[which(dat$ELN == count),]
+    tmp <- rbind.data.frame(treat,ctrl)
+    tmp$ELN <- ifelse(tmp$ELN == 1, 0 ,1)
+    cox <- coxph(Surv(futime, fustat) ~ ELN + Age + Tstage, data = tmp)
+    coxSummary <- summary(cox)
+    Coxoutput <- rbind.data.frame(Coxoutput,
+                                  data.frame(ELN.count = count,
+                                             HR = as.numeric(coxSummary$coefficients[,"exp(coef)"])[1],
+                                             pvalue = as.numeric(coxSummary$coefficients[,"Pr(>|z|)"])[1],
+                                             lower = as.numeric(coxSummary$conf.int[,3][1]),
+                                             upper = as.numeric(coxSummary$conf.int[,4][1]),
+                                             stringsAsFactors = F),
+                       stringsAsFactors = F)
+  }
+}
+head(Coxoutput)
+lowess平滑并绘图
+Lowess smoothing and plotting
+用base
+plot画图。如果想理解某一行代码的含义，就从plot开始到该语句一起运行。
+Draw a plot using base plot. If you want to understand the meaning of a
+certain line of code, run from plot to that statement together.
+# 设置颜色
+# Set Colors
+jcoBlue   <- "#2874C5"
+jcoYellow <- "#EABF00"
+
+pdf("breakpoint.pdf",width = 4.5,height = 8)
+par(mfrow = c(2,1)) # 画上下两张图   # Draw two pictures, upper and lower
+
+## 画上图
+## Draw the picture above
+# 计算y轴宽度
+# Calculate the width of the Y-axis
+yrange <- range(c(Coxoutput$upper, Coxoutput$lower))
+ymin <- floor(yrange[1] * 10)/10
+ymax <- ceiling(yrange[2] * 10)/10
+par(bty = "o", mgp = c(2,.6,0), mar = c(3,3,1,1), las = 1, font.axis = 1) # 基础参数
+# foundation parameters
+plot(x = ELN.count,
+     y = c(1, Coxoutput$HR), # 补上以ELN为1时候的HR参考值（均为1）  # Add the HR reference values when ELN is 1 (all are 1)
+     xaxt = "n",
+     xlab = "",
+     ylab = "Hazard Ratio",
+     ylim = c(ymin,ymax),
+     type = "p",
+     pch = 19,
+     col = jcoBlue,
+     cex = 1.2)
+
+# 重新补上x轴坐标
+# Re-fill in the X-axis coordinates
+# 用seq(from=0, to=max(ELN.count), by=10)
+# Use seq(from=0, to=max(ELN.count), by=10)
+axis(side = 1, 
+     at = seq(from=0, to=max(ELN.count), by=10), #生成以10为间隔的x轴label  # Generate X-axis labels at intervals of 10
+     labels = seq(from=0, to=max(ELN.count), by=10), 
+     cex.axis = 0.8) # 字大小  # word size
+
+# 添加误差线
+# Add error lines
+# 垂直线
+# Vertical Line
+segments(ELN.count[-1], Coxoutput$lower, 
+         ELN.count[-1], Coxoutput$upper, 
+         lwd = 1.5)
+# 水平封口
+# Horizontal Sealing
+arrows(ELN.count[-1], Coxoutput$lower, 
+       ELN.count[-1], Coxoutput$upper, 
+       lwd = 1.5, angle = 90,
+       code = 3, length = 0.05)
+
+# 添加平滑曲线
+# Add smooth curves
+hr.lowess <- lowess(c(1, Coxoutput$HR)~ELN.count, f = 2/3) # 原文设置f即bandwith为2/3  # The original text sets f as bandwith to 2/3
+lines(hr.lowess, col = jcoYellow, lwd = 2)
+
+## 画下图
+## Draw the following picture
+# 原图靠近横坐标的黄色线，文中没有描述它代表哪个特征，因此没有画。
+# The original image shows the yellow line near the horizontal coordinate. The text does not describe which feature it represents, so it is not drawn.
+# 用Chow test寻找变点并绘图
+# Use Chow test to find the change points and plot
+f <- Fstats(hr.lowess$y ~ ELN.count)
+bk <- breakpoints(f)$breakpoints # bk代表是第几个观测，只是这里恰好等于ELN的数目  # bk represents which observation it is, but here it exactly equals the number of ELN
+# 打印变点的位置
+# Print the position of the change point
+bk
+# 构建平滑点的线性回归
+# Constructing linear regression with smooth points
+lm1 <- lm(hr.lowess$y[1:bk] ~ ELN.count[1:bk]) # y是第1到第bk个平滑值，x是第1到第bk个ELN的数目
+# y is the 1st to the bk smooth value, and x is the number of the 1st to the bk ELN
+lm2 <- lm(hr.lowess$y[bk:length(ELN.count)] ~ ELN.count[bk:length(ELN.count)]) # y是第bk到最后一个平滑值，x是第bk到最后一个ELN的数目   # y is the smooth value from the bk to the last, and x is the number of elNs from the bk to the last
+
+yrange <- range(Coxoutput$HR)
+ymin <- floor(yrange[1] * 10)/10
+ymax <- ceiling(yrange[2] * 10)/10
+par(bty = "o", mgp = c(2,.6,0), mar = c(3,3,0,1), las = 1, font.axis = 1) # 基础参数  # Basic Parameters
+plot(hr.lowess,
+     col = jcoYellow,
+     lwd = 2,
+     type = "l",
+     ylim = c(ymin,ymax),
+     xlab = "ELN Count",
+     ylab = "Estimated Hazard Ratio",
+     xaxt = "n")
+axis(side = 1, at = seq(from=0, to=max(ELN.count), by=5), #生成以5为间隔的x轴label  # Generate X-axis labels at intervals of 5
+     labels = seq(from=0, to=max(ELN.count), by=5), 
+     cex.axis = 0.8) # 字大小   # word size
+
+lines(ELN.count[1:bk],
+      predict(lm1, x = ELN.count[1:bk]),
+      col = jcoBlue, 
+      lty = 2,
+      lwd = 2)
+lines(ELN.count[bk:length(ELN.count)],
+      predict(lm2, x = ELN.count[bk:length(ELN.count)]),
+      col = jcoBlue, 
+      lty = 2,
+      lwd = 2)
+legend("topright", paste0("Structural break point\nELN count = ",ELN.count[bk]), adj = 0.55, bty = "n")
+
+# 关闭图像句柄
+# Close the image handle
+invisible(dev.off())
+Session Info
+sessionInfo()

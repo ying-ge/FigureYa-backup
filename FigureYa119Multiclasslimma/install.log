@@ -1,0 +1,878 @@
+Starting R package installation...
+===========================================
+
+Installing Bioconductor packages...
+Installing Bioconductor package: affy 
+'getOption("repos")' replaces Bioconductor standard repositories, see
+'help("repositories", package = "BiocManager")' for details.
+Replacement repositories:
+    CRAN: https://cloud.r-project.org/
+Bioconductor version 3.21 (BiocManager 1.30.26), R 4.5.1 (2025-06-13)
+Installing package(s) 'affy'
+also installing the dependencies ‘affyio’, ‘preprocessCore’
+
+trying URL 'https://bioconductor.org//packages/3.21/bioc/src/contrib/affyio_1.78.0.tar.gz'
+trying URL 'https://bioconductor.org//packages/3.21/bioc/src/contrib/preprocessCore_1.70.0.tar.gz'
+trying URL 'https://bioconductor.org//packages/3.21/bioc/src/contrib/affy_1.86.0.tar.gz'
+* installing *source* package ‘affyio’ ...
+** this is package ‘affyio’ version ‘1.78.0’
+** using staged installation
+checking for gcc... gcc -std=gnu2x
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc -std=gnu2x accepts -g... yes
+checking for gcc -std=gnu2x option to accept ISO C89... none needed
+checking how to run the C preprocessor... gcc -std=gnu2x -E
+checking for grep that handles long lines and -e... /usr/bin/grep
+checking for egrep... /usr/bin/grep -E
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking for main in -lz... yes
+checking zlib.h usability... yes
+checking zlib.h presence... yes
+checking for zlib.h... yes
+checking if zlib version >= 1.1.3... yes
+checking for pthread_create in -lpthread... yes
+checking if we can use pthreads... yes
+checking if PTHREAD_STACK_MIN is defined... yes
+configure: Enabling threading for affyio
+configure: creating ./config.status
+config.status: creating src/Makevars
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DPACKAGE_NAME=\"\" -DPACKAGE_TARNAME=\"\" -DPACKAGE_VERSION=\"\" -DPACKAGE_STRING=\"\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_ZLIB=1 -DHAVE_LIBPTHREAD=1 -DUSE_PTHREADS=1  -I/usr/local/include   -g -O2   -fpic  -g -O2  -c fread_functions.c -o fread_functions.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DPACKAGE_NAME=\"\" -DPACKAGE_TARNAME=\"\" -DPACKAGE_VERSION=\"\" -DPACKAGE_STRING=\"\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_ZLIB=1 -DHAVE_LIBPTHREAD=1 -DUSE_PTHREADS=1  -I/usr/local/include   -g -O2   -fpic  -g -O2  -c init_package.c -o init_package.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DPACKAGE_NAME=\"\" -DPACKAGE_TARNAME=\"\" -DPACKAGE_VERSION=\"\" -DPACKAGE_STRING=\"\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_ZLIB=1 -DHAVE_LIBPTHREAD=1 -DUSE_PTHREADS=1  -I/usr/local/include   -g -O2   -fpic  -g -O2  -c read_abatch.c -o read_abatch.o
+read_abatch.c: In function ‘read_cel_file_intensities’:
+read_abatch.c:656:176: warning: format ‘%d’ expects argument of type ‘int’, but argument 3 has type ‘size_t’ {aka ‘long unsigned int’} [-Wformat=]
+  656 |       Rprintf("Warning: found an empty line where not expected in %s.\nThis means that there is a cel intensity missing from the cel file.\nSucessfully read to cel intensity %d of %d expected\n", filename, i-1, i);
+      |                                                                                                                                                                               ~^                              ~~~
+      |                                                                                                                                                                                |                               |
+      |                                                                                                                                                                                int                             size_t {aka long unsigned int}
+      |                                                                                                                                                                               %ld
+read_abatch.c:656:182: warning: format ‘%d’ expects argument of type ‘int’, but argument 4 has type ‘size_t’ {aka ‘long unsigned int’} [-Wformat=]
+  656 |       Rprintf("Warning: found an empty line where not expected in %s.\nThis means that there is a cel intensity missing from the cel file.\nSucessfully read to cel intensity %d of %d expected\n", filename, i-1, i);
+      |                                                                                                                                                                                     ~^                             ~
+      |                                                                                                                                                                                      |                             |
+      |                                                                                                                                                                                      int                           size_t {aka long unsigned int}
+      |                                                                                                                                                                                     %ld
+read_abatch.c:665:146: warning: format ‘%d’ expects argument of type ‘int’, but argument 3 has type ‘size_t’ {aka ‘long unsigned int’} [-Wformat=]
+  665 |        Rprintf("Warning: found an incomplete line where not expected in %s.\nThe CEL file may be truncated. \nSucessfully read to cel intensity %d of %d expected\n", filename, i-1, rows);
+      |                                                                                                                                                 ~^                              ~~~
+      |                                                                                                                                                  |                               |
+      |                                                                                                                                                  int                             size_t {aka long unsigned int}
+      |                                                                                                                                                 %ld
+read_abatch.c:665:152: warning: format ‘%d’ expects argument of type ‘int’, but argument 4 has type ‘size_t’ {aka ‘long unsigned int’} [-Wformat=]
+  665 |        Rprintf("Warning: found an incomplete line where not expected in %s.\nThe CEL file may be truncated. \nSucessfully read to cel intensity %d of %d expected\n", filename, i-1, rows);
+      |                                                                                                                                                       ~^                             ~~~~
+      |                                                                                                                                                        |                             |
+      |                                                                                                                                                        int                           size_t {aka long unsigned int}
+      |                                                                                                                                                       %ld
+read_abatch.c:677:145: warning: format ‘%d’ expects argument of type ‘int’, but argument 3 has type ‘size_t’ {aka ‘long unsigned int’} [-Wformat=]
+  677 |       Rprintf("Warning: found an incomplete line where not expected in %s.\nThe CEL file may be truncated. \nSucessfully read to cel intensity %d of %d expected\n", filename, i-1, rows);
+      |                                                                                                                                                ~^                              ~~~
+      |                                                                                                                                                 |                               |
+      |                                                                                                                                                 int                             size_t {aka long unsigned int}
+      |                                                                                                                                                %ld
+read_abatch.c:677:151: warning: format ‘%d’ expects argument of type ‘int’, but argument 4 has type ‘size_t’ {aka ‘long unsigned int’} [-Wformat=]
+  677 |       Rprintf("Warning: found an incomplete line where not expected in %s.\nThe CEL file may be truncated. \nSucessfully read to cel intensity %d of %d expected\n", filename, i-1, rows);
+      |                                                                                                                                                      ~^                             ~~~~
+      |                                                                                                                                                       |                             |
+      |                                                                                                                                                       int                           size_t {aka long unsigned int}
+      |                                                                                                                                                      %ld
+read_abatch.c:689:145: warning: format ‘%d’ expects argument of type ‘int’, but argument 3 has type ‘size_t’ {aka ‘long unsigned int’} [-Wformat=]
+  689 |       Rprintf("Warning: found an incomplete line where not expected in %s.\nThe CEL file may be truncated. \nSucessfully read to cel intensity %d of %d expected\n", filename, i-1, rows);
+      |                                                                                                                                                ~^                              ~~~
+      |                                                                                                                                                 |                               |
+      |                                                                                                                                                 int                             size_t {aka long unsigned int}
+      |                                                                                                                                                %ld
+read_abatch.c:689:151: warning: format ‘%d’ expects argument of type ‘int’, but argument 4 has type ‘size_t’ {aka ‘long unsigned int’} [-Wformat=]
+  689 |       Rprintf("Warning: found an incomplete line where not expected in %s.\nThe CEL file may be truncated. \nSucessfully read to cel intensity %d of %d expected\n", filename, i-1, rows);
+      |                                                                                                                                                      ~^                             ~~~~
+      |                                                                                                                                                       |                             |
+      |                                                                                                                                                       int                           size_t {aka long unsigned int}
+      |                                                                                                                                                      %ld
+read_abatch.c: In function ‘read_cel_file_stddev’:
+read_abatch.c:764:178: warning: format ‘%d’ expects argument of type ‘int’, but argument 3 has type ‘size_t’ {aka ‘long unsigned int’} [-Wformat=]
+  764 |       Rprintf("Warning: found an empty line where not expected in %s.\n This means that there is a cel intensity missing from the cel file.\n Sucessfully read to cel intensity %d of %d expected\n", filename, i-1, i);
+      |                                                                                                                                                                                 ~^                              ~~~
+      |                                                                                                                                                                                  |                               |
+      |                                                                                                                                                                                  int                             size_t {aka long unsigned int}
+      |                                                                                                                                                                                 %ld
+read_abatch.c:764:184: warning: format ‘%d’ expects argument of type ‘int’, but argument 4 has type ‘size_t’ {aka ‘long unsigned int’} [-Wformat=]
+  764 |       Rprintf("Warning: found an empty line where not expected in %s.\n This means that there is a cel intensity missing from the cel file.\n Sucessfully read to cel intensity %d of %d expected\n", filename, i-1, i);
+      |                                                                                                                                                                                       ~^                             ~
+      |                                                                                                                                                                                        |                             |
+      |                                                                                                                                                                                        int                           size_t {aka long unsigned int}
+      |                                                                                                                                                                                       %ld
+read_abatch.c:774:145: warning: format ‘%d’ expects argument of type ‘int’, but argument 3 has type ‘size_t’ {aka ‘long unsigned int’} [-Wformat=]
+  774 |       Rprintf("Warning: found an incomplete line where not expected in %s.\nThe CEL file may be truncated. \nSucessfully read to cel intensity %d of %d expected\n", filename, i-1, rows);
+      |                                                                                                                                                ~^                              ~~~
+      |                                                                                                                                                 |                               |
+      |                                                                                                                                                 int                             size_t {aka long unsigned int}
+      |                                                                                                                                                %ld
+read_abatch.c:774:151: warning: format ‘%d’ expects argument of type ‘int’, but argument 4 has type ‘size_t’ {aka ‘long unsigned int’} [-Wformat=]
+  774 |       Rprintf("Warning: found an incomplete line where not expected in %s.\nThe CEL file may be truncated. \nSucessfully read to cel intensity %d of %d expected\n", filename, i-1, rows);
+      |                                                                                                                                                      ~^                             ~~~~
+      |                                                                                                                                                       |                             |
+      |                                                                                                                                                       int                           size_t {aka long unsigned int}
+      |                                                                                                                                                      %ld
+read_abatch.c:785:145: warning: format ‘%d’ expects argument of type ‘int’, but argument 3 has type ‘size_t’ {aka ‘long unsigned int’} [-Wformat=]
+  785 |       Rprintf("Warning: found an incomplete line where not expected in %s.\nThe CEL file may be truncated. \nSucessfully read to cel intensity %d of %d expected\n", filename, i-1, rows);
+      |                                                                                                                                                ~^                              ~~~
+      |                                                                                                                                                 |                               |
+      |                                                                                                                                                 int                             size_t {aka long unsigned int}
+      |                                                                                                                                                %ld
+read_abatch.c:785:151: warning: format ‘%d’ expects argument of type ‘int’, but argument 4 has type ‘size_t’ {aka ‘long unsigned int’} [-Wformat=]
+  785 |       Rprintf("Warning: found an incomplete line where not expected in %s.\nThe CEL file may be truncated. \nSucessfully read to cel intensity %d of %d expected\n", filename, i-1, rows);
+      |                                                                                                                                                      ~^                             ~~~~
+      |                                                                                                                                                       |                             |
+      |                                                                                                                                                       int                           size_t {aka long unsigned int}
+      |                                                                                                                                                      %ld
+read_abatch.c:795:145: warning: format ‘%d’ expects argument of type ‘int’, but argument 3 has type ‘size_t’ {aka ‘long unsigned int’} [-Wformat=]
+  795 |       Rprintf("Warning: found an incomplete line where not expected in %s.\nThe CEL file may be truncated. \nSucessfully read to cel intensity %d of %d expected\n", filename, i-1, rows);
+      |                                                                                                                                                ~^                              ~~~
+      |                                                                                                                                                 |                               |
+      |                                                                                                                                                 int                             size_t {aka long unsigned int}
+      |                                                                                                                                                %ld
+read_abatch.c:795:151: warning: format ‘%d’ expects argument of type ‘int’, but argument 4 has type ‘size_t’ {aka ‘long unsigned int’} [-Wformat=]
+  795 |       Rprintf("Warning: found an incomplete line where not expected in %s.\nThe CEL file may be truncated. \nSucessfully read to cel intensity %d of %d expected\n", filename, i-1, rows);
+      |                                                                                                                                                      ~^                             ~~~~
+      |                                                                                                                                                       |                             |
+      |                                                                                                                                                       int                           size_t {aka long unsigned int}
+      |                                                                                                                                                      %ld
+read_abatch.c:805:145: warning: format ‘%d’ expects argument of type ‘int’, but argument 3 has type ‘size_t’ {aka ‘long unsigned int’} [-Wformat=]
+  805 |       Rprintf("Warning: found an incomplete line where not expected in %s.\nThe CEL file may be truncated. \nSucessfully read to cel intensity %d of %d expected\n", filename, i-1, rows);
+      |                                                                                                                                                ~^                              ~~~
+      |                                                                                                                                                 |                               |
+      |                                                                                                                                                 int                             size_t {aka long unsigned int}
+      |                                                                                                                                                %ld
+read_abatch.c:805:151: warning: format ‘%d’ expects argument of type ‘int’, but argument 4 has type ‘size_t’ {aka ‘long unsigned int’} [-Wformat=]
+  805 |       Rprintf("Warning: found an incomplete line where not expected in %s.\nThe CEL file may be truncated. \nSucessfully read to cel intensity %d of %d expected\n", filename, i-1, rows);
+      |                                                                                                                                                      ~^                             ~~~~
+      |                                                                                                                                                       |                             |
+      |                                                                                                                                                       int                           size_t {aka long unsigned int}
+      |                                                                                                                                                      %ld
+read_abatch.c: In function ‘read_cel_file_npixels’:
+read_abatch.c:870:178: warning: format ‘%d’ expects argument of type ‘int’, but argument 3 has type ‘size_t’ {aka ‘long unsigned int’} [-Wformat=]
+  870 |       Rprintf("Warning: found an empty line where not expected in %s.\n This means that there is a cel intensity missing from the cel file.\n Sucessfully read to cel intensity %d of %d expected\n", filename, i-1, i);
+      |                                                                                                                                                                                 ~^                              ~~~
+      |                                                                                                                                                                                  |                               |
+      |                                                                                                                                                                                  int                             size_t {aka long unsigned int}
+      |                                                                                                                                                                                 %ld
+read_abatch.c:870:184: warning: format ‘%d’ expects argument of type ‘int’, but argument 4 has type ‘size_t’ {aka ‘long unsigned int’} [-Wformat=]
+  870 |       Rprintf("Warning: found an empty line where not expected in %s.\n This means that there is a cel intensity missing from the cel file.\n Sucessfully read to cel intensity %d of %d expected\n", filename, i-1, i);
+      |                                                                                                                                                                                       ~^                             ~
+      |                                                                                                                                                                                        |                             |
+      |                                                                                                                                                                                        int                           size_t {aka long unsigned int}
+      |                                                                                                                                                                                       %ld
+read_abatch.c:879:145: warning: format ‘%d’ expects argument of type ‘int’, but argument 3 has type ‘size_t’ {aka ‘long unsigned int’} [-Wformat=]
+  879 |       Rprintf("Warning: found an incomplete line where not expected in %s.\nThe CEL file may be truncated. \nSucessfully read to cel intensity %d of %d expected\n", filename, i-1, rows);
+      |                                                                                                                                                ~^                              ~~~
+      |                                                                                                                                                 |                               |
+      |                                                                                                                                                 int                             size_t {aka long unsigned int}
+      |                                                                                                                                                %ld
+read_abatch.c:879:151: warning: format ‘%d’ expects argument of type ‘int’, but argument 4 has type ‘size_t’ {aka ‘long unsigned int’} [-Wformat=]
+  879 |       Rprintf("Warning: found an incomplete line where not expected in %s.\nThe CEL file may be truncated. \nSucessfully read to cel intensity %d of %d expected\n", filename, i-1, rows);
+      |                                                                                                                                                      ~^                             ~~~~
+      |                                                                                                                                                       |                             |
+      |                                                                                                                                                       int                           size_t {aka long unsigned int}
+      |                                                                                                                                                      %ld
+read_abatch.c:890:145: warning: format ‘%d’ expects argument of type ‘int’, but argument 3 has type ‘size_t’ {aka ‘long unsigned int’} [-Wformat=]
+  890 |       Rprintf("Warning: found an incomplete line where not expected in %s.\nThe CEL file may be truncated. \nSucessfully read to cel intensity %d of %d expected\n", filename, i-1, rows);
+      |                                                                                                                                                ~^                              ~~~
+      |                                                                                                                                                 |                               |
+      |                                                                                                                                                 int                             size_t {aka long unsigned int}
+      |                                                                                                                                                %ld
+read_abatch.c:890:151: warning: format ‘%d’ expects argument of type ‘int’, but argument 4 has type ‘size_t’ {aka ‘long unsigned int’} [-Wformat=]
+  890 |       Rprintf("Warning: found an incomplete line where not expected in %s.\nThe CEL file may be truncated. \nSucessfully read to cel intensity %d of %d expected\n", filename, i-1, rows);
+      |                                                                                                                                                      ~^                             ~~~~
+      |                                                                                                                                                       |                             |
+      |                                                                                                                                                       int                           size_t {aka long unsigned int}
+      |                                                                                                                                                      %ld
+read_abatch.c:901:145: warning: format ‘%d’ expects argument of type ‘int’, but argument 3 has type ‘size_t’ {aka ‘long unsigned int’} [-Wformat=]
+  901 |       Rprintf("Warning: found an incomplete line where not expected in %s.\nThe CEL file may be truncated. \nSucessfully read to cel intensity %d of %d expected\n", filename, i-1, rows);
+      |                                                                                                                                                ~^                              ~~~
+      |                                                                                                                                                 |                               |
+      |                                                                                                                                                 int                             size_t {aka long unsigned int}
+      |                                                                                                                                                %ld
+read_abatch.c:901:151: warning: format ‘%d’ expects argument of type ‘int’, but argument 4 has type ‘size_t’ {aka ‘long unsigned int’} [-Wformat=]
+  901 |       Rprintf("Warning: found an incomplete line where not expected in %s.\nThe CEL file may be truncated. \nSucessfully read to cel intensity %d of %d expected\n", filename, i-1, rows);
+      |                                                                                                                                                      ~^                             ~~~~
+      |                                                                                                                                                       |                             |
+      |                                                                                                                                                       int                           size_t {aka long unsigned int}
+      |                                                                                                                                                      %ld
+read_abatch.c:913:145: warning: format ‘%d’ expects argument of type ‘int’, but argument 3 has type ‘size_t’ {aka ‘long unsigned int’} [-Wformat=]
+  913 |       Rprintf("Warning: found an incomplete line where not expected in %s.\nThe CEL file may be truncated. \nSucessfully read to cel intensity %d of %d expected\n", filename, i-1, rows);
+      |                                                                                                                                                ~^                              ~~~
+      |                                                                                                                                                 |                               |
+      |                                                                                                                                                 int                             size_t {aka long unsigned int}
+      |                                                                                                                                                %ld
+read_abatch.c:913:151: warning: format ‘%d’ expects argument of type ‘int’, but argument 4 has type ‘size_t’ {aka ‘long unsigned int’} [-Wformat=]
+  913 |       Rprintf("Warning: found an incomplete line where not expected in %s.\nThe CEL file may be truncated. \nSucessfully read to cel intensity %d of %d expected\n", filename, i-1, rows);
+      |                                                                                                                                                      ~^                             ~~~~
+      |                                                                                                                                                       |                             |
+      |                                                                                                                                                       int                           size_t {aka long unsigned int}
+      |                                                                                                                                                      %ld
+read_abatch.c:924:145: warning: format ‘%d’ expects argument of type ‘int’, but argument 3 has type ‘size_t’ {aka ‘long unsigned int’} [-Wformat=]
+  924 |       Rprintf("Warning: found an incomplete line where not expected in %s.\nThe CEL file may be truncated. \nSucessfully read to cel intensity %d of %d expected\n", filename, i-1, rows);
+      |                                                                                                                                                ~^                              ~~~
+      |                                                                                                                                                 |                               |
+      |                                                                                                                                                 int                             size_t {aka long unsigned int}
+      |                                                                                                                                                %ld
+read_abatch.c:924:151: warning: format ‘%d’ expects argument of type ‘int’, but argument 4 has type ‘size_t’ {aka ‘long unsigned int’} [-Wformat=]
+  924 |       Rprintf("Warning: found an incomplete line where not expected in %s.\nThe CEL file may be truncated. \nSucessfully read to cel intensity %d of %d expected\n", filename, i-1, rows);
+      |                                                                                                                                                      ~^                             ~~~~
+      |                                                                                                                                                       |                             |
+      |                                                                                                                                                       int                           size_t {aka long unsigned int}
+      |                                                                                                                                                      %ld
+read_abatch.c: In function ‘read_gzcel_file_intensities’:
+read_abatch.c:1567:145: warning: format ‘%d’ expects argument of type ‘int’, but argument 3 has type ‘size_t’ {aka ‘long unsigned int’} [-Wformat=]
+ 1567 |       Rprintf("Warning: found an incomplete line where not expected in %s.\nThe CEL file may be truncated. \nSucessfully read to cel intensity %d of %d expected\n", filename, i-1, rows);
+      |                                                                                                                                                ~^                              ~~~
+      |                                                                                                                                                 |                               |
+      |                                                                                                                                                 int                             size_t {aka long unsigned int}
+      |                                                                                                                                                %ld
+read_abatch.c:1567:151: warning: format ‘%d’ expects argument of type ‘int’, but argument 4 has type ‘size_t’ {aka ‘long unsigned int’} [-Wformat=]
+ 1567 |       Rprintf("Warning: found an incomplete line where not expected in %s.\nThe CEL file may be truncated. \nSucessfully read to cel intensity %d of %d expected\n", filename, i-1, rows);
+      |                                                                                                                                                      ~^                             ~~~~
+      |                                                                                                                                                       |                             |
+      |                                                                                                                                                       int                           size_t {aka long unsigned int}
+      |                                                                                                                                                      %ld
+read_abatch.c:1578:145: warning: format ‘%d’ expects argument of type ‘int’, but argument 3 has type ‘size_t’ {aka ‘long unsigned int’} [-Wformat=]
+ 1578 |       Rprintf("Warning: found an incomplete line where not expected in %s.\nThe CEL file may be truncated. \nSucessfully read to cel intensity %d of %d expected\n", filename, i-1, rows);
+      |                                                                                                                                                ~^                              ~~~
+      |                                                                                                                                                 |                               |
+      |                                                                                                                                                 int                             size_t {aka long unsigned int}
+      |                                                                                                                                                %ld
+read_abatch.c:1578:151: warning: format ‘%d’ expects argument of type ‘int’, but argument 4 has type ‘size_t’ {aka ‘long unsigned int’} [-Wformat=]
+ 1578 |       Rprintf("Warning: found an incomplete line where not expected in %s.\nThe CEL file may be truncated. \nSucessfully read to cel intensity %d of %d expected\n", filename, i-1, rows);
+      |                                                                                                                                                      ~^                             ~~~~
+      |                                                                                                                                                       |                             |
+      |                                                                                                                                                       int                           size_t {aka long unsigned int}
+      |                                                                                                                                                      %ld
+read_abatch.c:1589:145: warning: format ‘%d’ expects argument of type ‘int’, but argument 3 has type ‘size_t’ {aka ‘long unsigned int’} [-Wformat=]
+ 1589 |       Rprintf("Warning: found an incomplete line where not expected in %s.\nThe CEL file may be truncated. \nSucessfully read to cel intensity %d of %d expected\n", filename, i-1, rows);
+      |                                                                                                                                                ~^                              ~~~
+      |                                                                                                                                                 |                               |
+      |                                                                                                                                                 int                             size_t {aka long unsigned int}
+      |                                                                                                                                                %ld
+read_abatch.c:1589:151: warning: format ‘%d’ expects argument of type ‘int’, but argument 4 has type ‘size_t’ {aka ‘long unsigned int’} [-Wformat=]
+ 1589 |       Rprintf("Warning: found an incomplete line where not expected in %s.\nThe CEL file may be truncated. \nSucessfully read to cel intensity %d of %d expected\n", filename, i-1, rows);
+      |                                                                                                                                                      ~^                             ~~~~
+      |                                                                                                                                                       |                             |
+      |                                                                                                                                                       int                           size_t {aka long unsigned int}
+      |                                                                                                                                                      %ld
+read_abatch.c: In function ‘read_gzcel_file_stddev’:
+read_abatch.c:1665:145: warning: format ‘%d’ expects argument of type ‘int’, but argument 3 has type ‘size_t’ {aka ‘long unsigned int’} [-Wformat=]
+ 1665 |       Rprintf("Warning: found an incomplete line where not expected in %s.\nThe CEL file may be truncated. \nSucessfully read to cel intensity %d of %d expected\n", filename, i-1, rows);
+      |                                                                                                                                                ~^                              ~~~
+      |                                                                                                                                                 |                               |
+      |                                                                                                                                                 int                             size_t {aka long unsigned int}
+      |                                                                                                                                                %ld
+read_abatch.c:1665:151: warning: format ‘%d’ expects argument of type ‘int’, but argument 4 has type ‘size_t’ {aka ‘long unsigned int’} [-Wformat=]
+ 1665 |       Rprintf("Warning: found an incomplete line where not expected in %s.\nThe CEL file may be truncated. \nSucessfully read to cel intensity %d of %d expected\n", filename, i-1, rows);
+      |                                                                                                                                                      ~^                             ~~~~
+      |                                                                                                                                                       |                             |
+      |                                                                                                                                                       int                           size_t {aka long unsigned int}
+      |                                                                                                                                                      %ld
+read_abatch.c:1677:145: warning: format ‘%d’ expects argument of type ‘int’, but argument 3 has type ‘size_t’ {aka ‘long unsigned int’} [-Wformat=]
+ 1677 |       Rprintf("Warning: found an incomplete line where not expected in %s.\nThe CEL file may be truncated. \nSucessfully read to cel intensity %d of %d expected\n", filename, i-1, rows);
+      |                                                                                                                                                ~^                              ~~~
+      |                                                                                                                                                 |                               |
+      |                                                                                                                                                 int                             size_t {aka long unsigned int}
+      |                                                                                                                                                %ld
+read_abatch.c:1677:151: warning: format ‘%d’ expects argument of type ‘int’, but argument 4 has type ‘size_t’ {aka ‘long unsigned int’} [-Wformat=]
+ 1677 |       Rprintf("Warning: found an incomplete line where not expected in %s.\nThe CEL file may be truncated. \nSucessfully read to cel intensity %d of %d expected\n", filename, i-1, rows);
+      |                                                                                                                                                      ~^                             ~~~~
+      |                                                                                                                                                       |                             |
+      |                                                                                                                                                       int                           size_t {aka long unsigned int}
+      |                                                                                                                                                      %ld
+read_abatch.c:1689:145: warning: format ‘%d’ expects argument of type ‘int’, but argument 3 has type ‘size_t’ {aka ‘long unsigned int’} [-Wformat=]
+ 1689 |       Rprintf("Warning: found an incomplete line where not expected in %s.\nThe CEL file may be truncated. \nSucessfully read to cel intensity %d of %d expected\n", filename, i-1, rows);
+      |                                                                                                                                                ~^                              ~~~
+      |                                                                                                                                                 |                               |
+      |                                                                                                                                                 int                             size_t {aka long unsigned int}
+      |                                                                                                                                                %ld
+read_abatch.c:1689:151: warning: format ‘%d’ expects argument of type ‘int’, but argument 4 has type ‘size_t’ {aka ‘long unsigned int’} [-Wformat=]
+ 1689 |       Rprintf("Warning: found an incomplete line where not expected in %s.\nThe CEL file may be truncated. \nSucessfully read to cel intensity %d of %d expected\n", filename, i-1, rows);
+      |                                                                                                                                                      ~^                             ~~~~
+      |                                                                                                                                                       |                             |
+      |                                                                                                                                                       int                           size_t {aka long unsigned int}
+      |                                                                                                                                                      %ld
+read_abatch.c:1701:145: warning: format ‘%d’ expects argument of type ‘int’, but argument 3 has type ‘size_t’ {aka ‘long unsigned int’} [-Wformat=]
+ 1701 |       Rprintf("Warning: found an incomplete line where not expected in %s.\nThe CEL file may be truncated. \nSucessfully read to cel intensity %d of %d expected\n", filename, i-1, rows);
+      |                                                                                                                                                ~^                              ~~~
+      |                                                                                                                                                 |                               |
+      |                                                                                                                                                 int                             size_t {aka long unsigned int}
+      |                                                                                                                                                %ld
+read_abatch.c:1701:151: warning: format ‘%d’ expects argument of type ‘int’, but argument 4 has type ‘size_t’ {aka ‘long unsigned int’} [-Wformat=]
+ 1701 |       Rprintf("Warning: found an incomplete line where not expected in %s.\nThe CEL file may be truncated. \nSucessfully read to cel intensity %d of %d expected\n", filename, i-1, rows);
+      |                                                                                                                                                      ~^                             ~~~~
+      |                                                                                                                                                       |                             |
+      |                                                                                                                                                       int                           size_t {aka long unsigned int}
+      |                                                                                                                                                      %ld
+read_abatch.c: In function ‘read_gzcel_file_npixels’:
+read_abatch.c:1769:145: warning: format ‘%d’ expects argument of type ‘int’, but argument 3 has type ‘size_t’ {aka ‘long unsigned int’} [-Wformat=]
+ 1769 |       Rprintf("Warning: found an incomplete line where not expected in %s.\nThe CEL file may be truncated. \nSucessfully read to cel intensity %d of %d expected\n", filename, i-1, rows);
+      |                                                                                                                                                ~^                              ~~~
+      |                                                                                                                                                 |                               |
+      |                                                                                                                                                 int                             size_t {aka long unsigned int}
+      |                                                                                                                                                %ld
+read_abatch.c:1769:151: warning: format ‘%d’ expects argument of type ‘int’, but argument 4 has type ‘size_t’ {aka ‘long unsigned int’} [-Wformat=]
+ 1769 |       Rprintf("Warning: found an incomplete line where not expected in %s.\nThe CEL file may be truncated. \nSucessfully read to cel intensity %d of %d expected\n", filename, i-1, rows);
+      |                                                                                                                                                      ~^                             ~~~~
+      |                                                                                                                                                       |                             |
+      |                                                                                                                                                       int                           size_t {aka long unsigned int}
+      |                                                                                                                                                      %ld
+read_abatch.c:1780:145: warning: format ‘%d’ expects argument of type ‘int’, but argument 3 has type ‘size_t’ {aka ‘long unsigned int’} [-Wformat=]
+ 1780 |       Rprintf("Warning: found an incomplete line where not expected in %s.\nThe CEL file may be truncated. \nSucessfully read to cel intensity %d of %d expected\n", filename, i-1, rows);
+      |                                                                                                                                                ~^                              ~~~
+      |                                                                                                                                                 |                               |
+      |                                                                                                                                                 int                             size_t {aka long unsigned int}
+      |                                                                                                                                                %ld
+read_abatch.c:1780:151: warning: format ‘%d’ expects argument of type ‘int’, but argument 4 has type ‘size_t’ {aka ‘long unsigned int’} [-Wformat=]
+ 1780 |       Rprintf("Warning: found an incomplete line where not expected in %s.\nThe CEL file may be truncated. \nSucessfully read to cel intensity %d of %d expected\n", filename, i-1, rows);
+      |                                                                                                                                                      ~^                             ~~~~
+      |                                                                                                                                                       |                             |
+      |                                                                                                                                                       int                           size_t {aka long unsigned int}
+      |                                                                                                                                                      %ld
+read_abatch.c:1791:145: warning: format ‘%d’ expects argument of type ‘int’, but argument 3 has type ‘size_t’ {aka ‘long unsigned int’} [-Wformat=]
+ 1791 |       Rprintf("Warning: found an incomplete line where not expected in %s.\nThe CEL file may be truncated. \nSucessfully read to cel intensity %d of %d expected\n", filename, i-1, rows);
+      |                                                                                                                                                ~^                              ~~~
+      |                                                                                                                                                 |                               |
+      |                                                                                                                                                 int                             size_t {aka long unsigned int}
+      |                                                                                                                                                %ld
+read_abatch.c:1791:151: warning: format ‘%d’ expects argument of type ‘int’, but argument 4 has type ‘size_t’ {aka ‘long unsigned int’} [-Wformat=]
+ 1791 |       Rprintf("Warning: found an incomplete line where not expected in %s.\nThe CEL file may be truncated. \nSucessfully read to cel intensity %d of %d expected\n", filename, i-1, rows);
+      |                                                                                                                                                      ~^                             ~~~~
+      |                                                                                                                                                       |                             |
+      |                                                                                                                                                       int                           size_t {aka long unsigned int}
+      |                                                                                                                                                      %ld
+read_abatch.c:1801:145: warning: format ‘%d’ expects argument of type ‘int’, but argument 3 has type ‘size_t’ {aka ‘long unsigned int’} [-Wformat=]
+ 1801 |       Rprintf("Warning: found an incomplete line where not expected in %s.\nThe CEL file may be truncated. \nSucessfully read to cel intensity %d of %d expected\n", filename, i-1, rows);
+      |                                                                                                                                                ~^                              ~~~
+      |                                                                                                                                                 |                               |
+      |                                                                                                                                                 int                             size_t {aka long unsigned int}
+      |                                                                                                                                                %ld
+read_abatch.c:1801:151: warning: format ‘%d’ expects argument of type ‘int’, but argument 4 has type ‘size_t’ {aka ‘long unsigned int’} [-Wformat=]
+ 1801 |       Rprintf("Warning: found an incomplete line where not expected in %s.\nThe CEL file may be truncated. \nSucessfully read to cel intensity %d of %d expected\n", filename, i-1, rows);
+      |                                                                                                                                                      ~^                             ~~~~
+      |                                                                                                                                                       |                             |
+      |                                                                                                                                                       int                           size_t {aka long unsigned int}
+      |                                                                                                                                                      %ld
+read_abatch.c:1811:145: warning: format ‘%d’ expects argument of type ‘int’, but argument 3 has type ‘size_t’ {aka ‘long unsigned int’} [-Wformat=]
+ 1811 |       Rprintf("Warning: found an incomplete line where not expected in %s.\nThe CEL file may be truncated. \nSucessfully read to cel intensity %d of %d expected\n", filename, i-1, rows);
+      |                                                                                                                                                ~^                              ~~~
+      |                                                                                                                                                 |                               |
+      |                                                                                                                                                 int                             size_t {aka long unsigned int}
+      |                                                                                                                                                %ld
+read_abatch.c:1811:151: warning: format ‘%d’ expects argument of type ‘int’, but argument 4 has type ‘size_t’ {aka ‘long unsigned int’} [-Wformat=]
+ 1811 |       Rprintf("Warning: found an incomplete line where not expected in %s.\nThe CEL file may be truncated. \nSucessfully read to cel intensity %d of %d expected\n", filename, i-1, rows);
+      |                                                                                                                                                      ~^                             ~~~~
+      |                                                                                                                                                       |                             |
+      |                                                                                                                                                       int                           size_t {aka long unsigned int}
+      |                                                                                                                                                      %ld
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DPACKAGE_NAME=\"\" -DPACKAGE_TARNAME=\"\" -DPACKAGE_VERSION=\"\" -DPACKAGE_STRING=\"\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_ZLIB=1 -DHAVE_LIBPTHREAD=1 -DUSE_PTHREADS=1  -I/usr/local/include   -g -O2   -fpic  -g -O2  -c read_bpmap.c -o read_bpmap.o
+read_bpmap.c: In function ‘ReadBPMAPFileIntoRList’:
+read_bpmap.c:849:39: warning: format ‘%s’ expects argument of type ‘char *’, but argument 2 has type ‘SEXP’ {aka ‘struct SEXPREC *’} [-Wformat=]
+  849 |       error("Unable to open the file %s",filename);
+      |                                      ~^  ~~~~~~~~
+      |                                       |  |
+      |                                       |  SEXP {aka struct SEXPREC *}
+      |                                       char *
+read_bpmap.c:698:27: warning: ‘__builtin___sprintf_chk’ may write a terminating nul past the end of the destination [-Wformat-overflow=]
+  698 |           sprintf(buf, "%d", j+1);
+      |                           ^
+In file included from /usr/include/stdio.h:980,
+                 from /opt/R/4.5.1/lib/R/include/R.h:44,
+                 from read_bpmap.c:23:
+In function ‘sprintf’,
+    inlined from ‘readBPMAPSeqIdPositionInfo’ at read_bpmap.c:698:4,
+    inlined from ‘ReadBPMAPFileIntoRList’ at read_bpmap.c:873:3:
+/usr/include/x86_64-linux-gnu/bits/stdio2.h:30:10: note: ‘__builtin___sprintf_chk’ output between 2 and 11 bytes into a destination of size 10
+   30 |   return __builtin___sprintf_chk (__s, __USE_FORTIFY_LEVEL - 1,
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   31 |                                   __glibc_objsize (__s), __fmt,
+      |                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   32 |                                   __va_arg_pack ());
+      |                                   ~~~~~~~~~~~~~~~~~
+read_bpmap.c: In function ‘ReadBPMAPFileIntoRList’:
+read_bpmap.c:655:27: warning: ‘__builtin___sprintf_chk’ may write a terminating nul past the end of the destination [-Wformat-overflow=]
+  655 |           sprintf(buf, "%d", j+1);
+      |                           ^
+In function ‘sprintf’,
+    inlined from ‘readBPMAPSeqIdPositionInfo’ at read_bpmap.c:655:4,
+    inlined from ‘ReadBPMAPFileIntoRList’ at read_bpmap.c:873:3:
+/usr/include/x86_64-linux-gnu/bits/stdio2.h:30:10: note: ‘__builtin___sprintf_chk’ output between 2 and 11 bytes into a destination of size 10
+   30 |   return __builtin___sprintf_chk (__s, __USE_FORTIFY_LEVEL - 1,
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   31 |                                   __glibc_objsize (__s), __fmt,
+      |                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   32 |                                   __va_arg_pack ());
+      |                                   ~~~~~~~~~~~~~~~~~
+read_bpmap.c: In function ‘ReadBPMAPFileIntoRList’:
+read_bpmap.c:603:25: warning: ‘__builtin___sprintf_chk’ may write a terminating nul past the end of the destination [-Wformat-overflow=]
+  603 |         sprintf(buf, "%d", j+1);
+      |                         ^
+In function ‘sprintf’,
+    inlined from ‘readBPMAPSeqIdPositionInfo’ at read_bpmap.c:603:2,
+    inlined from ‘ReadBPMAPFileIntoRList’ at read_bpmap.c:873:3:
+/usr/include/x86_64-linux-gnu/bits/stdio2.h:30:10: note: ‘__builtin___sprintf_chk’ output between 2 and 11 bytes into a destination of size 10
+   30 |   return __builtin___sprintf_chk (__s, __USE_FORTIFY_LEVEL - 1,
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   31 |                                   __glibc_objsize (__s), __fmt,
+      |                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   32 |                                   __va_arg_pack ());
+      |                                   ~~~~~~~~~~~~~~~~~
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DPACKAGE_NAME=\"\" -DPACKAGE_TARNAME=\"\" -DPACKAGE_VERSION=\"\" -DPACKAGE_STRING=\"\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_ZLIB=1 -DHAVE_LIBPTHREAD=1 -DUSE_PTHREADS=1  -I/usr/local/include   -g -O2   -fpic  -g -O2  -c read_cdf_xda.c -o read_cdf_xda.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DPACKAGE_NAME=\"\" -DPACKAGE_TARNAME=\"\" -DPACKAGE_VERSION=\"\" -DPACKAGE_STRING=\"\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_ZLIB=1 -DHAVE_LIBPTHREAD=1 -DUSE_PTHREADS=1  -I/usr/local/include   -g -O2   -fpic  -g -O2  -c read_cdffile2.c -o read_cdffile2.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DPACKAGE_NAME=\"\" -DPACKAGE_TARNAME=\"\" -DPACKAGE_VERSION=\"\" -DPACKAGE_STRING=\"\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_ZLIB=1 -DHAVE_LIBPTHREAD=1 -DUSE_PTHREADS=1  -I/usr/local/include   -g -O2   -fpic  -g -O2  -c read_celfile_generic.c -o read_celfile_generic.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DPACKAGE_NAME=\"\" -DPACKAGE_TARNAME=\"\" -DPACKAGE_VERSION=\"\" -DPACKAGE_STRING=\"\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_ZLIB=1 -DHAVE_LIBPTHREAD=1 -DUSE_PTHREADS=1  -I/usr/local/include   -g -O2   -fpic  -g -O2  -c read_clf.c -o read_clf.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DPACKAGE_NAME=\"\" -DPACKAGE_TARNAME=\"\" -DPACKAGE_VERSION=\"\" -DPACKAGE_STRING=\"\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_ZLIB=1 -DHAVE_LIBPTHREAD=1 -DUSE_PTHREADS=1  -I/usr/local/include   -g -O2   -fpic  -g -O2  -c read_generic.c -o read_generic.o
+read_generic.c: In function ‘print_decode_nvt_triplet’:
+read_generic.c:1293:37: warning: format ‘%f’ expects argument of type ‘double’, but argument 2 has type ‘int’ [-Wformat=]
+ 1293 |     Rprintf("Its a float  value is %f\n",temp32);
+      |                                    ~^    ~~~~~~
+      |                                     |    |
+      |                                     |    int
+      |                                     double
+      |                                    %d
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DPACKAGE_NAME=\"\" -DPACKAGE_TARNAME=\"\" -DPACKAGE_VERSION=\"\" -DPACKAGE_STRING=\"\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_ZLIB=1 -DHAVE_LIBPTHREAD=1 -DUSE_PTHREADS=1  -I/usr/local/include   -g -O2   -fpic  -g -O2  -c read_multichannel_celfile_generic.c -o read_multichannel_celfile_generic.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DPACKAGE_NAME=\"\" -DPACKAGE_TARNAME=\"\" -DPACKAGE_VERSION=\"\" -DPACKAGE_STRING=\"\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_ZLIB=1 -DHAVE_LIBPTHREAD=1 -DUSE_PTHREADS=1  -I/usr/local/include   -g -O2   -fpic  -g -O2  -c read_pgf.c -o read_pgf.o
+gcc -std=gnu2x -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o affyio.so fread_functions.o init_package.o read_abatch.o read_bpmap.o read_cdf_xda.o read_cdffile2.o read_celfile_generic.o read_clf.o read_generic.o read_multichannel_celfile_generic.o read_pgf.o -lpthread -lz -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-affyio/00new/affyio/libs
+** R
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (affyio)
+* installing *source* package ‘preprocessCore’ ...
+** this is package ‘preprocessCore’ version ‘1.70.0’
+** using staged installation
+'config' variable 'CPP' is defunct
+checking for gcc... gcc -std=gnu2x
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc -std=gnu2x accepts -g... yes
+checking for gcc -std=gnu2x option to accept ISO C89... none needed
+checking how to run the C preprocessor... gcc -std=gnu2x -E
+checking for library containing pthread_create... none required
+checking for grep that handles long lines and -e... /usr/bin/grep
+checking for egrep... /usr/bin/grep -E
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking for stdlib.h... (cached) yes
+checking if PTHREAD_STACK_MIN is defined... yes
+checking if R is using flexiblas... flexiblas not found. preprocessCore threading will not be disabled
+configure: Enabling threading for preprocessCore
+configure: creating ./config.status
+config.status: creating src/Makevars
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include  -I/usr/local/include   -g -O2  -DPACKAGE_NAME=\"\" -DPACKAGE_TARNAME=\"\" -DPACKAGE_VERSION=\"\" -DPACKAGE_STRING=\"\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_STDLIB_H=1 -DUSE_PTHREADS=1 -fpic  -g -O2  -c R_colSummarize.c -o R_colSummarize.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include  -I/usr/local/include   -g -O2  -DPACKAGE_NAME=\"\" -DPACKAGE_TARNAME=\"\" -DPACKAGE_VERSION=\"\" -DPACKAGE_STRING=\"\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_STDLIB_H=1 -DUSE_PTHREADS=1 -fpic  -g -O2  -c R_plmd_interfaces.c -o R_plmd_interfaces.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include  -I/usr/local/include   -g -O2  -DPACKAGE_NAME=\"\" -DPACKAGE_TARNAME=\"\" -DPACKAGE_VERSION=\"\" -DPACKAGE_STRING=\"\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_STDLIB_H=1 -DUSE_PTHREADS=1 -fpic  -g -O2  -c R_plmr_interfaces.c -o R_plmr_interfaces.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include  -I/usr/local/include   -g -O2  -DPACKAGE_NAME=\"\" -DPACKAGE_TARNAME=\"\" -DPACKAGE_VERSION=\"\" -DPACKAGE_STRING=\"\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_STDLIB_H=1 -DUSE_PTHREADS=1 -fpic  -g -O2  -c R_rlm_interfaces.c -o R_rlm_interfaces.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include  -I/usr/local/include   -g -O2  -DPACKAGE_NAME=\"\" -DPACKAGE_TARNAME=\"\" -DPACKAGE_VERSION=\"\" -DPACKAGE_STRING=\"\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_STDLIB_H=1 -DUSE_PTHREADS=1 -fpic  -g -O2  -c R_subColSummarize.c -o R_subColSummarize.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include  -I/usr/local/include   -g -O2  -DPACKAGE_NAME=\"\" -DPACKAGE_TARNAME=\"\" -DPACKAGE_VERSION=\"\" -DPACKAGE_STRING=\"\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_STDLIB_H=1 -DUSE_PTHREADS=1 -fpic  -g -O2  -c R_subrcModel_interfaces.c -o R_subrcModel_interfaces.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include  -I/usr/local/include   -g -O2  -DPACKAGE_NAME=\"\" -DPACKAGE_TARNAME=\"\" -DPACKAGE_VERSION=\"\" -DPACKAGE_STRING=\"\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_STDLIB_H=1 -DUSE_PTHREADS=1 -fpic  -g -O2  -c avg.c -o avg.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include  -I/usr/local/include   -g -O2  -DPACKAGE_NAME=\"\" -DPACKAGE_TARNAME=\"\" -DPACKAGE_VERSION=\"\" -DPACKAGE_STRING=\"\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_STDLIB_H=1 -DUSE_PTHREADS=1 -fpic  -g -O2  -c avg_log.c -o avg_log.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include  -I/usr/local/include   -g -O2  -DPACKAGE_NAME=\"\" -DPACKAGE_TARNAME=\"\" -DPACKAGE_VERSION=\"\" -DPACKAGE_STRING=\"\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_STDLIB_H=1 -DUSE_PTHREADS=1 -fpic  -g -O2  -c biweight.c -o biweight.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include  -I/usr/local/include   -g -O2  -DPACKAGE_NAME=\"\" -DPACKAGE_TARNAME=\"\" -DPACKAGE_VERSION=\"\" -DPACKAGE_STRING=\"\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_STDLIB_H=1 -DUSE_PTHREADS=1 -fpic  -g -O2  -c init_package.c -o init_package.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include  -I/usr/local/include   -g -O2  -DPACKAGE_NAME=\"\" -DPACKAGE_TARNAME=\"\" -DPACKAGE_VERSION=\"\" -DPACKAGE_STRING=\"\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_STDLIB_H=1 -DUSE_PTHREADS=1 -fpic  -g -O2  -c lm.c -o lm.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include  -I/usr/local/include   -g -O2  -DPACKAGE_NAME=\"\" -DPACKAGE_TARNAME=\"\" -DPACKAGE_VERSION=\"\" -DPACKAGE_STRING=\"\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_STDLIB_H=1 -DUSE_PTHREADS=1 -fpic  -g -O2  -c log_avg.c -o log_avg.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include  -I/usr/local/include   -g -O2  -DPACKAGE_NAME=\"\" -DPACKAGE_TARNAME=\"\" -DPACKAGE_VERSION=\"\" -DPACKAGE_STRING=\"\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_STDLIB_H=1 -DUSE_PTHREADS=1 -fpic  -g -O2  -c log_median.c -o log_median.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include  -I/usr/local/include   -g -O2  -DPACKAGE_NAME=\"\" -DPACKAGE_TARNAME=\"\" -DPACKAGE_VERSION=\"\" -DPACKAGE_STRING=\"\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_STDLIB_H=1 -DUSE_PTHREADS=1 -fpic  -g -O2  -c matrix_functions.c -o matrix_functions.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include  -I/usr/local/include   -g -O2  -DPACKAGE_NAME=\"\" -DPACKAGE_TARNAME=\"\" -DPACKAGE_VERSION=\"\" -DPACKAGE_STRING=\"\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_STDLIB_H=1 -DUSE_PTHREADS=1 -fpic  -g -O2  -c median.c -o median.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include  -I/usr/local/include   -g -O2  -DPACKAGE_NAME=\"\" -DPACKAGE_TARNAME=\"\" -DPACKAGE_VERSION=\"\" -DPACKAGE_STRING=\"\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_STDLIB_H=1 -DUSE_PTHREADS=1 -fpic  -g -O2  -c median_log.c -o median_log.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include  -I/usr/local/include   -g -O2  -DPACKAGE_NAME=\"\" -DPACKAGE_TARNAME=\"\" -DPACKAGE_VERSION=\"\" -DPACKAGE_STRING=\"\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_STDLIB_H=1 -DUSE_PTHREADS=1 -fpic  -g -O2  -c medianpolish.c -o medianpolish.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include  -I/usr/local/include   -g -O2  -DPACKAGE_NAME=\"\" -DPACKAGE_TARNAME=\"\" -DPACKAGE_VERSION=\"\" -DPACKAGE_STRING=\"\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_STDLIB_H=1 -DUSE_PTHREADS=1 -fpic  -g -O2  -c plmd.c -o plmd.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include  -I/usr/local/include   -g -O2  -DPACKAGE_NAME=\"\" -DPACKAGE_TARNAME=\"\" -DPACKAGE_VERSION=\"\" -DPACKAGE_STRING=\"\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_STDLIB_H=1 -DUSE_PTHREADS=1 -fpic  -g -O2  -c plmr.c -o plmr.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include  -I/usr/local/include   -g -O2  -DPACKAGE_NAME=\"\" -DPACKAGE_TARNAME=\"\" -DPACKAGE_VERSION=\"\" -DPACKAGE_STRING=\"\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_STDLIB_H=1 -DUSE_PTHREADS=1 -fpic  -g -O2  -c psi_fns.c -o psi_fns.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include  -I/usr/local/include   -g -O2  -DPACKAGE_NAME=\"\" -DPACKAGE_TARNAME=\"\" -DPACKAGE_VERSION=\"\" -DPACKAGE_STRING=\"\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_STDLIB_H=1 -DUSE_PTHREADS=1 -fpic  -g -O2  -c qnorm.c -o qnorm.o
+qnorm.c: In function ‘qnorm_c_l’:
+qnorm.c:595:63: warning: format ‘%d’ expects argument of type ‘int’, but argument 2 has type ‘size_t’ {aka ‘long unsigned int’} [-Wformat=]
+  595 |          error("ERROR; return code from pthread_join(thread #%d) is %d, exit status for thread was %d\n",
+      |                                                              ~^
+      |                                                               |
+      |                                                               int
+      |                                                              %ld
+  596 |                i, returnCode, *((int *) status));
+      |                ~                                               
+      |                |
+      |                size_t {aka long unsigned int}
+qnorm.c:616:63: warning: format ‘%d’ expects argument of type ‘int’, but argument 2 has type ‘size_t’ {aka ‘long unsigned int’} [-Wformat=]
+  616 |          error("ERROR; return code from pthread_join(thread #%d) is %d, exit status for thread was %d\n",
+      |                                                              ~^
+      |                                                               |
+      |                                                               int
+      |                                                              %ld
+  617 |                i, returnCode, *((int *) status));
+      |                ~                                               
+      |                |
+      |                size_t {aka long unsigned int}
+qnorm.c: In function ‘qnorm_c_determine_target_l’:
+qnorm.c:2004:63: warning: format ‘%d’ expects argument of type ‘int’, but argument 2 has type ‘size_t’ {aka ‘long unsigned int’} [-Wformat=]
+ 2004 |          error("ERROR; return code from pthread_join(thread #%d) is %d, exit status for thread was %d\n",
+      |                                                              ~^
+      |                                                               |
+      |                                                               int
+      |                                                              %ld
+ 2005 |                i, returnCode, *((int *) status));
+      |                ~                                               
+      |                |
+      |                size_t {aka long unsigned int}
+qnorm.c: In function ‘qnorm_c_determine_target_via_subset_l’:
+qnorm.c:2604:63: warning: format ‘%d’ expects argument of type ‘int’, but argument 2 has type ‘size_t’ {aka ‘long unsigned int’} [-Wformat=]
+ 2604 |          error("ERROR; return code from pthread_join(thread #%d) is %d, exit status for thread was %d\n",
+      |                                                              ~^
+      |                                                               |
+      |                                                               int
+      |                                                              %ld
+ 2605 |                i, returnCode, *((int *) status));
+      |                ~                                               
+      |                |
+      |                size_t {aka long unsigned int}
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include  -I/usr/local/include   -g -O2  -DPACKAGE_NAME=\"\" -DPACKAGE_TARNAME=\"\" -DPACKAGE_VERSION=\"\" -DPACKAGE_STRING=\"\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_STDLIB_H=1 -DUSE_PTHREADS=1 -fpic  -g -O2  -c rlm.c -o rlm.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include  -I/usr/local/include   -g -O2  -DPACKAGE_NAME=\"\" -DPACKAGE_TARNAME=\"\" -DPACKAGE_VERSION=\"\" -DPACKAGE_STRING=\"\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_STDLIB_H=1 -DUSE_PTHREADS=1 -fpic  -g -O2  -c rlm_anova.c -o rlm_anova.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include  -I/usr/local/include   -g -O2  -DPACKAGE_NAME=\"\" -DPACKAGE_TARNAME=\"\" -DPACKAGE_VERSION=\"\" -DPACKAGE_STRING=\"\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_STDLIB_H=1 -DUSE_PTHREADS=1 -fpic  -g -O2  -c rlm_se.c -o rlm_se.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include  -I/usr/local/include   -g -O2  -DPACKAGE_NAME=\"\" -DPACKAGE_TARNAME=\"\" -DPACKAGE_VERSION=\"\" -DPACKAGE_STRING=\"\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_STDLIB_H=1 -DUSE_PTHREADS=1 -fpic  -g -O2  -c rma_background4.c -o rma_background4.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include  -I/usr/local/include   -g -O2  -DPACKAGE_NAME=\"\" -DPACKAGE_TARNAME=\"\" -DPACKAGE_VERSION=\"\" -DPACKAGE_STRING=\"\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_STDLIB_H=1 -DUSE_PTHREADS=1 -fpic  -g -O2  -c rma_common.c -o rma_common.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include  -I/usr/local/include   -g -O2  -DPACKAGE_NAME=\"\" -DPACKAGE_TARNAME=\"\" -DPACKAGE_VERSION=\"\" -DPACKAGE_STRING=\"\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_STDLIB_H=1 -DUSE_PTHREADS=1 -fpic  -g -O2  -c weightedkerneldensity.c -o weightedkerneldensity.o
+gcc -std=gnu2x -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o preprocessCore.so R_colSummarize.o R_plmd_interfaces.o R_plmr_interfaces.o R_rlm_interfaces.o R_subColSummarize.o R_subrcModel_interfaces.o avg.o avg_log.o biweight.o init_package.o lm.o log_avg.o log_median.o matrix_functions.o median.o median_log.o medianpolish.o plmd.o plmr.o psi_fns.o qnorm.o rlm.o rlm_anova.o rlm_se.o rma_background4.o rma_common.o weightedkerneldensity.o -llapack -lblas -lgfortran -lm -lquadmath -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-preprocessCore/00new/preprocessCore/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (preprocessCore)
+* installing *source* package ‘affy’ ...
+** this is package ‘affy’ version ‘1.86.0’
+** using staged installation
+creating cache ./config.cache
+checking how to run the C preprocessor... gcc -std=gnu2x -E
+checking for main in -lz... yes
+checking for zlib.h... yes
+checking if zlib version >= 1.1.3... yes
+updating cache ./config.cache
+creating ./config.status
+creating src/Makevars
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DHAVE_ZLIB=1  -I'/home/runner/work/_temp/Library/preprocessCore/include' -I/usr/local/include   -g -O2 -fpic  -g -O2  -c chipbackground.c -o chipbackground.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DHAVE_ZLIB=1  -I'/home/runner/work/_temp/Library/preprocessCore/include' -I/usr/local/include   -g -O2 -fpic  -g -O2  -c getall_locations.c -o getall_locations.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DHAVE_ZLIB=1  -I'/home/runner/work/_temp/Library/preprocessCore/include' -I/usr/local/include   -g -O2 -fpic  -g -O2  -c mas5calls.c -o mas5calls.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DHAVE_ZLIB=1  -I'/home/runner/work/_temp/Library/preprocessCore/include' -I/usr/local/include   -g -O2 -fpic  -g -O2  -c rma2.c -o rma2.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DHAVE_ZLIB=1  -I'/home/runner/work/_temp/Library/preprocessCore/include' -I/usr/local/include   -g -O2 -fpic  -g -O2  -c rma_common.c -o rma_common.o
+gcc -std=gnu2x -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o affy.so chipbackground.o getall_locations.o mas5calls.o rma2.o rma_common.o -lz -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-affy/00new/affy/libs
+** R
+** data
+** demo
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (affy)
+
+The downloaded source packages are in
+	‘/tmp/Rtmpu1lXZI/downloaded_packages’
+Successfully installed: affy 
+Installing Bioconductor package: affyPLM 
+'getOption("repos")' replaces Bioconductor standard repositories, see
+'help("repositories", package = "BiocManager")' for details.
+Replacement repositories:
+    CRAN: https://cloud.r-project.org/
+Bioconductor version 3.21 (BiocManager 1.30.26), R 4.5.1 (2025-06-13)
+Installing package(s) 'affyPLM'
+also installing the dependencies ‘Biostrings’, ‘gcrma’
+
+trying URL 'https://bioconductor.org//packages/3.21/bioc/src/contrib/Biostrings_2.76.0.tar.gz'
+trying URL 'https://bioconductor.org//packages/3.21/bioc/src/contrib/gcrma_2.80.0.tar.gz'
+trying URL 'https://bioconductor.org//packages/3.21/bioc/src/contrib/affyPLM_1.84.0.tar.gz'
+* installing *source* package ‘Biostrings’ ...
+** this is package ‘Biostrings’ version ‘2.76.0’
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I'/home/runner/work/_temp/Library/XVector/include' -I/usr/local/include    -fpic  -g -O2  -c BAB_class.c -o BAB_class.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I'/home/runner/work/_temp/Library/XVector/include' -I/usr/local/include    -fpic  -g -O2  -c BitMatrix.c -o BitMatrix.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I'/home/runner/work/_temp/Library/XVector/include' -I/usr/local/include    -fpic  -g -O2  -c IRanges_stubs.c -o IRanges_stubs.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I'/home/runner/work/_temp/Library/XVector/include' -I/usr/local/include    -fpic  -g -O2  -c MIndex_class.c -o MIndex_class.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I'/home/runner/work/_temp/Library/XVector/include' -I/usr/local/include    -fpic  -g -O2  -c PreprocessedTB_class.c -o PreprocessedTB_class.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I'/home/runner/work/_temp/Library/XVector/include' -I/usr/local/include    -fpic  -g -O2  -c R_init_Biostrings.c -o R_init_Biostrings.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I'/home/runner/work/_temp/Library/XVector/include' -I/usr/local/include    -fpic  -g -O2  -c RoSeqs_utils.c -o RoSeqs_utils.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I'/home/runner/work/_temp/Library/XVector/include' -I/usr/local/include    -fpic  -g -O2  -c S4Vectors_stubs.c -o S4Vectors_stubs.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I'/home/runner/work/_temp/Library/XVector/include' -I/usr/local/include    -fpic  -g -O2  -c SparseList_utils.c -o SparseList_utils.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I'/home/runner/work/_temp/Library/XVector/include' -I/usr/local/include    -fpic  -g -O2  -c XStringSetList_class.c -o XStringSetList_class.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I'/home/runner/work/_temp/Library/XVector/include' -I/usr/local/include    -fpic  -g -O2  -c XStringSet_class.c -o XStringSet_class.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I'/home/runner/work/_temp/Library/XVector/include' -I/usr/local/include    -fpic  -g -O2  -c XString_class.c -o XString_class.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I'/home/runner/work/_temp/Library/XVector/include' -I/usr/local/include    -fpic  -g -O2  -c XVector_stubs.c -o XVector_stubs.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I'/home/runner/work/_temp/Library/XVector/include' -I/usr/local/include    -fpic  -g -O2  -c find_palindromes.c -o find_palindromes.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I'/home/runner/work/_temp/Library/XVector/include' -I/usr/local/include    -fpic  -g -O2  -c gtestsim.c -o gtestsim.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I'/home/runner/work/_temp/Library/XVector/include' -I/usr/local/include    -fpic  -g -O2  -c inject_code.c -o inject_code.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I'/home/runner/work/_temp/Library/XVector/include' -I/usr/local/include    -fpic  -g -O2  -c letter_frequency.c -o letter_frequency.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I'/home/runner/work/_temp/Library/XVector/include' -I/usr/local/include    -fpic  -g -O2  -c lowlevel_matching.c -o lowlevel_matching.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I'/home/runner/work/_temp/Library/XVector/include' -I/usr/local/include    -fpic  -g -O2  -c match_PWM.c -o match_PWM.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I'/home/runner/work/_temp/Library/XVector/include' -I/usr/local/include    -fpic  -g -O2  -c match_pattern.c -o match_pattern.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I'/home/runner/work/_temp/Library/XVector/include' -I/usr/local/include    -fpic  -g -O2  -c match_pattern_boyermoore.c -o match_pattern_boyermoore.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I'/home/runner/work/_temp/Library/XVector/include' -I/usr/local/include    -fpic  -g -O2  -c match_pattern_indels.c -o match_pattern_indels.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I'/home/runner/work/_temp/Library/XVector/include' -I/usr/local/include    -fpic  -g -O2  -c match_pattern_shiftor.c -o match_pattern_shiftor.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I'/home/runner/work/_temp/Library/XVector/include' -I/usr/local/include    -fpic  -g -O2  -c match_pdict.c -o match_pdict.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I'/home/runner/work/_temp/Library/XVector/include' -I/usr/local/include    -fpic  -g -O2  -c match_pdict_ACtree2.c -o match_pdict_ACtree2.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I'/home/runner/work/_temp/Library/XVector/include' -I/usr/local/include    -fpic  -g -O2  -c match_pdict_Twobit.c -o match_pdict_Twobit.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I'/home/runner/work/_temp/Library/XVector/include' -I/usr/local/include    -fpic  -g -O2  -c match_pdict_utils.c -o match_pdict_utils.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I'/home/runner/work/_temp/Library/XVector/include' -I/usr/local/include    -fpic  -g -O2  -c match_reporting.c -o match_reporting.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I'/home/runner/work/_temp/Library/XVector/include' -I/usr/local/include    -fpic  -g -O2  -c matchprobes.c -o matchprobes.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I'/home/runner/work/_temp/Library/XVector/include' -I/usr/local/include    -fpic  -g -O2  -c pmatchPattern.c -o pmatchPattern.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I'/home/runner/work/_temp/Library/XVector/include' -I/usr/local/include    -fpic  -g -O2  -c read_fasta_files.c -o read_fasta_files.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I'/home/runner/work/_temp/Library/XVector/include' -I/usr/local/include    -fpic  -g -O2  -c read_fastq_files.c -o read_fastq_files.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I'/home/runner/work/_temp/Library/XVector/include' -I/usr/local/include    -fpic  -g -O2  -c replaceAt.c -o replaceAt.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I'/home/runner/work/_temp/Library/XVector/include' -I/usr/local/include    -fpic  -g -O2  -c replace_letter_at.c -o replace_letter_at.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I'/home/runner/work/_temp/Library/XVector/include' -I/usr/local/include    -fpic  -g -O2  -c strutils.c -o strutils.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I'/home/runner/work/_temp/Library/XVector/include' -I/usr/local/include    -fpic  -g -O2  -c translate.c -o translate.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I'/home/runner/work/_temp/Library/XVector/include' -I/usr/local/include    -fpic  -g -O2  -c unstrsplit_methods.c -o unstrsplit_methods.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I'/home/runner/work/_temp/Library/XVector/include' -I/usr/local/include    -fpic  -g -O2  -c utils.c -o utils.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/S4Vectors/include' -I'/home/runner/work/_temp/Library/IRanges/include' -I'/home/runner/work/_temp/Library/XVector/include' -I/usr/local/include    -fpic  -g -O2  -c xscat.c -o xscat.o
+gcc -std=gnu2x -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o Biostrings.so BAB_class.o BitMatrix.o IRanges_stubs.o MIndex_class.o PreprocessedTB_class.o R_init_Biostrings.o RoSeqs_utils.o S4Vectors_stubs.o SparseList_utils.o XStringSetList_class.o XStringSet_class.o XString_class.o XVector_stubs.o find_palindromes.o gtestsim.o inject_code.o letter_frequency.o lowlevel_matching.o match_PWM.o match_pattern.o match_pattern_boyermoore.o match_pattern_indels.o match_pattern_shiftor.o match_pdict.o match_pdict_ACtree2.o match_pdict_Twobit.o match_pdict_utils.o match_reporting.o matchprobes.o pmatchPattern.o read_fasta_files.o read_fastq_files.o replaceAt.o replace_letter_at.o strutils.o translate.o unstrsplit_methods.o utils.o xscat.o -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-Biostrings/00new/Biostrings/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+in method for ‘twoWayAlphabetFrequencyByQuality’ with signature ‘"QualityScaledXStringSet"’: no definition for class “QualityScaledXStringSet”
+Creating a new generic function for ‘strsplit’ in package ‘Biostrings’
+Creating a generic function for ‘ls’ from package ‘base’ in package ‘Biostrings’
+Creating a new generic function for ‘offset’ in package ‘Biostrings’
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (Biostrings)
+* installing *source* package ‘gcrma’ ...
+** this is package ‘gcrma’ version ‘2.80.0’
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c baseProfile.c -o baseProfile.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c computeAffinities.c -o computeAffinities.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c postmean.c -o postmean.o
+gcc -std=gnu2x -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o gcrma.so baseProfile.o computeAffinities.o postmean.o -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-gcrma/00new/gcrma/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (gcrma)
+* installing *source* package ‘affyPLM’ ...
+** this is package ‘affyPLM’ version ‘1.84.0’
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/preprocessCore/include' -I/usr/local/include    -fpic  -g -O2  -c LESN.c -o LESN.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/preprocessCore/include' -I/usr/local/include    -fpic  -g -O2  -c PLM_avg_log.c -o PLM_avg_log.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/preprocessCore/include' -I/usr/local/include    -fpic  -g -O2  -c PLM_biweight.c -o PLM_biweight.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/preprocessCore/include' -I/usr/local/include    -fpic  -g -O2  -c PLM_log_avg.c -o PLM_log_avg.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/preprocessCore/include' -I/usr/local/include    -fpic  -g -O2  -c PLM_medianPM.c -o PLM_medianPM.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/preprocessCore/include' -I/usr/local/include    -fpic  -g -O2  -c PLM_median_logPM.c -o PLM_median_logPM.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/preprocessCore/include' -I/usr/local/include    -fpic  -g -O2  -c PLM_medianpolish.c -o PLM_medianpolish.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/preprocessCore/include' -I/usr/local/include    -fpic  -g -O2  -c PLM_modelmatrix.c -o PLM_modelmatrix.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/preprocessCore/include' -I/usr/local/include    -fpic  -g -O2  -c SCAB.c -o SCAB.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/preprocessCore/include' -I/usr/local/include    -fpic  -g -O2  -c chipbackground.c -o chipbackground.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/preprocessCore/include' -I/usr/local/include    -fpic  -g -O2  -c common_types.c -o common_types.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/preprocessCore/include' -I/usr/local/include    -fpic  -g -O2  -c do_PLMrlm.c -o do_PLMrlm.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/preprocessCore/include' -I/usr/local/include    -fpic  -g -O2  -c do_PLMrma.c -o do_PLMrma.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/preprocessCore/include' -I/usr/local/include    -fpic  -g -O2  -c do_PLMthreestep.c -o do_PLMthreestep.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/preprocessCore/include' -I/usr/local/include    -fpic  -g -O2  -c idealmismatch.c -o idealmismatch.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/preprocessCore/include' -I/usr/local/include    -fpic  -g -O2  -c lm_threestep.c -o lm_threestep.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/preprocessCore/include' -I/usr/local/include    -fpic  -g -O2  -c matrix_functions.c -o matrix_functions.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/preprocessCore/include' -I/usr/local/include    -fpic  -g -O2  -c nthLargestPM.c -o nthLargestPM.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/preprocessCore/include' -I/usr/local/include    -fpic  -g -O2  -c preprocess.c -o preprocess.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/preprocessCore/include' -I/usr/local/include    -fpic  -g -O2  -c psi_fns.c -o psi_fns.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/preprocessCore/include' -I/usr/local/include    -fpic  -g -O2  -c qnorm_probeset.c -o qnorm_probeset.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/preprocessCore/include' -I/usr/local/include    -fpic  -g -O2  -c read_rmaexpress.c -o read_rmaexpress.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/preprocessCore/include' -I/usr/local/include    -fpic  -g -O2  -c rlm_PLM.c -o rlm_PLM.o
+rlm_PLM.c: In function ‘rlm_PLMset_nameoutput’:
+rlm_PLM.c:870:32: warning: ‘%d’ directive output may be truncated writing between 1 and 10 bytes into a region of size 9 [-Wformat-truncation=]
+  870 |           snprintf(tmp_str2,9,"%d",j+1);
+      |                                ^~
+rlm_PLM.c:870:31: note: directive argument in the range [1, 2147483647]
+  870 |           snprintf(tmp_str2,9,"%d",j+1);
+      |                               ^~~~
+In file included from /usr/include/stdio.h:980,
+                 from /opt/R/4.5.1/lib/R/include/R.h:44,
+                 from preprocess.h:4,
+                 from rlm_PLM.c:71:
+In function ‘snprintf’,
+    inlined from ‘rlm_PLMset_nameoutput’ at rlm_PLM.c:870:4:
+/usr/include/x86_64-linux-gnu/bits/stdio2.h:54:10: note: ‘__builtin___snprintf_chk’ output between 2 and 11 bytes into a destination of size 9
+   54 |   return __builtin___snprintf_chk (__s, __n, __USE_FORTIFY_LEVEL - 1,
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   55 |                                    __glibc_objsize (__s), __fmt,
+      |                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   56 |                                    __va_arg_pack ());
+      |                                    ~~~~~~~~~~~~~~~~~
+rlm_PLM.c: In function ‘rlm_PLMset_nameoutput’:
+rlm_PLM.c:868:32: warning: ‘%d’ directive output may be truncated writing between 1 and 10 bytes into a region of size 9 [-Wformat-truncation=]
+  868 |           snprintf(tmp_str2,9,"%d",j+2);
+      |                                ^~
+rlm_PLM.c:868:31: note: directive argument in the range [2, 2147483647]
+  868 |           snprintf(tmp_str2,9,"%d",j+2);
+      |                               ^~~~
+In function ‘snprintf’,
+    inlined from ‘rlm_PLMset_nameoutput’ at rlm_PLM.c:868:4:
+/usr/include/x86_64-linux-gnu/bits/stdio2.h:54:10: note: ‘__builtin___snprintf_chk’ output between 2 and 11 bytes into a destination of size 9
+   54 |   return __builtin___snprintf_chk (__s, __n, __USE_FORTIFY_LEVEL - 1,
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   55 |                                    __glibc_objsize (__s), __fmt,
+      |                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   56 |                                    __va_arg_pack ());
+      |                                    ~~~~~~~~~~~~~~~~~
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/preprocessCore/include' -I/usr/local/include    -fpic  -g -O2  -c rlm_threestep.c -o rlm_threestep.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/preprocessCore/include' -I/usr/local/include    -fpic  -g -O2  -c rmaPLM_pseudo.c -o rmaPLM_pseudo.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/preprocessCore/include' -I/usr/local/include    -fpic  -g -O2  -c rma_PLM.c -o rma_PLM.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/preprocessCore/include' -I/usr/local/include    -fpic  -g -O2  -c rma_common.c -o rma_common.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/preprocessCore/include' -I/usr/local/include    -fpic  -g -O2  -c scaling.c -o scaling.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/preprocessCore/include' -I/usr/local/include    -fpic  -g -O2  -c threestep.c -o threestep.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/preprocessCore/include' -I/usr/local/include    -fpic  -g -O2  -c threestep_PLM.c -o threestep_PLM.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/preprocessCore/include' -I/usr/local/include    -fpic  -g -O2  -c threestep_common.c -o threestep_common.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/preprocessCore/include' -I/usr/local/include    -fpic  -g -O2  -c threestep_summary.c -o threestep_summary.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/preprocessCore/include' -I/usr/local/include    -fpic  -g -O2  -c threestep_summary_methods.c -o threestep_summary_methods.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/preprocessCore/include' -I/usr/local/include    -fpic  -g -O2  -c transfns.c -o transfns.o
+gcc -std=gnu2x -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o affyPLM.so LESN.o PLM_avg_log.o PLM_biweight.o PLM_log_avg.o PLM_medianPM.o PLM_median_logPM.o PLM_medianpolish.o PLM_modelmatrix.o SCAB.o chipbackground.o common_types.o do_PLMrlm.o do_PLMrma.o do_PLMthreestep.o idealmismatch.o lm_threestep.o matrix_functions.o nthLargestPM.o preprocess.o psi_fns.o qnorm_probeset.o read_rmaexpress.o rlm_PLM.o rlm_threestep.o rmaPLM_pseudo.o rma_PLM.o rma_common.o scaling.o threestep.o threestep_PLM.o threestep_common.o threestep_summary.o threestep_summary_methods.o transfns.o -llapack -lblas -lgfortran -lm -lquadmath -lz -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-affyPLM/00new/affyPLM/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (affyPLM)
+
+The downloaded source packages are in
+	‘/tmp/Rtmpu1lXZI/downloaded_packages’
+Successfully installed: affyPLM 
+Installing Bioconductor package: limma 
+'getOption("repos")' replaces Bioconductor standard repositories, see
+'help("repositories", package = "BiocManager")' for details.
+Replacement repositories:
+    CRAN: https://cloud.r-project.org/
+Bioconductor version 3.21 (BiocManager 1.30.26), R 4.5.1 (2025-06-13)
+Installing package(s) 'limma'
+also installing the dependency ‘statmod’
+
+trying URL 'https://cloud.r-project.org/src/contrib/statmod_1.5.0.tar.gz'
+trying URL 'https://bioconductor.org//packages/3.21/bioc/src/contrib/limma_3.64.3.tar.gz'
+* installing *source* package ‘statmod’ ...
+** this is package ‘statmod’ version ‘1.5.0’
+** package ‘statmod’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+using Fortran compiler: ‘GNU Fortran (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c expectedDeviance.c -o expectedDeviance.o
+gfortran  -fpic  -g -O2  -c gaussq2.f -o gaussq2.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c init.c -o init.o
+gcc -std=gnu2x -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o statmod.so expectedDeviance.o gaussq2.o init.o -lgfortran -lm -lquadmath -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-statmod/00new/statmod/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (statmod)
+* installing *source* package ‘limma’ ...
+** this is package ‘limma’ version ‘3.64.3’
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c init.c -o init.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c normexp.c -o normexp.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c weighted_lowess.c -o weighted_lowess.o
+gcc -std=gnu2x -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o limma.so init.o normexp.o weighted_lowess.o -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-limma/00new/limma/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (limma)
+
+The downloaded source packages are in
+	‘/tmp/Rtmpu1lXZI/downloaded_packages’
+Successfully installed: limma 
+
+===========================================
+Package installation completed!
+You can now run your R scripts in this directory.

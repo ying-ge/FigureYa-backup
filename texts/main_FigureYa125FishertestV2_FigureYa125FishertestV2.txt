@@ -1,0 +1,121 @@
+FigureYa125FishertestV2
+FigureYa125FishertestV2
+Author(s)
+: Xiaofan Lu, Enyu Lin, Taojun Ye
+Reviewer(s)
+: Ying Ge
+Date
+: 2025-09-22
+Academic Citation
+If you use this code in your work or research, we kindly request that
+you cite our publication:
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization
+Framework for Enhancing Biomedical Data Interpretation and Research
+Efficiency. iMetaMed.
+https://doi.org/10.1002/imm3.70005
+需求描述
+两个指标（miRNA和FAP蛋白）按照高低分为四组，计算两个指标的相关性和p
+value，用热图展示。
+Requirement description
+Divide the two indicators (miRNA and FAP protein) into four groups
+according to their levels, calculate the correlation and p-value between
+the two indicators, and display them using a heatmap.
+出自
+http://cancerres.aacrjournals.org/content/78/7/1751
+from
+http://cancerres.aacrjournals.org/content/78/7/1751
+Figure 4. E–F, Comparison of the miR-508 ISH scores and the CALD1 and
+FAP IHC scores in colorectal cancer tissues. The correlations are shown
+in European cohort (n ¼ 128; E) and Renji cohort 2 (n ¼ 100; Fisher
+exact test; F).
+应用场景
+本质上就是把连续型因素分类后，研究两种因素间的相关性，用列联表热图展示，同时做Fisher’s
+exact test。
+可用于计算和展示miRNA跟靶基因，或转录因子跟靶基因之间的相关关系。
+Application scenarios
+Essentially, it is to classify continuous factors, study the
+correlation between two factors, display it using a contingency table
+heatmap, and conduct Fisher’s exact test.
+Can be used to calculate and display the correlation between miRNA
+and target genes, or transcription factors and target genes.
+环境设置
+Environment settings
+# 设置系统环境变量，使R显示英文报错信息 (Set system environment variable to display error messages in English)
+Sys.setenv(LANGUAGE = "en") 
+
+# 禁止R在读取数据时自动将字符串转换为因子 (Prevent R from automatically converting strings to factors when reading data)
+options(stringsAsFactors = FALSE)
+输入文件
+easy_input.txt，两个连续型变量在每个样本里的观测值。每行一个样本，两列分别是两个观测值，此处是miRNA
+ISH scores和FAP IHC scores。
+Input file
+easy_input.txt， The observed values of two continuous variables in
+each sample. Each row contains one sample, and the two columns represent
+two observations, namely miRNA ISH scores and FAP IHC scores.
+# 从easy_input.txt文件读取数据，假设首行为列名 (Read data from easy_input.txt, assuming the first row contains column names)
+simdata <- read.table("easy_input.txt",header = T)
+# 查看数据前几行，了解数据结构 (View the first few rows of the data to understand its structure)
+head(simdata)
+# 计算两个连续变量之间的相关系数 (Calculate the correlation coefficient between two continuous variables)
+# 此结果将在后续作为图表标题的一部分 (This result will be used as part of the chart title later)
+r.cor <- cor(simdata$miR.508, simdata$FAP)
+# 打印相关系数结果 (Print the correlation coefficient)
+r.cor
+# 计算相关系数的p值，用于检验相关性的显著性 (Calculate the p-value for the correlation coefficient to test its significance)
+# 结果同样会用于图表标题 (This result will also be used in the chart title)
+p.cor <- cor.test(simdata$miR.508, simdata$FAP)$p.value
+# 打印p值结果 (Print the p-value)
+p.cor
+附：这里的输入数据是模拟出来的，生成方法如下：
+Attachment: The input data here is simulated, and the generation
+method is as follows:
+连续变量分类
+例文把两个因素都分为四组：Positive，Moderate，Weak，Negative。
+因此，我们根据四分位数将数据分割为四种类型：
+Continuous variable classification
+The example text divides both factors into four groups: positive,
+moderate, weak, and negative.
+Therefore, we divide the data into four types based on quartiles:
+# 根据miR.508表达量的四分位数将数据分为四类 (Classify data into four categories based on quartiles of miR.508 expression)
+# 分类标签参考示例设置 (Classification labels follow the example provided)
+# 因子水平按降序排列，便于后续可视化 (Factor levels sorted in descending order for visualization)
+simdata$miR.508_classify <- factor(cut(simdata$miR.508, quantile(simdata$miR.508), 
+                                       labels = c("Negative", "Weak", "Moderate", "Positive")),
+                                   levels = c("Positive", "Moderate", "Weak", "Negative")) 
+
+# 可选方案：根据中位数将数据分为高低两类 (Alternative: classify data into two categories based on median)
+# 此代码行被注释，保留作为参考 (This line is commented out for reference)
+#simdata$miR.508_classify <- factor(cut(simdata$miR.508, c(0, median(simdata$miR.508),max(simdata$miR.508)), 
+#                                       labels = c("Negative", "Positive")), 
+#                                   levels = c("Positive", "Negative"))
+
+# 根据FAP表达量的四分位数将数据分为四类 (Classify data into four categories based on quartiles of FAP expression)
+# 分类标签与示例一致 (Classification labels consistent with the example)
+# 因子水平按升序排列 (Factor levels sorted in ascending order)
+simdata$FAP2_classify <- factor(cut(simdata$FAP, quantile(simdata$FAP), 
+                             labels = c("Negative", "Weak", "Moderate", "Positive")), 
+                         levels = c("Negative", "Weak", "Moderate", "Positive")) 
+
+# 创建miR.508和FAP2分类的列联表 (Create contingency table for miR.508 and FAP2 classifications)
+# 将列联表转换为数据框格式 (Convert contingency table to data frame format)
+tab_classify <- as.data.frame.array(table(simdata$miR.508_classify,simdata$FAP2_classify)) 
+# 打印列联表查看结果 (Print contingency table to inspect results)
+tab_classify
+# 对分类变量执行Fisher精确检验 (Perform Fisher's exact test on the contingency table)
+# 当分类较多时需要增加workspace参数以避免内存不足错误 (Increase workspace for large contingency tables)
+# 通常设置为1e9可满足大多数情况需求 (Typical value of 1e9 suffices for most cases)
+p.fisher <- fisher.test(tab_classify, workspace = 1e9)$p.value 
+# 打印Fisher检验的p值 (Print p-value from Fisher's exact test)
+p.fisher
+注意：
+由于不同字符串的排序不同，或者是最终列联表的横纵坐标编号不同，请一定在绘制完成后仔细核对原始数据和计数矩阵，谨防映射关系出错。
+**Attention: * * Due to different sorting of strings or different
+horizontal and vertical coordinate numbers in the final contingency
+table, please carefully check the original data and count matrix after
+drawing to avoid mapping errors.
+开始画图
+下面用base plot一笔一笔画图：
+Start drawing
+Below is a stroke by stroke plot using the base plot:
+Session Info
+sessionInfo()

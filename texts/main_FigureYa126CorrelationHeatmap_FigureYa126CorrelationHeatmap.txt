@@ -1,0 +1,158 @@
+FigureYa126CorrelationHeatmap
+FigureYa126CorrelationHeatmap
+Author(s)
+: Xiaofan Lu, Taojun Ye
+Reviewer(s)
+: Ying Ge
+Date
+: 2025-09-22
+Academic Citation
+If you use this code in your work or research, we kindly request that
+you cite our publication:
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization
+Framework for Enhancing Biomedical Data Interpretation and Research
+Efficiency. iMetaMed.
+https://doi.org/10.1002/imm3.70005
+需求描述
+根据相关系数排列的无聚类热图，展示和TIM-3基因表达（某一连续变量）相关的免疫基因（其他连续变量）在样本中的分布情况。使用TCGA
+GBM数据以及例文给出的基因集，复现原图。
+Requirement description
+Display the distribution of immune genes (other continuous variables)
+related to TIM-3 gene expression (a certain continuous variable) in the
+sample using a non clustered heatmap arranged according to the
+correlation coefficient. Using TCGA GBM data and the gene set provided
+in the example text, reproduce the original image.
+出自
+https://www.tandfonline.com/doi/full/10.1080/2162402X.2017.1328339
+from
+https://www.tandfonline.com/doi/full/10.1080/2162402X.2017.1328339
+Figure 3. (C, D) Most immune response related genes were
+significantly positively correlated with TIM-3 expression, while there
+were still a small number of genes were significantly negatively
+correlated with Tim-3 expression.
+应用场景
+展示跟某一个基因呈正/负相关的多个基因的表达模式。
+例如像例文这种，每列一个样本，每行一个基因。上半部分画出与目标基因的表达模式呈正相关的免疫相关基因，下半部分是负相关的。顶部展示样本的亚组、基因型或其他临床信息。
+Application scenarios
+Display the expression patterns of multiple genes that are
+positively/negatively correlated with a certain gene.
+For example, in the example text, there is one sample per column and
+one gene per row. The upper part shows immune related genes that are
+positively correlated with the expression pattern of the target gene,
+while the lower part shows a negative correlation. Display the
+subgroups, genotypes, or other clinical information of the sample at the
+top.
+环境设置
+Environment settings
+Use domestic image installation package
+source("install_dependencies.R")
+# 加载clusterProfiler包，用于基因富集分析和功能注释
+# Load the clusterProfiler package for gene enrichment analysis and functional annotation
+library(clusterProfiler)
+# 加载org.Hs.eg.db包，包含人类基因注释信息
+# Load the org.Hs.eg.db package containing human gene annotation information
+library(org.Hs.eg.db)
+# 加载biomaRt包，用于访问Ensembl数据库获取基因注释
+# Load the biomaRt package for accessing Ensembl databases to retrieve gene annotations
+library(biomaRt)
+
+# 加载pheatmap包，用于绘制热图
+# Load the pheatmap package for drawing heatmaps
+library(pheatmap)
+
+# 加载RColorBrewer包，提供丰富的配色方案
+# Load the RColorBrewer package providing a variety of color schemes
+library(RColorBrewer)
+
+# 设置环境语言为英文，使报错信息以英文显示
+# Set the environment language to English to display error messages in English
+Sys.setenv(LANGUAGE = "en") 
+
+# 禁止字符串自动转换为因子类型，避免数据处理中的意外转换
+# Disable automatic conversion of strings to factors to prevent unexpected conversions during data processing
+options(stringsAsFactors = FALSE)
+输入文件
+easy_input_expr.csv，TCGA-GBM.htseq_fpkm，基因表达谱。从XENA下载得到，值为log2（FPKM+1），为方便传输，小数点后保留2位。需要把基因名换成gene
+symbol。
+gbm_tcga_pub2013_clinical_data.tsv，临床信息。从cBioPortal上下载得到：
+http://www.cbioportal.org/study/clinicalData?id=gbm_tcga_pub2013
+easy_input_genes.txt，immune-response-related基因集。来自例文补充材料：Supplementary
+table1.xlsx
+Input file
+easy_input_expr.csv，TCGA-GBM.htseq_fpkm， Gene expression profile.
+Downloaded from XENA, the value is log2 (FPKM+1), with 2 decimal places
+reserved for ease of transmission. We need to change the gene name to
+gene symbol.
+gbm_tcga_pub2013_clinical_data.tsv， Clinical information. Download
+from cBioPortal:
+http://www.cbioportal.org/study/clinicalData?id=gbm_tcga_pub2013
+Easyinput_genes. txt, immune response related gene set. Supplementary
+Table 1. xlsx
+# 去除重复的基因符号
+# Remove duplicate gene symbols
+ensembl2gs <- ensembl2gs[!duplicated(ensembl2gs$SYMBOL),] 
+
+# 根据TCGA样品名的命名规律，提取出肿瘤样本
+# Extract tumor samples based on TCGA sample naming convention
+tum.sam <- colnames(expr)[which(substr(colnames(expr),14,15) == "01")]
+
+# 生成新的表达谱，行名为基因符号，列名为肿瘤样本
+# Generate a new expression matrix with gene symbols as row names and tumor samples as column names
+expr2 <- expr[ensembl2gs$ENSEMBL,tum.sam]
+rownames(expr2) <- ensembl2gs$SYMBOL
+# 查看新表达谱的前3行3列
+# View the first 3 rows and 3 columns of the new expression matrix
+expr2[1:3, 1:3]
+# 提取带临床信息的样本对应的表达谱
+# Extract expression profiles for samples with clinical information
+expr2 <- expr2[,rownames(Sinfo)]
+
+# 根据TIM-3的表达量，给样本排序（TIM-3即为HAVCR2）
+# Sort samples by the expression level of TIM-3 (HAVCR2)
+sam.order <- sort(sapply(expr2["HAVCR2",], as.factor),decreasing = F)
+
+### 读取相关基因的表达量，用于画热图，例文画的是免疫相关基因 ###
+# Read the list of genes for heatmap generation, example uses immune-related genes
+genelist <- read.table("easy_input_genes.txt",sep = "\t",check.names = F,stringsAsFactors = F,header = T,row.names = NULL)
+# 查看基因列表前几行
+# View the first few rows of the gene list
+head(genelist)
+# 提取基因列表中存在于表达谱中的基因，并按TIM-3表达量排序
+# Extract genes from the gene list that exist in the expression matrix and order by TIM-3 expression
+imm.expr <- expr2[intersect(rownames(expr2), genelist$`GENE LIST`), names(sam.order)]
+# 查看免疫相关基因表达量矩阵的前3行3列
+# View the first 3 rows and 3 columns of the immune-related gene expression matrix
+imm.expr[1:3, 1:3]
+与基因集的相关性分析
+Correlation analysis with gene set
+# 初始化相关性结果矩阵
+# Initialize matrix to store correlation results
+cor.res <- NULL
+
+# 计算免疫相关基因表达量与TIM-3表达量的Spearman相关性
+# Calculate Spearman correlation between immune-related gene expression and TIM-3 expression
+for (i in 1:nrow(imm.expr)) {
+  tmp <- cor.test(as.numeric(imm.expr[i,]),as.numeric(sam.order),method = "spearman") # 使用非参相关性分析
+  # Non-parametric correlation analysis using Spearman method
+  cor.res <- rbind.data.frame(cor.res,data.frame(gene = rownames(imm.expr)[i], rho = tmp$estimate, p = tmp$p.value, stringsAsFactors = F))
+}
+# 筛选与TIM-3表达显著正相关的基因（rho>0.3且p<0.05）
+# Select genes significantly positively correlated with TIM-3 expression (rho>0.3 and p<0.05)
+pos.cor.gene <- cor.res[which(cor.res$rho > 0.3 & cor.res$p < 0.05), c("gene","rho")] 
+
+# 筛选与TIM-3表达显著负相关的基因（rho<-0.3且p<0.05）
+# Select genes significantly negatively correlated with TIM-3 expression (rho<-0.3 and p<0.05)
+neg.cor.gene <- cor.res[which(cor.res$rho < -0.3 & cor.res$p < 0.05), c("gene","rho")] 
+# 注释：若用例文的-0.4 cutoff，这里只能找到2个基因，最终图的效果可能不明显
+# Note: Using -0.4 cutoff as in the example yields only 2 genes, resulting in less visible heatmap patterns
+
+# 按相关系数升序排列正相关基因，使热图呈现楔形渐变效果
+# Sort positively correlated genes by rho ascending for wedge-shaped gradient in heatmap
+pos.cor.gene <- pos.cor.gene[order(pos.cor.gene$rho,decreasing = F),] 
+
+# 按相关系数升序排列负相关基因，使热图呈现楔形渐变效果
+# Sort negatively correlated genes by rho ascending for wedge-shaped gradient in heatmap
+neg.cor.gene <- neg.cor.gene[order(neg.cor.gene$rho,decreasing = F),]
+开始画图
+Start drawing
+sessionInfo()

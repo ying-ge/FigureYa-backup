@@ -1,0 +1,49 @@
+Starting R package installation...
+===========================================
+
+Installing CRAN packages...
+Package already installed: RColorBrewer 
+Package already installed: cowplot 
+Package already installed: ggplot2 
+Package already installed: openxlsx 
+Package already installed: scales 
+
+Installing Bioconductor packages...
+Package already installed: GEOquery 
+Package already installed: affy 
+Package already installed: gcrma 
+Installing Bioconductor package: hgu133plus2.db 
+'getOption("repos")' replaces Bioconductor standard repositories, see
+'help("repositories", package = "BiocManager")' for details.
+Replacement repositories:
+    CRAN: https://cloud.r-project.org/
+Bioconductor version 3.21 (BiocManager 1.30.26), R 4.5.1 (2025-06-13)
+Installing package(s) 'hgu133plus2.db'
+trying URL 'https://bioconductor.org//packages/3.21/data/annotation/src/contrib/hgu133plus2.db_3.13.0.tar.gz'
+Content type 'application/x-gzip' length 2240377 bytes (2.1 MB)
+==================================================
+downloaded 2.1 MB
+
+* installing *source* package ‘hgu133plus2.db’ ...
+** this is package ‘hgu133plus2.db’ version ‘3.13.0’
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (hgu133plus2.db)
+
+The downloaded source packages are in
+	‘/tmp/RtmpCOMMb5/downloaded_packages’
+Successfully installed: hgu133plus2.db 
+Package already installed: limma 
+Package already installed: org.Hs.eg.db 
+
+===========================================
+Package installation completed!
+You can now run your R scripts in this directory.

@@ -1,0 +1,109 @@
+Starting R package installation...
+===========================================
+
+Installing CRAN packages...
+Installing CRAN package: EnvStats 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+also installing the dependencies ‘nortest’, ‘qcc’, ‘tinytest’
+
+trying URL 'https://cloud.r-project.org/src/contrib/nortest_1.0-4.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/qcc_2.7.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/tinytest_1.4.1.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/EnvStats_3.1.0.tar.gz'
+* installing *source* package ‘nortest’ ...
+** this is package ‘nortest’ version ‘1.0-4’
+** package ‘nortest’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (nortest)
+* installing *source* package ‘qcc’ ...
+** this is package ‘qcc’ version ‘2.7’
+** package ‘qcc’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (qcc)
+* installing *source* package ‘tinytest’ ...
+** this is package ‘tinytest’ version ‘1.4.1’
+** package ‘tinytest’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (tinytest)
+* installing *source* package ‘EnvStats’ ...
+** this is package ‘EnvStats’ version ‘3.1.0’
+** package ‘EnvStats’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (EnvStats)
+
+The downloaded source packages are in
+	‘/tmp/RtmpNK0yMW/downloaded_packages’
+Successfully installed: EnvStats 
+Installing CRAN package: matlab 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+trying URL 'https://cloud.r-project.org/src/contrib/matlab_1.0.4.1.tar.gz'
+Content type 'application/x-gzip' length 42155 bytes (41 KB)
+==================================================
+downloaded 41 KB
+
+* installing *source* package ‘matlab’ ...
+** this is package ‘matlab’ version ‘1.0.4.1’
+** package ‘matlab’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+Creating a new generic function for ‘sum’ in package ‘matlab’
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (matlab)
+
+The downloaded source packages are in
+	‘/tmp/RtmpNK0yMW/downloaded_packages’
+Successfully installed: matlab 
+Package already installed: pheatmap 
+
+===========================================
+Package installation completed!
+You can now run your R scripts in this directory.

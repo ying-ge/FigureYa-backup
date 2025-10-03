@@ -1,0 +1,100 @@
+Starting R package installation...
+===========================================
+
+Installing CRAN packages...
+Package already installed: GOplot 
+Package already installed: ggplot2 
+
+Installing Bioconductor packages...
+Installing Bioconductor package: AnnotationHub 
+'getOption("repos")' replaces Bioconductor standard repositories, see
+'help("repositories", package = "BiocManager")' for details.
+Replacement repositories:
+    CRAN: https://cloud.r-project.org/
+Bioconductor version 3.21 (BiocManager 1.30.26), R 4.5.1 (2025-06-13)
+Installing package(s) 'AnnotationHub'
+trying URL 'https://bioconductor.org//packages/3.21/bioc/src/contrib/AnnotationHub_3.16.1.tar.gz'
+Content type 'application/x-gzip' length 999611 bytes (976 KB)
+==================================================
+downloaded 976 KB
+
+* installing *source* package ‘AnnotationHub’ ...
+** this is package ‘AnnotationHub’ version ‘3.16.1’
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (AnnotationHub)
+
+The downloaded source packages are in
+	‘/tmp/RtmpypkF2Q/downloaded_packages’
+Successfully installed: AnnotationHub 
+Package already installed: AnnotationDbi 
+Package already installed: clusterProfiler 
+Installing Bioconductor package: org.Mm.eg.db 
+'getOption("repos")' replaces Bioconductor standard repositories, see
+'help("repositories", package = "BiocManager")' for details.
+Replacement repositories:
+    CRAN: https://cloud.r-project.org/
+Bioconductor version 3.21 (BiocManager 1.30.26), R 4.5.1 (2025-06-13)
+Installing package(s) 'org.Mm.eg.db'
+trying URL 'https://bioconductor.org//packages/3.21/data/annotation/src/contrib/org.Mm.eg.db_3.21.0.tar.gz'
+Content type 'application/x-gzip' length 86565286 bytes (82.6 MB)
+==================================================
+downloaded 82.6 MB
+
+* installing *source* package ‘org.Mm.eg.db’ ...
+** this is package ‘org.Mm.eg.db’ version ‘3.21.0’
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (org.Mm.eg.db)
+
+The downloaded source packages are in
+	‘/tmp/RtmpypkF2Q/downloaded_packages’
+Successfully installed: org.Mm.eg.db 
+
+===========================================
+Package installation completed!
+You can now run your R scripts in this directory.
+
+Testing AnnotationHub package...
+
+Attaching package: ‘generics’
+
+The following objects are masked from ‘package:base’:
+
+    as.difftime, as.factor, as.ordered, intersect, is.element, setdiff,
+    setequal, union
+
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    anyDuplicated, aperm, append, as.data.frame, basename, cbind,
+    colnames, dirname, do.call, duplicated, eval, evalq, Filter, Find,
+    get, grep, grepl, is.unsorted, lapply, Map, mapply, match, mget,
+    order, paste, pmax, pmax.int, pmin, pmin.int, Position, rank,
+    rbind, Reduce, rownames, sapply, saveRDS, table, tapply, unique,
+    unsplit, which.max, which.min
+
+✅ AnnotationHub package loaded successfully!

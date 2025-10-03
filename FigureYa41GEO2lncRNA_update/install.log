@@ -1,0 +1,14 @@
+Starting R package installation...
+===========================================
+
+Installing CRAN packages...
+Package already installed: dplyr 
+
+Installing Bioconductor packages...
+Package already installed: Biobase 
+Package already installed: GEOquery 
+Package already installed: biomaRt 
+
+===========================================
+Package installation completed!
+You can now run your R scripts in this directory.

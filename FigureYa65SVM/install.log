@@ -1,0 +1,52 @@
+Starting R package installation for SVM analysis...
+===========================================
+
+Installing CRAN packages...
+✓ Package already installed: VennDiagram 
+✓ Package already installed: caret 
+✓ Package already installed: e1071 
+✓ Package already installed: glmnet 
+✓ Package already installed: randomForest 
+✓ Package already installed: tidyverse 
+✓ Package already installed: dplyr 
+✓ Package already installed: ggplot2 
+✓ Package already installed: remotes 
+
+Installing sigFeature...
+Installing sigFeature from Bioconductor...
+'getOption("repos")' replaces Bioconductor standard repositories, see
+'help("repositories", package = "BiocManager")' for details.
+Replacement repositories:
+    CRAN: https://cloud.r-project.org/
+Bioconductor version 3.21 (BiocManager 1.30.26), R 4.5.1 (2025-06-13)
+Installing package(s) 'sigFeature'
+also installing the dependencies ‘RBGL’, ‘RUnit’, ‘biocViews’
+
+✓ Successfully installed: sigFeature
+
+Installing other Bioconductor packages...
+
+===========================================
+Verifying installation...
+✓ VennDiagram is ready
+✓ caret is ready
+✓ e1071 is ready
+✓ glmnet is ready
+✓ randomForest is ready
+✓ sigFeature is ready
+Testing sigFeature functionality...
+✓ sigFeature loaded successfully
+✓ tidyverse is ready
+Warning message:
+replacing previous import ‘Matrix::det’ by ‘SparseM::det’ when loading ‘sigFeature’ 
+
+Installation summary:
+Successfully installed: 7 / 7 packages
+✅ All packages installed successfully!
+You can now run your SVM analysis scripts.
+
+Alternative feature selection packages (if sigFeature fails):
+- Boruta: install.packages('Boruta')
+- FSelector: install.packages('FSelector')
+- caret for recursive feature elimination
+- mRMRe: BiocManager::install('mRMRe')

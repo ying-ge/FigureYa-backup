@@ -1,0 +1,28 @@
+Starting R package installation...
+===========================================
+
+NOTE: Cairo package requires system libraries.
+For Ubuntu/Debian, run this in shell BEFORE using this script:
+  sudo apt-get update
+  sudo apt-get install libcairo2-dev libxt-dev
+
+
+Installing CRAN packages...
+Package already installed: Cairo 
+Package already installed: RColorBrewer 
+Package already installed: data.table 
+Package already installed: dplyr 
+Package already installed: ggplot2 
+Package already installed: grid 
+Package already installed: gridExtra 
+Package already installed: magrittr 
+Package already installed: purrr 
+Package already installed: readr 
+Package already installed: readxl 
+Package already installed: stringr 
+Package already installed: tibble 
+Package already installed: tidyr 
+
+===========================================
+Package installation completed!
+You can now run your R scripts in this directory.

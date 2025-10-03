@@ -1,0 +1,68 @@
+Starting R package installation...
+===========================================
+
+Installing CRAN packages...
+Package already installed: caret 
+Installing CRAN package: kableExtra 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+also installing the dependencies ‘formattable’, ‘sparkline’
+
+trying URL 'https://cloud.r-project.org/src/contrib/formattable_0.2.1.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/sparkline_2.0.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/kableExtra_1.4.0.tar.gz'
+* installing *source* package ‘formattable’ ...
+** this is package ‘formattable’ version ‘0.2.1’
+** package ‘formattable’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (formattable)
+* installing *source* package ‘sparkline’ ...
+** this is package ‘sparkline’ version ‘2.0’
+** package ‘sparkline’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (sparkline)
+* installing *source* package ‘kableExtra’ ...
+** this is package ‘kableExtra’ version ‘1.4.0’
+** package ‘kableExtra’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (kableExtra)
+
+The downloaded source packages are in
+	‘/tmp/RtmpXfnTXG/downloaded_packages’
+Successfully installed: kableExtra 
+Package already installed: officer 
+Package already installed: survival 
+
+===========================================
+Package installation completed!
+You can now run your R scripts in this directory.

@@ -1,0 +1,12 @@
+Starting R package installation...
+===========================================
+
+Installing CRAN packages...
+Package already installed: data.table 
+Package already installed: dplyr 
+Package already installed: ggplot2 
+Package already installed: tidyverse 
+
+===========================================
+Package installation completed!
+You can now run your R scripts in this directory.

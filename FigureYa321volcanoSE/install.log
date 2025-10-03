@@ -1,0 +1,90 @@
+Starting R package installation...
+===========================================
+
+Installing TCGAbiolinks dependencies...
+Package already installed: AnnotationDbi 
+Package already installed: httr2 
+Package already installed: BiocFileCache 
+Package already installed: curl 
+Package already installed: rvest 
+Package already installed: httr 
+
+Installing CRAN packages...
+Package already installed: ggplot2 
+Package already installed: ggrepel 
+Installing CRAN package: openxlsx 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+also installing the dependencies ‘operator.tools’, ‘formula.tools’
+
+trying URL 'https://cloud.r-project.org/src/contrib/operator.tools_1.6.3.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/formula.tools_1.7.1.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/openxlsx_4.2.8.tar.gz'
+* installing *source* package ‘operator.tools’ ...
+** this is package ‘operator.tools’ version ‘1.6.3’
+** package ‘operator.tools’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (operator.tools)
+* installing *source* package ‘openxlsx’ ...
+** this is package ‘openxlsx’ version ‘4.2.8’
+** package ‘openxlsx’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c helper_functions.cpp -o helper_functions.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c load_workbook.cpp -o load_workbook.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c read_workbook.cpp -o read_workbook.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c write_data.cpp -o write_data.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c write_file.cpp -o write_file.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c write_file_2.cpp -o write_file_2.o
+g++ -std=gnu++17 -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o openxlsx.so RcppExports.o helper_functions.o load_workbook.o read_workbook.o write_data.o write_file.o write_file_2.o -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-openxlsx/00new/openxlsx/libs
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (openxlsx)
+* installing *source* package ‘formula.tools’ ...
+** this is package ‘formula.tools’ version ‘1.7.1’
+** package ‘formula.tools’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (formula.tools)
+
+The downloaded source packages are in
+	‘/tmp/Rtmps4iuGL/downloaded_packages’
+Successfully installed: openxlsx 
+
+Installing Bioconductor packages...
+Package already installed: TCGAbiolinks 
+Package already installed: limma 
+
+===========================================
+Package installation completed!
+You can now run your R scripts in this directory.

@@ -1,0 +1,307 @@
+FigureYa160scGSVA
+FigureYa160scGSVA
+Author(s)
+: Jinen Song
+Reviewer(s)
+: Ying Ge, Junyi Shen
+Date
+: 2025-09-22
+Academic Citation
+If you use this code in your work or research, we kindly request that
+you cite our publication:
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization
+Framework for Enhancing Biomedical Data Interpretation and Research
+Efficiency. iMetaMed.
+https://doi.org/10.1002/imm3.70005
+需求描述
+Requirement
+对单细胞亚群进行功能注释后，如何求每群细胞某条pathway的gene set score
+After functionally annotating single-cell subpopulations, how can I
+calculate the gene set score for a specific pathway in each
+subpopulation?
+出自
+https://www.ahajournals.org/doi/10.1161/CIRCULATIONAHA.118.038362
+From
+https://www.ahajournals.org/doi/10.1161/CIRCULATIONAHA.118.038362
+Figure 5. Pathway analysis of endothelial cell (EC) subpopulations.
+B, Functional gene sets identified from Reactome pathway enrichment and
+subpopulation markers differentiate the 2 major EC populations EC 1 and
+EC 2.
+应用场景
+Application Scenario
+单细胞数据，从matrix到分组，用GSVA计算pathway的表达量，然后比较pathway在组间的差异，画图。
+Single-cell data: From matrix to grouping, calculate pathway expression
+using GSVA, then compare pathway differences between groups and
+plot.
+环境设置
+Environment Setup
+source("install_dependencies.R")
+library(dplyr)
+library(Seurat)
+library(ComplexHeatmap)
+library(GSVA)
+library(GSEABase)
+library(limma)
+library(ggplot2)
+Sys.setenv(LANGUAGE = "en") #显示英文报错信息 # Display English error messages
+options(stringsAsFactors = FALSE) #禁止chr转成factor # Disable conversion of chr to factor
+加载自定义函数 Loading custom functions
+做单细胞分析时，代码会非常多而且繁杂，为了脚本的整洁简短，我们把这些函数单独放在一个文件里，使用时导入就可以了。
+Single-cell analysis can be quite complex and tedious. To keep the
+script concise, we’ll place these functions in a separate file and
+import them when needed.
+source("seurat_pipeline.R")
+输入文件
+Input files
+输入文件位于文件夹：pbmc3k_filtered_gene_bc_matrices/filtered_gene_bc_matrices/hg19/，包括raw
+gene expression matrix、barcode和gene annotation。 The input files are
+located in the folder:
+pbmc3k_filtered_gene_bc_matrices/filtered_gene_bc_matrices/hg19/ and
+include the raw gene expression matrix, barcodes, and gene
+annotations.
+数据来源：
+https://s3-us-west-2.amazonaws.com/10x.files/samples/cell/pbmc3k/pbmc3k_filtered_gene_bc_matrices.tar.gz
+Data source:
+https://s3-us-west-2.amazonaws.com/10x.files/samples/cell/pbmc3k/pbmc3k_filtered_gene_bc_matrices.tar.gz
+pbmc.data <- Read10X(data.dir = "pbmc3k_filtered_gene_bc_matrices/filtered_gene_bc_matrices/hg19/")
+# Initialize the Seurat object with the raw (non-normalized data).
+pbmc <- CreateSeuratObject(counts = pbmc.data, project = "pbmc3k", min.cells = 3, min.features = 200)
+pbmc
+主要步骤： Main steps:
+STEP 1 : 对单细胞数据进行分组，获得分组信息
+STEP 2 : 进行GSVA分析、差异表达分析
+STEP 3 : 根据已经得到的分组信息，挑选感兴趣的通路，画图
+STEP 1: Group the single-cell data and obtain group information
+STEP 2: Perform GSVA analysis and differential expression
+analysis
+STEP 3: Based on the obtained grouping information, select the
+pathway of interest and draw a graph
+STEP 1: 对单细胞数据进行分组，获得分组信息
+STEP 1: Group the single-cell data and obtain grouping
+information
+用于从raw gene expression matrix开始。 Used to start from the raw
+gene expression matrix.
+如果已经完成了聚类，请移动到STEP 2。 If clustering has been
+completed, please move to STEP 2.
+使用seurat分析单细胞数据需要注意的几个地方: Several points to note
+when using Seurat to analyze single-cell data:
+1. 数据过滤
+1. Data filtering
+细胞内表达基因个数 <200 或 >
+7500的过滤掉。这里过滤的上限和下限自己把控，没有固定值。过滤掉基因表达高的是为了减少多细胞比例
+Filter out cells with <200 or >7500 expressed genes. The
+upper and lower limits of the filter are controlled by yourself and
+there is no fixed value. Filtering out genes with high expression is to
+reduce the proportion of multiple cells
+在 <3
+个细胞内有表达的基因，过滤掉。因为很多基因的表达值都是0，这种可以过滤掉很多表达全为0的基因
+Filter out genes that are expressed in <3 cells. Because many
+genes have an expression value of 0, this method can filter out many
+genes with all zero expressions
+线粒体基因比例，一定程度上代表这建库时细胞的完整性。如果线粒体基因比例太高，说明细胞非常有可能破损了，在油包水时就不完整了
+The proportion of mitochondrial genes, to a certain extent,
+represents the integrity of the cells when the library was built. If the
+mitochondrial gene ratio is too high, it’s very likely that the cells
+are damaged and incomplete during the oil-water mixture.
+MT genes% < 20%
+左右，根据自己的数据把控。就算这里过滤的不严格，也没有关系，后面聚类时，这些高线粒体基因比例的细胞都会聚到一类。
+MT genes% < 20% or so. This should be controlled based on your data.
+Even if the filtering here is not strict, it doesn’t matter; cells with
+a high mitochondrial gene ratio will be clustered together during
+subsequent clustering.
+后续分析时排除这些细胞就可以了。一般外周血数据中线粒体基因比例都很低。
+These cells can simply be excluded from subsequent analysis.
+Mitochondrial gene ratios are generally very low in peripheral blood
+data.
+2 聚类和降维可视化
+2 Clustering and Dimensionality Reduction Visualization
+这里有两个参数不好把控，一个是选择PCA结果中的PC个数，另一个就是resolution。
+There are two parameters that are difficult to control: the number of
+PCs in the PCA results and the resolution.
+PC个数选择，可以根据ElbowPlot(拐点图)，选择拐点出现位置附近的PC数即可。这个参数会影响聚类的结果已经后续降维图形的。
+resolution：这个参数相对的不那么重要，只是会影响分出的cluster的数目多少。当resolution选的比较大，cluster分的很多，后续分析也可以
+For the number of PCs, select the number of PCs near the inflection
+point using the ElbowPlot (inflection point plot). This parameter
+affects the clustering results and subsequent dimensionality reduction
+graphs.
+Resolution: This parameter is relatively unimportant and only
+affects the number of clusters generated. A high resolution will result
+in a large number of clusters, which can be useful in subsequent
+analysis.
+根据marker
+genes等，对细胞类型进行定义，然后人为的把相同细胞类型的cluster合并。
+Define cell types based on marker genes and other factors, and then
+manually merge clusters of the same cell type.
+一般细胞数目 5000 - 10000 左右时，选择 resolution = 1
+都是可以的，细胞数量更多时可以选择2。自己根据分出的效果来调控，这个不影响大局。
+Generally, for cells between 5,000 and 10,000, selecting resolution = 1
+is sufficient. For larger cell numbers, you can choose 2. Adjust this
+setting based on the desired resolution; it does not affect the overall
+result.
+用自定义函数
+Seurat.pipeline
+做预处理
+Preprocessing with the Custom
+Seurat.pipeline
+Function
+整个过程中需要调整的就只有这几个参数了： The only parameters that
+need to be adjusted during the entire process are:
+Seurat.pipeline(RdsName = pbmc, outputname = "PBMC", MTfraction = 0.05, pc = 10, res = 0.6)
+# 这里需要运行几分钟
+# 经过这一步的处理，现在在pbmc这个seurat object 的assays中存储了三种基因表达数据，保存在PBMC_pc10_res0.6.rds里
+# (1) pbmc@assays$RNA@counts : raw count
+# (2) pbmc@assays$RNA@data : Normalized data
+# (3) pbmc@assays$RNA@scale.data: scaled之后的data
+# 做GSVA分析时，使用normalized data就可以了.
+# This will take several minutes to run
+# After this step, three types of gene expression data are now stored in the assays of the seurat object pbmc, saved in PBMC_pc10_res0.6.rds
+# (1) pbmc@assays$RNA@counts : raw counts
+# (2) pbmc@assays$RNA@data : Normalized data
+# (3) pbmc@assays$RNA@scale.data: scaled data
+# When performing GSVA analysis, use normalized data.
+提取出每个细胞的基因表达量和对应的分组信息。 Extract the gene
+expression level of each cell and the corresponding group
+information.
+查看生成的
+PBMC_pc10_res0.6.pdf
+文件，分成了9个cluster
+View the generated
+PBMC_pc10_res0.6.pdf
+file, which is
+divided into 9 clusters.
+如何鉴定每个cluster是什么细胞类型？经典的做法是找出每个cluster中的高表达的基因，然后根据经典的细胞marker来确定细胞类型，需要查找文献。方法见官网
+https://satijalab.org/seurat/v3.1/pbmc3k_tutorial.html
+How do you identify the cell type of each cluster? The classic approach
+is to identify the most highly expressed genes in each cluster and then
+determine the cell type based on classic cell markers. This requires
+research. For methods, see the official website
+https://satijalab.org/seurat/v3.1/pbmc3k_tutorial.html
+STEP 2 : GSVA 分析和差异表达分析
+STEP 2: GSVA Analysis and Differential Expression Analysis
+选择感兴趣的两个细胞亚群（cluster），用GSVA算出pathway的表达量，然后对比，画出感兴趣的pathway的图。
+Select two cell subpopulations (clusters) of interest, calculate pathway
+expression using GSVA, compare them, and plot the pathway of
+interest.
+# 加载 STEP 1 获得的pbmc / Load PBMC obtained in Step 1
+pbmc <- readRDS("PBMC_pc10_res0.6.rds")
+
+# 导入gmt文件 / Import gmt file
+genesets <- getGmt("h.all.v7.0.symbols.gmt")
+
+### 1. 找到感兴趣的细胞组别，两者间进行比较 / Find cell groups of interest and compare them
+subcluster <- c(6, 8)
+sub <- subset(pbmc, idents = subcluster)
+df.data <- GetAssayData(object = sub, slot = "data")
+
+# 将细胞所属的group信息保存起来 / Save cell group information
+df.group <- data.frame(
+  umi = names(Idents(sub)), 
+  cluster = as.character(sub@meta.data$RNA_snn_res.0.6), 
+  stringsAsFactors = FALSE
+)
+
+### 2. 做gsva - 修复参数传递问题 / Perform GSVA - fix parameter passing issues
+# 确保数据格式正确 / Ensure correct data format
+expr_data <- as.matrix(df.data)
+
+# 转换genesets为gsva需要的格式 / Convert genesets to the format required by gsva
+# GSEABase::getGmt()返回的是GeneSetCollection对象，需要转换为列表
+geneset_list <- lapply(genesets, function(gs) {
+  GSEABase::geneIds(gs)
+})
+names(geneset_list) <- names(genesets)
+
+# 使用正确的参数格式调用gsva / Call gsva with correct parameter format
+param <- gsvaParam(
+  exprData = expr_data,
+  geneSets = geneset_list,
+  kcdf = "Gaussian"
+)
+
+gsvascore <- gsva(
+  param,
+  verbose = TRUE
+)
+# 查看结果 / Check results
+print("GSVA score dimensions: / GSVA得分维度:")
+print(dim(gsvascore))
+print(gsvascore[1:5, 1:5])
+STEP 3：根据已经得到的分组信息，挑选出需要的通路，画图
+STEP 3: Based on the obtained grouping information, select the
+desired pathways and plot them.
+从sigPathways中挑选一个gene
+set来展示例图的画法。你也可以写成循环，画多个。 Select a gene set from
+sigPathways to demonstrate how to plot an example plot. You can also
+create a loop to plot multiple plots.
+# 这里选第一个pathway画图
+# Select the first pathway to plot
+count <- gsvascore[rownames(sigPathways)[1], , drop = FALSE]
+count <- as.data.frame(t(count))
+colnames(count) <- "geneset"
+count$cluster <- as.character(Idents(sub))
+# 用通路的名称作为图形标题
+# Use the name of the pathway as the graph title
+title.name = rownames(sigPathways)[1]
+
+# 添加P值
+# 得到cluster6和cluster10中的gsva score 最大值
+# Add P value
+# Get the maximum gsva score in cluster6 and cluster10
+count.geneset.group1 <- count$geneset[count$cluster == subcluster[1]]
+count.geneset.group2 <- count$geneset[count$cluster == subcluster[2]]
+
+# 确定P值添加的位置
+# Determine the position to add the P value
+ysegment1 <- max(count.geneset.group1)
+ysegment2 <- max(count.geneset.group2)
+ysegment.max <- max(ysegment1, ysegment2)
+
+# 根据P值确定加几颗星
+# Add stars based on P value
+pval <- sigPathways$P.Value[1]
+
+if (pval < 0.001) {
+  pval.label = "***"
+} else if (pval < 0.005) {
+  pval.label = "**"
+} else if (pval < 0.05) {
+  pval.label = "*"
+} else if (pval >= 0.05) {
+  pval.label = "non.sig"
+}
+
+# 自定义颜色
+# Custom color
+blue <- "#619CD6"
+green <- "#89C32E"
+p <- ggplot(count, aes(x = cluster, y = geneset, fill = cluster)) +
+  geom_violin() +
+  scale_fill_manual(values = c(blue, green)) + # 用自定义颜色填充 # Fill with custom color
+  theme_classic() +
+  theme(panel.grid = element_blank(), 
+        plot.margin = margin(0.5, 0.5, 0.5, 0.5, "cm"), 
+        axis.title.x = element_text(color = "black", size = 20), 
+        axis.title.y = element_blank(), 
+        axis.text = element_text(color = "black", size = 16), 
+        axis.line = element_line(colour = "black", size = 0.6), 
+        plot.title = element_text(size = 20, hjust = 0.5)) + 
+  # 添加图形标题 # Add graph title
+  ggtitle(title.name) +
+  guides(fill = F)
+p
+# 前面已经得到了pvalue,添加上去就可以了
+# We already got the pvalue, so just add it.
+p + 
+  # 图形中的一个横线和两个竖线 # One horizontal line and two vertical lines in the graph
+  annotate("segment", x = 1, xend = 2, y = ysegment.max + 0.02, yend = ysegment.max + 0.02) + 
+  annotate("segment", x = 1, xend = 1, y = ysegment1 + 0.01, yend = ysegment.max + 0.02) +
+  annotate("segment", x = 2, xend = 2, y = ysegment2 + 0.01, yend = ysegment.max + 0.02) +
+  # 添加P值对应的星号 # Add asterisks for P values
+  annotate("text", 
+           size = 12, # *的大小 # Size of the *
+           x = 1.5, 
+           y = ysegment.max - 0.03, #可以微调*所在的位置 # You can fine-tune the position of the *
+           label = pval.label)
+ggsave("PBMC_DE_genesets_hallmarker_cluster6_vs_8.pdf", width = 5.5, height = 5)
+Session Info
+sessionInfo()

@@ -1,0 +1,201 @@
+FigureYa168legoplot
+FigureYa168legoplot
+Author(s)
+: Bin Wei
+Reviewer(s)
+: Ying Ge, Junyi Shen
+Date
+: 2025-09-22
+Academic Citation
+If you use this code in your work or research, we kindly request that
+you cite our publication:
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization
+Framework for Enhancing Biomedical Data Interpretation and Research
+Efficiency. iMetaMed.
+https://doi.org/10.1002/imm3.70005
+需求描述
+Requirement
+从基因组中获取突变位点context序列，用乐高图展示突变模式。
+顺便画个pie。 Extract the context sequence of the mutation site from the
+genome and use a Lego plot to display the mutation pattern. Draw a pie
+chart as well.
+出自
+https://onlinelibrary.wiley.com/doi/full/10.1111/cas.14113
+From
+https://onlinelibrary.wiley.com/doi/full/10.1111/cas.14113
+Figure 2 Mutational signatures extracted from the aggregated NSCLC
+dataset. A, Lego plot representation of mutation patterns in 113 NSCLC
+samples. Single-nucleotide substitutions are divided into 6 categories
+with 16 surrounding flanking bases. The pie chart in the upper left
+shows the proportion of 6 categories of mutation patterns.
+图的解读
+Interpretation
+每种颜色内部是4X4结构，刚好对应TCGA四种碱基。因此，比通常所用的柱形图（例文Figure
+2 B）更适合展示四种碱基的关系。 Each color contains a 4x4 structure,
+corresponding to the four TCGA bases. Therefore, this chart is more
+suitable for displaying the relationships between the four bases than
+the commonly used bar chart (see Figure 2 B).
+至于6种颜色，你也可以画成1X6结构，作者画成2X3结构会更节省空间。 As
+for the six colors, you could also plot them in a 1x6 structure, but the
+author’s 2x3 structure saves space.
+柱子的高度代表第3种特征（这里是计数），除了柱子的形式以外，你也可以尝试换成圆点，用圆点大小来代替柱子的高度。或者把柱子换成热图，用颜色深浅代替柱子的高度。
+The height of the bar represents the third feature (here, the count).
+Besides using the bar format, you could also try using dots, with the
+size of the dots representing the bar height. Alternatively, you could
+use a heat map, with the depth of the color representing the bar
+height.
+应用场景
+Application Scenarios
+同时展示3种特征。尤其适合其中一种特征具有m X
+n的特性的情况，例如文中的4种碱基 X 4种碱基。 Simultaneously displaying
+three features is particularly suitable when one of the features has an
+m x n structure, such as the 4 bases x 4 bases in the article.
+环境设置
+Environment settings
+source("install_dependencies.R")
+if (!requireNamespace("BiocManager", quietly = TRUE))
+  install.packages("BiocManager")
+if (!("BSgenome.Hsapiens.UCSC.hg19" %in% rownames(installed.packages()))) {
+  BiocManager::install("BSgenome.Hsapiens.UCSC.hg19")
+}
+if (!("VariantAnnotation" %in% rownames(installed.packages()))) {
+  BiocManager::install("VariantAnnotation")
+}
+if (!("rgl" %in% rownames(installed.packages()))) {
+  install.packages("rgl")
+}
+
+Sys.setenv(LANGUAGE = "en") #显示英文报错信息 #Display English error message
+options(stringsAsFactors = FALSE) #禁止chr转成factor # Disable conversion of chr to factor
+加载自定义函数 Load custom functions
+source("functions.R")
+输入文件
+Input file
+easy_input.txt，突变数据，来自文章附件cas14113-sup-0002-tables1.xlsx。
+easy_input.txt, mutation data, from the article attachment
+cas14113-sup-0002-tables1.xlsx.
+不仅限于突变数据，如果你的数据已经整理成very_easy_input.csv格式，就跳过这步，直接进入“开始画图”。
+This is not limited to mutation data. If your data is already organized
+in the very_easy_input.csv format, skip this step and proceed directly
+to “Start Plotting.”
+data <- read.delim("easy_input.txt", 
+                   header=T, 
+                   sep="\t", 
+                   as.is=T)
+head(data)
+参数设置
+Parameter settings
+# 输出的文件名前缀，即以什么开头
+# 这里输出的文件名以test开头
+# Output file name prefix, i.e., what it starts with
+# The output file name starts with test
+outprefix <- "test"
+从基因组中获取突变位点context
+Get mutation site context from the genome
+data <- data[data$Variant_Type=="SNP", ]
+data <- data[data$Chromosome %in% (c(1:22, "X", "Y", "M")), ]
+
+# 获取突变形式 # Get mutation type
+mut_type_list <- apply(data, 
+                       1, 
+                       get.mutationtype, ref="Reference_Allele", alt="Tumor_Seq_Allele2")
+mut_type <- as.character(sapply(mut_type_list, function(x) x[[1]]))
+mut_reverse <- as.character(sapply(mut_type_list, function(x) x[[2]]))
+data$mut_type <- mut_type
+data$mut_reverse <- mut_reverse
+
+# 获取突变context
+# Get mutation context
+# 注：由于该步运行较慢，因此直接使用保存好的data.RData文件中的对象即可
+# Note: Because this step runs slowly, you can directly use the object in the saved data.RData file.
+#mut_context <- apply(data, 
+#                     1, 
+#                     get.mutationcontext, genome=Hsapiens, chrom="Chromosome", start="Start_position", reverse="mut_reverse")
+#data$mut_context <- mut_context
+
+# 保存到文件
+# Save to file
+#write.csv(data[,c(13,15)], "very_easy_input.csv", quote = F, row.names = F)
+开始画图
+Start drawing
+画lego图
+Drawing a Lego Chart
+lego图参考了barplot3d包的源码，在其基础上进行了修改，这个R包链接为
+https://cran.r-project.org/web/packages/barplot3d/vignettes/barplot3d.html
+The Lego chart is based on the source code of the barplot3d package,
+with some modifications. The link to this R package is
+https://cran.r-project.org/web/packages/barplot3d/vignettes/barplot3d.html
+very_easy_input.csv，包含两列，第一列mut_type对应图中的6种颜色，第二列mut_context对应每种颜色中的16个柱子，柱子的高度代表数量。套用自己的数据即可。
+very_easy_input.csv contains two columns: the first column, mut_type,
+corresponds to the six colors in the chart, and the second column,
+mut_context, corresponds to the 16 bars in each color. The height of the
+bar represents the number of bars. Simply apply your own data.
+data <- read.csv("very_easy_input.csv")
+head(data)
+table(data$mut_type)
+table(data$mut_context)
+# 注：复现图的配色以及顺序和原文不太一样。原文的饼图和lego图顺序不一致，看起来有点奇怪。
+# Note: The color scheme and order of the reproduced chart differ from the original. The order of the pie chart and the Lego chart in the original is inconsistent, which makes it look a bit strange.
+palettecolors <- c("#805D3F", "#72549A", "#5EAFB2", "#3F4F9D", "#F2EC3C", "#74B655") #颜色必须是6个
+mut_types <- c("C>T", "C>A", "C>G", "T>G", "T>C", "T>A")
+contexts <- c("T_T", "C_T", "A_T", "G_T", "T_C", "C_C", "A_C", "G_C",
+         "T_A", "C_A", "A_A", "G_A", "T_G", "C_G", "A_G", "G_G")
+typeorder <- c()
+for(type in mut_types){
+    typeorder <- c(typeorder, paste(type, contexts, sep="."))
+}
+
+# 计数
+# count
+mut_data <- table(paste0(as.character(data$mut_type), ".", as.character(data$mut_context)))
+mut_data <- mut_data[typeorder]
+
+# 运行下面这段，会跳出画图窗口，用鼠标拖拽到合适的角度、拉伸窗口到合适的大小后，保存图。
+# Run the following code to open a plot window. Drag the mouse to the desired angle and size, then save the plot.
+legoplot.3d(mut_data, 
+            scalez=0.015, 
+            zlab="Mutations", 
+            palettecolors=palettecolors)
+# 可以在弹出窗口手动调整图形方向，然后运行以下命令保存为pdf文件
+# You can manually adjust the plot orientation in the pop-up window, then run the following command to save as a PDF file.
+#rgl.postscript(paste0(outprefix, "_legoplot.pdf"), 
+#               fmt="pdf")
+有时我们希望同一篇文章中的多个3D图形保持同一角度来展示，那就把角度保存下来，每次画图都加载这个角度。
+Sometimes, we want to display multiple 3D plots in the same article at
+the same angle. To do this, save the angle and use it each time you
+draw.
+#把手动调好3D图形位置、角度保存到文件
+# Save the manually adjusted 3D graph position and angle to a file
+myMatrix <- par3d()
+userMatrix <- myMatrix$userMatrix
+windowRect <- myMatrix$windowRect
+# 把角度保存到文件
+# Save the angle to a file
+save(userMatrix, windowRect, file = "par3d.RData")
+载入之前调好的角度画图 Load the previously adjusted angle to draw the
+graph
+(load("par3d.RData"))
+par3d(userMatrix=userMatrix,
+      windowRect=windowRect)
+
+# 保存到pdf文件
+# Save to PDF file
+#rgl.postscript(paste0(outprefix, "_legoplot.pdf"), 
+#               fmt="pdf")
+画饼图
+Draw the pie chart
+pie_data <- round(table(as.character(data$mut_type)) * 100 / length(data$mut_type), digits=2)
+pie_data <- pie_data[mut_types]
+label <- paste(names(pie_data), paste0(pie_data,"%"))
+
+pdf(paste0(outprefix, "_pieplot.pdf"))
+pie(pie_data, 
+    label, 
+    col=palettecolors)
+dev.off()
+后期处理
+Post-processing
+输出的PDF文件可以使用AI打开，拼接 The output PDF file can be opened
+and spliced using AI.
+Session Info
+sessionInfo()

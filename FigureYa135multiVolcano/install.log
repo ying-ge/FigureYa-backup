@@ -1,0 +1,55 @@
+Starting R package installation...
+===========================================
+
+Installing CRAN packages...
+Package already installed: cowplot 
+Package already installed: ggplot2 
+Package already installed: ggrepel 
+Installing CRAN package: janitor 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+also installing the dependency ‘snakecase’
+
+trying URL 'https://cloud.r-project.org/src/contrib/snakecase_0.11.1.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/janitor_2.2.1.tar.gz'
+* installing *source* package ‘snakecase’ ...
+** this is package ‘snakecase’ version ‘0.11.1’
+** package ‘snakecase’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (snakecase)
+* installing *source* package ‘janitor’ ...
+** this is package ‘janitor’ version ‘2.2.1’
+** package ‘janitor’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (janitor)
+
+The downloaded source packages are in
+	‘/tmp/Rtmp15QrBY/downloaded_packages’
+Successfully installed: janitor 
+Package already installed: magrittr 
+
+===========================================
+Package installation completed!
+You can now run your R scripts in this directory.

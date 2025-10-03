@@ -1,0 +1,11 @@
+Starting R package installation...
+===========================================
+
+Installing CRAN packages...
+Package already installed: data.table 
+Package already installed: pheatmap 
+Package already installed: survival 
+
+===========================================
+Package installation completed!
+You can now run your R scripts in this directory.

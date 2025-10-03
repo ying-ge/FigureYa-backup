@@ -1,0 +1,13 @@
+Starting R package installation...
+===========================================
+
+Installing CRAN packages...
+Package already installed: cmprsk 
+Package already installed: cowplot 
+Package already installed: ggplotify 
+Package already installed: magick 
+Package already installed: survival 
+
+===========================================
+Package installation completed!
+You can now run your R scripts in this directory.

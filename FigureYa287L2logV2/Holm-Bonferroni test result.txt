@@ -1,0 +1,4 @@
+model	Pvalue	order	alpha
+health + ageandhealth + weight	0.463140326883255 	3	0.0166666666666667
+health + ageandage + health + weight	0.438305161618765 	1	0.05
+health + weightandage + health + weight	0.87672646116347 	2	0.025

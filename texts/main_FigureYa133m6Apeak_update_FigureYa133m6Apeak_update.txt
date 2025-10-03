@@ -1,0 +1,167 @@
+FigureYa133m6Apeak_update
+FigureYa133m6Apeak_update
+小丫画图出品
+2020-6-27
+需求描述
+何川组发在nature上的m6a相关的工作，求call差异peak的数据分析部分。
+Requirement Description
+He Chuan's group published work related to m6a in Nature, and is looking for data analysis of the peak difference in call activity.
+出自
+https://www.nature.com/articles/nature21355
+根据文献method总结起来需要以下几步：
+前期：数据及reference下载
+alignment
+extend reads
+select longest transcript and slide widows 4.calculate count and exclude low count reads(less than 1/20 top window)
+calculate fisher P value and FDR adjust
+merge windows with significant FDR.
+应用场景
+m6A-seq分析流程，从序列比对到call peak.
+From
+https://www.nature.com/articles/nature21355
+Based on the literature, the following steps are required:
+Preliminary: Download data and references
+Alignment
+Extend reads
+Select the longest transcript and slide widows 4. Calculate counts and exclude low-count reads (less than 1/20 top window)
+Calculate Fisher P value and FDR adjustment
+Merge windows with significant FDR.
+环境设置 >Environment Setup
+本文档中所有代码都要在终端（Terminal）里运行。All code in this document must be run in Terminal.
+建议使用Linux或MAC系统。Windows 10需要安装WSL
+https://docs.microsoft.com/en-us/windows/wsl/install-win10
+Linux or Mac OS is recommended. Windows 10 requires installing WSL
+https://docs.microsoft.com/en-us/windows/wsl/install-win10
+安装以下软件：SRATools，hisat2，bedtools、samtools。方法如下：
+Install the following software: SRATools, hisat2, bedtools, and samtools. The method is as follows:
+下载安装SRATools，用于下载SRA数据和转成fastq格式，下载和安装方法看这篇：
+https://trace.ncbi.nlm.nih.gov/Traces/sra/sra.cgi?view=toolkit_doc&f=std
+。掌握了这个方法，就可以肆意下载已发表文章里的高通量测序的原始数据了。
+Download and install SRATools, which is used to download SRA data and convert it to fastq format. For download and installation instructions, see this article:
+https://trace.ncbi.nlm.nih.gov/Traces/sra/sra.cgi?view=toolkit_doc&f=std
+. Once you master this method, you can freely download raw data from high-throughput sequencing published articles.
+# 先安装wget用于下载，可断点续传 First install wget for downloading, which allows for resumable downloads.
+conda install -c anaconda wget 
+
+# 下载SRATools，用于下载测序数据
+wget https://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/2.9.6-1/sratoolkit.2.9.6-1-mac64.tar.gz
+# 解压缩，设置环境变量或者直接把prefetch和fastq-dump文件复制到当前文件夹就可以用了。
+
+# 或者用conda安装
+conda install -c daler sratoolkit
+
+# Download SRATools for downloading sequencing data.
+wget https://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/2.9.6-1/sratoolkit.2.9.6-1-mac64.tar.gz
+# Unzip and set environment variables or simply copy the prefetch and fastq-dump files to the current folder.
+
+# Alternatively, install using conda:
+conda install -c daler sratoolkit
+安装hisat2，用于把测序数据回帖到基因组：Install hisat2 to post sequencing data back to the genome:
+conda install -c bioconda hisat2
+安装bedtools、samtools，用于sam、bed文件处理Install bedtools and samtools for sam and bed file processing
+conda install -c bioconda samtools 
+conda install -c bioconda bedtools
+输入文件Input File
+需要下载测序结果、参考基因组序列和注释。You need to download the sequencing results, reference genome sequence, and annotations.
+测序数据，储存在SRA数据库中。从文章中找到线索，一般搜GSE或SRA就能从正文找到数据ID。示例文章的数据ID是GSE79213，进入GEO数据库，找到这套数据：
+https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE79213
+，能下载到peak.bed和FPKM文件。我们需要从头开始跑，要下载原始的fastq文件，因此，需要到SRA数据库中去下载。在“SRA”这三个字母右侧看到SRP071818，点击链接进入。我们以GSM2088162 input-0 和GSM2088167 m6A-IP-0为例来建立pipeline，分别对应SRR3228697和SRR3228702
+参考基因组序列，下载自ensembl
+http://asia.ensembl.org/info/data/ftp/index.html
+，zebrafish version11（原文用的是10）。 序列：
+ftp://ftp.ensembl.org/pub/release-97/fasta/danio_rerio/dna/Danio_rerio.GRCz11.dna.primary_assembly.fa.gz
+， 注释：
+ftp://ftp.ensembl.org/pub/release-97/gff3/danio_rerio/Danio_rerio.GRCz11.97.chr.gff3.gz
+Sequencing data are stored in the SRA database. To find clues in the article, search for "GSE" or "SRA" to find the data ID within the text. The data ID for this example article is GSE79213. Go to the GEO database and find this data set:
+https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE79213
+. You can download the peak.bed and FPKM files. Since we need to run the sequence from scratch and download the original fastq file, we need to download it from the SRA database. To the right of "SRA," you'll see SRP071818. Click the link to access it. We use GSM2088162 input-0 and GSM2088167 m6A-IP-0 as examples to establish the pipeline, corresponding to SRR3228697 and SRR3228702, respectively.
+The reference genome sequence was downloaded from ensembl
+http://asia.ensembl.org/info/data/ftp/index.html
+, Zebrafish version 11 (the original article used version 10). Sequence:
+ftp://ftp.ensembl.org/pub/release-97/fasta/danio_rerio/dna/Danio_rerio.GRCz11.dna.primary_assembly.fa.gz
+, Comment:
+ftp://ftp.ensembl.org/pub/release-97/gff3/danio_rerio/Danio_rerio.GRCz11.97.chr.gff3.gz
+在终端输入命令下载：
+Enter the command in the terminal to download:
+1. alignment
+原文用的是tophat，我这里用的hisat2（因为hisat2实在是比tophat好用很多，以至于tophat作者都已经开始推荐了）The original paper used Tophat, but I'm using Hisat2 here (because Hisat2 is so much easier to use than Tophat that the author has already recommended it).
+hisat2 -x genome -p 4 -U SRR3228697.fastq -S SRR3228697.sam 2> SRR3228697.hisat2.log
+hisat2 -x genome -p 4 -U SRR3228702.fastq -S SRR3228702.sam 2> SRR3228702.hisat2.log
+
+samtools view -bS -q 15 SRR3228697.sam | samtools sort - | samtools rmdup -s - SRR3228697.bam
+samtools view -bS -q 15 SRR3228702.sam | samtools sort - | samtools rmdup -s - SRR3228702.bam
+2. extend reads
+原文说把reads extend到150，及fragment size。所以只需要把reads的位置前面减去50，后面加上50即可（因为文章中的reads是SE 50bp，即单端测序，读长50bp）The original article said to extend reads to 150 and fragment size. Therefore, simply subtract 50 from the beginning of the read position and add 50 to the end (since the reads in the article are SE 50bp, i.e., single-end sequencing with a read length of 50bp).
+转换bam文件为bed文件，用到bedtools Convert the bam file to a bed file using bedtools.
+bamToBed -i SRR3228697.bam > SRR3228697.bed
+bamToBed -i SRR3228702.bam > SRR3228702.bed
+extend 50，因为有的位置可能小于起始位点小于50，所以加一个条件判断：Extend 50. Because some positions may be less than 50 from the start site, add a conditional:
+awk '{if ($2 > 50) print $1,$2-50,$3+50;else print $1,$2,$3+50}' OFS="\t" SRR3228697.bed > SRR3228697.ext.bed
+awk '{if ($2 > 50) print $1,$2-50,$3+50;else print $1,$2,$3+50}' OFS="\t" SRR3228702.bed> SRR3228702.ext.bed
+3. select longest transcript and slide widows
+处理基因组注释文件，主要用到的R + bash + bedtools Processing genome annotation files, mainly using R, bash, and bedtools
+首先把所有的转录本抓出来 First, extract all transcripts
+grep mRNA Danio_rerio.GRCz11.97.chr.gff3 | awk '{print $1,$4,$5,$7,$9}' OFS="\t"| awk -F ";" '{print $1,$2}' OFS="\t" | sed 's/ID=transcript://g' | sed 's/Parent=gene://g'| awk '{print $1,$2,$3,$4,$5,$6,$3-$2}' OFS="\t" > mrna.bed
+之后把最长的转录本抓出来Then extract the longest transcript.
+在终端运行R脚本longest.trans.R：Run the R script longest.trans.R in the terminal:
+Rscript longest.trans.R mrna.bed longess_trans.bed
+滑窗(bedtools)
+bedtools makewindows -b longess_trans.bed -w 100 -s 10 -i srcwinnum > longess_trans.windows.bed
+4.calculate count and exclude low count reads(less than 1/20 top window)
+计算window中reads数量。有很多种方法，Calculate the number of reads in the window. There are many ways,
+（1）做成gtf文件htseq计算
+（2）featurecount
+（3）bedtools的intersect。
+(1) Create a gtf file and perform htseq calculations
+(2) Feature count
+(3) Use intersect in bedtools.
+这里选用第三种，并且只有reads大于50%的部分在这个window中才会计数，这样避免一个reads被算两次或多次。
+The third option is used here, and only reads greater than 50% are counted in this window to prevent a read from being counted twice or more.
+bedtools intersect -F 0.5 -a longess_trans.windows.bed -b SRR3228697.ext.bed -c |  awk  '{print $1,$2,$3,$5,$4}' OFS="\t" | awk -F "_" '{print $1,$2}' OFS="\t"| awk '{print $1,$2,$3,$4,$5,$5"_"$6}' OFS="\t" > SRR3228697.txt
+bedtools intersect -F 0.5 -a longess_trans.windows.bed -b SRR3228702.ext.bed -c |  awk  '{print $4,$5}' OFS="\t" > SRR3228702.txt
+这里两个文件的输出格式不太一样，我主要是为了节省空间，也可以输出一样的。
+计算window中reads的中位数和总和(bash 中的AWK)：
+The output formats of the two files are slightly different. I did this to save space, but they can still be output the same.
+Calculate the median and sum of reads in a window (AWK in bash):
+awk 'BEGIN {max = 0} {if ($4+0 > max+0) max=$1} END {print "Max=", max}' SRR3228697.txt
+Max= 156
+
+awk 'BEGIN {max = 0} {if ($2+0 > max+0) max=$2} END {print "Max=", max}' SRR3228702.txt
+Max= 182
+
+awk '{sum+=$4} END {print "Sum= ", sum}' SRR3228697.txt
+Sum=  9419939
+
+awk '{sum+=$2} END {print "Sum= ", sum}' SRR3228702.txt
+Sum=  8961275
+排除reads少的window，原文说排除reas数量小both IP and input，所以就是排除reads数量小于1/20 156 & 182
+Exclude windows with low reads. The original text says to exclude both IP and input with small read counts, so this means excluding read counts less than 1/20 (156 & 182).
+awk '$4 > 7 {print}' SRR3228697.txt > SRR3228697.filter.txt
+awk '$2 > 9 {print}' SRR3228702.txt > SRR3228702.filter.txt
+5. calculate fisher P value and FDR adjust
+在终端运行R脚本callPeak.R，自定义输入和输出文件即可。各个参数的说明：
+Run the R script callPeak.R in the terminal and customize the input and output files. Parameter descriptions:
+SRR3228697.filter.txt: input
+SRR3228702.filter.txt: IP
+9419939：input reads总数
+8961275：IP reads总数
+all.txt：全部数据
+peak.bed: peak数据
+中间有一个warning。不同理会，是all[is.na(all)] <- 0 产生的
+写的比较粗糙，日后改进一下，把该封装的封装成function，提升一下运算速度。
+SRR3228697.filter.txt: input
+SRR3228702.filter.txt: IP
+9419939: Total input reads
+8961275: Total IP reads
+all.txt: All data
+peak.bed: Peak data
+There is a warning in the middle. Ignore it; it's caused by all[is.na(all)] <- 0
+This is a bit crude. I'll try to improve it later by encapsulating this function to increase the computation speed.
+Rscript callPeak.R SRR3228697.filter.txt SRR3228702.filter.txt 9419939 8961275 peak.bed all.txt
+6. merge windows with significant FDR.
+bash merge peak
+bedtools merge -i peak.bed -c 4 -o collapse | awk -F "," '{print $1}' > peak.merge.bed
+Comment
+原文说用每个基因的中位数去normalize 每个window的reads数量，我觉得是不合理的，因为fisher算的就是一个富集程度，无论是除法normalize，做减法normalize，还是取log都不太合理(或者我没正确领会作者意思)。同时，统计学上来讲没有重复的P值都是耍流氓，如果有重复可以试试其他的检验方法去call P value。
+The original article said to use the median of each gene to normalize I think the number of reads per window is unreasonable, because Fisher calculates enrichment, so normalizing by division, subtraction, or logarithm is not reasonable (or perhaps I didn't understand the author's intention correctly). Also, statistically speaking, P values ​​without replication are inaccurate. If replication is present, try other methods to call P values.
+sessionInfo()

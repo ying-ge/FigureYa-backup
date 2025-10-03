@@ -1,0 +1,55 @@
+Starting R package installation...
+===========================================
+
+Installing CRAN packages...
+Installing CRAN package: dendsort 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+also installing the dependency ‘gapmap’
+
+trying URL 'https://cloud.r-project.org/src/contrib/gapmap_1.0.0.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/dendsort_0.3.4.tar.gz'
+* installing *source* package ‘gapmap’ ...
+** this is package ‘gapmap’ version ‘1.0.0’
+** package ‘gapmap’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (gapmap)
+* installing *source* package ‘dendsort’ ...
+** this is package ‘dendsort’ version ‘0.3.4’
+** package ‘dendsort’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (dendsort)
+
+The downloaded source packages are in
+	‘/tmp/Rtmp86gXe2/downloaded_packages’
+Successfully installed: dendsort 
+Package already installed: pheatmap 
+
+Installing Bioconductor packages...
+Package already installed: ConsensusClusterPlus 
+
+===========================================
+Package installation completed!
+You can now run your R scripts in this directory.

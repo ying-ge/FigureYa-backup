@@ -1,0 +1,109 @@
+---
+title: "push cnmf results into seurat"
+author: "Jarning"
+date: "2021/1/15"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+> 这个脚本展示了如何将cNMF的结果导入Seurat对象，并用Seurat内置的可视化函数进行可视化
+
+```{r}
+library(Seurat)
+library(rhdf5)
+options(stringsAsFactors = F)
+```
+
+## prepare
+
+### cells meta data
+```{r}
+genes <- read.csv("../data/GSE154989_mmLungPlate_fQC_geneTable.csv")
+cells <- read.csv("../data/GSE154989_mmLungPlate_fQC_smpTable.csv")
+head(genes)
+head(cells)
+duplicated(genes$ensgID) %>% table
+```
+
+```{r}
+cells.annot <- read.csv("../data/GSE154989_mmLungPlate_fQC_dZ_annot_smpTable.csv")
+cells.annot <- cells.annot %>% 
+  left_join(cells, by = "sampleID")
+row.names(cells.annot) <- cells.annot$sampleID
+head(cells.annot)
+```
+
+### raw counts matrix
+
+```{r}
+filename <- "../data/GSE154989_mmLungPlate_fQC_dSp_rawCount.h5"
+
+h5ls(file = filename)
+
+i <- h5read(filename, name = "i") %>% as.integer() %>% as.vector()
+j <- h5read(filename, name = "j") %>% as.integer() %>% as.vector()
+v <- h5read(filename, name = "v") %>% as.vector()
+
+counts <- Matrix::sparseMatrix(i, j, x = v)
+counts %>% dim
+rownames(counts) <- genes$geneSymbol
+colnames(counts) <- cells$sampleID
+counts[1:5,1:5]
+```
+
+### normalized matrix
+
+```{r}
+filename <- "../data/GSE154989_mmLungPlate_fQC_dSp_normTPM.h5"
+
+h5ls(file = filename)
+
+i <- h5read(filename, name = "i") %>% as.integer() %>% as.vector()
+j <- h5read(filename, name = "j") %>% as.integer() %>% as.vector()
+v <- h5read(filename, name = "v") %>% as.vector()
+
+TPM <- Matrix::sparseMatrix(i, j, x = v)
+TPM %>% dim
+TPM <- TPM %>% round(digits = 2)
+rownames(TPM) <- genes$geneSymbol
+colnames(TPM) <- cells$sampleID
+TPM[1:5,1:5]
+```
+
+## create seurat object
+load matrix & reduction map
+```{r}
+seu <- CreateSeuratObject(counts = counts, meta.data = cells.annot)
+seu[["RNA"]]@data <- TPM
+seu[["tsne"]] <- CreateDimReducObject(embeddings = cells.annot[, c("tSNE_1", "tSNE_2")] %>% as.matrix(), assay = DefaultAssay(seu), key = "tSNE_")
+seu[["phate"]] <- CreateDimReducObject(embeddings = cells.annot[, c("phate_1", "phate_2")] %>% as.matrix() * 50, assay = DefaultAssay(seu), key = "phate_")
+```
+
+test code
+```{r, fig.width=6, fig.height=5}
+FeaturePlot(seu, reduction = "tsne", features = "Lyz2")
+FeaturePlot(seu, reduction = "phate", features = "Lyz2")
+```
+
+## push cnmf res 2 seurat
+
+```{r}
+usage <- read.table("tmp/step2/20210110/20210110.usages.k_16.dt_0_20.consensus.normalized.txt", row.names = 1, header = T)
+head(usage)
+```
+
+```{r}
+seu[["cnmf"]] <- CreateAssayObject(data = t(usage))
+```
+
+```{r, fig.width=6, fig.height=5}
+FeaturePlot(seu, reduction = "phate", features = "Usage-2")
+```
+
+```{r}
+VlnPlot(seu, features = paste0("Usage-", c(2,14,15,16,12)), group.by = "clusterK12", assay = "cnmf", pt.size = 0)
+```
+

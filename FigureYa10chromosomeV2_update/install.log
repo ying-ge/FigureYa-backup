@@ -1,0 +1,89 @@
+Starting R package installation...
+===========================================
+
+NOTE: RIdeogram requires system libraries.
+For Ubuntu/Debian, run this in shell BEFORE using this script:
+  sudo apt-get update
+  sudo apt-get install libpng-dev libjpeg-dev librsvg2-dev
+
+
+Installing RIdeogram dependencies...
+Package already installed: png 
+Package already installed: jpeg 
+Package already installed: rsvg 
+Installing CRAN package: grImport2 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+also installing the dependency ‘gridSVG’
+
+trying URL 'https://cloud.r-project.org/src/contrib/gridSVG_1.7-6.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/grImport2_0.3-3.tar.gz'
+* installing *source* package ‘gridSVG’ ...
+** this is package ‘gridSVG’ version ‘1.7-6’
+** package ‘gridSVG’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (gridSVG)
+* installing *source* package ‘grImport2’ ...
+** this is package ‘grImport2’ version ‘0.3-3’
+** package ‘grImport2’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (grImport2)
+
+The downloaded source packages are in
+	‘/tmp/RtmpgcwUvd/downloaded_packages’
+Successfully installed: grImport2 
+
+Installing CRAN packages...
+Installing CRAN package: RIdeogram 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+trying URL 'https://cloud.r-project.org/src/contrib/RIdeogram_0.2.2.tar.gz'
+Content type 'application/x-gzip' length 4990954 bytes (4.8 MB)
+==================================================
+downloaded 4.8 MB
+
+* installing *source* package ‘RIdeogram’ ...
+** this is package ‘RIdeogram’ version ‘0.2.2’
+** package ‘RIdeogram’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (RIdeogram)
+
+The downloaded source packages are in
+	‘/tmp/RtmpgcwUvd/downloaded_packages’
+Successfully installed: RIdeogram 
+Package already installed: knitr 
+
+===========================================
+Package installation completed!
+You can now run your R scripts in this directory.

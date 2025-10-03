@@ -1,0 +1,51 @@
+name: Compress Gallery Images
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'gallery/**.png'
+
+jobs:
+  compress-gallery:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install ImageMagick
+        run: sudo apt-get update && sudo apt-get install -y imagemagick
+
+      - name: Make output directory
+        run: mkdir -p gallery_compress
+
+      - name: Compress PNG images from gallery/ to gallery_compress/ (to webp)
+        run: |
+          for img in gallery/*.png; do
+            fname=$(basename "$img")
+            convert "$img" -resize 400x400\> -strip -quality 65 "gallery_compress/${fname%.*}.webp"
+          done
+
+      - name: Show file sizes before and after
+        run: |
+          echo "Original sizes:"
+          du -h gallery/*.png | sort -h
+          echo "Compressed sizes:"
+          du -h gallery_compress/*.webp | sort -h
+
+      - name: Commit and push compressed images
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add gallery_compress/*.webp
+          git commit -m "Auto-compress gallery images to gallery_compress/ [skip ci]" || echo "Nothing to commit"
+          git push

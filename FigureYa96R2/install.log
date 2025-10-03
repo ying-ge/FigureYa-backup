@@ -1,0 +1,142 @@
+Starting R package installation...
+===========================================
+
+Installing CRAN packages...
+Package already installed: dplyr 
+Installing CRAN package: future.apply 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+also installing the dependencies ‘parallelly’, ‘R.cache’, ‘future’, ‘globals’, ‘listenv’, ‘R.rsp’
+
+trying URL 'https://cloud.r-project.org/src/contrib/parallelly_1.45.1.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/R.cache_0.17.0.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/future_1.67.0.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/globals_0.18.0.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/listenv_0.9.1.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/R.rsp_0.46.0.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/future.apply_1.20.0.tar.gz'
+* installing *source* package ‘parallelly’ ...
+** this is package ‘parallelly’ version ‘1.45.1’
+** package ‘parallelly’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c 000.init.c -o 000.init.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c calc-serialized-size.c -o calc-serialized-size.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c test_tcp_port.c -o test_tcp_port.o
+gcc -std=gnu2x -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o parallelly.so 000.init.o calc-serialized-size.o test_tcp_port.o -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-parallelly/00new/parallelly/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (parallelly)
+* installing *source* package ‘R.cache’ ...
+** this is package ‘R.cache’ version ‘0.17.0’
+** package ‘R.cache’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (R.cache)
+* installing *source* package ‘globals’ ...
+** this is package ‘globals’ version ‘0.18.0’
+** package ‘globals’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (globals)
+* installing *source* package ‘listenv’ ...
+** this is package ‘listenv’ version ‘0.9.1’
+** package ‘listenv’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (listenv)
+* installing *source* package ‘future’ ...
+** this is package ‘future’ version ‘1.67.0’
+** package ‘future’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** demo
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (future)
+* installing *source* package ‘R.rsp’ ...
+** this is package ‘R.rsp’ version ‘0.46.0’
+** package ‘R.rsp’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** exec
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (R.rsp)
+* installing *source* package ‘future.apply’ ...
+** this is package ‘future.apply’ version ‘1.20.0’
+** package ‘future.apply’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (future.apply)
+
+The downloaded source packages are in
+	‘/tmp/Rtmpbf732i/downloaded_packages’
+Successfully installed: future.apply 
+Package already installed: ggplot2 
+Package already installed: pheatmap 
+
+===========================================
+Package installation completed!
+You can now run your R scripts in this directory.

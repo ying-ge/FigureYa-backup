@@ -1,0 +1,9 @@
+Starting R package installation...
+===========================================
+
+Installing CRAN packages...
+Package already installed: rgl 
+
+===========================================
+Package installation completed!
+You can now run your R scripts in this directory.

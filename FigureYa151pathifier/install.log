@@ -1,0 +1,45 @@
+Starting R package installation...
+===========================================
+
+Installing CRAN packages...
+Package already installed: data.table 
+Package already installed: gplots 
+Package already installed: pheatmap 
+Package already installed: devtools 
+
+Installing Bioconductor packages...
+Installing Bioconductor package: pathifier 
+'getOption("repos")' replaces Bioconductor standard repositories, see
+'help("repositories", package = "BiocManager")' for details.
+Replacement repositories:
+    CRAN: https://cloud.r-project.org/
+Bioconductor version 3.21 (BiocManager 1.30.26), R 4.5.1 (2025-06-13)
+Installing package(s) 'pathifier'
+trying URL 'https://bioconductor.org//packages/3.21/bioc/src/contrib/pathifier_1.46.0.tar.gz'
+Content type 'application/x-gzip' length 2131167 bytes (2.0 MB)
+==================================================
+downloaded 2.0 MB
+
+* installing *source* package ‘pathifier’ ...
+** this is package ‘pathifier’ version ‘1.46.0’
+** using staged installation
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (pathifier)
+
+The downloaded source packages are in
+	‘/tmp/RtmpU4RSUs/downloaded_packages’
+Successfully installed: pathifier 
+
+===========================================
+Package installation completed!
+You can now run your R scripts in this directory.

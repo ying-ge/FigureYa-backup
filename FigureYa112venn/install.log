@@ -1,0 +1,24 @@
+Starting R package installation...
+===========================================
+
+Installing CRAN packages...
+All required CRAN packages are already installed.
+NULL
+
+Verifying package installation...
+✓ VennDiagram is installed
+✓ ggplot2 is installed
+✓ dplyr is installed
+✓ magrittr is installed
+✓ readr is installed
+✓ purrr is installed
+✓ RColorBrewer is installed
+✓ grDevices is installed
+✓ Cairo is installed
+✓ stringr is installed
+✓ tibble is installed
+✓ tidyr is installed
+
+===========================================
+All required packages installed successfully!
+You can now run your R scripts in this directory.

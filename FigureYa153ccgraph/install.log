@@ -1,0 +1,583 @@
+Starting R package installation...
+===========================================
+
+Installing CRAN packages...
+Installing CRAN package: GOplot 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+also installing the dependency ‘ggdendro’
+
+trying URL 'https://cloud.r-project.org/src/contrib/ggdendro_0.2.0.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/GOplot_1.0.2.tar.gz'
+* installing *source* package ‘ggdendro’ ...
+** this is package ‘ggdendro’ version ‘0.2.0’
+** package ‘ggdendro’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (ggdendro)
+* installing *source* package ‘GOplot’ ...
+** this is package ‘GOplot’ version ‘1.0.2’
+** package ‘GOplot’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (GOplot)
+
+The downloaded source packages are in
+	‘/tmp/RtmpszDfdu/downloaded_packages’
+Successfully installed: GOplot 
+Package already installed: class 
+Package already installed: data.table 
+Installing CRAN package: ggraph 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+also installing the dependencies ‘coda’, ‘geometries’, ‘statnet.common’, ‘gclus’, ‘qap’, ‘TSP’, ‘transformr’, ‘lwgeom’, ‘sfheaders’, ‘tidygraph’, ‘graphlayouts’, ‘network’, ‘seriation’, ‘gganimate’, ‘sfnetworks’
+
+trying URL 'https://cloud.r-project.org/src/contrib/coda_0.19-4.1.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/geometries_0.2.4.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/statnet.common_4.12.0.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/gclus_1.3.3.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/qap_0.1-2.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/TSP_1.2-5.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/transformr_0.1.5.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/lwgeom_0.2-14.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/sfheaders_0.4.4.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/tidygraph_1.3.1.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/graphlayouts_1.2.2.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/network_1.19.0.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/seriation_1.5.8.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/gganimate_1.0.11.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/sfnetworks_0.6.5.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/ggraph_2.2.2.tar.gz'
+* installing *source* package ‘coda’ ...
+** this is package ‘coda’ version ‘0.19-4.1’
+** package ‘coda’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (coda)
+* installing *source* package ‘geometries’ ...
+** this is package ‘geometries’ version ‘0.2.4’
+** package ‘geometries’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DSTRICT_R_HEADERS -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -I../inst/include/ -fpic  -g -O2   -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DSTRICT_R_HEADERS -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -I../inst/include/ -fpic  -g -O2   -c bbox.cpp -o bbox.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DSTRICT_R_HEADERS -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -I../inst/include/ -fpic  -g -O2   -c close.cpp -o close.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DSTRICT_R_HEADERS -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -I../inst/include/ -fpic  -g -O2   -c columns.cpp -o columns.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DSTRICT_R_HEADERS -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -I../inst/include/ -fpic  -g -O2   -c coordinates.cpp -o coordinates.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DSTRICT_R_HEADERS -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -I../inst/include/ -fpic  -g -O2   -c geometries.cpp -o geometries.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DSTRICT_R_HEADERS -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -I../inst/include/ -fpic  -g -O2   -c lines.cpp -o lines.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DSTRICT_R_HEADERS -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -I../inst/include/ -fpic  -g -O2   -c lists.cpp -o lists.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DSTRICT_R_HEADERS -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -I../inst/include/ -fpic  -g -O2   -c nest.cpp -o nest.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DSTRICT_R_HEADERS -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -I../inst/include/ -fpic  -g -O2   -c shapes.cpp -o shapes.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DSTRICT_R_HEADERS -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -I../inst/include/ -fpic  -g -O2   -c tests.cpp -o tests.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DSTRICT_R_HEADERS -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -I../inst/include/ -fpic  -g -O2   -c utils.cpp -o utils.o
+g++ -std=gnu++17 -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o geometries.so RcppExports.o bbox.o close.o columns.o coordinates.o geometries.o lines.o lists.o nest.o shapes.o tests.o utils.o -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-geometries/00new/geometries/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (geometries)
+* installing *source* package ‘gclus’ ...
+** this is package ‘gclus’ version ‘1.3.3’
+** package ‘gclus’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (gclus)
+* installing *source* package ‘qap’ ...
+** this is package ‘qap’ version ‘0.1-2’
+** package ‘qap’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+using Fortran compiler: ‘GNU Fortran (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c RNG_wrapper.c -o RNG_wrapper.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c init.c -o init.o
+gfortran  -fpic  -g -O2  -c qapsim.f -o qapsim.o
+gcc -std=gnu2x -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o qap.so RNG_wrapper.o init.o qapsim.o -lgfortran -lm -lquadmath -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-qap/00new/qap/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (qap)
+* installing *source* package ‘TSP’ ...
+** this is package ‘TSP’ version ‘1.2-5’
+** package ‘TSP’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c dll.c -o dll.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c insertion_cost.c -o insertion_cost.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c tour_length.c -o tour_length.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c two_opt.c -o two_opt.o
+gcc -std=gnu2x -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o TSP.so dll.o insertion_cost.o tour_length.o two_opt.o -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-TSP/00new/TSP/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (TSP)
+* installing *source* package ‘transformr’ ...
+** this is package ‘transformr’ version ‘0.1.5’
+** package ‘transformr’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include    -fpic  -g -O2   -c align_rings.cpp -o align_rings.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include    -fpic  -g -O2   -c cpp11.cpp -o cpp11.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include    -fpic  -g -O2   -c fill_down.cpp -o fill_down.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include    -fpic  -g -O2   -c sf_packing.cpp -o sf_packing.o
+g++ -std=gnu++17 -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o transformr.so align_rings.o cpp11.o fill_down.o sf_packing.o -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-transformr/00new/transformr/libs
+** R
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (transformr)
+* installing *source* package ‘lwgeom’ ...
+** this is package ‘lwgeom’ version ‘0.2-14’
+** package ‘lwgeom’ successfully unpacked and MD5 sums checked
+** using staged installation
+configure: CC: gcc -std=gnu2x
+configure: CXX: g++ -std=gnu++17
+configure: pkg-config proj exists, will use it
+configure: using proj.h.
+configure: PROJ: 9.4.0
+checking PROJ: checking whether linking against PROJ works:... yes
+configure: POSTGIS_PROJ_VERSION: 94
+checking for geos-config... /usr/bin/geos-config
+checking geos-config usability... yes
+configure: GEOS: 3.12.1
+checking GEOS version >= 3.5.0... yes
+checking geos: linking with -L/usr/lib/x86_64-linux-gnu -lgeos_c... yes
+checking for GEOS_init_r in -lgeos_c... yes
+configure: Package CPP flags:   -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include -DPOSTGIS_GEOS_VERSION=35 -I./liblwgeom -DHAVE_LIBGEOM_INTERNAL_H
+configure: Package LIBS: -lproj      -L/usr/lib/x86_64-linux-gnu -lgeos_c
+configure: creating ./config.status
+config.status: creating src/Makevars
+config.status: creating src/postgis_config.h
+** libs
+using C++ compiler: ‘g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include -DPOSTGIS_GEOS_VERSION=35 -I./liblwgeom -DHAVE_LIBGEOM_INTERNAL_H -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sf/include' -I/usr/local/include    -fpic  -g -O2   -c geodetic.cpp -o geodetic.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include -DPOSTGIS_GEOS_VERSION=35 -I./liblwgeom -DHAVE_LIBGEOM_INTERNAL_H -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sf/include' -I/usr/local/include    -fpic  -g -O2   -c lwgeom.cpp -o lwgeom.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include -DPOSTGIS_GEOS_VERSION=35 -I./liblwgeom -DHAVE_LIBGEOM_INTERNAL_H -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sf/include' -I/usr/local/include    -fpic  -g -O2   -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include -DPOSTGIS_GEOS_VERSION=35 -I./liblwgeom -DHAVE_LIBGEOM_INTERNAL_H -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sf/include' -I/usr/local/include    -fpic  -g -O2   -c proj.cpp -o proj.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include -DPOSTGIS_GEOS_VERSION=35 -I./liblwgeom -DHAVE_LIBGEOM_INTERNAL_H -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sf/include' -I/usr/local/include    -fpic  -g -O2   -c geos.cpp -o geos.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include -DPOSTGIS_GEOS_VERSION=35 -I./liblwgeom -DHAVE_LIBGEOM_INTERNAL_H -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sf/include' -I/usr/local/include    -fpic  -g -O2   -c io.cpp -o io.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include -DPOSTGIS_GEOS_VERSION=35 -I./liblwgeom -DHAVE_LIBGEOM_INTERNAL_H -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sf/include' -I/usr/local/include    -fpic  -g -O2   -c sub.cpp -o sub.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include -DPOSTGIS_GEOS_VERSION=35 -I./liblwgeom -DHAVE_LIBGEOM_INTERNAL_H -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sf/include' -I/usr/local/include    -fpic  -g -O2  -c liblwgeom/varint.c -o liblwgeom/varint.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include -DPOSTGIS_GEOS_VERSION=35 -I./liblwgeom -DHAVE_LIBGEOM_INTERNAL_H -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sf/include' -I/usr/local/include    -fpic  -g -O2  -c liblwgeom/lwout_twkb.c -o liblwgeom/lwout_twkb.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include -DPOSTGIS_GEOS_VERSION=35 -I./liblwgeom -DHAVE_LIBGEOM_INTERNAL_H -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sf/include' -I/usr/local/include    -fpic  -g -O2  -c liblwgeom/lwpsurface.c -o liblwgeom/lwpsurface.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include -DPOSTGIS_GEOS_VERSION=35 -I./liblwgeom -DHAVE_LIBGEOM_INTERNAL_H -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sf/include' -I/usr/local/include    -fpic  -g -O2  -c liblwgeom/lwtriangle.c -o liblwgeom/lwtriangle.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include -DPOSTGIS_GEOS_VERSION=35 -I./liblwgeom -DHAVE_LIBGEOM_INTERNAL_H -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sf/include' -I/usr/local/include    -fpic  -g -O2  -c liblwgeom/lwmpoly.c -o liblwgeom/lwmpoly.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include -DPOSTGIS_GEOS_VERSION=35 -I./liblwgeom -DHAVE_LIBGEOM_INTERNAL_H -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sf/include' -I/usr/local/include    -fpic  -g -O2  -c liblwgeom/lookup3.c -o liblwgeom/lookup3.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include -DPOSTGIS_GEOS_VERSION=35 -I./liblwgeom -DHAVE_LIBGEOM_INTERNAL_H -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sf/include' -I/usr/local/include    -fpic  -g -O2  -c liblwgeom/lwin_wkt.c -o liblwgeom/lwin_wkt.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include -DPOSTGIS_GEOS_VERSION=35 -I./liblwgeom -DHAVE_LIBGEOM_INTERNAL_H -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sf/include' -I/usr/local/include    -fpic  -g -O2  -c liblwgeom/gserialized1.c -o liblwgeom/gserialized1.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include -DPOSTGIS_GEOS_VERSION=35 -I./liblwgeom -DHAVE_LIBGEOM_INTERNAL_H -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sf/include' -I/usr/local/include    -fpic  -g -O2  -c liblwgeom/lwgeom.c -o liblwgeom/lwgeom.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include -DPOSTGIS_GEOS_VERSION=35 -I./liblwgeom -DHAVE_LIBGEOM_INTERNAL_H -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sf/include' -I/usr/local/include    -fpic  -g -O2  -c liblwgeom/gserialized2.c -o liblwgeom/gserialized2.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include -DPOSTGIS_GEOS_VERSION=35 -I./liblwgeom -DHAVE_LIBGEOM_INTERNAL_H -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sf/include' -I/usr/local/include    -fpic  -g -O2  -c liblwgeom/lwstroke.c -o liblwgeom/lwstroke.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include -DPOSTGIS_GEOS_VERSION=35 -I./liblwgeom -DHAVE_LIBGEOM_INTERNAL_H -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sf/include' -I/usr/local/include    -fpic  -g -O2  -c liblwgeom/lwtin.c -o liblwgeom/lwtin.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include -DPOSTGIS_GEOS_VERSION=35 -I./liblwgeom -DHAVE_LIBGEOM_INTERNAL_H -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sf/include' -I/usr/local/include    -fpic  -g -O2  -c liblwgeom/lwin_twkb.c -o liblwgeom/lwin_twkb.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include -DPOSTGIS_GEOS_VERSION=35 -I./liblwgeom -DHAVE_LIBGEOM_INTERNAL_H -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sf/include' -I/usr/local/include    -fpic  -g -O2  -c liblwgeom/lwgeom_geos_cluster.c -o liblwgeom/lwgeom_geos_cluster.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include -DPOSTGIS_GEOS_VERSION=35 -I./liblwgeom -DHAVE_LIBGEOM_INTERNAL_H -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sf/include' -I/usr/local/include    -fpic  -g -O2  -c liblwgeom/lwmsurface.c -o liblwgeom/lwmsurface.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include -DPOSTGIS_GEOS_VERSION=35 -I./liblwgeom -DHAVE_LIBGEOM_INTERNAL_H -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sf/include' -I/usr/local/include    -fpic  -g -O2  -c liblwgeom/lwgeom_wrapx.c -o liblwgeom/lwgeom_wrapx.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include -DPOSTGIS_GEOS_VERSION=35 -I./liblwgeom -DHAVE_LIBGEOM_INTERNAL_H -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sf/include' -I/usr/local/include    -fpic  -g -O2  -c liblwgeom/lwiterator.c -o liblwgeom/lwiterator.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include -DPOSTGIS_GEOS_VERSION=35 -I./liblwgeom -DHAVE_LIBGEOM_INTERNAL_H -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sf/include' -I/usr/local/include    -fpic  -g -O2  -c liblwgeom/lwgeom_geos_node.c -o liblwgeom/lwgeom_geos_node.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include -DPOSTGIS_GEOS_VERSION=35 -I./liblwgeom -DHAVE_LIBGEOM_INTERNAL_H -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sf/include' -I/usr/local/include    -fpic  -g -O2  -c liblwgeom/lwout_geojson.c -o liblwgeom/lwout_geojson.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include -DPOSTGIS_GEOS_VERSION=35 -I./liblwgeom -DHAVE_LIBGEOM_INTERNAL_H -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sf/include' -I/usr/local/include    -fpic  -g -O2  -c liblwgeom/lwgeom_debug.c -o liblwgeom/lwgeom_debug.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include -DPOSTGIS_GEOS_VERSION=35 -I./liblwgeom -DHAVE_LIBGEOM_INTERNAL_H -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sf/include' -I/usr/local/include    -fpic  -g -O2  -c liblwgeom/lwgeom_median.c -o liblwgeom/lwgeom_median.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include -DPOSTGIS_GEOS_VERSION=35 -I./liblwgeom -DHAVE_LIBGEOM_INTERNAL_H -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sf/include' -I/usr/local/include    -fpic  -g -O2  -c liblwgeom/lwmval.c -o liblwgeom/lwmval.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include -DPOSTGIS_GEOS_VERSION=35 -I./liblwgeom -DHAVE_LIBGEOM_INTERNAL_H -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sf/include' -I/usr/local/include    -fpic  -g -O2  -c liblwgeom/lwkmeans.c -o liblwgeom/lwkmeans.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include -DPOSTGIS_GEOS_VERSION=35 -I./liblwgeom -DHAVE_LIBGEOM_INTERNAL_H -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sf/include' -I/usr/local/include    -fpic  -g -O2  -c liblwgeom/lwgeom_geos.c -o liblwgeom/lwgeom_geos.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include -DPOSTGIS_GEOS_VERSION=35 -I./liblwgeom -DHAVE_LIBGEOM_INTERNAL_H -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sf/include' -I/usr/local/include    -fpic  -g -O2  -c liblwgeom/lwout_kml.c -o liblwgeom/lwout_kml.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include -DPOSTGIS_GEOS_VERSION=35 -I./liblwgeom -DHAVE_LIBGEOM_INTERNAL_H -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sf/include' -I/usr/local/include    -fpic  -g -O2  -c liblwgeom/lwutil.c -o liblwgeom/lwutil.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include -DPOSTGIS_GEOS_VERSION=35 -I./liblwgeom -DHAVE_LIBGEOM_INTERNAL_H -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sf/include' -I/usr/local/include    -fpic  -g -O2  -c liblwgeom/lwprint.c -o liblwgeom/lwprint.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include -DPOSTGIS_GEOS_VERSION=35 -I./liblwgeom -DHAVE_LIBGEOM_INTERNAL_H -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sf/include' -I/usr/local/include    -fpic  -g -O2  -c liblwgeom/lwrandom.c -o liblwgeom/lwrandom.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include -DPOSTGIS_GEOS_VERSION=35 -I./liblwgeom -DHAVE_LIBGEOM_INTERNAL_H -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sf/include' -I/usr/local/include    -fpic  -g -O2  -c liblwgeom/lwmline.c -o liblwgeom/lwmline.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include -DPOSTGIS_GEOS_VERSION=35 -I./liblwgeom -DHAVE_LIBGEOM_INTERNAL_H -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sf/include' -I/usr/local/include    -fpic  -g -O2  -c liblwgeom/lwgeodetic_tree.c -o liblwgeom/lwgeodetic_tree.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include -DPOSTGIS_GEOS_VERSION=35 -I./liblwgeom -DHAVE_LIBGEOM_INTERNAL_H -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sf/include' -I/usr/local/include    -fpic  -g -O2  -c liblwgeom/lwline.c -o liblwgeom/lwline.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include -DPOSTGIS_GEOS_VERSION=35 -I./liblwgeom -DHAVE_LIBGEOM_INTERNAL_H -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sf/include' -I/usr/local/include    -fpic  -g -O2  -c liblwgeom/bytebuffer.c -o liblwgeom/bytebuffer.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include -DPOSTGIS_GEOS_VERSION=35 -I./liblwgeom -DHAVE_LIBGEOM_INTERNAL_H -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sf/include' -I/usr/local/include    -fpic  -g -O2  -c liblwgeom/lwgeodetic.c -o liblwgeom/lwgeodetic.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include -DPOSTGIS_GEOS_VERSION=35 -I./liblwgeom -DHAVE_LIBGEOM_INTERNAL_H -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sf/include' -I/usr/local/include    -fpic  -g -O2  -c liblwgeom/measures.c -o liblwgeom/measures.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include -DPOSTGIS_GEOS_VERSION=35 -I./liblwgeom -DHAVE_LIBGEOM_INTERNAL_H -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sf/include' -I/usr/local/include    -fpic  -g -O2  -c liblwgeom/lwgeom_api.c -o liblwgeom/lwgeom_api.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include -DPOSTGIS_GEOS_VERSION=35 -I./liblwgeom -DHAVE_LIBGEOM_INTERNAL_H -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sf/include' -I/usr/local/include    -fpic  -g -O2  -c liblwgeom/lwmcurve.c -o liblwgeom/lwmcurve.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include -DPOSTGIS_GEOS_VERSION=35 -I./liblwgeom -DHAVE_LIBGEOM_INTERNAL_H -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sf/include' -I/usr/local/include    -fpic  -g -O2  -c liblwgeom/lwcollection.c -o liblwgeom/lwcollection.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include -DPOSTGIS_GEOS_VERSION=35 -I./liblwgeom -DHAVE_LIBGEOM_INTERNAL_H -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sf/include' -I/usr/local/include    -fpic  -g -O2  -c liblwgeom/gbox.c -o liblwgeom/gbox.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include -DPOSTGIS_GEOS_VERSION=35 -I./liblwgeom -DHAVE_LIBGEOM_INTERNAL_H -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sf/include' -I/usr/local/include    -fpic  -g -O2  -c liblwgeom/lwspheroid.c -o liblwgeom/lwspheroid.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include -DPOSTGIS_GEOS_VERSION=35 -I./liblwgeom -DHAVE_LIBGEOM_INTERNAL_H -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sf/include' -I/usr/local/include    -fpic  -g -O2  -c liblwgeom/lwout_svg.c -o liblwgeom/lwout_svg.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include -DPOSTGIS_GEOS_VERSION=35 -I./liblwgeom -DHAVE_LIBGEOM_INTERNAL_H -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sf/include' -I/usr/local/include    -fpic  -g -O2  -c liblwgeom/lwin_encoded_polyline.c -o liblwgeom/lwin_encoded_polyline.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include -DPOSTGIS_GEOS_VERSION=35 -I./liblwgeom -DHAVE_LIBGEOM_INTERNAL_H -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sf/include' -I/usr/local/include    -fpic  -g -O2  -c liblwgeom/lwout_encoded_polyline.c -o liblwgeom/lwout_encoded_polyline.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include -DPOSTGIS_GEOS_VERSION=35 -I./liblwgeom -DHAVE_LIBGEOM_INTERNAL_H -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sf/include' -I/usr/local/include    -fpic  -g -O2  -c liblwgeom/lwgeom_geos_split.c -o liblwgeom/lwgeom_geos_split.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include -DPOSTGIS_GEOS_VERSION=35 -I./liblwgeom -DHAVE_LIBGEOM_INTERNAL_H -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sf/include' -I/usr/local/include    -fpic  -g -O2  -c liblwgeom/effectivearea.c -o liblwgeom/effectivearea.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include -DPOSTGIS_GEOS_VERSION=35 -I./liblwgeom -DHAVE_LIBGEOM_INTERNAL_H -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sf/include' -I/usr/local/include    -fpic  -g -O2  -c liblwgeom/lwboundingcircle.c -o liblwgeom/lwboundingcircle.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include -DPOSTGIS_GEOS_VERSION=35 -I./liblwgeom -DHAVE_LIBGEOM_INTERNAL_H -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sf/include' -I/usr/local/include    -fpic  -g -O2  -c liblwgeom/lwcurvepoly.c -o liblwgeom/lwcurvepoly.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include -DPOSTGIS_GEOS_VERSION=35 -I./liblwgeom -DHAVE_LIBGEOM_INTERNAL_H -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sf/include' -I/usr/local/include    -fpic  -g -O2  -c liblwgeom/lwlinearreferencing.c -o liblwgeom/lwlinearreferencing.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include -DPOSTGIS_GEOS_VERSION=35 -I./liblwgeom -DHAVE_LIBGEOM_INTERNAL_H -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sf/include' -I/usr/local/include    -fpic  -g -O2  -c liblwgeom/lwunionfind.c -o liblwgeom/lwunionfind.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include -DPOSTGIS_GEOS_VERSION=35 -I./liblwgeom -DHAVE_LIBGEOM_INTERNAL_H -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sf/include' -I/usr/local/include    -fpic  -g -O2  -c liblwgeom/lwchaikins.c -o liblwgeom/lwchaikins.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include -DPOSTGIS_GEOS_VERSION=35 -I./liblwgeom -DHAVE_LIBGEOM_INTERNAL_H -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sf/include' -I/usr/local/include    -fpic  -g -O2  -c liblwgeom/lwalgorithm.c -o liblwgeom/lwalgorithm.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include -DPOSTGIS_GEOS_VERSION=35 -I./liblwgeom -DHAVE_LIBGEOM_INTERNAL_H -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sf/include' -I/usr/local/include    -fpic  -g -O2  -c liblwgeom/lwhomogenize.c -o liblwgeom/lwhomogenize.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include -DPOSTGIS_GEOS_VERSION=35 -I./liblwgeom -DHAVE_LIBGEOM_INTERNAL_H -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sf/include' -I/usr/local/include    -fpic  -g -O2  -c liblwgeom/lwgeom_geos_clean.c -o liblwgeom/lwgeom_geos_clean.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include -DPOSTGIS_GEOS_VERSION=35 -I./liblwgeom -DHAVE_LIBGEOM_INTERNAL_H -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sf/include' -I/usr/local/include    -fpic  -g -O2  -c liblwgeom/measures3d.c -o liblwgeom/measures3d.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include -DPOSTGIS_GEOS_VERSION=35 -I./liblwgeom -DHAVE_LIBGEOM_INTERNAL_H -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sf/include' -I/usr/local/include    -fpic  -g -O2  -c liblwgeom/lwout_x3d.c -o liblwgeom/lwout_x3d.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include -DPOSTGIS_GEOS_VERSION=35 -I./liblwgeom -DHAVE_LIBGEOM_INTERNAL_H -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sf/include' -I/usr/local/include    -fpic  -g -O2  -c liblwgeom/lwgeom_transform.c -o liblwgeom/lwgeom_transform.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include -DPOSTGIS_GEOS_VERSION=35 -I./liblwgeom -DHAVE_LIBGEOM_INTERNAL_H -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sf/include' -I/usr/local/include    -fpic  -g -O2  -c liblwgeom/lwin_wkt_lex.c -o liblwgeom/lwin_wkt_lex.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include -DPOSTGIS_GEOS_VERSION=35 -I./liblwgeom -DHAVE_LIBGEOM_INTERNAL_H -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sf/include' -I/usr/local/include    -fpic  -g -O2  -c liblwgeom/lwmpoint.c -o liblwgeom/lwmpoint.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include -DPOSTGIS_GEOS_VERSION=35 -I./liblwgeom -DHAVE_LIBGEOM_INTERNAL_H -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sf/include' -I/usr/local/include    -fpic  -g -O2  -c liblwgeom/stringbuffer.c -o liblwgeom/stringbuffer.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include -DPOSTGIS_GEOS_VERSION=35 -I./liblwgeom -DHAVE_LIBGEOM_INTERNAL_H -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sf/include' -I/usr/local/include    -fpic  -g -O2  -c liblwgeom/lwcompound.c -o liblwgeom/lwcompound.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include -DPOSTGIS_GEOS_VERSION=35 -I./liblwgeom -DHAVE_LIBGEOM_INTERNAL_H -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sf/include' -I/usr/local/include    -fpic  -g -O2  -c liblwgeom/gserialized.c -o liblwgeom/gserialized.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include -DPOSTGIS_GEOS_VERSION=35 -I./liblwgeom -DHAVE_LIBGEOM_INTERNAL_H -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sf/include' -I/usr/local/include    -fpic  -g -O2  -c liblwgeom/lwout_wkt.c -o liblwgeom/lwout_wkt.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include -DPOSTGIS_GEOS_VERSION=35 -I./liblwgeom -DHAVE_LIBGEOM_INTERNAL_H -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sf/include' -I/usr/local/include    -fpic  -g -O2  -c liblwgeom/lwin_wkb.c -o liblwgeom/lwin_wkb.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include -DPOSTGIS_GEOS_VERSION=35 -I./liblwgeom -DHAVE_LIBGEOM_INTERNAL_H -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sf/include' -I/usr/local/include    -fpic  -g -O2  -c liblwgeom/ptarray.c -o liblwgeom/ptarray.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include -DPOSTGIS_GEOS_VERSION=35 -I./liblwgeom -DHAVE_LIBGEOM_INTERNAL_H -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sf/include' -I/usr/local/include    -fpic  -g -O2  -c liblwgeom/lwout_wkb.c -o liblwgeom/lwout_wkb.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include -DPOSTGIS_GEOS_VERSION=35 -I./liblwgeom -DHAVE_LIBGEOM_INTERNAL_H -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sf/include' -I/usr/local/include    -fpic  -g -O2  -c liblwgeom/lwpoly.c -o liblwgeom/lwpoly.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include -DPOSTGIS_GEOS_VERSION=35 -I./liblwgeom -DHAVE_LIBGEOM_INTERNAL_H -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sf/include' -I/usr/local/include    -fpic  -g -O2  -c liblwgeom/lwpoint.c -o liblwgeom/lwpoint.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include -DPOSTGIS_GEOS_VERSION=35 -I./liblwgeom -DHAVE_LIBGEOM_INTERNAL_H -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sf/include' -I/usr/local/include    -fpic  -g -O2  -c liblwgeom/lwout_gml.c -o liblwgeom/lwout_gml.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include -DPOSTGIS_GEOS_VERSION=35 -I./liblwgeom -DHAVE_LIBGEOM_INTERNAL_H -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sf/include' -I/usr/local/include    -fpic  -g -O2  -c liblwgeom/lwgeom_topo.c -o liblwgeom/lwgeom_topo.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include -DPOSTGIS_GEOS_VERSION=35 -I./liblwgeom -DHAVE_LIBGEOM_INTERNAL_H -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sf/include' -I/usr/local/include    -fpic  -g -O2  -c liblwgeom/lwcircstring.c -o liblwgeom/lwcircstring.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include  -DPOSTGIS_PROJ_VERSION=94 -DUSE_PROJ_H -I/usr/include -DPOSTGIS_GEOS_VERSION=35 -I./liblwgeom -DHAVE_LIBGEOM_INTERNAL_H -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sf/include' -I/usr/local/include    -fpic  -g -O2  -c liblwgeom/lwin_wkt_parse.c -o liblwgeom/lwin_wkt_parse.o
+g++ -std=gnu++17 -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o lwgeom.so geodetic.o lwgeom.o RcppExports.o proj.o geos.o io.o sub.o liblwgeom/varint.o liblwgeom/lwout_twkb.o liblwgeom/lwpsurface.o liblwgeom/lwtriangle.o liblwgeom/lwmpoly.o liblwgeom/lookup3.o liblwgeom/lwin_wkt.o liblwgeom/gserialized1.o liblwgeom/lwgeom.o liblwgeom/gserialized2.o liblwgeom/lwstroke.o liblwgeom/lwtin.o liblwgeom/lwin_twkb.o liblwgeom/lwgeom_geos_cluster.o liblwgeom/lwmsurface.o liblwgeom/lwgeom_wrapx.o liblwgeom/lwiterator.o liblwgeom/lwgeom_geos_node.o liblwgeom/lwout_geojson.o liblwgeom/lwgeom_debug.o liblwgeom/lwgeom_median.o liblwgeom/lwmval.o liblwgeom/lwkmeans.o liblwgeom/lwgeom_geos.o liblwgeom/lwout_kml.o liblwgeom/lwutil.o liblwgeom/lwprint.o liblwgeom/lwrandom.o liblwgeom/lwmline.o liblwgeom/lwgeodetic_tree.o liblwgeom/lwline.o liblwgeom/bytebuffer.o liblwgeom/lwgeodetic.o liblwgeom/measures.o liblwgeom/lwgeom_api.o liblwgeom/lwmcurve.o liblwgeom/lwcollection.o liblwgeom/gbox.o liblwgeom/lwspheroid.o liblwgeom/lwout_svg.o liblwgeom/lwin_encoded_polyline.o liblwgeom/lwout_encoded_polyline.o liblwgeom/lwgeom_geos_split.o liblwgeom/effectivearea.o liblwgeom/lwboundingcircle.o liblwgeom/lwcurvepoly.o liblwgeom/lwlinearreferencing.o liblwgeom/lwunionfind.o liblwgeom/lwchaikins.o liblwgeom/lwalgorithm.o liblwgeom/lwhomogenize.o liblwgeom/lwgeom_geos_clean.o liblwgeom/measures3d.o liblwgeom/lwout_x3d.o liblwgeom/lwgeom_transform.o liblwgeom/lwin_wkt_lex.o liblwgeom/lwmpoint.o liblwgeom/stringbuffer.o liblwgeom/lwcompound.o liblwgeom/gserialized.o liblwgeom/lwout_wkt.o liblwgeom/lwin_wkb.o liblwgeom/ptarray.o liblwgeom/lwout_wkb.o liblwgeom/lwpoly.o liblwgeom/lwpoint.o liblwgeom/lwout_gml.o liblwgeom/lwgeom_topo.o liblwgeom/lwcircstring.o liblwgeom/lwin_wkt_parse.o -lproj -L/usr/lib/x86_64-linux-gnu -lgeos_c -lgeos_c -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-lwgeom/00new/lwgeom/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (lwgeom)
+* installing *source* package ‘tidygraph’ ...
+** this is package ‘tidygraph’ version ‘1.3.1’
+** package ‘tidygraph’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include    -fpic  -g -O2   -c cpp11.cpp -o cpp11.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include    -fpic  -g -O2   -c get_paths.cpp -o get_paths.o
+g++ -std=gnu++17 -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o tidygraph.so cpp11.o get_paths.o -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-tidygraph/00new/tidygraph/libs
+** R
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (tidygraph)
+* installing *source* package ‘graphlayouts’ ...
+** this is package ‘graphlayouts’ version ‘1.2.2’
+** package ‘graphlayouts’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DARMA_64BIT_WORD=1 -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/RcppArmadillo/include' -I/usr/local/include    -fpic  -g -O2   -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DARMA_64BIT_WORD=1 -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/RcppArmadillo/include' -I/usr/local/include    -fpic  -g -O2   -c constrained_stress.cpp -o constrained_stress.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DARMA_64BIT_WORD=1 -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/RcppArmadillo/include' -I/usr/local/include    -fpic  -g -O2   -c constrained_stress3D.cpp -o constrained_stress3D.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DARMA_64BIT_WORD=1 -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/RcppArmadillo/include' -I/usr/local/include    -fpic  -g -O2   -c metroLayout.cpp -o metroLayout.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DARMA_64BIT_WORD=1 -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/RcppArmadillo/include' -I/usr/local/include    -fpic  -g -O2   -c reweight.cpp -o reweight.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DARMA_64BIT_WORD=1 -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/RcppArmadillo/include' -I/usr/local/include    -fpic  -g -O2   -c sparseStress.cpp -o sparseStress.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DARMA_64BIT_WORD=1 -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/RcppArmadillo/include' -I/usr/local/include    -fpic  -g -O2   -c stress.cpp -o stress.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DARMA_64BIT_WORD=1 -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/RcppArmadillo/include' -I/usr/local/include    -fpic  -g -O2   -c stress3D.cpp -o stress3D.o
+g++ -std=gnu++17 -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o graphlayouts.so RcppExports.o constrained_stress.o constrained_stress3D.o metroLayout.o reweight.o sparseStress.o stress.o stress3D.o -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-graphlayouts/00new/graphlayouts/libs
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (graphlayouts)
+* installing *source* package ‘statnet.common’ ...
+** this is package ‘statnet.common’ version ‘4.12.0’
+** package ‘statnet.common’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c init.c -o init.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c logspace_utils.c -o logspace_utils.o
+gcc -std=gnu2x -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o statnet.common.so init.o logspace_utils.o -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-statnet.common/00new/statnet.common/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (statnet.common)
+* installing *source* package ‘sfheaders’ ...
+** this is package ‘sfheaders’ version ‘0.4.4’
+** package ‘sfheaders’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DSTRICT_R_HEADERS -I'/home/runner/work/_temp/Library/geometries/include' -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -I../inst/include/ -fpic  -g -O2   -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DSTRICT_R_HEADERS -I'/home/runner/work/_temp/Library/geometries/include' -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -I../inst/include/ -fpic  -g -O2   -c bbox.cpp -o bbox.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DSTRICT_R_HEADERS -I'/home/runner/work/_temp/Library/geometries/include' -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -I../inst/include/ -fpic  -g -O2   -c cast.cpp -o cast.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DSTRICT_R_HEADERS -I'/home/runner/work/_temp/Library/geometries/include' -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -I../inst/include/ -fpic  -g -O2   -c lists.cpp -o lists.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DSTRICT_R_HEADERS -I'/home/runner/work/_temp/Library/geometries/include' -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -I../inst/include/ -fpic  -g -O2   -c sfg_dimension.cpp -o sfg_dimension.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DSTRICT_R_HEADERS -I'/home/runner/work/_temp/Library/geometries/include' -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -I../inst/include/ -fpic  -g -O2   -c shapes.cpp -o shapes.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DSTRICT_R_HEADERS -I'/home/runner/work/_temp/Library/geometries/include' -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -I../inst/include/ -fpic  -g -O2   -c to_df.cpp -o to_df.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DSTRICT_R_HEADERS -I'/home/runner/work/_temp/Library/geometries/include' -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -I../inst/include/ -fpic  -g -O2   -c to_sf.cpp -o to_sf.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DSTRICT_R_HEADERS -I'/home/runner/work/_temp/Library/geometries/include' -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -I../inst/include/ -fpic  -g -O2   -c to_sfc.cpp -o to_sfc.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DSTRICT_R_HEADERS -I'/home/runner/work/_temp/Library/geometries/include' -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -I../inst/include/ -fpic  -g -O2   -c to_sfg.cpp -o to_sfg.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DSTRICT_R_HEADERS -I'/home/runner/work/_temp/Library/geometries/include' -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -I../inst/include/ -fpic  -g -O2   -c utils.cpp -o utils.o
+g++ -std=gnu++17 -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o sfheaders.so RcppExports.o bbox.o cast.o lists.o sfg_dimension.o shapes.o to_df.o to_sf.o to_sfc.o to_sfg.o utils.o -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-sfheaders/00new/sfheaders/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (sfheaders)
+* installing *source* package ‘seriation’ ...
+** this is package ‘seriation’ version ‘1.5.8’
+** package ‘seriation’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+using Fortran compiler: ‘GNU Fortran (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c RNG_wrapper.c -o RNG_wrapper.o
+gfortran  -fpic  -g -O2  -c arsa.f -o arsa.o
+gfortran  -fpic  -g -O2  -c bburcg.f -o bburcg.o
+gfortran  -fpic  -g -O2  -c bbwrcg.f -o bbwrcg.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c criterion.c -o criterion.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c dist.c -o dist.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c init.c -o init.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c nextperm.c -o nextperm.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c optimal.c -o optimal.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c pathdist.c -o pathdist.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c stress.c -o stress.o
+gcc -std=gnu2x -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o seriation.so RNG_wrapper.o arsa.o bburcg.o bbwrcg.o criterion.o dist.o init.o nextperm.o optimal.o pathdist.o stress.o -lgfortran -lm -lquadmath -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-seriation/00new/seriation/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (seriation)
+* installing *source* package ‘gganimate’ ...
+** this is package ‘gganimate’ version ‘1.0.11’
+** package ‘gganimate’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (gganimate)
+* installing *source* package ‘ggraph’ ...
+** this is package ‘ggraph’ version ‘2.2.2’
+** package ‘ggraph’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include    -fpic  -g -O2   -c cactusTree.cpp -o cactusTree.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include    -fpic  -g -O2   -c circlePack.cpp -o circlePack.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include    -fpic  -g -O2   -c cpp11.cpp -o cpp11.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include    -fpic  -g -O2   -c dendrogram.cpp -o dendrogram.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include    -fpic  -g -O2   -c forceBundle.cpp -o forceBundle.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include    -fpic  -g -O2   -c hTree.cpp -o hTree.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include    -fpic  -g -O2   -c iciclePlot.cpp -o iciclePlot.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include    -fpic  -g -O2   -c lineCutter.cpp -o lineCutter.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include    -fpic  -g -O2   -c nodes.cpp -o nodes.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include    -fpic  -g -O2   -c pathAttr.cpp -o pathAttr.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include    -fpic  -g -O2   -c treemap.cpp -o treemap.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include    -fpic  -g -O2   -c unrooted.cpp -o unrooted.o
+g++ -std=gnu++17 -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o ggraph.so cactusTree.o circlePack.o cpp11.o dendrogram.o forceBundle.o hTree.o iciclePlot.o lineCutter.o nodes.o pathAttr.o treemap.o unrooted.o -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-ggraph/00new/ggraph/libs
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (ggraph)
+* installing *source* package ‘network’ ...
+** this is package ‘network’ version ‘1.19.0’
+** package ‘network’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c Rinit.c -o Rinit.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c access.c -o access.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c constructors.c -o constructors.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c layout.c -o layout.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c utils.c -o utils.o
+gcc -std=gnu2x -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o network.so Rinit.o access.o constructors.o layout.o utils.o -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-network/00new/network/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (network)
+* installing *source* package ‘sfnetworks’ ...
+** this is package ‘sfnetworks’ version ‘0.6.5’
+** package ‘sfnetworks’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (sfnetworks)
+
+The downloaded source packages are in
+	‘/tmp/RtmpszDfdu/downloaded_packages’
+Successfully installed: ggraph 
+Installing CRAN package: order 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+Successfully installed: order 
+Installing CRAN package: phylum 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+Successfully installed: phylum 
+Package already installed: tidygraph 
+Package already installed: tidyverse 
+Warning messages:
+1: package ‘order’ is not available for this version of R
+
+A version of this package for your version of R might be available elsewhere,
+see the ideas at
+https://cran.r-project.org/doc/manuals/r-patched/R-admin.html#Installing-packages 
+2: package ‘phylum’ is not available for this version of R
+
+A version of this package for your version of R might be available elsewhere,
+see the ideas at
+https://cran.r-project.org/doc/manuals/r-patched/R-admin.html#Installing-packages 
+
+Installing Bioconductor packages...
+Package already installed: clusterProfiler 
+
+===========================================
+Package installation completed!
+You can now run your R scripts in this directory.

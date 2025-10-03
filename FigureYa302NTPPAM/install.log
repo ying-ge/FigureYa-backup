@@ -1,0 +1,35 @@
+Starting R package installation...
+===========================================
+
+Installing required packages...
+Installing CRAN package: pamr 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+trying URL 'https://cloud.r-project.org/src/contrib/pamr_1.57.tar.gz'
+Content type 'application/x-gzip' length 528934 bytes (516 KB)
+==================================================
+downloaded 516 KB
+
+* installing *source* package ‘pamr’ ...
+** this is package ‘pamr’ version ‘1.57’
+** package ‘pamr’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (pamr)
+
+The downloaded source packages are in
+	‘/tmp/RtmpNDpxZA/downloaded_packages’
+Successfully installed: pamr 
+Package already installed: cluster 
+
+===========================================
+Package installation completed!
+You can now run your R scripts in this directory.

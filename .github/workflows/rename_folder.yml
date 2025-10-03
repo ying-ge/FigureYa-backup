@@ -1,0 +1,63 @@
+name: Rename Folder Workflow
+
+on:
+  workflow_dispatch: # 手动触发工作流
+
+permissions:
+  contents: write
+
+jobs:
+  rename-folder:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 第一步：检出仓库代码
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      # 第二步：重命名文件夹
+      - name: Rename folder
+        run: |
+          # 定义旧文件夹名称和新文件夹名称
+          OLD_FOLDER="FigureYa122mut2expr_20230822_223122"
+          NEW_FOLDER="FigureYa122mut2expr"
+
+          # 检查旧文件夹是否存在
+          if [ -d "$OLD_FOLDER" ]; then
+            echo "Renaming $OLD_FOLDER to $NEW_FOLDER..."
+            mv "$OLD_FOLDER" "$NEW_FOLDER"
+            echo "Folder renamed successfully."
+          else
+            echo "Folder $OLD_FOLDER does not exist. Nothing to rename."
+            exit 1
+          fi
+
+      # 第三步：配置 Git 用户信息
+      - name: Configure Git
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+
+      # 第四步：提交和推送更改
+      - name: Commit and push changes
+        run: |
+          # 拉取远程最新更改并进行合并
+          echo "Pulling latest changes from remote..."
+          git pull origin main --rebase --autostash
+
+          # 添加更改到 Git
+          git add .
+          
+          # 检查是否有更改需要提交
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "chore: Rename folder from FigureYa122mut2expr_20230822_223122 to FigureYa122mut2expr"
+            
+            # 尝试推送更改
+            echo "Pushing changes to remote..."
+            if ! git push origin main; then
+              echo "Push failed, attempting force push after rebase..."
+              git push origin main --force
+            fi
+          fi

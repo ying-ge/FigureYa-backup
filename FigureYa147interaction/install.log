@@ -1,0 +1,44 @@
+Starting R package installation...
+===========================================
+
+Installing CRAN packages...
+Package already installed: ggplot2 
+Package already installed: igraph 
+Package already installed: magrittr 
+Package already installed: reshape2 
+
+Installing Bioconductor packages...
+Package already installed: clusterProfiler 
+Installing Bioconductor package: org.Hs.eg.db 
+'getOption("repos")' replaces Bioconductor standard repositories, see
+'help("repositories", package = "BiocManager")' for details.
+Replacement repositories:
+    CRAN: https://cloud.r-project.org/
+Bioconductor version 3.21 (BiocManager 1.30.26), R 4.5.1 (2025-06-13)
+Installing package(s) 'org.Hs.eg.db'
+trying URL 'https://bioconductor.org//packages/3.21/data/annotation/src/contrib/org.Hs.eg.db_3.21.0.tar.gz'
+Content type 'application/x-gzip' length 98265790 bytes (93.7 MB)
+==================================================
+downloaded 93.7 MB
+
+* installing *source* package ‘org.Hs.eg.db’ ...
+** this is package ‘org.Hs.eg.db’ version ‘3.21.0’
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (org.Hs.eg.db)
+
+The downloaded source packages are in
+	‘/tmp/RtmpN1B7Pn/downloaded_packages’
+Successfully installed: org.Hs.eg.db 
+
+===========================================
+Package installation completed!
+You can now run your R scripts in this directory.

@@ -1,0 +1,59 @@
+Starting R package installation...
+===========================================
+
+Installing CRAN packages...
+Installing CRAN package: BRCA_Basal 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+Successfully installed: BRCA_Basal 
+Installing CRAN package: BRCA_Her2 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+Successfully installed: BRCA_Her2 
+Installing CRAN package: BRCA_LumA 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+Successfully installed: BRCA_LumA 
+Installing CRAN package: BRCA_LumB 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+Successfully installed: BRCA_LumB 
+Installing CRAN package: BRCA_Normal 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+Successfully installed: BRCA_Normal 
+Installing CRAN package: CESC_AdenoCarcinoma 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+Successfully installed: CESC_AdenoCarcinoma 
+Installing CRAN package: CESC_SquamousCarcinoma 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+Successfully installed: CESC_SquamousCarcinoma 
+Installing CRAN package: GBM_IDHwt 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+Successfully installed: GBM_IDHwt 
+Installing CRAN package: LGG_IDHwt 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+Successfully installed: LGG_IDHwt 
+Installing CRAN package: SARC_Other 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+Successfully installed: SARC_Other 
+Installing CRAN package: TGCT_seminoma 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+Successfully installed: TGCT_seminoma 
+Installing CRAN package: Total 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+Successfully installed: Total 
+Package already installed: ggplot2 
+Package already installed: reshape2 
+There were 12 warnings (use warnings() to see them)
+
+===========================================
+Package installation completed!
+You can now run your R scripts in this directory.

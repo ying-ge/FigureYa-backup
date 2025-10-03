@@ -1,0 +1,50 @@
+name: Replace Text in RMD Files
+
+on:
+  workflow_dispatch: # 仅手动触发
+
+jobs:
+  replace-text:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    - name: Debug - List All Matched Files
+      run: |
+        echo "Matched files:"
+        find . -type f -iname "*.rmd"
+
+    - name: Remove GDCdata Folder
+      run: |
+        echo "Trying to remove GDCdata folder..."
+        find . -type d -name "GDCdata" -exec rm -rf {} +
+        echo "Removed GDCdata folders if found."
+
+    - name: Debug - Show Changes
+      run: |
+        echo "Changes:"
+        git status --short
+        echo "Modified files content:"
+        git diff --name-only | head -5 | while read file; do
+          echo "--- $file ---"
+          git diff "$file" | head -10
+        done
+
+    - name: Commit Changes to New Branch
+      run: |
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        branch="remove-gdcdata-folder-$(date +%Y%m%d%H%M%S)"
+        git checkout -b "$branch"
+        if ! git diff --quiet; then
+          git add .
+          git commit -m "Remove GDCdata folder(s)"
+          git push origin "$branch"
+          echo "Pushed to branch: $branch"
+        else
+          echo "No changes to commit"
+        fi

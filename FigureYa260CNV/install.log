@@ -1,0 +1,16 @@
+Starting R package installation...
+===========================================
+
+Installing CRAN packages...
+Package already installed: magrittr 
+Package already installed: tidyverse 
+
+Installing Bioconductor packages...
+Package already installed: SummarizedExperiment 
+Package already installed: TCGAbiolinks 
+Package already installed: clusterProfiler 
+Package already installed: org.Hs.eg.db 
+
+===========================================
+Package installation completed!
+You can now run your R scripts in this directory.

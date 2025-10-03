@@ -1,0 +1,168 @@
+FigureYa190batchLogistic
+FigureYa190batchLogistic
+Author(s)
+: Xiaofan Lu
+Reviewer(s)
+: Ying Ge, Junyi Shen
+Date
+: 2025-09-22
+Academic Citation
+If you use this code in your work or research, we kindly request that
+you cite our publication:
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization
+Framework for Enhancing Biomedical Data Interpretation and Research
+Efficiency. iMetaMed.
+https://doi.org/10.1002/imm3.70005
+需求描述
+Requirement
+逻辑回归，这篇文章应该是一个一个做的，我主要想要的是批量。 Logistic
+regression. This article should be done one by one. What I mainly want
+is batch production.
+出自
+https://doi.org/10.1371/journal.pone.0201515
+fromhttps://doi.org/10.1371/journal.pone.0201515
+应用场景
+Application Scenarios
+批量计算单变量和多变量逻辑回归。 Batch calculation of univariate and
+multivariate logistic regression.
+这个是逻辑回归，如果要cox回归，可参考FigureYa47HR2table。 This is
+logistic regression. If you want cox regression, you can refer to Figure
+A47HR2Table.
+环境设置
+Environment Setup
+source("install_dependencies.R")
+library(SimDesign) # 用于沉默逐步回归的信息 # Information for silent stepwise regression
+
+Sys.setenv(LANGUAGE = "en") #显示英文报错信息  # displays an English error message
+options(stringsAsFactors = FALSE) #禁止chr转成factor   # prohibit chr from being converted to factor
+输入文件
+Input File
+easy_input.csv，每行一个sample，第一列就是sample
+ID，第二列为分组（响应变量），其后每列一个特征（自变量）。这里是基因的表达量，可以换其他临床信息。
+easy_input.csv, each row contains a sample. The first column is the
+sample ID, the second column is the group (response variable), and each
+subsequent column contains a feature (independent variable). Here is the
+expression level of the gene, which can be replaced with other clinical
+information.
+dat <- read.table("easy_input.txt",row.names = 1,sep = "\t",header = T,check.names = F,stringsAsFactors = F)
+dat[1:3, 1:3]
+table(dat$MetaStatus)
+# 注意，如果变量是基因，一定要把“-”替换成别的符号比如“_”。
+# Note that if the variable is a gene, the "-" must be replaced with another symbol, such as "_".
+colnames(dat) <- gsub("-","_",colnames(dat))
+循环运算单变量逻辑回归
+Loop operation for univariate logistic regression
+rname <- "MetaStatus" #设置响应变量y的变量名  # Set the variable name of the response variable y
+vname <- setdiff(colnames(dat), rname) # 设置自变量x的变量名  # sets the variable name of the independent variable x
+
+# 初始化结果向量 # Initialize the result vector
+or <- p <- p.lab <- c() 
+p.cutoff <- 0.05 # 名义p值的阈值   # The threshold of nominal p value
+step.dir <- "forward" # 逐步回归的方向，可为backward，forward和both，例文为forward  # The direction of stepwise regression can be backward, forward, or both. The example text is forward
+
+for (v in vname) {
+  f <- as.formula(paste0(rname,"~",v)) # 创建公式  # Create Formulas
+  t <- dat[,c(rname,v)]
+  
+  # 单变量逻辑回归
+  # Univariate Logistic regression
+  l <- glm(f, 
+           data = t, 
+           family = "binomial", 
+           control = list(maxit = 50), 
+           na.action = na.exclude)
+  
+  s <- format(round(exp(cbind("OR" = coef(l), confint.default(l, level = 0.95)))[2,],3),nsmall = 3) # 调整格式  # Adjust Format
+  s <- paste0(s[1]," (",s[2],"-",s[3],")")
+  or <- c(or,s) # odd ratio
+  p <- c(p,format(round(summary(l)$coefficients[2,4],3),nsmall = 3))
+  p.lab <- c(p.lab, # 名义p值的标签  # Nominal P-value label
+             ifelse(summary(l)$coefficients[2,4] < 0.001,
+                    "<0.001", format(round(summary(l)$coefficients[2,4],3),nsmall = 3)))
+}
+多变量回归
+Multivariate regression
+# 找出显著变量
+# Identify significant variables
+vname.sig <- vname[which(as.numeric(p) < p.cutoff)]
+
+if(length(vname.sig) == 0) {
+  cat("No significant variable found!\n") # 单变量结果没有显著变量  There are no significant variables in the univariate results
+} else if(length(vname.sig) == 1) {
+  cat("Only one significant variable found!\n") # 单变量结果只有一个显著变量，不进行多变量回归  The univariate result has only one significant variable and no multivariate regression is conducted
+} else {
+  cat(paste0("A total of ",length(vname.sig)," significant variables found!\n"))
+  f <- as.formula(paste0(rname,"~",paste0(vname.sig,collapse = " + "))) # 创建多变量公式  # Create Multivariate formulas
+  t <- dat[,c(rname,vname.sig)]
+  l <- glm(f, 
+           data = t, 
+           family = "binomial", 
+           control = list(maxit = 50), 
+           na.action = na.exclude)
+  l.step <- quiet(step(l,direction = step.dir, k = qchisq(p.cutoff/2,1,lower.tail=FALSE))) # 向前支部回归  # Return to the previous branch
+  l.step.s <- as.data.frame(format(round(exp(cbind("OR" = coef(l.step), 
+                                     confint.default(l.step, level = 0.95))),3),nsmall = 3)) # 调整格式  # Adjust Format
+  l.step.s$p <- format(round(summary(l.step)$coefficients[,4],3),nsmall = 3)
+  l.step.s$p.lab <- ifelse(summary(l.step)$coefficients[,4] < 0.001,
+                       "<0.001",format(round(summary(l.step)$coefficients[,4],3),nsmall = 3))
+  
+  l.step.s <- l.step.s[setdiff(rownames(l.step.s),"(Intercept)"),] # 移除截距项  # Remove the intercept item
+}
+step.p <- ifelse(l.step.s$p < p.cutoff, l.step.s$p,"")
+step.or <- ifelse(step.p == "","NA",paste0(l.step.s$OR," (",l.step.s$`2.5 %`,"-",l.step.s$`97.5 %`,")"))
+
+# 找到在原本显著变量里的位置
+# Find the position within the original significant variable
+step.p.lab <- rep("", length(vname)); names(step.p.lab) <- vname; step.p.lab[vname.sig] <- step.p
+step.or.lab <- rep("NA", length(vname)); names(step.or.lab) <- vname; step.or.lab[vname.sig] <- step.or
+输出表格文件
+Output the table file
+生成简易表格
+Generate a simple table
+outTab <- cbind.data.frame(vname, or, p.lab, step.or.lab, step.p.lab)
+colnames(outTab) <- c("","Univariate analysis\nOR (95% CI)","\nP value","Multivariate analysis\nOR (95% CI)","\nP value")
+rownames(outTab) <- NULL
+write.table(outTab,"batch logistic results.txt",sep = "\t",row.names = F,quote = F)
+输出CSV格式
+Output in CSV format
+table_subtitle <- c(NA,"OR (95% CI)","P value","OR (95% CI)","P value")
+comtable <- rbind(table_subtitle,outTab,stringsAsFactors = F)
+colnames(comtable) <- c("","Univariate analysis","","Multivariate analysis","")
+comtable[is.na(comtable)] <- "" #表格里面不打印抬头的NA，但保留“NA”字符串  # Do not print the header "NA" in the table, but keep the "NA" string
+str(comtable)
+write.csv(comtable,"Table.csv", quote = F, row.names = F)
+输出WORD格式
+Output in WORD format
+table_subtitle <- c(NA,"OR (95% CI)","P value","OR (95% CI)","P value")
+comtable <- rbind(table_subtitle,outTab,stringsAsFactors = F)
+colnames(comtable)<-c(NA,"Univariate analysis",NA,"Multivariate analysis",NA)
+comtable[is.na(comtable)] <- "" #表格里面不打印抬头的NA，但保留“NA”字符串  # Do not print the header "NA" in the table, but keep the "NA" string
+
+#保存到word文档
+# Save to a word document
+title_name<-'Table *. Univariate and multivariate logistic regression'
+table1 <- comtable
+mynote <- "Note: ..."
+
+if(!require(officer)) (install.packages('officer'))
+library(officer)
+library(dplyr)
+my_doc <- read_docx()  #初始化一个docx  # Initialize a docx
+my_doc %>%
+  ##添加段落标题名称
+  ##Add paragraph title names
+  body_add_par(value = title_name, style = "table title") %>%
+  
+  #添加表格
+  #Add Table
+  body_add_table(value = table1, style = "Light List Accent 2" ) %>% 
+  
+  #添加Note
+  #Add Note
+  body_add_par(value = mynote) %>% 
+  
+  #打印到word文档
+  #Print to word document
+  print(target = "Table.docx")
+Session Info
+sessionInfo()

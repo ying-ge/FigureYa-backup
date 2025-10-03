@@ -1,0 +1,209 @@
+---
+title: "FigureYa142circosBar"
+params:
+  author: "Hao Wu"
+  reviewer: "Ying Ge, Junyi Shen"
+output: html_document
+---
+
+**Author(s)**: `r params$author`  
+**Reviewer(s)**: `r params$reviewer`  
+**Date**: `r Sys.Date()`  
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## 需求描述
+## Requirements
+
+用circos画出B图。
+Use circos to draw Figure B.
+
+![](example.png)
+
+出自<https://doi.org/10.1186/s40168-019-0629-2>
+From <https://doi.org/10.1186/s40168-019-0629-2>
+
+Fig. 4 Significantly (P < 0.05) different a, b KO functional categories and c pathways between GSH and GSL. All KO functional categories are depicted in (a), and the differential KO functional categories were evaluated using the two-tailed Wilcoxon test. **The abundant differential KO functional categories (relative abundance > 0.03%) are described in the heatmap** (b), and **the involved pathways are counted in the histogram and are linked by lines**. KO functional categories that were significantly enriched in GSH or GSL were separately analyzed for KEGG pathway enrichment; those pathways that did not belong to microorganisms were removed; all significantly enriched pathways are described in (c). KO functional categories and pathways that were significantly enriched in GSH are shown in red; those significantly enriched in GSL are shown in green
+
+## 应用场景
+## Application scenarios
+
+例文中的KO可以替换为基因，可推广于基因与所在通路的关系、细胞与所属分群的关系、物种和菌群的关系等。以基因和所在通路为例，说明各部分可用于展示的信息：
+KO in the example can be replaced by genes, which can be extended to the relationship between genes and their pathways, the relationship between cells and their clusters, the relationship between species and bacterial communities, etc. Taking genes and their pathways as an example, the information that can be displayed in each part is explained:
+
+- 横坐标是富集的基因名，纵坐标是分组；
+- 连线表示基因和其所属的KEGG通路的关系；
+- 柱状图表示每个KEGG通路中包含的基因数；
+- The horizontal axis is the name of the enriched gene, and the vertical axis is the grouping;
+- The line represents the relationship between the gene and the KEGG pathway to which it belongs;
+- The bar graph represents the number of genes contained in each KEGG pathway;
+
+用circos画图，最重要的是设计，想好要展示的内容是什么（本图要展示热图、连线、柱状图），然后就可以准备输入数据和配置文件了。
+When drawing with circos, the most important thing is design. Think about what you want to show (this figure will show heat maps, lines, and bar graphs), and then you can prepare to input data and configuration files.
+
+## 环境设置
+## Environment settings
+
+- 安装circos，推荐用conda，最后一些配置文件会在anaconda/etc目录下，需要的时候更改即可。也可以参考FigureYa14Circos里的方法一步步安装。
+- Install circos, it is recommended to use conda, and finally some configuration files will be in the anaconda/etc directory, which can be changed when needed. You can also refer to the method in FigureYa14Circos for step-by-step installation.
+
+- Linux或Mac系统在终端运行circos，Windows 10需要安装WSL<https://docs.microsoft.com/en-us/windows/wsl/install-win10>
+- Run circos in the terminal on Linux or Mac systems, and install WSL on Windows 10 <https://docs.microsoft.com/en-us/windows/wsl/install-win10>
+
+## 输入文件的获得
+## Obtaining input files
+
+例文的方法仅供参考，实际应用中，只需搞清楚Ya_circos/data/文件夹里各个文件的意义，把自己的数据按照相应的文件的格式替换即可，可直接进入“输入文件”。
+The example method is for reference only. In actual applications, you only need to understand the meaning of each file in the Ya_circos/data/ folder, replace your own data according to the format of the corresponding file, and directly enter the "input file".
+
+文章补充材料提供了csv文件（位于“oriData”文件夹），通过以下方法调整成输入文件的格式。
+The article's supplementary materials provide a csv file (located in the "oriData" folder), which is adjusted to the input file format using the following method.
+
+- 热图：文章在对不同土壤中土豆感染疮痂病的严重程度最终分析得到大气土壤（GS）的变化最为明显，并对GSH（大气土壤土豆感染严重）和GSL（大气土壤土豆轻微感染）做出分析。GSH和GSL分别重复5组，GS1\~GS5为GSH，GS6\~GS10为GSL。统计得到每个样本和每个KO（KO orthology/K numbers）间的相对丰度（原补充材料表8，即1.GSH and GSL.xls），并通过秩和检验得到GSH和GSL的差异KO分别为240和561（p\<0.05）（2.GSH-vs-GSL.wilcox.all.xls，3.GSH-vs-GSL.wilcox.filter.xls），想了解哪些KO是最显著差异的，作者对秩和检验后得到的KOs按照样本相对丰度的均值=(mean(GSH)+mean(GSL))/2 排序，并将均值大于0.03%的作为最显著差异的KOs，最终得到98个差异KOs（4.Deal_KOs.xlsx）。
+- Heat map: The article finally analyzed the severity of potato scab infection in different soils and found that the change in atmospheric soil (GS) was the most obvious, and analyzed GSH (severe atmospheric soil potato infection) and GSL (slight atmospheric soil potato infection). GSH and GSL were repeated 5 groups respectively, GS1\~GS5 for GSH, and GS6\~GS10 for GSL. The relative abundance between each sample and each KO (KO orthology/K numbers) was obtained (Table 8 in the original supplementary material, i.e. 1.GSH and GSL.xls), and the difference KOs of GSH and GSL were 240 and 561 (p\<0.05) (2.GSH-vs-GSL.wilcox.all.xls, 3.GSH-vs-GSL.wilcox.filter.xls) through the rank sum test. To find out which KOs are the most significantly different, the author sorted the KOs obtained after the rank sum test according to the mean of the relative abundance of the samples = (mean(GSH)+mean(GSL))/2, and took the KOs with a mean greater than 0.03% as the most significantly different KOs, and finally obtained 98 different KOs (4.Deal_KOs.xlsx).
+
+![](get_KOs_heat.png)
+
+```{r, warning=FALSE}
+a <- read.csv("./oriData/1heatmap/1.GSH and GSL.csv",header=T,sep=",")  ## 1.GSH and GSL.csv是原文的补充材料8 ## 1.GSH and GSL.csv is the supplementary material 8 of the original paper
+head(a)
+## 预生成几个长度与输入文件行数相同的全为0的向量，将用于存储每个KO在GSH的均值，在GSL的均值，
+## Pre-generate several vectors of all zeros with the same length as the number of lines in the input file, which will be used to store the mean of each KO in GSH, the mean of GSL,
+## 在所有样本的均值，GSL与GSH的差异倍数，p value和FDR
+## The mean of all samples, the difference between GSL and GSH, p value and FDR
+GSH_mean <- c(rep(0,nrow(a)))
+GSL_mean <- c(rep(0,nrow(a)))
+Mean_abun <- c(rep(0,nrow(a)))
+log2_fc <- c(rep(0,nrow(a)))
+Pvalue <- c(rep(0,nrow(a)))   
+FDR <- c(rep(0,nrow(a))) 
+
+# 2~6列是GSH组,6~11列是GSL组；
+# Columns 2~6 are GSH groups, columns 6~11 are GSL groups;
+for(i in 1:nrow(a)){
+    GSH_mean[i] <- mean(as.numeric(a[i,2:6]))
+    GSL_mean[i] <- mean(as.numeric(a[i,7:11]))
+    Mean_abun[i] <- (GSH_mean[i]+GSL_mean[i])/2
+		y = wilcox.test(as.numeric(a[i,2:6]),as.numeric(a[i,7:11]))
+		Pvalue[i] <- y$p.value
+		log2_fc[i] <- log2((mean(as.numeric(a[i,7:11])))/(mean(as.numeric(a[i,2:6]))))
+		}
+# 对p value进行FDR校正
+# Perform FDR correction on p value
+FDR=p.adjust(Pvalue, "BH") 
+# 在原文件后面加入要统计的新内容到生成新的列；
+# Add the new content to be counted after the original file to generate a new column;
+v1_wilcox <-cbind(a,GSH_mean,GSL_mean,Mean_abun,log2_fc,Pvalue,FDR)
+colnames(v1_wilcox) <- c("id","GS1","GS2","GS3","GS4","GS5","GS6","GS7","GS8","GS9",
+                         "GS10","GSH_mean","GSL_mean","Mean_abundance","log2fc","Pvalue","FDR")
+write.csv(v1_wilcox,file="./oriData/1heatmap/2.GSH-vs-GSL.wilcox.all.csv",quote=FALSE,row.names=FALSE)
+
+# 筛选p<0.05的KOs到新的文件
+# Filter KOs with p<0.05 to a new file
+v2_wil_filt <- subset(v1_wilcox, v1_wilcox$Pvalue <=0.05)
+write.csv(v2_wil_filt,"./oriData/1heatmap/3.GSH-vs-GSL.wilcox.filter.csv",quote = FALSE,row.names = FALSE)
+
+# 筛选所有样本中均值大于0.03%的KOs到新的文件 最后的4.Final_heat.csv 文件用于在circos中绘制热图
+# Filter KOs with mean values greater than 0.03% in all samples to a new file 4.Final_heat.csv File used to draw heatmap in circos
+v3_mean_filt <- subset(v2_wil_filt, v2_wil_filt$Mean_abundance > 0.0003)
+write.csv(v3_mean_filt,file = "./oriData/1heatmap/4.Final_heat.csv",quote=FALSE,row.names=FALSE)
+```
+
+- 连线：连线两端是要表达有联系的内容。本图中是想要展示每个KO与相应的KEGG B级目录的所属关系。这个关系在准备文件的时候有些麻烦。在得到98个显著差异KOs后（4.Deal_KOs.xlsx），将KO名称按照要求带入网址<https://www.kegg.jp/kegg/tool/map_pathway.html>，最终得到KO -> k number -> C分类 -> B分类 -> A分类结果。得到结果后需要将文件整理到excel中（5.table2.Knumber_Bclass.xlsx），最终其实只需要这个文件的第一列和第五列。
+- Connection: The two ends of the connection are to express the related content. In this figure, we want to show the relationship between each KO and the corresponding KEGG B-level directory. This relationship is a bit troublesome when preparing the file. After obtaining 98 significantly different KOs (4.Deal_KOs.xlsx), the KO name is brought into the URL <https://www.kegg.jp/kegg/tool/map_pathway.html> as required, and finally the result of KO -> k number -> C classification -> B classification -> A classification is obtained. After getting the results, you need to organize the file into excel (5.table2.Knumber_Bclass.xlsx). In the end, only the first and fifth columns of this file are needed.
+
+![](get_pathways.png)
+
+- 柱状图：这部分主要展示GSH和GSL在每个KEGG B分类中统计到的KO的数目，并绘制成柱状图（6.hist_GSH.xlsx，7.hist_GSL.xlsx）。由于我在统计KEGG分类的时候是手动的，所以柱状图统计的时候和文章结果存在略微出入，但是方法是正确的。大家在应用自己的数据的时候，改变数据即可。
+- Bar graph: This part mainly shows the number of KOs counted by GSH and GSL in each KEGG B classification, and draws a bar graph (6.hist_GSH.xlsx, 7.hist_GSL.xlsx). Since I counted the KEGG classification manually, there was a slight discrepancy between the bar graph and the results of the article, but the method was correct. When you apply your own data, just change the data.
+
+## 输入文件
+## Input file
+
+位于Ya_circos文件夹，包含两类文件，输入数据（位于data文件夹）和配置文件（位于etc文件夹）。**图长什么样，全靠配置文件\*.conf**。
+Located in the Ya_circos folder, it contains two types of files, input data (located in the data folder) and configuration files (located in the etc folder). **What the graph looks like depends on the configuration file\*.conf**.
+
+> 每个*.conf文件里都写了文字说明，用文本编辑器打开查看
+> There are text descriptions in each *.conf file. Use a text editor to open and view it.
+
+**重要提示：**如果需要修改circos.conf文件，务必在修改前做好备份，感谢！
+**Important Tips:** If you need to modify the circos.conf file, be sure to back it up before modifying it. Thank you!
+
+- circos.conf，共由7个部分组成，分别是：
+1) Part1. 最开始的基本设置；
+2) Part2. 染色体标签绘制；
+3) Part3. 热图绘制；
+4) Part4. 柱状图绘制
+5) Part5. 背景色绘制；
+6) Part6. 连接线绘制；
+7) Part7. 最后的导入模块设置。每部分的内容在配置文件中有相应备注。
+- circos.conf, consists of 7 parts, namely:
+1) Part1. The initial basic settings;
+2) Part2. Chromosome label drawing;
+3) Part3. Heat map drawing;
+4) Part4. Bar chart drawing
+5) Part5. Background color drawing;
+6) Part6. Connecting line drawing;
+7) Part7. The final import module settings. Each part has corresponding notes in the configuration file.
+
+例图热图的图例和数值区间不是线性的，这里用到了一个技巧，设置规则对每个数值区间设置不同颜色梯度。另外，由于文章中的颜色偏向荧光色，circos本身不存在这种颜色。所以我用取色器取色在颜色梯度中自己设置这种荧光色。
+The legend and value interval of the heat map in the example figure are not linear. Here is a trick to set a rule to set a different color gradient for each value interval. In addition, since the colors in the article tend to be fluorescent colors, circos itself does not have such colors. So I use the color picker to pick colors and set this fluorescent color in the color gradient myself.
+
+热图中的每个GS都要单独做一个文件用于绘制的原因：在实际应用时，可以把数据整合到一个矩阵中绘制热图，但是这样不利于修改每个样本的特征。配置文件中每个样本单独一个<plot>模块，且<rule>内容相同，就是为了在具体问题中可以单独修改，彼此不影响。当想要修改某一部分的时候，可以利用ctrl+F搜索到相应位置修改，例如我要修改links，就搜索“Part6”，然后对Part6的内容进行修改。
+The reason why each GS in the heat map must be made into a separate file for drawing: In actual application, the data can be integrated into a matrix to draw a heat map, but this is not conducive to modifying the characteristics of each sample. Each sample in the configuration file has a separate <plot> module, and the <rule> content is the same, so that they can be modified separately in specific problems without affecting each other. When you want to modify a part, you can use ctrl+F to search for the corresponding position to modify. For example, if I want to modify links, I search for "Part6" and then modify the content of Part6.
+
+- data/karyotype.txt，染色体，可以替换成想展示的其他类型信息，例如，第一、二列基本不变，第三列表示在输入文件中表示哪条染色体（即染色体号），第四列是在circos图中染色体的名称，第五列到第六列表示该条染色体起始终止位置（即染色体长度），最后一列表示染色体颜色。circos一般是用于表现单条或者多条染色体上得特征。当然也可以用于表现其他内容，只要符合数据格式都可以展示。比如本图，先确定要在染色体上展示什么，本图两条染色体（hs1和hs2），一条表示KO名称，一条表示KEGG分类。所以我是按照KO数量平均标注在hs1号染色体上（已知KO数目是98，所以设置hs1长度为98×2-2=194，2表示每个名称间距），hs2同理按照KEGG B级分类通路数目平均画在hs2上（已知B分类数目24个，设置hs2长度为24×3-3=69，3表示每个名称间距）。要设置文件成data/karyotype.txt的格式，并在circos.conf开头指定。设置染色体的一些参数和刻度的代码是etc/ideogram.conf和etc/ticks.conf 这两个配置文件不需要输入数据。最后要旋转一下两条染色体，通过设置etc/circos.conf末尾的参数angle_offset*改变旋转角度，这一步可以不用管也行，最后设置。
+- etc/ideogram.conf，设置染色体展示在circos上的设置。刻度的相关设置，设置etc/ticks.conf文件（部分内容借鉴FigureYa14circos）。
+- data/GS1.txt，热图数据文件。第一列表示要展示的染色体号，第二第三列为KO起始终止位置，第四列为该KO的数值（相对丰度），GS2~GS10同理。只要是能用热图展示的数据，都可以绘制，比如转录组表达矩阵到组间差异基因的热图展示，宏基因组中群落OTU等热图展示。
+- data/KO_orthology_text.txt，在hs1染色体上要展示的KO的名称。第一列是要展示的染色体号，第二第三列是起始终止位置，第四列是该位置区间的KO名称，第四列设置该KO的颜色，其中red为红，lred=light red，dred=dark red，vlred=very light red，vdred=very dark red。
+- data/class_text.txt，hs2号染色体上展示KEGG B级分类名称。跟data/KO_orthology_text.txt类似。
+- data/links.txt，连线文件。因为link连线展示的是两个有关联的数据，所以这个文件格式含有两条染色体。一般就是不同染色体上有联系的内容的设置，可扩展于差异基因于相应富集通路所属关系，细胞于所属分群的关系，甚至是DNA和TF相互作用的关系或者基因和转录调控元件等等。如该文件第一行表示hs1染色体上的0到1位置的KO与hs2号染色体上18到19位置上的通路是所属关系，往下以此类推。这个文件的准备一般都要自主手动制作，或其他程序产生这种具有相应联系的文件。
+- 设置hs2号染色体上的黑色边框和刻度，首先黑色框通过etc/circos.conf中的part4中的<axes>设置，其次0~8，0~20的刻度横线设置通过data/light_border.txt文件设置。另外，还有一个弧形刻度线在hs2（0.86r-1.00r）上展示，对应文件是data/hist_3.txt。（原谅我这个小白实在不知道这里的刻度和弧线刻度怎么弄，我只想到了这种办法）
+- data/hist_GSH.txt和hist_GSL.txt，柱状图文件。本图中柱状图文件表示的是KEGG B级分类在连线中有多少个KO属于这个通路，红色表示该通路在GSH有多少个KOs，绿色表示在GSL有多少个KOs。
+- data/highlight.txt，设置染色体hs2上的背景色，这个背景色是按照将KEGG 的A级分类分配背景色的。第一列是染色体号，二三列是背景色起始终止位置，第四列是背景色颜色和半径。
+- data/karyotype.txt, chromosomes, can be replaced with other types of information you want to display. For example, the first and second columns remain basically unchanged, the third column indicates which chromosome is represented in the input file (i.e., the chromosome number), the fourth column is the name of the chromosome in the circos diagram, the fifth to sixth columns indicate the starting and ending positions of the chromosome (i.e., the chromosome length), and the last column indicates the chromosome color. Circos is generally used to display features on a single or multiple chromosomes. Of course, it can also be used to display other content, as long as it conforms to the data format. For example, in this figure, first determine what to display on the chromosome. This figure has two chromosomes (hs1 and hs2), one for KO name and one for KEGG classification. So I marked the KOs on chromosome hs1 according to the average number of KOs (the number of KOs is known to be 98, so the length of hs1 is set to 98×2-2=194, 2 represents the spacing between each name), and hs2 is similarly drawn on hs2 according to the average number of KEGG B-level classification pathways (the number of B classifications is known to be 24, so the length of hs2 is set to 24×3-3=69, 3 represents the spacing between each name). The file should be set in the format of data/karyotype.txt and specified at the beginning of circos.conf. The codes for setting some parameters and scales of chromosomes are etc/ideogram.conf and etc/ticks.conf. These two configuration files do not require data input. Finally, the two chromosomes need to be rotated. The rotation angle can be changed by setting the parameter angle_offset* at the end of etc/circos.conf. This step can be ignored and set at the end.
+- etc/ideogram.conf, set the settings for chromosome display on circos. For the related settings of the scale, set the etc/ticks.conf file (part of the content is referenced from FigureYa14circos).
+- data/GS1.txt, heat map data file. The first column indicates the chromosome number to be displayed, the second and third columns are the start and end positions of the KO, and the fourth column is the value (relative abundance) of the KO. The same is true for GS2~GS10. As long as the data can be displayed with a heat map, it can be drawn, such as the heat map display of transcriptome expression matrix to differential genes between groups, and the heat map display of community OTU in the metagenome.
+- data/KO_orthology_text.txt, the name of the KO to be displayed on the hs1 chromosome. The first column is the chromosome number to be displayed, the second and third columns are the start and end positions, and the fourth column is the KO name in the position interval. The fourth column sets the color of the KO, where red is red, lred=light red, dred=dark red, vlred=very light red, vdred=very dark red.
+- data/class_text.txt, KEGG B-level classification name is displayed on chromosome hs2. Similar to data/KO_orthology_text.txt.
+- data/links.txt, link file. Because the link shows two related data, this file format contains two chromosomes. Generally, it is the setting of related content on different chromosomes, which can be extended to the relationship between differentially expressed genes and corresponding enriched pathways, the relationship between cells and their respective clusters, and even the relationship between DNA and TF interactions or genes and transcriptional regulatory elements, etc. For example, the first line of this file indicates that the KO at positions 0 to 1 on chromosome hs1 is related to the pathway at positions 18 to 19 on chromosome hs2, and so on. The preparation of this file is generally done manually, or other programs generate such files with corresponding connections.
+- Set the black border and scale on chromosome hs2. First, the black frame is set through the <axes> in part4 of etc/circos.conf, and then the horizontal scale lines of 0~8 and 0~20 are set through the data/light_border.txt file. In addition, there is an arc scale line displayed on hs2 (0.86r-1.00r), and the corresponding file is data/hist_3.txt. (Forgive me for not knowing how to make the scale and arc scale here. I just thought of this method)
+- data/hist_GSH.txt and hist_GSL.txt, histogram files. The histogram files in this figure show how many KOs belong to this pathway in the KEGG B-level classification. Red indicates how many KOs there are in GSH, and green indicates how many KOs there are in GSL.
+- data/highlight.txt, set the background color on chromosome hs2. This background color is assigned according to the background color of KEGG A-level classification. The first column is the chromosome number, the second and third columns are the starting and ending positions of the background color, and the fourth column is the background color and radius.
+
+## 开始画图
+## Start drawing
+
+以上设置好染色体和准备好输入文件，就可以在终端（MAC或Linux系统的terminal，Windows10用WSL）运行命令完成绘图：
+After setting up the chromosomes and preparing the input files, you can run the command in the terminal (terminal of MAC or Linux system, WSL for Windows 10) to complete the drawing:
+
+```bash
+circos –conf path/to/etc/circos.conf
+```
+
+![](Ya_circos/circos.png)
+
+第一次运行可能会出现一些问题，详情细节设置请看etc/circos.conf文件。对应内容修改到配置文件相应位置修改参数即可，一些参数可能没有很细节的解释，可能是因为其很好理解，我就没有加以注释。
+There may be some problems when running for the first time. For detailed settings, please refer to the etc/circos.conf file. Just modify the corresponding content to the corresponding position of the configuration file to modify the parameters. Some parameters may not have a very detailed explanation. Maybe because they are easy to understand, I did not comment them.
+
+## 后期处理
+## Post-processing
+
+有些文字要用ps或者AI加上去：
+Some text needs to be added with PS or AI:
+
+- 刻度上的数字和GS1~GS10的标签，因为circos无法在染色体之间的区域进行绘制。
+- 对KEGG的B分类内容，删掉“_”符号。
+- 最外圈的弧线和KEGG的A分类名称。
+- The numbers on the scale and the labels of GS1~GS10, because circos cannot draw in the area between chromosomes.
+- For the B classification content of KEGG, delete the "_" symbol.
+- The arc of the outermost circle and the name of the A classification of KEGG.
+
+
+![](circosBar.png)
+
+如果有问题，欢迎大家踊跃提问，我会尽力帮助大家解决！
+If you have any questions, please feel free to ask. I will do my best to help you solve them!

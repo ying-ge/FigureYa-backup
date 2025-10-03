@@ -1,0 +1,180 @@
+Starting R package installation...
+===========================================
+
+Installing Bioconductor packages...
+Installing Bioconductor package(s): impute 
+'getOption("repos")' replaces Bioconductor standard repositories, see
+'help("repositories", package = "BiocManager")' for details.
+Replacement repositories:
+    CRAN: https://cloud.r-project.org/
+Bioconductor version 3.21 (BiocManager 1.30.26), R 4.5.1 (2025-06-13)
+Installing package(s) 'impute'
+trying URL 'https://bioconductor.org/packages/3.21/bioc/src/contrib/impute_1.82.0.tar.gz'
+Content type 'application/x-gzip' length 641588 bytes (626 KB)
+==================================================
+downloaded 626 KB
+
+* installing *source* package ‘impute’ ...
+** this is package ‘impute’ version ‘1.82.0’
+** using staged installation
+** libs
+using Fortran compiler: ‘GNU Fortran (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gfortran  -fpic  -g -O2  -c knnimpute.f -o knnimpute.o
+knnimpute.f:99:72:
+
+   99 | 20                        pos(k1+1) = pos(k1)
+      |                                                                             1
+Warning: Fortran 2018 deleted feature: DO termination statement which is not END DO or CONTINUE with label 20 at (1)
+knnimpute.f:113:72:
+
+  113 | 35                        pos(k1+1) = pos(k1)
+      |                                                                             1
+Warning: Fortran 2018 deleted feature: DO termination statement which is not END DO or CONTINUE with label 35 at (1)
+gcc -std=gnu2x -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o impute.so knnimpute.o -lgfortran -lm -lquadmath -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-impute/00new/impute/libs
+** R
+** data
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (impute)
+
+The downloaded source packages are in
+	‘/tmp/RtmpDW7HIw/downloaded_packages’
+Successfully installed: impute 
+
+Installing CRAN packages...
+Installing CRAN package: WGCNA 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+Warning: dependencies ‘org.Hs.eg.db’, ‘org.Mm.eg.db’, ‘minet’ are not available
+also installing the dependencies ‘dynamicTreeCut’, ‘fastcluster’, ‘infotheo’, ‘entropy’
+
+trying URL 'https://cloud.r-project.org/src/contrib/dynamicTreeCut_1.63-1.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/fastcluster_1.3.0.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/infotheo_1.2.0.1.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/entropy_1.3.2.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/WGCNA_1.73.tar.gz'
+* installing *source* package ‘dynamicTreeCut’ ...
+** this is package ‘dynamicTreeCut’ version ‘1.63-1’
+** package ‘dynamicTreeCut’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (dynamicTreeCut)
+* installing *source* package ‘fastcluster’ ...
+** this is package ‘fastcluster’ version ‘1.3.0’
+** package ‘fastcluster’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2   -c fastcluster_R.cpp -o fastcluster_R.o
+In file included from fastcluster_R.cpp:24:
+fastcluster.cpp:53:35: note: ‘#pragma message: Use fenv header.’
+   53 | #pragma message("Use fenv header.")
+      |                                   ^
+g++ -std=gnu++17 -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o fastcluster.so fastcluster_R.o -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-fastcluster/00new/fastcluster/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (fastcluster)
+* installing *source* package ‘infotheo’ ...
+** this is package ‘infotheo’ version ‘1.2.0.1’
+** package ‘infotheo’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2   -c discretize.cpp -o discretize.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2   -c entropy.cpp -o entropy.o
+g++ -std=gnu++17 -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o infotheo.so discretize.o entropy.o -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-infotheo/00new/infotheo/libs
+** R
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (infotheo)
+* installing *source* package ‘entropy’ ...
+** this is package ‘entropy’ version ‘1.3.2’
+** package ‘entropy’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (entropy)
+* installing *source* package ‘WGCNA’ ...
+** this is package ‘WGCNA’ version ‘1.73’
+** package ‘WGCNA’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+using C++ compiler: ‘g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DWITH_THREADS -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2  -c corFunctions-utils.c -o corFunctions-utils.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DWITH_THREADS -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2  -c corFunctions.c -o corFunctions.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DWITH_THREADS -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2  -c myMatrixMultiplication.c -o myMatrixMultiplication.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DWITH_THREADS -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2  -c networkFunctions.c -o networkFunctions.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DWITH_THREADS -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c parallelQuantile.cc -o parallelQuantile.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DWITH_THREADS -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2  -c pivot.c -o pivot.o
+g++ -std=gnu++17 -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o WGCNA.so corFunctions-utils.o corFunctions.o myMatrixMultiplication.o networkFunctions.o parallelQuantile.o pivot.o -lpthread -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-WGCNA/00new/WGCNA/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (WGCNA)
+
+The downloaded source packages are in
+	‘/tmp/RtmpDW7HIw/downloaded_packages’
+Successfully installed: WGCNA 
+Package already installed: gplots 
+Package already installed: pheatmap 
+
+Verifying package installation...
+✓ ClassDiscovery is installed
+✓ impute is installed
+✓ preprocessCore is installed
+✓ GO.db is installed
+✓ AnnotationDbi is installed
+✓ WGCNA is installed
+✓ gplots is installed
+✓ pheatmap is installed
+
+===========================================
+Package installation completed!
+You can now run your R scripts in this directory.

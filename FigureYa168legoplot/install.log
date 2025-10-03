@@ -1,0 +1,423 @@
+Starting R package installation...
+===========================================
+
+Installing CRAN packages...
+Installing CRAN package: BSgenome.Hsapiens.UCSC.hg19 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+Successfully installed: BSgenome.Hsapiens.UCSC.hg19 
+Installing CRAN package: VariantAnnotation 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+Successfully installed: VariantAnnotation 
+Installing CRAN package: rgl 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+Warning: dependency ‘extrafont’ is not available
+also installing the dependencies ‘magic’, ‘linprog’, ‘geometry’, ‘webshot’, ‘orientlib’, ‘misc3d’, ‘tripack’, ‘alphashape3d’, ‘js’, ‘webshot2’, ‘manipulateWidget’, ‘V8’
+
+trying URL 'https://cloud.r-project.org/src/contrib/magic_1.6-1.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/linprog_0.9-4.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/geometry_0.5.2.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/webshot_0.5.5.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/orientlib_0.10.5.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/misc3d_0.9-1.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/tripack_1.3-9.3.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/alphashape3d_1.3.2.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/js_1.2.1.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/webshot2_0.1.2.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/manipulateWidget_0.11.1.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/V8_7.0.0.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/rgl_1.3.24.tar.gz'
+* installing *source* package ‘magic’ ...
+** this is package ‘magic’ version ‘1.6-1’
+** package ‘magic’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (magic)
+* installing *source* package ‘linprog’ ...
+** this is package ‘linprog’ version ‘0.9-4’
+** package ‘linprog’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (linprog)
+* installing *source* package ‘webshot’ ...
+** this is package ‘webshot’ version ‘0.5.5’
+** package ‘webshot’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (webshot)
+* installing *source* package ‘orientlib’ ...
+** this is package ‘orientlib’ version ‘0.10.5’
+** package ‘orientlib’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+Creating a generic function from function ‘rotmatrix’ in package ‘orientlib’
+Creating a generic function from function ‘rotvector’ in package ‘orientlib’
+Creating a generic function from function ‘eulerzyx’ in package ‘orientlib’
+Creating a generic function from function ‘quaternion’ in package ‘orientlib’
+Creating a generic function from function ‘skewvector’ in package ‘orientlib’
+Creating a generic function from function ‘skewmatrix’ in package ‘orientlib’
+Creating a generic function from function ‘eulerzxz’ in package ‘orientlib’
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (orientlib)
+* installing *source* package ‘misc3d’ ...
+** this is package ‘misc3d’ version ‘0.9-1’
+** package ‘misc3d’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+** demo
+** inst
+** byte-compile and prepare package for lazy loading
+Warning: no DISPLAY variable so Tk is not available
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+Warning: no DISPLAY variable so Tk is not available
+** testing if installed package can be loaded from final location
+Warning: no DISPLAY variable so Tk is not available
+** testing if installed package keeps a record of temporary installation path
+* DONE (misc3d)
+* installing *source* package ‘tripack’ ...
+** this is package ‘tripack’ version ‘1.3-9.3’
+** package ‘tripack’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+using Fortran compiler: ‘GNU Fortran (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gfortran  -fpic  -g -O2  -c dsos.f -o dsos.o
+gfortran  -fpic  -g -O2  -c inhull.f -o inhull.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c init.c -o init.o
+gfortran  -fpic  -g -O2  -c left.f -o left.o
+gfortran  -fpic  -g -O2  -c qsort.f -o qsort.o
+gfortran  -fpic  -g -O2  -c tripack.f -o tripack.o
+gfortran  -fpic  -g -O2  -c troutp.f -o troutp.o
+gfortran  -fpic  -g -O2  -c troutq.f -o troutq.o
+gfortran  -fpic  -g -O2  -c vleft.f -o vleft.o
+gfortran  -fpic  -g -O2  -c voronoi.f -o voronoi.o
+gcc -std=gnu2x -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o tripack.so dsos.o inhull.o init.o left.o qsort.o tripack.o troutp.o troutq.o vleft.o voronoi.o -lgfortran -lm -lquadmath -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-tripack/00new/tripack/libs
+** R
+** data
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (tripack)
+* installing *source* package ‘webshot2’ ...
+** this is package ‘webshot2’ version ‘0.1.2’
+** package ‘webshot2’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (webshot2)
+* installing *source* package ‘V8’ ...
+** this is package ‘V8’ version ‘7.0.0’
+** package ‘V8’ successfully unpacked and MD5 sums checked
+** using staged installation
+Found C++20 compiler: g++
+Target architecture: amd64 
+Getting bundle: v8-rocky-8-amd64.tar.gz
+Using CXXCPP=g++ -std=gnu++20 -E
+Using PKG_CFLAGS=-I/tmp/Rtmpitq2MH/R.INSTALL422291d0e4ff9/V8/.deps/include 
+Using PKG_LIBS=-L/tmp/Rtmpitq2MH/R.INSTALL422291d0e4ff9/V8/.deps/lib -lv8_monolith
+Running feature test for pointer compression...
+Enabling pointer compression
+Running feature test for sandbox...
+Sandbox not enabled
+** libs
+using C++ compiler: ‘g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+using C++20
+g++ -std=gnu++20 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/tmp/Rtmpitq2MH/R.INSTALL422291d0e4ff9/V8/.deps/include  -DV8_COMPRESS_POINTERS -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2   -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++20 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/tmp/Rtmpitq2MH/R.INSTALL422291d0e4ff9/V8/.deps/include  -DV8_COMPRESS_POINTERS -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2   -c bindings.cpp -o bindings.o
+g++ -std=gnu++20 -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o V8.so RcppExports.o bindings.o -L/tmp/Rtmpitq2MH/R.INSTALL422291d0e4ff9/V8/.deps/lib -lv8_monolith -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-V8/00new/V8/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (V8)
+* installing *source* package ‘rgl’ ...
+** this is package ‘rgl’ version ‘1.3.24’
+** package ‘rgl’ successfully unpacked and MD5 sums checked
+** using staged installation
+checking for gcc... gcc -std=gnu2x
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether the compiler supports GNU C... yes
+checking whether gcc -std=gnu2x accepts -g... yes
+checking for gcc -std=gnu2x option to enable C11 features... none needed
+checking how to run the C preprocessor... gcc -std=gnu2x -E
+checking for gcc... (cached) gcc -std=gnu2x
+checking whether the compiler supports GNU C... (cached) yes
+checking whether gcc -std=gnu2x accepts -g... (cached) yes
+checking for gcc -std=gnu2x option to enable C11 features... (cached) none needed
+checking for libpng-config... yes
+configure: using libpng-config
+configure: using libpng dynamic linkage
+checking for X... libraries , headers 
+checking for XAllocClassHint... yes
+checking for GL/gl.h... no
+checking for GL/glu.h... no
+configure: WARNING: missing required header GL/gl.h
+configure: WARNING: missing required header GL/glu.h
+configure: compiling without OpenGL support
+configure: creating ./config.status
+config.status: creating R/noOpenGL.R
+config.status: creating src/useNULL/Makevars
+config.status: creating src/Makevars
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+using C++ compiler: ‘g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include -DHAVE_PNG_H -I/usr/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP -Iext/earcut  -I/usr/local/include    -fpic  -g -O2   -c ABCLineSet.cpp -o ABCLineSet.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include -DHAVE_PNG_H -I/usr/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP -Iext/earcut  -I/usr/local/include    -fpic  -g -O2   -c BBoxDeco.cpp -o BBoxDeco.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include -DHAVE_PNG_H -I/usr/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP -Iext/earcut  -I/usr/local/include    -fpic  -g -O2   -c Background.cpp -o Background.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include -DHAVE_PNG_H -I/usr/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP -Iext/earcut  -I/usr/local/include    -fpic  -g -O2   -c ClipPlane.cpp -o ClipPlane.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include -DHAVE_PNG_H -I/usr/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP -Iext/earcut  -I/usr/local/include    -fpic  -g -O2   -c Color.cpp -o Color.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include -DHAVE_PNG_H -I/usr/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP -Iext/earcut  -I/usr/local/include    -fpic  -g -O2   -c Disposable.cpp -o Disposable.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include -DHAVE_PNG_H -I/usr/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP -Iext/earcut  -I/usr/local/include    -fpic  -g -O2   -c Light.cpp -o Light.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include -DHAVE_PNG_H -I/usr/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP -Iext/earcut  -I/usr/local/include    -fpic  -g -O2   -c LineSet.cpp -o LineSet.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include -DHAVE_PNG_H -I/usr/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP -Iext/earcut  -I/usr/local/include    -fpic  -g -O2   -c LineStripSet.cpp -o LineStripSet.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include -DHAVE_PNG_H -I/usr/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP -Iext/earcut  -I/usr/local/include    -fpic  -g -O2   -c Material.cpp -o Material.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include -DHAVE_PNG_H -I/usr/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP -Iext/earcut  -I/usr/local/include    -fpic  -g -O2   -c NULLgui.cpp -o NULLgui.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include -DHAVE_PNG_H -I/usr/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP -Iext/earcut  -I/usr/local/include    -fpic  -g -O2   -c PlaneSet.cpp -o PlaneSet.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include -DHAVE_PNG_H -I/usr/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP -Iext/earcut  -I/usr/local/include    -fpic  -g -O2   -c PointSet.cpp -o PointSet.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include -DHAVE_PNG_H -I/usr/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP -Iext/earcut  -I/usr/local/include    -fpic  -g -O2   -c PrimitiveSet.cpp -o PrimitiveSet.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include -DHAVE_PNG_H -I/usr/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP -Iext/earcut  -I/usr/local/include    -fpic  -g -O2   -c R.cpp -o R.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include -DHAVE_PNG_H -I/usr/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP -Iext/earcut  -I/usr/local/include    -fpic  -g -O2   -c RenderContext.cpp -o RenderContext.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include -DHAVE_PNG_H -I/usr/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP -Iext/earcut  -I/usr/local/include    -fpic  -g -O2   -c Shape.cpp -o Shape.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include -DHAVE_PNG_H -I/usr/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP -Iext/earcut  -I/usr/local/include    -fpic  -g -O2   -c SphereMesh.cpp -o SphereMesh.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include -DHAVE_PNG_H -I/usr/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP -Iext/earcut  -I/usr/local/include    -fpic  -g -O2   -c SphereSet.cpp -o SphereSet.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include -DHAVE_PNG_H -I/usr/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP -Iext/earcut  -I/usr/local/include    -fpic  -g -O2   -c SpriteSet.cpp -o SpriteSet.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include -DHAVE_PNG_H -I/usr/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP -Iext/earcut  -I/usr/local/include    -fpic  -g -O2   -c Surface.cpp -o Surface.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include -DHAVE_PNG_H -I/usr/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP -Iext/earcut  -I/usr/local/include    -fpic  -g -O2   -c TextSet.cpp -o TextSet.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include -DHAVE_PNG_H -I/usr/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP -Iext/earcut  -I/usr/local/include    -fpic  -g -O2   -c Texture.cpp -o Texture.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include -DHAVE_PNG_H -I/usr/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP -Iext/earcut  -I/usr/local/include    -fpic  -g -O2   -c Viewpoint.cpp -o Viewpoint.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include -DHAVE_PNG_H -I/usr/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP -Iext/earcut  -I/usr/local/include    -fpic  -g -O2   -c api.cpp -o api.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include -DHAVE_PNG_H -I/usr/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP -Iext/earcut  -I/usr/local/include    -fpic  -g -O2   -c assert.cpp -o assert.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include -DHAVE_PNG_H -I/usr/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP -Iext/earcut  -I/usr/local/include    -fpic  -g -O2   -c callbacks.cpp -o callbacks.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include -DHAVE_PNG_H -I/usr/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP -Iext/earcut  -I/usr/local/include    -fpic  -g -O2   -c device.cpp -o device.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include -DHAVE_PNG_H -I/usr/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP -Iext/earcut  -I/usr/local/include    -fpic  -g -O2   -c devicemanager.cpp -o devicemanager.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include -DHAVE_PNG_H -I/usr/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP -Iext/earcut  -I/usr/local/include    -fpic  -g -O2   -c earcut.cpp -o earcut.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include -DHAVE_PNG_H -I/usr/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP -Iext/earcut  -I/usr/local/include    -fpic  -g -O2   -c fps.cpp -o fps.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include -DHAVE_PNG_H -I/usr/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP -Iext/earcut  -I/usr/local/include    -fpic  -g -O2   -c ftgl.cpp -o ftgl.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include -DHAVE_PNG_H -I/usr/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP -Iext/earcut  -I/usr/local/include    -fpic  -g -O2   -c geom.cpp -o geom.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include -DHAVE_PNG_H -I/usr/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP -Iext/earcut  -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2  -c gl.c -o gl.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include -DHAVE_PNG_H -I/usr/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP -Iext/earcut  -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2  -c gl2ps.c -o gl2ps.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include -DHAVE_PNG_H -I/usr/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP -Iext/earcut  -I/usr/local/include    -fpic  -g -O2   -c glErrors.cpp -o glErrors.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include -DHAVE_PNG_H -I/usr/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP -Iext/earcut  -I/usr/local/include    -fpic  -g -O2   -c glgui.cpp -o glgui.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include -DHAVE_PNG_H -I/usr/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP -Iext/earcut  -I/usr/local/include    -fpic  -g -O2   -c gui.cpp -o gui.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include -DHAVE_PNG_H -I/usr/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP -Iext/earcut  -I/usr/local/include    -fpic  -g -O2   -c init.cpp -o init.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include -DHAVE_PNG_H -I/usr/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP -Iext/earcut  -I/usr/local/include    -fpic  -g -O2   -c par3d.cpp -o par3d.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include -DHAVE_PNG_H -I/usr/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP -Iext/earcut  -I/usr/local/include    -fpic  -g -O2   -c pixmap.cpp -o pixmap.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include -DHAVE_PNG_H -I/usr/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP -Iext/earcut  -I/usr/local/include    -fpic  -g -O2   -c platform.cpp -o platform.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include -DHAVE_PNG_H -I/usr/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP -Iext/earcut  -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2  -c pretty.c -o pretty.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include -DHAVE_PNG_H -I/usr/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP -Iext/earcut  -I/usr/local/include    -fpic  -g -O2   -c render.cpp -o render.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include -DHAVE_PNG_H -I/usr/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP -Iext/earcut  -I/usr/local/include    -fpic  -g -O2   -c rglmath.cpp -o rglmath.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include -DHAVE_PNG_H -I/usr/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP -Iext/earcut  -I/usr/local/include    -fpic  -g -O2   -c rglview.cpp -o rglview.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include -DHAVE_PNG_H -I/usr/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP -Iext/earcut  -I/usr/local/include    -fpic  -g -O2   -c scene.cpp -o scene.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include -DHAVE_PNG_H -I/usr/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP -Iext/earcut  -I/usr/local/include    -fpic  -g -O2   -c select.cpp -o select.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include -DHAVE_PNG_H -I/usr/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP -Iext/earcut  -I/usr/local/include    -fpic  -g -O2   -c subscene.cpp -o subscene.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include -DHAVE_PNG_H -I/usr/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP -Iext/earcut  -I/usr/local/include    -fpic  -g -O2   -c win32gui.cpp -o win32gui.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include -DHAVE_PNG_H -I/usr/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP -Iext/earcut  -I/usr/local/include    -fpic  -g -O2   -c win32lib.cpp -o win32lib.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include -DHAVE_PNG_H -I/usr/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP -Iext/earcut  -I/usr/local/include    -fpic  -g -O2   -c x11gui.cpp -o x11gui.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include -DHAVE_PNG_H -I/usr/include/libpng16 -DRGL_NO_OPENGL -DR_NO_REMAP -Iext/earcut  -I/usr/local/include    -fpic  -g -O2   -c x11lib.cpp -o x11lib.o
+g++ -std=gnu++17 -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o rgl.so ABCLineSet.o BBoxDeco.o Background.o ClipPlane.o Color.o Disposable.o Light.o LineSet.o LineStripSet.o Material.o NULLgui.o PlaneSet.o PointSet.o PrimitiveSet.o R.o RenderContext.o Shape.o SphereMesh.o SphereSet.o SpriteSet.o Surface.o TextSet.o Texture.o Viewpoint.o api.o assert.o callbacks.o device.o devicemanager.o earcut.o fps.o ftgl.o geom.o gl.o gl2ps.o glErrors.o glgui.o gui.o init.o par3d.o pixmap.o platform.o pretty.o render.o rglmath.o rglview.o scene.o select.o subscene.o win32gui.o win32lib.o x11gui.o x11lib.o -lpng16 -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-rgl/00new/rgl/libs
+** R
+** demo
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (rgl)
+* installing *source* package ‘geometry’ ...
+** this is package ‘geometry’ version ‘0.5.2’
+** package ‘geometry’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+using C++ compiler: ‘g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DR_NO_REMAP -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/RcppProgress/include' -I/usr/local/include    -fpic  -g -O2   -c QuadTree.cpp -o QuadTree.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DR_NO_REMAP -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/RcppProgress/include' -I/usr/local/include   -include Rgeometry.h -fpic  -g -O2  -c Rconvhulln.c -o Rconvhulln.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DR_NO_REMAP -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/RcppProgress/include' -I/usr/local/include    -fpic  -g -O2   -c RcppExports.cpp -o RcppExports.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DR_NO_REMAP -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/RcppProgress/include' -I/usr/local/include   -include Rgeometry.h -fpic  -g -O2  -c Rdelaunayn.c -o Rdelaunayn.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DR_NO_REMAP -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/RcppProgress/include' -I/usr/local/include   -include Rgeometry.h -fpic  -g -O2  -c Rgeometry.c -o Rgeometry.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DR_NO_REMAP -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/RcppProgress/include' -I/usr/local/include   -include Rgeometry.h -fpic  -g -O2  -c Rhalfspacen.c -o Rhalfspacen.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DR_NO_REMAP -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/RcppProgress/include' -I/usr/local/include   -include Rgeometry.h -fpic  -g -O2  -c Rinhulln.c -o Rinhulln.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DR_NO_REMAP -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/RcppProgress/include' -I/usr/local/include    -fpic  -g -O2   -c Rtsearch.cpp -o Rtsearch.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DR_NO_REMAP -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/RcppProgress/include' -I/usr/local/include   -include Rgeometry.h -fpic  -g -O2  -c Rtsearch_orig.c -o Rtsearch_orig.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DR_NO_REMAP -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/RcppProgress/include' -I/usr/local/include   -include Rgeometry.h -fpic  -g -O2  -c Rtsearchn.c -o Rtsearchn.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DR_NO_REMAP -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/RcppProgress/include' -I/usr/local/include   -include Rgeometry.h -fpic  -g -O2  -c geom2_r.c -o geom2_r.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DR_NO_REMAP -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/RcppProgress/include' -I/usr/local/include   -include Rgeometry.h -fpic  -g -O2  -c geom_r.c -o geom_r.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DR_NO_REMAP -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/RcppProgress/include' -I/usr/local/include   -include Rgeometry.h -fpic  -g -O2  -c geometry_init.c -o geometry_init.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DR_NO_REMAP -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/RcppProgress/include' -I/usr/local/include   -include Rgeometry.h -fpic  -g -O2  -c global_r.c -o global_r.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DR_NO_REMAP -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/RcppProgress/include' -I/usr/local/include   -include Rgeometry.h -fpic  -g -O2  -c io_r.c -o io_r.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DR_NO_REMAP -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/RcppProgress/include' -I/usr/local/include   -include Rgeometry.h -fpic  -g -O2  -c libqhull_r.c -o libqhull_r.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DR_NO_REMAP -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/RcppProgress/include' -I/usr/local/include   -include Rgeometry.h -fpic  -g -O2  -c mem_r.c -o mem_r.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DR_NO_REMAP -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/RcppProgress/include' -I/usr/local/include   -include Rgeometry.h -fpic  -g -O2  -c merge_r.c -o merge_r.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DR_NO_REMAP -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/RcppProgress/include' -I/usr/local/include   -include Rgeometry.h -fpic  -g -O2  -c poly2_r.c -o poly2_r.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DR_NO_REMAP -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/RcppProgress/include' -I/usr/local/include   -include Rgeometry.h -fpic  -g -O2  -c poly_r.c -o poly_r.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DR_NO_REMAP -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/RcppProgress/include' -I/usr/local/include   -include Rgeometry.h -fpic  -g -O2  -c qset_r.c -o qset_r.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DR_NO_REMAP -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/RcppProgress/include' -I/usr/local/include   -include Rgeometry.h -fpic  -g -O2  -c random_r.c -o random_r.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DR_NO_REMAP -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/RcppProgress/include' -I/usr/local/include   -include Rgeometry.h -fpic  -g -O2  -c rboxlib_r.c -o rboxlib_r.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DR_NO_REMAP -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/RcppProgress/include' -I/usr/local/include   -include Rgeometry.h -fpic  -g -O2  -c stat_r.c -o stat_r.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DR_NO_REMAP -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/RcppProgress/include' -I/usr/local/include   -include Rgeometry.h -fpic  -g -O2  -c user_r.c -o user_r.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DR_NO_REMAP -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/RcppProgress/include' -I/usr/local/include   -include Rgeometry.h -fpic  -g -O2  -c usermem_r.c -o usermem_r.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DR_NO_REMAP -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/RcppProgress/include' -I/usr/local/include   -include Rgeometry.h -fpic  -g -O2  -c userprintf_r.c -o userprintf_r.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DR_NO_REMAP -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/RcppProgress/include' -I/usr/local/include   -include Rgeometry.h -fpic  -g -O2  -c userprintf_rbox_r.c -o userprintf_rbox_r.o
+g++ -std=gnu++17 -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o geometry.so QuadTree.o Rconvhulln.o RcppExports.o Rdelaunayn.o Rgeometry.o Rhalfspacen.o Rinhulln.o Rtsearch.o Rtsearch_orig.o Rtsearchn.o geom2_r.o geom_r.o geometry_init.o global_r.o io_r.o libqhull_r.o mem_r.o merge_r.o poly2_r.o poly_r.o qset_r.o random_r.o rboxlib_r.o stat_r.o user_r.o usermem_r.o userprintf_r.o userprintf_rbox_r.o -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-geometry/00new/geometry/libs
+** R
+** demo
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (geometry)
+* installing *source* package ‘js’ ...
+** this is package ‘js’ version ‘1.2.1’
+** package ‘js’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (js)
+* installing *source* package ‘manipulateWidget’ ...
+** this is package ‘manipulateWidget’ version ‘0.11.1’
+** package ‘manipulateWidget’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (manipulateWidget)
+* installing *source* package ‘alphashape3d’ ...
+** this is package ‘alphashape3d’ version ‘1.3.2’
+** package ‘alphashape3d’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c alphashape3d.c -o alphashape3d.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c init.c -o init.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c insideashape.c -o insideashape.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c surfaceNormals.c -o surfaceNormals.o
+gcc -std=gnu2x -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o alphashape3d.so alphashape3d.o init.o insideashape.o surfaceNormals.o -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-alphashape3d/00new/alphashape3d/libs
+** R
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (alphashape3d)
+
+The downloaded source packages are in
+	‘/tmp/RtmphYmlYb/downloaded_packages’
+Successfully installed: rgl 
+Warning messages:
+1: package ‘BSgenome.Hsapiens.UCSC.hg19’ is not available for this version of R
+
+A version of this package for your version of R might be available elsewhere,
+see the ideas at
+https://cran.r-project.org/doc/manuals/r-patched/R-admin.html#Installing-packages 
+2: package ‘VariantAnnotation’ is not available for this version of R
+
+A version of this package for your version of R might be available elsewhere,
+see the ideas at
+https://cran.r-project.org/doc/manuals/r-patched/R-admin.html#Installing-packages 
+
+Installing Bioconductor packages...
+Package already installed: BiocManager 
+
+===========================================
+Package installation completed!
+You can now run your R scripts in this directory.

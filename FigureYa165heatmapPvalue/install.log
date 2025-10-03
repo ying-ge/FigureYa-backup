@@ -1,0 +1,12 @@
+Starting R package installation...
+===========================================
+
+Installing CRAN packages...
+Package already installed: gplots 
+Package already installed: grid 
+Package already installed: pheatmap 
+Package already installed: stringr 
+
+===========================================
+Package installation completed!
+You can now run your R scripts in this directory.

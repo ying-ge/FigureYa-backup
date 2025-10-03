@@ -1,0 +1,104 @@
+Starting R package installation...
+===========================================
+
+Installing CRAN packages...
+Package already installed: dplyr 
+Installing CRAN package: ggalluvial 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+also installing the dependencies ‘shades’, ‘alluvial’, ‘babynames’, ‘ggfittext’
+
+trying URL 'https://cloud.r-project.org/src/contrib/shades_1.4.0.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/alluvial_0.1-2.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/babynames_1.0.1.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/ggfittext_0.10.2.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/ggalluvial_0.12.5.tar.gz'
+* installing *source* package ‘shades’ ...
+** this is package ‘shades’ version ‘1.4.0’
+** package ‘shades’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (shades)
+* installing *source* package ‘alluvial’ ...
+** this is package ‘alluvial’ version ‘0.1-2’
+** package ‘alluvial’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (alluvial)
+* installing *source* package ‘babynames’ ...
+** this is package ‘babynames’ version ‘1.0.1’
+** package ‘babynames’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+*** moving datasets to lazyload DB
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (babynames)
+* installing *source* package ‘ggalluvial’ ...
+** this is package ‘ggalluvial’ version ‘0.12.5’
+** package ‘ggalluvial’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (ggalluvial)
+* installing *source* package ‘ggfittext’ ...
+** this is package ‘ggfittext’ version ‘0.10.2’
+** package ‘ggfittext’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (ggfittext)
+
+The downloaded source packages are in
+	‘/tmp/Rtmpr6E6Pc/downloaded_packages’
+Successfully installed: ggalluvial 
+
+===========================================
+Package installation completed!
+You can now run your R scripts in this directory.

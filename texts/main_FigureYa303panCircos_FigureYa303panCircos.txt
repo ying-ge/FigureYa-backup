@@ -1,0 +1,113 @@
+FigureYa303panCircos
+FigureYa303panCircos
+Author(s)
+: Xiaofan Lu; Yasi Zhang
+Reviewer(s)
+: Ying Ge
+Date
+: 2025-09-22
+Academic Citation
+If you use this code in your work or research, we kindly request that
+you cite our publication:
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization
+Framework for Enhancing Biomedical Data Interpretation and Research
+Efficiency. iMetaMed.
+https://doi.org/10.1002/imm3.70005
+需求描述
+Demand description
+绘制下图。
+Draw the following figure.
+出自：
+https://academic.oup.com/bib/article/23/3/bbac118/6567704?login=true
+图1. 癌症与组织中衰老水平的综合量化分析。
+（C）各癌症类型的平均细胞衰老（CS）评分。从内圈到外圈依次展示组织类型、癌症类型以及平均细胞衰老（CS）评分。
+Source:
+https://academic.oup.com/bib/article/23/3/bbac118/6567704?login=true
+Figure1. Comprehensive quantification of senescence levels in cancers
+and tissues. (C) Average CS scores in individual cancer types. Tissue
+types, cancer types and average CS scores are shown from the inner
+circle to the outer circle.
+应用场景
+Application Scenarios
+在泛癌中根据组织类别、特定评分，绘制弦图。
+Figure 4F
+ligand–receptorinteractions，可参考FigureYa178ReceptorLigand
+Figure 6B，可参考FigureYa35批量bestSeparation
+Figure 6E Consensus clustering，可参考FigureYa202consensusGene
+FigureYa 6G Sankey diagram，可参考FigureYa25sankey
+FigureYa 6H Hierarchical clustering of GSEA
+scores，可参考FigureYa71ssGSEA
+Draw chord diagrams in pan-cancer based on tissue categories and
+specific scores.
+Figure 4F ligand–receptor interactions, see
+FigureYa178ReceptorLigand
+Figure 6B, see FigureYa35 batch bestSeparation
+Figure 6E Consensus clustering, see FigureYa202consensusGene
+FigureYa 6G Sankey diagram, see FigureYa25sankey
+FigureYa 6H Hierarchical clustering of GSEA scores, see
+FigureYa71ssGSEA
+环境设置
+Environment Setup
+source("install_dependencies.R")
+library(circlize)
+library(ComplexHeatmap)
+# 显示英文报错信息
+# Show English error messages
+Sys.setenv(LANGUAGE = "en") 
+
+# 禁止chr转成factor
+# Prevent character-to-factor conversion
+options(stringsAsFactors = FALSE)
+输入文件的生成
+Generate Input Files
+easy_input.xlsx: Here, the CS.score values in the figure are randomly
+generated and can be replaced with any other values you are interested
+in. If you still want to draw a pancancer plot, keep all the preceding
+columns unchanged and only modify the values in the last column
+(CS.score). This is not limited to displaying pancancer data. Once you
+understand the code for plotting, you can use it flexibly.
+easy_input.xlsx:
+这里随机生成图中的得分CS.score，可替换成你自己感兴趣的其他数值。
+如果还是画pancancer图，前面各列可以保持不变，只改变最后一列CS.score里的数值。
+不限于展示pancancer数据，读懂画图部分的代码，就可以灵活运用。
+读取输入文件
+Load input files
+SampleInfo <- openxlsx::read.xlsx("easy_input.xlsx")
+head(SampleInfo)
+开始画图
+Plotting
+颜色配置
+Color configuration
+自定义函数，用于批量标注颜色和标签
+Custom function for batch annotation of colors and labels
+绘制图
+Plot the diagram
+# 将Cohort转为因子变量，保证顺序不乱
+# Convert Cohort to a factor to maintain the order of categories
+SampleInfo$Cohort <- factor(SampleInfo$Cohort, levels = unique(SampleInfo$Cohort)) 
+
+# 手动编序号，以便后续打标签时确定位置
+# Manually assign sequential IDs for each sample to facilitate label positioning later
+SampleInfo$ID <- 1:nrow(SampleInfo) 
+
+### 初始化
+### Initialization
+circos.par("cell.padding" = c(0.02, 0.00, 0.02, 0.00), "start.degree" = 90) 
+circos.initialize(sectors = SampleInfo$Cohort, x = SampleInfo$ID) 
+
+### 第一环：连续变量，对每一个样本分别绘制热图，通过col参数调整所绘制的列和需要的配色
+### First ring: Continuous variable. For each sample, draw a heatmap individually, adjusting columns and colors via the col paramete.
+circos.trackPlotRegion(ylim = c(0, 1), track.height = 0.05, cell.padding = c(0, 1))
+for (i in 1:nrow(SampleInfo)) circos.rect(xleft = SampleInfo$ID[i], xright = SampleInfo$ID[i]+1, ybottom = 0, ytop = 1, 
+                                          sector.index = SampleInfo$Cohort[i], track.index = 1, border = NA, col = CS.Col(SampleInfo$CS.score[i]))
+dev.copy2pdf(file = "pancircos.pdf", width = 10, height = 10)
+后期加工
+Post-processing
+有些type的样本量较少，文字会重叠，可参考例文的方式调整。输出的pdf文件是矢量图，可以用Illustrator等矢量图编辑器打开，编辑文字的位置，增加指示线。
+For some types of samples with a small sample size, the text may
+overlap. You can refer to the example text for adjustment. The output
+PDF file is a vector graphic, which can be opened with vector graphic
+editors such as Adobe Illustrator. You can edit the position of the text
+and add guide lines.
+Session Info
+sessionInfo()

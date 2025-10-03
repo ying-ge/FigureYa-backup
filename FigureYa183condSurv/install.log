@@ -1,0 +1,25 @@
+Starting R package installation...
+===========================================
+
+Installing CRAN packages...
+Installing CRAN package: condsurv 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+Successfully installed: condsurv 
+Package already installed: ggplot2 
+Package already installed: ggpubr 
+Package already installed: patchwork 
+Package already installed: survival 
+Package already installed: survminer 
+Package already installed: tidyverse 
+Warning messages:
+1: package ‘condsurv’ is not available for this version of R
+
+A version of this package for your version of R might be available elsewhere,
+see the ideas at
+https://cran.r-project.org/doc/manuals/r-patched/R-admin.html#Installing-packages 
+2: Perhaps you meant ‘condSURV’ ? 
+
+===========================================
+Package installation completed!
+You can now run your R scripts in this directory.

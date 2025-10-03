@@ -1,0 +1,13 @@
+Starting R package installation...
+===========================================
+
+Installing WGCNA dependencies...
+Package already installed: GO.db 
+Package already installed: AnnotationDbi 
+
+Installing CRAN packages...
+Package already installed: WGCNA 
+
+===========================================
+Package installation completed!
+You can now run your R scripts in this directory.

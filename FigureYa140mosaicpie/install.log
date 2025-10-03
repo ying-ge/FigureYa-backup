@@ -1,0 +1,18 @@
+Starting R package installation...
+===========================================
+
+Installing required CRAN packages...
+Package already installed: readxl 
+Package already installed: ggplot2 
+Package already installed: reshape2 
+
+===========================================
+Package installation completed!
+
+Checking installed packages:
+✓ readxl is installed
+✓ ggplot2 is installed
+✓ reshape2 is installed
+
+All required packages are successfully installed!
+You can now run your R scripts in this directory.

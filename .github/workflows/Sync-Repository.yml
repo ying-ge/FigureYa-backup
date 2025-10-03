@@ -1,0 +1,77 @@
+name: Daily Sync All Content (Skipping LFS and Pointers)
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # 每天凌晨 0:00 (UTC) 定时触发
+  workflow_dispatch: # 保留手动触发
+
+permissions:
+  contents: write
+
+jobs:
+  sync-content:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source Repo (FigureYa)
+        uses: actions/checkout@v4
+        with:
+          path: source-repo
+
+      - name: Checkout Target Repo (FigureYa-backup)
+        uses: actions/checkout@v4
+        with:
+          repository: ying-ge/FigureYa-backup
+          path: target-repo
+          token: ${{ secrets.FIGUREYA2ACTION }}
+
+      - name: Generate LFS file list
+        id: lfs_files
+        run: |
+          # 1. 进入源仓库目录
+          cd source-repo
+          
+          # 2. 如果 .gitattributes 文件存在，则生成 LFS 文件列表
+          if [ -f .gitattributes ]; then
+            echo "Found .gitattributes. Generating LFS file list..."
+            # 使用 git lfs ls-files -n 只列出文件名，这是最精确的方法
+            git lfs ls-files -n > ../lfs_files_list.txt
+            echo "--- LFS files to be ignored ---"
+            cat ../lfs_files_list.txt
+            echo "-------------------------------"
+          else
+            echo "No .gitattributes file found. No LFS files to process."
+            touch ../lfs_files_list.txt
+          fi
+          
+          # 3. 将文件名列表设置为一个输出变量
+          echo "list_path=lfs_files_list.txt" >> $GITHUB_OUTPUT
+      - name: Sync all files using rsync
+        run: |
+          # 使用 rsync 同步所有文件，此时 LFS 指针文件也会被同步过去
+          rsync -av --delete --exclude='.git/' source-repo/ target-repo/
+      - name: Remove LFS pointer files from target repo
+        run: |
+          # 核心修改：在同步完成后，根据列表显式地从目标仓库删除 LFS 指针文件
+          cd target-repo
+          
+          # 读取列表并逐一删除文件
+          if [ -s ../${{ steps.lfs_files.outputs.list_path }} ]; then
+            echo "Removing LFS pointer files from target repository..."
+            xargs -a ../${{ steps.lfs_files.outputs.list_path }} rm -f
+          else
+            echo "No LFS pointer files to remove."
+          fi
+      - name: Commit and Push to Target Repo
+        run: |
+          cd target-repo
+          
+          if [[ -z $(git status --porcelain) ]]; then
+            echo "No changes detected. Nothing to commit."
+            exit 0
+          fi
+          
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "Daily sync from FigureYa repo (LFS files and pointers excluded)"
+          git push

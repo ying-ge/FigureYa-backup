@@ -1,0 +1,13 @@
+Starting R package installation...
+===========================================
+
+Installing CRAN packages...
+
+Installing Bioconductor packages...
+Package already installed: GSVA 
+Package already installed: ClassDiscovery 
+Package already installed: vegan 
+
+===========================================
+Package installation completed!
+You can now run your R scripts in this directory.

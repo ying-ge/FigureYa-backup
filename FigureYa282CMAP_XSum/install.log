@@ -1,0 +1,888 @@
+Starting R package installation...
+===========================================
+
+Installing CRAN packages...
+Package already installed: dplyr 
+Package already installed: ggplot2 
+Package already installed: ggrepel 
+Package already installed: ggthemes 
+Package already installed: gridExtra 
+Installing CRAN package: lsa 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+also installing the dependencies ‘NLP’, ‘slam’, ‘SnowballC’, ‘tm’
+
+trying URL 'https://cloud.r-project.org/src/contrib/NLP_0.3-2.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/slam_0.1-55.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/SnowballC_0.7.1.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/tm_0.7-16.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/lsa_0.73.3.tar.gz'
+* installing *source* package ‘NLP’ ...
+** this is package ‘NLP’ version ‘0.3-2’
+** package ‘NLP’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (NLP)
+* installing *source* package ‘slam’ ...
+** this is package ‘slam’ version ‘0.1-55’
+** package ‘slam’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c apply.c -o apply.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c dll.c -o dll.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c grouped.c -o grouped.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c sparse.c -o sparse.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c util.c -o util.o
+gcc -std=gnu2x -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o slam.so apply.o dll.o grouped.o sparse.o util.o -lblas -lgfortran -lm -lquadmath -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-slam/00new/slam/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (slam)
+* installing *source* package ‘SnowballC’ ...
+** this is package ‘SnowballC’ version ‘0.7.1’
+** package ‘SnowballC’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c SnowballC_init.c -o SnowballC_init.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c api.c -o api.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c libstemmer_utf8.c -o libstemmer_utf8.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c stem.c -o stem.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c stem_UTF_8_arabic.c -o stem_UTF_8_arabic.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c stem_UTF_8_basque.c -o stem_UTF_8_basque.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c stem_UTF_8_catalan.c -o stem_UTF_8_catalan.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c stem_UTF_8_danish.c -o stem_UTF_8_danish.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c stem_UTF_8_dutch.c -o stem_UTF_8_dutch.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c stem_UTF_8_english.c -o stem_UTF_8_english.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c stem_UTF_8_finnish.c -o stem_UTF_8_finnish.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c stem_UTF_8_french.c -o stem_UTF_8_french.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c stem_UTF_8_german.c -o stem_UTF_8_german.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c stem_UTF_8_greek.c -o stem_UTF_8_greek.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c stem_UTF_8_hindi.c -o stem_UTF_8_hindi.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c stem_UTF_8_hungarian.c -o stem_UTF_8_hungarian.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c stem_UTF_8_indonesian.c -o stem_UTF_8_indonesian.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c stem_UTF_8_irish.c -o stem_UTF_8_irish.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c stem_UTF_8_italian.c -o stem_UTF_8_italian.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c stem_UTF_8_lithuanian.c -o stem_UTF_8_lithuanian.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c stem_UTF_8_nepali.c -o stem_UTF_8_nepali.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c stem_UTF_8_norwegian.c -o stem_UTF_8_norwegian.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c stem_UTF_8_porter.c -o stem_UTF_8_porter.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c stem_UTF_8_portuguese.c -o stem_UTF_8_portuguese.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c stem_UTF_8_romanian.c -o stem_UTF_8_romanian.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c stem_UTF_8_russian.c -o stem_UTF_8_russian.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c stem_UTF_8_spanish.c -o stem_UTF_8_spanish.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c stem_UTF_8_swedish.c -o stem_UTF_8_swedish.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c stem_UTF_8_tamil.c -o stem_UTF_8_tamil.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c stem_UTF_8_turkish.c -o stem_UTF_8_turkish.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c utilities.c -o utilities.o
+gcc -std=gnu2x -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o SnowballC.so SnowballC_init.o api.o libstemmer_utf8.o stem.o stem_UTF_8_arabic.o stem_UTF_8_basque.o stem_UTF_8_catalan.o stem_UTF_8_danish.o stem_UTF_8_dutch.o stem_UTF_8_english.o stem_UTF_8_finnish.o stem_UTF_8_french.o stem_UTF_8_german.o stem_UTF_8_greek.o stem_UTF_8_hindi.o stem_UTF_8_hungarian.o stem_UTF_8_indonesian.o stem_UTF_8_irish.o stem_UTF_8_italian.o stem_UTF_8_lithuanian.o stem_UTF_8_nepali.o stem_UTF_8_norwegian.o stem_UTF_8_porter.o stem_UTF_8_portuguese.o stem_UTF_8_romanian.o stem_UTF_8_russian.o stem_UTF_8_spanish.o stem_UTF_8_swedish.o stem_UTF_8_tamil.o stem_UTF_8_turkish.o utilities.o -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-SnowballC/00new/SnowballC/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (SnowballC)
+* installing *source* package ‘tm’ ...
+** this is package ‘tm’ version ‘0.7-16’
+** package ‘tm’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+using C++ compiler: ‘g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/BH/include' -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c RcppExports.cpp -o RcppExports.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/BH/include' -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2  -c copy.c -o copy.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/BH/include' -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2  -c init.c -o init.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/BH/include' -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2  -c remove.c -o remove.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/BH/include' -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2  -c scan.c -o scan.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/BH/include' -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c tdm.cpp -o tdm.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/BH/include' -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c tokenizer.cpp -o tokenizer.o
+g++ -std=gnu++17 -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o tm.so RcppExports.o copy.o init.o remove.o scan.o tdm.o tokenizer.o -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-tm/00new/tm/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (tm)
+* installing *source* package ‘lsa’ ...
+** this is package ‘lsa’ version ‘0.73.3’
+** package ‘lsa’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+*** moving datasets to lazyload DB
+** demo
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (lsa)
+
+The downloaded source packages are in
+	‘/tmp/RtmpggTY87/downloaded_packages’
+Successfully installed: lsa 
+Installing CRAN package: magicaxis 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+also installing the dependencies ‘bmp’, ‘tiff’, ‘NISTunits’, ‘readbitmap’, ‘fstcore’, ‘celestial’, ‘sm’, ‘RANN’, ‘imager’, ‘fst’
+
+trying URL 'https://cloud.r-project.org/src/contrib/bmp_0.3.1.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/tiff_0.1-12.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/NISTunits_1.0.1.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/readbitmap_0.1.5.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/fstcore_0.10.0.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/celestial_1.5.8.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/sm_2.2-6.0.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/RANN_2.6.2.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/imager_1.0.5.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/fst_0.9.8.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/magicaxis_2.5.1.tar.gz'
+* installing *source* package ‘bmp’ ...
+** this is package ‘bmp’ version ‘0.3.1’
+** package ‘bmp’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (bmp)
+* installing *source* package ‘tiff’ ...
+** this is package ‘tiff’ version ‘0.1-12’
+** package ‘tiff’ successfully unpacked and MD5 sums checked
+** using staged installation
+checking for pkg-config... /usr/bin/pkg-config
+checking for gcc... gcc -std=gnu2x
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether the compiler supports GNU C... yes
+checking whether gcc -std=gnu2x accepts -g... yes
+checking for gcc -std=gnu2x option to enable C11 features... none needed
+checking for stdio.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for strings.h... yes
+checking for sys/stat.h... yes
+checking for sys/types.h... yes
+checking for unistd.h... yes
+checking for unistd.h... (cached) yes
+checking for TIFFClientOpen in -ltiff... yes
+configure:  PKG_CPPFLAGS: -I/usr/local/include 
+configure:  PKG_LIBS    : -ltiff  
+checking for tiff.h... yes
+checking for tiffio.h... yes
+configure: creating ./config.status
+config.status: creating src/Makevars
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include   -I/usr/local/include    -fpic  -g -O2  -c common.c -o common.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include   -I/usr/local/include    -fpic  -g -O2  -c read.c -o read.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include   -I/usr/local/include    -fpic  -g -O2  -c reg.c -o reg.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include   -I/usr/local/include    -fpic  -g -O2  -c write.c -o write.o
+gcc -std=gnu2x -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o tiff.so common.o read.o reg.o write.o -ltiff -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-tiff/00new/tiff/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (tiff)
+* installing *source* package ‘NISTunits’ ...
+** this is package ‘NISTunits’ version ‘1.0.1’
+** package ‘NISTunits’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (NISTunits)
+* installing *source* package ‘fstcore’ ...
+** this is package ‘fstcore’ version ‘0.10.0’
+** package ‘fstcore’ successfully unpacked and MD5 sums checked
+** using staged installation
+1.8.1
+Found pkg-config cflags and libs for LZ4!
+1.8.1
+Found pkg-config cflags and libs for ZSTD!
+** libs
+using C++ compiler: ‘g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -Ifstlib -Ifstlib/ZSTD -Ifstlib/ZSTD/common -Ifstlib/LZ4 -Ifstlib/ZSTD/decompress -Ifstlib/ZSTD/compress -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fopenmp -fpic  -g -O2   -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -Ifstlib -Ifstlib/ZSTD -Ifstlib/ZSTD/common -Ifstlib/LZ4 -Ifstlib/ZSTD/decompress -Ifstlib/ZSTD/compress -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fopenmp -fpic  -g -O2   -c flex_store.cpp -o flex_store.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -Ifstlib -Ifstlib/ZSTD -Ifstlib/ZSTD/common -Ifstlib/LZ4 -Ifstlib/ZSTD/decompress -Ifstlib/ZSTD/compress -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fopenmp -fpic  -g -O2   -c fst_blockrunner_char.cpp -o fst_blockrunner_char.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -Ifstlib -Ifstlib/ZSTD -Ifstlib/ZSTD/common -Ifstlib/LZ4 -Ifstlib/ZSTD/decompress -Ifstlib/ZSTD/compress -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fopenmp -fpic  -g -O2   -c fst_compress.cpp -o fst_compress.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -Ifstlib -Ifstlib/ZSTD -Ifstlib/ZSTD/common -Ifstlib/LZ4 -Ifstlib/ZSTD/decompress -Ifstlib/ZSTD/compress -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fopenmp -fpic  -g -O2   -c fst_error.cpp -o fst_error.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -Ifstlib -Ifstlib/ZSTD -Ifstlib/ZSTD/common -Ifstlib/LZ4 -Ifstlib/ZSTD/decompress -Ifstlib/ZSTD/compress -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fopenmp -fpic  -g -O2   -c fst_table.cpp -o fst_table.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -Ifstlib -Ifstlib/ZSTD -Ifstlib/ZSTD/common -Ifstlib/LZ4 -Ifstlib/ZSTD/decompress -Ifstlib/ZSTD/compress -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fopenmp -fpic  -g -O2   -c openmp.cpp -o openmp.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -Ifstlib -Ifstlib/ZSTD -Ifstlib/ZSTD/common -Ifstlib/LZ4 -Ifstlib/ZSTD/decompress -Ifstlib/ZSTD/compress -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fopenmp -fpic  -g -O2   -c versions.cpp -o versions.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -Ifstlib -Ifstlib/ZSTD -Ifstlib/ZSTD/common -Ifstlib/LZ4 -Ifstlib/ZSTD/decompress -Ifstlib/ZSTD/compress -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fopenmp -fpic  -g -O2   -c fstlib/compression/compression.cpp -o fstlib/compression/compression.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -Ifstlib -Ifstlib/ZSTD -Ifstlib/ZSTD/common -Ifstlib/LZ4 -Ifstlib/ZSTD/decompress -Ifstlib/ZSTD/compress -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fopenmp -fpic  -g -O2   -c fstlib/compression/compressor.cpp -o fstlib/compression/compressor.o
+ar rcs libCOMPRESSION.a fstlib/compression/compression.o fstlib/compression/compressor.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -Ifstlib -Ifstlib/ZSTD -Ifstlib/ZSTD/common -Ifstlib/LZ4 -Ifstlib/ZSTD/decompress -Ifstlib/ZSTD/compress -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fopenmp -fpic  -g -O2   -c fstlib/interface/openmphelper.cpp -o fstlib/interface/openmphelper.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -Ifstlib -Ifstlib/ZSTD -Ifstlib/ZSTD/common -Ifstlib/LZ4 -Ifstlib/ZSTD/decompress -Ifstlib/ZSTD/compress -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fopenmp -fpic  -g -O2   -c fstlib/interface/fststore.cpp -o fstlib/interface/fststore.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -Ifstlib -Ifstlib/ZSTD -Ifstlib/ZSTD/common -Ifstlib/LZ4 -Ifstlib/ZSTD/decompress -Ifstlib/ZSTD/compress -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fopenmp -fpic  -g -O2   -c fstlib/logical/logical_v10.cpp -o fstlib/logical/logical_v10.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -Ifstlib -Ifstlib/ZSTD -Ifstlib/ZSTD/common -Ifstlib/LZ4 -Ifstlib/ZSTD/decompress -Ifstlib/ZSTD/compress -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fopenmp -fpic  -g -O2   -c fstlib/integer/integer_v8.cpp -o fstlib/integer/integer_v8.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -Ifstlib -Ifstlib/ZSTD -Ifstlib/ZSTD/common -Ifstlib/LZ4 -Ifstlib/ZSTD/decompress -Ifstlib/ZSTD/compress -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fopenmp -fpic  -g -O2   -c fstlib/byte/byte_v12.cpp -o fstlib/byte/byte_v12.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -Ifstlib -Ifstlib/ZSTD -Ifstlib/ZSTD/common -Ifstlib/LZ4 -Ifstlib/ZSTD/decompress -Ifstlib/ZSTD/compress -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fopenmp -fpic  -g -O2   -c fstlib/double/double_v9.cpp -o fstlib/double/double_v9.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -Ifstlib -Ifstlib/ZSTD -Ifstlib/ZSTD/common -Ifstlib/LZ4 -Ifstlib/ZSTD/decompress -Ifstlib/ZSTD/compress -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fopenmp -fpic  -g -O2   -c fstlib/character/character_v6.cpp -o fstlib/character/character_v6.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -Ifstlib -Ifstlib/ZSTD -Ifstlib/ZSTD/common -Ifstlib/LZ4 -Ifstlib/ZSTD/decompress -Ifstlib/ZSTD/compress -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fopenmp -fpic  -g -O2   -c fstlib/factor/factor_v7.cpp -o fstlib/factor/factor_v7.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -Ifstlib -Ifstlib/ZSTD -Ifstlib/ZSTD/common -Ifstlib/LZ4 -Ifstlib/ZSTD/decompress -Ifstlib/ZSTD/compress -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fopenmp -fpic  -g -O2   -c fstlib/blockstreamer/blockstreamer_v2.cpp -o fstlib/blockstreamer/blockstreamer_v2.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -Ifstlib -Ifstlib/ZSTD -Ifstlib/ZSTD/common -Ifstlib/LZ4 -Ifstlib/ZSTD/decompress -Ifstlib/ZSTD/compress -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fopenmp -fpic  -g -O2   -c fstlib/integer64/integer64_v11.cpp -o fstlib/integer64/integer64_v11.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -Ifstlib -Ifstlib/ZSTD -Ifstlib/ZSTD/common -Ifstlib/LZ4 -Ifstlib/ZSTD/decompress -Ifstlib/ZSTD/compress -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fopenmp -fpic  -g -O2   -c fstlib/byteblock/byteblock_v13.cpp -o fstlib/byteblock/byteblock_v13.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -Ifstlib -Ifstlib/ZSTD -Ifstlib/ZSTD/common -Ifstlib/LZ4 -Ifstlib/ZSTD/decompress -Ifstlib/ZSTD/compress -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2  -c fstlib/ZSTD/common/xxhash.c -o fstlib/ZSTD/common/xxhash.o
+ar rcs libFRAME.a fstlib/interface/openmphelper.o fstlib/interface/fststore.o fstlib/logical/logical_v10.o fstlib/integer/integer_v8.o fstlib/byte/byte_v12.o fstlib/double/double_v9.o fstlib/character/character_v6.o fstlib/factor/factor_v7.o fstlib/blockstreamer/blockstreamer_v2.o fstlib/integer64/integer64_v11.o fstlib/byteblock/byteblock_v13.o fstlib/ZSTD/common/xxhash.o
+g++ -std=gnu++17 -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o fstcore.so RcppExports.o flex_store.o fst_blockrunner_char.o fst_compress.o fst_error.o fst_table.o openmp.o versions.o -fopenmp ./libFRAME.a ./libCOMPRESSION.a -llz4 -lzstd -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-fstcore/00new/fstcore/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (fstcore)
+* installing *source* package ‘sm’ ...
+** this is package ‘sm’ version ‘2.2-6.0’
+** package ‘sm’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+using Fortran compiler: ‘GNU Fortran (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c fgamma.c -o fgamma.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c init.c -o init.o
+gfortran  -fpic  -g -O2  -c  variogram.f90 -o variogram.o
+gcc -std=gnu2x -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o sm.so fgamma.o init.o variogram.o -lgfortran -lm -lquadmath -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-sm/00new/sm/libs
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (sm)
+* installing *source* package ‘RANN’ ...
+** this is package ‘RANN’ version ‘2.6.2’
+** package ‘RANN’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+using C++ compiler: ‘g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -Ivendor/ann -DRANN  -I/usr/local/include    -fpic  -g -O2   -c NN.cc -o NN.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -Ivendor/ann -DRANN  -I/usr/local/include    -fpic  -g -O2   -c ann2.cpp -o ann2.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -Ivendor/ann -DRANN  -I/usr/local/include    -fpic  -g -O2  -c init.c -o init.o
+g++ -std=gnu++17 -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o RANN.so NN.o ann2.o init.o -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-RANN/00new/RANN/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (RANN)
+* installing *source* package ‘readbitmap’ ...
+** this is package ‘readbitmap’ version ‘0.1.5’
+** package ‘readbitmap’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (readbitmap)
+* installing *source* package ‘celestial’ ...
+** this is package ‘celestial’ version ‘1.5.8’
+** package ‘celestial’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c energy.cpp -o energy.o
+g++ -std=gnu++17 -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o celestial.so RcppExports.o energy.o -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-celestial/00new/celestial/libs
+** R
+** data
+*** moving datasets to lazyload DB
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (celestial)
+* installing *source* package ‘fst’ ...
+** this is package ‘fst’ version ‘0.9.8’
+** package ‘fst’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/fstcore/include' -I/usr/local/include    -fpic  -g -O2   -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/fstcore/include' -I/usr/local/include    -fpic  -g -O2   -c flex_store.cpp -o flex_store.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/fstcore/include' -I/usr/local/include    -fpic  -g -O2   -c fst_compress.cpp -o fst_compress.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/fstcore/include' -I/usr/local/include    -fpic  -g -O2   -c openmp.cpp -o openmp.o
+g++ -std=gnu++17 -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o fst.so RcppExports.o flex_store.o fst_compress.o openmp.o -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-fst/00new/fst/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (fst)
+* installing *source* package ‘imager’ ...
+** this is package ‘imager’ version ‘1.0.5’
+** package ‘imager’ successfully unpacked and MD5 sums checked
+** using staged installation
+checking for pkg-config... /usr/bin/pkg-config
+checking for gcc... gcc -std=gnu2x
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether the compiler supports GNU C... yes
+checking whether gcc -std=gnu2x accepts -g... yes
+checking for gcc -std=gnu2x option to enable C11 features... none needed
+checking whether the compiler supports GNU C++... yes
+checking whether g++ -std=gnu++17 accepts -g... yes
+checking for g++ -std=gnu++17 option to enable C++11 features... none needed
+checking how to run the C++ preprocessor... g++ -std=gnu++17 -E
+checking for X... libraries , headers 
+checking for XOpenDisplay in -lX11... yes
+X11 library found.
+configure: Checking if FFTW3 library is available using pkg-config
+checking for pkg-config... /usr/bin/pkg-config
+checking pkg-config is at least version 0.9.0... yes
+checking for fftw3... no
+FFTW library not found, please install fftw3 for better FFT support.
+checking whether pkg-config knows about libtiff-4... yes
+checking for configurable backends... checking whether --static is needed... no
+checking for g++ -std=gnu++17 option to support OpenMP... -fopenmp
+configure: creating ./config.status
+config.status: creating src/Makevars
+** libs
+using C++ compiler: ‘g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/local/include    -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -Dcimg_use_tiff -I../inst/include -DCIMG_COMPILING -Dcimg_use_rng -Dcimg_use_r -Dcimg_use_fftw3_singlethread -Dcimg_verbosity=1 -Dcimg_date='""' -Dcimg_time='""' -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fopenmp -fpic  -g -O2   -c unity.cpp -o unity.o
+g++ -std=gnu++17 -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o imager.so unity.o -fopenmp -lX11 -ltiff -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-imager/00new/imager/libs
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (imager)
+* installing *source* package ‘magicaxis’ ...
+** this is package ‘magicaxis’ version ‘2.5.1’
+** package ‘magicaxis’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (magicaxis)
+
+The downloaded source packages are in
+	‘/tmp/RtmpggTY87/downloaded_packages’
+Successfully installed: magicaxis 
+Package already installed: parallel 
+Installing CRAN package: relations 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+Warning: dependency ‘Rgraphviz’ is not available
+also installing the dependencies ‘sets’, ‘Rglpk’, ‘Rsymphony’
+
+trying URL 'https://cloud.r-project.org/src/contrib/sets_1.0-25.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/Rglpk_0.6-5.1.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/Rsymphony_0.1-33.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/relations_0.6-15.tar.gz'
+* installing *source* package ‘sets’ ...
+** this is package ‘sets’ version ‘1.0-25’
+** package ‘sets’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c closure.c -o closure.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c init.c -o init.o
+gcc -std=gnu2x -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o sets.so closure.o init.o -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-sets/00new/sets/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (sets)
+* installing *source* package ‘Rglpk’ ...
+** this is package ‘Rglpk’ version ‘0.6-5.1’
+** package ‘Rglpk’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+/bin/bash: line 1: cd: GLPK: No such file or directory
+make: *** [Makevars:10: GLPK.ts] Error 1
+ERROR: compilation failed for package ‘Rglpk’
+* removing ‘/home/runner/work/_temp/Library/Rglpk’
+* installing *source* package ‘Rsymphony’ ...
+** this is package ‘Rsymphony’ version ‘0.1-33’
+** package ‘Rsymphony’ successfully unpacked and MD5 sums checked
+** using staged installation
+Cannot find SYMPHONY libraries and headers.
+See <https://projects.coin-or.org/SYMPHONY>.
+ERROR: configuration failed for package ‘Rsymphony’
+* removing ‘/home/runner/work/_temp/Library/Rsymphony’
+* installing *source* package ‘relations’ ...
+** this is package ‘relations’ version ‘0.6-15’
+** package ‘relations’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (relations)
+
+The downloaded source packages are in
+	‘/tmp/RtmpggTY87/downloaded_packages’
+Successfully installed: relations 
+Installing CRAN package: shinydashboard 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+trying URL 'https://cloud.r-project.org/src/contrib/shinydashboard_0.7.3.tar.gz'
+Content type 'application/x-gzip' length 235498 bytes (229 KB)
+==================================================
+downloaded 229 KB
+
+* installing *source* package ‘shinydashboard’ ...
+** this is package ‘shinydashboard’ version ‘0.7.3’
+** package ‘shinydashboard’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (shinydashboard)
+
+The downloaded source packages are in
+	‘/tmp/RtmpggTY87/downloaded_packages’
+Successfully installed: shinydashboard 
+Installing CRAN package: shinyjs 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+also installing the dependencies ‘shinyAce’, ‘shinydisconnect’
+
+trying URL 'https://cloud.r-project.org/src/contrib/shinyAce_0.4.4.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/shinydisconnect_0.1.1.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/shinyjs_2.1.0.tar.gz'
+* installing *source* package ‘shinyAce’ ...
+** this is package ‘shinyAce’ version ‘0.4.4’
+** package ‘shinyAce’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (shinyAce)
+* installing *source* package ‘shinydisconnect’ ...
+** this is package ‘shinydisconnect’ version ‘0.1.1’
+** package ‘shinydisconnect’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (shinydisconnect)
+* installing *source* package ‘shinyjs’ ...
+** this is package ‘shinyjs’ version ‘2.1.0’
+** package ‘shinyjs’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (shinyjs)
+
+The downloaded source packages are in
+	‘/tmp/RtmpggTY87/downloaded_packages’
+Successfully installed: shinyjs 
+Package already installed: stringr 
+Package already installed: tibble 
+Package already installed: tidyverse 
+Warning messages:
+1: In install.packages(package_name, dependencies = TRUE) :
+  installation of package ‘Rglpk’ had non-zero exit status
+2: In install.packages(package_name, dependencies = TRUE) :
+  installation of package ‘Rsymphony’ had non-zero exit status
+
+Installing Bioconductor packages...
+Installing Bioconductor package: PharmacoGx 
+'getOption("repos")' replaces Bioconductor standard repositories, see
+'help("repositories", package = "BiocManager")' for details.
+Replacement repositories:
+    CRAN: https://cloud.r-project.org/
+Bioconductor version 3.21 (BiocManager 1.30.26), R 4.5.1 (2025-06-13)
+Installing package(s) 'PharmacoGx'
+also installing the dependencies ‘marray’, ‘visNetwork’, ‘piano’, ‘BumpyMatrix’, ‘BiocBaseUtils’, ‘CoreGx’, ‘MultiAssayExperiment’, ‘coop’
+
+trying URL 'https://bioconductor.org//packages/3.21/bioc/src/contrib/marray_1.86.0.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/visNetwork_2.1.4.tar.gz'
+trying URL 'https://bioconductor.org//packages/3.21/bioc/src/contrib/piano_2.24.0.tar.gz'
+trying URL 'https://bioconductor.org//packages/3.21/bioc/src/contrib/BumpyMatrix_1.16.0.tar.gz'
+trying URL 'https://bioconductor.org//packages/3.21/bioc/src/contrib/BiocBaseUtils_1.10.0.tar.gz'
+trying URL 'https://bioconductor.org//packages/3.21/bioc/src/contrib/CoreGx_2.12.0.tar.gz'
+trying URL 'https://bioconductor.org//packages/3.21/bioc/src/contrib/MultiAssayExperiment_1.34.0.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/coop_0.6-3.tar.gz'
+trying URL 'https://bioconductor.org//packages/3.21/bioc/src/contrib/PharmacoGx_3.12.2.tar.gz'
+* installing *source* package ‘marray’ ...
+** this is package ‘marray’ version ‘1.86.0’
+** using staged installation
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (marray)
+* installing *source* package ‘visNetwork’ ...
+** this is package ‘visNetwork’ version ‘2.1.4’
+** package ‘visNetwork’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (visNetwork)
+* installing *source* package ‘BumpyMatrix’ ...
+** this is package ‘BumpyMatrix’ version ‘1.16.0’
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (BumpyMatrix)
+* installing *source* package ‘BiocBaseUtils’ ...
+** this is package ‘BiocBaseUtils’ version ‘1.10.0’
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (BiocBaseUtils)
+* installing *source* package ‘coop’ ...
+** this is package ‘coop’ version ‘0.6-3’
+** package ‘coop’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include   -fopenmp -fpic  -g -O2  -c R_checks.c -o R_checks.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include   -fopenmp -fpic  -g -O2  -c R_naomit.c -o R_naomit.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include   -fopenmp -fpic  -g -O2  -c R_wrapper.c -o R_wrapper.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include   -fopenmp -fpic  -g -O2  -c coop_native.c -o coop_native.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include   -fopenmp -fpic  -g -O2  -c dense.c -o dense.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include   -fopenmp -fpic  -g -O2  -c dense_inplace.c -o dense_inplace.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include   -fopenmp -fpic  -g -O2  -c dense_pairwise.c -o dense_pairwise.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include   -fopenmp -fpic  -g -O2  -c scale.c -o scale.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include   -fopenmp -fpic  -g -O2  -c sparse.c -o sparse.o
+gcc -std=gnu2x -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o coop.so R_checks.o R_naomit.o R_wrapper.o coop_native.o dense.o dense_inplace.o dense_pairwise.o scale.o sparse.o -llapack -lblas -lgfortran -lm -lquadmath -fopenmp -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-coop/00new/coop/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (coop)
+* installing *source* package ‘piano’ ...
+** this is package ‘piano’ version ‘2.24.0’
+** using staged installation
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (piano)
+* installing *source* package ‘MultiAssayExperiment’ ...
+** this is package ‘MultiAssayExperiment’ version ‘1.34.0’
+** using staged installation
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (MultiAssayExperiment)
+* installing *source* package ‘CoreGx’ ...
+** this is package ‘CoreGx’ version ‘2.12.0’
+** using staged installation
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (CoreGx)
+* installing *source* package ‘PharmacoGx’ ...
+** this is package ‘PharmacoGx’ version ‘3.12.2’
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+using C++ compiler: ‘g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c RcppExports.cpp -o RcppExports.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2  -c metaPermC.c -o metaPermC.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c rCPP_bridge.cpp -o rCPP_bridge.o
+g++ -std=gnu++17 -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o PharmacoGx.so RcppExports.o metaPermC.o rCPP_bridge.o -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-PharmacoGx/00new/PharmacoGx/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (PharmacoGx)
+
+The downloaded source packages are in
+	‘/tmp/RtmpggTY87/downloaded_packages’
+Successfully installed: PharmacoGx 
+Package already installed: CoreGx 
+Installing Bioconductor package: clusterProfiler 
+'getOption("repos")' replaces Bioconductor standard repositories, see
+'help("repositories", package = "BiocManager")' for details.
+Replacement repositories:
+    CRAN: https://cloud.r-project.org/
+Bioconductor version 3.21 (BiocManager 1.30.26), R 4.5.1 (2025-06-13)
+Installing package(s) 'clusterProfiler'
+also installing the dependency ‘gson’
+
+trying URL 'https://cloud.r-project.org/src/contrib/gson_0.1.0.tar.gz'
+trying URL 'https://bioconductor.org//packages/3.21/bioc/src/contrib/clusterProfiler_4.16.0.tar.gz'
+* installing *source* package ‘gson’ ...
+** this is package ‘gson’ version ‘0.1.0’
+** package ‘gson’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (gson)
+* installing *source* package ‘clusterProfiler’ ...
+** this is package ‘clusterProfiler’ version ‘4.16.0’
+** using staged installation
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (clusterProfiler)
+
+The downloaded source packages are in
+	‘/tmp/RtmpggTY87/downloaded_packages’
+Successfully installed: clusterProfiler 
+
+===========================================
+Package installation completed!
+
+Checking installed packages:
+✓ dplyr is installed
+✓ ggplot2 is installed
+✓ ggrepel is installed
+✓ ggthemes is installed
+✓ gridExtra is installed
+✓ lsa is installed
+✓ magicaxis is installed
+✓ parallel is installed
+✓ relations is installed
+✓ shinydashboard is installed
+✓ shinyjs is installed
+✓ stringr is installed
+✓ tibble is installed
+✓ tidyverse is installed
+✓ PharmacoGx is installed
+✓ CoreGx is installed
+✓ clusterProfiler is installed
+You can now run your R scripts in this directory.
+
+Note: PharmacoGx may require additional system dependencies:
+On Ubuntu/Debian: sudo apt-get install libcurl4-openssl-dev libssl-dev libxml2-dev
+On CentOS/RHEL: sudo yum install libcurl-devel openssl-devel libxml2-devel

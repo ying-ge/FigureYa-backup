@@ -1,0 +1,52 @@
+===========================================
+安装 FigureYa197SmoothHaz.Rmd 所需依赖
+===========================================
+安装核心包...
+✅ 已安装: cowplot 
+✅ 已安装: dplyr 
+✅ 已安装: ggplot2 
+✅ 已安装: muhaz 
+✅ 已安装: openxlsx 
+✅ 已安装: survival 
+✅ 已安装: survminer 
+✅ 已安装: remotes 
+安装: Rttf2pt1 
+✅ 成功安装: Rttf2pt1 
+安装: extrafontdb 
+✅ 成功安装: extrafontdb 
+Warning message:
+package ‘Rttf2pt1’ is not available for this version of R
+
+A version of this package for your version of R might be available elsewhere,
+see the ideas at
+https://cran.r-project.org/doc/manuals/r-patched/R-admin.html#Installing-packages 
+处理 extrafont...
+安装: extrafont 
+✅ 成功安装: extrafont 
+尝试替代方法安装 extrafont...
+Downloading package from url: https://cloud.r-project.org//src/contrib/Archive/extrafont/extrafont_0.19.tar.gz
+
+Skipping 1 packages not available: Rttf2pt1
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+ERROR: dependency ‘Rttf2pt1’ is not available for package ‘extrafont’
+Perhaps try a variation of:
+install.packages('Rttf2pt1')
+* removing ‘/home/runner/work/_temp/Library/extrafont’
+Warning messages:
+1: package ‘extrafont’ is not available for this version of R
+
+A version of this package for your version of R might be available elsewhere,
+see the ideas at
+https://cran.r-project.org/doc/manuals/r-patched/R-admin.html#Installing-packages 
+2: In i.p(...) :
+  installation of package ‘/tmp/RtmpkaA551/remotes3bd275c3a0d83/extrafont’ had non-zero exit status
+验证安装...
+✅ survival 安装成功
+✅ survminer 安装成功
+✅ muhaz 安装成功
+✅ ggplot2 安装成功
+❌ extrafont 安装失败
+===========================================
+安装完成！
+===========================================

@@ -1,0 +1,79 @@
+Starting R package installation...
+===========================================
+
+Installing core Bioconductor dependencies...
+Package already installed: AnnotationDbi 
+Package already installed: httr2 
+Package already installed: BiocFileCache 
+Package already installed: curl 
+Package already installed: KEGGREST 
+
+Installing CRAN packages...
+Package already installed: shape 
+Installing CRAN package: survMisc 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+also installing the dependencies ‘KMsurv’, ‘km.ci’
+
+trying URL 'https://cloud.r-project.org/src/contrib/KMsurv_0.1-6.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/km.ci_0.5-6.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/survMisc_0.5.6.tar.gz'
+* installing *source* package ‘KMsurv’ ...
+** this is package ‘KMsurv’ version ‘0.1-6’
+** package ‘KMsurv’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (KMsurv)
+* installing *source* package ‘km.ci’ ...
+** this is package ‘km.ci’ version ‘0.5-6’
+** package ‘km.ci’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (km.ci)
+* installing *source* package ‘survMisc’ ...
+** this is package ‘survMisc’ version ‘0.5.6’
+** package ‘survMisc’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (survMisc)
+
+The downloaded source packages are in
+	‘/tmp/RtmpLvivs3/downloaded_packages’
+Successfully installed: survMisc 
+Package already installed: survival 
+
+Installing Bioconductor packages...
+Package already installed: TCGAbiolinks 
+Package already installed: biomaRt 
+
+===========================================
+Package installation completed!
+You can now run your R scripts in this directory.

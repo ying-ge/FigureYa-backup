@@ -1,0 +1,581 @@
+Starting R package installation...
+===========================================
+
+Installing survminer dependencies...
+Installing CRAN package: gridtext 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+also installing the dependencies ‘litedown’, ‘markdown’
+
+trying URL 'https://cloud.r-project.org/src/contrib/litedown_0.7.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/markdown_2.0.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/gridtext_0.1.5.tar.gz'
+* installing *source* package ‘litedown’ ...
+** this is package ‘litedown’ version ‘0.7’
+** package ‘litedown’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (litedown)
+* installing *source* package ‘markdown’ ...
+** this is package ‘markdown’ version ‘2.0’
+** package ‘markdown’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (markdown)
+* installing *source* package ‘gridtext’ ...
+** this is package ‘gridtext’ version ‘0.1.5’
+** package ‘gridtext’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+using C++11
+g++ -std=gnu++11 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++11 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c bl-r-bindings.cpp -o bl-r-bindings.o
+g++ -std=gnu++11 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c grid-renderer.cpp -o grid-renderer.o
+g++ -std=gnu++11 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c grid.cpp -o grid.o
+g++ -std=gnu++11 -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o gridtext.so RcppExports.o bl-r-bindings.o grid-renderer.o grid.o -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-gridtext/00new/gridtext/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (gridtext)
+
+The downloaded source packages are in
+	‘/tmp/RtmpXqs0DM/downloaded_packages’
+Successfully installed: gridtext 
+Installing CRAN package: ggtext 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+trying URL 'https://cloud.r-project.org/src/contrib/ggtext_0.1.2.tar.gz'
+Content type 'application/x-gzip' length 1211771 bytes (1.2 MB)
+==================================================
+downloaded 1.2 MB
+
+* installing *source* package ‘ggtext’ ...
+** this is package ‘ggtext’ version ‘0.1.2’
+** package ‘ggtext’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (ggtext)
+
+The downloaded source packages are in
+	‘/tmp/RtmpXqs0DM/downloaded_packages’
+Successfully installed: ggtext 
+
+Installing CRAN packages...
+Package already installed: ggplot2 
+Package already installed: ggpubr 
+Installing CRAN package: survminer 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+also installing the dependencies ‘bdsmatrix’, ‘bbmle’, ‘fastGHQuad’, ‘exactRankTests’, ‘assertthat’, ‘deSolve’, ‘mstate’, ‘muhaz’, ‘quadprog’, ‘rstpm2’, ‘maxstat’, ‘flexsurv’, ‘cmprsk’
+
+trying URL 'https://cloud.r-project.org/src/contrib/bdsmatrix_1.3-7.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/bbmle_1.0.25.1.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/fastGHQuad_1.0.1.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/exactRankTests_0.8-35.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/assertthat_0.2.1.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/deSolve_1.40.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/mstate_0.3.3.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/muhaz_1.2.6.4.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/quadprog_1.5-8.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/rstpm2_1.7.0.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/maxstat_0.7-26.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/flexsurv_2.3.2.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/cmprsk_2.2-12.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/survminer_0.5.1.tar.gz'
+* installing *source* package ‘bdsmatrix’ ...
+** this is package ‘bdsmatrix’ version ‘1.3-7’
+** package ‘bdsmatrix’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c R_init_bdsmatrix.c -o R_init_bdsmatrix.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c bdsmatrix_index1.c -o bdsmatrix_index1.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c bdsmatrix_index2.c -o bdsmatrix_index2.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c bdsmatrix_index3.c -o bdsmatrix_index3.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c bdsmatrix_prod.c -o bdsmatrix_prod.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c bdsmatrix_prod2.c -o bdsmatrix_prod2.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c bdsmatrix_prod3.c -o bdsmatrix_prod3.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c bdsmatrix_prod4.c -o bdsmatrix_prod4.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c chinv4.c -o chinv4.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c chinv5.c -o chinv5.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c cholesky4.c -o cholesky4.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c cholesky5.c -o cholesky5.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c chsolve4.c -o chsolve4.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c chsolve5.c -o chsolve5.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c dmatrix.c -o dmatrix.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c gcback.c -o gcback.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c gchol.c -o gchol.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c gchol_bds.c -o gchol_bds.o
+gcc -std=gnu2x -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o bdsmatrix.so R_init_bdsmatrix.o bdsmatrix_index1.o bdsmatrix_index2.o bdsmatrix_index3.o bdsmatrix_prod.o bdsmatrix_prod2.o bdsmatrix_prod3.o bdsmatrix_prod4.o chinv4.o chinv5.o cholesky4.o cholesky5.o chsolve4.o chsolve5.o dmatrix.o gcback.o gchol.o gchol_bds.o -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-bdsmatrix/00new/bdsmatrix/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+Creating a generic function for ‘diag’ from package ‘base’ in package ‘bdsmatrix’
+Creating a generic function for ‘diag<-’ from package ‘base’ in package ‘bdsmatrix’
+Creating a new generic function for ‘backsolve’ in package ‘bdsmatrix’
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (bdsmatrix)
+* installing *source* package ‘fastGHQuad’ ...
+** this is package ‘fastGHQuad’ version ‘1.0.1’
+** package ‘fastGHQuad’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c init.cpp -o init.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c lib.cpp -o lib.o
+g++ -std=gnu++17 -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o fastGHQuad.so init.o lib.o -llapack -lblas -lgfortran -lm -lquadmath -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-fastGHQuad/00new/fastGHQuad/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (fastGHQuad)
+* installing *source* package ‘exactRankTests’ ...
+** this is package ‘exactRankTests’ version ‘0.8-35’
+** package ‘exactRankTests’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c init.c -o init.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c irank.c -o irank.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c permdist.c -o permdist.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c spermdist.c -o spermdist.o
+gcc -std=gnu2x -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o exactRankTests.so init.o irank.o permdist.o spermdist.o -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-exactRankTests/00new/exactRankTests/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (exactRankTests)
+* installing *source* package ‘assertthat’ ...
+** this is package ‘assertthat’ version ‘0.2.1’
+** package ‘assertthat’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (assertthat)
+* installing *source* package ‘deSolve’ ...
+** this is package ‘deSolve’ version ‘1.40’
+** package ‘deSolve’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+using Fortran compiler: ‘GNU Fortran (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c DLLutil.c -o DLLutil.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c R_init_deSolve.c -o R_init_deSolve.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c brent.c -o brent.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c call_daspk.c -o call_daspk.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c call_euler.c -o call_euler.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c call_iteration.c -o call_iteration.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c call_lsoda.c -o call_lsoda.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c call_radau.c -o call_radau.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c call_rk4.c -o call_rk4.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c call_rkAuto.c -o call_rkAuto.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c call_rkFixed.c -o call_rkFixed.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c call_rkImplicit.c -o call_rkImplicit.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c call_zvode.c -o call_zvode.o
+gfortran  -fpic  -g -O2  -c daux.f -o daux.o
+gfortran  -fpic  -g -O2  -c ddaspk.f -o ddaspk.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c deSolve_utils.c -o deSolve_utils.o
+gfortran  -fpic  -g -O2  -c dintdy2.f -o dintdy2.o
+gfortran  -fpic  -g -O2  -c dlinpk.f -o dlinpk.o
+gfortran  -fpic  -g -O2  -c dlsoder.f -o dlsoder.o
+gfortran  -fpic  -g -O2  -c dsparsk.f -o dsparsk.o
+gfortran  -fpic  -g -O2  -c dvode.f -o dvode.o
+gfortran  -fpic  -g -O2  -c errmsg.f -o errmsg.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c ex_Aquaphy.c -o ex_Aquaphy.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c ex_CCL4model.c -o ex_CCL4model.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c ex_ChemicalDAE.c -o ex_ChemicalDAE.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c ex_SCOC.c -o ex_SCOC.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c forcings.c -o forcings.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c lags.c -o lags.o
+gfortran  -fpic  -g -O2  -c opkda1.f -o opkda1.o
+gfortran  -fpic  -g -O2  -c opkdmain.f -o opkdmain.o
+gfortran  -fpic  -g -O2  -c radau5.f -o radau5.o
+gfortran  -fpic  -g -O2  -c radau5a.f -o radau5a.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c rk_auto.c -o rk_auto.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c rk_fixed.c -o rk_fixed.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c rk_implicit.c -o rk_implicit.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c rk_util.c -o rk_util.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c rprintf.c -o rprintf.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c twoDmap.c -o twoDmap.o
+gfortran  -fpic  -g -O2  -c zvode.f -o zvode.o
+gcc -std=gnu2x -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o deSolve.so DLLutil.o R_init_deSolve.o brent.o call_daspk.o call_euler.o call_iteration.o call_lsoda.o call_radau.o call_rk4.o call_rkAuto.o call_rkFixed.o call_rkImplicit.o call_zvode.o daux.o ddaspk.o deSolve_utils.o dintdy2.o dlinpk.o dlsoder.o dsparsk.o dvode.o errmsg.o ex_Aquaphy.o ex_CCL4model.o ex_ChemicalDAE.o ex_SCOC.o forcings.o lags.o opkda1.o opkdmain.o radau5.o radau5a.o rk_auto.o rk_fixed.o rk_implicit.o rk_util.o rprintf.o twoDmap.o zvode.o -lblas -lgfortran -lm -lquadmath -lgfortran -lm -lquadmath -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-deSolve/00new/deSolve/libs
+** R
+** data
+*** moving datasets to lazyload DB
+** demo
+** inst
+** byte-compile and prepare package for lazy loading
+Creating a new generic function for ‘matplot’ in package ‘deSolve’
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (deSolve)
+* installing *source* package ‘mstate’ ...
+** this is package ‘mstate’ version ‘0.3.3’
+** package ‘mstate’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c agmssurv.c -o agmssurv.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c mstate_init.c -o mstate_init.o
+gcc -std=gnu2x -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o mstate.so agmssurv.o mstate_init.o -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-mstate/00new/mstate/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (mstate)
+* installing *source* package ‘muhaz’ ...
+** this is package ‘muhaz’ version ‘1.2.6.4’
+** package ‘muhaz’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+using Fortran compiler: ‘GNU Fortran (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c init.c -o init.o
+gfortran  -fpic  -g -O2  -c muhaz.f -o muhaz.o
+gcc -std=gnu2x -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o muhaz.so init.o muhaz.o -lgfortran -lm -lquadmath -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-muhaz/00new/muhaz/libs
+** R
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (muhaz)
+* installing *source* package ‘quadprog’ ...
+** this is package ‘quadprog’ version ‘1.5-8’
+** package ‘quadprog’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+using Fortran compiler: ‘GNU Fortran (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gfortran  -fvisibility=hidden -fpic -g -O2 -msse2 -mfpmath=sse   -fpic  -g -O2  -c aind.f -o aind.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c init.c -o init.o
+gfortran  -fvisibility=hidden -fpic -g -O2 -msse2 -mfpmath=sse   -fpic  -g -O2  -c solve.QP.compact.f -o solve.QP.compact.o
+gfortran  -fvisibility=hidden -fpic -g -O2 -msse2 -mfpmath=sse   -fpic  -g -O2  -c solve.QP.f -o solve.QP.o
+gfortran  -fvisibility=hidden -fpic -g -O2 -msse2 -mfpmath=sse   -fpic  -g -O2  -c util.f -o util.o
+gcc -std=gnu2x -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o quadprog.so aind.o init.o solve.QP.compact.o solve.QP.o util.o -lblas -lgfortran -lm -lquadmath -lgfortran -lm -lquadmath -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-quadprog/00new/quadprog/libs
+** R
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (quadprog)
+* installing *source* package ‘cmprsk’ ...
+** this is package ‘cmprsk’ version ‘2.2-12’
+** package ‘cmprsk’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using Fortran compiler: ‘GNU Fortran (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gfortran  -fpic  -g -O2  -c cincsub.f -o cincsub.o
+gfortran  -fpic  -g -O2  -c crr.f -o crr.o
+gfortran  -fpic  -g -O2  -c crstm.f -o crstm.o
+gfortran  -fpic  -g -O2  -c tpoi.f -o tpoi.o
+gcc -std=gnu2x -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o cmprsk.so cincsub.o crr.o crstm.o tpoi.o -lgfortran -lm -lquadmath -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-cmprsk/00new/cmprsk/libs
+** R
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (cmprsk)
+* installing *source* package ‘bbmle’ ...
+** this is package ‘bbmle’ version ‘1.0.25.1’
+** package ‘bbmle’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (bbmle)
+* installing *source* package ‘maxstat’ ...
+** this is package ‘maxstat’ version ‘0.7-26’
+** package ‘maxstat’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c init.c -o init.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c maxstatpermdist.c -o maxstatpermdist.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c newcorr.c -o newcorr.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c ptree.c -o ptree.o
+gcc -std=gnu2x -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o maxstat.so init.o maxstatpermdist.o newcorr.o ptree.o -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-maxstat/00new/maxstat/libs
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (maxstat)
+* installing *source* package ‘rstpm2’ ...
+** this is package ‘rstpm2’ version ‘1.7.0’
+** package ‘rstpm2’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+using Fortran compiler: ‘GNU Fortran (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+using C++ compiler: ‘g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DSTRICT_R_HEADERS -DBOOST_NO_AUTO_PTR -I../inst/include -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/RcppArmadillo/include' -I/usr/local/include    -fpic  -g -O2   -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DSTRICT_R_HEADERS -DBOOST_NO_AUTO_PTR -I../inst/include -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/RcppArmadillo/include' -I/usr/local/include    -fpic  -g -O2   -c aft.cpp -o aft.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DSTRICT_R_HEADERS -DBOOST_NO_AUTO_PTR -I../inst/include -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/RcppArmadillo/include' -I/usr/local/include    -fpic  -g -O2   -c c_optim.cpp -o c_optim.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DSTRICT_R_HEADERS -DBOOST_NO_AUTO_PTR -I../inst/include -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/RcppArmadillo/include' -I/usr/local/include    -fpic  -g -O2   -c cox_ph.cpp -o cox_ph.o
+gfortran  -fpic  -g -O2  -c gaussq2.f -o gaussq2.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DSTRICT_R_HEADERS -DBOOST_NO_AUTO_PTR -I../inst/include -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/RcppArmadillo/include' -I/usr/local/include    -fpic  -g -O2   -c gsm.cpp -o gsm.o
+gfortran  -fpic  -g -O2  -c  laplace.f90 -o laplace.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DSTRICT_R_HEADERS -DBOOST_NO_AUTO_PTR -I../inst/include -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/RcppArmadillo/include' -I/usr/local/include    -fpic  -g -O2   -c multistate.cpp -o multistate.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DSTRICT_R_HEADERS -DBOOST_NO_AUTO_PTR -I../inst/include -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/RcppArmadillo/include' -I/usr/local/include    -fpic  -g -O2  -c package_init.c -o package_init.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DSTRICT_R_HEADERS -DBOOST_NO_AUTO_PTR -I../inst/include -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/RcppArmadillo/include' -I/usr/local/include    -fpic  -g -O2   -c pluginEstimate2.cpp -o pluginEstimate2.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DSTRICT_R_HEADERS -DBOOST_NO_AUTO_PTR -I../inst/include -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/RcppArmadillo/include' -I/usr/local/include    -fpic  -g -O2   -c splines.cpp -o splines.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DSTRICT_R_HEADERS -DBOOST_NO_AUTO_PTR -I../inst/include -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/RcppArmadillo/include' -I/usr/local/include    -fpic  -g -O2   -c test-nmmin.cpp -o test-nmmin.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DSTRICT_R_HEADERS -DBOOST_NO_AUTO_PTR -I../inst/include -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/RcppArmadillo/include' -I/usr/local/include    -fpic  -g -O2   -c utils.cpp -o utils.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DSTRICT_R_HEADERS -DBOOST_NO_AUTO_PTR -I../inst/include -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/RcppArmadillo/include' -I/usr/local/include    -fpic  -g -O2   -c vintegrate.cpp -o vintegrate.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DSTRICT_R_HEADERS -DBOOST_NO_AUTO_PTR -I../inst/include -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/RcppArmadillo/include' -I/usr/local/include    -fpic  -g -O2   -c vuniroot.cpp -o vuniroot.o
+g++ -std=gnu++17 -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o rstpm2.so RcppExports.o aft.o c_optim.o cox_ph.o gaussq2.o gsm.o laplace.o multistate.o package_init.o pluginEstimate2.o splines.o test-nmmin.o utils.o vintegrate.o vuniroot.o -llapack -lblas -lgfortran -lm -lquadmath -lgfortran -lm -lquadmath -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-rstpm2/00new/rstpm2/libs
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (rstpm2)
+* installing *source* package ‘survminer’ ...
+** this is package ‘survminer’ version ‘0.5.1’
+** package ‘survminer’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (survminer)
+* installing *source* package ‘flexsurv’ ...
+** this is package ‘flexsurv’ version ‘2.3.2’
+** package ‘flexsurv’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+using C++ compiler: ‘g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c RcppExports.cpp -o RcppExports.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2  -c flexsurv-init.c -o flexsurv-init.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c genf.cpp -o genf.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c gengamma.cpp -o gengamma.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c gompertz.cpp -o gompertz.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c llogis.cpp -o llogis.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c special.cpp -o special.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c splines.cpp -o splines.o
+g++ -std=gnu++17 -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o flexsurv.so RcppExports.o flexsurv-init.o genf.o gengamma.o gompertz.o llogis.o special.o splines.o -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-flexsurv/00new/flexsurv/libs
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (flexsurv)
+
+The downloaded source packages are in
+	‘/tmp/RtmpXqs0DM/downloaded_packages’
+Successfully installed: survminer 
+
+Installing Bioconductor packages...
+Installing Bioconductor package: ComparisonSurv 
+'getOption("repos")' replaces Bioconductor standard repositories, see
+'help("repositories", package = "BiocManager")' for details.
+Replacement repositories:
+    CRAN: https://cloud.r-project.org/
+Bioconductor version 3.21 (BiocManager 1.30.26), R 4.5.1 (2025-06-13)
+Installing package(s) 'ComparisonSurv'
+also installing the dependencies ‘survRM2’, ‘TSHRC’
+
+trying URL 'https://cloud.r-project.org/src/contrib/survRM2_1.0-4.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/TSHRC_0.1-6.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/ComparisonSurv_1.1.1.tar.gz'
+* installing *source* package ‘survRM2’ ...
+** this is package ‘survRM2’ version ‘1.0-4’
+** package ‘survRM2’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (survRM2)
+* installing *source* package ‘TSHRC’ ...
+** this is package ‘TSHRC’ version ‘0.1-6’
+** package ‘TSHRC’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+using Fortran compiler: ‘GNU Fortran (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2  -c crandom.c -o crandom.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2  -c init.c -o init.o
+gfortran  -fvisibility=hidden -fpic  -g -O2  -c two-stage.f -o two-stage.o
+gcc -std=gnu2x -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o TSHRC.so crandom.o init.o two-stage.o -lgfortran -lm -lquadmath -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-TSHRC/00new/TSHRC/libs
+** R
+** data
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (TSHRC)
+* installing *source* package ‘ComparisonSurv’ ...
+** this is package ‘ComparisonSurv’ version ‘1.1.1’
+** package ‘ComparisonSurv’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (ComparisonSurv)
+
+The downloaded source packages are in
+	‘/tmp/RtmpXqs0DM/downloaded_packages’
+Successfully installed: ComparisonSurv 
+Package already installed: survRM2 
+
+===========================================
+Package installation completed!
+You can now run your R scripts in this directory.

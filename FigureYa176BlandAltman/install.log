@@ -1,0 +1,132 @@
+Starting R package installation...
+===========================================
+
+Installing CRAN packages...
+Installing CRAN package: BlandAltmanLeh 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+also installing the dependencies ‘colourpicker’, ‘ggExtra’
+
+trying URL 'https://cloud.r-project.org/src/contrib/colourpicker_1.3.0.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/ggExtra_0.11.0.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/BlandAltmanLeh_0.3.1.tar.gz'
+* installing *source* package ‘colourpicker’ ...
+** this is package ‘colourpicker’ version ‘1.3.0’
+** package ‘colourpicker’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (colourpicker)
+* installing *source* package ‘BlandAltmanLeh’ ...
+** this is package ‘BlandAltmanLeh’ version ‘0.3.1’
+** package ‘BlandAltmanLeh’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (BlandAltmanLeh)
+* installing *source* package ‘ggExtra’ ...
+** this is package ‘ggExtra’ version ‘0.11.0’
+** package ‘ggExtra’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (ggExtra)
+
+The downloaded source packages are in
+	‘/tmp/RtmpNRqDOU/downloaded_packages’
+Successfully installed: BlandAltmanLeh 
+Installing CRAN package: MethComp 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+also installing the dependency ‘rjags’
+
+trying URL 'https://cloud.r-project.org/src/contrib/rjags_4-17.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/MethComp_1.30.2.tar.gz'
+* installing *source* package ‘rjags’ ...
+** this is package ‘rjags’ version ‘4-17’
+** package ‘rjags’ successfully unpacked and MD5 sums checked
+** using staged installation
+checking for pkg-config... /usr/bin/pkg-config
+configure: WARNING: pkg-config file for jags 4 unavailable
+configure: WARNING: Consider adding the directory containing `jags.pc`
+configure: WARNING: to the PKG_CONFIG_PATH environment variable
+configure: Attempting legacy configuration of rjags
+checking for jags... no
+configure: error: "automatic detection of JAGS failed. Please use pkg-config to locate the JAGS library. See the INSTALL file for details."
+ERROR: configuration failed for package ‘rjags’
+* removing ‘/home/runner/work/_temp/Library/rjags’
+* installing *source* package ‘MethComp’ ...
+** this is package ‘MethComp’ version ‘1.30.2’
+** package ‘MethComp’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (MethComp)
+
+The downloaded source packages are in
+	‘/tmp/RtmpNRqDOU/downloaded_packages’
+Successfully installed: MethComp 
+Installing CRAN package: smatr 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+trying URL 'https://cloud.r-project.org/src/contrib/smatr_3.4-8.tar.gz'
+Content type 'application/x-gzip' length 53648 bytes (52 KB)
+==================================================
+downloaded 52 KB
+
+* installing *source* package ‘smatr’ ...
+** this is package ‘smatr’ version ‘3.4-8’
+** package ‘smatr’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (smatr)
+
+The downloaded source packages are in
+	‘/tmp/RtmpNRqDOU/downloaded_packages’
+Successfully installed: smatr 
+Warning message:
+In install.packages(package_name, dependencies = TRUE) :
+  installation of package ‘rjags’ had non-zero exit status
+
+===========================================
+Package installation completed!
+You can now run your R scripts in this directory.

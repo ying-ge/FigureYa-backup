@@ -1,0 +1,11 @@
+Starting R package installation...
+===========================================
+
+Installing CRAN packages...
+Package already installed: data.table 
+Package already installed: ggplot2 
+Package already installed: patchwork 
+
+===========================================
+Package installation completed!
+You can now run your R scripts in this directory.

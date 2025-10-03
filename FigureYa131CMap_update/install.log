@@ -1,0 +1,230 @@
+Starting R package installation...
+===========================================
+
+Installing CRAN packages...
+Package already installed: plyr 
+Package already installed: tidyverse 
+Installing CRAN package: xlsx 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+also installing the dependencies ‘rJava’, ‘xlsxjars’
+
+trying URL 'https://cloud.r-project.org/src/contrib/rJava_1.0-11.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/xlsxjars_0.9.0.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/xlsx_0.6.5.tar.gz'
+* installing *source* package ‘rJava’ ...
+** this is package ‘rJava’ version ‘1.0-11’
+** package ‘rJava’ successfully unpacked and MD5 sums checked
+** using staged installation
+checking for gcc... gcc -std=gnu2x
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc -std=gnu2x accepts -g... yes
+checking for gcc -std=gnu2x option to accept ISO C89... none needed
+checking how to run the C preprocessor... gcc -std=gnu2x -E
+checking for grep that handles long lines and -e... /usr/bin/grep
+checking for egrep... /usr/bin/grep -E
+checking for ANSI C header files... yes
+checking for sys/wait.h that is POSIX.1 compatible... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking for string.h... (cached) yes
+checking sys/time.h usability... yes
+checking sys/time.h presence... yes
+checking for sys/time.h... yes
+checking for unistd.h... (cached) yes
+checking for an ANSI C-conforming const... yes
+checking whether time.h and sys/time.h may both be included... yes
+configure: checking whether gcc -std=gnu2x supports static inline...
+yes
+checking whether setjmp.h is POSIX.1 compatible... yes
+checking whether sigsetjmp is declared... yes
+checking whether siglongjmp is declared... yes
+checking Java support in R... present:
+interpreter : '/usr/lib/jvm/temurin-17-jdk-amd64/bin/java'
+archiver    : '/usr/lib/jvm/temurin-17-jdk-amd64/bin/jar'
+compiler    : '/usr/lib/jvm/temurin-17-jdk-amd64/bin/javac'
+header prep.: '/usr/bin/javah'
+cpp flags   : '-I/usr/lib/jvm/temurin-17-jdk-amd64/include -I/usr/lib/jvm/temurin-17-jdk-amd64/include/linux'
+java libs   : '-L/usr/lib/jvm/temurin-17-jdk-amd64/lib/server -ljvm'
+checking whether Java run-time works... yes
+checking whether -Xrs is supported... yes
+checking whether -Xrs will be used... yes
+checking whether JVM will be loaded dynamically... no
+checking whether JNI programs can be compiled... yes
+checking whether JNI programs run... yes
+checking JNI data types... ok
+checking whether JRI should be compiled (autodetect)... yes
+checking whether debugging output should be enabled... no
+checking whether memory profiling is desired... no
+checking whether threads support is requested... no
+checking whether callbacks support is requested... no
+checking whether JNI cache support is requested... no
+checking whether headless init is enabled... no
+checking whether JRI is requested... yes
+configure: creating ./config.status
+config.status: creating src/Makevars
+config.status: creating R/zzz.R
+config.status: creating src/config.h
+=== configuring in jri (/tmp/Rtmpx1lZYT/R.INSTALL629302b13cfb4/rJava/jri)
+configure: running /bin/bash ./configure --disable-option-checking '--prefix=/usr/local'  'CC=gcc -std=gnu2x' 'CFLAGS=-g -O2' 'LDFLAGS=-L/usr/local/lib' 'CPPFLAGS=-I/usr/local/include' --cache-file=/dev/null --srcdir=.
+checking build system type... x86_64-pc-linux-gnu
+checking host system type... x86_64-pc-linux-gnu
+checking for gcc... gcc -std=gnu2x
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether the compiler supports GNU C... yes
+checking whether gcc -std=gnu2x accepts -g... yes
+checking for gcc -std=gnu2x option to enable C11 features... none needed
+checking for stdio.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for strings.h... yes
+checking for sys/stat.h... yes
+checking for sys/types.h... yes
+checking for unistd.h... yes
+checking for sys/time.h... yes
+checking for sys/types.h... (cached) yes
+checking for sys/select.h... yes
+checking Java version... 17.0.16
+checking Java compatibility version (integer)... 17
+checking whether /usr/bin/javah actually works... yes
+checking for target flags...  -target 1.8 -source 1.8
+checking whether Java interpreter works... checking whether JNI programs can be compiled... yes
+checking whether JNI programs can be run... yes
+checking JNI data types... ok
+checking whether Rinterface.h exports R_CStackXXX variables... yes
+checking whether Rinterface.h exports R_SignalHandlers... yes
+configure: creating ./config.status
+config.status: creating src/Makefile
+config.status: creating Makefile
+config.status: creating run
+config.status: creating src/config.h
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -I/usr/lib/jvm/temurin-17-jdk-amd64/include -I/usr/lib/jvm/temurin-17-jdk-amd64/include/linux  -I/usr/local/include    -fpic  -g -O2  -c Rglue.c -o Rglue.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -I/usr/lib/jvm/temurin-17-jdk-amd64/include -I/usr/lib/jvm/temurin-17-jdk-amd64/include/linux  -I/usr/local/include    -fpic  -g -O2  -c arrayc.c -o arrayc.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -I/usr/lib/jvm/temurin-17-jdk-amd64/include -I/usr/lib/jvm/temurin-17-jdk-amd64/include/linux  -I/usr/local/include    -fpic  -g -O2  -c callJNI.c -o callJNI.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -I/usr/lib/jvm/temurin-17-jdk-amd64/include -I/usr/lib/jvm/temurin-17-jdk-amd64/include/linux  -I/usr/local/include    -fpic  -g -O2  -c callback.c -o callback.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -I/usr/lib/jvm/temurin-17-jdk-amd64/include -I/usr/lib/jvm/temurin-17-jdk-amd64/include/linux  -I/usr/local/include    -fpic  -g -O2  -c fields.c -o fields.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -I/usr/lib/jvm/temurin-17-jdk-amd64/include -I/usr/lib/jvm/temurin-17-jdk-amd64/include/linux  -I/usr/local/include    -fpic  -g -O2  -c init.c -o init.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -I/usr/lib/jvm/temurin-17-jdk-amd64/include -I/usr/lib/jvm/temurin-17-jdk-amd64/include/linux  -I/usr/local/include    -fpic  -g -O2  -c jri_glue.c -o jri_glue.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -I/usr/lib/jvm/temurin-17-jdk-amd64/include -I/usr/lib/jvm/temurin-17-jdk-amd64/include/linux  -I/usr/local/include    -fpic  -g -O2  -c loader.c -o loader.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -I/usr/lib/jvm/temurin-17-jdk-amd64/include -I/usr/lib/jvm/temurin-17-jdk-amd64/include/linux  -I/usr/local/include    -fpic  -g -O2  -c otables.c -o otables.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -I/usr/lib/jvm/temurin-17-jdk-amd64/include -I/usr/lib/jvm/temurin-17-jdk-amd64/include/linux  -I/usr/local/include    -fpic  -g -O2  -c rJava.c -o rJava.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -I/usr/lib/jvm/temurin-17-jdk-amd64/include -I/usr/lib/jvm/temurin-17-jdk-amd64/include/linux  -I/usr/local/include    -fpic  -g -O2  -c registration.c -o registration.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -I/usr/lib/jvm/temurin-17-jdk-amd64/include -I/usr/lib/jvm/temurin-17-jdk-amd64/include/linux  -I/usr/local/include    -fpic  -g -O2  -c rjstring.c -o rjstring.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -I/usr/lib/jvm/temurin-17-jdk-amd64/include -I/usr/lib/jvm/temurin-17-jdk-amd64/include/linux  -I/usr/local/include    -fpic  -g -O2  -c tools.c -o tools.o
+gcc -std=gnu2x -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o rJava.so Rglue.o arrayc.o callJNI.o callback.o fields.o init.o jri_glue.o loader.o otables.o rJava.o registration.o rjstring.o tools.o -L/usr/lib/jvm/temurin-17-jdk-amd64/lib/server -ljvm -L/opt/R/4.5.1/lib/R/lib -lR
+(cd ../jri && make)
+make[1]: Entering directory '/tmp/Rtmpx1lZYT/R.INSTALL629302b13cfb4/rJava/jri'
+make -C src JRI.jar
+make[2]: Entering directory '/tmp/Rtmpx1lZYT/R.INSTALL629302b13cfb4/rJava/jri/src'
+/usr/lib/jvm/temurin-17-jdk-amd64/bin/javac -target 1.8 -source 1.8  -d . ../Mutex.java ../RBool.java ../RConsoleOutputStream.java ../REXP.java ../RFactor.java ../RList.java ../RMainLoopCallbacks.java ../RVector.java ../Rengine.java ../package-info.java
+warning: [options] bootstrap class path not set in conjunction with -source 8
+Note: ../REXP.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+1 warning
+if [ -n "/usr/bin/javah" ]; then /usr/bin/javah -d . -classpath . org.rosuda.JRI.Rengine; fi
+gcc -std=gnu2x -c -o Rengine.o Rengine.c -g -Iinclude  -DRIF_HAS_CSTACK -DRIF_HAS_RSIGHAND -DHAVE_CONFIG_H -g -O2  -I/usr/lib/jvm/temurin-17-jdk-amd64/include -I/usr/lib/jvm/temurin-17-jdk-amd64/include/linux  -fpic -I/usr/lib/jvm/temurin-17-jdk-amd64/include -I/usr/lib/jvm/temurin-17-jdk-amd64/include/linux -I/opt/R/4.5.1/lib/R/include -I/opt/R/4.5.1/lib/R/include 
+gcc -std=gnu2x -c -o jri.o jri.c -g -Iinclude  -DRIF_HAS_CSTACK -DRIF_HAS_RSIGHAND -DHAVE_CONFIG_H -g -O2  -I/usr/lib/jvm/temurin-17-jdk-amd64/include -I/usr/lib/jvm/temurin-17-jdk-amd64/include/linux  -fpic -I/usr/lib/jvm/temurin-17-jdk-amd64/include -I/usr/lib/jvm/temurin-17-jdk-amd64/include/linux -I/opt/R/4.5.1/lib/R/include -I/opt/R/4.5.1/lib/R/include 
+gcc -std=gnu2x -c -o Rcallbacks.o Rcallbacks.c -g -Iinclude  -DRIF_HAS_CSTACK -DRIF_HAS_RSIGHAND -DHAVE_CONFIG_H -g -O2  -I/usr/lib/jvm/temurin-17-jdk-amd64/include -I/usr/lib/jvm/temurin-17-jdk-amd64/include/linux  -fpic -I/usr/lib/jvm/temurin-17-jdk-amd64/include -I/usr/lib/jvm/temurin-17-jdk-amd64/include/linux -I/opt/R/4.5.1/lib/R/include -I/opt/R/4.5.1/lib/R/include 
+gcc -std=gnu2x -c -o Rinit.o Rinit.c -g -Iinclude  -DRIF_HAS_CSTACK -DRIF_HAS_RSIGHAND -DHAVE_CONFIG_H -g -O2  -I/usr/lib/jvm/temurin-17-jdk-amd64/include -I/usr/lib/jvm/temurin-17-jdk-amd64/include/linux  -fpic -I/opt/R/4.5.1/lib/R/include -I/opt/R/4.5.1/lib/R/include 
+gcc -std=gnu2x -c -o globals.o globals.c -g -Iinclude  -DRIF_HAS_CSTACK -DRIF_HAS_RSIGHAND -DHAVE_CONFIG_H -g -O2  -I/usr/lib/jvm/temurin-17-jdk-amd64/include -I/usr/lib/jvm/temurin-17-jdk-amd64/include/linux  -fpic -I/usr/lib/jvm/temurin-17-jdk-amd64/include -I/usr/lib/jvm/temurin-17-jdk-amd64/include/linux 
+gcc -std=gnu2x -c -o rjava.o rjava.c -g -Iinclude  -DRIF_HAS_CSTACK -DRIF_HAS_RSIGHAND -DHAVE_CONFIG_H -g -O2  -I/usr/lib/jvm/temurin-17-jdk-amd64/include -I/usr/lib/jvm/temurin-17-jdk-amd64/include/linux  -fpic -I/usr/lib/jvm/temurin-17-jdk-amd64/include -I/usr/lib/jvm/temurin-17-jdk-amd64/include/linux 
+gcc -std=gnu2x -c -o rjstring.o rjstring.c -g -Iinclude  -DRIF_HAS_CSTACK -DRIF_HAS_RSIGHAND -DHAVE_CONFIG_H -g -O2  -I/usr/lib/jvm/temurin-17-jdk-amd64/include -I/usr/lib/jvm/temurin-17-jdk-amd64/include/linux  -fpic -I/usr/lib/jvm/temurin-17-jdk-amd64/include -I/usr/lib/jvm/temurin-17-jdk-amd64/include/linux -I/opt/R/4.5.1/lib/R/include -I/opt/R/4.5.1/lib/R/include 
+gcc -std=gnu2x -o libjri.so Rengine.o jri.o Rcallbacks.o Rinit.o globals.o rjava.o rjstring.o -L/usr/local/lib -shared -L/usr/lib/jvm/temurin-17-jdk-amd64/lib/server -ljvm -Wl,--export-dynamic -fopenmp -L/usr/local/lib -L/opt/R/4.5.1/lib/R/lib -lR -lpcre2-8 -ldeflate -lzstd -llzma -lbz2 -lz -ltirpc -lrt -ldl -lm -licuuc -licui18n 
+/usr/lib/jvm/temurin-17-jdk-amd64/bin/javac -target 1.8 -source 1.8  -d . ../Mutex.java ../RBool.java ../RConsoleOutputStream.java ../REXP.java ../RFactor.java ../RList.java ../RMainLoopCallbacks.java ../RVector.java ../Rengine.java ../package-info.java
+warning: [options] bootstrap class path not set in conjunction with -source 8
+Note: ../REXP.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+1 warning
+/usr/lib/jvm/temurin-17-jdk-amd64/bin/jar fc JRI.jar org libjri.so
+make[2]: Leaving directory '/tmp/Rtmpx1lZYT/R.INSTALL629302b13cfb4/rJava/jri/src'
+rm -f libjri.so
+cp src/libjri.so libjri.so
+/usr/lib/jvm/temurin-17-jdk-amd64/bin/javac -target 1.8 -source 1.8 -classpath src/JRI.jar -d examples examples/rtest.java
+warning: [options] bootstrap class path not set in conjunction with -source 8
+Note: examples/rtest.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+1 warning
+/usr/lib/jvm/temurin-17-jdk-amd64/bin/javac -target 1.8 -source 1.8 -classpath src/JRI.jar -d examples examples/rtest2.java
+warning: [options] bootstrap class path not set in conjunction with -source 8
+Note: examples/rtest2.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+1 warning
+make[1]: Leaving directory '/tmp/Rtmpx1lZYT/R.INSTALL629302b13cfb4/rJava/jri'
+installing via 'install.libs.R' to /home/runner/work/_temp/Library/00LOCK-rJava/00new/rJava
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (rJava)
+* installing *source* package ‘xlsxjars’ ...
+** this is package ‘xlsxjars’ version ‘0.9.0’
+** package ‘xlsxjars’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (xlsxjars)
+* installing *source* package ‘xlsx’ ...
+** this is package ‘xlsx’ version ‘0.6.5’
+** package ‘xlsx’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (xlsx)
+
+The downloaded source packages are in
+	‘/tmp/Rtmpe6e1Sk/downloaded_packages’
+Successfully installed: xlsx 
+Package already installed: ComplexHeatmap 
+Package already installed: circlize 
+
+Installing Bioconductor packages...
+Package already installed: GEOquery 
+
+===========================================
+Package installation completed!
+You can now run your R scripts in this directory.

@@ -1,0 +1,415 @@
+---
+title: "FigureYa143survCor"
+params:
+  author: "Xiaofan Lu"
+  reviewer: "Ying Ge, Junyi Shen"
+output: html_document
+---
+
+**Author(s)**: `r params$author`  
+**Reviewer(s)**: `r params$reviewer`  
+**Date**: `r Sys.Date()`  
+
+
+# Academic Citation
+If you use this code in your work or research, we kindly request that you cite our publication:
+
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## 需求描述
+## Requirement description
+
+绘制较复杂的相关性图，包括计算每个表达值下的logrank score；以肠癌MSS和MSI样本为例。
+Draw a more complex correlation graph, including calculating the logrank score for each expression value; take colorectal cancer MSS and MSI samples as an example.
+
+![](example.png)
+
+出自<https://www.jci.org/articles/view/127046>
+From <https://www.jci.org/articles/view/127046>
+
+Figure 1. Comparison of TME stratification based on CD8A and CD274 gene expression between TCGA melanoma and CRC. Scatter plots of log2-transformed CD8A and CD274 **gene expression** values are shown (A and C) for melanoma (n = 459) and CRC (n = 599), respectively. A linear regression line is plotted with the **gray shaded region showing the 95% confidence interval**. Pearson’s correlation coefficient r and P values are given at the bottom. **MSI (black triangles) and MSS (gray circles) statuses** are labeled for CRC samples. **Median values of CD8A and CD274 expression are indicated with dashed gray lines**. log-rank statistics were applied to identify the optimal cut-off for transforming the continuous variable of gene expression into categorical high- and low-expression groups in a survfit model. The test score at each candidate cut-off across the log-transformed gene expression values was plotted. **The highest test score (indicated with a blue arrow) was applied for best separating patients into 4 different risk groups (using solid blue lines; named groups I to IV)**. To compare risk groups between melanoma and CRC, we also applied a secondary peak of test scores (red arrow with an asterisk, which revealed a reverse pattern of survival in CRC as shown in Supplemental Figure 2) for CD274 stratification (indicated with a solid red line instead of a blue line; named groups I, II, III* and IV*). Each stratified risk group is labeled with its population fraction in percentages. 
+
+**Statistics**. CD8A and PD-L1 gene expression were chosen for investigation from the 20 correlated genes (Bedognetti et al.; ref. 12). We used **log-rank statistics** to identify the **optimal expression cut-off** for each gene with regard to the associated hazard of death or relapse events in a survfit model (63), using the cutp function of the **R package survMisc** (version 0.5.5; https://CRAN.R-project.org/package=survMisc). The cut-off with the **highest log-rank test score was selected for best separating patients into high- and low-expression groups with different risks**. Upon observing a bimodal distribution of marginal log-rank statistics for CRC, but not melanoma, CD274 expression value at a secondary mode was used to identify a second set of high-risk subjects. 
+
+## 应用场景
+## Application scenarios
+
+用log-rank statistics找最佳分组cut-off。
+Use log-rank statistics to find the best grouping cut-off.
+
+用复杂相关性图同时展示基因表达相关性、MSI/MSS状态、最佳cut-off、分组等信息。
+Use complex correlation graphs to simultaneously display gene expression correlation, MSI/MSS status, best cut-off, grouping and other information.
+
+如果只想计算并展示相关性，画出类似的图，可参考FigureYa92immune_gene。
+If you only want to calculate and display the correlation and draw a similar graph, refer to FigureYa92immune_gene.
+
+## 环境设置
+## Environment settings
+
+
+```{r}
+source("install_dependencies.R")
+```
+
+
+```{r}
+library(TCGAbiolinks) # Download data
+library(survival) # Calculate survdiff
+library(survMisc) # Calculate cutoff
+library(shape) # Draw a slightly more beautiful arrow
+
+Sys.setenv(LANGUAGE = "en") #Display English error message
+options(stringsAsFactors = FALSE) #Disable conversion of chr to factor
+```
+
+## 输入文件
+## Input file
+
+easy_input_expr.txt，基因表达矩阵。第一列是样本ID，二、三列分别是CD274和CD8A的TPM。每行一个样本。TPM的获得可参考FigureYa23count2TPM或FigureYa56immune_inflitration。或者直接用FigureYa34count2FPKM下载FPKM值。
+easy_input_expr.txt, gene expression matrix. The first column is the sample ID, and the second and third columns are the TPM of CD274 and CD8A respectively. One sample per row. For TPM, refer to FigureYa23count2TPM or FigureYa56immune_inflitration. Or directly use FigureYa34count2FPKM to download the FPKM value.
+
+easy_input_survival.txt，生存信息，跟表达矩阵的样本ID对应。
+easy_input_survival.txt, survival information, corresponding to the sample ID of the expression matrix.
+
+msi_results.rda，下载的MSI信息保存在这里，以便重复使用。
+msi_results.rda, the downloaded MSI information is saved here for reuse.
+
+```{r}
+# 表达矩阵
+# Expression matrix
+expr <- read.table("easy_input_expr.txt",sep = "\t",check.names = F,stringsAsFactors = F,header = T,row.names = 1)
+head(expr)
+
+# 生存信息
+# Survival information
+surv <- read.table("easy_input_survival.txt",sep = "\t",check.names = F,stringsAsFactors = F,header = T,row.names = 1)
+head(surv)
+```
+
+下载MSI信息：
+Download MSI information:
+
+下载过程完成后存储为当前文件夹下的msi_results.rda文件，便于重复使用。
+After the download process is completed, it is stored as the msi_results.rda file in the current folder for easy reuse.
+
+```r
+# COAD结肠癌
+# COAD colon cancer
+msiquery1 <- GDCquery(project = "TCGA-COAD",
+                      data.category = "Other",
+                      legacy = TRUE,
+                      access = "open",
+                      data.type = "Auxiliary test")
+GDCdownload(msiquery1)
+coad_msi_results <- GDCprepare_clinic(msiquery1, "msi")
+coad_msi_results <- coad_msi_results[,c(1,3)]
+rownames(coad_msi_results) <- paste0("COAD-",substr(coad_msi_results$bcr_patient_barcode,9,12),"-01A") #zhi 修改样本名匹配表达谱和临床数据
+#zhi Modify sample name to match expression spectrum and clinical data
+colnames(coad_msi_results) <- c("sample", "MSI")
+
+# READ直肠癌
+# READ rectal cancer
+msiquery2 <- GDCquery(project = "TCGA-READ",
+                      data.category = "Other",
+                      legacy = TRUE,
+                      access = "open",
+                      data.type = "Auxiliary test")
+GDCdownload(msiquery2)
+read_msi_results <- GDCprepare_clinic(msiquery2, "msi")
+read_msi_results <- read_msi_results[,c(1,3)]
+rownames(read_msi_results) <- paste0("READ-",substr(read_msi_results$bcr_patient_barcode,9,12),"-01A") # 修改样本名匹配表达谱和临床数据
+# Modify sample name to match expression spectrum and clinical data
+colnames(read_msi_results) <- c("sample", "MSI")
+
+# 合并MSI信息
+# Merge MSI information
+msi_results <- rbind.data.frame(coad_msi_results, read_msi_results)
+
+# 存储MSI信息
+# Store MSI information
+save(msi_results,file = "msi_results.rda")
+```
+
+读取MSI信息：
+Read MSI information:
+
+```{r}
+(load("msi_results.rda"))
+table(msi_results$MSI)
+
+mss.sam <- rownames(msi_results[which(msi_results$MSI %in% c("MSS","MSI-L")),])
+msi.sam <- rownames(msi_results[which(msi_results$MSI %in% c("MSI-H")),])
+```
+
+挑选表达矩阵、生存信息、包含明确MSI信息的共有样本：
+Select expression matrix, survival information, and common samples containing clear MSI information:
+
+```{r}
+com_sam <- intersect(intersect(rownames(expr),rownames(surv)),c(mss.sam, msi.sam))
+expr <- round(log2(expr[com_sam,] + 1),2) # 表达谱对数转化
+surv <- surv[com_sam,]
+```
+
+## 计算logrank score和相关性
+## Calculate logrank score and correlation
+
+```{r}
+#-------------------#
+# 计算logrank score #
+#-------------------#
+#-------------------#
+# Calculate logrank score #
+#-------------------#
+
+exprsurv <- cbind.data.frame(surv,expr) # 新建包含表达和生存的数据框 # Create a new data frame containing expression and survival
+exprsurv$sampleID <- rownames(exprsurv) # 生成样名 # Generate sample names
+
+# CD274
+cox.CD274 <- coxph(Surv(OS.time, OS) ~ CD274, data=exprsurv) # cox回归 # cox regression
+logrank.CD274 <- as.data.frame(print(cutp(cox.CD274))) # cut连续变量产生logrank score # Cut continuous variables to generate 
+colnames(logrank.CD274)[1] <- "CD274"
+logrank.CD274 <- logrank.CD274[order(logrank.CD274$CD274),]
+peak.CD274 <- logrank.CD274[which.min(logrank.CD274$CD274.p),1] # 得到p值最小(logrank score 峰值)下对应的表达值 # Get the expression value corresponding to the minimum p value 
+peak.CD274.score <- logrank.CD274[which.min(logrank.CD274$CD274.p),2] # 找到logrank score 峰值 # Find the logrank score peak value
+
+# CD8A
+cox.CD8A <- coxph(Surv(OS.time, OS) ~ CD8A, data=exprsurv)
+logrank.CD8A <- as.data.frame(print(cutp(cox.CD8A)))
+colnames(logrank.CD8A)[1] <- "CD8A"
+logrank.CD8A <- logrank.CD8A[order(logrank.CD8A$CD8A),]
+peak.CD8A <- logrank.CD8A[which.min(logrank.CD8A$CD8A.p),1]
+peak.CD8A.score <- logrank.CD8A[which.min(logrank.CD8A$CD8A.p),2]
+
+# 计算各区域的样本 (注意边际上的样本重复问题)
+# Calculate the samples in each region (note the problem of sample duplication on the margin)
+lefttop <- expr[which(expr$CD274 < peak.CD274 & expr$CD8A > peak.CD8A),]
+leftbottom <- expr[which(expr$CD274 <= peak.CD274 & expr$CD8A <= peak.CD8A),]
+righttop <- expr[which(expr$CD274 >= peak.CD274 & expr$CD8A >= peak.CD8A),]
+rightbottom <- expr[which(expr$CD274 > peak.CD274 & expr$CD8A < peak.CD8A),]
+
+lefttop.pct <- paste0("III (",round(nrow(lefttop)/nrow(expr),2)*100,"%)")
+leftbottom.pct <- paste0("I (",round(nrow(leftbottom)/nrow(expr),2)*100,"%)")
+righttop.pct <- paste0("IV (",round(nrow(righttop)/nrow(expr),2)*100,"%)")
+rightbottom.pct <- paste0("II (",round(nrow(rightbottom)/nrow(expr),2)*100,"%)")
+
+#------------#
+# 计算相关性 #
+#------------#
+#----------------#
+# Calculate correlation #
+#----------------#
+
+cor <- cor.test(expr$CD274,expr$CD8A,method = "pearson") # 皮尔森相关性检验
+r <- round(cor$estimate,2)
+p <- ifelse(cor$p.value < 0.001," < 0.001", paste0(" = ",round(cor$p.value))) # p值显示为文本
+
+#------------------------#
+# 计算线性回归以及置信域 #
+#------------------------#
+#------------------------#
+# Calculate linear regression and confidence region #
+#------------------------#
+reg <- lm(CD8A~CD274,data=expr[order(expr$CD274),]) # 注意要按照x轴排序  # Note that the order should be sorted according to the x-axis
+ci <- as.data.frame(predict(reg, newdata = expr[order(expr$CD274),], interval = 'confidence')) # 计算置信域 # Calculate confidence region
+```
+
+## 开始画图
+## Start drawing
+
+```{r}
+# 设置颜色
+# Set color
+blue <- "#4F81BD"
+red <- "#E53435"
+lblue <- "#5bc0eb"
+dblue <- "#1d00ff"
+pink <- "#FF7FBF"
+
+# 计算边界
+# Calculate the boundary
+ylim <- range(expr$CD8A) # 计算y轴边界 # Calculate the y-axis boundary
+xlim <- range(expr$CD274) # 计算x轴边界 # Calculate the x-axis boundary
+
+# 保存pdf图像 # Save pdf image
+pdf("complex correlation with logrank score.pdf",width = 6,height = 6)
+
+# 设置画面布局，相同数字代表同一区块，数字越多代表该区块所占面积越大
+# Set the screen layout, the same number represents the same block, the more numbers represent the larger area of the block
+layout(matrix(c(1,1,1,1,2,
+                3,3,3,3,4,
+                3,3,3,3,4,
+                3,3,3,3,4,
+                3,3,3,3,4),
+              byrow = T,nrow = 5))
+
+#--------------------------------------------#
+# 画布区域1：添加x轴相关的logrank test score #
+#--------------------------------------------#
+#--------------------------------------------#
+# Canvas area 1: Add x-axis related logrank test score #
+#--------------------------------------------#
+
+par(bty="n", mgp = c(2,0.5,0), mar = c(0.6,4.1,2.1,0),tcl=-.25,xpd = T) # 注意mar参数要和其他区域匹配，分别显示图像为下，左，上，右预留的位置；xpd允许箭头超出图像范围
+# Note that the mar parameter must match other regions, and the image is displayed as the reserved position for the bottom, left, top, and right respectively; xpd allows the arrow to exceed the image range
+plot(NULL, NULL,
+     xlim = xlim,ylim = c(0,max(logrank.CD274$CD274.U) + 5), # y轴额外空余一些距离放箭头
+     xaxt = "n",yaxt = "n",ann=FALSE) # 不显示坐标轴
+
+# 这里不能使用barplot原因在于x轴的间隔并不固定，其实barplot本身本身是rect函数的一种wrapper，所以这里用rect函数绘制条形图
+# The reason why barplot cannot be used here is that the interval of the x-axis is not fixed. In fact, barplot itself is a wrapper of the rect function, so the rect function is used here to draw a bar chart
+rect(xleft=logrank.CD274[order(logrank.CD274$CD274),"CD274"]-0.01, 
+     ybottom=0, 
+     xright=logrank.CD274[order(logrank.CD274$CD274),"CD274"]+0.01, 
+     ytop=logrank.CD274[order(logrank.CD274$CD274),"CD274.U"],col = "black")
+
+# 在peak处添加箭头
+# Add arrows at peak
+Arrows(peak.CD274,peak.CD274.score + 5,
+       peak.CD274,peak.CD274.score + 3,
+       arr.length = 0.2,
+       lwd = 2,col = blue,arr.type = "triangle")
+
+#------------------------#
+# 画布区域2：填充空白画布#
+#------------------------#
+#------------------------#
+# Canvas area 2: Fill the blank canvas#
+#------------------------#
+
+par(bty="n", mgp = c(2,0.5,0), mar = c(4.1,4.1,0,0),tcl=-.25)
+plot(0,0,col = "white",xaxt = "n",yaxt = "n",xlab = "",ylab = "")
+
+#----------------------#
+# 画布区域3：相关性主图#
+#----------------------#
+#----------------------#
+# Canvas area 3: Correlation main graph#
+#----------------------#
+
+par(bty="o", mgp = c(2,0.5,0), mar = c(4.1,4.1,0,0),tcl = -.25,font.axis = 2,las = 1) # 注意坐标轴刻度均水平 # Note that the axis scale is horizontal
+par(xpd=F)
+
+# 画MSS4
+# Draw MSS
+plot(expr[mss.sam,"CD274"], expr[mss.sam,"CD8A"],ylim = ylim,xlim = xlim,
+     xlab = expression(italic(CD274)~"(PD-L1) Gene Expression"), # 注意斜体 # Note the italics
+     ylab = expression(italic(CD8A)~" Gene Expression"),main = "", # 注意斜体 # Note the italics
+     cex.lab = 1.8, # 坐标轴文字大小 # Axis text size
+     cex.axis = 1.4, # 坐标轴刻度大小 # Axis scale size
+     col="grey40",
+     cex = 1.2,
+     type = "p",pch = 19) # 圆形为MSS # Circle is MSS
+
+
+# 添加MSI # Add MSI
+points(expr[msi.sam,"CD274"], expr[msi.sam,"CD8A"],
+       ylim = ylim,xlim = xlim,
+       col="black",
+       cex = 2, # 三角形稍大 # The triangle is slightly larger
+       pch = 17) # 三角形为MSI # The triangle is MSI
+ 
+# 添加中位数 # Add median
+abline(h = median(expr$CD8A),lty = 2,col = "grey60",lwd = 2)
+abline(v = median(expr$CD274),lty = 2,col = "grey60",lwd = 2)
+
+# 添加logrank peak对应的表达值
+# Add the expression value 
+abline(v = peak.CD274,lty = 2,col = blue,lwd = 2)
+abline(h = peak.CD8A,lty = 2,col = blue,lwd = 2)
+
+# 添加相关性
+# 添加回归线 (由于例文并未布满整个画布，所以这里不使用abline)
+# Add correlation
+# Add regression line (since the example does not fill the entire canvas, abline is not used here)
+lines(x = xlim,y = xlim*reg$coefficients[2] + reg$coefficients[1], lwd = 2)
+
+# 添加置信带
+# Add confidence band
+polygon(round(c(sort(expr$CD274),rev(sort(expr$CD274))),2),
+        round(c(ci$lwr,rev(ci$upr)),2),
+        col=ggplot2::alpha("grey70",0.6),
+        border=NA)
+
+# 添加相关性文本
+# Add correlation text
+text(2,0,adj = 0,bquote(~italic(r)~" = "~.(r)~", "~italic(P)~.(p)),cex = 1.6) # 注意斜体
+
+# 添加样本百分比
+# Add sample percentage
+text(0.5,6.5,bquote(bold(.(lefttop.pct))),cex = 1.6,col = dblue)
+text(4,6.5,bquote(bold(.(righttop.pct))),cex = 1.6,col = red)
+text(0.5,0.5,bquote(bold(.(leftbottom.pct))),cex = 1.6,col = lblue)
+text(4,0.5,bquote(bold(.(rightbottom.pct))),cex = 1.6,col = pink)
+
+# 添加图例
+# 确定图片边界
+# Add legend
+# Determine the image boundary
+xmin <- par("usr")[1]
+xmax <- par("usr")[2]
+ymin <- par("usr")[3]
+ymax <- par("usr")[4]
+
+# 确定图例大小
+# Determine the legend size
+lgd <- legend(x = mean(c(xmin,xmax)), y =  mean(c(ymin,ymax)), 
+              legend = c("MSI","MSS"), 
+              col = c("black","grey40"),
+              pch = c(17,19),
+              cex = 1.5, 
+              border = NA, 
+              title = expression(bold("MSI Status")),
+              y.intersp = 1, x.intersp = 0.8,
+              bty = "o",
+              plot = F)
+
+# 定位图例悬浮在右下角（不同于bottomright）
+# Position the legend to float in the lower right corner (different from bottomright)
+legend(x = xmax - lgd$rect$w - 0.1, y =  ymin + lgd$rect$h + 0.1,
+       legend = c("MSI","MSS"), 
+       col = c("black","grey40"),
+       pch = c(17,19),
+       cex = 1.5, 
+       border = NA, 
+       title = expression(bold("MSI Status")),
+       y.intersp = 1, x.intersp = 0.8,
+       bty = "o",
+       plot = T)
+       
+#--------------------------------------------#
+# 画布区域4：添加y轴相关的logrank test score #
+#--------------------------------------------#
+#--------------------------------------------#
+# Canvas area 4: Add y-axis related logrank test score #
+#--------------------------------------------#
+
+par(bty="n", mgp = c(2,0.5,0), mar = c(4.1,0.6,0,2.1),tcl=-.25,xpd = T)
+plot(NULL, NULL,
+     xlim = c(0,max(logrank.CD8A$CD8A.U) + 5),ylim = ylim,
+     xaxt = "n",yaxt = "n",ann=FALSE)
+
+rect(xleft=0, 
+     ybottom=logrank.CD8A[order(logrank.CD8A$CD8A),"CD8A"]-0.01, 
+     xright=logrank.CD8A[order(logrank.CD8A$CD8A),"CD8A.U"], 
+     ytop=logrank.CD8A[order(logrank.CD8A$CD8A),"CD8A"]+0.01,col = "black")
+
+Arrows(peak.CD8A.score + 5,peak.CD8A,
+       peak.CD8A.score + 3,peak.CD8A,
+       arr.length = 0.2,
+       lwd = 2,col = blue,arr.type = "triangle")
+
+# 关闭图形句柄
+#Close graphics handle
+invisible(dev.off())
+```
+
+![](complex correlation with logrank score.pdf)
+
+```{r}
+sessionInfo()
+```

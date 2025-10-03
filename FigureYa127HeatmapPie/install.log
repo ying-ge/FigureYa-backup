@@ -1,0 +1,18 @@
+Starting R package installation...
+===========================================
+
+Installing CRAN packages...
+Package already installed: RColorBrewer 
+Package already installed: pheatmap 
+Package already installed: magick 
+
+Installing Bioconductor packages...
+Package already installed: biomaRt 
+Package already installed: clusterProfiler 
+Package already installed: GO.db 
+Package already installed: GSVA 
+Package already installed: org.Hs.eg.db 
+
+===========================================
+Package installation completed!
+You can now run your R scripts in this directory.

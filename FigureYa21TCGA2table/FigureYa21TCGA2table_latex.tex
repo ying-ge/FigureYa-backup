@@ -1,0 +1,538 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={FigureYa21 TCGA2table},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{FigureYa21 TCGA2table}
+\author{}
+\date{\vspace{-2.5em}}
+
+\begin{document}
+\maketitle
+
+\textbf{Author(s)}: Guangchuang Yu\\
+\textbf{Date}: 2025-09-22
+
+\section{Academic Citation}\label{academic-citation}
+
+If you use this code in your work or research, we kindly request that
+you cite our publication:
+
+Xiaofan Lu, et al.~(2025). FigureYa: A Standardized Visualization
+Framework for Enhancing Biomedical Data Interpretation and Research
+Efficiency. iMetaMed. \url{https://doi.org/10.1002/imm3.70005}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{source}\NormalTok{(}\StringTok{"install\_dependencies.R"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Starting R package installation...
+## ===========================================
+## 
+## Installing CRAN packages...
+## Package already installed: dplyr 
+## Package already installed: kableExtra 
+## 
+## Installing Bioconductor packages...
+## Package already installed: TCGAbiolinks 
+## 
+## ===========================================
+## Package installation completed!
+## You can now run your R scripts in this directory.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(dplyr)}
+\NormalTok{x }\OtherTok{=} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"easy\_input.csv"}\NormalTok{)}
+
+\NormalTok{x1 }\OtherTok{=}\NormalTok{ x }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(vital\_status }\SpecialCharTok{==} \StringTok{"Alive"}\NormalTok{) }
+\NormalTok{x2 }\OtherTok{=}\NormalTok{ x }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(vital\_status }\SpecialCharTok{==} \StringTok{"Dead"} \SpecialCharTok{\&}\NormalTok{ person\_neoplasm\_cancer\_status }\SpecialCharTok{==} \StringTok{"WITH TUMOR"}\NormalTok{) }
+\NormalTok{x3 }\OtherTok{=}\NormalTok{ x }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(vital\_status }\SpecialCharTok{==} \StringTok{"Dead"} \SpecialCharTok{\&}\NormalTok{ person\_neoplasm\_cancer\_status }\SpecialCharTok{==} \StringTok{"TUMOR FREE"}\NormalTok{)}
+
+\NormalTok{xx }\OtherTok{=}\NormalTok{ x }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(vital\_status }\SpecialCharTok{!=} \StringTok{""} \SpecialCharTok{\&}\NormalTok{ person\_neoplasm\_cancer\_status }\SpecialCharTok{!=} \StringTok{""}\NormalTok{)}
+
+\NormalTok{s1 }\OtherTok{=}\NormalTok{ x1 }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{group\_by}\NormalTok{(gender) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{summarise}\NormalTok{(}\AttributeTok{alive=}\FunctionTok{n}\NormalTok{())}
+\NormalTok{s1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 2 x 2
+##   gender alive
+##   <chr>  <int>
+## 1 FEMALE    96
+## 2 MALE     219
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{s2 }\OtherTok{=}\NormalTok{ x2 }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{group\_by}\NormalTok{(gender) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{summarise}\NormalTok{(}\AttributeTok{tumor=}\FunctionTok{n}\NormalTok{())}
+\NormalTok{s3 }\OtherTok{=}\NormalTok{ x3 }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{group\_by}\NormalTok{(gender) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{summarise}\NormalTok{(}\AttributeTok{tumor\_free=}\FunctionTok{n}\NormalTok{())}
+
+\DocumentationTok{\#\# sex}
+
+\NormalTok{sex }\OtherTok{=} \FunctionTok{full\_join}\NormalTok{(s1, s2, }\AttributeTok{by=}\StringTok{\textquotesingle{}gender\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{full\_join}\NormalTok{(s3, }\AttributeTok{by=}\StringTok{\textquotesingle{}gender\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ as.data.frame}
+\NormalTok{sex}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   gender alive tumor tumor_free
+## 1 FEMALE    96    27         10
+## 2   MALE   219    29         23
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{rn }\OtherTok{=}\NormalTok{ sex[,}\DecValTok{1}\NormalTok{]}
+\NormalTok{sex }\OtherTok{=}\NormalTok{ sex[,}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{]}
+
+\NormalTok{sex.p }\OtherTok{=} \FunctionTok{chisq.test}\NormalTok{(sex)}\SpecialCharTok{$}\NormalTok{p.value}
+\FunctionTok{print}\NormalTok{(sex.p)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.03196764
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sex}\SpecialCharTok{$}\NormalTok{total }\OtherTok{=} \FunctionTok{rowSums}\NormalTok{(sex)}
+\NormalTok{cs }\OtherTok{=} \FunctionTok{colSums}\NormalTok{(sex)}
+
+\NormalTok{sex }\OtherTok{\textless{}{-}} \FunctionTok{rbind}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(sex[}\DecValTok{1}\NormalTok{,], }\StringTok{" ("}\NormalTok{, }\FunctionTok{sprintf}\NormalTok{(}\StringTok{"\%1.1f}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{\%\%"}\NormalTok{, sex[}\DecValTok{1}\NormalTok{,]}\SpecialCharTok{/}\NormalTok{cs}\SpecialCharTok{*}\DecValTok{100}\NormalTok{), }\StringTok{")"}\NormalTok{),}
+    \FunctionTok{paste0}\NormalTok{(sex[}\DecValTok{2}\NormalTok{,], }\StringTok{" ("}\NormalTok{, }\FunctionTok{sprintf}\NormalTok{(}\StringTok{"\%1.1f}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{\%\%"}\NormalTok{, sex[}\DecValTok{2}\NormalTok{,]}\SpecialCharTok{/}\NormalTok{cs}\SpecialCharTok{*}\DecValTok{100}\NormalTok{), }\StringTok{")"}\NormalTok{))}
+
+\FunctionTok{rownames}\NormalTok{(sex) }\OtherTok{=}\NormalTok{ rn}
+\FunctionTok{colnames}\NormalTok{(sex) }\OtherTok{=} \FunctionTok{paste0}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"Alive"}\NormalTok{, }\StringTok{"Dead with tumor"}\NormalTok{, }\StringTok{"Dead tumor free"}\NormalTok{, }\StringTok{"Total"}\NormalTok{), }
+                \StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{(n="}\NormalTok{, cs, }\StringTok{")"}\NormalTok{)}
+\FunctionTok{print}\NormalTok{(sex)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        Alive\n(n=315)  Dead with tumor\n(n=56) Dead tumor free\n(n=33)
+## FEMALE "96 (30.5\\%)"  "27 (48.2\\%)"          "10 (30.3\\%)"         
+## MALE   "219 (69.5\\%)" "29 (51.8\\%)"          "23 (69.7\\%)"         
+##        Total\n(n=404) 
+## FEMALE "133 (32.9\\%)"
+## MALE   "271 (67.1\\%)"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\# age}
+
+\NormalTok{age\_stats }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(x) \{}
+\NormalTok{   res }\OtherTok{\textless{}{-}}\NormalTok{ x }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{summarise}\NormalTok{(}\AttributeTok{age =} \FunctionTok{round}\NormalTok{(}\FunctionTok{mean}\NormalTok{(age\_at\_initial\_pathologic\_diagnosis,}\AttributeTok{na.rm =}\NormalTok{ T), }\DecValTok{1}\NormalTok{), }
+                \AttributeTok{sd=}\FunctionTok{round}\NormalTok{(}\FunctionTok{sd}\NormalTok{(age\_at\_initial\_pathologic\_diagnosis,}\AttributeTok{na.rm =}\NormalTok{ T), }\DecValTok{1}\NormalTok{),}
+                \AttributeTok{median=}\FunctionTok{round}\NormalTok{(}\FunctionTok{median}\NormalTok{(age\_at\_initial\_pathologic\_diagnosis,}\AttributeTok{na.rm =}\NormalTok{ T), }\DecValTok{1}\NormalTok{),}
+                \AttributeTok{min=}\FunctionTok{round}\NormalTok{(}\FunctionTok{min}\NormalTok{(age\_at\_initial\_pathologic\_diagnosis,}\AttributeTok{na.rm =}\NormalTok{ T), }\DecValTok{1}\NormalTok{),}
+                \AttributeTok{max=}\FunctionTok{round}\NormalTok{(}\FunctionTok{max}\NormalTok{(age\_at\_initial\_pathologic\_diagnosis,}\AttributeTok{na.rm =}\NormalTok{ T), }\DecValTok{1}\NormalTok{)}
+\NormalTok{                )}
+   \FunctionTok{c}\NormalTok{(}\StringTok{"Mean (SD)"} \OtherTok{=} \FunctionTok{with}\NormalTok{(res, }\FunctionTok{paste0}\NormalTok{(age, }\StringTok{" ("}\NormalTok{, sd, }\StringTok{")"}\NormalTok{)),}
+       \StringTok{"Median [MIN, MAX]"} \OtherTok{=} \FunctionTok{with}\NormalTok{(res, }\FunctionTok{paste0}\NormalTok{(median, }\StringTok{" ["}\NormalTok{, min, }\StringTok{","}\NormalTok{, max, }\StringTok{"]"}\NormalTok{))}\CommentTok{\#,}
+\NormalTok{   )             }
+\NormalTok{\}}
+
+\NormalTok{a1 }\OtherTok{=} \FunctionTok{age\_stats}\NormalTok{(x1)}
+\NormalTok{a2 }\OtherTok{=} \FunctionTok{age\_stats}\NormalTok{(x2)}
+\NormalTok{a3 }\OtherTok{=} \FunctionTok{age\_stats}\NormalTok{(x3)}
+\NormalTok{aa }\OtherTok{=} \FunctionTok{age\_stats}\NormalTok{(xx)}
+
+\NormalTok{age }\OtherTok{=} \FunctionTok{cbind}\NormalTok{(a1, a2) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{cbind}\NormalTok{(a3) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{cbind}\NormalTok{(aa)}
+
+\FunctionTok{colnames}\NormalTok{(age) }\OtherTok{=} \FunctionTok{colnames}\NormalTok{(sex)}
+\FunctionTok{print}\NormalTok{(age)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                   Alive\n(n=315) Dead with tumor\n(n=56)
+## Mean (SD)         "58.8 (13.3)"  "62.6 (12.9)"          
+## Median [MIN, MAX] "61 [16,84]"   "62.5 [23,90]"         
+##                   Dead tumor free\n(n=33) Total\n(n=404)
+## Mean (SD)         "68.3 (11)"             "60.1 (13)"   
+## Median [MIN, MAX] "69 [35,83]"            "61 [16,90]"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\# Stage}
+
+\NormalTok{stage\_stats }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(x) \{}
+\NormalTok{    x }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(stage\_event\_pathologic\_stage }\SpecialCharTok{!=} \StringTok{""}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+        \FunctionTok{group\_by}\NormalTok{(stage\_event\_pathologic\_stage) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{summarise}\NormalTok{(}\AttributeTok{stage =} \FunctionTok{n}\NormalTok{())}
+\NormalTok{\}}
+
+\NormalTok{sg1 }\OtherTok{=} \FunctionTok{stage\_stats}\NormalTok{(x1)}
+\NormalTok{sg2 }\OtherTok{=} \FunctionTok{stage\_stats}\NormalTok{(x2)}
+\NormalTok{sg3 }\OtherTok{=} \FunctionTok{stage\_stats}\NormalTok{(x3)}
+\NormalTok{sgx }\OtherTok{=} \FunctionTok{stage\_stats}\NormalTok{(xx)}
+\NormalTok{sg }\OtherTok{=} \FunctionTok{full\_join}\NormalTok{(sg1, sg2, }\AttributeTok{by=}\StringTok{"stage\_event\_pathologic\_stage"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+    \FunctionTok{full\_join}\NormalTok{(sg3, }\AttributeTok{by=}\StringTok{"stage\_event\_pathologic\_stage"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+    \FunctionTok{full\_join}\NormalTok{(sgx, }\AttributeTok{by=}\StringTok{"stage\_event\_pathologic\_stage"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+\NormalTok{    as.data.frame}
+
+\FunctionTok{rownames}\NormalTok{(sg) }\OtherTok{=}\NormalTok{ sg[,}\DecValTok{1}\NormalTok{]}
+\NormalTok{sg }\OtherTok{=}\NormalTok{ sg[,}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{]}
+\FunctionTok{colnames}\NormalTok{(sg) }\OtherTok{=} \FunctionTok{colnames}\NormalTok{(sex)}
+
+\FunctionTok{print}\NormalTok{(sg)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##            Alive\n(n=315) Dead with tumor\n(n=56) Dead tumor free\n(n=33)
+## Stage I               150                      20                      20
+## Stage II               78                       7                       7
+## Stage III               1                       1                      NA
+## Stage IIIA             53                      11                       4
+## Stage IIIB              8                       2                      NA
+## Stage IIIC              8                       1                      NA
+## Stage IV                1                      NA                      NA
+## Stage IVA               1                      NA                      NA
+## Stage IVB              NA                       2                      NA
+##            Total\n(n=404)
+## Stage I               182
+## Stage II               85
+## Stage III               2
+## Stage IIIA             65
+## Stage IIIB             10
+## Stage IIIC              9
+## Stage IV                1
+## Stage IVA              NA
+## Stage IVB               2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# chisq test}
+\NormalTok{sgx }\OtherTok{\textless{}{-}}\NormalTok{ sg[, }\SpecialCharTok{{-}}\DecValTok{4}\NormalTok{]}
+\NormalTok{sgx }\OtherTok{\textless{}{-}}\NormalTok{ sgx[}\SpecialCharTok{!}\FunctionTok{apply}\NormalTok{(sgx, }\DecValTok{1}\NormalTok{, anyNA),]}
+\NormalTok{sg.p }\OtherTok{=} \FunctionTok{chisq.test}\NormalTok{(sgx)}\SpecialCharTok{$}\NormalTok{p.value}
+
+\NormalTok{sgv2 }\OtherTok{=} \FunctionTok{lapply}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\FunctionTok{nrow}\NormalTok{(sg), }\ControlFlowTok{function}\NormalTok{(i) }\FunctionTok{ifelse}\NormalTok{(}\FunctionTok{is.na}\NormalTok{(sg[i,]), }\StringTok{""}\NormalTok{, }
+    \FunctionTok{paste0}\NormalTok{(sg[i,], }\StringTok{" ("}\NormalTok{, }\FunctionTok{sprintf}\NormalTok{(}\StringTok{"\%1.1f}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{\%\%"}\NormalTok{, sg[i,]}\SpecialCharTok{/}\NormalTok{cs }\SpecialCharTok{*} \DecValTok{100}\NormalTok{), }\StringTok{")"}\NormalTok{))) }\SpecialCharTok{\%\textgreater{}\%} 
+    \FunctionTok{do.call}\NormalTok{(rbind, .)}
+
+\FunctionTok{rownames}\NormalTok{(sgv2) }\OtherTok{=} \FunctionTok{rownames}\NormalTok{(sg)}
+\FunctionTok{colnames}\NormalTok{(sgv2) }\OtherTok{=} \FunctionTok{colnames}\NormalTok{(sg)}
+\FunctionTok{print}\NormalTok{(sgv2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##            Alive\n(n=315)  Dead with tumor\n(n=56) Dead tumor free\n(n=33)
+## Stage I    "150 (47.6\\%)" "20 (35.7\\%)"          "20 (60.6\\%)"         
+## Stage II   "78 (24.8\\%)"  "7 (12.5\\%)"           "7 (21.2\\%)"          
+## Stage III  "1 (0.3\\%)"    "1 (1.8\\%)"            ""                     
+## Stage IIIA "53 (16.8\\%)"  "11 (19.6\\%)"          "4 (12.1\\%)"          
+## Stage IIIB "8 (2.5\\%)"    "2 (3.6\\%)"            ""                     
+## Stage IIIC "8 (2.5\\%)"    "1 (1.8\\%)"            ""                     
+## Stage IV   "1 (0.3\\%)"    ""                      ""                     
+## Stage IVA  "1 (0.3\\%)"    ""                      ""                     
+## Stage IVB  ""              "2 (3.6\\%)"            ""                     
+##            Total\n(n=404) 
+## Stage I    "182 (45.0\\%)"
+## Stage II   "85 (21.0\\%)" 
+## Stage III  "2 (0.5\\%)"   
+## Stage IIIA "65 (16.1\\%)" 
+## Stage IIIB "10 (2.5\\%)"  
+## Stage IIIC "9 (2.2\\%)"   
+## Stage IV   "1 (0.2\\%)"   
+## Stage IVA  ""             
+## Stage IVB  "2 (0.5\\%)"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\# combine}
+
+\NormalTok{res }\OtherTok{=} \FunctionTok{rbind}\NormalTok{(sex, age) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{rbind}\NormalTok{(sgv2) }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ as.data.frame}
+\FunctionTok{print}\NormalTok{(res)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                   Alive\n(n=315) Dead with tumor\n(n=56)
+## FEMALE              96 (30.5\\%)            27 (48.2\\%)
+## MALE               219 (69.5\\%)            29 (51.8\\%)
+## Mean (SD)            58.8 (13.3)             62.6 (12.9)
+## Median [MIN, MAX]     61 [16,84]            62.5 [23,90]
+## Stage I            150 (47.6\\%)            20 (35.7\\%)
+## Stage II            78 (24.8\\%)             7 (12.5\\%)
+## Stage III             1 (0.3\\%)              1 (1.8\\%)
+## Stage IIIA          53 (16.8\\%)            11 (19.6\\%)
+## Stage IIIB            8 (2.5\\%)              2 (3.6\\%)
+## Stage IIIC            8 (2.5\\%)              1 (1.8\\%)
+## Stage IV              1 (0.3\\%)                        
+## Stage IVA             1 (0.3\\%)                        
+## Stage IVB                                     2 (3.6\\%)
+##                   Dead tumor free\n(n=33) Total\n(n=404)
+## FEMALE                       10 (30.3\\%)  133 (32.9\\%)
+## MALE                         23 (69.7\\%)  271 (67.1\\%)
+## Mean (SD)                       68.3 (11)      60.1 (13)
+## Median [MIN, MAX]              69 [35,83]     61 [16,90]
+## Stage I                      20 (60.6\\%)  182 (45.0\\%)
+## Stage II                      7 (21.2\\%)   85 (21.0\\%)
+## Stage III                                     2 (0.5\\%)
+## Stage IIIA                    4 (12.1\\%)   65 (16.1\\%)
+## Stage IIIB                                   10 (2.5\\%)
+## Stage IIIC                                    9 (2.2\\%)
+## Stage IV                                      1 (0.2\\%)
+## Stage IVA                                               
+## Stage IVB                                     2 (0.5\\%)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#install.packages("kableExtra")}
+\FunctionTok{require}\NormalTok{(kableExtra)}
+
+\ControlFlowTok{if}\NormalTok{ (knitr}\SpecialCharTok{:::}\FunctionTok{is\_html\_output}\NormalTok{()) \{}
+\NormalTok{    cn }\OtherTok{=} \FunctionTok{sub}\NormalTok{(}\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{, }\StringTok{"\textless{}br\textgreater{}"}\NormalTok{, }\FunctionTok{colnames}\NormalTok{(res))}
+\NormalTok{\} }\ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{ (knitr}\SpecialCharTok{:::}\FunctionTok{is\_latex\_output}\NormalTok{()) \{}
+    \FunctionTok{usepackage\_latex}\NormalTok{(}\StringTok{\textquotesingle{}makecell\textquotesingle{}}\NormalTok{)}
+    \FunctionTok{usepackage\_latex}\NormalTok{(}\StringTok{\textquotesingle{}booktabs\textquotesingle{}}\NormalTok{)}
+\NormalTok{    cn }\OtherTok{=} \FunctionTok{linebreak}\NormalTok{(}\FunctionTok{colnames}\NormalTok{(res), }\AttributeTok{align=}\StringTok{"c"}\NormalTok{)}
+\NormalTok{\}   }
+
+\NormalTok{res }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{kable}\NormalTok{(}\AttributeTok{booktabs =}\NormalTok{ T, }\AttributeTok{escape =}\NormalTok{ F, }\AttributeTok{caption =} \StringTok{"Example Table"}\NormalTok{,}
+        \AttributeTok{col.names =}\NormalTok{ cn) }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{kable\_styling}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"striped"}\NormalTok{, }\StringTok{"scale\_down"}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{group\_rows}\NormalTok{(}\StringTok{"Gender*"}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+    \FunctionTok{group\_rows}\NormalTok{(}\StringTok{"Age"}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+    \FunctionTok{group\_rows}\NormalTok{(}\StringTok{"Stage"}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{13}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+    \FunctionTok{footnote}\NormalTok{(}\AttributeTok{general =} \StringTok{"significant"}\NormalTok{,}
+             \CommentTok{\#general = paste("P{-}value =", sg.p), }
+             \AttributeTok{general\_title =} \StringTok{"*: "}\NormalTok{, }
+             \AttributeTok{footnote\_as\_chunk =}\NormalTok{ T, }\AttributeTok{title\_format =} \StringTok{"italic"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[t]{lllll}
+\caption{\label{tab:unnamed-chunk-1}Example Table}\\
+\toprule
+ & \textbackslash{}makecell[c]\{Alive\textbackslash{}\textbackslash{}(n=315)\} & \textbackslash{}makecell[c]\{Dead with tumor\textbackslash{}\textbackslash{}(n=56)\} & \textbackslash{}makecell[c]\{Dead tumor free\textbackslash{}\textbackslash{}(n=33)\} & \textbackslash{}makecell[c]\{Total\textbackslash{}\textbackslash{}(n=404)\}\\
+\midrule
+\addlinespace[0.3em]
+\multicolumn{5}{l}{\textbf{Gender*}}\\
+\hspace{1em}FEMALE & 96 (30.5\textbackslash{}\%) & 27 (48.2\textbackslash{}\%) & 10 (30.3\textbackslash{}\%) & 133 (32.9\textbackslash{}\%)\\
+\hspace{1em}MALE & 219 (69.5\textbackslash{}\%) & 29 (51.8\textbackslash{}\%) & 23 (69.7\textbackslash{}\%) & 271 (67.1\textbackslash{}\%)\\
+\addlinespace[0.3em]
+\multicolumn{5}{l}{\textbf{Age}}\\
+\hspace{1em}Mean (SD) & 58.8 (13.3) & 62.6 (12.9) & 68.3 (11) & 60.1 (13)\\
+\hspace{1em}Median [MIN, MAX] & 61 [16,84] & 62.5 [23,90] & 69 [35,83] & 61 [16,90]\\
+\addlinespace[0.3em]
+\multicolumn{5}{l}{\textbf{Stage}}\\
+\hspace{1em}Stage I & 150 (47.6\textbackslash{}\%) & 20 (35.7\textbackslash{}\%) & 20 (60.6\textbackslash{}\%) & 182 (45.0\textbackslash{}\%)\\
+\hspace{1em}Stage II & 78 (24.8\textbackslash{}\%) & 7 (12.5\textbackslash{}\%) & 7 (21.2\textbackslash{}\%) & 85 (21.0\textbackslash{}\%)\\
+\hspace{1em}Stage III & 1 (0.3\textbackslash{}\%) & 1 (1.8\textbackslash{}\%) &  & 2 (0.5\textbackslash{}\%)\\
+\hspace{1em}Stage IIIA & 53 (16.8\textbackslash{}\%) & 11 (19.6\textbackslash{}\%) & 4 (12.1\textbackslash{}\%) & 65 (16.1\textbackslash{}\%)\\
+\hspace{1em}Stage IIIB & 8 (2.5\textbackslash{}\%) & 2 (3.6\textbackslash{}\%) &  & 10 (2.5\textbackslash{}\%)\\
+\hspace{1em}Stage IIIC & 8 (2.5\textbackslash{}\%) & 1 (1.8\textbackslash{}\%) &  & 9 (2.2\textbackslash{}\%)\\
+\hspace{1em}Stage IV & 1 (0.3\textbackslash{}\%) &  &  & 1 (0.2\textbackslash{}\%)\\
+\hspace{1em}Stage IVA & 1 (0.3\textbackslash{}\%) &  &  & \\
+\hspace{1em}Stage IVB &  & 2 (3.6\textbackslash{}\%) &  & 2 (0.5\textbackslash{}\%)\\
+\bottomrule
+\multicolumn{5}{l}{\rule{0pt}{1em}\textit{*: } significant}\\
+\end{longtable}
+
+\newpage
+
+\begin{longtable}[t]{llllll}
+\caption{\label{tab:unnamed-chunk-2}Example Table}\\
+\toprule
+ & \textbackslash{}makecell[c]\{Alive\textbackslash{}\textbackslash{}(n=315)\} & \textbackslash{}makecell[c]\{Dead with tumor\textbackslash{}\textbackslash{}(n=56)\} & \textbackslash{}makecell[c]\{Dead tumor free\textbackslash{}\textbackslash{}(n=33)\} & \textbackslash{}makecell[c]\{Total\textbackslash{}\textbackslash{}(n=404)\} & P Value\\
+\midrule
+\addlinespace[0.3em]
+\multicolumn{6}{l}{\textbf{Gender}}\\
+\hspace{1em}FEMALE & 96 (30.5\textbackslash{}\%) & 27 (48.2\textbackslash{}\%) & 10 (30.3\textbackslash{}\%) & 133 (32.9\textbackslash{}\%) & \\
+\hspace{1em}MALE & 219 (69.5\textbackslash{}\%) & 29 (51.8\textbackslash{}\%) & 23 (69.7\textbackslash{}\%) & 271 (67.1\textbackslash{}\%) & 0.032\textbackslash{}textsuperscript\{*\}\\
+\addlinespace[0.3em]
+\multicolumn{6}{l}{\textbf{Age}}\\
+\hspace{1em}Mean (SD) & 58.8 (13.3) & 62.6 (12.9) & 68.3 (11) & 60.1 (13) & \\
+\hspace{1em}Median [MIN, MAX] & 61 [16,84] & 62.5 [23,90] & 69 [35,83] & 61 [16,90] & \\
+\addlinespace[0.3em]
+\multicolumn{6}{l}{\textbf{Stage}}\\
+\hspace{1em}Stage I & 150 (47.6\textbackslash{}\%) & 20 (35.7\textbackslash{}\%) & 20 (60.6\textbackslash{}\%) & 182 (45.0\textbackslash{}\%) & \\
+\hspace{1em}Stage II & 78 (24.8\textbackslash{}\%) & 7 (12.5\textbackslash{}\%) & 7 (21.2\textbackslash{}\%) & 85 (21.0\textbackslash{}\%) & \\
+\hspace{1em}Stage III & 1 (0.3\textbackslash{}\%) & 1 (1.8\textbackslash{}\%) &  & 2 (0.5\textbackslash{}\%) & \\
+\hspace{1em}Stage IIIA & 53 (16.8\textbackslash{}\%) & 11 (19.6\textbackslash{}\%) & 4 (12.1\textbackslash{}\%) & 65 (16.1\textbackslash{}\%) & \\
+\hspace{1em}Stage IIIB & 8 (2.5\textbackslash{}\%) & 2 (3.6\textbackslash{}\%) &  & 10 (2.5\textbackslash{}\%) & \\
+\hspace{1em}Stage IIIC & 8 (2.5\textbackslash{}\%) & 1 (1.8\textbackslash{}\%) &  & 9 (2.2\textbackslash{}\%) & \\
+\hspace{1em}Stage IV & 1 (0.3\textbackslash{}\%) &  &  & 1 (0.2\textbackslash{}\%) & \\
+\hspace{1em}Stage IVA & 1 (0.3\textbackslash{}\%) &  &  &  & \\
+\hspace{1em}Stage IVB &  & 2 (3.6\textbackslash{}\%) &  & 2 (0.5\textbackslash{}\%) & 0.349\\
+\bottomrule
+\multicolumn{6}{l}{\rule{0pt}{1em}\textit{*} significant}\\
+\end{longtable}
+
+\newpage
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sessionInfo}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## R version 4.5.1 (2025-06-13)
+## Platform: x86_64-pc-linux-gnu
+## Running under: Ubuntu 24.04.3 LTS
+## 
+## Matrix products: default
+## BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3 
+## LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.26.so;  LAPACK version 3.12.0
+## 
+## locale:
+##  [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8       
+##  [4] LC_COLLATE=C.UTF-8     LC_MONETARY=C.UTF-8    LC_MESSAGES=C.UTF-8   
+##  [7] LC_PAPER=C.UTF-8       LC_NAME=C              LC_ADDRESS=C          
+## [10] LC_TELEPHONE=C         LC_MEASUREMENT=C.UTF-8 LC_IDENTIFICATION=C   
+## 
+## time zone: UTC
+## tzcode source: system (glibc)
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+## [1] kableExtra_1.4.0 dplyr_1.1.4     
+## 
+## loaded via a namespace (and not attached):
+##  [1] vctrs_0.6.5        svglite_2.2.1      cli_3.6.5          knitr_1.50        
+##  [5] rlang_1.1.6        xfun_0.53          stringi_1.8.7      generics_0.1.4    
+##  [9] textshaping_1.0.3  glue_1.8.0         htmltools_0.5.8.1  scales_1.4.0      
+## [13] rmarkdown_2.29     evaluate_1.0.5     tibble_3.3.0       fastmap_1.2.0     
+## [17] yaml_2.3.10        lifecycle_1.0.4    stringr_1.5.2      compiler_4.5.1    
+## [21] RColorBrewer_1.1-3 pkgconfig_2.0.3    rstudioapi_0.17.1  systemfonts_1.2.3 
+## [25] farver_2.1.2       digest_0.6.37      viridisLite_0.4.2  R6_2.6.1          
+## [29] dichromat_2.0-0.1  tidyselect_1.2.1   utf8_1.2.6         pillar_1.11.1     
+## [33] magrittr_2.0.4     tools_4.5.1        xml2_1.4.0
+\end{verbatim}
+
+\end{document}

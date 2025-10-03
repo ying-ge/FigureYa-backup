@@ -1,0 +1,2602 @@
+[
+  {
+    "id": "main_FigureYa1survivalCurve_update_FigureYa1survivalCurve_update",
+    "title": "FigureYa1survivalCurve_update/FigureYa1survivalCurve_update.html",
+    "html": "FigureYa1survivalCurve_update/FigureYa1survivalCurve_update.html",
+    "text": "texts/main_FigureYa1survivalCurve_update_FigureYa1survivalCurve_update.txt",
+    "folder": "FigureYa1survivalCurve_update",
+    "thumb": "gallery_compress/FigureYa1.webp"
+  },
+  {
+    "id": "main_FigureYa2ggtree+pheatmap+msa_FigureYa2ggtree+pheatmap+msa",
+    "title": "FigureYa2ggtree+pheatmap+msa/FigureYa2ggtree+pheatmap+msa.html",
+    "html": "FigureYa2ggtree+pheatmap+msa/FigureYa2ggtree+pheatmap+msa.html",
+    "text": "texts/main_FigureYa2ggtree+pheatmap+msa_FigureYa2ggtree+pheatmap+msa.txt",
+    "folder": "FigureYa2ggtree+pheatmap+msa",
+    "thumb": "gallery_compress/FigureYa2.webp"
+  },
+  {
+    "id": "main_FigureYa2ggtree+pheatmap+msa_ggtree_pheatmap_msa_cowplot",
+    "title": "FigureYa2ggtree+pheatmap+msa/ggtree_pheatmap_msa_cowplot.html",
+    "html": "FigureYa2ggtree+pheatmap+msa/ggtree_pheatmap_msa_cowplot.html",
+    "text": "texts/main_FigureYa2ggtree+pheatmap+msa_ggtree_pheatmap_msa_cowplot.txt",
+    "folder": "FigureYa2ggtree+pheatmap+msa",
+    "thumb": "gallery_compress/FigureYa2.webp"
+  },
+  {
+    "id": "main_FigureYa3genomeView_FigureYa3genomeView",
+    "title": "FigureYa3genomeView/FigureYa3genomeView.html",
+    "html": "FigureYa3genomeView/FigureYa3genomeView.html",
+    "text": "texts/main_FigureYa3genomeView_FigureYa3genomeView.txt",
+    "folder": "FigureYa3genomeView",
+    "thumb": "gallery_compress/FigureYa3.webp"
+  },
+  {
+    "id": "main_FigureYa4bestSeparation_FigureYa4bestSeparation",
+    "title": "FigureYa4bestSeparation/FigureYa4bestSeparation.html",
+    "html": "FigureYa4bestSeparation/FigureYa4bestSeparation.html",
+    "text": "texts/main_FigureYa4bestSeparation_FigureYa4bestSeparation.txt",
+    "folder": "FigureYa4bestSeparation",
+    "thumb": "gallery_compress/FigureYa4.webp"
+  },
+  {
+    "id": "main_FigureYa5bubbles_FigureYa5bubbles",
+    "title": "FigureYa5bubbles/FigureYa5bubbles.html",
+    "html": "FigureYa5bubbles/FigureYa5bubbles.html",
+    "text": "texts/main_FigureYa5bubbles_FigureYa5bubbles.txt",
+    "folder": "FigureYa5bubbles",
+    "thumb": "gallery_compress/FigureYa5.webp"
+  },
+  {
+    "id": "main_FigureYa6rHRs_FigureYa6rHRs",
+    "title": "FigureYa6rHRs/FigureYa6rHRs.html",
+    "html": "FigureYa6rHRs/FigureYa6rHRs.html",
+    "text": "texts/main_FigureYa6rHRs_FigureYa6rHRs.txt",
+    "folder": "FigureYa6rHRs",
+    "thumb": "gallery_compress/FigureYa6.webp"
+  },
+  {
+    "id": "main_FigureYa7PSM_FigureYa7PSM",
+    "title": "FigureYa7PSM/FigureYa7PSM.html",
+    "html": "FigureYa7PSM/FigureYa7PSM.html",
+    "text": "texts/main_FigureYa7PSM_FigureYa7PSM.txt",
+    "folder": "FigureYa7PSM",
+    "thumb": "gallery_compress/FigureYa7.webp"
+  },
+  {
+    "id": "main_FigureYa8radar_FigureYa8radarChart",
+    "title": "FigureYa8radar/FigureYa8radarChart.html",
+    "html": "FigureYa8radar/FigureYa8radarChart.html",
+    "text": "texts/main_FigureYa8radar_FigureYa8radarChart.txt",
+    "folder": "FigureYa8radar",
+    "thumb": "gallery_compress/FigureYa8.webp"
+  },
+  {
+    "id": "main_FigureYa9heatmap_FigureYa9heatmap",
+    "title": "FigureYa9heatmap/FigureYa9heatmap.html",
+    "html": "FigureYa9heatmap/FigureYa9heatmap.html",
+    "text": "texts/main_FigureYa9heatmap_FigureYa9heatmap.txt",
+    "folder": "FigureYa9heatmap",
+    "thumb": "gallery_compress/FigureYa9.webp"
+  },
+  {
+    "id": "main_FigureYa10chromosomeV2_update_FigureYa10chromosomeV2_update",
+    "title": "FigureYa10chromosomeV2_update/FigureYa10chromosomeV2_update.html",
+    "html": "FigureYa10chromosomeV2_update/FigureYa10chromosomeV2_update.html",
+    "text": "texts/main_FigureYa10chromosomeV2_update_FigureYa10chromosomeV2_update.txt",
+    "folder": "FigureYa10chromosomeV2_update",
+    "thumb": "gallery_compress/FigureYa10.webp"
+  },
+  {
+    "id": "main_FigureYa11bubble_FigureYa11bubbles",
+    "title": "FigureYa11bubble/FigureYa11bubbles.html",
+    "html": "FigureYa11bubble/FigureYa11bubbles.html",
+    "text": "texts/main_FigureYa11bubble_FigureYa11bubbles.txt",
+    "folder": "FigureYa11bubble",
+    "thumb": "gallery_compress/FigureYa11.webp"
+  },
+  {
+    "id": "main_FigureYa12box_FigureYa12box",
+    "title": "FigureYa12box/FigureYa12box.html",
+    "html": "FigureYa12box/FigureYa12box.html",
+    "text": "texts/main_FigureYa12box_FigureYa12box.txt",
+    "folder": "FigureYa12box",
+    "thumb": "gallery_compress/FigureYa12.webp"
+  },
+  {
+    "id": "main_FigureYa13GSEA_Java_update_FigureYa13GSEA_Java_update",
+    "title": "FigureYa13GSEA_Java_update/FigureYa13GSEA_Java_update.html",
+    "html": "FigureYa13GSEA_Java_update/FigureYa13GSEA_Java_update.html",
+    "text": "texts/main_FigureYa13GSEA_Java_update_FigureYa13GSEA_Java_update.txt",
+    "folder": "FigureYa13GSEA_Java_update",
+    "thumb": "gallery_compress/FigureYa13.webp"
+  },
+  {
+    "id": "main_FigureYa14circos_FigureYa14circos",
+    "title": "FigureYa14circos/FigureYa14circos.html",
+    "html": "FigureYa14circos/FigureYa14circos.html",
+    "text": "texts/main_FigureYa14circos_FigureYa14circos.txt",
+    "folder": "FigureYa14circos",
+    "thumb": "gallery_compress/FigureYa14.webp"
+  },
+  {
+    "id": "main_FigureYa15WGCNA_FigureYa15WGCNA",
+    "title": "FigureYa15WGCNA/FigureYa15WGCNA.html",
+    "html": "FigureYa15WGCNA/FigureYa15WGCNA.html",
+    "text": "texts/main_FigureYa15WGCNA_FigureYa15WGCNA.txt",
+    "folder": "FigureYa15WGCNA",
+    "thumb": "gallery_compress/FigureYa15.webp"
+  },
+  {
+    "id": "main_FigureYa16fitting_FigureYa16WGCNA_fitting",
+    "title": "FigureYa16fitting/FigureYa16WGCNA_fitting.html",
+    "html": "FigureYa16fitting/FigureYa16WGCNA_fitting.html",
+    "text": "texts/main_FigureYa16fitting_FigureYa16WGCNA_fitting.txt",
+    "folder": "FigureYa16fitting",
+    "thumb": "gallery_compress/FigureYa16.webp"
+  },
+  {
+    "id": "main_FigureYa17WGCNA_heatmap_FigureYa17WGCNA_heatmap",
+    "title": "FigureYa17WGCNA_heatmap/FigureYa17WGCNA_heatmap.html",
+    "html": "FigureYa17WGCNA_heatmap/FigureYa17WGCNA_heatmap.html",
+    "text": "texts/main_FigureYa17WGCNA_heatmap_FigureYa17WGCNA_heatmap.txt",
+    "folder": "FigureYa17WGCNA_heatmap",
+    "thumb": "gallery_compress/FigureYa17.webp"
+  },
+  {
+    "id": "main_FigureYa18oncoplot_update_FigureYa18oncoplot_update",
+    "title": "FigureYa18oncoplot_update/FigureYa18oncoplot_update.html",
+    "html": "FigureYa18oncoplot_update/FigureYa18oncoplot_update.html",
+    "text": "texts/main_FigureYa18oncoplot_update_FigureYa18oncoplot_update.txt",
+    "folder": "FigureYa18oncoplot_update",
+    "thumb": "gallery_compress/FigureYa18.webp"
+  },
+  {
+    "id": "main_FigureYa19Lollipop_FigureYa19Lollipop",
+    "title": "FigureYa19Lollipop/FigureYa19Lollipop.html",
+    "html": "FigureYa19Lollipop/FigureYa19Lollipop.html",
+    "text": "texts/main_FigureYa19Lollipop_FigureYa19Lollipop.txt",
+    "folder": "FigureYa19Lollipop",
+    "thumb": "gallery_compress/FigureYa19.webp"
+  },
+  {
+    "id": "main_FigureYa20mortality_FigureYa20mortalityV2",
+    "title": "FigureYa20mortality/FigureYa20mortalityV2.html",
+    "html": "FigureYa20mortality/FigureYa20mortalityV2.html",
+    "text": "texts/main_FigureYa20mortality_FigureYa20mortalityV2.txt",
+    "folder": "FigureYa20mortality",
+    "thumb": "gallery_compress/FigureYa20.webp"
+  },
+  {
+    "id": "main_FigureYa21TCGA2table_FigureYa21TCGA2table",
+    "title": "FigureYa21TCGA2table/FigureYa21TCGA2table.html",
+    "html": "FigureYa21TCGA2table/FigureYa21TCGA2table.html",
+    "text": "texts/main_FigureYa21TCGA2table_FigureYa21TCGA2table.txt",
+    "folder": "FigureYa21TCGA2table",
+    "thumb": "gallery_compress/FigureYa21.webp"
+  },
+  {
+    "id": "main_FigureYa22FPKM2TPM_FigureYa22FPKM2TPM",
+    "title": "FigureYa22FPKM2TPM/FigureYa22FPKM2TPM.html",
+    "html": "FigureYa22FPKM2TPM/FigureYa22FPKM2TPM.html",
+    "text": "texts/main_FigureYa22FPKM2TPM_FigureYa22FPKM2TPM.txt",
+    "folder": "FigureYa22FPKM2TPM",
+    "thumb": "gallery_compress/FigureYa22.webp"
+  },
+  {
+    "id": "main_FigureYa23count2TPM_FigureYa23count2TPMv2",
+    "title": "FigureYa23count2TPM/FigureYa23count2TPMv2.html",
+    "html": "FigureYa23count2TPM/FigureYa23count2TPMv2.html",
+    "text": "texts/main_FigureYa23count2TPM_FigureYa23count2TPMv2.txt",
+    "folder": "FigureYa23count2TPM",
+    "thumb": "gallery_compress/FigureYa23.webp"
+  },
+  {
+    "id": "main_FigureYa24ROC_FigureYa24ROC",
+    "title": "FigureYa24ROC/FigureYa24ROC.html",
+    "html": "FigureYa24ROC/FigureYa24ROC.html",
+    "text": "texts/main_FigureYa24ROC_FigureYa24ROC.txt",
+    "folder": "FigureYa24ROC",
+    "thumb": "gallery_compress/FigureYa24.webp"
+  },
+  {
+    "id": "main_FigureYa25Sankey_update_FigureYa25Sankey_update",
+    "title": "FigureYa25Sankey_update/FigureYa25Sankey_update.html",
+    "html": "FigureYa25Sankey_update/FigureYa25Sankey_update.html",
+    "text": "texts/main_FigureYa25Sankey_update_FigureYa25Sankey_update.txt",
+    "folder": "FigureYa25Sankey_update",
+    "thumb": "gallery_compress/FigureYa25.webp"
+  },
+  {
+    "id": "main_FigureYa26circos_R_FigureYa26circos_R",
+    "title": "FigureYa26circos_R/FigureYa26circos_R.html",
+    "html": "FigureYa26circos_R/FigureYa26circos_R.html",
+    "text": "texts/main_FigureYa26circos_R_FigureYa26circos_R.txt",
+    "folder": "FigureYa26circos_R",
+    "thumb": "gallery_compress/FigureYa26.webp"
+  },
+  {
+    "id": "main_FigureYa27tSNE_update_FIgureYa27tSNE_update",
+    "title": "FigureYa27tSNE_update/FIgureYa27tSNE_update.html",
+    "html": "FigureYa27tSNE_update/FIgureYa27tSNE_update.html",
+    "text": "texts/main_FigureYa27tSNE_update_FIgureYa27tSNE_update.txt",
+    "folder": "FigureYa27tSNE_update",
+    "thumb": "gallery_compress/FigureYa27.webp"
+  },
+  {
+    "id": "main_FigureYa28color_FigureYa28color",
+    "title": "FigureYa28color/FigureYa28color.html",
+    "html": "FigureYa28color/FigureYa28color.html",
+    "text": "texts/main_FigureYa28color_FigureYa28color.txt",
+    "folder": "FigureYa28color",
+    "thumb": "gallery_compress/FigureYa28.webp"
+  },
+  {
+    "id": "main_FigureYa30nomogram_update_FigureYa30nomogram_update",
+    "title": "FigureYa30nomogram_update/FigureYa30nomogram_update.html",
+    "html": "FigureYa30nomogram_update/FigureYa30nomogram_update.html",
+    "text": "texts/main_FigureYa30nomogram_update_FigureYa30nomogram_update.txt",
+    "folder": "FigureYa30nomogram_update",
+    "thumb": "gallery_compress/FigureYa30.webp"
+  },
+  {
+    "id": "main_FigureYa31lasso_update_FigureYa31lasso_update",
+    "title": "FigureYa31lasso_update/FigureYa31lasso_update.html",
+    "html": "FigureYa31lasso_update/FigureYa31lasso_update.html",
+    "text": "texts/main_FigureYa31lasso_update_FigureYa31lasso_update.txt",
+    "folder": "FigureYa31lasso_update",
+    "thumb": "gallery_compress/FigureYa31.webp"
+  },
+  {
+    "id": "main_FigureYa32ID_table_FigureYa32ID_table",
+    "title": "FigureYa32ID_table/FigureYa32ID_table.html",
+    "html": "FigureYa32ID_table/FigureYa32ID_table.html",
+    "text": "texts/main_FigureYa32ID_table_FigureYa32ID_table.txt",
+    "folder": "FigureYa32ID_table",
+    "thumb": "gallery_compress/FigureYa32.webp"
+  },
+  {
+    "id": "main_FigureYa33DCA_update_FigureYa33DCA_update",
+    "title": "FigureYa33DCA_update/FigureYa33DCA_update.html",
+    "html": "FigureYa33DCA_update/FigureYa33DCA_update.html",
+    "text": "texts/main_FigureYa33DCA_update_FigureYa33DCA_update.txt",
+    "folder": "FigureYa33DCA_update",
+    "thumb": "gallery_compress/FigureYa33.webp"
+  },
+  {
+    "id": "main_FigureYa34count2FPKMv2_FigureYa34count2FPKMv2",
+    "title": "FigureYa34count2FPKMv2/FigureYa34count2FPKMv2.html",
+    "html": "FigureYa34count2FPKMv2/FigureYa34count2FPKMv2.html",
+    "text": "texts/main_FigureYa34count2FPKMv2_FigureYa34count2FPKMv2.txt",
+    "folder": "FigureYa34count2FPKMv2",
+    "thumb": "gallery_compress/FigureYa34.webp"
+  },
+  {
+    "id": "main_FigureYa35batch_bestSeparationV3_update_FigureYa35batch_bestSeparationV3_update",
+    "title": "FigureYa35batch_bestSeparationV3_update/FigureYa35batch_bestSeparationV3_update.html",
+    "html": "FigureYa35batch_bestSeparationV3_update/FigureYa35batch_bestSeparationV3_update.html",
+    "text": "texts/main_FigureYa35batch_bestSeparationV3_update_FigureYa35batch_bestSeparationV3_update.txt",
+    "folder": "FigureYa35batch_bestSeparationV3_update",
+    "thumb": "gallery_compress/FigureYa35.webp"
+  },
+  {
+    "id": "main_FigureYa36nSurvV3_FigureYa36nSurvV3",
+    "title": "FigureYa36nSurvV3/FigureYa36nSurvV3.html",
+    "html": "FigureYa36nSurvV3/FigureYa36nSurvV3.html",
+    "text": "texts/main_FigureYa36nSurvV3_FigureYa36nSurvV3.txt",
+    "folder": "FigureYa36nSurvV3",
+    "thumb": "gallery_compress/FigureYa36.webp"
+  },
+  {
+    "id": "main_FigureYa37correlationV2_update_FigureYa37correlationV2_update",
+    "title": "FigureYa37correlationV2_update/FigureYa37correlationV2_update.html",
+    "html": "FigureYa37correlationV2_update/FigureYa37correlationV2_update.html",
+    "text": "texts/main_FigureYa37correlationV2_update_FigureYa37correlationV2_update.txt",
+    "folder": "FigureYa37correlationV2_update",
+    "thumb": "gallery_compress/FigureYa37.webp"
+  },
+  {
+    "id": "main_FigureYa38PCA_FigureYa38PCA",
+    "title": "FigureYa38PCA/FigureYa38PCA.html",
+    "html": "FigureYa38PCA/FigureYa38PCA.html",
+    "text": "texts/main_FigureYa38PCA_FigureYa38PCA.txt",
+    "folder": "FigureYa38PCA",
+    "thumb": "gallery_compress/FigureYa38.webp"
+  },
+  {
+    "id": "main_FigureYa39bar_FigureYa39bar",
+    "title": "FigureYa39bar/FigureYa39bar.html",
+    "html": "FigureYa39bar/FigureYa39bar.html",
+    "text": "texts/main_FigureYa39bar_FigureYa39bar.txt",
+    "folder": "FigureYa39bar",
+    "thumb": "gallery_compress/FigureYa39.webp"
+  },
+  {
+    "id": "main_FigureYa41GEO2lncRNA_update_FigureYa41GEO2lncRNA_update",
+    "title": "FigureYa41GEO2lncRNA_update/FigureYa41GEO2lncRNA_update.html",
+    "html": "FigureYa41GEO2lncRNA_update/FigureYa41GEO2lncRNA_update.html",
+    "text": "texts/main_FigureYa41GEO2lncRNA_update_FigureYa41GEO2lncRNA_update.txt",
+    "folder": "FigureYa41GEO2lncRNA_update",
+    "thumb": "gallery_compress/FigureYa41.webp"
+  },
+  {
+    "id": "main_FigureYa42oncoprintV2_update_FigureYa42oncoprintV2_update",
+    "title": "FigureYa42oncoprintV2_update/FigureYa42oncoprintV2_update.html",
+    "html": "FigureYa42oncoprintV2_update/FigureYa42oncoprintV2_update.html",
+    "text": "texts/main_FigureYa42oncoprintV2_update_FigureYa42oncoprintV2_update.txt",
+    "folder": "FigureYa42oncoprintV2_update",
+    "thumb": "gallery_compress/FigureYa42.webp"
+  },
+  {
+    "id": "main_FigureYa43ManhattanV2_FigureYa43ManhattanV2",
+    "title": "FigureYa43ManhattanV2/FigureYa43ManhattanV2.html",
+    "html": "FigureYa43ManhattanV2/FigureYa43ManhattanV2.html",
+    "text": "texts/main_FigureYa43ManhattanV2_FigureYa43ManhattanV2.txt",
+    "folder": "FigureYa43ManhattanV2",
+    "thumb": "gallery_compress/FigureYa43.webp"
+  },
+  {
+    "id": "main_FigureYa44profile_FigureYa44profile",
+    "title": "FigureYa44profile/FigureYa44profile.html",
+    "html": "FigureYa44profile/FigureYa44profile.html",
+    "text": "texts/main_FigureYa44profile_FigureYa44profile.txt",
+    "folder": "FigureYa44profile",
+    "thumb": "gallery_compress/FigureYa44.webp"
+  },
+  {
+    "id": "main_FigureYa45V2_FigureYa45iClusterV2",
+    "title": "FigureYa45V2/FigureYa45iClusterV2.html",
+    "html": "FigureYa45V2/FigureYa45iClusterV2.html",
+    "text": "texts/main_FigureYa45V2_FigureYa45iClusterV2.txt",
+    "folder": "FigureYa45V2",
+    "thumb": "gallery_compress/FigureYa45.webp"
+  },
+  {
+    "id": "main_FigureYa47HRtable_FigureYa47HRtable",
+    "title": "FigureYa47HRtable/FigureYa47HRtable.html",
+    "html": "FigureYa47HRtable/FigureYa47HRtable.html",
+    "text": "texts/main_FigureYa47HRtable_FigureYa47HRtable.txt",
+    "folder": "FigureYa47HRtable",
+    "thumb": "gallery_compress/FigureYa47.webp"
+  },
+  {
+    "id": "main_FigureYa48Adonis_FigureYa48Adonis",
+    "title": "FigureYa48Adonis/FigureYa48Adonis.html",
+    "html": "FigureYa48Adonis/FigureYa48Adonis.html",
+    "text": "texts/main_FigureYa48Adonis_FigureYa48Adonis.txt",
+    "folder": "FigureYa48Adonis",
+    "thumb": "gallery_compress/FigureYa48.webp"
+  },
+  {
+    "id": "main_FigureYa51TMB_update_FigureYa51TMB_update",
+    "title": "FigureYa51TMB_update/FigureYa51TMB_update.html",
+    "html": "FigureYa51TMB_update/FigureYa51TMB_update.html",
+    "text": "texts/main_FigureYa51TMB_update_FigureYa51TMB_update.txt",
+    "folder": "FigureYa51TMB_update",
+    "thumb": "gallery_compress/FigureYa51.webp"
+  },
+  {
+    "id": "main_FigureYa52GOplot_FigureYa52GOplot",
+    "title": "FigureYa52GOplot/FigureYa52GOplot.html",
+    "html": "FigureYa52GOplot/FigureYa52GOplot.html",
+    "text": "texts/main_FigureYa52GOplot_FigureYa52GOplot.txt",
+    "folder": "FigureYa52GOplot",
+    "thumb": "gallery_compress/FigureYa52.webp"
+  },
+  {
+    "id": "main_FigureYa53PPImodule_FigureYa53PPImodule-0527更新",
+    "title": "FigureYa53PPImodule/FigureYa53PPImodule-0527更新.html",
+    "html": "FigureYa53PPImodule/FigureYa53PPImodule-0527更新.html",
+    "text": "texts/main_FigureYa53PPImodule_FigureYa53PPImodule-0527更新.txt",
+    "folder": "FigureYa53PPImodule",
+    "thumb": "gallery_compress/FigureYa53.webp"
+  },
+  {
+    "id": "main_FigureYa55plus_pancancer_boxplot_FigureYa55plus_pancancer_boxplot",
+    "title": "FigureYa55plus_pancancer_boxplot/FigureYa55plus_pancancer_boxplot.html",
+    "html": "FigureYa55plus_pancancer_boxplot/FigureYa55plus_pancancer_boxplot.html",
+    "text": "texts/main_FigureYa55plus_pancancer_boxplot_FigureYa55plus_pancancer_boxplot.txt",
+    "folder": "FigureYa55plus_pancancer_boxplot",
+    "thumb": "gallery_compress/FigureYa55.webp"
+  },
+  {
+    "id": "main_FigureYa55panCancer_violinV2_FigureYa55panCancer_violinV2",
+    "title": "FigureYa55panCancer_violinV2/FigureYa55panCancer_violinV2.html",
+    "html": "FigureYa55panCancer_violinV2/FigureYa55panCancer_violinV2.html",
+    "text": "texts/main_FigureYa55panCancer_violinV2_FigureYa55panCancer_violinV2.txt",
+    "folder": "FigureYa55panCancer_violinV2",
+    "thumb": "gallery_compress/FigureYa55.webp"
+  },
+  {
+    "id": "main_FigureYa56immune_inflitrationV3_FigureYa56immune_inflitrationV3",
+    "title": "FigureYa56immune_inflitrationV3/FigureYa56immune_inflitrationV3.html",
+    "html": "FigureYa56immune_inflitrationV3/FigureYa56immune_inflitrationV3.html",
+    "text": "texts/main_FigureYa56immune_inflitrationV3_FigureYa56immune_inflitrationV3.txt",
+    "folder": "FigureYa56immune_inflitrationV3",
+    "thumb": "gallery_compress/FigureYa56.webp"
+  },
+  {
+    "id": "main_FigureYa57profile_1bw_FigureYa57profile_1bw",
+    "title": "FigureYa57profile_1bw/FigureYa57profile_1bw.html",
+    "html": "FigureYa57profile_1bw/FigureYa57profile_1bw.html",
+    "text": "texts/main_FigureYa57profile_1bw_FigureYa57profile_1bw.txt",
+    "folder": "FigureYa57profile_1bw",
+    "thumb": "gallery_compress/FigureYa57.webp"
+  },
+  {
+    "id": "main_FigureYa58lncRNAreannotation_FigureYa58lncRNAreannotation",
+    "title": "FigureYa58lncRNAreannotation/FigureYa58lncRNAreannotation.html",
+    "html": "FigureYa58lncRNAreannotation/FigureYa58lncRNAreannotation.html",
+    "text": "texts/main_FigureYa58lncRNAreannotation_FigureYa58lncRNAreannotation.txt",
+    "folder": "FigureYa58lncRNAreannotation",
+    "thumb": "gallery_compress/FigureYa58.webp"
+  },
+  {
+    "id": "main_FigureYa59Plus_GEO2DEG_FigureYa59Plus_GEO2DEG",
+    "title": "FigureYa59Plus_GEO2DEG/FigureYa59Plus_GEO2DEG.html",
+    "html": "FigureYa59Plus_GEO2DEG/FigureYa59Plus_GEO2DEG.html",
+    "text": "texts/main_FigureYa59Plus_GEO2DEG_FigureYa59Plus_GEO2DEG.txt",
+    "folder": "FigureYa59Plus_GEO2DEG",
+    "thumb": "gallery_compress/FigureYa59.webp"
+  },
+  {
+    "id": "main_FigureYa59volcanoV2_FigureYa59volcanoV2",
+    "title": "FigureYa59volcanoV2/FigureYa59volcanoV2.html",
+    "html": "FigureYa59volcanoV2/FigureYa59volcanoV2.html",
+    "text": "texts/main_FigureYa59volcanoV2_FigureYa59volcanoV2.txt",
+    "folder": "FigureYa59volcanoV2",
+    "thumb": "gallery_compress/FigureYa59.webp"
+  },
+  {
+    "id": "main_FigureYa60GSEA_clusterProfilerV2_FigureYa60GSEA_clusterProfilerV2",
+    "title": "FigureYa60GSEA_clusterProfilerV2/FigureYa60GSEA_clusterProfilerV2.html",
+    "html": "FigureYa60GSEA_clusterProfilerV2/FigureYa60GSEA_clusterProfilerV2.html",
+    "text": "texts/main_FigureYa60GSEA_clusterProfilerV2_FigureYa60GSEA_clusterProfilerV2.txt",
+    "folder": "FigureYa60GSEA_clusterProfilerV2",
+    "thumb": "gallery_compress/FigureYa60.webp"
+  },
+  {
+    "id": "main_FigureYa61GSVA_FigureYa61GSVA",
+    "title": "FigureYa61GSVA/FigureYa61GSVA.html",
+    "html": "FigureYa61GSVA/FigureYa61GSVA.html",
+    "text": "texts/main_FigureYa61GSVA_FigureYa61GSVA.txt",
+    "folder": "FigureYa61GSVA",
+    "thumb": "gallery_compress/FigureYa61.webp"
+  },
+  {
+    "id": "main_FigureYa62twoAxis_FigureYa62twoAxis",
+    "title": "FigureYa62twoAxis/FigureYa62twoAxis.html",
+    "html": "FigureYa62twoAxis/FigureYa62twoAxis.html",
+    "text": "texts/main_FigureYa62twoAxis_FigureYa62twoAxis.txt",
+    "folder": "FigureYa62twoAxis",
+    "thumb": "gallery_compress/FigureYa62.webp"
+  },
+  {
+    "id": "main_FigureYa63pubmedMiningV2_FigureYa63pubmedMiningV2",
+    "title": "FigureYa63pubmedMiningV2/FigureYa63pubmedMiningV2.html",
+    "html": "FigureYa63pubmedMiningV2/FigureYa63pubmedMiningV2.html",
+    "text": "texts/main_FigureYa63pubmedMiningV2_FigureYa63pubmedMiningV2.txt",
+    "folder": "FigureYa63pubmedMiningV2",
+    "thumb": "gallery_compress/FigureYa63.webp"
+  },
+  {
+    "id": "main_FigureYa63pubmedMiningV2_output_paper",
+    "title": "FigureYa63pubmedMiningV2/output_paper.html",
+    "html": "FigureYa63pubmedMiningV2/output_paper.html",
+    "text": "texts/main_FigureYa63pubmedMiningV2_output_paper.txt",
+    "folder": "FigureYa63pubmedMiningV2",
+    "thumb": "gallery_compress/FigureYa63.webp"
+  },
+  {
+    "id": "main_FigureYa63pubmedMiningV2_output_friends",
+    "title": "FigureYa63pubmedMiningV2/output_friends.html",
+    "html": "FigureYa63pubmedMiningV2/output_friends.html",
+    "text": "texts/main_FigureYa63pubmedMiningV2_output_friends.txt",
+    "folder": "FigureYa63pubmedMiningV2",
+    "thumb": "gallery_compress/FigureYa63.webp"
+  },
+  {
+    "id": "main_FigureYa64triangle_FigureYa64triangle",
+    "title": "FigureYa64triangle/FigureYa64triangle.html",
+    "html": "FigureYa64triangle/FigureYa64triangle.html",
+    "text": "texts/main_FigureYa64triangle_FigureYa64triangle.txt",
+    "folder": "FigureYa64triangle",
+    "thumb": "gallery_compress/FigureYa64.webp"
+  },
+  {
+    "id": "main_FigureYa65SVM_FigureYa65SVM",
+    "title": "FigureYa65SVM/FigureYa65SVM.html",
+    "html": "FigureYa65SVM/FigureYa65SVM.html",
+    "text": "texts/main_FigureYa65SVM_FigureYa65SVM.txt",
+    "folder": "FigureYa65SVM",
+    "thumb": "gallery_compress/FigureYa65.webp"
+  },
+  {
+    "id": "main_FigureYa66单因素cox_FigureYa66单因素cox",
+    "title": "FigureYa66单因素cox/FigureYa66单因素cox.html",
+    "html": "FigureYa66单因素cox/FigureYa66单因素cox.html",
+    "text": "texts/main_FigureYa66单因素cox_FigureYa66单因素cox.txt",
+    "folder": "FigureYa66单因素cox",
+    "thumb": "gallery_compress/FigureYa66.webp"
+  },
+  {
+    "id": "main_FigureYa67phastCons_FigureYa67phastCons",
+    "title": "FigureYa67phastCons/FigureYa67phastCons.html",
+    "html": "FigureYa67phastCons/FigureYa67phastCons.html",
+    "text": "texts/main_FigureYa67phastCons_FigureYa67phastCons.txt",
+    "folder": "FigureYa67phastCons",
+    "thumb": "gallery_compress/FigureYa67.webp"
+  },
+  {
+    "id": "main_FigureYa68friendsV2_FigureYa68friendsV2",
+    "title": "FigureYa68friendsV2/FigureYa68friendsV2.html",
+    "html": "FigureYa68friendsV2/FigureYa68friendsV2.html",
+    "text": "texts/main_FigureYa68friendsV2_FigureYa68friendsV2.txt",
+    "folder": "FigureYa68friendsV2",
+    "thumb": "gallery_compress/FigureYa68.webp"
+  },
+  {
+    "id": "main_FigureYa69cancerSubtype_FigureYa69cancerSubtype",
+    "title": "FigureYa69cancerSubtype/FigureYa69cancerSubtype.html",
+    "html": "FigureYa69cancerSubtype/FigureYa69cancerSubtype.html",
+    "text": "texts/main_FigureYa69cancerSubtype_FigureYa69cancerSubtype.txt",
+    "folder": "FigureYa69cancerSubtype",
+    "thumb": "gallery_compress/FigureYa69.webp"
+  },
+  {
+    "id": "main_FigureYa70mutationEvents_FigureYa70mutationEvents",
+    "title": "FigureYa70mutationEvents/FigureYa70mutationEvents.html",
+    "html": "FigureYa70mutationEvents/FigureYa70mutationEvents.html",
+    "text": "texts/main_FigureYa70mutationEvents_FigureYa70mutationEvents.txt",
+    "folder": "FigureYa70mutationEvents",
+    "thumb": "gallery_compress/FigureYa70.webp"
+  },
+  {
+    "id": "main_FigureYa71ssGSEA_update_FigureYa71ssGSEA_update",
+    "title": "FigureYa71ssGSEA_update/FigureYa71ssGSEA_update.html",
+    "html": "FigureYa71ssGSEA_update/FigureYa71ssGSEA_update.html",
+    "text": "texts/main_FigureYa71ssGSEA_update_FigureYa71ssGSEA_update.txt",
+    "folder": "FigureYa71ssGSEA_update",
+    "thumb": "gallery_compress/FigureYa71.webp"
+  },
+  {
+    "id": "main_FigureYa72biomarker_FigureYa72biomarker",
+    "title": "FigureYa72biomarker/FigureYa72biomarker.html",
+    "html": "FigureYa72biomarker/FigureYa72biomarker.html",
+    "text": "texts/main_FigureYa72biomarker_FigureYa72biomarker.txt",
+    "folder": "FigureYa72biomarker",
+    "thumb": "gallery_compress/FigureYa72.webp"
+  },
+  {
+    "id": "main_FigureYa73batchCorrelation_FigureYa73batchCorrelation",
+    "title": "FigureYa73batchCorrelation/FigureYa73batchCorrelation.html",
+    "html": "FigureYa73batchCorrelation/FigureYa73batchCorrelation.html",
+    "text": "texts/main_FigureYa73batchCorrelation_FigureYa73batchCorrelation.txt",
+    "folder": "FigureYa73batchCorrelation",
+    "thumb": "gallery_compress/FigureYa73.webp"
+  },
+  {
+    "id": "main_FigureYa74OmicCircos_FigureYa74OmicCircos",
+    "title": "FigureYa74OmicCircos/FigureYa74OmicCircos.html",
+    "html": "FigureYa74OmicCircos/FigureYa74OmicCircos.html",
+    "text": "texts/main_FigureYa74OmicCircos_FigureYa74OmicCircos.txt",
+    "folder": "FigureYa74OmicCircos",
+    "thumb": "gallery_compress/FigureYa74.webp"
+  },
+  {
+    "id": "main_FigureYa75bubble_volcano_FigureYa75bubble_volcano",
+    "title": "FigureYa75bubble_volcano/FigureYa75bubble_volcano.html",
+    "html": "FigureYa75bubble_volcano/FigureYa75bubble_volcano.html",
+    "text": "texts/main_FigureYa75bubble_volcano_FigureYa75bubble_volcano.txt",
+    "folder": "FigureYa75bubble_volcano",
+    "thumb": "gallery_compress/FigureYa75.webp"
+  },
+  {
+    "id": "main_FigureYa76corrgram_FigureYa76corrgram",
+    "title": "FigureYa76corrgram/FigureYa76corrgram.html",
+    "html": "FigureYa76corrgram/FigureYa76corrgram.html",
+    "text": "texts/main_FigureYa76corrgram_FigureYa76corrgram.txt",
+    "folder": "FigureYa76corrgram",
+    "thumb": "gallery_compress/FigureYa76.webp"
+  },
+  {
+    "id": "main_FigureYa77baseZoom_FigureYa77baseZoom",
+    "title": "FigureYa77baseZoom/FigureYa77baseZoom.html",
+    "html": "FigureYa77baseZoom/FigureYa77baseZoom.html",
+    "text": "texts/main_FigureYa77baseZoom_FigureYa77baseZoom.txt",
+    "folder": "FigureYa77baseZoom",
+    "thumb": "gallery_compress/FigureYa77.webp"
+  },
+  {
+    "id": "main_FigureYa78gganatogram_FigureYa78gganatogram",
+    "title": "FigureYa78gganatogram/FigureYa78gganatogram.html",
+    "html": "FigureYa78gganatogram/FigureYa78gganatogram.html",
+    "text": "texts/main_FigureYa78gganatogram_FigureYa78gganatogram.txt",
+    "folder": "FigureYa78gganatogram",
+    "thumb": "gallery_compress/FigureYa78.webp"
+  },
+  {
+    "id": "main_FigureYa79CNV_FigureYa79CNV",
+    "title": "FigureYa79CNV/FigureYa79CNV.html",
+    "html": "FigureYa79CNV/FigureYa79CNV.html",
+    "text": "texts/main_FigureYa79CNV_FigureYa79CNV.txt",
+    "folder": "FigureYa79CNV",
+    "thumb": "gallery_compress/FigureYa79.webp"
+  },
+  {
+    "id": "main_FigureYa80GOclustering_FigureYa80GOclustering",
+    "title": "FigureYa80GOclustering/FigureYa80GOclustering.html",
+    "html": "FigureYa80GOclustering/FigureYa80GOclustering.html",
+    "text": "texts/main_FigureYa80GOclustering_FigureYa80GOclustering.txt",
+    "folder": "FigureYa80GOclustering",
+    "thumb": "gallery_compress/FigureYa80.webp"
+  },
+  {
+    "id": "main_FigureYa81immune_network_FigureYa81immune_network",
+    "title": "FigureYa81immune_network/FigureYa81immune_network.html",
+    "html": "FigureYa81immune_network/FigureYa81immune_network.html",
+    "text": "texts/main_FigureYa81immune_network_FigureYa81immune_network.txt",
+    "folder": "FigureYa81immune_network",
+    "thumb": "gallery_compress/FigureYa81.webp"
+  },
+  {
+    "id": "main_FigureYa82IGVzoom_FigureYa82IGVzoom",
+    "title": "FigureYa82IGVzoom/FigureYa82IGVzoom.html",
+    "html": "FigureYa82IGVzoom/FigureYa82IGVzoom.html",
+    "text": "texts/main_FigureYa82IGVzoom_FigureYa82IGVzoom.txt",
+    "folder": "FigureYa82IGVzoom",
+    "thumb": "gallery_compress/FigureYa82.webp"
+  },
+  {
+    "id": "main_FigureYa83enrichment_FigureYa83enrichment",
+    "title": "FigureYa83enrichment/FigureYa83enrichment.html",
+    "html": "FigureYa83enrichment/FigureYa83enrichment.html",
+    "text": "texts/main_FigureYa83enrichment_FigureYa83enrichment.txt",
+    "folder": "FigureYa83enrichment",
+    "thumb": "gallery_compress/FigureYa83.webp"
+  },
+  {
+    "id": "main_FigureYa84roast_FigureYa84roast",
+    "title": "FigureYa84roast/FigureYa84roast.html",
+    "html": "FigureYa84roast/FigureYa84roast.html",
+    "text": "texts/main_FigureYa84roast_FigureYa84roast.txt",
+    "folder": "FigureYa84roast",
+    "thumb": "gallery_compress/FigureYa84.webp"
+  },
+  {
+    "id": "main_FigureYa85timeROC_FigureYa85timeROC",
+    "title": "FigureYa85timeROC/FigureYa85timeROC.html",
+    "html": "FigureYa85timeROC/FigureYa85timeROC.html",
+    "text": "texts/main_FigureYa85timeROC_FigureYa85timeROC.txt",
+    "folder": "FigureYa85timeROC",
+    "thumb": "gallery_compress/FigureYa85.webp"
+  },
+  {
+    "id": "main_FigureYa86SNPmotif_FigureYa86SNPmotif",
+    "title": "FigureYa86SNPmotif/FigureYa86SNPmotif.html",
+    "html": "FigureYa86SNPmotif/FigureYa86SNPmotif.html",
+    "text": "texts/main_FigureYa86SNPmotif_FigureYa86SNPmotif.txt",
+    "folder": "FigureYa86SNPmotif",
+    "thumb": "gallery_compress/FigureYa86.webp"
+  },
+  {
+    "id": "main_FigureYa87fish_FigureYa87fish",
+    "title": "FigureYa87fish/FigureYa87fish.html",
+    "html": "FigureYa87fish/FigureYa87fish.html",
+    "text": "texts/main_FigureYa87fish_FigureYa87fish.txt",
+    "folder": "FigureYa87fish",
+    "thumb": "gallery_compress/FigureYa87.webp"
+  },
+  {
+    "id": "main_FigureYa88DAVIDkappa_FigureYa88DAVIDkappa",
+    "title": "FigureYa88DAVIDkappa/FigureYa88DAVIDkappa.html",
+    "html": "FigureYa88DAVIDkappa/FigureYa88DAVIDkappa.html",
+    "text": "texts/main_FigureYa88DAVIDkappa_FigureYa88DAVIDkappa.txt",
+    "folder": "FigureYa88DAVIDkappa",
+    "thumb": "gallery_compress/FigureYa88.webp"
+  },
+  {
+    "id": "main_FigureYa89ggplotCirco_FigureYa89ggplotCirco",
+    "title": "FigureYa89ggplotCirco/FigureYa89ggplotCirco.html",
+    "html": "FigureYa89ggplotCirco/FigureYa89ggplotCirco.html",
+    "text": "texts/main_FigureYa89ggplotCirco_FigureYa89ggplotCirco.txt",
+    "folder": "FigureYa89ggplotCirco",
+    "thumb": "gallery_compress/FigureYa89.webp"
+  },
+  {
+    "id": "main_FigureYa90subgroup_FigureYa90subgroup",
+    "title": "FigureYa90subgroup/FigureYa90subgroup.html",
+    "html": "FigureYa90subgroup/FigureYa90subgroup.html",
+    "text": "texts/main_FigureYa90subgroup_FigureYa90subgroup.txt",
+    "folder": "FigureYa90subgroup",
+    "thumb": "gallery_compress/FigureYa90.webp"
+  },
+  {
+    "id": "main_FigureYa91cluster_heatmap_FigureYa91cluster_heatmap",
+    "title": "FigureYa91cluster_heatmap/FigureYa91cluster_heatmap.html",
+    "html": "FigureYa91cluster_heatmap/FigureYa91cluster_heatmap.html",
+    "text": "texts/main_FigureYa91cluster_heatmap_FigureYa91cluster_heatmap.txt",
+    "folder": "FigureYa91cluster_heatmap",
+    "thumb": "gallery_compress/FigureYa91.webp"
+  },
+  {
+    "id": "main_FigureYa92immune_gene_update_FigureYa92immune_gene_update",
+    "title": "FigureYa92immune_gene_update/FigureYa92immune_gene_update.html",
+    "html": "FigureYa92immune_gene_update/FigureYa92immune_gene_update.html",
+    "text": "texts/main_FigureYa92immune_gene_update_FigureYa92immune_gene_update.txt",
+    "folder": "FigureYa92immune_gene_update",
+    "thumb": "gallery_compress/FigureYa92.webp"
+  },
+  {
+    "id": "main_FigureYa93UMAP_FigureYa93UMAP",
+    "title": "FigureYa93UMAP/FigureYa93UMAP.html",
+    "html": "FigureYa93UMAP/FigureYa93UMAP.html",
+    "text": "texts/main_FigureYa93UMAP_FigureYa93UMAP.txt",
+    "folder": "FigureYa93UMAP",
+    "thumb": "gallery_compress/FigureYa93.webp"
+  },
+  {
+    "id": "main_FigureYa94STEMbox_update_FigureYa94STEMbox_update",
+    "title": "FigureYa94STEMbox_update/FigureYa94STEMbox_update.html",
+    "html": "FigureYa94STEMbox_update/FigureYa94STEMbox_update.html",
+    "text": "texts/main_FigureYa94STEMbox_update_FigureYa94STEMbox_update.txt",
+    "folder": "FigureYa94STEMbox_update",
+    "thumb": "gallery_compress/FigureYa94.webp"
+  },
+  {
+    "id": "main_FigureYa95pairwise_FigureYa95pairwise",
+    "title": "FigureYa95pairwise/FigureYa95pairwise.html",
+    "html": "FigureYa95pairwise/FigureYa95pairwise.html",
+    "text": "texts/main_FigureYa95pairwise_FigureYa95pairwise.txt",
+    "folder": "FigureYa95pairwise",
+    "thumb": "gallery_compress/FigureYa95.webp"
+  },
+  {
+    "id": "main_FigureYa96R2_FigureYa96R2",
+    "title": "FigureYa96R2/FigureYa96R2.html",
+    "html": "FigureYa96R2/FigureYa96R2.html",
+    "text": "texts/main_FigureYa96R2_FigureYa96R2.txt",
+    "folder": "FigureYa96R2",
+    "thumb": "gallery_compress/FigureYa96.webp"
+  },
+  {
+    "id": "main_FigureYa97correlationV3_FigureYa97correlationV3",
+    "title": "FigureYa97correlationV3/FigureYa97correlationV3.html",
+    "html": "FigureYa97correlationV3/FigureYa97correlationV3.html",
+    "text": "texts/main_FigureYa97correlationV3_FigureYa97correlationV3.txt",
+    "folder": "FigureYa97correlationV3",
+    "thumb": "gallery_compress/FigureYa97.webp"
+  },
+  {
+    "id": "main_FigureYa98STEMheatmapV2_FigureYa98STEMheatmapV2",
+    "title": "FigureYa98STEMheatmapV2/FigureYa98STEMheatmapV2.html",
+    "html": "FigureYa98STEMheatmapV2/FigureYa98STEMheatmapV2.html",
+    "text": "texts/main_FigureYa98STEMheatmapV2_FigureYa98STEMheatmapV2.txt",
+    "folder": "FigureYa98STEMheatmapV2",
+    "thumb": "gallery_compress/FigureYa98.webp"
+  },
+  {
+    "id": "main_FigureYa99smoothHRv2_FigureYa99smoothHRv2",
+    "title": "FigureYa99smoothHRv2/FigureYa99smoothHRv2.html",
+    "html": "FigureYa99smoothHRv2/FigureYa99smoothHRv2.html",
+    "text": "texts/main_FigureYa99smoothHRv2_FigureYa99smoothHRv2.txt",
+    "folder": "FigureYa99smoothHRv2",
+    "thumb": "gallery_compress/FigureYa99.webp"
+  },
+  {
+    "id": "main_FigureYa101PCA_FigureYa101PCA",
+    "title": "FigureYa101PCA/FigureYa101PCA.html",
+    "html": "FigureYa101PCA/FigureYa101PCA.html",
+    "text": "texts/main_FigureYa101PCA_FigureYa101PCA.txt",
+    "folder": "FigureYa101PCA",
+    "thumb": "gallery_compress/FigureYa101.webp"
+  },
+  {
+    "id": "main_FigureYa102multipanelROC_FigureYa102multipanelROC",
+    "title": "FigureYa102multipanelROC/FigureYa102multipanelROC.html",
+    "html": "FigureYa102multipanelROC/FigureYa102multipanelROC.html",
+    "text": "texts/main_FigureYa102multipanelROC_FigureYa102multipanelROC.txt",
+    "folder": "FigureYa102multipanelROC",
+    "thumb": "gallery_compress/FigureYa102.webp"
+  },
+  {
+    "id": "main_FigureYa103coAbundant_FigureYa103coAbundant",
+    "title": "FigureYa103coAbundant/FigureYa103coAbundant.html",
+    "html": "FigureYa103coAbundant/FigureYa103coAbundant.html",
+    "text": "texts/main_FigureYa103coAbundant_FigureYa103coAbundant.txt",
+    "folder": "FigureYa103coAbundant",
+    "thumb": "gallery_compress/FigureYa103.webp"
+  },
+  {
+    "id": "main_FigureYa104GEOmining_FigureYa104GEOmining",
+    "title": "FigureYa104GEOmining/FigureYa104GEOmining.html",
+    "html": "FigureYa104GEOmining/FigureYa104GEOmining.html",
+    "text": "texts/main_FigureYa104GEOmining_FigureYa104GEOmining.txt",
+    "folder": "FigureYa104GEOmining",
+    "thumb": "gallery_compress/FigureYa104.webp"
+  },
+  {
+    "id": "main_FigureYa104GEOmining_GEO_citations",
+    "title": "FigureYa104GEOmining/GEO_citations.html",
+    "html": "FigureYa104GEOmining/GEO_citations.html",
+    "text": "texts/main_FigureYa104GEOmining_GEO_citations.txt",
+    "folder": "FigureYa104GEOmining",
+    "thumb": "gallery_compress/FigureYa104.webp"
+  },
+  {
+    "id": "main_FigureYa105GDSC_FigureYa105GDSC",
+    "title": "FigureYa105GDSC/FigureYa105GDSC.html",
+    "html": "FigureYa105GDSC/FigureYa105GDSC.html",
+    "text": "texts/main_FigureYa105GDSC_FigureYa105GDSC.txt",
+    "folder": "FigureYa105GDSC",
+    "thumb": "gallery_compress/FigureYa105.webp"
+  },
+  {
+    "id": "main_FigureYa106immunotherapy_FigureYa106immunotherapy",
+    "title": "FigureYa106immunotherapy/FigureYa106immunotherapy.html",
+    "html": "FigureYa106immunotherapy/FigureYa106immunotherapy.html",
+    "text": "texts/main_FigureYa106immunotherapy_FigureYa106immunotherapy.txt",
+    "folder": "FigureYa106immunotherapy",
+    "thumb": "gallery_compress/FigureYa106.webp"
+  },
+  {
+    "id": "main_FigureYa107ChIPheatmap_FigureYa107ChIPheatmap",
+    "title": "FigureYa107ChIPheatmap/FigureYa107ChIPheatmap.html",
+    "html": "FigureYa107ChIPheatmap/FigureYa107ChIPheatmap.html",
+    "text": "texts/main_FigureYa107ChIPheatmap_FigureYa107ChIPheatmap.txt",
+    "folder": "FigureYa107ChIPheatmap",
+    "thumb": "gallery_compress/FigureYa107.webp"
+  },
+  {
+    "id": "main_FigureYa108RNAseqChIP_FigureYa108RNAseqChIP",
+    "title": "FigureYa108RNAseqChIP/FigureYa108RNAseqChIP.html",
+    "html": "FigureYa108RNAseqChIP/FigureYa108RNAseqChIP.html",
+    "text": "texts/main_FigureYa108RNAseqChIP_FigureYa108RNAseqChIP.txt",
+    "folder": "FigureYa108RNAseqChIP",
+    "thumb": "gallery_compress/FigureYa108.webp"
+  },
+  {
+    "id": "main_FigureYa109SubtypeGSEA_update_FigureYa109SubtypeGSEA_update",
+    "title": "FigureYa109SubtypeGSEA_update/FigureYa109SubtypeGSEA_update.html",
+    "html": "FigureYa109SubtypeGSEA_update/FigureYa109SubtypeGSEA_update.html",
+    "text": "texts/main_FigureYa109SubtypeGSEA_update_FigureYa109SubtypeGSEA_update.txt",
+    "folder": "FigureYa109SubtypeGSEA_update",
+    "thumb": "gallery_compress/FigureYa109.webp"
+  },
+  {
+    "id": "main_FigureYa110mutationSignature_FigureYa110mutationSignature",
+    "title": "FigureYa110mutationSignature/FigureYa110mutationSignature.html",
+    "html": "FigureYa110mutationSignature/FigureYa110mutationSignature.html",
+    "text": "texts/main_FigureYa110mutationSignature_FigureYa110mutationSignature.txt",
+    "folder": "FigureYa110mutationSignature",
+    "thumb": "gallery_compress/FigureYa110.webp"
+  },
+  {
+    "id": "main_FigureYa111markerGene_FigureYa111markerGene_step2_win10",
+    "title": "FigureYa111markerGene/FigureYa111markerGene_step2_win10.html",
+    "html": "FigureYa111markerGene/FigureYa111markerGene_step2_win10.html",
+    "text": "texts/main_FigureYa111markerGene_FigureYa111markerGene_step2_win10.txt",
+    "folder": "FigureYa111markerGene",
+    "thumb": "gallery_compress/FigureYa111.webp"
+  },
+  {
+    "id": "main_FigureYa111markerGene_FigureYa111markerGene_step1",
+    "title": "FigureYa111markerGene/FigureYa111markerGene_step1.html",
+    "html": "FigureYa111markerGene/FigureYa111markerGene_step1.html",
+    "text": "texts/main_FigureYa111markerGene_FigureYa111markerGene_step1.txt",
+    "folder": "FigureYa111markerGene",
+    "thumb": "gallery_compress/FigureYa111.webp"
+  },
+  {
+    "id": "main_FigureYa111markerGene_FigureYa111markerGene_step2_linuxMAC",
+    "title": "FigureYa111markerGene/FigureYa111markerGene_step2_linuxMAC.html",
+    "html": "FigureYa111markerGene/FigureYa111markerGene_step2_linuxMAC.html",
+    "text": "texts/main_FigureYa111markerGene_FigureYa111markerGene_step2_linuxMAC.txt",
+    "folder": "FigureYa111markerGene",
+    "thumb": "gallery_compress/FigureYa111.webp"
+  },
+  {
+    "id": "main_FigureYa112Plus_venn_FigureYa112Plus_venn",
+    "title": "FigureYa112Plus_venn/FigureYa112Plus_venn.html",
+    "html": "FigureYa112Plus_venn/FigureYa112Plus_venn.html",
+    "text": "texts/main_FigureYa112Plus_venn_FigureYa112Plus_venn.txt",
+    "folder": "FigureYa112Plus_venn",
+    "thumb": "gallery_compress/FigureYa112.webp"
+  },
+  {
+    "id": "main_FigureYa112venn_FigureYa112venn",
+    "title": "FigureYa112venn/FigureYa112venn.html",
+    "html": "FigureYa112venn/FigureYa112venn.html",
+    "text": "texts/main_FigureYa112venn_FigureYa112venn.txt",
+    "folder": "FigureYa112venn",
+    "thumb": "gallery_compress/FigureYa112.webp"
+  },
+  {
+    "id": "main_FigureYa113MutSigCV_FigureYa113MutSigCV",
+    "title": "FigureYa113MutSigCV/FigureYa113MutSigCV.html",
+    "html": "FigureYa113MutSigCV/FigureYa113MutSigCV.html",
+    "text": "texts/main_FigureYa113MutSigCV_FigureYa113MutSigCV.txt",
+    "folder": "FigureYa113MutSigCV",
+    "thumb": "gallery_compress/FigureYa113.webp"
+  },
+  {
+    "id": "main_FigureYa114ternaryCluster_FigureYa114ternaryCluster",
+    "title": "FigureYa114ternaryCluster/FigureYa114ternaryCluster.html",
+    "html": "FigureYa114ternaryCluster/FigureYa114ternaryCluster.html",
+    "text": "texts/main_FigureYa114ternaryCluster_FigureYa114ternaryCluster.txt",
+    "folder": "FigureYa114ternaryCluster",
+    "thumb": "gallery_compress/FigureYa114.webp"
+  },
+  {
+    "id": "main_FigureYa115cofactor_FigureYa115cofactor",
+    "title": "FigureYa115cofactor/FigureYa115cofactor.html",
+    "html": "FigureYa115cofactor/FigureYa115cofactor.html",
+    "text": "texts/main_FigureYa115cofactor_FigureYa115cofactor.txt",
+    "folder": "FigureYa115cofactor",
+    "thumb": "gallery_compress/FigureYa115.webp"
+  },
+  {
+    "id": "main_FigureYa116supervisedCluster_FigureYa116supervisedCluster",
+    "title": "FigureYa116supervisedCluster/FigureYa116supervisedCluster.html",
+    "html": "FigureYa116supervisedCluster/FigureYa116supervisedCluster.html",
+    "text": "texts/main_FigureYa116supervisedCluster_FigureYa116supervisedCluster.txt",
+    "folder": "FigureYa116supervisedCluster",
+    "thumb": "gallery_compress/FigureYa116.webp"
+  },
+  {
+    "id": "main_FigureYa117multilinearDE_FigureYa117multilinearDE",
+    "title": "FigureYa117multilinearDE/FigureYa117multilinearDE.html",
+    "html": "FigureYa117multilinearDE/FigureYa117multilinearDE.html",
+    "text": "texts/main_FigureYa117multilinearDE_FigureYa117multilinearDE.txt",
+    "folder": "FigureYa117multilinearDE",
+    "thumb": "gallery_compress/FigureYa117.webp"
+  },
+  {
+    "id": "main_FigureYa118MulticlassDESeq2_FigureYa118MulticlassDESeq2",
+    "title": "FigureYa118MulticlassDESeq2/FigureYa118MulticlassDESeq2.html",
+    "html": "FigureYa118MulticlassDESeq2/FigureYa118MulticlassDESeq2.html",
+    "text": "texts/main_FigureYa118MulticlassDESeq2_FigureYa118MulticlassDESeq2.txt",
+    "folder": "FigureYa118MulticlassDESeq2",
+    "thumb": "gallery_compress/FigureYa118.webp"
+  },
+  {
+    "id": "main_FigureYa119Multiclasslimma_FigureYa119Multiclasslimma",
+    "title": "FigureYa119Multiclasslimma/FigureYa119Multiclasslimma.html",
+    "html": "FigureYa119Multiclasslimma/FigureYa119Multiclasslimma.html",
+    "text": "texts/main_FigureYa119Multiclasslimma_FigureYa119Multiclasslimma.txt",
+    "folder": "FigureYa119Multiclasslimma",
+    "thumb": "gallery_compress/FigureYa119.webp"
+  },
+  {
+    "id": "main_FigureYa120MulticlassedgeR_FigureYa120MulticlassedgeR",
+    "title": "FigureYa120MulticlassedgeR/FigureYa120MulticlassedgeR.html",
+    "html": "FigureYa120MulticlassedgeR/FigureYa120MulticlassedgeR.html",
+    "text": "texts/main_FigureYa120MulticlassedgeR_FigureYa120MulticlassedgeR.txt",
+    "folder": "FigureYa120MulticlassedgeR",
+    "thumb": "gallery_compress/FigureYa120.webp"
+  },
+  {
+    "id": "main_FigureYa121MethCGIcluster_FigureYa121MethCGIcluster",
+    "title": "FigureYa121MethCGIcluster/FigureYa121MethCGIcluster.html",
+    "html": "FigureYa121MethCGIcluster/FigureYa121MethCGIcluster.html",
+    "text": "texts/main_FigureYa121MethCGIcluster_FigureYa121MethCGIcluster.txt",
+    "folder": "FigureYa121MethCGIcluster",
+    "thumb": "gallery_compress/FigureYa121.webp"
+  },
+  {
+    "id": "main_FigureYa122mut2expr_FigureYa122mut2expr",
+    "title": "FigureYa122mut2expr/FigureYa122mut2expr.html",
+    "html": "FigureYa122mut2expr/FigureYa122mut2expr.html",
+    "text": "texts/main_FigureYa122mut2expr_FigureYa122mut2expr.txt",
+    "folder": "FigureYa122mut2expr",
+    "thumb": "gallery_compress/FigureYa122.webp"
+  },
+  {
+    "id": "main_FigureYa123mutVSexpr_FigureYa123mutVSexpr",
+    "title": "FigureYa123mutVSexpr/FigureYa123mutVSexpr.html",
+    "html": "FigureYa123mutVSexpr/FigureYa123mutVSexpr.html",
+    "text": "texts/main_FigureYa123mutVSexpr_FigureYa123mutVSexpr.txt",
+    "folder": "FigureYa123mutVSexpr",
+    "thumb": "gallery_compress/FigureYa123.webp"
+  },
+  {
+    "id": "main_FigureYa124AssociationHeatmap_FigureYa124AssociationHeatmap",
+    "title": "FigureYa124AssociationHeatmap/FigureYa124AssociationHeatmap.html",
+    "html": "FigureYa124AssociationHeatmap/FigureYa124AssociationHeatmap.html",
+    "text": "texts/main_FigureYa124AssociationHeatmap_FigureYa124AssociationHeatmap.txt",
+    "folder": "FigureYa124AssociationHeatmap",
+    "thumb": "gallery_compress/FigureYa124.webp"
+  },
+  {
+    "id": "main_FigureYa125FishertestV2_FigureYa125FishertestV2",
+    "title": "FigureYa125FishertestV2/FigureYa125FishertestV2.html",
+    "html": "FigureYa125FishertestV2/FigureYa125FishertestV2.html",
+    "text": "texts/main_FigureYa125FishertestV2_FigureYa125FishertestV2.txt",
+    "folder": "FigureYa125FishertestV2",
+    "thumb": "gallery_compress/FigureYa125.webp"
+  },
+  {
+    "id": "main_FigureYa126CorrelationHeatmap_FigureYa126CorrelationHeatmap",
+    "title": "FigureYa126CorrelationHeatmap/FigureYa126CorrelationHeatmap.html",
+    "html": "FigureYa126CorrelationHeatmap/FigureYa126CorrelationHeatmap.html",
+    "text": "texts/main_FigureYa126CorrelationHeatmap_FigureYa126CorrelationHeatmap.txt",
+    "folder": "FigureYa126CorrelationHeatmap",
+    "thumb": "gallery_compress/FigureYa126.webp"
+  },
+  {
+    "id": "main_FigureYa127HeatmapPie_FigureYa127HeatmapPie",
+    "title": "FigureYa127HeatmapPie/FigureYa127HeatmapPie.html",
+    "html": "FigureYa127HeatmapPie/FigureYa127HeatmapPie.html",
+    "text": "texts/main_FigureYa127HeatmapPie_FigureYa127HeatmapPie.txt",
+    "folder": "FigureYa127HeatmapPie",
+    "thumb": "gallery_compress/FigureYa127.webp"
+  },
+  {
+    "id": "main_FigureYa128Prognostic_FigureYa128Prognostic",
+    "title": "FigureYa128Prognostic/FigureYa128Prognostic.html",
+    "html": "FigureYa128Prognostic/FigureYa128Prognostic.html",
+    "text": "texts/main_FigureYa128Prognostic_FigureYa128Prognostic.txt",
+    "folder": "FigureYa128Prognostic",
+    "thumb": "gallery_compress/FigureYa128.webp"
+  },
+  {
+    "id": "main_FigureYa129TCGAbox_FigureYa129TCGAbox",
+    "title": "FigureYa129TCGAbox/FigureYa129TCGAbox.html",
+    "html": "FigureYa129TCGAbox/FigureYa129TCGAbox.html",
+    "text": "texts/main_FigureYa129TCGAbox_FigureYa129TCGAbox.txt",
+    "folder": "FigureYa129TCGAbox",
+    "thumb": "gallery_compress/FigureYa129.webp"
+  },
+  {
+    "id": "main_FigureYa130coxSVM_FigureYa130coxSVM_step12",
+    "title": "FigureYa130coxSVM/FigureYa130coxSVM_step12.html",
+    "html": "FigureYa130coxSVM/FigureYa130coxSVM_step12.html",
+    "text": "texts/main_FigureYa130coxSVM_FigureYa130coxSVM_step12.txt",
+    "folder": "FigureYa130coxSVM",
+    "thumb": "gallery_compress/FigureYa130.webp"
+  },
+  {
+    "id": "main_FigureYa131CMap_update_FigureYa131CMap_update",
+    "title": "FigureYa131CMap_update/FigureYa131CMap_update.html",
+    "html": "FigureYa131CMap_update/FigureYa131CMap_update.html",
+    "text": "texts/main_FigureYa131CMap_update_FigureYa131CMap_update.txt",
+    "folder": "FigureYa131CMap_update",
+    "thumb": "gallery_compress/FigureYa131.webp"
+  },
+  {
+    "id": "main_FigureYa132alteration_FigureYa132alteration",
+    "title": "FigureYa132alteration/FigureYa132alteration.html",
+    "html": "FigureYa132alteration/FigureYa132alteration.html",
+    "text": "texts/main_FigureYa132alteration_FigureYa132alteration.txt",
+    "folder": "FigureYa132alteration",
+    "thumb": "gallery_compress/FigureYa132.webp"
+  },
+  {
+    "id": "main_FigureYa133m6Apeak_update_FigureYa133m6Apeak_update",
+    "title": "FigureYa133m6Apeak_update/FigureYa133m6Apeak_update.html",
+    "html": "FigureYa133m6Apeak_update/FigureYa133m6Apeak_update.html",
+    "text": "texts/main_FigureYa133m6Apeak_update_FigureYa133m6Apeak_update.txt",
+    "folder": "FigureYa133m6Apeak_update",
+    "thumb": "gallery_compress/FigureYa133.webp"
+  },
+  {
+    "id": "main_FigureYa135multiVolcano_FigureYa135multiVolcano",
+    "title": "FigureYa135multiVolcano/FigureYa135multiVolcano.html",
+    "html": "FigureYa135multiVolcano/FigureYa135multiVolcano.html",
+    "text": "texts/main_FigureYa135multiVolcano_FigureYa135multiVolcano.txt",
+    "folder": "FigureYa135multiVolcano",
+    "thumb": "gallery_compress/FigureYa135.webp"
+  },
+  {
+    "id": "main_FigureYa136fgsea_FigureYa136fgsea",
+    "title": "FigureYa136fgsea/FigureYa136fgsea.html",
+    "html": "FigureYa136fgsea/FigureYa136fgsea.html",
+    "text": "texts/main_FigureYa136fgsea_FigureYa136fgsea.txt",
+    "folder": "FigureYa136fgsea",
+    "thumb": "gallery_compress/FigureYa136.webp"
+  },
+  {
+    "id": "main_FigureYa138NiceCalibration_FigureYa138NiceCalibration",
+    "title": "FigureYa138NiceCalibration/FigureYa138NiceCalibration.html",
+    "html": "FigureYa138NiceCalibration/FigureYa138NiceCalibration.html",
+    "text": "texts/main_FigureYa138NiceCalibration_FigureYa138NiceCalibration.txt",
+    "folder": "FigureYa138NiceCalibration",
+    "thumb": "gallery_compress/FigureYa138.webp"
+  },
+  {
+    "id": "main_FigureYa139TMB_titv_FigureYa139TMB_titv",
+    "title": "FigureYa139TMB_titv/FigureYa139TMB_titv.html",
+    "html": "FigureYa139TMB_titv/FigureYa139TMB_titv.html",
+    "text": "texts/main_FigureYa139TMB_titv_FigureYa139TMB_titv.txt",
+    "folder": "FigureYa139TMB_titv",
+    "thumb": "gallery_compress/FigureYa139.webp"
+  },
+  {
+    "id": "main_FigureYa140mosaicpie_FigureYa140mosaicpie",
+    "title": "FigureYa140mosaicpie/FigureYa140mosaicpie.html",
+    "html": "FigureYa140mosaicpie/FigureYa140mosaicpie.html",
+    "text": "texts/main_FigureYa140mosaicpie_FigureYa140mosaicpie.txt",
+    "folder": "FigureYa140mosaicpie",
+    "thumb": "gallery_compress/FigureYa140.webp"
+  },
+  {
+    "id": "main_FigureYa141risk_FigureYa141risk",
+    "title": "FigureYa141risk/FigureYa141risk.html",
+    "html": "FigureYa141risk/FigureYa141risk.html",
+    "text": "texts/main_FigureYa141risk_FigureYa141risk.txt",
+    "folder": "FigureYa141risk",
+    "thumb": "gallery_compress/FigureYa141.webp"
+  },
+  {
+    "id": "main_FigureYa142circosBar_FigureYa142circosBar",
+    "title": "FigureYa142circosBar/FigureYa142circosBar.html",
+    "html": "FigureYa142circosBar/FigureYa142circosBar.html",
+    "text": "texts/main_FigureYa142circosBar_FigureYa142circosBar.txt",
+    "folder": "FigureYa142circosBar",
+    "thumb": "gallery_compress/FigureYa142.webp"
+  },
+  {
+    "id": "main_FigureYa143survCor_FigureYa143survCor",
+    "title": "FigureYa143survCor/FigureYa143survCor.html",
+    "html": "FigureYa143survCor/FigureYa143survCor.html",
+    "text": "texts/main_FigureYa143survCor_FigureYa143survCor.txt",
+    "folder": "FigureYa143survCor",
+    "thumb": "gallery_compress/FigureYa143.webp"
+  },
+  {
+    "id": "main_FigureYa144DiagHeatmap_FigureYa144DiagHeatmap",
+    "title": "FigureYa144DiagHeatmap/FigureYa144DiagHeatmap.html",
+    "html": "FigureYa144DiagHeatmap/FigureYa144DiagHeatmap.html",
+    "text": "texts/main_FigureYa144DiagHeatmap_FigureYa144DiagHeatmap.txt",
+    "folder": "FigureYa144DiagHeatmap",
+    "thumb": "gallery_compress/FigureYa144.webp"
+  },
+  {
+    "id": "main_FigureYa145target_FigureYa145target",
+    "title": "FigureYa145target/FigureYa145target.html",
+    "html": "FigureYa145target/FigureYa145target.html",
+    "text": "texts/main_FigureYa145target_FigureYa145target.txt",
+    "folder": "FigureYa145target",
+    "thumb": "gallery_compress/FigureYa145.webp"
+  },
+  {
+    "id": "main_FigureYa146TMEbox_FigureYa146TMEbox",
+    "title": "FigureYa146TMEbox/FigureYa146TMEbox.html",
+    "html": "FigureYa146TMEbox/FigureYa146TMEbox.html",
+    "text": "texts/main_FigureYa146TMEbox_FigureYa146TMEbox.txt",
+    "folder": "FigureYa146TMEbox",
+    "thumb": "gallery_compress/FigureYa146.webp"
+  },
+  {
+    "id": "main_FigureYa147interaction_FigureYa147interaction",
+    "title": "FigureYa147interaction/FigureYa147interaction.html",
+    "html": "FigureYa147interaction/FigureYa147interaction.html",
+    "text": "texts/main_FigureYa147interaction_FigureYa147interaction.txt",
+    "folder": "FigureYa147interaction",
+    "thumb": "gallery_compress/FigureYa147.webp"
+  },
+  {
+    "id": "main_FigureYa148SimpleDendrogram_FigureYa148SimpleDendrogram",
+    "title": "FigureYa148SimpleDendrogram/FigureYa148SimpleDendrogram.html",
+    "html": "FigureYa148SimpleDendrogram/FigureYa148SimpleDendrogram.html",
+    "text": "texts/main_FigureYa148SimpleDendrogram_FigureYa148SimpleDendrogram.txt",
+    "folder": "FigureYa148SimpleDendrogram",
+    "thumb": "gallery_compress/FigureYa148.webp"
+  },
+  {
+    "id": "main_FigureYa149rankHeatmap_FigureYa149rankHeatmap",
+    "title": "FigureYa149rankHeatmap/FigureYa149rankHeatmap.html",
+    "html": "FigureYa149rankHeatmap/FigureYa149rankHeatmap.html",
+    "text": "texts/main_FigureYa149rankHeatmap_FigureYa149rankHeatmap.txt",
+    "folder": "FigureYa149rankHeatmap",
+    "thumb": "gallery_compress/FigureYa149.webp"
+  },
+  {
+    "id": "main_FigureYa150diversityScore_FigureYa150diversityScore",
+    "title": "FigureYa150diversityScore/FigureYa150diversityScore.html",
+    "html": "FigureYa150diversityScore/FigureYa150diversityScore.html",
+    "text": "texts/main_FigureYa150diversityScore_FigureYa150diversityScore.txt",
+    "folder": "FigureYa150diversityScore",
+    "thumb": "gallery_compress/FigureYa150.webp"
+  },
+  {
+    "id": "main_FigureYa151pathifier_FigureYa151pathifier",
+    "title": "FigureYa151pathifier/FigureYa151pathifier.html",
+    "html": "FigureYa151pathifier/FigureYa151pathifier.html",
+    "text": "texts/main_FigureYa151pathifier_FigureYa151pathifier.txt",
+    "folder": "FigureYa151pathifier",
+    "thumb": "gallery_compress/FigureYa151.webp"
+  },
+  {
+    "id": "main_FigureYa152DouleCorPlot_FigureYa152DouleCorPlot",
+    "title": "FigureYa152DouleCorPlot/FigureYa152DouleCorPlot.html",
+    "html": "FigureYa152DouleCorPlot/FigureYa152DouleCorPlot.html",
+    "text": "texts/main_FigureYa152DouleCorPlot_FigureYa152DouleCorPlot.txt",
+    "folder": "FigureYa152DouleCorPlot",
+    "thumb": "gallery_compress/FigureYa152.webp"
+  },
+  {
+    "id": "main_FigureYa153ccgraph_FigureYa153ccgraph",
+    "title": "FigureYa153ccgraph/FigureYa153ccgraph.html",
+    "html": "FigureYa153ccgraph/FigureYa153ccgraph.html",
+    "text": "texts/main_FigureYa153ccgraph_FigureYa153ccgraph.txt",
+    "folder": "FigureYa153ccgraph",
+    "thumb": "gallery_compress/FigureYa153.webp"
+  },
+  {
+    "id": "main_FigureYa154immuneSubtypes_FigureYa154immuneSubtypes",
+    "title": "FigureYa154immuneSubtypes/FigureYa154immuneSubtypes.html",
+    "html": "FigureYa154immuneSubtypes/FigureYa154immuneSubtypes.html",
+    "text": "texts/main_FigureYa154immuneSubtypes_FigureYa154immuneSubtypes.txt",
+    "folder": "FigureYa154immuneSubtypes",
+    "thumb": "gallery_compress/FigureYa154.webp"
+  },
+  {
+    "id": "main_FigureYa155ATAC_FigureYa155ATAC",
+    "title": "FigureYa155ATAC/FigureYa155ATAC.html",
+    "html": "FigureYa155ATAC/FigureYa155ATAC.html",
+    "text": "texts/main_FigureYa155ATAC_FigureYa155ATAC.txt",
+    "folder": "FigureYa155ATAC",
+    "thumb": "gallery_compress/FigureYa155.webp"
+  },
+  {
+    "id": "main_FigureYa156enrichSimulation_FigureYa156enrichSimulation",
+    "title": "FigureYa156enrichSimulation/FigureYa156enrichSimulation.html",
+    "html": "FigureYa156enrichSimulation/FigureYa156enrichSimulation.html",
+    "text": "texts/main_FigureYa156enrichSimulation_FigureYa156enrichSimulation.txt",
+    "folder": "FigureYa156enrichSimulation",
+    "thumb": "gallery_compress/FigureYa156.webp"
+  },
+  {
+    "id": "main_FigureYa157ChIPpvalue_FigureYa157ChIPpvalue",
+    "title": "FigureYa157ChIPpvalue/FigureYa157ChIPpvalue.html",
+    "html": "FigureYa157ChIPpvalue/FigureYa157ChIPpvalue.html",
+    "text": "texts/main_FigureYa157ChIPpvalue_FigureYa157ChIPpvalue.txt",
+    "folder": "FigureYa157ChIPpvalue",
+    "thumb": "gallery_compress/FigureYa157.webp"
+  },
+  {
+    "id": "main_FigureYa158MutationPattern_FigureYa158MutationPattern",
+    "title": "FigureYa158MutationPattern/FigureYa158MutationPattern.html",
+    "html": "FigureYa158MutationPattern/FigureYa158MutationPattern.html",
+    "text": "texts/main_FigureYa158MutationPattern_FigureYa158MutationPattern.txt",
+    "folder": "FigureYa158MutationPattern",
+    "thumb": "gallery_compress/FigureYa158.webp"
+  },
+  {
+    "id": "main_FigureYa159LR_RF_V2_FigureYa159LR_RF_V2",
+    "title": "FigureYa159LR_RF_V2/FigureYa159LR_RF_V2.html",
+    "html": "FigureYa159LR_RF_V2/FigureYa159LR_RF_V2.html",
+    "text": "texts/main_FigureYa159LR_RF_V2_FigureYa159LR_RF_V2.txt",
+    "folder": "FigureYa159LR_RF_V2",
+    "thumb": "gallery_compress/FigureYa159.webp"
+  },
+  {
+    "id": "main_FigureYa160scGSVA_FigureYa160scGSVA",
+    "title": "FigureYa160scGSVA/FigureYa160scGSVA.html",
+    "html": "FigureYa160scGSVA/FigureYa160scGSVA.html",
+    "text": "texts/main_FigureYa160scGSVA_FigureYa160scGSVA.txt",
+    "folder": "FigureYa160scGSVA",
+    "thumb": "gallery_compress/FigureYa160.webp"
+  },
+  {
+    "id": "main_FigureYa161stemness_FigureYa161stemness",
+    "title": "FigureYa161stemness/FigureYa161stemness.html",
+    "html": "FigureYa161stemness/FigureYa161stemness.html",
+    "text": "texts/main_FigureYa161stemness_FigureYa161stemness.txt",
+    "folder": "FigureYa161stemness",
+    "thumb": "gallery_compress/FigureYa161.webp"
+  },
+  {
+    "id": "main_FigureYa162boxViolin_FigureYa162boxViolin",
+    "title": "FigureYa162boxViolin/FigureYa162boxViolin.html",
+    "html": "FigureYa162boxViolin/FigureYa162boxViolin.html",
+    "text": "texts/main_FigureYa162boxViolin_FigureYa162boxViolin.txt",
+    "folder": "FigureYa162boxViolin",
+    "thumb": "gallery_compress/FigureYa162.webp"
+  },
+  {
+    "id": "main_FigureYa163twoVarCor_update_FigureYa163twoVarCor_update",
+    "title": "FigureYa163twoVarCor_update/FigureYa163twoVarCor_update.html",
+    "html": "FigureYa163twoVarCor_update/FigureYa163twoVarCor_update.html",
+    "text": "texts/main_FigureYa163twoVarCor_update_FigureYa163twoVarCor_update.txt",
+    "folder": "FigureYa163twoVarCor_update",
+    "thumb": "gallery_compress/FigureYa163.webp"
+  },
+  {
+    "id": "main_FigureYa164PCA3D_FigureYa164PCA3D",
+    "title": "FigureYa164PCA3D/FigureYa164PCA3D.html",
+    "html": "FigureYa164PCA3D/FigureYa164PCA3D.html",
+    "text": "texts/main_FigureYa164PCA3D_FigureYa164PCA3D.txt",
+    "folder": "FigureYa164PCA3D",
+    "thumb": "gallery_compress/FigureYa164.webp"
+  },
+  {
+    "id": "main_FigureYa165heatmapPvalue_FigureYa165heatmapPvalue",
+    "title": "FigureYa165heatmapPvalue/FigureYa165heatmapPvalue.html",
+    "html": "FigureYa165heatmapPvalue/FigureYa165heatmapPvalue.html",
+    "text": "texts/main_FigureYa165heatmapPvalue_FigureYa165heatmapPvalue.txt",
+    "folder": "FigureYa165heatmapPvalue",
+    "thumb": "gallery_compress/FigureYa165.webp"
+  },
+  {
+    "id": "main_FigureYa166scCNV_FigureYa166scCNV",
+    "title": "FigureYa166scCNV/FigureYa166scCNV.html",
+    "html": "FigureYa166scCNV/FigureYa166scCNV.html",
+    "text": "texts/main_FigureYa166scCNV_FigureYa166scCNV.txt",
+    "folder": "FigureYa166scCNV",
+    "thumb": "gallery_compress/FigureYa166.webp"
+  },
+  {
+    "id": "main_FigureYa167TumorIndex_FigureYa167TumorIndex",
+    "title": "FigureYa167TumorIndex/FigureYa167TumorIndex.html",
+    "html": "FigureYa167TumorIndex/FigureYa167TumorIndex.html",
+    "text": "texts/main_FigureYa167TumorIndex_FigureYa167TumorIndex.txt",
+    "folder": "FigureYa167TumorIndex",
+    "thumb": "gallery_compress/FigureYa167.webp"
+  },
+  {
+    "id": "main_FigureYa168legoplot_FigureYa168legoplot",
+    "title": "FigureYa168legoplot/FigureYa168legoplot.html",
+    "html": "FigureYa168legoplot/FigureYa168legoplot.html",
+    "text": "texts/main_FigureYa168legoplot_FigureYa168legoplot.txt",
+    "folder": "FigureYa168legoplot",
+    "thumb": "gallery_compress/FigureYa168.webp"
+  },
+  {
+    "id": "main_FigureYa169sigHeatmap_FigureYa169sigHeatmap",
+    "title": "FigureYa169sigHeatmap/FigureYa169sigHeatmap.html",
+    "html": "FigureYa169sigHeatmap/FigureYa169sigHeatmap.html",
+    "text": "texts/main_FigureYa169sigHeatmap_FigureYa169sigHeatmap.txt",
+    "folder": "FigureYa169sigHeatmap",
+    "thumb": "gallery_compress/FigureYa169.webp"
+  },
+  {
+    "id": "main_FigureYa170ImmuLncRNA_FigureYa170ImmuLncRNA",
+    "title": "FigureYa170ImmuLncRNA/FigureYa170ImmuLncRNA.html",
+    "html": "FigureYa170ImmuLncRNA/FigureYa170ImmuLncRNA.html",
+    "text": "texts/main_FigureYa170ImmuLncRNA_FigureYa170ImmuLncRNA.txt",
+    "folder": "FigureYa170ImmuLncRNA",
+    "thumb": "gallery_compress/FigureYa170.webp"
+  },
+  {
+    "id": "main_FigureYa171subgroupSurv_FigureYa171subgroupSurv",
+    "title": "FigureYa171subgroupSurv/FigureYa171subgroupSurv.html",
+    "html": "FigureYa171subgroupSurv/FigureYa171subgroupSurv.html",
+    "text": "texts/main_FigureYa171subgroupSurv_FigureYa171subgroupSurv.txt",
+    "folder": "FigureYa171subgroupSurv",
+    "thumb": "gallery_compress/FigureYa171.webp"
+  },
+  {
+    "id": "main_FigureYa172ggplot2Gviz_FigureYa172ggplot2Gviz",
+    "title": "FigureYa172ggplot2Gviz/FigureYa172ggplot2Gviz.html",
+    "html": "FigureYa172ggplot2Gviz/FigureYa172ggplot2Gviz.html",
+    "text": "texts/main_FigureYa172ggplot2Gviz_FigureYa172ggplot2Gviz.txt",
+    "folder": "FigureYa172ggplot2Gviz",
+    "thumb": "gallery_compress/FigureYa172.webp"
+  },
+  {
+    "id": "main_FigureYa173fancybar_FigureYa173fancybar",
+    "title": "FigureYa173fancybar/FigureYa173fancybar.html",
+    "html": "FigureYa173fancybar/FigureYa173fancybar.html",
+    "text": "texts/main_FigureYa173fancybar_FigureYa173fancybar.txt",
+    "folder": "FigureYa173fancybar",
+    "thumb": "gallery_compress/FigureYa173.webp"
+  },
+  {
+    "id": "main_FigureYa174squareCross_FigureYa174squareCross",
+    "title": "FigureYa174squareCross/FigureYa174squareCross.html",
+    "html": "FigureYa174squareCross/FigureYa174squareCross.html",
+    "text": "texts/main_FigureYa174squareCross_FigureYa174squareCross.txt",
+    "folder": "FigureYa174squareCross",
+    "thumb": "gallery_compress/FigureYa174.webp"
+  },
+  {
+    "id": "main_FigureYa175quadrant_FigureYa175quadrant",
+    "title": "FigureYa175quadrant/FigureYa175quadrant.html",
+    "html": "FigureYa175quadrant/FigureYa175quadrant.html",
+    "text": "texts/main_FigureYa175quadrant_FigureYa175quadrant.txt",
+    "folder": "FigureYa175quadrant",
+    "thumb": "gallery_compress/FigureYa175.webp"
+  },
+  {
+    "id": "main_FigureYa176BlandAltman_FigureYa176BlandAltman",
+    "title": "FigureYa176BlandAltman/FigureYa176BlandAltman.html",
+    "html": "FigureYa176BlandAltman/FigureYa176BlandAltman.html",
+    "text": "texts/main_FigureYa176BlandAltman_FigureYa176BlandAltman.txt",
+    "folder": "FigureYa176BlandAltman",
+    "thumb": "gallery_compress/FigureYa176.webp"
+  },
+  {
+    "id": "main_FigureYa177RNAvelocity_FigureYa177RNAvelocity",
+    "title": "FigureYa177RNAvelocity/FigureYa177RNAvelocity.html",
+    "html": "FigureYa177RNAvelocity/FigureYa177RNAvelocity.html",
+    "text": "texts/main_FigureYa177RNAvelocity_FigureYa177RNAvelocity.txt",
+    "folder": "FigureYa177RNAvelocity",
+    "thumb": "gallery_compress/FigureYa177.webp"
+  },
+  {
+    "id": "main_FigureYa178receptorLigand_FigureYa178receptorLigand",
+    "title": "FigureYa178receptorLigand/FigureYa178receptorLigand.html",
+    "html": "FigureYa178receptorLigand/FigureYa178receptorLigand.html",
+    "text": "texts/main_FigureYa178receptorLigand_FigureYa178receptorLigand.txt",
+    "folder": "FigureYa178receptorLigand",
+    "thumb": "gallery_compress/FigureYa178.webp"
+  },
+  {
+    "id": "main_FigureYa179AMDAplot_FigureYa179AMDAplot",
+    "title": "FigureYa179AMDAplot/FigureYa179AMDAplot.html",
+    "html": "FigureYa179AMDAplot/FigureYa179AMDAplot.html",
+    "text": "texts/main_FigureYa179AMDAplot_FigureYa179AMDAplot.txt",
+    "folder": "FigureYa179AMDAplot",
+    "thumb": "gallery_compress/FigureYa179.webp"
+  },
+  {
+    "id": "main_FigureYa180FGAplotV2_FigureYa180FGAplotV2",
+    "title": "FigureYa180FGAplotV2/FigureYa180FGAplotV2.html",
+    "html": "FigureYa180FGAplotV2/FigureYa180FGAplotV2.html",
+    "text": "texts/main_FigureYa180FGAplotV2_FigureYa180FGAplotV2.txt",
+    "folder": "FigureYa180FGAplotV2",
+    "thumb": "gallery_compress/FigureYa180.webp"
+  },
+  {
+    "id": "main_FigureYa181multiCorrelation_FigureYa181multiCorrelation",
+    "title": "FigureYa181multiCorrelation/FigureYa181multiCorrelation.html",
+    "html": "FigureYa181multiCorrelation/FigureYa181multiCorrelation.html",
+    "text": "texts/main_FigureYa181multiCorrelation_FigureYa181multiCorrelation.txt",
+    "folder": "FigureYa181multiCorrelation",
+    "thumb": "gallery_compress/FigureYa181.webp"
+  },
+  {
+    "id": "main_FigureYa182RFSurvV2_FigureYa182RFSurvV2",
+    "title": "FigureYa182RFSurvV2/FigureYa182RFSurvV2.html",
+    "html": "FigureYa182RFSurvV2/FigureYa182RFSurvV2.html",
+    "text": "texts/main_FigureYa182RFSurvV2_FigureYa182RFSurvV2.txt",
+    "folder": "FigureYa182RFSurvV2",
+    "thumb": "gallery_compress/FigureYa182.webp"
+  },
+  {
+    "id": "main_FigureYa183condSurv_FigureYa183condSurv",
+    "title": "FigureYa183condSurv/FigureYa183condSurv.html",
+    "html": "FigureYa183condSurv/FigureYa183condSurv.html",
+    "text": "texts/main_FigureYa183condSurv_FigureYa183condSurv.txt",
+    "folder": "FigureYa183condSurv",
+    "thumb": "gallery_compress/FigureYa183.webp"
+  },
+  {
+    "id": "main_FigureYa184ranger_FigureYa184ranger",
+    "title": "FigureYa184ranger/FigureYa184ranger.html",
+    "html": "FigureYa184ranger/FigureYa184ranger.html",
+    "text": "texts/main_FigureYa184ranger_FigureYa184ranger.txt",
+    "folder": "FigureYa184ranger",
+    "thumb": "gallery_compress/FigureYa184.webp"
+  },
+  {
+    "id": "main_FigureYa185sciATAC_FigureYa185sciATAC",
+    "title": "FigureYa185sciATAC/FigureYa185sciATAC.html",
+    "html": "FigureYa185sciATAC/FigureYa185sciATAC.html",
+    "text": "texts/main_FigureYa185sciATAC_FigureYa185sciATAC.txt",
+    "folder": "FigureYa185sciATAC",
+    "thumb": "gallery_compress/FigureYa185.webp"
+  },
+  {
+    "id": "main_FigureYa186swimmerplot_FigureYa186swimmerplot",
+    "title": "FigureYa186swimmerplot/FigureYa186swimmerplot.html",
+    "html": "FigureYa186swimmerplot/FigureYa186swimmerplot.html",
+    "text": "texts/main_FigureYa186swimmerplot_FigureYa186swimmerplot.txt",
+    "folder": "FigureYa186swimmerplot",
+    "thumb": "gallery_compress/FigureYa186.webp"
+  },
+  {
+    "id": "main_FigureYa187RMS_FigureYa187RMS",
+    "title": "FigureYa187RMS/FigureYa187RMS.html",
+    "html": "FigureYa187RMS/FigureYa187RMS.html",
+    "text": "texts/main_FigureYa187RMS_FigureYa187RMS.txt",
+    "folder": "FigureYa187RMS",
+    "thumb": "gallery_compress/FigureYa187.webp"
+  },
+  {
+    "id": "main_FigureYa188CNVload_FigureYa188CNVload",
+    "title": "FigureYa188CNVload/FigureYa188CNVload.html",
+    "html": "FigureYa188CNVload/FigureYa188CNVload.html",
+    "text": "texts/main_FigureYa188CNVload_FigureYa188CNVload.txt",
+    "folder": "FigureYa188CNVload",
+    "thumb": "gallery_compress/FigureYa188.webp"
+  },
+  {
+    "id": "main_FigureYa189timeCindex_FigureYa189timeCindex",
+    "title": "FigureYa189timeCindex/FigureYa189timeCindex.html",
+    "html": "FigureYa189timeCindex/FigureYa189timeCindex.html",
+    "text": "texts/main_FigureYa189timeCindex_FigureYa189timeCindex.txt",
+    "folder": "FigureYa189timeCindex",
+    "thumb": "gallery_compress/FigureYa189.webp"
+  },
+  {
+    "id": "main_FigureYa190batchLogistic_FigureYa190batchLogistic",
+    "title": "FigureYa190batchLogistic/FigureYa190batchLogistic.html",
+    "html": "FigureYa190batchLogistic/FigureYa190batchLogistic.html",
+    "text": "texts/main_FigureYa190batchLogistic_FigureYa190batchLogistic.txt",
+    "folder": "FigureYa190batchLogistic",
+    "thumb": "gallery_compress/FigureYa190.webp"
+  },
+  {
+    "id": "main_FigureYa191bestLogistic_FigureYa191bestLogistic",
+    "title": "FigureYa191bestLogistic/FigureYa191bestLogistic.html",
+    "html": "FigureYa191bestLogistic/FigureYa191bestLogistic.html",
+    "text": "texts/main_FigureYa191bestLogistic_FigureYa191bestLogistic.txt",
+    "folder": "FigureYa191bestLogistic",
+    "thumb": "gallery_compress/FigureYa191.webp"
+  },
+  {
+    "id": "main_FigureYa192breakpoint_FigureYa192breakpoint",
+    "title": "FigureYa192breakpoint/FigureYa192breakpoint.html",
+    "html": "FigureYa192breakpoint/FigureYa192breakpoint.html",
+    "text": "texts/main_FigureYa192breakpoint_FigureYa192breakpoint.txt",
+    "folder": "FigureYa192breakpoint",
+    "thumb": "gallery_compress/FigureYa192.webp"
+  },
+  {
+    "id": "main_FigureYa193RiskTable_FigureYa193RiskTable",
+    "title": "FigureYa193RiskTable/FigureYa193RiskTable.html",
+    "html": "FigureYa193RiskTable/FigureYa193RiskTable.html",
+    "text": "texts/main_FigureYa193RiskTable_FigureYa193RiskTable.txt",
+    "folder": "FigureYa193RiskTable",
+    "thumb": "gallery_compress/FigureYa193.webp"
+  },
+  {
+    "id": "main_FigureYa194pySCENIC_FigureYa194pySCENIC",
+    "title": "FigureYa194pySCENIC/FigureYa194pySCENIC.html",
+    "html": "FigureYa194pySCENIC/FigureYa194pySCENIC.html",
+    "text": "texts/main_FigureYa194pySCENIC_FigureYa194pySCENIC.txt",
+    "folder": "FigureYa194pySCENIC",
+    "thumb": "gallery_compress/FigureYa194.webp"
+  },
+  {
+    "id": "main_FigureYa195PanPaire_FigureYa195PanPaire",
+    "title": "FigureYa195PanPaire/FigureYa195PanPaire.html",
+    "html": "FigureYa195PanPaire/FigureYa195PanPaire.html",
+    "text": "texts/main_FigureYa195PanPaire_FigureYa195PanPaire.txt",
+    "folder": "FigureYa195PanPaire",
+    "thumb": "gallery_compress/FigureYa195.webp"
+  },
+  {
+    "id": "main_FigureYa196PanPie_FigureYa196PanPie",
+    "title": "FigureYa196PanPie/FigureYa196PanPie.html",
+    "html": "FigureYa196PanPie/FigureYa196PanPie.html",
+    "text": "texts/main_FigureYa196PanPie_FigureYa196PanPie.txt",
+    "folder": "FigureYa196PanPie",
+    "thumb": "gallery_compress/FigureYa196.webp"
+  },
+  {
+    "id": "main_FigureYa197SmoothHaz_FigureYa197SmoothHaz",
+    "title": "FigureYa197SmoothHaz/FigureYa197SmoothHaz.html",
+    "html": "FigureYa197SmoothHaz/FigureYa197SmoothHaz.html",
+    "text": "texts/main_FigureYa197SmoothHaz_FigureYa197SmoothHaz.txt",
+    "folder": "FigureYa197SmoothHaz",
+    "thumb": "gallery_compress/FigureYa197.webp"
+  },
+  {
+    "id": "main_FigureYa198SignatureCombinationV2_FigureYa198SignatureCombinationV2",
+    "title": "FigureYa198SignatureCombinationV2/FigureYa198SignatureCombinationV2.html",
+    "html": "FigureYa198SignatureCombinationV2/FigureYa198SignatureCombinationV2.html",
+    "text": "texts/main_FigureYa198SignatureCombinationV2_FigureYa198SignatureCombinationV2.txt",
+    "folder": "FigureYa198SignatureCombinationV2",
+    "thumb": "gallery_compress/FigureYa198.webp"
+  },
+  {
+    "id": "main_FigureYa199crosslink_FigureYa199crosslink",
+    "title": "FigureYa199crosslink/FigureYa199crosslink.html",
+    "html": "FigureYa199crosslink/FigureYa199crosslink.html",
+    "text": "texts/main_FigureYa199crosslink_FigureYa199crosslink.txt",
+    "folder": "FigureYa199crosslink",
+    "thumb": "gallery_compress/FigureYa199.webp"
+  },
+  {
+    "id": "main_FigureYa200pairwiseAUC_FigureYa200pairwiseAUC",
+    "title": "FigureYa200pairwiseAUC/FigureYa200pairwiseAUC.html",
+    "html": "FigureYa200pairwiseAUC/FigureYa200pairwiseAUC.html",
+    "text": "texts/main_FigureYa200pairwiseAUC_FigureYa200pairwiseAUC.txt",
+    "folder": "FigureYa200pairwiseAUC",
+    "thumb": "gallery_compress/FigureYa200.webp"
+  },
+  {
+    "id": "main_FigureYa201ClusterCorrelation_FigureYa201ClusterCorrelation",
+    "title": "FigureYa201ClusterCorrelation/FigureYa201ClusterCorrelation.html",
+    "html": "FigureYa201ClusterCorrelation/FigureYa201ClusterCorrelation.html",
+    "text": "texts/main_FigureYa201ClusterCorrelation_FigureYa201ClusterCorrelation.txt",
+    "folder": "FigureYa201ClusterCorrelation",
+    "thumb": "gallery_compress/FigureYa201.webp"
+  },
+  {
+    "id": "main_FigureYa202consensusGene_FigureYa202consensusGene",
+    "title": "FigureYa202consensusGene/FigureYa202consensusGene.html",
+    "html": "FigureYa202consensusGene/FigureYa202consensusGene.html",
+    "text": "texts/main_FigureYa202consensusGene_FigureYa202consensusGene.txt",
+    "folder": "FigureYa202consensusGene",
+    "thumb": "gallery_compress/FigureYa202.webp"
+  },
+  {
+    "id": "main_FigureYa203ComBat_FigureYa203ComBat",
+    "title": "FigureYa203ComBat/FigureYa203ComBat.html",
+    "html": "FigureYa203ComBat/FigureYa203ComBat.html",
+    "text": "texts/main_FigureYa203ComBat_FigureYa203ComBat.txt",
+    "folder": "FigureYa203ComBat",
+    "thumb": "gallery_compress/FigureYa203.webp"
+  },
+  {
+    "id": "main_FigureYa204PCAscore_FigureYa204PCAscore",
+    "title": "FigureYa204PCAscore/FigureYa204PCAscore.html",
+    "html": "FigureYa204PCAscore/FigureYa204PCAscore.html",
+    "text": "texts/main_FigureYa204PCAscore_FigureYa204PCAscore.txt",
+    "folder": "FigureYa204PCAscore",
+    "thumb": "gallery_compress/FigureYa204.webp"
+  },
+  {
+    "id": "main_FigureYa205immunophenoscore_update_FigureYa205immunophenoscore_update",
+    "title": "FigureYa205immunophenoscore_update/FigureYa205immunophenoscore_update.html",
+    "html": "FigureYa205immunophenoscore_update/FigureYa205immunophenoscore_update.html",
+    "text": "texts/main_FigureYa205immunophenoscore_update_FigureYa205immunophenoscore_update.txt",
+    "folder": "FigureYa205immunophenoscore_update",
+    "thumb": "gallery_compress/FigureYa205.webp"
+  },
+  {
+    "id": "main_FigureYa206scHeatmap_FigureYa206scHeatmap",
+    "title": "FigureYa206scHeatmap/FigureYa206scHeatmap.html",
+    "html": "FigureYa206scHeatmap/FigureYa206scHeatmap.html",
+    "text": "texts/main_FigureYa206scHeatmap_FigureYa206scHeatmap.txt",
+    "folder": "FigureYa206scHeatmap",
+    "thumb": "gallery_compress/FigureYa206.webp"
+  },
+  {
+    "id": "main_FigureYa207Randomization_FigureYa207Randomization",
+    "title": "FigureYa207Randomization/FigureYa207Randomization.html",
+    "html": "FigureYa207Randomization/FigureYa207Randomization.html",
+    "text": "texts/main_FigureYa207Randomization_FigureYa207Randomization.txt",
+    "folder": "FigureYa207Randomization",
+    "thumb": "gallery_compress/FigureYa207.webp"
+  },
+  {
+    "id": "main_FigureYa208FPI_FigureYa208FPI",
+    "title": "FigureYa208FPI/FigureYa208FPI.html",
+    "html": "FigureYa208FPI/FigureYa208FPI.html",
+    "text": "texts/main_FigureYa208FPI_FigureYa208FPI.txt",
+    "folder": "FigureYa208FPI",
+    "thumb": "gallery_compress/FigureYa208.webp"
+  },
+  {
+    "id": "main_FigureYa209batchEnrich_FigureYa209batchEnrich",
+    "title": "FigureYa209batchEnrich/FigureYa209batchEnrich.html",
+    "html": "FigureYa209batchEnrich/FigureYa209batchEnrich.html",
+    "text": "texts/main_FigureYa209batchEnrich_FigureYa209batchEnrich.txt",
+    "folder": "FigureYa209batchEnrich",
+    "thumb": "gallery_compress/FigureYa209.webp"
+  },
+  {
+    "id": "main_FigureYa210survivalScape_FigureYa210survivalScape",
+    "title": "FigureYa210survivalScape/FigureYa210survivalScape.html",
+    "html": "FigureYa210survivalScape/FigureYa210survivalScape.html",
+    "text": "texts/main_FigureYa210survivalScape_FigureYa210survivalScape.txt",
+    "folder": "FigureYa210survivalScape",
+    "thumb": "gallery_compress/FigureYa210.webp"
+  },
+  {
+    "id": "main_FigureYa211multiCohortImmSubtype_FigureYa211multiCohortImmSubtype",
+    "title": "FigureYa211multiCohortImmSubtype/FigureYa211multiCohortImmSubtype.html",
+    "html": "FigureYa211multiCohortImmSubtype/FigureYa211multiCohortImmSubtype.html",
+    "text": "texts/main_FigureYa211multiCohortImmSubtype_FigureYa211multiCohortImmSubtype.txt",
+    "folder": "FigureYa211multiCohortImmSubtype",
+    "thumb": "gallery_compress/FigureYa211.webp"
+  },
+  {
+    "id": "main_FigureYa213customizeHeatmap_FigureYa213customizeHeatmap",
+    "title": "FigureYa213customizeHeatmap/FigureYa213customizeHeatmap.html",
+    "html": "FigureYa213customizeHeatmap/FigureYa213customizeHeatmap.html",
+    "text": "texts/main_FigureYa213customizeHeatmap_FigureYa213customizeHeatmap.txt",
+    "folder": "FigureYa213customizeHeatmap",
+    "thumb": "gallery_compress/FigureYa213.webp"
+  },
+  {
+    "id": "main_FigureYa214KEGG_hierarchyV2_FigureYa214KEGG_hierarchyV2",
+    "title": "FigureYa214KEGG_hierarchyV2/FigureYa214KEGG_hierarchyV2.html",
+    "html": "FigureYa214KEGG_hierarchyV2/FigureYa214KEGG_hierarchyV2.html",
+    "text": "texts/main_FigureYa214KEGG_hierarchyV2_FigureYa214KEGG_hierarchyV2.txt",
+    "folder": "FigureYa214KEGG_hierarchyV2",
+    "thumb": "gallery_compress/FigureYa214.webp"
+  },
+  {
+    "id": "main_FigureYa215DNAage_FigureYa215DNAage",
+    "title": "FigureYa215DNAage/FigureYa215DNAage.html",
+    "html": "FigureYa215DNAage/FigureYa215DNAage.html",
+    "text": "texts/main_FigureYa215DNAage_FigureYa215DNAage.txt",
+    "folder": "FigureYa215DNAage",
+    "thumb": "gallery_compress/FigureYa215.webp"
+  },
+  {
+    "id": "main_FigureYa216MetaREM_FigureYa216MetaREM",
+    "title": "FigureYa216MetaREM/FigureYa216MetaREM.html",
+    "html": "FigureYa216MetaREM/FigureYa216MetaREM.html",
+    "text": "texts/main_FigureYa216MetaREM_FigureYa216MetaREM.txt",
+    "folder": "FigureYa216MetaREM",
+    "thumb": "gallery_compress/FigureYa216.webp"
+  },
+  {
+    "id": "main_FigureYa217RMR_FigureYa217RMR",
+    "title": "FigureYa217RMR/FigureYa217RMR.html",
+    "html": "FigureYa217RMR/FigureYa217RMR.html",
+    "text": "texts/main_FigureYa217RMR_FigureYa217RMR.txt",
+    "folder": "FigureYa217RMR",
+    "thumb": "gallery_compress/FigureYa217.webp"
+  },
+  {
+    "id": "main_FigureYa218Elasticnet_FigureYa218Elasticnet",
+    "title": "FigureYa218Elasticnet/FigureYa218Elasticnet.html",
+    "html": "FigureYa218Elasticnet/FigureYa218Elasticnet.html",
+    "text": "texts/main_FigureYa218Elasticnet_FigureYa218Elasticnet.txt",
+    "folder": "FigureYa218Elasticnet",
+    "thumb": "gallery_compress/FigureYa218.webp"
+  },
+  {
+    "id": "main_FigureYa219GMM_FigureYa219GMM",
+    "title": "FigureYa219GMM/FigureYa219GMM.html",
+    "html": "FigureYa219GMM/FigureYa219GMM.html",
+    "text": "texts/main_FigureYa219GMM_FigureYa219GMM.txt",
+    "folder": "FigureYa219GMM",
+    "thumb": "gallery_compress/FigureYa219.webp"
+  },
+  {
+    "id": "main_FigureYa220repeatedLasso_FigureYa220repeatedLasso",
+    "title": "FigureYa220repeatedLasso/FigureYa220repeatedLasso.html",
+    "html": "FigureYa220repeatedLasso/FigureYa220repeatedLasso.html",
+    "text": "texts/main_FigureYa220repeatedLasso_FigureYa220repeatedLasso.txt",
+    "folder": "FigureYa220repeatedLasso",
+    "thumb": "gallery_compress/FigureYa220.webp"
+  },
+  {
+    "id": "main_FigureYa222PCAgene_FigureYa222PCAgene",
+    "title": "FigureYa222PCAgene/FigureYa222PCAgene.html",
+    "html": "FigureYa222PCAgene/FigureYa222PCAgene.html",
+    "text": "texts/main_FigureYa222PCAgene_FigureYa222PCAgene.txt",
+    "folder": "FigureYa222PCAgene",
+    "thumb": "gallery_compress/FigureYa222.webp"
+  },
+  {
+    "id": "main_FigureYa223scNMF_FigureYa223scNMF",
+    "title": "FigureYa223scNMF/FigureYa223scNMF.html",
+    "html": "FigureYa223scNMF/FigureYa223scNMF.html",
+    "text": "texts/main_FigureYa223scNMF_FigureYa223scNMF.txt",
+    "folder": "FigureYa223scNMF",
+    "thumb": "gallery_compress/FigureYa223.webp"
+  },
+  {
+    "id": "main_FigureYa224scMarker_FigureYa224scMarker",
+    "title": "FigureYa224scMarker/FigureYa224scMarker.html",
+    "html": "FigureYa224scMarker/FigureYa224scMarker.html",
+    "text": "texts/main_FigureYa224scMarker_FigureYa224scMarker.txt",
+    "folder": "FigureYa224scMarker",
+    "thumb": "gallery_compress/FigureYa224.webp"
+  },
+  {
+    "id": "main_FigureYa225GiViTl_FigureYa225GiViTl",
+    "title": "FigureYa225GiViTl/FigureYa225GiViTl.html",
+    "html": "FigureYa225GiViTl/FigureYa225GiViTl.html",
+    "text": "texts/main_FigureYa225GiViTl_FigureYa225GiViTl.txt",
+    "folder": "FigureYa225GiViTl",
+    "thumb": "gallery_compress/FigureYa225.webp"
+  },
+  {
+    "id": "main_FigureYa226scRNA_cNMF_FigureYa226scRNA_cNMF",
+    "title": "FigureYa226scRNA_cNMF/FigureYa226scRNA_cNMF.html",
+    "html": "FigureYa226scRNA_cNMF/FigureYa226scRNA_cNMF.html",
+    "text": "texts/main_FigureYa226scRNA_cNMF_FigureYa226scRNA_cNMF.txt",
+    "folder": "FigureYa226scRNA_cNMF",
+    "thumb": "gallery_compress/FigureYa226.webp"
+  },
+  {
+    "id": "main_FigureYa227boxdensity_FigureYa227boxdensity",
+    "title": "FigureYa227boxdensity/FigureYa227boxdensity.html",
+    "html": "FigureYa227boxdensity/FigureYa227boxdensity.html",
+    "text": "texts/main_FigureYa227boxdensity_FigureYa227boxdensity.txt",
+    "folder": "FigureYa227boxdensity",
+    "thumb": "gallery_compress/FigureYa227.webp"
+  },
+  {
+    "id": "main_FigureYa228linkCor_FigureYa228linkCor",
+    "title": "FigureYa228linkCor/FigureYa228linkCor.html",
+    "html": "FigureYa228linkCor/FigureYa228linkCor.html",
+    "text": "texts/main_FigureYa228linkCor_FigureYa228linkCor.txt",
+    "folder": "FigureYa228linkCor",
+    "thumb": "gallery_compress/FigureYa228.webp"
+  },
+  {
+    "id": "main_FigureYa229PCOA_FigureYa229PCOA",
+    "title": "FigureYa229PCOA/FigureYa229PCOA.html",
+    "html": "FigureYa229PCOA/FigureYa229PCOA.html",
+    "text": "texts/main_FigureYa229PCOA_FigureYa229PCOA.txt",
+    "folder": "FigureYa229PCOA",
+    "thumb": "gallery_compress/FigureYa229.webp"
+  },
+  {
+    "id": "main_FigureYa230immunelandscape_FigureYa230immunelandscape",
+    "title": "FigureYa230immunelandscape/FigureYa230immunelandscape.html",
+    "html": "FigureYa230immunelandscape/FigureYa230immunelandscape.html",
+    "text": "texts/main_FigureYa230immunelandscape_FigureYa230immunelandscape.txt",
+    "folder": "FigureYa230immunelandscape",
+    "thumb": "gallery_compress/FigureYa230.webp"
+  },
+  {
+    "id": "main_FigureYa231scScore_FigureYa231scScore",
+    "title": "FigureYa231scScore/FigureYa231scScore.html",
+    "html": "FigureYa231scScore/FigureYa231scScore.html",
+    "text": "texts/main_FigureYa231scScore_FigureYa231scScore.txt",
+    "folder": "FigureYa231scScore",
+    "thumb": "gallery_compress/FigureYa231.webp"
+  },
+  {
+    "id": "main_FigureYa232scRankHeatmap_FigureYa232scRankHeatmap",
+    "title": "FigureYa232scRankHeatmap/FigureYa232scRankHeatmap.html",
+    "html": "FigureYa232scRankHeatmap/FigureYa232scRankHeatmap.html",
+    "text": "texts/main_FigureYa232scRankHeatmap_FigureYa232scRankHeatmap.txt",
+    "folder": "FigureYa232scRankHeatmap",
+    "thumb": "gallery_compress/FigureYa232.webp"
+  },
+  {
+    "id": "main_FigureYa233genepair_FigureYa233genepair",
+    "title": "FigureYa233genepair/FigureYa233genepair.html",
+    "html": "FigureYa233genepair/FigureYa233genepair.html",
+    "text": "texts/main_FigureYa233genepair_FigureYa233genepair.txt",
+    "folder": "FigureYa233genepair",
+    "thumb": "gallery_compress/FigureYa233.webp"
+  },
+  {
+    "id": "main_FigureYa234panImmune_FigureYa234panImmune",
+    "title": "FigureYa234panImmune/FigureYa234panImmune.html",
+    "html": "FigureYa234panImmune/FigureYa234panImmune.html",
+    "text": "texts/main_FigureYa234panImmune_FigureYa234panImmune.txt",
+    "folder": "FigureYa234panImmune",
+    "thumb": "gallery_compress/FigureYa234.webp"
+  },
+  {
+    "id": "main_FigureYa235scDEG_FigureYa235scDEG",
+    "title": "FigureYa235scDEG/FigureYa235scDEG.html",
+    "html": "FigureYa235scDEG/FigureYa235scDEG.html",
+    "text": "texts/main_FigureYa235scDEG_FigureYa235scDEG.txt",
+    "folder": "FigureYa235scDEG",
+    "thumb": "gallery_compress/FigureYa235.webp"
+  },
+  {
+    "id": "main_FigureYa236circGroup_FigureYa236circGroup",
+    "title": "FigureYa236circGroup/FigureYa236circGroup.html",
+    "html": "FigureYa236circGroup/FigureYa236circGroup.html",
+    "text": "texts/main_FigureYa236circGroup_FigureYa236circGroup.txt",
+    "folder": "FigureYa236circGroup",
+    "thumb": "gallery_compress/FigureYa236.webp"
+  },
+  {
+    "id": "main_FigureYa237circVenn_FigureYa237circVenn",
+    "title": "FigureYa237circVenn/FigureYa237circVenn.html",
+    "html": "FigureYa237circVenn/FigureYa237circVenn.html",
+    "text": "texts/main_FigureYa237circVenn_FigureYa237circVenn.txt",
+    "folder": "FigureYa237circVenn",
+    "thumb": "gallery_compress/FigureYa237.webp"
+  },
+  {
+    "id": "main_FigureYa238corRiskMut_FigureYa238corRiskMut",
+    "title": "FigureYa238corRiskMut/FigureYa238corRiskMut.html",
+    "html": "FigureYa238corRiskMut/FigureYa238corRiskMut.html",
+    "text": "texts/main_FigureYa238corRiskMut_FigureYa238corRiskMut.txt",
+    "folder": "FigureYa238corRiskMut",
+    "thumb": "gallery_compress/FigureYa238.webp"
+  },
+  {
+    "id": "main_FigureYa239ST_PDAC_FigureYa239ST_PDAC",
+    "title": "FigureYa239ST_PDAC/FigureYa239ST_PDAC.html",
+    "html": "FigureYa239ST_PDAC/FigureYa239ST_PDAC.html",
+    "text": "texts/main_FigureYa239ST_PDAC_FigureYa239ST_PDAC.txt",
+    "folder": "FigureYa239ST_PDAC",
+    "thumb": "gallery_compress/FigureYa239.webp"
+  },
+  {
+    "id": "main_FigureYa240CRISPR_FigureYa240CRISPR",
+    "title": "FigureYa240CRISPR/FigureYa240CRISPR.html",
+    "html": "FigureYa240CRISPR/FigureYa240CRISPR.html",
+    "text": "texts/main_FigureYa240CRISPR_FigureYa240CRISPR.txt",
+    "folder": "FigureYa240CRISPR",
+    "thumb": "gallery_compress/FigureYa240.webp"
+  },
+  {
+    "id": "main_FigureYa241scRNA_NMI_FigureYa241scRNA_NMI",
+    "title": "FigureYa241scRNA_NMI/FigureYa241scRNA_NMI.html",
+    "html": "FigureYa241scRNA_NMI/FigureYa241scRNA_NMI.html",
+    "text": "texts/main_FigureYa241scRNA_NMI_FigureYa241scRNA_NMI.txt",
+    "folder": "FigureYa241scRNA_NMI",
+    "thumb": "gallery_compress/FigureYa241.webp"
+  },
+  {
+    "id": "main_FigureYa242corMethExpr_FigureYa242corMethExpr",
+    "title": "FigureYa242corMethExpr/FigureYa242corMethExpr.html",
+    "html": "FigureYa242corMethExpr/FigureYa242corMethExpr.html",
+    "text": "texts/main_FigureYa242corMethExpr_FigureYa242corMethExpr.txt",
+    "folder": "FigureYa242corMethExpr",
+    "thumb": null
+  },
+  {
+    "id": "main_FigureYa243scMarkerGroupHeatmap_FigureYa243scMarkerGroupHeatmap",
+    "title": "FigureYa243scMarkerGroupHeatmap/FigureYa243scMarkerGroupHeatmap.html",
+    "html": "FigureYa243scMarkerGroupHeatmap/FigureYa243scMarkerGroupHeatmap.html",
+    "text": "texts/main_FigureYa243scMarkerGroupHeatmap_FigureYa243scMarkerGroupHeatmap.txt",
+    "folder": "FigureYa243scMarkerGroupHeatmap",
+    "thumb": "gallery_compress/FigureYa243.webp"
+  },
+  {
+    "id": "main_FigureYa244PCAPlot_FigureYa244PCAPlot",
+    "title": "FigureYa244PCAPlot/FigureYa244PCAPlot.html",
+    "html": "FigureYa244PCAPlot/FigureYa244PCAPlot.html",
+    "text": "texts/main_FigureYa244PCAPlot_FigureYa244PCAPlot.txt",
+    "folder": "FigureYa244PCAPlot",
+    "thumb": "gallery_compress/FigureYa244.webp"
+  },
+  {
+    "id": "main_FigureYa245VarDecompose_FigureYa245VarDecompose",
+    "title": "FigureYa245VarDecompose/FigureYa245VarDecompose.html",
+    "html": "FigureYa245VarDecompose/FigureYa245VarDecompose.html",
+    "text": "texts/main_FigureYa245VarDecompose_FigureYa245VarDecompose.txt",
+    "folder": "FigureYa245VarDecompose",
+    "thumb": "gallery_compress/FigureYa245.webp"
+  },
+  {
+    "id": "main_FigureYa246supervisedGDSC_FigureYa246supervisedGDSC",
+    "title": "FigureYa246supervisedGDSC/FigureYa246supervisedGDSC.html",
+    "html": "FigureYa246supervisedGDSC/FigureYa246supervisedGDSC.html",
+    "text": "texts/main_FigureYa246supervisedGDSC_FigureYa246supervisedGDSC.txt",
+    "folder": "FigureYa246supervisedGDSC",
+    "thumb": "gallery_compress/FigureYa246.webp"
+  },
+  {
+    "id": "main_FigureYa247oncoPredict_FigureYa247oncoPredict",
+    "title": "FigureYa247oncoPredict/FigureYa247oncoPredict.html",
+    "html": "FigureYa247oncoPredict/FigureYa247oncoPredict.html",
+    "text": "texts/main_FigureYa247oncoPredict_FigureYa247oncoPredict.txt",
+    "folder": "FigureYa247oncoPredict",
+    "thumb": "gallery_compress/FigureYa247.webp"
+  },
+  {
+    "id": "main_FigureYa248MutLandscape_FigureYa248MutLandscape",
+    "title": "FigureYa248MutLandscape/FigureYa248MutLandscape.html",
+    "html": "FigureYa248MutLandscape/FigureYa248MutLandscape.html",
+    "text": "texts/main_FigureYa248MutLandscape_FigureYa248MutLandscape.txt",
+    "folder": "FigureYa248MutLandscape",
+    "thumb": "gallery_compress/FigureYa248.webp"
+  },
+  {
+    "id": "main_FigureYa249Regulon_FigureYa249Regulon",
+    "title": "FigureYa249Regulon/FigureYa249Regulon.html",
+    "html": "FigureYa249Regulon/FigureYa249Regulon.html",
+    "text": "texts/main_FigureYa249Regulon_FigureYa249Regulon.txt",
+    "folder": "FigureYa249Regulon",
+    "thumb": "gallery_compress/FigureYa249.webp"
+  },
+  {
+    "id": "main_FigureYa250ImmGenePair_FigureYa250ImmGenePair",
+    "title": "FigureYa250ImmGenePair/FigureYa250ImmGenePair.html",
+    "html": "FigureYa250ImmGenePair/FigureYa250ImmGenePair.html",
+    "text": "texts/main_FigureYa250ImmGenePair_FigureYa250ImmGenePair.txt",
+    "folder": "FigureYa250ImmGenePair",
+    "thumb": "gallery_compress/FigureYa250.webp"
+  },
+  {
+    "id": "main_FigureYa251NPHSurv_FigureYa251NPHSurv",
+    "title": "FigureYa251NPHSurv/FigureYa251NPHSurv.html",
+    "html": "FigureYa251NPHSurv/FigureYa251NPHSurv.html",
+    "text": "texts/main_FigureYa251NPHSurv_FigureYa251NPHSurv.txt",
+    "folder": "FigureYa251NPHSurv",
+    "thumb": "gallery_compress/FigureYa251.webp"
+  },
+  {
+    "id": "main_FigureYa252mclust_FigureYa252mclust",
+    "title": "FigureYa252mclust/FigureYa252mclust.html",
+    "html": "FigureYa252mclust/FigureYa252mclust.html",
+    "text": "texts/main_FigureYa252mclust_FigureYa252mclust.txt",
+    "folder": "FigureYa252mclust",
+    "thumb": "gallery_compress/FigureYa252.webp"
+  },
+  {
+    "id": "main_FigureYa253panGSEA_FigureYa253panGSEA",
+    "title": "FigureYa253panGSEA/FigureYa253panGSEA.html",
+    "html": "FigureYa253panGSEA/FigureYa253panGSEA.html",
+    "text": "texts/main_FigureYa253panGSEA_FigureYa253panGSEA.txt",
+    "folder": "FigureYa253panGSEA",
+    "thumb": "gallery_compress/FigureYa253.webp"
+  },
+  {
+    "id": "main_FigureYa254scViolin_FigureYa254scViolin",
+    "title": "FigureYa254scViolin/FigureYa254scViolin.html",
+    "html": "FigureYa254scViolin/FigureYa254scViolin.html",
+    "text": "texts/main_FigureYa254scViolin_FigureYa254scViolin.txt",
+    "folder": "FigureYa254scViolin",
+    "thumb": "gallery_compress/FigureYa254.webp"
+  },
+  {
+    "id": "main_FigureYa255TIME_FigureYa255TIME",
+    "title": "FigureYa255TIME/FigureYa255TIME.html",
+    "html": "FigureYa255TIME/FigureYa255TIME.html",
+    "text": "texts/main_FigureYa255TIME_FigureYa255TIME.txt",
+    "folder": "FigureYa255TIME",
+    "thumb": "gallery_compress/FigureYa255.webp"
+  },
+  {
+    "id": "main_FigureYa256panelLink_FigureYa256panelLink",
+    "title": "FigureYa256panelLink/FigureYa256panelLink.html",
+    "html": "FigureYa256panelLink/FigureYa256panelLink.html",
+    "text": "texts/main_FigureYa256panelLink_FigureYa256panelLink.txt",
+    "folder": "FigureYa256panelLink",
+    "thumb": "gallery_compress/FigureYa256.webp"
+  },
+  {
+    "id": "main_FigureYa257armCNV_FigureYa257armCNV",
+    "title": "FigureYa257armCNV/FigureYa257armCNV.html",
+    "html": "FigureYa257armCNV/FigureYa257armCNV.html",
+    "text": "texts/main_FigureYa257armCNV_FigureYa257armCNV.txt",
+    "folder": "FigureYa257armCNV",
+    "thumb": "gallery_compress/FigureYa257.webp"
+  },
+  {
+    "id": "main_FigureYa258SNF_FigureYa258SNF",
+    "title": "FigureYa258SNF/FigureYa258SNF.html",
+    "html": "FigureYa258SNF/FigureYa258SNF.html",
+    "text": "texts/main_FigureYa258SNF_FigureYa258SNF.txt",
+    "folder": "FigureYa258SNF",
+    "thumb": "gallery_compress/FigureYa258.webp"
+  },
+  {
+    "id": "main_FigureYa259circLink_FigureYa259circLink",
+    "title": "FigureYa259circLink/FigureYa259circLink.html",
+    "html": "FigureYa259circLink/FigureYa259circLink.html",
+    "text": "texts/main_FigureYa259circLink_FigureYa259circLink.txt",
+    "folder": "FigureYa259circLink",
+    "thumb": "gallery_compress/FigureYa259.webp"
+  },
+  {
+    "id": "main_FigureYa260CNV_FigureYa260CNV",
+    "title": "FigureYa260CNV/FigureYa260CNV.html",
+    "html": "FigureYa260CNV/FigureYa260CNV.html",
+    "text": "texts/main_FigureYa260CNV_FigureYa260CNV.txt",
+    "folder": "FigureYa260CNV",
+    "thumb": "gallery_compress/FigureYa260.webp"
+  },
+  {
+    "id": "main_FigureYa261circGene_FigureYa261circGene",
+    "title": "FigureYa261circGene/FigureYa261circGene.html",
+    "html": "FigureYa261circGene/FigureYa261circGene.html",
+    "text": "texts/main_FigureYa261circGene_FigureYa261circGene.txt",
+    "folder": "FigureYa261circGene",
+    "thumb": "gallery_compress/FigureYa261.webp"
+  },
+  {
+    "id": "main_FigureYa262GDC_FigureYa262GDC",
+    "title": "FigureYa262GDC/FigureYa262GDC.html",
+    "html": "FigureYa262GDC/FigureYa262GDC.html",
+    "text": "texts/main_FigureYa262GDC_FigureYa262GDC.txt",
+    "folder": "FigureYa262GDC",
+    "thumb": "gallery_compress/FigureYa262.webp"
+  },
+  {
+    "id": "main_FigureYa263panDiff_FigureYa263panDiff",
+    "title": "FigureYa263panDiff/FigureYa263panDiff.html",
+    "html": "FigureYa263panDiff/FigureYa263panDiff.html",
+    "text": "texts/main_FigureYa263panDiff_FigureYa263panDiff.txt",
+    "folder": "FigureYa263panDiff",
+    "thumb": "gallery_compress/FigureYa263.webp"
+  },
+  {
+    "id": "main_FigureYa264epiImmune_FigureYa264epiImmune",
+    "title": "FigureYa264epiImmune/FigureYa264epiImmune.html",
+    "html": "FigureYa264epiImmune/FigureYa264epiImmune.html",
+    "text": "texts/main_FigureYa264epiImmune_FigureYa264epiImmune.txt",
+    "folder": "FigureYa264epiImmune",
+    "thumb": "gallery_compress/FigureYa264.webp"
+  },
+  {
+    "id": "main_FigureYa265panCNV_FigureYa265panCNV",
+    "title": "FigureYa265panCNV/FigureYa265panCNV.html",
+    "html": "FigureYa265panCNV/FigureYa265panCNV.html",
+    "text": "texts/main_FigureYa265panCNV_FigureYa265panCNV.txt",
+    "folder": "FigureYa265panCNV",
+    "thumb": "gallery_compress/FigureYa265.webp"
+  },
+  {
+    "id": "main_FigureYa266panHeatmap_FigureYa266panHeatmap",
+    "title": "FigureYa266panHeatmap/FigureYa266panHeatmap.html",
+    "html": "FigureYa266panHeatmap/FigureYa266panHeatmap.html",
+    "text": "texts/main_FigureYa266panHeatmap_FigureYa266panHeatmap.txt",
+    "folder": "FigureYa266panHeatmap",
+    "thumb": "gallery_compress/FigureYa266.webp"
+  },
+  {
+    "id": "main_FigureYa267scCellChat_FigureYa267scCellChat",
+    "title": "FigureYa267scCellChat/FigureYa267scCellChat.html",
+    "html": "FigureYa267scCellChat/FigureYa267scCellChat.html",
+    "text": "texts/main_FigureYa267scCellChat_FigureYa267scCellChat.txt",
+    "folder": "FigureYa267scCellChat",
+    "thumb": "gallery_compress/FigureYa267.webp"
+  },
+  {
+    "id": "main_FigureYa268panCNVexpr_FigureYa268panCNVexpr",
+    "title": "FigureYa268panCNVexpr/FigureYa268panCNVexpr.html",
+    "html": "FigureYa268panCNVexpr/FigureYa268panCNVexpr.html",
+    "text": "texts/main_FigureYa268panCNVexpr_FigureYa268panCNVexpr.txt",
+    "folder": "FigureYa268panCNVexpr",
+    "thumb": "gallery_compress/FigureYa268.webp"
+  },
+  {
+    "id": "main_FigureYa269scMetabolism_FigureYa269scMetabolism",
+    "title": "FigureYa269scMetabolism/FigureYa269scMetabolism.html",
+    "html": "FigureYa269scMetabolism/FigureYa269scMetabolism.html",
+    "text": "texts/main_FigureYa269scMetabolism_FigureYa269scMetabolism.txt",
+    "folder": "FigureYa269scMetabolism",
+    "thumb": "gallery_compress/FigureYa269.webp"
+  },
+  {
+    "id": "main_FigureYa270panMeth_FigureYa270panMeth",
+    "title": "FigureYa270panMeth/FigureYa270panMeth.html",
+    "html": "FigureYa270panMeth/FigureYa270panMeth.html",
+    "text": "texts/main_FigureYa270panMeth_FigureYa270panMeth.txt",
+    "folder": "FigureYa270panMeth",
+    "thumb": "gallery_compress/FigureYa270.webp"
+  },
+  {
+    "id": "main_FigureYa271panMethExpr_FigureYa271panMethExpr",
+    "title": "FigureYa271panMethExpr/FigureYa271panMethExpr.html",
+    "html": "FigureYa271panMethExpr/FigureYa271panMethExpr.html",
+    "text": "texts/main_FigureYa271panMethExpr_FigureYa271panMethExpr.txt",
+    "folder": "FigureYa271panMethExpr",
+    "thumb": "gallery_compress/FigureYa271.webp"
+  },
+  {
+    "id": "main_FigureYa272scBulkCCCI_FigureYa272scBulkCCCI",
+    "title": "FigureYa272scBulkCCCI/FigureYa272scBulkCCCI.html",
+    "html": "FigureYa272scBulkCCCI/FigureYa272scBulkCCCI.html",
+    "text": "texts/main_FigureYa272scBulkCCCI_FigureYa272scBulkCCCI.txt",
+    "folder": "FigureYa272scBulkCCCI",
+    "thumb": "gallery_compress/FigureYa272.webp"
+  },
+  {
+    "id": "main_FigureYa272scBulkCCCI_network",
+    "title": "FigureYa272scBulkCCCI/network.html",
+    "html": "FigureYa272scBulkCCCI/network.html",
+    "text": "texts/main_FigureYa272scBulkCCCI_network.txt",
+    "folder": "FigureYa272scBulkCCCI",
+    "thumb": "gallery_compress/FigureYa272.webp"
+  },
+  {
+    "id": "main_FigureYa273BAPC_FigureYa273BAPC",
+    "title": "FigureYa273BAPC/FigureYa273BAPC.html",
+    "html": "FigureYa273BAPC/FigureYa273BAPC.html",
+    "text": "texts/main_FigureYa273BAPC_FigureYa273BAPC.txt",
+    "folder": "FigureYa273BAPC",
+    "thumb": "gallery_compress/FigureYa273.webp"
+  },
+  {
+    "id": "main_FigureYa274MuSiCbulkProop_FigureYa274MuSiCbulkProop",
+    "title": "FigureYa274MuSiCbulkProop/FigureYa274MuSiCbulkProop.html",
+    "html": "FigureYa274MuSiCbulkProop/FigureYa274MuSiCbulkProop.html",
+    "text": "texts/main_FigureYa274MuSiCbulkProop_FigureYa274MuSiCbulkProop.txt",
+    "folder": "FigureYa274MuSiCbulkProop",
+    "thumb": "gallery_compress/FigureYa274.webp"
+  },
+  {
+    "id": "main_FigureYa275scAUCell_FigureYa275scAUCell",
+    "title": "FigureYa275scAUCell/FigureYa275scAUCell.html",
+    "html": "FigureYa275scAUCell/FigureYa275scAUCell.html",
+    "text": "texts/main_FigureYa275scAUCell_FigureYa275scAUCell.txt",
+    "folder": "FigureYa275scAUCell",
+    "thumb": "gallery_compress/FigureYa275.webp"
+  },
+  {
+    "id": "main_FigureYa276panSNV_FigureYa276panSNV",
+    "title": "FigureYa276panSNV/FigureYa276panSNV.html",
+    "html": "FigureYa276panSNV/FigureYa276panSNV.html",
+    "text": "texts/main_FigureYa276panSNV_FigureYa276panSNV.txt",
+    "folder": "FigureYa276panSNV",
+    "thumb": "gallery_compress/FigureYa276.webp"
+  },
+  {
+    "id": "main_FigureYa277Immunomodulator_FigureYa277Immunomodulator",
+    "title": "FigureYa277Immunomodulator/FigureYa277Immunomodulator.html",
+    "html": "FigureYa277Immunomodulator/FigureYa277Immunomodulator.html",
+    "text": "texts/main_FigureYa277Immunomodulator_FigureYa277Immunomodulator.txt",
+    "folder": "FigureYa277Immunomodulator",
+    "thumb": "gallery_compress/FigureYa277.webp"
+  },
+  {
+    "id": "main_FigureYa278heatmapPoints_FigureYa278heatmapPoints",
+    "title": "FigureYa278heatmapPoints/FigureYa278heatmapPoints.html",
+    "html": "FigureYa278heatmapPoints/FigureYa278heatmapPoints.html",
+    "text": "texts/main_FigureYa278heatmapPoints_FigureYa278heatmapPoints.txt",
+    "folder": "FigureYa278heatmapPoints",
+    "thumb": "gallery_compress/FigureYa278.webp"
+  },
+  {
+    "id": "main_FigureYa279panGeneGSEA_FigureYa279panGeneGSEA",
+    "title": "FigureYa279panGeneGSEA/FigureYa279panGeneGSEA.html",
+    "html": "FigureYa279panGeneGSEA/FigureYa279panGeneGSEA.html",
+    "text": "texts/main_FigureYa279panGeneGSEA_FigureYa279panGeneGSEA.txt",
+    "folder": "FigureYa279panGeneGSEA",
+    "thumb": "gallery_compress/FigureYa279.webp"
+  },
+  {
+    "id": "main_FigureYa280TMEofSTS_FigureYa280TMEofSTS",
+    "title": "FigureYa280TMEofSTS/FigureYa280TMEofSTS.html",
+    "html": "FigureYa280TMEofSTS/FigureYa280TMEofSTS.html",
+    "text": "texts/main_FigureYa280TMEofSTS_FigureYa280TMEofSTS.txt",
+    "folder": "FigureYa280TMEofSTS",
+    "thumb": "gallery_compress/FigureYa280.webp"
+  },
+  {
+    "id": "main_FigureYa281wheel_FigureYa281wheel",
+    "title": "FigureYa281wheel/FigureYa281wheel.html",
+    "html": "FigureYa281wheel/FigureYa281wheel.html",
+    "text": "texts/main_FigureYa281wheel_FigureYa281wheel.txt",
+    "folder": "FigureYa281wheel",
+    "thumb": "gallery_compress/FigureYa281.webp"
+  },
+  {
+    "id": "main_FigureYa282CMAP_XSum_FigureYa282CMAP_XSum",
+    "title": "FigureYa282CMAP_XSum/FigureYa282CMAP_XSum.html",
+    "html": "FigureYa282CMAP_XSum/FigureYa282CMAP_XSum.html",
+    "text": "texts/main_FigureYa282CMAP_XSum_FigureYa282CMAP_XSum.txt",
+    "folder": "FigureYa282CMAP_XSum",
+    "thumb": "gallery_compress/FigureYa282.webp"
+  },
+  {
+    "id": "main_FigureYa283vennyPvalue_FigureYa283vennyPvalue",
+    "title": "FigureYa283vennyPvalue/FigureYa283vennyPvalue.html",
+    "html": "FigureYa283vennyPvalue/FigureYa283vennyPvalue.html",
+    "text": "texts/main_FigureYa283vennyPvalue_FigureYa283vennyPvalue.txt",
+    "folder": "FigureYa283vennyPvalue",
+    "thumb": "gallery_compress/FigureYa283.webp"
+  },
+  {
+    "id": "main_FigureYa284pairwiseLogrank_FigureYa284pairwiseLogrank",
+    "title": "FigureYa284pairwiseLogrank/FigureYa284pairwiseLogrank.html",
+    "html": "FigureYa284pairwiseLogrank/FigureYa284pairwiseLogrank.html",
+    "text": "texts/main_FigureYa284pairwiseLogrank_FigureYa284pairwiseLogrank.txt",
+    "folder": "FigureYa284pairwiseLogrank",
+    "thumb": "gallery_compress/FigureYa284.webp"
+  },
+  {
+    "id": "main_FigureYa285scRNA_monocle_FigureYa285scRNA_monocle",
+    "title": "FigureYa285scRNA_monocle/FigureYa285scRNA_monocle.html",
+    "html": "FigureYa285scRNA_monocle/FigureYa285scRNA_monocle.html",
+    "text": "texts/main_FigureYa285scRNA_monocle_FigureYa285scRNA_monocle.txt",
+    "folder": "FigureYa285scRNA_monocle",
+    "thumb": "gallery_compress/FigureYa285.webp"
+  },
+  {
+    "id": "main_FigureYa286ExprCorORR_FigureYa286ExprCorORR",
+    "title": "FigureYa286ExprCorORR/FigureYa286ExprCorORR.html",
+    "html": "FigureYa286ExprCorORR/FigureYa286ExprCorORR.html",
+    "text": "texts/main_FigureYa286ExprCorORR_FigureYa286ExprCorORR.txt",
+    "folder": "FigureYa286ExprCorORR",
+    "thumb": "gallery_compress/FigureYa286.webp"
+  },
+  {
+    "id": "main_FigureYa287L2logV2_FigureYa287L2log",
+    "title": "FigureYa287L2logV2/FigureYa287L2log.html",
+    "html": "FigureYa287L2logV2/FigureYa287L2log.html",
+    "text": "texts/main_FigureYa287L2logV2_FigureYa287L2log.txt",
+    "folder": "FigureYa287L2logV2",
+    "thumb": "gallery_compress/FigureYa287.webp"
+  },
+  {
+    "id": "main_FigureYa288MutualExclusivity_FigureYa288MutualExclusivity",
+    "title": "FigureYa288MutualExclusivity/FigureYa288MutualExclusivity.html",
+    "html": "FigureYa288MutualExclusivity/FigureYa288MutualExclusivity.html",
+    "text": "texts/main_FigureYa288MutualExclusivity_FigureYa288MutualExclusivity.txt",
+    "folder": "FigureYa288MutualExclusivity",
+    "thumb": "gallery_compress/FigureYa288.webp"
+  },
+  {
+    "id": "main_FigureYa289TILSig_FigureYa289TILSig",
+    "title": "FigureYa289TILSig/FigureYa289TILSig.html",
+    "html": "FigureYa289TILSig/FigureYa289TILSig.html",
+    "text": "texts/main_FigureYa289TILSig_FigureYa289TILSig.txt",
+    "folder": "FigureYa289TILSig",
+    "thumb": "gallery_compress/FigureYa289.webp"
+  },
+  {
+    "id": "main_FigureYa290BarGraph_FigureYa290BarGraph",
+    "title": "FigureYa290BarGraph/FigureYa290BarGraph.html",
+    "html": "FigureYa290BarGraph/FigureYa290BarGraph.html",
+    "text": "texts/main_FigureYa290BarGraph_FigureYa290BarGraph.txt",
+    "folder": "FigureYa290BarGraph",
+    "thumb": "gallery_compress/FigureYa290.webp"
+  },
+  {
+    "id": "main_FigureYa291PancanProgSigatureV2_FigureYa291PancanProgSigatureV2",
+    "title": "FigureYa291PancanProgSigatureV2/FigureYa291PancanProgSigatureV2.html",
+    "html": "FigureYa291PancanProgSigatureV2/FigureYa291PancanProgSigatureV2.html",
+    "text": "texts/main_FigureYa291PancanProgSigatureV2_FigureYa291PancanProgSigatureV2.txt",
+    "folder": "FigureYa291PancanProgSigatureV2",
+    "thumb": "gallery_compress/FigureYa291.webp"
+  },
+  {
+    "id": "main_FigureYa292HCCsubtype_FigureYa292HCCsubtype",
+    "title": "FigureYa292HCCsubtype/FigureYa292HCCsubtype.html",
+    "html": "FigureYa292HCCsubtype/FigureYa292HCCsubtype.html",
+    "text": "texts/main_FigureYa292HCCsubtype_FigureYa292HCCsubtype.txt",
+    "folder": "FigureYa292HCCsubtype",
+    "thumb": "gallery_compress/FigureYa292.webp"
+  },
+  {
+    "id": "main_FigureYa293machineLearning_FigureYa293machineLearning",
+    "title": "FigureYa293machineLearning/FigureYa293machineLearning.html",
+    "html": "FigureYa293machineLearning/FigureYa293machineLearning.html",
+    "text": "texts/main_FigureYa293machineLearning_FigureYa293machineLearning.txt",
+    "folder": "FigureYa293machineLearning",
+    "thumb": "gallery_compress/FigureYa293.webp"
+  },
+  {
+    "id": "main_FigureYa294HCCdrug_FigureYa294HCCdrug",
+    "title": "FigureYa294HCCdrug/FigureYa294HCCdrug.html",
+    "html": "FigureYa294HCCdrug/FigureYa294HCCdrug.html",
+    "text": "texts/main_FigureYa294HCCdrug_FigureYa294HCCdrug.txt",
+    "folder": "FigureYa294HCCdrug",
+    "thumb": "gallery_compress/FigureYa294.webp"
+  },
+  {
+    "id": "main_FigureYa295ClassDiscovery_FigureYa295ClassDiscovery",
+    "title": "FigureYa295ClassDiscovery/FigureYa295ClassDiscovery.html",
+    "html": "FigureYa295ClassDiscovery/FigureYa295ClassDiscovery.html",
+    "text": "texts/main_FigureYa295ClassDiscovery_FigureYa295ClassDiscovery.txt",
+    "folder": "FigureYa295ClassDiscovery",
+    "thumb": "gallery_compress/FigureYa295.webp"
+  },
+  {
+    "id": "main_FigureYa296VIPER_FigureYa296VIPER",
+    "title": "FigureYa296VIPER/FigureYa296VIPER.html",
+    "html": "FigureYa296VIPER/FigureYa296VIPER.html",
+    "text": "texts/main_FigureYa296VIPER_FigureYa296VIPER.txt",
+    "folder": "FigureYa296VIPER",
+    "thumb": "gallery_compress/FigureYa296.webp"
+  },
+  {
+    "id": "main_FigureYa297Rbar_FigureYa297Rbar",
+    "title": "FigureYa297Rbar/FigureYa297Rbar.html",
+    "html": "FigureYa297Rbar/FigureYa297Rbar.html",
+    "text": "texts/main_FigureYa297Rbar_FigureYa297Rbar.txt",
+    "folder": "FigureYa297Rbar",
+    "thumb": "gallery_compress/FigureYa297.webp"
+  },
+  {
+    "id": "main_FigureYa298ecdfPvalue_FigureYa298ecdfPvalue",
+    "title": "FigureYa298ecdfPvalue/FigureYa298ecdfPvalue.html",
+    "html": "FigureYa298ecdfPvalue/FigureYa298ecdfPvalue.html",
+    "text": "texts/main_FigureYa298ecdfPvalue_FigureYa298ecdfPvalue.txt",
+    "folder": "FigureYa298ecdfPvalue",
+    "thumb": "gallery_compress/FigureYa298.webp"
+  },
+  {
+    "id": "main_FigureYa299pancanSurv_FigureYa299pancanSurv",
+    "title": "FigureYa299pancanSurv/FigureYa299pancanSurv.html",
+    "html": "FigureYa299pancanSurv/FigureYa299pancanSurv.html",
+    "text": "texts/main_FigureYa299pancanSurv_FigureYa299pancanSurv.txt",
+    "folder": "FigureYa299pancanSurv",
+    "thumb": "gallery_compress/FigureYa299.webp"
+  },
+  {
+    "id": "main_FigureYa300pancanCor_FigureYa300pancanCor",
+    "title": "FigureYa300pancanCor/FigureYa300pancanCor.html",
+    "html": "FigureYa300pancanCor/FigureYa300pancanCor.html",
+    "text": "texts/main_FigureYa300pancanCor_FigureYa300pancanCor.txt",
+    "folder": "FigureYa300pancanCor",
+    "thumb": "gallery_compress/FigureYa300.webp"
+  },
+  {
+    "id": "main_FigureYa301scCoExpr_FigureYa301scCoExpr",
+    "title": "FigureYa301scCoExpr/FigureYa301scCoExpr.html",
+    "html": "FigureYa301scCoExpr/FigureYa301scCoExpr.html",
+    "text": "texts/main_FigureYa301scCoExpr_FigureYa301scCoExpr.txt",
+    "folder": "FigureYa301scCoExpr",
+    "thumb": "gallery_compress/FigureYa301.webp"
+  },
+  {
+    "id": "main_FigureYa302NTPPAM_FigureYa302NTPPAM",
+    "title": "FigureYa302NTPPAM/FigureYa302NTPPAM.html",
+    "html": "FigureYa302NTPPAM/FigureYa302NTPPAM.html",
+    "text": "texts/main_FigureYa302NTPPAM_FigureYa302NTPPAM.txt",
+    "folder": "FigureYa302NTPPAM",
+    "thumb": "gallery_compress/FigureYa302.webp"
+  },
+  {
+    "id": "main_FigureYa303panCircos_FigureYa303panCircos",
+    "title": "FigureYa303panCircos/FigureYa303panCircos.html",
+    "html": "FigureYa303panCircos/FigureYa303panCircos.html",
+    "text": "texts/main_FigureYa303panCircos_FigureYa303panCircos.txt",
+    "folder": "FigureYa303panCircos",
+    "thumb": "gallery_compress/FigureYa303.webp"
+  },
+  {
+    "id": "main_FigureYa305PMAPscore_FigureYa305PMAPscore",
+    "title": "FigureYa305PMAPscore/FigureYa305PMAPscore.html",
+    "html": "FigureYa305PMAPscore/FigureYa305PMAPscore.html",
+    "text": "texts/main_FigureYa305PMAPscore_FigureYa305PMAPscore.txt",
+    "folder": "FigureYa305PMAPscore",
+    "thumb": "gallery_compress/FigureYa305.webp"
+  },
+  {
+    "id": "main_FigureYa306slingshot_FigureYa306slingshot",
+    "title": "FigureYa306slingshot/FigureYa306slingshot.html",
+    "html": "FigureYa306slingshot/FigureYa306slingshot.html",
+    "text": "texts/main_FigureYa306slingshot_FigureYa306slingshot.txt",
+    "folder": "FigureYa306slingshot",
+    "thumb": "gallery_compress/FigureYa306.webp"
+  },
+  {
+    "id": "main_FigureYa307CNVHeatmap_FigureYa307CNVHeatmap",
+    "title": "FigureYa307CNVHeatmap/FigureYa307CNVHeatmap.html",
+    "html": "FigureYa307CNVHeatmap/FigureYa307CNVHeatmap.html",
+    "text": "texts/main_FigureYa307CNVHeatmap_FigureYa307CNVHeatmap.txt",
+    "folder": "FigureYa307CNVHeatmap",
+    "thumb": "gallery_compress/FigureYa307.webp"
+  },
+  {
+    "id": "main_FigureYa308IHS_FigureYa308IHS",
+    "title": "FigureYa308IHS/FigureYa308IHS.html",
+    "html": "FigureYa308IHS/FigureYa308IHS.html",
+    "text": "texts/main_FigureYa308IHS_FigureYa308IHS.txt",
+    "folder": "FigureYa308IHS",
+    "thumb": "gallery_compress/FigureYa308.webp"
+  },
+  {
+    "id": "main_FigureYa309cell2location_01_explore_space_transcriptome",
+    "title": "FigureYa309cell2location/01_explore_space_transcriptome.html",
+    "html": "FigureYa309cell2location/01_explore_space_transcriptome.html",
+    "text": "texts/main_FigureYa309cell2location_01_explore_space_transcriptome.txt",
+    "folder": "FigureYa309cell2location",
+    "thumb": "gallery_compress/FigureYa309.webp"
+  },
+  {
+    "id": "main_FigureYa309cell2location_02_cell2location_signature",
+    "title": "FigureYa309cell2location/02_cell2location_signature.html",
+    "html": "FigureYa309cell2location/02_cell2location_signature.html",
+    "text": "texts/main_FigureYa309cell2location_02_cell2location_signature.txt",
+    "folder": "FigureYa309cell2location",
+    "thumb": "gallery_compress/FigureYa309.webp"
+  },
+  {
+    "id": "main_FigureYa309cell2location_03_cell2location_mapping",
+    "title": "FigureYa309cell2location/03_cell2location_mapping.html",
+    "html": "FigureYa309cell2location/03_cell2location_mapping.html",
+    "text": "texts/main_FigureYa309cell2location_03_cell2location_mapping.txt",
+    "folder": "FigureYa309cell2location",
+    "thumb": "gallery_compress/FigureYa309.webp"
+  },
+  {
+    "id": "main_FigureYa309cell2location_04_cell2location_plot",
+    "title": "FigureYa309cell2location/04_cell2location_plot.html",
+    "html": "FigureYa309cell2location/04_cell2location_plot.html",
+    "text": "texts/main_FigureYa309cell2location_04_cell2location_plot.txt",
+    "folder": "FigureYa309cell2location",
+    "thumb": "gallery_compress/FigureYa309.webp"
+  },
+  {
+    "id": "main_FigureYa309cell2location_FigureYa309cell2location",
+    "title": "FigureYa309cell2location/FigureYa309cell2location.html",
+    "html": "FigureYa309cell2location/FigureYa309cell2location.html",
+    "text": "texts/main_FigureYa309cell2location_FigureYa309cell2location.txt",
+    "folder": "FigureYa309cell2location",
+    "thumb": "gallery_compress/FigureYa309.webp"
+  },
+  {
+    "id": "main_FigureYa310CPDBChordGramV2_FigureYa310CPDBChordGramV2",
+    "title": "FigureYa310CPDBChordGramV2/FigureYa310CPDBChordGramV2.html",
+    "html": "FigureYa310CPDBChordGramV2/FigureYa310CPDBChordGramV2.html",
+    "text": "texts/main_FigureYa310CPDBChordGramV2_FigureYa310CPDBChordGramV2.txt",
+    "folder": "FigureYa310CPDBChordGramV2",
+    "thumb": "gallery_compress/FigureYa310.webp"
+  },
+  {
+    "id": "main_FigureYa311PAM50Heatmap_FigureYa311PAM50Heatmap",
+    "title": "FigureYa311PAM50Heatmap/FigureYa311PAM50Heatmap.html",
+    "html": "FigureYa311PAM50Heatmap/FigureYa311PAM50Heatmap.html",
+    "text": "texts/main_FigureYa311PAM50Heatmap_FigureYa311PAM50Heatmap.txt",
+    "folder": "FigureYa311PAM50Heatmap",
+    "thumb": "gallery_compress/FigureYa311.webp"
+  },
+  {
+    "id": "main_FigureYa312CellPreference_FigureYa312CellPreference",
+    "title": "FigureYa312CellPreference/FigureYa312CellPreference.html",
+    "html": "FigureYa312CellPreference/FigureYa312CellPreference.html",
+    "text": "texts/main_FigureYa312CellPreference_FigureYa312CellPreference.txt",
+    "folder": "FigureYa312CellPreference",
+    "thumb": "gallery_compress/FigureYa312.webp"
+  },
+  {
+    "id": "main_FigureYa313CircularPlot_FigureYa313CircularPlot",
+    "title": "FigureYa313CircularPlot/FigureYa313CircularPlot.html",
+    "html": "FigureYa313CircularPlot/FigureYa313CircularPlot.html",
+    "text": "texts/main_FigureYa313CircularPlot_FigureYa313CircularPlot.txt",
+    "folder": "FigureYa313CircularPlot",
+    "thumb": "gallery_compress/FigureYa313.webp"
+  },
+  {
+    "id": "main_FigureYa314SingleRScore_FigureYa314SingleRScore",
+    "title": "FigureYa314SingleRScore/FigureYa314SingleRScore.html",
+    "html": "FigureYa314SingleRScore/FigureYa314SingleRScore.html",
+    "text": "texts/main_FigureYa314SingleRScore_FigureYa314SingleRScore.txt",
+    "folder": "FigureYa314SingleRScore",
+    "thumb": "gallery_compress/FigureYa314.webp"
+  },
+  {
+    "id": "main_FigureYa315SingleRFraction_FigureYa315SingleRFraction",
+    "title": "FigureYa315SingleRFraction/FigureYa315SingleRFraction.html",
+    "html": "FigureYa315SingleRFraction/FigureYa315SingleRFraction.html",
+    "text": "texts/main_FigureYa315SingleRFraction_FigureYa315SingleRFraction.txt",
+    "folder": "FigureYa315SingleRFraction",
+    "thumb": "gallery_compress/FigureYa315.webp"
+  },
+  {
+    "id": "main_FigureYa316RF_XGBoost_Boruta_FigureYa316RF_XGBoost_Boruta",
+    "title": "FigureYa316RF_XGBoost_Boruta/FigureYa316RF_XGBoost_Boruta.html",
+    "html": "FigureYa316RF_XGBoost_Boruta/FigureYa316RF_XGBoost_Boruta.html",
+    "text": "texts/main_FigureYa316RF_XGBoost_Boruta_FigureYa316RF_XGBoost_Boruta.txt",
+    "folder": "FigureYa316RF_XGBoost_Boruta",
+    "thumb": "gallery_compress/FigureYa316.webp"
+  },
+  {
+    "id": "main_FigureYa317RoeDot_FigureYa317RoeDot",
+    "title": "FigureYa317RoeDot/FigureYa317RoeDot.html",
+    "html": "FigureYa317RoeDot/FigureYa317RoeDot.html",
+    "text": "texts/main_FigureYa317RoeDot_FigureYa317RoeDot.txt",
+    "folder": "FigureYa317RoeDot",
+    "thumb": "gallery_compress/FigureYa317.webp"
+  },
+  {
+    "id": "main_FigureYa318GenesetDEDotplot_FigureYa318GenesetDEDotplot",
+    "title": "FigureYa318GenesetDEDotplot/FigureYa318GenesetDEDotplot.html",
+    "html": "FigureYa318GenesetDEDotplot/FigureYa318GenesetDEDotplot.html",
+    "text": "texts/main_FigureYa318GenesetDEDotplot_FigureYa318GenesetDEDotplot.txt",
+    "folder": "FigureYa318GenesetDEDotplot",
+    "thumb": "gallery_compress/FigureYa318.webp"
+  },
+  {
+    "id": "main_FigureYa319ContribScore_FigureYa319ContribScore",
+    "title": "FigureYa319ContribScore/FigureYa319ContribScore.html",
+    "html": "FigureYa319ContribScore/FigureYa319ContribScore.html",
+    "text": "texts/main_FigureYa319ContribScore_FigureYa319ContribScore.txt",
+    "folder": "FigureYa319ContribScore",
+    "thumb": "gallery_compress/FigureYa319.webp"
+  },
+  {
+    "id": "main_FigureYa320ClontypeHeatmap_FigureYa320ClontypeHeatmap",
+    "title": "FigureYa320ClontypeHeatmap/FigureYa320ClontypeHeatmap.html",
+    "html": "FigureYa320ClontypeHeatmap/FigureYa320ClontypeHeatmap.html",
+    "text": "texts/main_FigureYa320ClontypeHeatmap_FigureYa320ClontypeHeatmap.txt",
+    "folder": "FigureYa320ClontypeHeatmap",
+    "thumb": "gallery_compress/FigureYa320.webp"
+  },
+  {
+    "id": "main_FigureYa321volcanoSE_FigureYa321volcanoSE",
+    "title": "FigureYa321volcanoSE/FigureYa321volcanoSE.html",
+    "html": "FigureYa321volcanoSE/FigureYa321volcanoSE.html",
+    "text": "texts/main_FigureYa321volcanoSE_FigureYa321volcanoSE.txt",
+    "folder": "FigureYa321volcanoSE",
+    "thumb": "gallery_compress/FigureYa321.webp"
+  },
+  {
+    "id": "main_FigureYa322SSEA_FigureYa322SSEA",
+    "title": "FigureYa322SSEA/FigureYa322SSEA.html",
+    "html": "FigureYa322SSEA/FigureYa322SSEA.html",
+    "text": "texts/main_FigureYa322SSEA_FigureYa322SSEA.txt",
+    "folder": "FigureYa322SSEA",
+    "thumb": "gallery_compress/FigureYa322.webp"
+  },
+  {
+    "id": "main_FigureYa323STpathseq_FigureYa323STpathseq",
+    "title": "FigureYa323STpathseq/FigureYa323STpathseq.html",
+    "html": "FigureYa323STpathseq/FigureYa323STpathseq.html",
+    "text": "texts/main_FigureYa323STpathseq_FigureYa323STpathseq.txt",
+    "folder": "FigureYa323STpathseq",
+    "thumb": "gallery_compress/FigureYa323.webp"
+  }
+]

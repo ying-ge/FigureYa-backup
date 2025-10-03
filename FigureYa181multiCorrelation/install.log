@@ -1,0 +1,1354 @@
+Starting R package installation...
+===========================================
+
+Installing core dependencies...
+Package already installed: curl 
+Package already installed: httr 
+Installing CRAN package: gargle 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+also installing the dependencies ‘later’, ‘promises’, ‘hunspell’, ‘aws.ec2metadata’, ‘aws.signature’, ‘httpuv’, ‘sodium’, ‘spelling’
+
+trying URL 'https://cloud.r-project.org/src/contrib/later_1.4.4.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/promises_1.3.3.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/hunspell_3.0.6.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/aws.ec2metadata_0.2.0.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/aws.signature_0.6.0.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/httpuv_1.6.16.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/sodium_1.4.0.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/spelling_2.3.2.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/gargle_1.6.0.tar.gz'
+* installing *source* package ‘later’ ...
+** this is package ‘later’ version ‘1.4.4’
+** package ‘later’ successfully unpacked and MD5 sums checked
+** using staged installation
+Running configure script
+-latomic linker flag not needed.
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+using C++ compiler: ‘g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -pthread -DSTRICT_R_HEADERS -DRCPP_NO_MODULES  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -pthread -DSTRICT_R_HEADERS -DRCPP_NO_MODULES  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c callback_registry.cpp -o callback_registry.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -pthread -DSTRICT_R_HEADERS -DRCPP_NO_MODULES  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c debug.cpp -o debug.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -pthread -DSTRICT_R_HEADERS -DRCPP_NO_MODULES  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c fd.cpp -o fd.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -pthread -DSTRICT_R_HEADERS -DRCPP_NO_MODULES  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2  -c init.c -o init.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -pthread -DSTRICT_R_HEADERS -DRCPP_NO_MODULES  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c later.cpp -o later.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -pthread -DSTRICT_R_HEADERS -DRCPP_NO_MODULES  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c later_posix.cpp -o later_posix.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -pthread -DSTRICT_R_HEADERS -DRCPP_NO_MODULES  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c later_win32.cpp -o later_win32.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -pthread -DSTRICT_R_HEADERS -DRCPP_NO_MODULES  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c timer_posix.cpp -o timer_posix.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -pthread -DSTRICT_R_HEADERS -DRCPP_NO_MODULES  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c timestamp_unix.cpp -o timestamp_unix.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -pthread -DSTRICT_R_HEADERS -DRCPP_NO_MODULES  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c timestamp_win32.cpp -o timestamp_win32.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -pthread -DSTRICT_R_HEADERS -DRCPP_NO_MODULES  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2  -c tinycthread.c -o tinycthread.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -pthread -DSTRICT_R_HEADERS -DRCPP_NO_MODULES  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2  -c wref.c -o wref.o
+g++ -std=gnu++17 -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o later.so RcppExports.o callback_registry.o debug.o fd.o init.o later.o later_posix.o later_win32.o timer_posix.o timestamp_unix.o timestamp_win32.o tinycthread.o wref.o -pthread -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-later/00new/later/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (later)
+* installing *source* package ‘hunspell’ ...
+** this is package ‘hunspell’ version ‘3.0.6’
+** package ‘hunspell’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -Ihunspell -DBUILDING_LIBHUNSPELL -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2   -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -Ihunspell -DBUILDING_LIBHUNSPELL -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2   -c dictionary.cpp -o dictionary.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -Ihunspell -DBUILDING_LIBHUNSPELL -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2   -c parser.cpp -o parser.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -Ihunspell -DBUILDING_LIBHUNSPELL -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2   -c parsers/textparser.cc -o parsers/textparser.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -Ihunspell -DBUILDING_LIBHUNSPELL -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2   -c parsers/latexparser.cc -o parsers/latexparser.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -Ihunspell -DBUILDING_LIBHUNSPELL -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2   -c parsers/manparser.cc -o parsers/manparser.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -Ihunspell -DBUILDING_LIBHUNSPELL -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2   -c parsers/xmlparser.cc -o parsers/xmlparser.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -Ihunspell -DBUILDING_LIBHUNSPELL -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2   -c parsers/htmlparser.cc -o parsers/htmlparser.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -Ihunspell -DBUILDING_LIBHUNSPELL -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2   -c hunspell/affentry.cc -o hunspell/affentry.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -Ihunspell -DBUILDING_LIBHUNSPELL -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2   -c hunspell/affixmgr.cc -o hunspell/affixmgr.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -Ihunspell -DBUILDING_LIBHUNSPELL -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2   -c hunspell/filemgr.cc -o hunspell/filemgr.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -Ihunspell -DBUILDING_LIBHUNSPELL -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2   -c hunspell/hashmgr.cc -o hunspell/hashmgr.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -Ihunspell -DBUILDING_LIBHUNSPELL -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2   -c hunspell/hunspell.cc -o hunspell/hunspell.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -Ihunspell -DBUILDING_LIBHUNSPELL -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2   -c hunspell/hunzip.cc -o hunspell/hunzip.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -Ihunspell -DBUILDING_LIBHUNSPELL -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2   -c hunspell/phonet.cc -o hunspell/phonet.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -Ihunspell -DBUILDING_LIBHUNSPELL -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2   -c hunspell/replist.cc -o hunspell/replist.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -Ihunspell -DBUILDING_LIBHUNSPELL -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2   -c hunspell/suggestmgr.cc -o hunspell/suggestmgr.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -Ihunspell -DBUILDING_LIBHUNSPELL -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2   -c hunspell/csutil.cc -o hunspell/csutil.o
+ar rcs hunspell/libstathunspell.a parsers/textparser.o parsers/latexparser.o parsers/manparser.o parsers/xmlparser.o parsers/htmlparser.o hunspell/affentry.o hunspell/affixmgr.o hunspell/filemgr.o hunspell/hashmgr.o hunspell/hunspell.o hunspell/hunzip.o hunspell/phonet.o hunspell/replist.o hunspell/suggestmgr.o hunspell/csutil.o
+g++ -std=gnu++17 -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o hunspell.so RcppExports.o dictionary.o parser.o -Lhunspell -lstathunspell -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-hunspell/00new/hunspell/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (hunspell)
+* installing *source* package ‘aws.ec2metadata’ ...
+** this is package ‘aws.ec2metadata’ version ‘0.2.0’
+** package ‘aws.ec2metadata’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (aws.ec2metadata)
+* installing *source* package ‘aws.signature’ ...
+** this is package ‘aws.signature’ version ‘0.6.0’
+** package ‘aws.signature’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (aws.signature)
+* installing *source* package ‘sodium’ ...
+** this is package ‘sodium’ version ‘1.4.0’
+** package ‘sodium’ successfully unpacked and MD5 sums checked
+** using staged installation
+Package libsodium was not found in the pkg-config search path.
+Perhaps you should add the directory containing `libsodium.pc'
+to the PKG_CONFIG_PATH environment variable
+Package 'libsodium', required by 'virtual:world', not found
+Using PKG_CFLAGS=
+Using PKG_LIBS=-lsodium
+--------------------------- [ANTICONF] --------------------------------
+Configuration failed because libsodium was not found. Try installing:
+ * deb: libsodium-dev (Debian, Ubuntu, etc)
+ * rpm: libsodium-devel (Fedora, EPEL)
+ * csw: libsodium_dev (Solaris)
+ * brew: libsodium (OSX)
+If libsodium is already installed, check that 'pkg-config' is in your
+PATH and PKG_CONFIG_PATH contains a libsodium.pc file. If pkg-config
+is unavailable you can set INCLUDE_DIR and LIB_DIR manually via:
+R CMD INSTALL --configure-vars='INCLUDE_DIR=... LIB_DIR=...'
+-------------------------- [ERROR MESSAGE] ---------------------------
+<stdin>:1:10: fatal error: sodium.h: No such file or directory
+compilation terminated.
+--------------------------------------------------------------------
+ERROR: configuration failed for package ‘sodium’
+* removing ‘/home/runner/work/_temp/Library/sodium’
+* installing *source* package ‘gargle’ ...
+** this is package ‘gargle’ version ‘1.6.0’
+** package ‘gargle’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (gargle)
+* installing *source* package ‘promises’ ...
+** this is package ‘promises’ version ‘1.3.3’
+** package ‘promises’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/later/include' -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/later/include' -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c promise_task.cpp -o promise_task.o
+g++ -std=gnu++17 -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o promises.so RcppExports.o promise_task.o -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-promises/00new/promises/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (promises)
+* installing *source* package ‘spelling’ ...
+** this is package ‘spelling’ version ‘2.3.2’
+** package ‘spelling’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (spelling)
+* installing *source* package ‘httpuv’ ...
+** this is package ‘httpuv’ version ‘1.6.16’
+** package ‘httpuv’ successfully unpacked and MD5 sums checked
+** using staged installation
+** Using libuv found by pkg-config in /usr
+** PKG_CFLAGS=
+** PKG_LIBS=-luv -lpthread -ldl -lrt 
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+using C++ compiler: ‘g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -pthread -I'/home/runner/work/_temp/Library/later/include' -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -DSTRICT_R_HEADERS -fpic  -g -O2   -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -pthread -I'/home/runner/work/_temp/Library/later/include' -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -DSTRICT_R_HEADERS -fpic  -g -O2   -c callback.cpp -o callback.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -pthread -I'/home/runner/work/_temp/Library/later/include' -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -DSTRICT_R_HEADERS -fpic  -g -O2   -c callbackqueue.cpp -o callbackqueue.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -pthread -I'/home/runner/work/_temp/Library/later/include' -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -DSTRICT_R_HEADERS -fpic  -g -O2   -c filedatasource-unix.cpp -o filedatasource-unix.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -pthread -I'/home/runner/work/_temp/Library/later/include' -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -DSTRICT_R_HEADERS -fpic  -g -O2   -c filedatasource-win.cpp -o filedatasource-win.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -pthread -I'/home/runner/work/_temp/Library/later/include' -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -DSTRICT_R_HEADERS -fpic  -g -O2   -c fs.cpp -o fs.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -pthread -I'/home/runner/work/_temp/Library/later/include' -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -DSTRICT_R_HEADERS -fpic  -g -O2   -c gzipdatasource.cpp -o gzipdatasource.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -pthread -I'/home/runner/work/_temp/Library/later/include' -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -DSTRICT_R_HEADERS -fpic  -g -O2   -c http.cpp -o http.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -pthread -I'/home/runner/work/_temp/Library/later/include' -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -DSTRICT_R_HEADERS -fpic  -g -O2   -c httprequest.cpp -o httprequest.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -pthread -I'/home/runner/work/_temp/Library/later/include' -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -DSTRICT_R_HEADERS -fpic  -g -O2   -c httpresponse.cpp -o httpresponse.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -pthread -I'/home/runner/work/_temp/Library/later/include' -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -DSTRICT_R_HEADERS -fpic  -g -O2   -c httpuv.cpp -o httpuv.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -pthread -I'/home/runner/work/_temp/Library/later/include' -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -DSTRICT_R_HEADERS -fpic  -g -O2  -c md5.c -o md5.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -pthread -I'/home/runner/work/_temp/Library/later/include' -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -DSTRICT_R_HEADERS -fpic  -g -O2   -c mime.cpp -o mime.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -pthread -I'/home/runner/work/_temp/Library/later/include' -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -DSTRICT_R_HEADERS -fpic  -g -O2   -c socket.cpp -o socket.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -pthread -I'/home/runner/work/_temp/Library/later/include' -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -DSTRICT_R_HEADERS -fpic  -g -O2   -c staticpath.cpp -o staticpath.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -pthread -I'/home/runner/work/_temp/Library/later/include' -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -DSTRICT_R_HEADERS -fpic  -g -O2   -c thread.cpp -o thread.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -pthread -I'/home/runner/work/_temp/Library/later/include' -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -DSTRICT_R_HEADERS -fpic  -g -O2   -c timegm.cpp -o timegm.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -pthread -I'/home/runner/work/_temp/Library/later/include' -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -DSTRICT_R_HEADERS -fpic  -g -O2   -c utils.cpp -o utils.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -pthread -I'/home/runner/work/_temp/Library/later/include' -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -DSTRICT_R_HEADERS -fpic  -g -O2   -c uvutil.cpp -o uvutil.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -pthread -I'/home/runner/work/_temp/Library/later/include' -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -DSTRICT_R_HEADERS -fpic  -g -O2   -c webapplication.cpp -o webapplication.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -pthread -I'/home/runner/work/_temp/Library/later/include' -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -DSTRICT_R_HEADERS -fpic  -g -O2   -c websockets-base.cpp -o websockets-base.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -pthread -I'/home/runner/work/_temp/Library/later/include' -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -DSTRICT_R_HEADERS -fpic  -g -O2   -c websockets-hixie76.cpp -o websockets-hixie76.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -pthread -I'/home/runner/work/_temp/Library/later/include' -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -DSTRICT_R_HEADERS -fpic  -g -O2   -c websockets-hybi03.cpp -o websockets-hybi03.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -pthread -I'/home/runner/work/_temp/Library/later/include' -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -DSTRICT_R_HEADERS -fpic  -g -O2   -c websockets-ietf.cpp -o websockets-ietf.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -pthread -I'/home/runner/work/_temp/Library/later/include' -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -DSTRICT_R_HEADERS -fpic  -g -O2   -c websockets.cpp -o websockets.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -pthread -I'/home/runner/work/_temp/Library/later/include' -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -DSTRICT_R_HEADERS -fpic  -g -O2   -c winutils.cpp -o winutils.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -pthread -I'/home/runner/work/_temp/Library/later/include' -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -DSTRICT_R_HEADERS -fpic  -g -O2  -c http-parser/http_parser.c -o http-parser/http_parser.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -pthread -I'/home/runner/work/_temp/Library/later/include' -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -DSTRICT_R_HEADERS -fpic  -g -O2  -c sha1/sha1.c -o sha1/sha1.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -pthread -I'/home/runner/work/_temp/Library/later/include' -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -DSTRICT_R_HEADERS -fpic  -g -O2   -c base64/base64.cpp -o base64/base64.o
+g++ -std=gnu++17 -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o httpuv.so RcppExports.o callback.o callbackqueue.o filedatasource-unix.o filedatasource-win.o fs.o gzipdatasource.o http.o httprequest.o httpresponse.o httpuv.o md5.o mime.o socket.o staticpath.o thread.o timegm.o utils.o uvutil.o webapplication.o websockets-base.o websockets-hixie76.o websockets-hybi03.o websockets-ietf.o websockets.o winutils.o -luv -lpthread -ldl -lrt ./http-parser/http_parser.o ./sha1/sha1.o ./base64/base64.o -pthread -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-httpuv/00new/httpuv/libs
+** R
+** demo
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (httpuv)
+
+The downloaded source packages are in
+	‘/tmp/RtmptCjEfi/downloaded_packages’
+Successfully installed: gargle 
+Installing CRAN package: googledrive 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+also installing the dependency ‘uuid’
+
+trying URL 'https://cloud.r-project.org/src/contrib/uuid_1.2-1.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/googledrive_2.1.2.tar.gz'
+* installing *source* package ‘uuid’ ...
+** this is package ‘uuid’ version ‘1.2-1’
+** package ‘uuid’ successfully unpacked and MD5 sums checked
+** using staged installation
+checking for gcc... gcc -std=gnu2x
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether the compiler supports GNU C... yes
+checking whether gcc -std=gnu2x accepts -g... yes
+checking for gcc -std=gnu2x option to enable C11 features... none needed
+checking for stdio.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for strings.h... yes
+checking for sys/stat.h... yes
+checking for sys/types.h... yes
+checking for unistd.h... yes
+checking for grp.h... yes
+checking for langinfo.h... yes
+checking for locale.h... yes
+checking for netinet/in.h... yes
+checking for stdlib.h... (cached) yes
+checking for sys/file.h... yes
+checking for sys/ioctl.h... yes
+checking for sys/socket.h... yes
+checking for sys/sockio.h... no
+checking for sys/syscall.h... yes
+checking for sys/sendfile.h... yes
+checking for sys/time.h... yes
+checking for sys/un.h... yes
+checking for unistd.h... (cached) yes
+checking for net/if.h... yes
+checking for net/if_dl.h... no
+checking for dirfd... yes
+checking for err... yes
+checking for errx... yes
+checking for getexecname... no
+checking for getrandom... yes
+checking for jrand48... yes
+checking for llseek... no
+checking for lchown... yes
+checking for mempcpy... yes
+checking for mkostemp... yes
+checking for nanosleep... yes
+checking for sendfile... yes
+checking for srandom... yes
+checking for strnchr... no
+checking for strndup... yes
+checking for strnlen... yes
+checking for usleep... yes
+checking for warn... yes
+checking for warnx... yes
+checking for flock... yes
+checking for struct sockaddr.sa_len... no
+checking for dlfcn.h... yes
+checking for library containing dlsym... none required
+checking for thread local storage (TLS) support... yes
+configure: creating ./config.status
+config.status: creating src/Makevars
+config.status: creating src/config.h
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -include config.h -I/usr/local/include  -I/usr/local/include    -fpic  -g -O2  -c R.c -o R.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -include config.h -I/usr/local/include  -I/usr/local/include    -fpic  -g -O2  -c Ruuid.c -o Ruuid.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -include config.h -I/usr/local/include  -I/usr/local/include    -fpic  -g -O2  -c clear.c -o clear.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -include config.h -I/usr/local/include  -I/usr/local/include    -fpic  -g -O2  -c compare.c -o compare.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -include config.h -I/usr/local/include  -I/usr/local/include    -fpic  -g -O2  -c copy.c -o copy.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -include config.h -I/usr/local/include  -I/usr/local/include    -fpic  -g -O2  -c gen_uuid.c -o gen_uuid.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -include config.h -I/usr/local/include  -I/usr/local/include    -fpic  -g -O2  -c isnull.c -o isnull.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -include config.h -I/usr/local/include  -I/usr/local/include    -fpic  -g -O2  -c md5.c -o md5.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -include config.h -I/usr/local/include  -I/usr/local/include    -fpic  -g -O2  -c pack.c -o pack.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -include config.h -I/usr/local/include  -I/usr/local/include    -fpic  -g -O2  -c parse.c -o parse.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -include config.h -I/usr/local/include  -I/usr/local/include    -fpic  -g -O2  -c rand.c -o rand.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -include config.h -I/usr/local/include  -I/usr/local/include    -fpic  -g -O2  -c randutils.c -o randutils.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -include config.h -I/usr/local/include  -I/usr/local/include    -fpic  -g -O2  -c sha1.c -o sha1.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -include config.h -I/usr/local/include  -I/usr/local/include    -fpic  -g -O2  -c unpack.c -o unpack.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -include config.h -I/usr/local/include  -I/usr/local/include    -fpic  -g -O2  -c unparse.c -o unparse.o
+gcc -std=gnu2x -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o uuid.so R.o Ruuid.o clear.o compare.o copy.o gen_uuid.o isnull.o md5.o pack.o parse.o rand.o randutils.o sha1.o unpack.o unparse.o -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-uuid/00new/uuid/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (uuid)
+* installing *source* package ‘googledrive’ ...
+** this is package ‘googledrive’ version ‘2.1.2’
+** package ‘googledrive’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (googledrive)
+
+The downloaded source packages are in
+	‘/tmp/RtmptCjEfi/downloaded_packages’
+Successfully installed: googledrive 
+Installing CRAN package: googlesheets4 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+also installing the dependencies ‘bit’, ‘prettyunits’, ‘bit64’, ‘progress’, ‘rematch’, ‘clipr’, ‘hms’, ‘vroom’, ‘tzdb’, ‘cellranger’, ‘ids’, ‘rematch2’, ‘readr’
+
+trying URL 'https://cloud.r-project.org/src/contrib/bit_4.6.0.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/prettyunits_1.2.0.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/bit64_4.6.0-1.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/progress_1.2.3.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/rematch_2.0.0.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/clipr_0.8.0.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/hms_1.1.3.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/vroom_1.6.6.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/tzdb_0.5.0.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/cellranger_1.1.0.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/ids_1.0.1.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/rematch2_2.1.2.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/readr_2.1.5.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/googlesheets4_1.1.2.tar.gz'
+* installing *source* package ‘bit’ ...
+** this is package ‘bit’ version ‘4.6.0’
+** package ‘bit’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c attrutil.c -o attrutil.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c bit.c -o bit.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c chunkutil.c -o chunkutil.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c clone.c -o clone.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c init.c -o init.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c integerutil.c -o integerutil.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c merge.c -o merge.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c rle.c -o rle.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c sort.c -o sort.o
+gcc -std=gnu2x -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o bit.so attrutil.o bit.o chunkutil.o clone.o init.o integerutil.o merge.o rle.o sort.o -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-bit/00new/bit/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (bit)
+* installing *source* package ‘prettyunits’ ...
+** this is package ‘prettyunits’ version ‘1.2.0’
+** package ‘prettyunits’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (prettyunits)
+* installing *source* package ‘rematch’ ...
+** this is package ‘rematch’ version ‘2.0.0’
+** package ‘rematch’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (rematch)
+* installing *source* package ‘clipr’ ...
+** this is package ‘clipr’ version ‘0.8.0’
+** package ‘clipr’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (clipr)
+* installing *source* package ‘hms’ ...
+** this is package ‘hms’ version ‘1.1.3’
+** package ‘hms’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (hms)
+* installing *source* package ‘tzdb’ ...
+** this is package ‘tzdb’ version ‘0.5.0’
+** package ‘tzdb’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include   -I../inst/include -DINSTALL=dummy -DAUTO_DOWNLOAD=0 -DHAS_REMOTE_API=0 -DUSE_OS_TZDB=0 -DONLY_C_LOCALE=1 -fpic  -g -O2   -c api.cpp -o api.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include   -I../inst/include -DINSTALL=dummy -DAUTO_DOWNLOAD=0 -DHAS_REMOTE_API=0 -DUSE_OS_TZDB=0 -DONLY_C_LOCALE=1 -fpic  -g -O2   -c cpp11.cpp -o cpp11.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include   -I../inst/include -DINSTALL=dummy -DAUTO_DOWNLOAD=0 -DHAS_REMOTE_API=0 -DUSE_OS_TZDB=0 -DONLY_C_LOCALE=1 -fpic  -g -O2   -c names.cpp -o names.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include   -I../inst/include -DINSTALL=dummy -DAUTO_DOWNLOAD=0 -DHAS_REMOTE_API=0 -DUSE_OS_TZDB=0 -DONLY_C_LOCALE=1 -fpic  -g -O2   -c path.cpp -o path.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include   -I../inst/include -DINSTALL=dummy -DAUTO_DOWNLOAD=0 -DHAS_REMOTE_API=0 -DUSE_OS_TZDB=0 -DONLY_C_LOCALE=1 -fpic  -g -O2   -c tz.cpp -o tz.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include   -I../inst/include -DINSTALL=dummy -DAUTO_DOWNLOAD=0 -DHAS_REMOTE_API=0 -DUSE_OS_TZDB=0 -DONLY_C_LOCALE=1 -fpic  -g -O2   -c version.cpp -o version.o
+g++ -std=gnu++17 -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o tzdb.so api.o cpp11.o names.o path.o tz.o version.o -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-tzdb/00new/tzdb/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (tzdb)
+* installing *source* package ‘ids’ ...
+** this is package ‘ids’ version ‘1.0.1’
+** package ‘ids’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (ids)
+* installing *source* package ‘rematch2’ ...
+** this is package ‘rematch2’ version ‘2.1.2’
+** package ‘rematch2’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (rematch2)
+* installing *source* package ‘bit64’ ...
+** this is package ‘bit64’ version ‘4.6.0-1’
+** package ‘bit64’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c bsearch.c -o bsearch.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c cache.c -o cache.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c hash64.c -o hash64.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c init.c -o init.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c integer64.c -o integer64.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c sort64.c -o sort64.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c sortuse64.c -o sortuse64.o
+gcc -std=gnu2x -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o bit64.so bsearch.o cache.o hash64.o init.o integer64.o sort64.o sortuse64.o -lm -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-bit64/00new/bit64/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (bit64)
+* installing *source* package ‘progress’ ...
+** this is package ‘progress’ version ‘1.2.3’
+** package ‘progress’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (progress)
+* installing *source* package ‘cellranger’ ...
+** this is package ‘cellranger’ version ‘1.1.0’
+** package ‘cellranger’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (cellranger)
+* installing *source* package ‘vroom’ ...
+** this is package ‘vroom’ version ‘1.6.6’
+** package ‘vroom’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+using C++ compiler: ‘g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -Imio/include -DWIN32_LEAN_AND_MEAN -Ispdlog/include -DFMT_HEADER_ONLY -I'/home/runner/work/_temp/Library/cpp11/include' -I'/home/runner/work/_temp/Library/progress/include' -I'/home/runner/work/_temp/Library/tzdb/include' -I/usr/local/include    -fpic  -g -O2   -c Iconv.cpp -o Iconv.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -Imio/include -DWIN32_LEAN_AND_MEAN -Ispdlog/include -DFMT_HEADER_ONLY -I'/home/runner/work/_temp/Library/cpp11/include' -I'/home/runner/work/_temp/Library/progress/include' -I'/home/runner/work/_temp/Library/tzdb/include' -I/usr/local/include    -fpic  -g -O2   -c LocaleInfo.cpp -o LocaleInfo.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -Imio/include -DWIN32_LEAN_AND_MEAN -Ispdlog/include -DFMT_HEADER_ONLY -I'/home/runner/work/_temp/Library/cpp11/include' -I'/home/runner/work/_temp/Library/progress/include' -I'/home/runner/work/_temp/Library/tzdb/include' -I/usr/local/include    -fpic  -g -O2   -c altrep.cc -o altrep.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -Imio/include -DWIN32_LEAN_AND_MEAN -Ispdlog/include -DFMT_HEADER_ONLY -I'/home/runner/work/_temp/Library/cpp11/include' -I'/home/runner/work/_temp/Library/progress/include' -I'/home/runner/work/_temp/Library/tzdb/include' -I/usr/local/include    -fpic  -g -O2   -c cpp11.cpp -o cpp11.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -Imio/include -DWIN32_LEAN_AND_MEAN -Ispdlog/include -DFMT_HEADER_ONLY -I'/home/runner/work/_temp/Library/cpp11/include' -I'/home/runner/work/_temp/Library/progress/include' -I'/home/runner/work/_temp/Library/tzdb/include' -I/usr/local/include    -fpic  -g -O2   -c delimited_index.cc -o delimited_index.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -Imio/include -DWIN32_LEAN_AND_MEAN -Ispdlog/include -DFMT_HEADER_ONLY -I'/home/runner/work/_temp/Library/cpp11/include' -I'/home/runner/work/_temp/Library/progress/include' -I'/home/runner/work/_temp/Library/tzdb/include' -I/usr/local/include    -fpic  -g -O2   -c delimited_index_connection.cc -o delimited_index_connection.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -Imio/include -DWIN32_LEAN_AND_MEAN -Ispdlog/include -DFMT_HEADER_ONLY -I'/home/runner/work/_temp/Library/cpp11/include' -I'/home/runner/work/_temp/Library/progress/include' -I'/home/runner/work/_temp/Library/tzdb/include' -I/usr/local/include    -fpic  -g -O2   -c fixed_width_index_connection.cc -o fixed_width_index_connection.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -Imio/include -DWIN32_LEAN_AND_MEAN -Ispdlog/include -DFMT_HEADER_ONLY -I'/home/runner/work/_temp/Library/cpp11/include' -I'/home/runner/work/_temp/Library/progress/include' -I'/home/runner/work/_temp/Library/tzdb/include' -I/usr/local/include    -fpic  -g -O2   -c gen.cc -o gen.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -Imio/include -DWIN32_LEAN_AND_MEAN -Ispdlog/include -DFMT_HEADER_ONLY -I'/home/runner/work/_temp/Library/cpp11/include' -I'/home/runner/work/_temp/Library/progress/include' -I'/home/runner/work/_temp/Library/tzdb/include' -I/usr/local/include    -fpic  -g -O2  -c grisu3.c -o grisu3.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -Imio/include -DWIN32_LEAN_AND_MEAN -Ispdlog/include -DFMT_HEADER_ONLY -I'/home/runner/work/_temp/Library/cpp11/include' -I'/home/runner/work/_temp/Library/progress/include' -I'/home/runner/work/_temp/Library/tzdb/include' -I/usr/local/include    -fpic  -g -O2   -c guess_type.cc -o guess_type.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -Imio/include -DWIN32_LEAN_AND_MEAN -Ispdlog/include -DFMT_HEADER_ONLY -I'/home/runner/work/_temp/Library/cpp11/include' -I'/home/runner/work/_temp/Library/progress/include' -I'/home/runner/work/_temp/Library/tzdb/include' -I/usr/local/include    -fpic  -g -O2   -c iconv_file.cc -o iconv_file.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -Imio/include -DWIN32_LEAN_AND_MEAN -Ispdlog/include -DFMT_HEADER_ONLY -I'/home/runner/work/_temp/Library/cpp11/include' -I'/home/runner/work/_temp/Library/progress/include' -I'/home/runner/work/_temp/Library/tzdb/include' -I/usr/local/include    -fpic  -g -O2   -c index_collection.cc -o index_collection.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -Imio/include -DWIN32_LEAN_AND_MEAN -Ispdlog/include -DFMT_HEADER_ONLY -I'/home/runner/work/_temp/Library/cpp11/include' -I'/home/runner/work/_temp/Library/progress/include' -I'/home/runner/work/_temp/Library/tzdb/include' -I/usr/local/include    -fpic  -g -O2   -c vroom.cc -o vroom.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -Imio/include -DWIN32_LEAN_AND_MEAN -Ispdlog/include -DFMT_HEADER_ONLY -I'/home/runner/work/_temp/Library/cpp11/include' -I'/home/runner/work/_temp/Library/progress/include' -I'/home/runner/work/_temp/Library/tzdb/include' -I/usr/local/include    -fpic  -g -O2   -c vroom_big_int.cc -o vroom_big_int.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -Imio/include -DWIN32_LEAN_AND_MEAN -Ispdlog/include -DFMT_HEADER_ONLY -I'/home/runner/work/_temp/Library/cpp11/include' -I'/home/runner/work/_temp/Library/progress/include' -I'/home/runner/work/_temp/Library/tzdb/include' -I/usr/local/include    -fpic  -g -O2   -c vroom_chr.cc -o vroom_chr.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -Imio/include -DWIN32_LEAN_AND_MEAN -Ispdlog/include -DFMT_HEADER_ONLY -I'/home/runner/work/_temp/Library/cpp11/include' -I'/home/runner/work/_temp/Library/progress/include' -I'/home/runner/work/_temp/Library/tzdb/include' -I/usr/local/include    -fpic  -g -O2   -c vroom_date.cc -o vroom_date.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -Imio/include -DWIN32_LEAN_AND_MEAN -Ispdlog/include -DFMT_HEADER_ONLY -I'/home/runner/work/_temp/Library/cpp11/include' -I'/home/runner/work/_temp/Library/progress/include' -I'/home/runner/work/_temp/Library/tzdb/include' -I/usr/local/include    -fpic  -g -O2   -c vroom_dbl.cc -o vroom_dbl.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -Imio/include -DWIN32_LEAN_AND_MEAN -Ispdlog/include -DFMT_HEADER_ONLY -I'/home/runner/work/_temp/Library/cpp11/include' -I'/home/runner/work/_temp/Library/progress/include' -I'/home/runner/work/_temp/Library/tzdb/include' -I/usr/local/include    -fpic  -g -O2   -c vroom_dttm.cc -o vroom_dttm.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -Imio/include -DWIN32_LEAN_AND_MEAN -Ispdlog/include -DFMT_HEADER_ONLY -I'/home/runner/work/_temp/Library/cpp11/include' -I'/home/runner/work/_temp/Library/progress/include' -I'/home/runner/work/_temp/Library/tzdb/include' -I/usr/local/include    -fpic  -g -O2   -c vroom_errors.cpp -o vroom_errors.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -Imio/include -DWIN32_LEAN_AND_MEAN -Ispdlog/include -DFMT_HEADER_ONLY -I'/home/runner/work/_temp/Library/cpp11/include' -I'/home/runner/work/_temp/Library/progress/include' -I'/home/runner/work/_temp/Library/tzdb/include' -I/usr/local/include    -fpic  -g -O2   -c vroom_fct.cc -o vroom_fct.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -Imio/include -DWIN32_LEAN_AND_MEAN -Ispdlog/include -DFMT_HEADER_ONLY -I'/home/runner/work/_temp/Library/cpp11/include' -I'/home/runner/work/_temp/Library/progress/include' -I'/home/runner/work/_temp/Library/tzdb/include' -I/usr/local/include    -fpic  -g -O2   -c vroom_fwf.cc -o vroom_fwf.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -Imio/include -DWIN32_LEAN_AND_MEAN -Ispdlog/include -DFMT_HEADER_ONLY -I'/home/runner/work/_temp/Library/cpp11/include' -I'/home/runner/work/_temp/Library/progress/include' -I'/home/runner/work/_temp/Library/tzdb/include' -I/usr/local/include    -fpic  -g -O2   -c vroom_int.cc -o vroom_int.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -Imio/include -DWIN32_LEAN_AND_MEAN -Ispdlog/include -DFMT_HEADER_ONLY -I'/home/runner/work/_temp/Library/cpp11/include' -I'/home/runner/work/_temp/Library/progress/include' -I'/home/runner/work/_temp/Library/tzdb/include' -I/usr/local/include    -fpic  -g -O2   -c vroom_num.cc -o vroom_num.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -Imio/include -DWIN32_LEAN_AND_MEAN -Ispdlog/include -DFMT_HEADER_ONLY -I'/home/runner/work/_temp/Library/cpp11/include' -I'/home/runner/work/_temp/Library/progress/include' -I'/home/runner/work/_temp/Library/tzdb/include' -I/usr/local/include    -fpic  -g -O2   -c vroom_rle.cc -o vroom_rle.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -Imio/include -DWIN32_LEAN_AND_MEAN -Ispdlog/include -DFMT_HEADER_ONLY -I'/home/runner/work/_temp/Library/cpp11/include' -I'/home/runner/work/_temp/Library/progress/include' -I'/home/runner/work/_temp/Library/tzdb/include' -I/usr/local/include    -fpic  -g -O2   -c vroom_time.cc -o vroom_time.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -Imio/include -DWIN32_LEAN_AND_MEAN -Ispdlog/include -DFMT_HEADER_ONLY -I'/home/runner/work/_temp/Library/cpp11/include' -I'/home/runner/work/_temp/Library/progress/include' -I'/home/runner/work/_temp/Library/tzdb/include' -I/usr/local/include    -fpic  -g -O2   -c vroom_write.cc -o vroom_write.o
+g++ -std=gnu++17 -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o vroom.so Iconv.o LocaleInfo.o altrep.o cpp11.o delimited_index.o delimited_index_connection.o fixed_width_index_connection.o gen.o grisu3.o guess_type.o iconv_file.o index_collection.o vroom.o vroom_big_int.o vroom_chr.o vroom_date.o vroom_dbl.o vroom_dttm.o vroom_errors.o vroom_fct.o vroom_fwf.o vroom_int.o vroom_num.o vroom_rle.o vroom_time.o vroom_write.o -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-vroom/00new/vroom/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (vroom)
+* installing *source* package ‘googlesheets4’ ...
+** this is package ‘googlesheets4’ version ‘1.1.2’
+** package ‘googlesheets4’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (googlesheets4)
+* installing *source* package ‘readr’ ...
+** this is package ‘readr’ version ‘2.1.5’
+** package ‘readr’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+using C++ compiler: ‘g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I'/home/runner/work/_temp/Library/tzdb/include' -I/usr/local/include    -fpic  -g -O2   -c Collector.cpp -o Collector.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I'/home/runner/work/_temp/Library/tzdb/include' -I/usr/local/include    -fpic  -g -O2   -c CollectorGuess.cpp -o CollectorGuess.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I'/home/runner/work/_temp/Library/tzdb/include' -I/usr/local/include    -fpic  -g -O2   -c Iconv.cpp -o Iconv.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I'/home/runner/work/_temp/Library/tzdb/include' -I/usr/local/include    -fpic  -g -O2   -c LocaleInfo.cpp -o LocaleInfo.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I'/home/runner/work/_temp/Library/tzdb/include' -I/usr/local/include    -fpic  -g -O2   -c Reader.cpp -o Reader.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I'/home/runner/work/_temp/Library/tzdb/include' -I/usr/local/include    -fpic  -g -O2   -c Source.cpp -o Source.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I'/home/runner/work/_temp/Library/tzdb/include' -I/usr/local/include    -fpic  -g -O2   -c Tokenizer.cpp -o Tokenizer.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I'/home/runner/work/_temp/Library/tzdb/include' -I/usr/local/include    -fpic  -g -O2   -c TokenizerDelim.cpp -o TokenizerDelim.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I'/home/runner/work/_temp/Library/tzdb/include' -I/usr/local/include    -fpic  -g -O2   -c TokenizerFwf.cpp -o TokenizerFwf.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I'/home/runner/work/_temp/Library/tzdb/include' -I/usr/local/include    -fpic  -g -O2   -c TokenizerWs.cpp -o TokenizerWs.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I'/home/runner/work/_temp/Library/tzdb/include' -I/usr/local/include    -fpic  -g -O2   -c connection.cpp -o connection.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I'/home/runner/work/_temp/Library/tzdb/include' -I/usr/local/include    -fpic  -g -O2   -c cpp11.cpp -o cpp11.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I'/home/runner/work/_temp/Library/tzdb/include' -I/usr/local/include    -fpic  -g -O2   -c datetime.cpp -o datetime.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I'/home/runner/work/_temp/Library/tzdb/include' -I/usr/local/include    -fpic  -g -O2  -c grisu3.c -o grisu3.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I'/home/runner/work/_temp/Library/tzdb/include' -I/usr/local/include    -fpic  -g -O2  -c init.c -o init.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I'/home/runner/work/_temp/Library/tzdb/include' -I/usr/local/include    -fpic  -g -O2   -c parse.cpp -o parse.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I'/home/runner/work/_temp/Library/tzdb/include' -I/usr/local/include    -fpic  -g -O2   -c read.cpp -o read.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I'/home/runner/work/_temp/Library/tzdb/include' -I/usr/local/include    -fpic  -g -O2   -c type_convert.cpp -o type_convert.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I'/home/runner/work/_temp/Library/tzdb/include' -I/usr/local/include    -fpic  -g -O2   -c write.cpp -o write.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I'/home/runner/work/_temp/Library/tzdb/include' -I/usr/local/include    -fpic  -g -O2   -c write_delim.cpp -o write_delim.o
+g++ -std=gnu++17 -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o readr.so Collector.o CollectorGuess.o Iconv.o LocaleInfo.o Reader.o Source.o Tokenizer.o TokenizerDelim.o TokenizerFwf.o TokenizerWs.o connection.o cpp11.o datetime.o grisu3.o init.o parse.o read.o type_convert.o write.o write_delim.o -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-readr/00new/readr/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (readr)
+
+The downloaded source packages are in
+	‘/tmp/RtmptCjEfi/downloaded_packages’
+Successfully installed: googlesheets4 
+Package already installed: ragg 
+Installing CRAN package: rvest 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+also installing the dependencies ‘AsioHeaders’, ‘websocket’, ‘zip’, ‘selectr’, ‘chromote’, ‘repurrrsive’, ‘webfakes’
+
+trying URL 'https://cloud.r-project.org/src/contrib/AsioHeaders_1.30.2-1.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/websocket_1.4.4.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/zip_2.3.3.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/selectr_0.4-2.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/chromote_0.5.1.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/repurrrsive_1.1.0.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/webfakes_1.4.0.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/rvest_1.0.5.tar.gz'
+* installing *source* package ‘AsioHeaders’ ...
+** this is package ‘AsioHeaders’ version ‘1.30.2-1’
+** package ‘AsioHeaders’ successfully unpacked and MD5 sums checked
+** using staged installation
+** inst
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (AsioHeaders)
+* installing *source* package ‘zip’ ...
+** this is package ‘zip’ version ‘2.3.3’
+** package ‘zip’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gcc -std=gnu2x -g -O2  miniz.c zip.c unixutils.c tools/cmdzip.c -o tools/cmdzip
+gcc -std=gnu2x -g -O2  miniz.c zip.c unixutils.c tools/cmdunzip.c -o tools/cmdunzip
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2  -c init.c -o init.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2  -c miniz.c -o miniz.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2  -c rzip.c -o rzip.o
+rzip.c:19: warning: "S_IFLNK" redefined
+   19 | #define S_IFLNK         0120000         /* [XSI] symbolic link */
+      | 
+In file included from rzip.c:5:
+/usr/include/x86_64-linux-gnu/sys/stat.h:113: note: this is the location of the previous definition
+  113 | #  define S_IFLNK       __S_IFLNK
+      | 
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2  -c zip.c -o zip.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2  -c unixutils.c -o unixutils.o
+gcc -std=gnu2x -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o zip.so init.o miniz.o rzip.o zip.o unixutils.o -L/opt/R/4.5.1/lib/R/lib -lR
+installing via 'install.libs.R' to /home/runner/work/_temp/Library/00LOCK-zip/00new/zip
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (zip)
+* installing *source* package ‘selectr’ ...
+** this is package ‘selectr’ version ‘0.4-2’
+** package ‘selectr’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (selectr)
+* installing *source* package ‘repurrrsive’ ...
+** this is package ‘repurrrsive’ version ‘1.1.0’
+** package ‘repurrrsive’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (repurrrsive)
+* installing *source* package ‘webfakes’ ...
+** this is package ‘webfakes’ version ‘1.4.0’
+** package ‘webfakes’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c civetweb.c -o civetweb.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c cleancall.c -o cleancall.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c crc32.c -o crc32.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c errors.c -o errors.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c rweb.c -o rweb.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/aes.c -o mbedtls/library/aes.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/aesce.c -o mbedtls/library/aesce.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/aesni.c -o mbedtls/library/aesni.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/aria.c -o mbedtls/library/aria.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/asn1parse.c -o mbedtls/library/asn1parse.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/asn1write.c -o mbedtls/library/asn1write.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/base64.c -o mbedtls/library/base64.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/bignum.c -o mbedtls/library/bignum.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/bignum_core.c -o mbedtls/library/bignum_core.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/bignum_mod.c -o mbedtls/library/bignum_mod.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/bignum_mod_raw.c -o mbedtls/library/bignum_mod_raw.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/block_cipher.c -o mbedtls/library/block_cipher.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/camellia.c -o mbedtls/library/camellia.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/ccm.c -o mbedtls/library/ccm.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/chacha20.c -o mbedtls/library/chacha20.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/chachapoly.c -o mbedtls/library/chachapoly.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/cipher.c -o mbedtls/library/cipher.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/cipher_wrap.c -o mbedtls/library/cipher_wrap.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/cmac.c -o mbedtls/library/cmac.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/constant_time.c -o mbedtls/library/constant_time.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/ctr_drbg.c -o mbedtls/library/ctr_drbg.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/debug.c -o mbedtls/library/debug.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/des.c -o mbedtls/library/des.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/dhm.c -o mbedtls/library/dhm.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/ecdh.c -o mbedtls/library/ecdh.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/ecdsa.c -o mbedtls/library/ecdsa.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/ecjpake.c -o mbedtls/library/ecjpake.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/ecp.c -o mbedtls/library/ecp.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/ecp_curves.c -o mbedtls/library/ecp_curves.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/ecp_curves_new.c -o mbedtls/library/ecp_curves_new.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/entropy.c -o mbedtls/library/entropy.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/entropy_poll.c -o mbedtls/library/entropy_poll.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/error.c -o mbedtls/library/error.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/gcm.c -o mbedtls/library/gcm.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/hkdf.c -o mbedtls/library/hkdf.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/hmac_drbg.c -o mbedtls/library/hmac_drbg.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/lmots.c -o mbedtls/library/lmots.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/lms.c -o mbedtls/library/lms.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/md.c -o mbedtls/library/md.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/md5.c -o mbedtls/library/md5.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/memory_buffer_alloc.c -o mbedtls/library/memory_buffer_alloc.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/mps_reader.c -o mbedtls/library/mps_reader.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/mps_trace.c -o mbedtls/library/mps_trace.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/net_sockets.c -o mbedtls/library/net_sockets.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/nist_kw.c -o mbedtls/library/nist_kw.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/oid.c -o mbedtls/library/oid.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/padlock.c -o mbedtls/library/padlock.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/pem.c -o mbedtls/library/pem.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/pk.c -o mbedtls/library/pk.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/pk_ecc.c -o mbedtls/library/pk_ecc.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/pk_wrap.c -o mbedtls/library/pk_wrap.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/pkcs12.c -o mbedtls/library/pkcs12.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/pkcs5.c -o mbedtls/library/pkcs5.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/pkcs7.c -o mbedtls/library/pkcs7.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/pkparse.c -o mbedtls/library/pkparse.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/pkwrite.c -o mbedtls/library/pkwrite.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/platform.c -o mbedtls/library/platform.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/platform_util.c -o mbedtls/library/platform_util.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/poly1305.c -o mbedtls/library/poly1305.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/psa_crypto.c -o mbedtls/library/psa_crypto.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/psa_crypto_aead.c -o mbedtls/library/psa_crypto_aead.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/psa_crypto_cipher.c -o mbedtls/library/psa_crypto_cipher.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/psa_crypto_client.c -o mbedtls/library/psa_crypto_client.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/psa_crypto_driver_wrappers_no_static.c -o mbedtls/library/psa_crypto_driver_wrappers_no_static.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/psa_crypto_ecp.c -o mbedtls/library/psa_crypto_ecp.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/psa_crypto_ffdh.c -o mbedtls/library/psa_crypto_ffdh.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/psa_crypto_hash.c -o mbedtls/library/psa_crypto_hash.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/psa_crypto_mac.c -o mbedtls/library/psa_crypto_mac.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/psa_crypto_pake.c -o mbedtls/library/psa_crypto_pake.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/psa_crypto_rsa.c -o mbedtls/library/psa_crypto_rsa.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/psa_crypto_se.c -o mbedtls/library/psa_crypto_se.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/psa_crypto_slot_management.c -o mbedtls/library/psa_crypto_slot_management.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/psa_crypto_storage.c -o mbedtls/library/psa_crypto_storage.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/psa_its_file.c -o mbedtls/library/psa_its_file.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/psa_util.c -o mbedtls/library/psa_util.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/ripemd160.c -o mbedtls/library/ripemd160.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/rsa.c -o mbedtls/library/rsa.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/rsa_alt_helpers.c -o mbedtls/library/rsa_alt_helpers.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/sha1.c -o mbedtls/library/sha1.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/sha256.c -o mbedtls/library/sha256.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/sha3.c -o mbedtls/library/sha3.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/sha512.c -o mbedtls/library/sha512.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/ssl_cache.c -o mbedtls/library/ssl_cache.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/ssl_ciphersuites.c -o mbedtls/library/ssl_ciphersuites.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/ssl_client.c -o mbedtls/library/ssl_client.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/ssl_cookie.c -o mbedtls/library/ssl_cookie.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/ssl_debug_helpers_generated.c -o mbedtls/library/ssl_debug_helpers_generated.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/ssl_msg.c -o mbedtls/library/ssl_msg.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/ssl_ticket.c -o mbedtls/library/ssl_ticket.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/ssl_tls.c -o mbedtls/library/ssl_tls.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/ssl_tls12_client.c -o mbedtls/library/ssl_tls12_client.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/ssl_tls12_server.c -o mbedtls/library/ssl_tls12_server.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/ssl_tls13_client.c -o mbedtls/library/ssl_tls13_client.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/ssl_tls13_generic.c -o mbedtls/library/ssl_tls13_generic.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/ssl_tls13_keys.c -o mbedtls/library/ssl_tls13_keys.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/ssl_tls13_server.c -o mbedtls/library/ssl_tls13_server.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/threading.c -o mbedtls/library/threading.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/timing.c -o mbedtls/library/timing.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/version.c -o mbedtls/library/version.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/version_features.c -o mbedtls/library/version_features.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/x509.c -o mbedtls/library/x509.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/x509_create.c -o mbedtls/library/x509_create.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/x509_crl.c -o mbedtls/library/x509_crl.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/x509_crt.c -o mbedtls/library/x509_crt.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/x509_csr.c -o mbedtls/library/x509_csr.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/x509write.c -o mbedtls/library/x509write.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/x509write_crt.c -o mbedtls/library/x509write_crt.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DUSE_MBEDTLS -Imbedtls/include  -I/usr/local/include   -DNO_CGI -DNO_FILES -fpic  -g -O2  -c mbedtls/library/x509write_csr.c -o mbedtls/library/x509write_csr.o
+ar r libmbedtls.a civetweb.o cleancall.o crc32.o errors.o rweb.o mbedtls/library/aes.o mbedtls/library/aesce.o mbedtls/library/aesni.o mbedtls/library/aria.o mbedtls/library/asn1parse.o mbedtls/library/asn1write.o mbedtls/library/base64.o mbedtls/library/bignum.o mbedtls/library/bignum_core.o mbedtls/library/bignum_mod.o mbedtls/library/bignum_mod_raw.o mbedtls/library/block_cipher.o mbedtls/library/camellia.o mbedtls/library/ccm.o mbedtls/library/chacha20.o mbedtls/library/chachapoly.o mbedtls/library/cipher.o mbedtls/library/cipher_wrap.o mbedtls/library/cmac.o mbedtls/library/constant_time.o mbedtls/library/ctr_drbg.o mbedtls/library/debug.o mbedtls/library/des.o mbedtls/library/dhm.o mbedtls/library/ecdh.o mbedtls/library/ecdsa.o mbedtls/library/ecjpake.o mbedtls/library/ecp.o mbedtls/library/ecp_curves.o mbedtls/library/ecp_curves_new.o mbedtls/library/entropy.o mbedtls/library/entropy_poll.o mbedtls/library/error.o mbedtls/library/gcm.o mbedtls/library/hkdf.o mbedtls/library/hmac_drbg.o mbedtls/library/lmots.o mbedtls/library/lms.o mbedtls/library/md.o mbedtls/library/md5.o mbedtls/library/memory_buffer_alloc.o mbedtls/library/mps_reader.o mbedtls/library/mps_trace.o mbedtls/library/net_sockets.o mbedtls/library/nist_kw.o mbedtls/library/oid.o mbedtls/library/padlock.o mbedtls/library/pem.o mbedtls/library/pk.o mbedtls/library/pk_ecc.o mbedtls/library/pk_wrap.o mbedtls/library/pkcs12.o mbedtls/library/pkcs5.o mbedtls/library/pkcs7.o mbedtls/library/pkparse.o mbedtls/library/pkwrite.o mbedtls/library/platform.o mbedtls/library/platform_util.o mbedtls/library/poly1305.o mbedtls/library/psa_crypto.o mbedtls/library/psa_crypto_aead.o mbedtls/library/psa_crypto_cipher.o mbedtls/library/psa_crypto_client.o mbedtls/library/psa_crypto_driver_wrappers_no_static.o mbedtls/library/psa_crypto_ecp.o mbedtls/library/psa_crypto_ffdh.o mbedtls/library/psa_crypto_hash.o mbedtls/library/psa_crypto_mac.o mbedtls/library/psa_crypto_pake.o mbedtls/library/psa_crypto_rsa.o mbedtls/library/psa_crypto_se.o mbedtls/library/psa_crypto_slot_management.o mbedtls/library/psa_crypto_storage.o mbedtls/library/psa_its_file.o mbedtls/library/psa_util.o mbedtls/library/ripemd160.o mbedtls/library/rsa.o mbedtls/library/rsa_alt_helpers.o mbedtls/library/sha1.o mbedtls/library/sha256.o mbedtls/library/sha3.o mbedtls/library/sha512.o mbedtls/library/ssl_cache.o mbedtls/library/ssl_ciphersuites.o mbedtls/library/ssl_client.o mbedtls/library/ssl_cookie.o mbedtls/library/ssl_debug_helpers_generated.o mbedtls/library/ssl_msg.o mbedtls/library/ssl_ticket.o mbedtls/library/ssl_tls.o mbedtls/library/ssl_tls12_client.o mbedtls/library/ssl_tls12_server.o mbedtls/library/ssl_tls13_client.o mbedtls/library/ssl_tls13_generic.o mbedtls/library/ssl_tls13_keys.o mbedtls/library/ssl_tls13_server.o mbedtls/library/threading.o mbedtls/library/timing.o mbedtls/library/version.o mbedtls/library/version_features.o mbedtls/library/x509.o mbedtls/library/x509_create.o mbedtls/library/x509_crl.o mbedtls/library/x509_crt.o mbedtls/library/x509_csr.o mbedtls/library/x509write.o mbedtls/library/x509write_crt.o mbedtls/library/x509write_csr.o
+ar: creating libmbedtls.a
+gcc -std=gnu2x -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o webfakes.so civetweb.o cleancall.o crc32.o errors.o rweb.o libmbedtls.a -L/opt/R/4.5.1/lib/R/lib -lR
+rm -f libmbedtls.a
+installing to /home/runner/work/_temp/Library/00LOCK-webfakes/00new/webfakes/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (webfakes)
+* installing *source* package ‘websocket’ ...
+** this is package ‘websocket’ version ‘1.4.4’
+** package ‘websocket’ successfully unpacked and MD5 sums checked
+** using staged installation
+Found pkg-config cflags and libs!
+Using PKG_CFLAGS=
+Using PKG_LIBS=-lssl -lcrypto 
+** libs
+using C++ compiler: ‘g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I./lib  -D_LIBCPP_DISABLE_DEPRECATION_WARNINGS -I'/home/runner/work/_temp/Library/cpp11/include' -I'/home/runner/work/_temp/Library/AsioHeaders/include' -I'/home/runner/work/_temp/Library/later/include' -I/usr/local/include    -fpic  -g -O2   -c cpp11.cpp -o cpp11.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I./lib  -D_LIBCPP_DISABLE_DEPRECATION_WARNINGS -I'/home/runner/work/_temp/Library/cpp11/include' -I'/home/runner/work/_temp/Library/AsioHeaders/include' -I'/home/runner/work/_temp/Library/later/include' -I/usr/local/include    -fpic  -g -O2   -c debug.cpp -o debug.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I./lib  -D_LIBCPP_DISABLE_DEPRECATION_WARNINGS -I'/home/runner/work/_temp/Library/cpp11/include' -I'/home/runner/work/_temp/Library/AsioHeaders/include' -I'/home/runner/work/_temp/Library/later/include' -I/usr/local/include    -fpic  -g -O2   -c websocket.cpp -o websocket.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I./lib  -D_LIBCPP_DISABLE_DEPRECATION_WARNINGS -I'/home/runner/work/_temp/Library/cpp11/include' -I'/home/runner/work/_temp/Library/AsioHeaders/include' -I'/home/runner/work/_temp/Library/later/include' -I/usr/local/include    -fpic  -g -O2   -c websocket_connection.cpp -o websocket_connection.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I./lib  -D_LIBCPP_DISABLE_DEPRECATION_WARNINGS -I'/home/runner/work/_temp/Library/cpp11/include' -I'/home/runner/work/_temp/Library/AsioHeaders/include' -I'/home/runner/work/_temp/Library/later/include' -I/usr/local/include    -fpic  -g -O2   -c websocket_task.cpp -o websocket_task.o
+g++ -std=gnu++17 -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o websocket.so cpp11.o debug.o websocket.o websocket_connection.o websocket_task.o -lssl -lcrypto -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-websocket/00new/websocket/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (websocket)
+* installing *source* package ‘rvest’ ...
+** this is package ‘rvest’ version ‘1.0.5’
+** package ‘rvest’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** demo
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (rvest)
+* installing *source* package ‘chromote’ ...
+** this is package ‘chromote’ version ‘0.5.1’
+** package ‘chromote’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (chromote)
+
+The downloaded source packages are in
+	‘/tmp/RtmptCjEfi/downloaded_packages’
+Successfully installed: rvest 
+Warning message:
+In install.packages(package_name, dependencies = TRUE) :
+  installation of package ‘sodium’ had non-zero exit status
+
+Installing CRAN packages...
+Package already installed: ggplot2 
+Installing CRAN package: tidyverse 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+also installing the dependencies ‘blob’, ‘timechange’, ‘conflicted’, ‘dbplyr’, ‘dtplyr’, ‘forcats’, ‘haven’, ‘lubridate’, ‘readxl’, ‘reprex’, ‘feather’, ‘mockr’
+
+trying URL 'https://cloud.r-project.org/src/contrib/blob_1.2.4.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/timechange_0.3.0.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/conflicted_1.2.0.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/dbplyr_2.5.1.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/dtplyr_1.3.2.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/forcats_1.0.0.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/haven_2.5.5.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/lubridate_1.9.4.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/readxl_1.4.5.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/reprex_2.1.1.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/feather_0.3.5.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/mockr_0.2.2.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/tidyverse_2.0.0.tar.gz'
+* installing *source* package ‘blob’ ...
+** this is package ‘blob’ version ‘1.2.4’
+** package ‘blob’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (blob)
+* installing *source* package ‘timechange’ ...
+** this is package ‘timechange’ version ‘0.3.0’
+** package ‘timechange’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+using C++ compiler: ‘g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -I./cctz/src/ -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include    -fpic  -g -O2   -c common.cpp -o common.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -I./cctz/src/ -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include    -fpic  -g -O2   -c cpp11.cpp -o cpp11.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -I./cctz/src/ -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include    -fpic  -g -O2   -c get.cpp -o get.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -I./cctz/src/ -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include    -fpic  -g -O2  -c parse.c -o parse.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -I./cctz/src/ -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include    -fpic  -g -O2   -c round.cpp -o round.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -I./cctz/src/ -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include    -fpic  -g -O2   -c tzone.cpp -o tzone.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -I./cctz/src/ -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include    -fpic  -g -O2   -c update.cpp -o update.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -I./cctz/src/ -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include    -fpic  -g -O2   -c cctz/src/time_zone_fixed.cc -o cctz/src/time_zone_fixed.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -I./cctz/src/ -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include    -fpic  -g -O2   -c cctz/src/time_zone_if.cc -o cctz/src/time_zone_if.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -I./cctz/src/ -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include    -fpic  -g -O2   -c cctz/src/time_zone_impl.cc -o cctz/src/time_zone_impl.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -I./cctz/src/ -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include    -fpic  -g -O2   -c cctz/src/time_zone_info.cc -o cctz/src/time_zone_info.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -I./cctz/src/ -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include    -fpic  -g -O2   -c cctz/src/time_zone_libc.cc -o cctz/src/time_zone_libc.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -I./cctz/src/ -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include    -fpic  -g -O2   -c cctz/src/time_zone_lookup.cc -o cctz/src/time_zone_lookup.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -I./cctz/src/ -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include    -fpic  -g -O2   -c cctz/src/time_zone_posix.cc -o cctz/src/time_zone_posix.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -I./cctz/src/ -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include    -fpic  -g -O2   -c cctz/src/zone_info_source.cc -o cctz/src/zone_info_source.o
+ar rcs libcctz.a ./cctz/src/time_zone_fixed.o ./cctz/src/time_zone_if.o ./cctz/src/time_zone_impl.o ./cctz/src/time_zone_info.o ./cctz/src/time_zone_libc.o ./cctz/src/time_zone_lookup.o ./cctz/src/time_zone_posix.o ./cctz/src/zone_info_source.o
+g++ -std=gnu++17 -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o timechange.so common.o cpp11.o get.o parse.o round.o tzone.o update.o -L. -lcctz -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-timechange/00new/timechange/libs
+** R
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (timechange)
+* installing *source* package ‘conflicted’ ...
+** this is package ‘conflicted’ version ‘1.2.0’
+** package ‘conflicted’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (conflicted)
+* installing *source* package ‘dtplyr’ ...
+** this is package ‘dtplyr’ version ‘1.3.2’
+** package ‘dtplyr’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (dtplyr)
+* installing *source* package ‘forcats’ ...
+** this is package ‘forcats’ version ‘1.0.0’
+** package ‘forcats’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (forcats)
+* installing *source* package ‘readxl’ ...
+** this is package ‘readxl’ version ‘1.4.5’
+** package ‘readxl’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+using C++ compiler: ‘g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -Iunix -I. -I'/home/runner/work/_temp/Library/cpp11/include' -I'/home/runner/work/_temp/Library/progress/include' -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2   -c cpp11.cpp -o cpp11.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -Iunix -I. -I'/home/runner/work/_temp/Library/cpp11/include' -I'/home/runner/work/_temp/Library/progress/include' -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2   -c XlsWorkBook.cpp -o XlsWorkBook.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -Iunix -I. -I'/home/runner/work/_temp/Library/cpp11/include' -I'/home/runner/work/_temp/Library/progress/include' -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2   -c XlsxWorkBook.cpp -o XlsxWorkBook.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -Iunix -I. -I'/home/runner/work/_temp/Library/cpp11/include' -I'/home/runner/work/_temp/Library/progress/include' -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2   -c zip.cpp -o zip.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -Iunix -I. -I'/home/runner/work/_temp/Library/cpp11/include' -I'/home/runner/work/_temp/Library/progress/include' -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2   -c Read.cpp -o Read.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -Iunix -I. -I'/home/runner/work/_temp/Library/cpp11/include' -I'/home/runner/work/_temp/Library/progress/include' -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2  -c cran.c -o cran.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -Iunix -I. -I'/home/runner/work/_temp/Library/cpp11/include' -I'/home/runner/work/_temp/Library/progress/include' -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2  -c libxls/xlstool.c -o libxls/xlstool.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -Iunix -I. -I'/home/runner/work/_temp/Library/cpp11/include' -I'/home/runner/work/_temp/Library/progress/include' -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2  -c libxls/endian.c -o libxls/endian.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -Iunix -I. -I'/home/runner/work/_temp/Library/cpp11/include' -I'/home/runner/work/_temp/Library/progress/include' -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2  -c libxls/ole.c -o libxls/ole.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -Iunix -I. -I'/home/runner/work/_temp/Library/cpp11/include' -I'/home/runner/work/_temp/Library/progress/include' -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2  -c libxls/xls.c -o libxls/xls.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -Iunix -I. -I'/home/runner/work/_temp/Library/cpp11/include' -I'/home/runner/work/_temp/Library/progress/include' -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2  -c libxls/locale.c -o libxls/locale.o
+g++ -std=gnu++17 -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o readxl.so cpp11.o XlsWorkBook.o XlsxWorkBook.o zip.o Read.o cran.o libxls/xlstool.o libxls/endian.o libxls/ole.o libxls/xls.o libxls/locale.o -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-readxl/00new/readxl/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (readxl)
+* installing *source* package ‘reprex’ ...
+** this is package ‘reprex’ version ‘2.1.1’
+** package ‘reprex’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (reprex)
+* installing *source* package ‘feather’ ...
+** this is package ‘feather’ version ‘0.3.5’
+** package ‘feather’ successfully unpacked and MD5 sums checked
+** using staged installation
+Platform is little endian. Good.
+** libs
+using C++ compiler: ‘g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+using C++11
+g++ -std=gnu++11 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++11 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c feather-read.cpp -o feather-read.o
+g++ -std=gnu++11 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c feather-types.cpp -o feather-types.o
+g++ -std=gnu++11 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c feather-write.cpp -o feather-write.o
+g++ -std=gnu++11 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c feather/buffer.cc -o feather/buffer.o
+g++ -std=gnu++11 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c feather/feather-c.cc -o feather/feather-c.o
+g++ -std=gnu++11 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c feather/io.cc -o feather/io.o
+g++ -std=gnu++11 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c feather/metadata.cc -o feather/metadata.o
+g++ -std=gnu++11 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c feather/reader.cc -o feather/reader.o
+g++ -std=gnu++11 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c feather/status.cc -o feather/status.o
+g++ -std=gnu++11 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c feather/types.cc -o feather/types.o
+g++ -std=gnu++11 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I. -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c feather/writer.cc -o feather/writer.o
+ar rcs libfeather.a feather/buffer.o feather/feather-c.o feather/io.o feather/metadata.o feather/reader.o feather/status.o feather/types.o feather/writer.o
+g++ -std=gnu++11 -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o feather.so RcppExports.o feather-read.o feather-types.o feather-write.o -L. -lfeather -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-feather/00new/feather/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (feather)
+* installing *source* package ‘mockr’ ...
+** this is package ‘mockr’ version ‘0.2.2’
+** package ‘mockr’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (mockr)
+* installing *source* package ‘dbplyr’ ...
+** this is package ‘dbplyr’ version ‘2.5.1’
+** package ‘dbplyr’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (dbplyr)
+* installing *source* package ‘haven’ ...
+** this is package ‘haven’ version ‘2.5.5’
+** package ‘haven’ successfully unpacked and MD5 sums checked
+** using staged installation
+Found pkg-config cflags and libs!
+Using PKG_CFLAGS=
+Using PKG_LIBS=-lz 
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+using C++ compiler: ‘g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include   -Ireadstat -DHAVE_ZLIB -fpic  -g -O2  -c tagged_na.c -o tagged_na.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include   -Ireadstat -DHAVE_ZLIB -fpic  -g -O2  -c readstat/CKHashTable.c -o readstat/CKHashTable.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include   -Ireadstat -DHAVE_ZLIB -fpic  -g -O2  -c readstat/readstat_bits.c -o readstat/readstat_bits.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include   -Ireadstat -DHAVE_ZLIB -fpic  -g -O2  -c readstat/readstat_convert.c -o readstat/readstat_convert.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include   -Ireadstat -DHAVE_ZLIB -fpic  -g -O2  -c readstat/readstat_error.c -o readstat/readstat_error.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include   -Ireadstat -DHAVE_ZLIB -fpic  -g -O2  -c readstat/readstat_io_unistd.c -o readstat/readstat_io_unistd.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include   -Ireadstat -DHAVE_ZLIB -fpic  -g -O2  -c readstat/readstat_malloc.c -o readstat/readstat_malloc.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include   -Ireadstat -DHAVE_ZLIB -fpic  -g -O2  -c readstat/readstat_metadata.c -o readstat/readstat_metadata.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include   -Ireadstat -DHAVE_ZLIB -fpic  -g -O2  -c readstat/readstat_parser.c -o readstat/readstat_parser.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include   -Ireadstat -DHAVE_ZLIB -fpic  -g -O2  -c readstat/readstat_value.c -o readstat/readstat_value.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include   -Ireadstat -DHAVE_ZLIB -fpic  -g -O2  -c readstat/readstat_variable.c -o readstat/readstat_variable.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include   -Ireadstat -DHAVE_ZLIB -fpic  -g -O2  -c readstat/readstat_writer.c -o readstat/readstat_writer.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include   -Ireadstat -DHAVE_ZLIB -fpic  -g -O2  -c readstat/sas/ieee.c -o readstat/sas/ieee.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include   -Ireadstat -DHAVE_ZLIB -fpic  -g -O2  -c readstat/sas/readstat_sas.c -o readstat/sas/readstat_sas.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include   -Ireadstat -DHAVE_ZLIB -fpic  -g -O2  -c readstat/sas/readstat_sas7bcat_read.c -o readstat/sas/readstat_sas7bcat_read.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include   -Ireadstat -DHAVE_ZLIB -fpic  -g -O2  -c readstat/sas/readstat_sas7bcat_write.c -o readstat/sas/readstat_sas7bcat_write.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include   -Ireadstat -DHAVE_ZLIB -fpic  -g -O2  -c readstat/sas/readstat_sas7bdat_read.c -o readstat/sas/readstat_sas7bdat_read.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include   -Ireadstat -DHAVE_ZLIB -fpic  -g -O2  -c readstat/sas/readstat_sas7bdat_write.c -o readstat/sas/readstat_sas7bdat_write.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include   -Ireadstat -DHAVE_ZLIB -fpic  -g -O2  -c readstat/sas/readstat_sas_rle.c -o readstat/sas/readstat_sas_rle.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include   -Ireadstat -DHAVE_ZLIB -fpic  -g -O2  -c readstat/sas/readstat_xport.c -o readstat/sas/readstat_xport.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include   -Ireadstat -DHAVE_ZLIB -fpic  -g -O2  -c readstat/sas/readstat_xport_parse_format.c -o readstat/sas/readstat_xport_parse_format.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include   -Ireadstat -DHAVE_ZLIB -fpic  -g -O2  -c readstat/sas/readstat_xport_read.c -o readstat/sas/readstat_xport_read.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include   -Ireadstat -DHAVE_ZLIB -fpic  -g -O2  -c readstat/sas/readstat_xport_write.c -o readstat/sas/readstat_xport_write.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include   -Ireadstat -DHAVE_ZLIB -fpic  -g -O2  -c readstat/spss/readstat_por.c -o readstat/spss/readstat_por.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include   -Ireadstat -DHAVE_ZLIB -fpic  -g -O2  -c readstat/spss/readstat_por_parse.c -o readstat/spss/readstat_por_parse.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include   -Ireadstat -DHAVE_ZLIB -fpic  -g -O2  -c readstat/spss/readstat_por_read.c -o readstat/spss/readstat_por_read.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include   -Ireadstat -DHAVE_ZLIB -fpic  -g -O2  -c readstat/spss/readstat_por_write.c -o readstat/spss/readstat_por_write.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include   -Ireadstat -DHAVE_ZLIB -fpic  -g -O2  -c readstat/spss/readstat_sav.c -o readstat/spss/readstat_sav.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include   -Ireadstat -DHAVE_ZLIB -fpic  -g -O2  -c readstat/spss/readstat_sav_compress.c -o readstat/spss/readstat_sav_compress.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include   -Ireadstat -DHAVE_ZLIB -fpic  -g -O2  -c readstat/spss/readstat_sav_parse.c -o readstat/spss/readstat_sav_parse.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include   -Ireadstat -DHAVE_ZLIB -fpic  -g -O2  -c readstat/spss/readstat_sav_parse_mr_name.c -o readstat/spss/readstat_sav_parse_mr_name.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include   -Ireadstat -DHAVE_ZLIB -fpic  -g -O2  -c readstat/spss/readstat_sav_parse_timestamp.c -o readstat/spss/readstat_sav_parse_timestamp.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include   -Ireadstat -DHAVE_ZLIB -fpic  -g -O2  -c readstat/spss/readstat_sav_read.c -o readstat/spss/readstat_sav_read.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include   -Ireadstat -DHAVE_ZLIB -fpic  -g -O2  -c readstat/spss/readstat_sav_write.c -o readstat/spss/readstat_sav_write.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include   -Ireadstat -DHAVE_ZLIB -fpic  -g -O2  -c readstat/spss/readstat_spss.c -o readstat/spss/readstat_spss.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include   -Ireadstat -DHAVE_ZLIB -fpic  -g -O2  -c readstat/spss/readstat_spss_parse.c -o readstat/spss/readstat_spss_parse.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include   -Ireadstat -DHAVE_ZLIB -fpic  -g -O2  -c readstat/spss/readstat_zsav_compress.c -o readstat/spss/readstat_zsav_compress.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include   -Ireadstat -DHAVE_ZLIB -fpic  -g -O2  -c readstat/spss/readstat_zsav_read.c -o readstat/spss/readstat_zsav_read.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include   -Ireadstat -DHAVE_ZLIB -fpic  -g -O2  -c readstat/spss/readstat_zsav_write.c -o readstat/spss/readstat_zsav_write.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include   -Ireadstat -DHAVE_ZLIB -fpic  -g -O2  -c readstat/stata/readstat_dta.c -o readstat/stata/readstat_dta.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include   -Ireadstat -DHAVE_ZLIB -fpic  -g -O2  -c readstat/stata/readstat_dta_parse_timestamp.c -o readstat/stata/readstat_dta_parse_timestamp.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include   -Ireadstat -DHAVE_ZLIB -fpic  -g -O2  -c readstat/stata/readstat_dta_read.c -o readstat/stata/readstat_dta_read.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include   -Ireadstat -DHAVE_ZLIB -fpic  -g -O2  -c readstat/stata/readstat_dta_write.c -o readstat/stata/readstat_dta_write.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include   -Ireadstat -DHAVE_ZLIB -fpic  -g -O2   -c DfReader.cpp -o DfReader.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include   -Ireadstat -DHAVE_ZLIB -fpic  -g -O2   -c DfWriter.cpp -o DfWriter.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include   -Ireadstat -DHAVE_ZLIB -fpic  -g -O2   -c cpp11.cpp -o cpp11.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include   -Ireadstat -DHAVE_ZLIB -fpic  -g -O2   -c haven_types.cpp -o haven_types.o
+g++ -std=gnu++17 -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o haven.so tagged_na.o readstat/CKHashTable.o readstat/readstat_bits.o readstat/readstat_convert.o readstat/readstat_error.o readstat/readstat_io_unistd.o readstat/readstat_malloc.o readstat/readstat_metadata.o readstat/readstat_parser.o readstat/readstat_value.o readstat/readstat_variable.o readstat/readstat_writer.o readstat/sas/ieee.o readstat/sas/readstat_sas.o readstat/sas/readstat_sas7bcat_read.o readstat/sas/readstat_sas7bcat_write.o readstat/sas/readstat_sas7bdat_read.o readstat/sas/readstat_sas7bdat_write.o readstat/sas/readstat_sas_rle.o readstat/sas/readstat_xport.o readstat/sas/readstat_xport_parse_format.o readstat/sas/readstat_xport_read.o readstat/sas/readstat_xport_write.o readstat/spss/readstat_por.o readstat/spss/readstat_por_parse.o readstat/spss/readstat_por_read.o readstat/spss/readstat_por_write.o readstat/spss/readstat_sav.o readstat/spss/readstat_sav_compress.o readstat/spss/readstat_sav_parse.o readstat/spss/readstat_sav_parse_mr_name.o readstat/spss/readstat_sav_parse_timestamp.o readstat/spss/readstat_sav_read.o readstat/spss/readstat_sav_write.o readstat/spss/readstat_spss.o readstat/spss/readstat_spss_parse.o readstat/spss/readstat_zsav_compress.o readstat/spss/readstat_zsav_read.o readstat/spss/readstat_zsav_write.o readstat/stata/readstat_dta.o readstat/stata/readstat_dta_parse_timestamp.o readstat/stata/readstat_dta_read.o readstat/stata/readstat_dta_write.o DfReader.o DfWriter.o cpp11.o haven_types.o -lz -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-haven/00new/haven/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (haven)
+* installing *source* package ‘lubridate’ ...
+** this is package ‘lubridate’ version ‘1.9.4’
+** package ‘lubridate’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c datetime.c -o datetime.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c init.c -o init.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c period.c -o period.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c tparse.c -o tparse.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c utils.c -o utils.o
+gcc -std=gnu2x -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o lubridate.so datetime.o init.o period.o tparse.o utils.o -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-lubridate/00new/lubridate/libs
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (lubridate)
+* installing *source* package ‘tidyverse’ ...
+** this is package ‘tidyverse’ version ‘2.0.0’
+** package ‘tidyverse’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (tidyverse)
+
+The downloaded source packages are in
+	‘/tmp/RtmptCjEfi/downloaded_packages’
+Successfully installed: tidyverse 
+
+===========================================
+Package installation completed!
+You can now run your R scripts in this directory.
+
+===========================================
+Package installation completed!
+You can now run your R scripts in this directory.

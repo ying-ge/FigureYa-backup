@@ -1,0 +1,13 @@
+Starting R package installation...
+===========================================
+
+Installing CRAN packages...
+Package already installed: RColorBrewer 
+Package already installed: corrplot 
+Package already installed: ggplot2 
+Package already installed: ggthemes 
+Package already installed: rentrez 
+
+===========================================
+Package installation completed!
+You can now run your R scripts in this directory.

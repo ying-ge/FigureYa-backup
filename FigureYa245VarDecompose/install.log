@@ -1,0 +1,11 @@
+Starting R package installation...
+===========================================
+
+Installing CRAN packages...
+Package already installed: doParallel 
+Package already installed: lme4 
+Package already installed: tidyverse 
+
+===========================================
+Package installation completed!
+You can now run your R scripts in this directory.

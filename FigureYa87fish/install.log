@@ -1,0 +1,49 @@
+Starting R package installation...
+===========================================
+
+Installing base dependencies...
+Package already installed: devtools 
+Package already installed: remotes 
+
+Installing fishplot dependencies...
+Package already installed: RColorBrewer 
+Package already installed: plotrix 
+
+Installing GitHub packages...
+Installing GitHub package: chrisamiller/fishplot 
+Using bundled GitHub PAT. Please add your own PAT using `gitcreds::gitcreds_set()`
+Failed to install fishplot : Failed to install 'unknown package' from GitHub:
+  HTTP error 401.
+  Bad credentials 
+Trying alternative installation method...
+Using bundled GitHub PAT. Please add your own PAT using `gitcreds::gitcreds_set()`
+Error : Failed to install 'unknown package' from GitHub:
+  HTTP error 401.
+  Bad credentials
+
+Verifying installations...
+✗ fishplot failed to install
+Attempting direct source installation...
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+trying URL 'https://github.com/chrisamiller/fishplot/archive/master.tar.gz'
+downloaded 16 KB
+
+Warning in untar2(tarfile, files, list, exdir, restore_times) :
+  skipping pax global extended headers
+* installing *source* package ‘fishplot’ ...
+** this is package ‘fishplot’ version ‘0.5.2’
+** using staged installation
+** R
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (fishplot)
+
+===========================================
+Package installation completed!
+You can now run your R scripts in this directory.

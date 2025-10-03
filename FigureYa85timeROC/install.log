@@ -1,0 +1,36 @@
+Starting R package installation...
+===========================================
+
+Installing CRAN packages...
+Package already installed: survival 
+Installing CRAN package: timeROC 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+trying URL 'https://cloud.r-project.org/src/contrib/timeROC_0.4.tar.gz'
+Content type 'application/x-gzip' length 52097 bytes (50 KB)
+==================================================
+downloaded 50 KB
+
+* installing *source* package ‘timeROC’ ...
+** this is package ‘timeROC’ version ‘0.4’
+** package ‘timeROC’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (timeROC)
+
+The downloaded source packages are in
+	‘/tmp/RtmpG2SEh5/downloaded_packages’
+Successfully installed: timeROC 
+
+===========================================
+Package installation completed!
+You can now run your R scripts in this directory.

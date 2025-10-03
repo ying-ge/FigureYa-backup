@@ -1,0 +1,148 @@
+---
+title: "Annotate Components"
+author: "Jarning"
+date: "2021/1/9"
+output: html_document
+---
+
+## 1. Init
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+options(stringsAsFactors = FALSE)
+```
+
+```{r}
+library(tidyverse)
+```
+
+```{r, eval=FALSE}
+dir.create("tmp/step3")
+```
+
+
+## 2. Explore Usage matrix
+
+```{r}
+cells <- read.csv("../data/GSE154989_mmLungPlate_fQC_smpTable.csv")
+cells.annot <- read.csv("../data/GSE154989_mmLungPlate_fQC_dZ_annot_smpTable.csv")
+cells.annot <- cells.annot %>% 
+  left_join(cells, by = "sampleID")
+head(cells.annot)
+```
+
+
+```{r}
+usage <- read_tsv("tmp/step2/20210110/20210110.usages.k_16.dt_0_20.consensus.normalized.txt")
+head(usage)
+
+cells.annot <- cells.annot %>% 
+  left_join(usage, by = c("sampleID"="index"))
+# head(cells.annot)
+```
+
+```{r, fig.width=12, fig.height=8}
+K = 16 # number of programs
+active.color <- c("darkblue", "lightblue", "green", "yellow", "red")
+
+cells.annot %>% 
+  pivot_longer(cols = (ncol(.)-K+1):ncol(.), names_to = "program", values_to = "activity.score") %>% 
+  ggplot(aes(phate_1, phate_2)) + 
+  geom_point(aes(color = activity.score),size = 0.2) + 
+  scale_color_gradientn(name = NULL, colors = active.color) + 
+  facet_wrap(~program, ncol = 6)
+```
+
+按照肿瘤发生顺序，我们挑选出值得关注的programs 
+
+- Usage_2, AT2-like(in paper)
+- Usage_14, Mixed AT1/AT2 (in paper)
+- Usage_15, highly mixed (in paper) 
+- Usage_16, Embryonic liver-like (in paper) 
+- Usage_12, EMT (in paper) 
+
+
+```{r, fig.width=10, fig.height=3}
+selected.program <- paste0("Usage_", c(2,14,15,16,12))
+
+cells.annot %>% 
+  pivot_longer(cols = (ncol(.)-K+1):ncol(.), names_to = "program", values_to = "activity.score") %>% 
+  filter(program %in% selected.program) %>% 
+  mutate(program = factor(program, levels = selected.program)) %>% 
+  ggplot(aes(phate_1, phate_2)) + 
+  geom_point(aes(color = activity.score),size = 0.2) + 
+  scale_color_gradientn(name = NULL, colors = active.color) + 
+  facet_wrap(~program, ncol = 5)
+```
+
+## 3. Geneset Analysis
+```{r}
+library(clusterProfiler)
+```
+
+```{r}
+top.genes <- read_tsv("tmp/step2/20210110/20210110.top100_genes.k_16.dt_0_20.txt")
+# head(top.genes)
+```
+
+```{r}
+term2gene <- readRDS("../ref/genesets_all.term2gene.rds")
+head(term2gene)
+```
+
+```{r}
+e.res <- pbapply::pblapply(top.genes, function(xx) {
+  y <- enricher(xx, TERM2GENE=term2gene, minGSSize=20)
+  return(as.data.frame(y))
+})
+names(e.res) <- names(top.genes)
+```
+
+我们很容易从富集分析的结果看出:
+
+- program_2为AT2-like state 
+- program_16为Embryonic liver-like state 
+- program_12为EMT state 
+
+program_14和program_15无法从富集分析结果得到明确定义。<br>
+作者根据: 
+
+1. program_14中有AT1 marker genes: Hopx, Pdpn; 
+2. AT2 marker genes也在program_14 high activated cells表达; 
+
+认为program_14为"Mixed AT1/AT2 state"。可以认为是AT1和AT2的共同的祖细胞状态。 
+
+> The Mixed AT1/AT2 program was characterized by co-expression of AT1 markers, such as Hopx and Pdpn, together with AT2 markers Sftpc and Lyz2 
+
+```{r}
+head(top.genes$program_14)
+```
+
+对于program_15，富集分析的结果显示其特征基因包含各种不同类型细胞的高表达基因，显示其为一种混乱的细胞状态，作者命名为"highly mixed program"。
+
+> Conversely, the highly mixed program displayed features of drastically different cell types, ranging from trophoblast stem cells to chondroblasts and kidney tubular epithelium, suggesting that cells in this state are capable of exploring a broad phenotypic space. 
+
+save results
+```{r, eval=FALSE}
+library(xlsx)
+```
+
+```{r, eval=FALSE}
+jgc <- function()
+{
+  gc()
+  rJava::.jcall("java/lang/System", method = "gc")
+}
+
+filename <- "tmp/step3/enricher.xlsx"
+
+for (i in seq_along(e.res)){
+  jgc() ## 内存回收
+  sheet.name <- sub("program", "cc", names(e.res)[i])
+  write.xlsx(x = e.res[[i]], file = filename, sheetName = sheet.name, append = i>1, row.names = F)
+}
+```
+
+```{r}
+sessionInfo()
+```
+

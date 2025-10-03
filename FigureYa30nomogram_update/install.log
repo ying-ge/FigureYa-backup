@@ -1,0 +1,90 @@
+Starting R package installation...
+===========================================
+
+Installing CRAN packages...
+Installing CRAN package: nomogramEx 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+trying URL 'https://cloud.r-project.org/src/contrib/nomogramEx_3.0.tar.gz'
+Content type 'application/x-gzip' length 2367 bytes
+==================================================
+downloaded 2367 bytes
+
+* installing *source* package ‘nomogramEx’ ...
+** this is package ‘nomogramEx’ version ‘3.0’
+** package ‘nomogramEx’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (nomogramEx)
+
+The downloaded source packages are in
+	‘/tmp/RtmpGjP912/downloaded_packages’
+Successfully installed: nomogramEx 
+Installing CRAN package: regplot 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+also installing the dependencies ‘vioplot’, ‘beanplot’
+
+trying URL 'https://cloud.r-project.org/src/contrib/vioplot_0.5.1.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/beanplot_1.3.1.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/regplot_1.1.tar.gz'
+* installing *source* package ‘vioplot’ ...
+** this is package ‘vioplot’ version ‘0.5.1’
+** package ‘vioplot’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (vioplot)
+* installing *source* package ‘beanplot’ ...
+** this is package ‘beanplot’ version ‘1.3.1’
+** package ‘beanplot’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (beanplot)
+* installing *source* package ‘regplot’ ...
+** this is package ‘regplot’ version ‘1.1’
+** package ‘regplot’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (regplot)
+
+The downloaded source packages are in
+	‘/tmp/RtmpGjP912/downloaded_packages’
+Successfully installed: regplot 
+Package already installed: rms 
+Package already installed: survival 
+
+===========================================
+Package installation completed!
+You can now run your R scripts in this directory.

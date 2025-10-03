@@ -1,0 +1,151 @@
+FigureYa157ChIPpvalue
+FigureYa157ChIPpvalue
+Date:2025-5-20
+Author:Wen Wang
+Reviewer:Ying Ge、Junyi Shen
+需求描述Description of requirements
+计算ChIP-seq样本间的p-value。The p-value between ChIP-seq samples was calculated
+出自From
+https://www.nature.com/articles/s41588-018-0044-9
+Fig. 1 | Deregulated MYCN binds active chromatin and amplifies transcription in neuroblastoma.
+g, RNA Pol II meta-gene across
+all active genes upon MYCN shutdown
+. The regions encompassing the TSS and gene body are enlarged, and significance is indicated. Bottom right, distribution plots of RNA Pol II traveling ratio (TR) for all active genes. Differences in the TR distributions at 0 and 2 h are significant (Welch’s two-tailed t test):
+P < 1 × 10−9,
+P < 1 × 10−6,
+P < 1 × 10–3.
+应用场景Application scenarios
+用于判断全基因组范围的结合是否有global change，适用于校正过的ChIP-seq数据。Used to determine whether there is a global change in genome-wide binding, and is suitable for corrected ChIP-seq data
+加spike-in的定量ChIP-seq，例如这篇用到的Add spike-in quantitative ChIP-seq, such as the one used in this article ChIP-RX
+https://mp.weixin.qq.com/s/tY-MunnBeFQ9A4_Svswu0g
+校正过的普通ChIP-seq，校正方法看这篇For the corrected ordinary ChIP-seq, see this article for the correction method
+https://www.notion.so/Paper-191102-ChIPseqSpikeInFree-8e225f58252144d0b1a0a15f99020b66
+环境设置Environment settings
+根据自己的系统选择下载链接Choose the download link according to your system
+加载自定义函数Load custom functions
+# load signal capture methods
+source("./corelib.R")
+
+Sys.setenv(LANGUAGE = "en") #显示英文报错信息Displays the error message in English
+options(stringsAsFactors = FALSE) #禁止chr转成factor  Prohibiting CHR from converting to factor
+参数设置Parameter settings
+test_region_length = 50
+outputName <- "siteProTest_example.pdf"
+
+bedFile <- c("refGene_hg19_TSS.bed") 
+bigWigFiles <- c("GSM2113508_SHEP21_0HR_POL2_CHIP_RX.chiprx.scaled.bedgraph.bw", 
+                 "GSM2113516_SHEP21_2HR_POL2_CHIP_RX.chiprx.scaled.bedgraph.bw",
+                 "GSM2113512_SHEP21_24HR_POL2_CHIP_RX.chiprx.scaled.bedgraph.bw")
+labels <- c("0hr", "2hr", "24hr") # same length as bigWigFiles
+normalization_constant <- c(0, 0, 0) # 0 means use Fold for nromalization constant, same length as bigWigFiles
+colors <- c("black", "navy", "red")
+
+resolution <- 50 #分辨率，数值越低，画出来的曲线越平滑，运行时间越长resolution, the lower the value, the smoother the drawn curve and the longer the running time
+span <- 1000 #上下游展示范围，需要是resolution的整数倍The upstream and downstream display range needs to be an integer multiple of resolution
+coreNumber <- 3 #留出一个核用来干别的事情Set aside a nucleus to do something else
+captureMethod = "security"
+输入文件的准备Preparation of input files
+需要bw文件和bed文件。BW files and bed files are required
+bedgraph和bw文件已上传至微云BedGraph and BW files have been uploaded to Weiyun：
+https://share.weiyun.com/5aNaSWO
+，可直接下载bw文件，跳过下载和转bw，直接进入“准备bed文件”You can directly download the BW file, skip the download and convert BW, and go directly to "Prepare the BED file"。
+下载bedgraph文件Download the bedgraph file
+原文提供了bedgraph文件，下载后先转成bw文件The original text provides a bedgraph file, which is converted into a bw file after downloading
+在原文中搜
+GSE
+，搜到
+GSE80154
+，进入页面Search
+for GSE
+in the original text, find
+the GSE80154
+, and enter the page
+https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE80154
+，拉到底，在Supplementary file里点击custom，勾选3个时间点SHEP21的PolII ChIP-RX数据bedgraph文件，点击Download下载Pull to the end, click custom in the Supplementary file, check the PolII CHIP-RX data bedgraph file of SHEP21 at 3 time points, and click Download to download
+bedgraph转bw  Bedgraph to BW
+# 下载hg19的染色体长度的文件Download the file for chromosome length of HG19
+#wget http://hgdownload.cse.ucsc.edu/goldenPath/hg19/bigZips/hg19.chrom.sizes
+for file in *.bedgraph; do ./wigToBigWig $file hg19.chrom.sizes $file.bw; done
+准备bed文件Prepare the bed file
+原文用的是all active genes upon MYCN shutdown，没有提供基因名，这里就以所有基因的TSS为例。The original text uses all active genes upon MYCN shutdown, and the gene name is not provided, here is the TSS of all genes as an example.
+如果做转录终止位点的统计检验，就把bed文件换成转录终止位点If you do a statistical test of the transcription termination site, replace the bed file with the transcription termination site。
+下载自Download from
+https://raw.githubusercontent.com/Shicheng-Guo/AnnotationDatabase/master/hg19/refGene_hg19_TSS.bed
+# load bed file
+bed <- read.table(bedFile)
+统计检验Statistical tests
+test_region_signal <- c()
+for(i in 1:length(bigWigFiles)){
+  # caputre signal
+  # test region
+  seqname <- bed[, 1]
+  midpoints <- as.integer((bed[, 2] + bed[, 3] - 1) / 2)
+  test_region <- data.frame(seqname = seqname, start = as.integer(midpoints - test_region_length/2), end = as.integer(midpoints + test_region_length/2))
+  capture_signal <- average_signal_caputer_around_region(bigWigFiles[i], test_region, captureMethod = captureMethod, cores = as.integer(coreNumber))
+
+  if(normalization_constant[i] == 0) {
+    normalization_constant[i] <- as.numeric(system(paste("./bigWigInfo", bigWigFiles[i] , "| grep mean | cut -d ' ' -f 2"), intern = T))
+  }
+  capture_signal <- capture_signal / normalization_constant[i]
+  test_region_signal <- rbind(test_region_signal, t(capture_signal))
+}
+
+# 0h跟2h比0h is compared to 2h
+ttest <- t.test(x=test_region_signal[1,],
+                y=test_region_signal[2,],
+                alternative="two.sided",paired=T)
+ttest
+ttest$p.value
+# 2h跟24h比2h and 24h ratio
+ttest <- t.test(x=test_region_signal[2,],
+                y=test_region_signal[3,],
+                alternative="two.sided",paired=T)
+ttest
+ttest$p.value
+capture signal
+提取信号画图的方法跟FigureYa44profile一样，这里以TSS为例画图，供参考。The method of extracting signals is the same as that of FigureYa44profile, here is a TSS example for reference
+isNormalChrosome <- !grepl("_", bed$V1)
+bed <- bed[isNormalChrosome, ]  
+
+average_signal <- c()
+for(i in 1:length(bigWigFiles)){
+  # caputre signal
+  capture_signal <- signal_caputer_around_sites(bigWigFiles[i], bed, resolution = resolution, span = span, captureMethod = captureMethod, cores = as.integer(coreNumber))
+  if(normalization_constant[i] == 0) {
+    normalization_constant[i] <- as.numeric(system(paste("./bigWigInfo", bigWigFiles[i], "| grep mean | cut -d ' ' -f 2"), intern = T))
+    }
+  capture_signal <- capture_signal / normalization_constant[i]
+  average_signal <- rbind(average_signal, capture_signal)
+}
+
+#这步比较耗时，我们把抽取的信号保存到`site_average_signal.csv`文件里。This step is time-consuming, and we save the extracted signal to the 'site_average_signal.csv' file.
+write.table(average_signal, "average_signal.txt", quote = F, row.names = F, col.names = F)
+画图Drawing
+# 读入前面获得的signal   Read the previously obtained signal
+average_signal <- read.table("average_signal.txt", header = F)
+
+minimum <- min(average_signal) - (max(average_signal) - min(average_signal)) * 0.1
+maximum <- max(average_signal) + (max(average_signal) - min(average_signal)) * 0.1 * length(bigWigFiles)
+
+datapoints <- span / resolution
+
+pdf(outputName, width = 4, height = 6)
+plot(1:(datapoints*2 + 1), average_signal[1, ], 
+     type = "l", lwd = 3, col = colors[1], 
+     xaxs = "i", yaxs = "i", xaxt = "n", 
+     xlab = "", ylab = "Scaled reads/bp", 
+     ylim = c(minimum, maximum))
+
+for(i in 2:length(bigWigFiles)){
+  lines(1:(datapoints*2 + 1), average_signal[i, ], col = colors[i], lwd = 3)
+}
+
+legend("topright", col = colors, legend = labels, lty = 1, lwd = 3, bty = "n")
+
+axis(side = 1, at = datapoints, "TSS")
+
+dev.off()
+后期处理Post-processing
+输出的pdf文件是矢量图，可以用illustrator等软件打开编辑，添加星号*和线段。The output PDF file is a vector image, which can be opened and edited with software such as illustrator, adding asterisks* and line segments
+Session Info
+sessionInfo()

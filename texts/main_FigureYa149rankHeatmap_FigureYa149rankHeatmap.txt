@@ -1,0 +1,195 @@
+FigureYa149rankHeatmap
+FigureYa149rankHeatmap
+Author(s)
+: Hao Li
+Reviewer(s)
+: Ying Ge, Junyi Shen
+Date
+: 2025-09-22
+Academic Citation
+If you use this code in your work or research, we kindly request that
+you cite our publication:
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization
+Framework for Enhancing Biomedical Data Interpretation and Research
+Efficiency. iMetaMed.
+https://doi.org/10.1002/imm3.70005
+需求描述
+Requirement description
+分类变量的热图。 Heat map of categorical variables.
+出自
+https://bmccancer.biomedcentral.com/articles/10.1186/s12885-019-5768-0
+From
+https://bmccancer.biomedcentral.com/articles/10.1186/s12885-019-5768-0
+Fig. 1 Differential gene expression of 24 matrix metalloproteinases
+(MMPs) in 15 different cancer types. Fold change and p-values shown were
+obtained through comparison of
+unmatched control tissue (N
+between 11 and 114) to tumor tissue
+(N between 66 and 1097).
+Fold change was calculated as the median expression of a gene in tumor
+divided by the median gene expression in adjacent normal tissue.
+图的解读
+Interpretation of the
+figure
+每行一个基因，每列一个癌症类型
+颜色分为6档：5档变化倍数（红色上调，蓝色下调）和pvalue不显著（白色）
+如果pvalue>0.05，无论变化倍数多大都是白色
+白色和灰色时，字为黑色；蓝色和红色时，字为白色。
+One gene per row, one cancer type per column
+Colors are divided into 6 levels: 5 levels of change fold (red up,
+blue down) and pvalue not significant (white)
+If pvalue>0.05, it will be white regardless of the change
+fold
+When it is white and gray, the words are black; when it is blue and
+red, the words are white.
+应用场景
+Application scenarios
+展示某些基因差异表达结果的时候，经常是把连续性变量当作数值来直接进行热图绘制。也可以像例文那样，先设置成分类变量的，同时用数字来进一步注释。变成分类变量后，可能更清晰的看到趋势
+When displaying the results of differential expression of certain genes,
+continuous variables are often used as numerical values to directly draw
+heat maps. You can also set it as a categorical variable as in the
+example text, and use numbers to further annotate it. After becoming a
+categorical variable, you may see the trend more clearly.
+还可以用来转换和展示相关性或其他连续变量。 It can also be used to
+convert and display correlations or other continuous variables.
+这里用complexheatmap画图，其实还可以用pheatmap画图，可参考FigureYa114ternaryCluster，按表达量分为3组（高/低/不变）来画图。
+Here we use complexheatmap to draw the picture, but you can also use
+pheatmap to draw the picture. You can refer to
+FigureYa114ternaryCluster, which is divided into 3 groups
+(high/low/unchanged) according to the expression level to draw the
+picture.
+环境设置
+Environment settings
+source("install_dependencies.R")
+Load package
+library(ComplexHeatmap)
+Sys.setenv(LANGUAGE = "en") #显示英文报错信息
+options(stringsAsFactors = FALSE) #禁止chr转成factor
+输入文件
+Input file
+easy_input_logFc.csv，差异表达分析当中的
+logFC
+值，还可以替换为相关分析的相关系数。
+easy_input_PVal.csv，差异表达分析当中的
+P
+值。
+genetype.csv，基因的分组，用于画最左侧annotation，非必须。
+easy_input_logFc.csv,
+logFC
+value in differential
+expression analysis, can also be replaced by correlation coefficient of
+correlation analysis.
+easy_input_PVal.csv,
+P
+value in differential
+expression analysis.
+genetype.csv, gene grouping, used to draw the leftmost annotation,
+not required.
+logfc <- read.csv("easy_input_logFc.csv", row.names = 1)
+logfc[1:2,]
+p.val <- read.csv("easy_input_PVal.csv", row.names = 1)
+p.val[1:2,]
+genetype <- read.csv("genetype.csv")
+head(genetype)
+#为确保热图基因的顺序和分组文件的顺序是一致的
+#因此按照基因分组文件里的顺序，对logfc和p.val两个文件排序
+#To ensure that the order of heat map genes is consistent with the order of grouping files
+#So sort the logfc and p.val files according to the order in the gene grouping file
+logfcOrdered <- logfc[genetype$gene,]
+p.valOrdered <- p.val[genetype$gene,]
+连续变量转换为分类变量
+Convert continuous variables to categorical variables
+分类规则： Classification rules:
+先按logFC值分成
+5类
+；
+如果
+pvalue>0.05
+，无论倍数多大都作为第6类。
+First divide into
+5 categories
+according to logFC
+value;
+If
+pvalue>0.05
+, it will be regarded as the 6th
+category regardless of the multiple.
+开始画图
+Start drawing
+我们使用
+ComplexHeatmap
+绘图，分三步： We use
+ComplexHeatmap
+to draw, divided into three steps:
+用转换好的
+logfcCat
+数据集定义热图的颜色；
+在每个热图框中添加数字，由于黑色的数字在深颜色当中不清楚，所以会根据不同的不同的cutoff调整数字的颜色；
+添加左侧分类注释；
+画图。
+Define the color of the heat map with the converted
+logfcCat
+dataset;
+Add numbers to each heat map frame. Since black numbers are not
+clear in dark colors, the color of the numbers will be adjusted
+according to different cutoffs;
+Add classification annotations on the left;
+Draw the picture.
+1. 定义好每个分类变量的颜色
+1. Define the color of each classification variable
+2. 自定义一个字体颜色根据cutoff变化的函数
+2. Customize a function that changes the font color according to the
+cutoff
+热图颜色为白色和灰色时，字为黑色；蓝色和红色时，字为白色。 When the
+heat map color is white and gray, the text is black; when it is blue and
+red, the text is white.
+所以我们就定义了一个包含两个数据集的函数 So we define a function that
+contains two data sets
+cell_fun <- function(logfc, dataP, logfcCutoff = 1, PCutoff = 0.05, 
+                     darkcol = "black", lightcol = "white", digit = 2, fontsize  = 6){
+    function(j, i, x, y, width, height, fill){
+        if(abs(logfc[i,j]) > logfcCutoff & dataP[i,j] < PCutoff){
+            grid.text(round(logfc, digit)[i, j], x, y, 
+                      gp = gpar(fontsize = fontsize, col  = lightcol))
+        }else{
+            grid.text(round(logfc, digit)[i, j], x, y, 
+                      gp = gpar(fontsize = fontsize, col  = darkcol))
+        }
+    }
+}
+函数的参数包括 The parameters of the function include
+logfc: logfc的数据集
+dataP: P值的数据集
+logfcCutoff和PCutoff的cutoff值
+darkcol和lightcol：浅色和深色的字体颜色
+digit: 热图框当中显示数据的小数点位数
+fontsize: 热图框内字体颜色的大小
+logfc: logfc data set
+dataP: P value data set
+logfcCutoff and PCutoff cutoff values
+darkcol and lightcol: light and dark font colors
+digit: the number of decimal places for displaying data in the heat
+map box
+fontsize: the size of the font color in the heat map box
+3. 添加注释
+3. Add annotations
+热图的旁边会有一个对于基因的注释。我们需要对注释信息进行定义 There
+will be an annotation for the gene next to the heat map. We need to
+define the annotation information
+4. 统一绘图
+4. Unified drawing
+最后我们把所有的数据结合到一起来绘图即可 Finally, we can combine all
+the data together to draw the picture
+pdf("rankHeatmap.pdf", width = 8, height = 4)
+Heatmap(matrix = logfcCat, 
+        name = "logFC", #主要图例的标题 #Title of the main legend
+        rect_gp = gpar(col = "NA", lwd = 1), #不画边框，或者用col = "grey"画灰色边框 #No border, or use col = "grey" to draw a gray border
+        col = col_cat, #热图颜色 #Heatmap color
+        row_names_side = "left", 
+        cell_fun = cell_fun(logfcOrdered, p.valOrdered), 
+        row_names_gp = gpar(fontsize = 8), #基因名字号 #Gene name
+        column_names_gp = gpar(fontsize = 8), #肿瘤类型字号 #Tumor type font size
+        column_names_rot = 45, #肿瘤类型呈45度 #Tumor type at 45 degrees
+        left_annotation = row_an) #左侧基因分类，如果不画，就筛掉这个参数 #Left gene classification, if not drawn, this parameter will be filtered out
+dev.off()
+sessionInfo()

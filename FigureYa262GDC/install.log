@@ -1,0 +1,10 @@
+Starting R package installation...
+===========================================
+
+Installing CRAN packages...
+Package already installed: magrittr 
+Package already installed: tidyverse 
+
+===========================================
+Package installation completed!
+You can now run your R scripts in this directory.

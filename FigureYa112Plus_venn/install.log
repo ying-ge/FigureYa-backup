@@ -1,0 +1,1116 @@
+开始安装，系统依赖已就绪...
+===========================================
+安装其他必要包...
+安装: export 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+also installing the dependencies ‘fontBitstreamVera’, ‘fontLiberation’, ‘fontquiver’, ‘gdtools’, ‘officer’, ‘rvg’, ‘flextable’, ‘stargazer’, ‘devEMF’
+
+trying URL 'https://cloud.r-project.org/src/contrib/fontBitstreamVera_0.1.1.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/fontLiberation_0.1.0.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/fontquiver_0.2.1.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/gdtools_0.4.3.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/officer_0.7.0.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/rvg_0.3.5.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/flextable_0.9.10.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/stargazer_5.2.3.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/devEMF_4.5-1.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/export_0.3.2.tar.gz'
+begin installing package ‘fontBitstreamVera’
+begin installing package ‘fontLiberation’
+begin installing package ‘officer’
+begin installing package ‘stargazer’
+* installing *source* package ‘fontBitstreamVera’ ...
+** this is package ‘fontBitstreamVera’ version ‘0.1.1’
+** package ‘fontBitstreamVera’ successfully unpacked and MD5 sums checked
+** using staged installation
+** inst
+** help
+No man pages found in package  ‘fontBitstreamVera’ 
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (fontBitstreamVera)
+begin installing package ‘devEMF’
+* installing *source* package ‘fontLiberation’ ...
+** this is package ‘fontLiberation’ version ‘0.1.0’
+** package ‘fontLiberation’ successfully unpacked and MD5 sums checked
+** using staged installation
+** inst
+** help
+No man pages found in package  ‘fontLiberation’ 
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (fontLiberation)
+begin installing package ‘fontquiver’
+* installing *source* package ‘fontquiver’ ...
+** this is package ‘fontquiver’ version ‘0.2.1’
+** package ‘fontquiver’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (fontquiver)
+begin installing package ‘gdtools’
+* installing *source* package ‘stargazer’ ...
+** this is package ‘stargazer’ version ‘5.2.3’
+** package ‘stargazer’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (stargazer)
+* installing *source* package ‘devEMF’ ...
+** this is package ‘devEMF’ version ‘4.5-1’
+** package ‘devEMF’ successfully unpacked and MD5 sums checked
+** using staged installation
+checking for pkg-config... /usr/bin/pkg-config
+checking whether pkg-config knows about Fontconfig... yes
+configure: FONTCONFIG_CFLAGS=-I/usr/include/freetype2 -I/usr/include/libpng16 
+configure: FONTCONFIG_LIBS=-lfontconfig -lfreetype 
+checking whether pkg-config knows about zlib... yes
+configure: ZLIB_CFLAGS=
+configure: ZLIB_LIBS=-lz 
+checking whether the C++ compiler works... yes
+checking for C++ compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether the compiler supports GNU C++... yes
+checking whether g++ -std=gnu++17 accepts -g... yes
+checking for g++ -std=gnu++17 option to enable C++11 features... none needed
+checking for stdio.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for strings.h... yes
+checking for sys/stat.h... yes
+checking for sys/types.h... yes
+checking for unistd.h... yes
+checking for zlib.h... yes
+checking for fontconfig/fontconfig.h... yes
+checking for CoreText/CTFont.h... no
+checking for library containing gzopen... none required
+checking for library containing FcFontMatch... none required
+configure: creating ./config.status
+config.status: creating src/Makevars
+** libs
+using C++ compiler: ‘g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+make[1]: Entering directory '/tmp/RtmpjngYU0/R.INSTALL40c9472b52e51/devEMF/src'
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/freetype2 -I/usr/include/libpng16   -DHAVE_ZLIB -DHAVE_FONTCONFIG  -I/usr/local/include    -fpic  -g -O2   -c devEMF.cpp -o devEMF.o
+g++ -std=gnu++17 -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o devEMF.so devEMF.o -lz -lfontconfig -lfreetype -L/opt/R/4.5.1/lib/R/lib -lR
+make[1]: Leaving directory '/tmp/RtmpjngYU0/R.INSTALL40c9472b52e51/devEMF/src'
+installing to /home/runner/work/_temp/Library/00LOCK-devEMF/00new/devEMF/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (devEMF)
+* installing *source* package ‘officer’ ...
+** this is package ‘officer’ version ‘0.7.0’
+** package ‘officer’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (officer)
+* installing *source* package ‘gdtools’ ...
+** this is package ‘gdtools’ version ‘0.4.3’
+** package ‘gdtools’ successfully unpacked and MD5 sums checked
+** using staged installation
+Found pkg-config cflags and libs!
+Using PKG_CFLAGS=-I/usr/include/cairo -I/usr/include/libpng16 -I/usr/include/freetype2 -I/usr/include/pixman-1 
+Using PKG_LIBS=-lcairo -lfreetype 
+** libs
+using C++ compiler: ‘g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+make[1]: Entering directory '/tmp/RtmpMlJvmU/R.INSTALL40fa65362e373/gdtools/src'
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/cairo -I/usr/include/libpng16 -I/usr/include/freetype2 -I/usr/include/pixman-1  -I../inst/include/ -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2   -c CairoContext.cpp -o CairoContext.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/cairo -I/usr/include/libpng16 -I/usr/include/freetype2 -I/usr/include/pixman-1  -I../inst/include/ -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2   -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/cairo -I/usr/include/libpng16 -I/usr/include/freetype2 -I/usr/include/pixman-1  -I../inst/include/ -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2   -c font_metrics.cpp -o font_metrics.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/cairo -I/usr/include/libpng16 -I/usr/include/freetype2 -I/usr/include/pixman-1  -I../inst/include/ -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2   -c gdtools.cpp -o gdtools.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/cairo -I/usr/include/libpng16 -I/usr/include/freetype2 -I/usr/include/pixman-1  -I../inst/include/ -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2   -c raster_to_base64.cpp -o raster_to_base64.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/cairo -I/usr/include/libpng16 -I/usr/include/freetype2 -I/usr/include/pixman-1  -I../inst/include/ -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2   -c versions.cpp -o versions.o
+g++ -std=gnu++17 -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o gdtools.so CairoContext.o RcppExports.o font_metrics.o gdtools.o raster_to_base64.o versions.o -lcairo -lfreetype -L/opt/R/4.5.1/lib/R/lib -lR
+make[1]: Leaving directory '/tmp/RtmpMlJvmU/R.INSTALL40fa65362e373/gdtools/src'
+installing to /home/runner/work/_temp/Library/00LOCK-gdtools/00new/gdtools/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (gdtools)
+begin installing package ‘rvg’
+begin installing package ‘flextable’
+* installing *source* package ‘flextable’ ...
+** this is package ‘flextable’ version ‘0.9.10’
+** package ‘flextable’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (flextable)
+* installing *source* package ‘rvg’ ...
+** this is package ‘rvg’ version ‘0.3.5’
+** package ‘rvg’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+make[1]: Entering directory '/tmp/RtmplDfQJu/R.INSTALL411d9740fb120/rvg/src'
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/gdtools/include' -I/usr/local/include    -fpic  -g -O2   -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/gdtools/include' -I/usr/local/include    -fpic  -g -O2   -c a_color.cpp -o a_color.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/gdtools/include' -I/usr/local/include    -fpic  -g -O2   -c a_prstgeom.cpp -o a_prstgeom.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/gdtools/include' -I/usr/local/include    -fpic  -g -O2   -c clipper.cpp -o clipper.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/gdtools/include' -I/usr/local/include    -fpic  -g -O2   -c line_style.cpp -o line_style.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/gdtools/include' -I/usr/local/include    -fpic  -g -O2   -c main_tree.cpp -o main_tree.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/gdtools/include' -I/usr/local/include    -fpic  -g -O2   -c ppr.cpp -o ppr.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/gdtools/include' -I/usr/local/include    -fpic  -g -O2   -c pptx.cpp -o pptx.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/gdtools/include' -I/usr/local/include    -fpic  -g -O2   -c raster.cpp -o raster.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/gdtools/include' -I/usr/local/include    -fpic  -g -O2   -c rpr.cpp -o rpr.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/gdtools/include' -I/usr/local/include    -fpic  -g -O2   -c shapes.cpp -o shapes.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/gdtools/include' -I/usr/local/include    -fpic  -g -O2   -c text.cpp -o text.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/gdtools/include' -I/usr/local/include    -fpic  -g -O2   -c write_nv_pr.cpp -o write_nv_pr.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/gdtools/include' -I/usr/local/include    -fpic  -g -O2   -c xfrm.cpp -o xfrm.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/gdtools/include' -I/usr/local/include    -fpic  -g -O2   -c xlsx.cpp -o xlsx.o
+g++ -std=gnu++17 -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o rvg.so RcppExports.o a_color.o a_prstgeom.o clipper.o line_style.o main_tree.o ppr.o pptx.o raster.o rpr.o shapes.o text.o write_nv_pr.o xfrm.o xlsx.o -lpng -lz -L/opt/R/4.5.1/lib/R/lib -lR
+make[1]: Leaving directory '/tmp/RtmplDfQJu/R.INSTALL411d9740fb120/rvg/src'
+installing to /home/runner/work/_temp/Library/00LOCK-rvg/00new/rvg/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (rvg)
+begin installing package ‘export’
+* installing *source* package ‘export’ ...
+** this is package ‘export’ version ‘0.3.2’
+** package ‘export’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (export)
+
+The downloaded source packages are in
+	‘/tmp/RtmpiG2tEo/downloaded_packages’
+✓ export 安装完成
+✓ ggplot2 已安装
+✓ openxlsx 已安装
+✓ stringr 已安装
+安装: rgeos 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+✓ rgeos 安装完成
+✓ devtools 已安装
+✓ remotes 已安装
+
+安装地理空间核心包...
+安装地理空间核心包...
+✓ sf 已安装
+✓ units 已安装
+安装: raster 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+also installing the dependency ‘terra’
+
+trying URL 'https://cloud.r-project.org/src/contrib/terra_1.8-60.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/raster_3.6-32.tar.gz'
+begin installing package ‘terra’
+* installing *source* package ‘terra’ ...
+** this is package ‘terra’ version ‘1.8-60’
+** package ‘terra’ successfully unpacked and MD5 sums checked
+** using staged installation
+configure: CC: gcc -std=gnu2x
+configure: CXX: g++ -std=gnu++17
+checking for gdal-config... /usr/bin/gdal-config
+checking gdal-config usability... yes
+configure: GDAL: 3.8.4
+checking GDAL version >= 2.0.1... yes
+checking for gcc... gcc -std=gnu2x
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether the compiler supports GNU C... yes
+checking whether gcc -std=gnu2x accepts -g... yes
+checking for gcc -std=gnu2x option to enable C11 features... none needed
+checking for stdio.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for strings.h... yes
+checking for sys/stat.h... yes
+checking for sys/types.h... yes
+checking for unistd.h... yes
+checking for gdal.h... yes
+checking GDAL: linking with --libs only... yes
+checking GDAL: /usr/share/gdal/pcs.csv readable... no
+checking GDAL: checking whether PROJ is available for linking:... yes
+checking GDAL: checking whether PROJ is available for running:... yes
+configure: GDAL: 3.8.4
+configure: pkg-config proj exists, will use it
+configure: using proj.h.
+configure: PROJ: 9.4.0
+checking PROJ: checking whether PROJ and sqlite3 are available for linking:... yes
+checking for geos-config... /usr/bin/geos-config
+checking geos-config usability... yes
+configure: GEOS: 3.12.1
+checking GEOS version >= 3.4.0... yes
+checking for geos_c.h... yes
+checking geos: linking with -L/usr/lib/x86_64-linux-gnu -lgeos_c... yes
+checking Intel TBB exists:... no
+configure: WARNING: to support parallel processing install TBB devel or update the PKG_CONFIG_PATH environment variable
+configure: Package CPP flags:  -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H -I/usr/include/gdal -I/usr/include 
+configure: Package LIBS:  -lproj    -L/usr/lib/x86_64-linux-gnu -lgdal -L/usr/lib/x86_64-linux-gnu -lgeos_c
+configure: creating ./config.status
+config.status: creating src/Makevars
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+using C++ compiler: ‘g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+using C++17
+make[1]: Entering directory '/tmp/RtmpDbV8j6/R.INSTALL4130321392eb6/terra/src'
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H -I/usr/include/gdal -I/usr/include  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H -I/usr/include/gdal -I/usr/include  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c RcppFunctions.cpp -o RcppFunctions.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H -I/usr/include/gdal -I/usr/include  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c RcppModule.cpp -o RcppModule.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H -I/usr/include/gdal -I/usr/include  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c arith.cpp -o arith.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H -I/usr/include/gdal -I/usr/include  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c crs.cpp -o crs.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H -I/usr/include/gdal -I/usr/include  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c distRaster.cpp -o distRaster.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H -I/usr/include/gdal -I/usr/include  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c distValueRaster.cpp -o distValueRaster.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H -I/usr/include/gdal -I/usr/include  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c distVector.cpp -o distVector.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H -I/usr/include/gdal -I/usr/include  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c distance.cpp -o distance.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H -I/usr/include/gdal -I/usr/include  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c extract.cpp -o extract.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H -I/usr/include/gdal -I/usr/include  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c file_utils.cpp -o file_utils.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H -I/usr/include/gdal -I/usr/include  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c focal.cpp -o focal.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H -I/usr/include/gdal -I/usr/include  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c gcp.cpp -o gcp.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H -I/usr/include/gdal -I/usr/include  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c gdal_algs.cpp -o gdal_algs.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H -I/usr/include/gdal -I/usr/include  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c gdal_multidimensional.cpp -o gdal_multidimensional.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H -I/usr/include/gdal -I/usr/include  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c gdalio.cpp -o gdalio.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H -I/usr/include/gdal -I/usr/include  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2  -c geodesic.c -o geodesic.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H -I/usr/include/gdal -I/usr/include  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c geos_methods.cpp -o geos_methods.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H -I/usr/include/gdal -I/usr/include  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c geosphere.cpp -o geosphere.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H -I/usr/include/gdal -I/usr/include  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c math_utils.cpp -o math_utils.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H -I/usr/include/gdal -I/usr/include  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c mediancut.cpp -o mediancut.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H -I/usr/include/gdal -I/usr/include  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c memory.cpp -o memory.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H -I/usr/include/gdal -I/usr/include  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c movingWindow.cpp -o movingWindow.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H -I/usr/include/gdal -I/usr/include  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c ncdf.cpp -o ncdf.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H -I/usr/include/gdal -I/usr/include  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c nearest.cpp -o nearest.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H -I/usr/include/gdal -I/usr/include  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c patches.cpp -o patches.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H -I/usr/include/gdal -I/usr/include  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c ram.cpp -o ram.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H -I/usr/include/gdal -I/usr/include  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c raster_methods.cpp -o raster_methods.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H -I/usr/include/gdal -I/usr/include  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c raster_stats.cpp -o raster_stats.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H -I/usr/include/gdal -I/usr/include  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c rasterize.cpp -o rasterize.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H -I/usr/include/gdal -I/usr/include  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c read.cpp -o read.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H -I/usr/include/gdal -I/usr/include  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c read_gdal.cpp -o read_gdal.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H -I/usr/include/gdal -I/usr/include  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c read_ogr.cpp -o read_ogr.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H -I/usr/include/gdal -I/usr/include  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c sample.cpp -o sample.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H -I/usr/include/gdal -I/usr/include  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c sort.cpp -o sort.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H -I/usr/include/gdal -I/usr/include  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c spatBase.cpp -o spatBase.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H -I/usr/include/gdal -I/usr/include  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c spatDataframe.cpp -o spatDataframe.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H -I/usr/include/gdal -I/usr/include  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c spatFactor.cpp -o spatFactor.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H -I/usr/include/gdal -I/usr/include  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c spatRaster.cpp -o spatRaster.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H -I/usr/include/gdal -I/usr/include  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c spatRasterMultiple.cpp -o spatRasterMultiple.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H -I/usr/include/gdal -I/usr/include  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c spatSources.cpp -o spatSources.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H -I/usr/include/gdal -I/usr/include  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c spatTime.cpp -o spatTime.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H -I/usr/include/gdal -I/usr/include  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c spatVector.cpp -o spatVector.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H -I/usr/include/gdal -I/usr/include  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c spatVector2.cpp -o spatVector2.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H -I/usr/include/gdal -I/usr/include  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c string_utils.cpp -o string_utils.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H -I/usr/include/gdal -I/usr/include  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c surfArea.cpp -o surfArea.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H -I/usr/include/gdal -I/usr/include  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c table_utils.cpp -o table_utils.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H -I/usr/include/gdal -I/usr/include  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c vecmath.cpp -o vecmath.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H -I/usr/include/gdal -I/usr/include  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c vecmathse.cpp -o vecmathse.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H -I/usr/include/gdal -I/usr/include  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c vector_methods.cpp -o vector_methods.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H -I/usr/include/gdal -I/usr/include  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c watershed_internal.cpp -o watershed_internal.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H -I/usr/include/gdal -I/usr/include  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c write.cpp -o write.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H -I/usr/include/gdal -I/usr/include  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c write_gdal.cpp -o write_gdal.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu -I/usr/include/webp  -DHAVE_PROJ_H -I/usr/include/gdal -I/usr/include  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c write_ogr.cpp -o write_ogr.o
+g++ -std=gnu++17 -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o terra.so RcppExports.o RcppFunctions.o RcppModule.o arith.o crs.o distRaster.o distValueRaster.o distVector.o distance.o extract.o file_utils.o focal.o gcp.o gdal_algs.o gdal_multidimensional.o gdalio.o geodesic.o geos_methods.o geosphere.o math_utils.o mediancut.o memory.o movingWindow.o ncdf.o nearest.o patches.o ram.o raster_methods.o raster_stats.o rasterize.o read.o read_gdal.o read_ogr.o sample.o sort.o spatBase.o spatDataframe.o spatFactor.o spatRaster.o spatRasterMultiple.o spatSources.o spatTime.o spatVector.o spatVector2.o string_utils.o surfArea.o table_utils.o vecmath.o vecmathse.o vector_methods.o watershed_internal.o write.o write_gdal.o write_ogr.o -lproj -L/usr/lib/x86_64-linux-gnu -lgdal -L/usr/lib/x86_64-linux-gnu -lgeos_c -L/opt/R/4.5.1/lib/R/lib -lR
+make[1]: Leaving directory '/tmp/RtmpDbV8j6/R.INSTALL4130321392eb6/terra/src'
+installing to /home/runner/work/_temp/Library/00LOCK-terra/00new/terra/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+in method for ‘sds’ with signature ‘x="stars"’: no definition for class “stars”
+in method for ‘sds’ with signature ‘x="stars_proxy"’: no definition for class “stars_proxy”
+in method for ‘svc’ with signature ‘x="sf"’: no definition for class “sf”
+in method for ‘coerce’ with signature ‘"stars","SpatRasterDataset"’: no definition for class “stars”
+in method for ‘coerce’ with signature ‘"ggmap","SpatRaster"’: no definition for class “ggmap”
+in method for ‘coerce’ with signature ‘"sf","SpatRaster"’: no definition for class “sf”
+in method for ‘coerce’ with signature ‘"sf","SpatVector"’: no definition for class “sf”
+in method for ‘coerce’ with signature ‘"sfc","SpatVector"’: no definition for class “sfc”
+in method for ‘coerce’ with signature ‘"sfg","SpatVector"’: no definition for class “sfg”
+in method for ‘coerce’ with signature ‘"XY","SpatVector"’: no definition for class “XY”
+in method for ‘coerce’ with signature ‘"im","SpatRaster"’: no definition for class “im”
+in method for ‘coerce’ with signature ‘"SpatVector","Spatial"’: no definition for class “Spatial”
+in method for ‘coerce’ with signature ‘"Spatial","SpatVector"’: no definition for class “Spatial”
+in method for ‘coerce’ with signature ‘"SpatialGrid","SpatRaster"’: no definition for class “SpatialGrid”
+in method for ‘coerce’ with signature ‘"SpatialPixels","SpatRaster"’: no definition for class “SpatialPixels”
+in method for ‘crs’ with signature ‘"sf"’: no definition for class “sf”
+Creating a generic function for ‘ncol’ from package ‘base’ in package ‘terra’
+in method for ‘distance’ with signature ‘x="SpatRaster",y="sf"’: no definition for class “sf”
+in method for ‘ext’ with signature ‘x="sf"’: no definition for class “sf”
+in method for ‘ext’ with signature ‘x="bbox"’: no definition for class “bbox”
+in method for ‘ext’ with signature ‘x="Extent"’: no definition for class “Extent”
+in method for ‘ext’ with signature ‘x="Raster"’: no definition for class “Raster”
+in method for ‘ext’ with signature ‘x="Spatial"’: no definition for class “Spatial”
+in method for ‘extract’ with signature ‘x="SpatRaster",y="sf"’: no definition for class “sf”
+in method for ‘mask’ with signature ‘x="SpatRaster",mask="sf"’: no definition for class “sf”
+in method for ‘points’ with signature ‘x="sf"’: no definition for class “sf”
+in method for ‘lines’ with signature ‘x="sf"’: no definition for class “sf”
+in method for ‘polys’ with signature ‘x="sf"’: no definition for class “sf”
+in method for ‘polys’ with signature ‘x="leaflet"’: no definition for class “leaflet”
+in method for ‘lines’ with signature ‘x="leaflet"’: no definition for class “leaflet”
+in method for ‘points’ with signature ‘x="leaflet"’: no definition for class “leaflet”
+in method for ‘rast’ with signature ‘x="stars"’: no definition for class “stars”
+in method for ‘rast’ with signature ‘x="stars_proxy"’: no definition for class “stars_proxy”
+in method for ‘rasterize’ with signature ‘x="sf",y="SpatRaster"’: no definition for class “sf”
+Creating a generic function for ‘rowSums’ from package ‘base’ in package ‘terra’
+Creating a generic function for ‘colSums’ from package ‘base’ in package ‘terra’
+Creating a generic function for ‘rowMeans’ from package ‘base’ in package ‘terra’
+Creating a generic function for ‘colMeans’ from package ‘base’ in package ‘terra’
+in method for ‘show’ with signature ‘"Rcpp_SpatDataFrame"’: no definition for class “Rcpp_SpatDataFrame”
+in method for ‘show’ with signature ‘"Rcpp_SpatCategories"’: no definition for class “Rcpp_SpatCategories”
+in method for ‘geomtype’ with signature ‘x="Spatial"’: no definition for class “Spatial”
+Creating a generic function for ‘identical’ from package ‘base’ in package ‘terra’
+in method for ‘vect’ with signature ‘x="Spatial"’: no definition for class “Spatial”
+in method for ‘vect’ with signature ‘x="sf"’: no definition for class “sf”
+in method for ‘vect’ with signature ‘x="sfc"’: no definition for class “sfc”
+in method for ‘vect’ with signature ‘x="XY"’: no definition for class “XY”
+Creating a generic function for ‘unserialize’ from package ‘base’ in package ‘terra’
+Creating a generic function for ‘readRDS’ from package ‘base’ in package ‘terra’
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (terra)
+begin installing package ‘raster’
+* installing *source* package ‘raster’ ...
+** this is package ‘raster’ version ‘3.6-32’
+** package ‘raster’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+using C++ compiler: ‘g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+make[1]: Entering directory '/tmp/Rtmpu7Neyq/R.INSTALL416f1dbbf668/raster/src'
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c RasterModule.cpp -o RasterModule.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c aggregate.cpp -o aggregate.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c bilinear.cpp -o bilinear.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c broom.cpp -o broom.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c cellRowCol.cpp -o cellRowCol.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c clamp.cpp -o clamp.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c distance.cpp -o distance.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c edge.cpp -o edge.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c focal_fun.cpp -o focal_fun.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c focal_get.cpp -o focal_get.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c focal_sum.cpp -o focal_sum.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2  -c geodesic.c -o geodesic.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c getPolygons.cpp -o getPolygons.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c layerize.cpp -o layerize.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c memory.cpp -o memory.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c modal.cpp -o modal.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c ppmin.cpp -o ppmin.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c raster_aggregate.cpp -o raster_aggregate.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c raster_distance.cpp -o raster_distance.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c rasterize.cpp -o rasterize.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c reclass.cpp -o reclass.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c terrain.cpp -o terrain.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c util.cpp -o util.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c xyCell.cpp -o xyCell.o
+g++ -std=gnu++17 -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o raster.so RasterModule.o RcppExports.o aggregate.o bilinear.o broom.o cellRowCol.o clamp.o distance.o edge.o focal_fun.o focal_get.o focal_sum.o geodesic.o getPolygons.o layerize.o memory.o modal.o ppmin.o raster_aggregate.o raster_distance.o rasterize.o reclass.o terrain.o util.o xyCell.o -L/opt/R/4.5.1/lib/R/lib -lR
+make[1]: Leaving directory '/tmp/Rtmpu7Neyq/R.INSTALL416f1dbbf668/raster/src'
+installing to /home/runner/work/_temp/Library/00LOCK-raster/00new/raster/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+in method for ‘initialize’ with signature ‘"BasicRaster"’: no definition for class “BasicRaster”
+in method for ‘brick’ with signature ‘x="kasc"’: no definition for class “kasc”
+in method for ‘brick’ with signature ‘x="grf"’: no definition for class “grf”
+in method for ‘coerce’ with signature ‘"STFDF","RasterBrick"’: no definition for class “STFDF”
+in method for ‘coerce’ with signature ‘"STSDF","RasterBrick"’: no definition for class “STSDF”
+in method for ‘coerce’ with signature ‘"asc","RasterLayer"’: no definition for class “asc”
+in method for ‘coerce’ with signature ‘"RasterLayer","asc"’: no definition for class “asc”
+in method for ‘coerce’ with signature ‘"kasc","RasterBrick"’: no definition for class “kasc”
+in method for ‘coerce’ with signature ‘"kasc","RasterStack"’: no definition for class “kasc”
+in method for ‘coerce’ with signature ‘"kde","RasterLayer"’: no definition for class “kde”
+in method for ‘coerce’ with signature ‘"grf","RasterBrick"’: no definition for class “grf”
+in method for ‘coerce’ with signature ‘"grf","RasterLayer"’: no definition for class “grf”
+in method for ‘extent’ with signature ‘x="bbox"’: no definition for class “bbox”
+in method for ‘extent’ with signature ‘x="sf"’: no definition for class “sf”
+in method for ‘extract’ with signature ‘x="Raster",y="sf"’: no definition for class “sf”
+in method for ‘mask’ with signature ‘x="Raster",mask="sf"’: no definition for class “sf”
+in method for ‘raster’ with signature ‘x="sf"’: no definition for class “sf”
+in method for ‘raster’ with signature ‘x="kasc"’: no definition for class “kasc”
+in method for ‘raster’ with signature ‘x="asc"’: no definition for class “asc”
+in method for ‘raster’ with signature ‘x="kde"’: no definition for class “kde”
+in method for ‘raster’ with signature ‘x="grf"’: no definition for class “grf”
+in method for ‘rasterize’ with signature ‘x="sf",y="Raster"’: no definition for class “sf”
+in method for ‘setValues’ with signature ‘x="RasterLayerSparse"’: no definition for class “RasterLayerSparse”
+in method for ‘stack’ with signature ‘x="kasc"’: no definition for class “kasc”
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (raster)
+
+The downloaded source packages are in
+	‘/tmp/RtmpiG2tEo/downloaded_packages’
+✓ raster 安装成功
+安装: stars 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+trying URL 'https://cloud.r-project.org/src/contrib/stars_0.6-8.tar.gz'
+Content type 'application/x-gzip' length 4037727 bytes (3.9 MB)
+==================================================
+downloaded 3.9 MB
+
+* installing *source* package ‘stars’ ...
+** this is package ‘stars’ version ‘0.6-8’
+** package ‘stars’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+*** moving datasets to lazyload DB
+** demo
+** inst
+** byte-compile and prepare package for lazy loading
+in method for ‘coerce’ with signature ‘"stars","Raster"’: no definition for class “Raster”
+in method for ‘coerce’ with signature ‘"stars_proxy","Raster"’: no definition for class “Raster”
+in method for ‘coerce’ with signature ‘"stars","SpatRaster"’: no definition for class “SpatRaster”
+in method for ‘coerce’ with signature ‘"stars_proxy","SpatRaster"’: no definition for class “SpatRaster”
+in method for ‘coerce’ with signature ‘"stars","STFDF"’: no definition for class “STFDF”
+in method for ‘coerce’ with signature ‘"stars","Spatial"’: no definition for class “Spatial”
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (stars)
+
+The downloaded source packages are in
+	‘/tmp/RtmpiG2tEo/downloaded_packages’
+✓ stars 安装成功
+安装: leaflet 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+also installing the dependency ‘leaflet.providers’
+
+trying URL 'https://cloud.r-project.org/src/contrib/leaflet.providers_2.0.0.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/leaflet_2.2.3.tar.gz'
+begin installing package ‘leaflet.providers’
+* installing *source* package ‘leaflet.providers’ ...
+** this is package ‘leaflet.providers’ version ‘2.0.0’
+** package ‘leaflet.providers’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (leaflet.providers)
+begin installing package ‘leaflet’
+* installing *source* package ‘leaflet’ ...
+** this is package ‘leaflet’ version ‘2.2.3’
+** package ‘leaflet’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (leaflet)
+
+The downloaded source packages are in
+	‘/tmp/RtmpiG2tEo/downloaded_packages’
+✓ leaflet 安装成功
+
+安装地图可视化包...
+安装地图可视化包...
+安装: mapview 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+also installing the dependencies ‘jsonify’, ‘rapidjsonr’, ‘geojsonsf’, ‘leafem’, ‘leafpop’, ‘satellite’, ‘servr’
+
+trying URL 'https://cloud.r-project.org/src/contrib/jsonify_1.2.2.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/rapidjsonr_1.2.0.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/geojsonsf_2.0.3.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/leafem_0.2.5.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/leafpop_0.1.0.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/satellite_1.0.6.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/servr_0.32.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/mapview_2.11.4.tar.gz'
+begin installing package ‘rapidjsonr’
+begin installing package ‘leafpop’
+begin installing package ‘satellite’
+begin installing package ‘servr’
+* installing *source* package ‘rapidjsonr’ ...
+** this is package ‘rapidjsonr’ version ‘1.2.0’
+** package ‘rapidjsonr’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (rapidjsonr)
+begin installing package ‘jsonify’
+* installing *source* package ‘servr’ ...
+** this is package ‘servr’ version ‘0.32’
+** package ‘servr’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (servr)
+* installing *source* package ‘leafpop’ ...
+** this is package ‘leafpop’ version ‘0.1.0’
+** package ‘leafpop’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (leafpop)
+* installing *source* package ‘satellite’ ...
+** this is package ‘satellite’ version ‘1.0.6’
+** package ‘satellite’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+make[1]: Entering directory '/tmp/RtmpEkeNxG/R.INSTALL418933d553a09/satellite/src'
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c SatelliteCppFun.cpp -o SatelliteCppFun.o
+g++ -std=gnu++17 -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o satellite.so RcppExports.o SatelliteCppFun.o -L/opt/R/4.5.1/lib/R/lib -lR
+make[1]: Leaving directory '/tmp/RtmpEkeNxG/R.INSTALL418933d553a09/satellite/src'
+installing to /home/runner/work/_temp/Library/00LOCK-satellite/00new/satellite/libs
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (satellite)
+* installing *source* package ‘jsonify’ ...
+** this is package ‘jsonify’ version ‘1.2.2’
+** package ‘jsonify’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+using C++11
+make[1]: Entering directory '/tmp/RtmpoQqeUj/R.INSTALL419156fe9c39a/jsonify/src'
+g++ -std=gnu++11 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DSTRICT_R_HEADERS -I'/home/runner/work/_temp/Library/rapidjsonr/include' -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -I../inst/include/ -fpic  -g -O2   -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++11 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DSTRICT_R_HEADERS -I'/home/runner/work/_temp/Library/rapidjsonr/include' -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -I../inst/include/ -fpic  -g -O2   -c from_json.cpp -o from_json.o
+g++ -std=gnu++11 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DSTRICT_R_HEADERS -I'/home/runner/work/_temp/Library/rapidjsonr/include' -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -I../inst/include/ -fpic  -g -O2   -c pretty.cpp -o pretty.o
+g++ -std=gnu++11 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DSTRICT_R_HEADERS -I'/home/runner/work/_temp/Library/rapidjsonr/include' -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -I../inst/include/ -fpic  -g -O2   -c read_json.cpp -o read_json.o
+g++ -std=gnu++11 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DSTRICT_R_HEADERS -I'/home/runner/work/_temp/Library/rapidjsonr/include' -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -I../inst/include/ -fpic  -g -O2   -c tests.cpp -o tests.o
+g++ -std=gnu++11 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DSTRICT_R_HEADERS -I'/home/runner/work/_temp/Library/rapidjsonr/include' -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -I../inst/include/ -fpic  -g -O2   -c to_json.cpp -o to_json.o
+g++ -std=gnu++11 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DSTRICT_R_HEADERS -I'/home/runner/work/_temp/Library/rapidjsonr/include' -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -I../inst/include/ -fpic  -g -O2   -c validate.cpp -o validate.o
+g++ -std=gnu++11 -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o jsonify.so RcppExports.o from_json.o pretty.o read_json.o tests.o to_json.o validate.o -L/opt/R/4.5.1/lib/R/lib -lR
+make[1]: Leaving directory '/tmp/RtmpoQqeUj/R.INSTALL419156fe9c39a/jsonify/src'
+installing to /home/runner/work/_temp/Library/00LOCK-jsonify/00new/jsonify/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (jsonify)
+begin installing package ‘geojsonsf’
+* installing *source* package ‘geojsonsf’ ...
+** this is package ‘geojsonsf’ version ‘2.0.3’
+** package ‘geojsonsf’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+using C++11
+make[1]: Entering directory '/tmp/RtmpsDWd20/R.INSTALL41a3b2d3df8d6/geojsonsf/src'
+g++ -std=gnu++11 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DSTRICT_R_HEADERS -I'/home/runner/work/_temp/Library/geometries/include' -I'/home/runner/work/_temp/Library/jsonify/include' -I'/home/runner/work/_temp/Library/rapidjsonr/include' -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sfheaders/include' -I/usr/local/include   -I../inst/include/ -fpic  -g -O2   -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++11 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DSTRICT_R_HEADERS -I'/home/runner/work/_temp/Library/geometries/include' -I'/home/runner/work/_temp/Library/jsonify/include' -I'/home/runner/work/_temp/Library/rapidjsonr/include' -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sfheaders/include' -I/usr/local/include   -I../inst/include/ -fpic  -g -O2   -c df_geojson.cpp -o df_geojson.o
+g++ -std=gnu++11 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DSTRICT_R_HEADERS -I'/home/runner/work/_temp/Library/geometries/include' -I'/home/runner/work/_temp/Library/jsonify/include' -I'/home/runner/work/_temp/Library/rapidjsonr/include' -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sfheaders/include' -I/usr/local/include   -I../inst/include/ -fpic  -g -O2   -c geojson_to_sf.cpp -o geojson_to_sf.o
+g++ -std=gnu++11 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DSTRICT_R_HEADERS -I'/home/runner/work/_temp/Library/geometries/include' -I'/home/runner/work/_temp/Library/jsonify/include' -I'/home/runner/work/_temp/Library/rapidjsonr/include' -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sfheaders/include' -I/usr/local/include   -I../inst/include/ -fpic  -g -O2   -c geojson_to_wkt.cpp -o geojson_to_wkt.o
+g++ -std=gnu++11 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DSTRICT_R_HEADERS -I'/home/runner/work/_temp/Library/geometries/include' -I'/home/runner/work/_temp/Library/jsonify/include' -I'/home/runner/work/_temp/Library/rapidjsonr/include' -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sfheaders/include' -I/usr/local/include   -I../inst/include/ -fpic  -g -O2   -c geojson_wkt.cpp -o geojson_wkt.o
+g++ -std=gnu++11 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DSTRICT_R_HEADERS -I'/home/runner/work/_temp/Library/geometries/include' -I'/home/runner/work/_temp/Library/jsonify/include' -I'/home/runner/work/_temp/Library/rapidjsonr/include' -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sfheaders/include' -I/usr/local/include   -I../inst/include/ -fpic  -g -O2   -c read_geojson.cpp -o read_geojson.o
+g++ -std=gnu++11 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -DSTRICT_R_HEADERS -I'/home/runner/work/_temp/Library/geometries/include' -I'/home/runner/work/_temp/Library/jsonify/include' -I'/home/runner/work/_temp/Library/rapidjsonr/include' -I'/home/runner/work/_temp/Library/Rcpp/include' -I'/home/runner/work/_temp/Library/sfheaders/include' -I/usr/local/include   -I../inst/include/ -fpic  -g -O2   -c sf_geojson.cpp -o sf_geojson.o
+g++ -std=gnu++11 -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o geojsonsf.so RcppExports.o df_geojson.o geojson_to_sf.o geojson_to_wkt.o geojson_wkt.o read_geojson.o sf_geojson.o -L/opt/R/4.5.1/lib/R/lib -lR
+make[1]: Leaving directory '/tmp/RtmpsDWd20/R.INSTALL41a3b2d3df8d6/geojsonsf/src'
+installing to /home/runner/work/_temp/Library/00LOCK-geojsonsf/00new/geojsonsf/libs
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (geojsonsf)
+begin installing package ‘leafem’
+* installing *source* package ‘leafem’ ...
+** this is package ‘leafem’ version ‘0.2.5’
+** package ‘leafem’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (leafem)
+begin installing package ‘mapview’
+* installing *source* package ‘mapview’ ...
+** this is package ‘mapview’ version ‘2.11.4’
+** package ‘mapview’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (mapview)
+
+The downloaded source packages are in
+	‘/tmp/RtmpiG2tEo/downloaded_packages’
+✓ mapview 安装成功
+安装: tmap 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+also installing the dependencies ‘logger’, ‘stringdist’, ‘spacesXYZ’, ‘slippymath’, ‘cols4all’, ‘leafgl’, ‘leaflegend’, ‘leafsync’, ‘maptiles’, ‘tmaptools’
+
+trying URL 'https://cloud.r-project.org/src/contrib/logger_0.4.1.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/stringdist_0.9.15.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/spacesXYZ_1.6-0.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/slippymath_0.3.1.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/cols4all_0.9.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/leafgl_0.2.2.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/leaflegend_1.2.1.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/leafsync_0.1.0.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/maptiles_0.10.0.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/tmaptools_3.3.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/tmap_4.2.tar.gz'
+begin installing package ‘logger’
+begin installing package ‘stringdist’
+begin installing package ‘slippymath’
+begin installing package ‘leafgl’
+* installing *source* package ‘slippymath’ ...
+** this is package ‘slippymath’ version ‘0.3.1’
+** package ‘slippymath’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (slippymath)
+begin installing package ‘leaflegend’
+* installing *source* package ‘logger’ ...
+** this is package ‘logger’ version ‘0.4.1’
+** package ‘logger’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (logger)
+begin installing package ‘leafsync’
+* installing *source* package ‘leafgl’ ...
+** this is package ‘leafgl’ version ‘0.2.2’
+** package ‘leafgl’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (leafgl)
+begin installing package ‘tmaptools’
+* installing *source* package ‘stringdist’ ...
+** this is package ‘stringdist’ version ‘0.9.15’
+** package ‘stringdist’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+make[1]: Entering directory '/tmp/Rtmped6EBi/R.INSTALL41b5d357d0c21/stringdist/src'
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I../inst/include  -I/usr/local/include   -fopenmp -fpic  -g -O2  -c R_register_native.c -o R_register_native.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I../inst/include  -I/usr/local/include   -fopenmp -fpic  -g -O2  -c Rstringdist.c -o Rstringdist.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I../inst/include  -I/usr/local/include   -fopenmp -fpic  -g -O2  -c dl.c -o dl.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I../inst/include  -I/usr/local/include   -fopenmp -fpic  -g -O2  -c hamming.c -o hamming.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I../inst/include  -I/usr/local/include   -fopenmp -fpic  -g -O2  -c jaro.c -o jaro.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I../inst/include  -I/usr/local/include   -fopenmp -fpic  -g -O2  -c lcs.c -o lcs.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I../inst/include  -I/usr/local/include   -fopenmp -fpic  -g -O2  -c lv.c -o lv.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I../inst/include  -I/usr/local/include   -fopenmp -fpic  -g -O2  -c osa.c -o osa.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I../inst/include  -I/usr/local/include   -fopenmp -fpic  -g -O2  -c qgram.c -o qgram.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I../inst/include  -I/usr/local/include   -fopenmp -fpic  -g -O2  -c soundex.c -o soundex.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I../inst/include  -I/usr/local/include   -fopenmp -fpic  -g -O2  -c stringdist.c -o stringdist.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I../inst/include  -I/usr/local/include   -fopenmp -fpic  -g -O2  -c utf8ToInt.c -o utf8ToInt.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I../inst/include  -I/usr/local/include   -fopenmp -fpic  -g -O2  -c utils.c -o utils.o
+gcc -std=gnu2x -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o stringdist.so R_register_native.o Rstringdist.o dl.o hamming.o jaro.o lcs.o lv.o osa.o qgram.o soundex.o stringdist.o utf8ToInt.o utils.o -fopenmp -L/opt/R/4.5.1/lib/R/lib -lR
+make[1]: Leaving directory '/tmp/Rtmped6EBi/R.INSTALL41b5d357d0c21/stringdist/src'
+installing to /home/runner/work/_temp/Library/00LOCK-stringdist/00new/stringdist/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (stringdist)
+begin installing package ‘spacesXYZ’
+* installing *source* package ‘leafsync’ ...
+** this is package ‘leafsync’ version ‘0.1.0’
+** package ‘leafsync’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (leafsync)
+begin installing package ‘maptiles’
+* installing *source* package ‘leaflegend’ ...
+** this is package ‘leaflegend’ version ‘1.2.1’
+** package ‘leaflegend’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (leaflegend)
+* installing *source* package ‘spacesXYZ’ ...
+** this is package ‘spacesXYZ’ version ‘1.6-0’
+** package ‘spacesXYZ’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (spacesXYZ)
+begin installing package ‘cols4all’
+* installing *source* package ‘tmaptools’ ...
+** this is package ‘tmaptools’ version ‘3.3’
+** package ‘tmaptools’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (tmaptools)
+* installing *source* package ‘cols4all’ ...
+** this is package ‘cols4all’ version ‘0.9’
+** package ‘cols4all’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (cols4all)
+* installing *source* package ‘maptiles’ ...
+** this is package ‘maptiles’ version ‘0.10.0’
+** package ‘maptiles’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (maptiles)
+begin installing package ‘tmap’
+* installing *source* package ‘tmap’ ...
+** this is package ‘tmap’ version ‘4.2’
+** package ‘tmap’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (tmap)
+
+The downloaded source packages are in
+	‘/tmp/RtmpiG2tEo/downloaded_packages’
+✓ tmap 安装成功
+✓ leafem 已安装
+✓ leafpop 已安装
+✓ leafgl 已安装
+✓ leaflegend 已安装
+✓ leafsync 已安装
+✓ maptiles 已安装
+✓ tmaptools 已安装
+✓ satellite 已安装
+
+安装ggVennDiagram...
+安装 ggVennDiagram...
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+also installing the dependencies ‘admisc’, ‘venn’
+
+trying URL 'https://cloud.r-project.org/src/contrib/admisc_0.38.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/venn_1.12.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/ggVennDiagram_1.5.4.tar.gz'
+begin installing package ‘admisc’
+* installing *source* package ‘admisc’ ...
+** this is package ‘admisc’ version ‘0.38’
+** package ‘admisc’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+make[1]: Entering directory '/tmp/RtmpMFGVVA/R.INSTALL41ea231f44380/admisc/src'
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c admisc.c -o admisc.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c registerDynamicSymbol.c -o registerDynamicSymbol.o
+gcc -std=gnu2x -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o admisc.so admisc.o registerDynamicSymbol.o -L/opt/R/4.5.1/lib/R/lib -lR
+make[1]: Leaving directory '/tmp/RtmpMFGVVA/R.INSTALL41ea231f44380/admisc/src'
+installing to /home/runner/work/_temp/Library/00LOCK-admisc/00new/admisc/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (admisc)
+begin installing package ‘venn’
+* installing *source* package ‘venn’ ...
+** this is package ‘venn’ version ‘1.12’
+** package ‘venn’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (venn)
+begin installing package ‘ggVennDiagram’
+* installing *source* package ‘ggVennDiagram’ ...
+** this is package ‘ggVennDiagram’ version ‘1.5.4’
+** package ‘ggVennDiagram’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (ggVennDiagram)
+
+The downloaded source packages are in
+	‘/tmp/RtmpiG2tEo/downloaded_packages’
+✓ ggVennDiagram 从CRAN安装成功
+
+===========================================
+
+验证地理空间包安装...
+✓ sf 已安装
+Linking to GEOS 3.12.1, GDAL 3.8.4, PROJ 9.4.0; sf_use_s2() is TRUE
+  → 加载成功
+✓ raster 已安装
+Loading required package: sp
+  → 加载成功
+✓ leaflet 已安装
+  → 加载成功
+
+验证所有必要包安装...
+✓ export 已安装
+✓ ggplot2 已安装
+✓ openxlsx 已安装
+✓ stringr 已安装
+✗ rgeos 未安装
+✓ Venn图包已安装: ggVennDiagram, VennDiagram 
+
+⚠ 有些包可能安装有问题，但主要功能应该可用。
+Warning message:
+package ‘rgeos’ is not available for this version of R
+
+A version of this package for your version of R might be available elsewhere,
+see the ideas at
+https://cran.r-project.org/doc/manuals/r-patched/R-admin.html#Installing-packages 

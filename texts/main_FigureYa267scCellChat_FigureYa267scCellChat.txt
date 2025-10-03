@@ -1,0 +1,217 @@
+FigureYa267scCellChat
+FigureYa267scCellChat
+Xiao Gu, Taojun Ye
+2025-09-22
+Academic Citation
+If you use this code in your work or research, we kindly request that
+you cite our publication:
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization
+Framework for Enhancing Biomedical Data Interpretation and Research
+Efficiency. iMetaMed.
+https://doi.org/10.1002/imm3.70005
+需求描述
+希望用cellchat来实现：
+Requirement description
+I hope to use CellChat to achieve:
+出自
+https://aacrjournals.org/cancerdiscovery/article/12/1/134/675646/Spatiotemporal-Immune-Landscape-of-Colorectal
+from
+https://aacrjournals.org/cancerdiscovery/article/12/1/134/675646/Spatiotemporal-Immune-Landscape-of-Colorectal
+Figure 3. MRC1+ CCL18+ macrophages in metastatic tumors exhibited
+terminally differentiated and suppressive states. A, The ranked
+differential tumor–immune cell cross-talk [liver metastasis (LM)
+vs. colorectal cancer (CRC)] shows MRC1+ CCL18+ M2-like macrophages
+ranked the second among all ligand–receptor pairs.
+本文档作者古潇的comments:
+例文提出假设“Given the enrichment of macrophage subpopulations in
+liver metastasis, we hypothesized that those liver metastasis–enriched
+macrophages might be functionally distinct across different tissues.”
+怎样验证这个假设呢？
+作者用CellPhoneDB分析 +
+circlize可视化来解决。由于CellPhoneDB不能直接处理两组间的关系，所以作者用了一个变通的方法：
+把直肠癌的所有细胞类型combined到一起，相当于一种细胞类型，命名为tumor，这样就可以克服cellphonedb无法一次性比较两组间的关系的困难。
+这个方法其实我不太认可，这样抹掉了结肠癌的细胞类型的信息。我个人认为cellchat的算法是优于cellphonedb的，尤其是在有对照处理的分析中。
+提需求的小伙伴要求用cellchat来实现，用cellchat的确可以很方便的实现。详见“开始画图”结尾的“结果解读”。
+Comments from the author of this document, Xiao Gu:
+Given the enrichment of macrophage subpopulations in liver
+metastasis, we hypothesize that those liver metastases – enriched
+macrophages may be functionally distinct across How to test this
+hypothesis for ‘different disorders’?
+The author uses CellPhoneDB analysis and circlize visualization to
+solve the problem. Due to CellPhoneDB’s inability to directly handle the
+relationship between two groups, the author used an alternative
+approach:
+-Combining all cell types of rectal cancer together, equivalent to
+one cell type, named tumor, can overcome the difficulty of cellphonedb
+in comparing the relationship between two groups at once.
+I actually don’t quite agree with this method, as it erases
+information about the cell types of colon cancer. I personally believe
+that Cellchat’s algorithm is superior to Cellphonedb, especially in
+analyses with control processing.
+The friend who raised the request requested to use Cellchat to
+implement it, which can indeed be very convenient. See “Interpretation
+of Results” at the end of “Start Drawing” for details.
+应用场景
+单细胞RNA-seq数据，对比两组样本（例文的原发vs.转移、不同亚型、不同发育时期等）之间，基于“受体-配体”的差异，用cellchat来实现。
+另外，CellPhoneDB的用法可参考FigureYa178receptorLigand
+Application scenarios
+Single cell RNA seq data was compared between two groups of samples
+(e.g. primary vs. metastasis, different subtypes, different
+developmental stages, etc.) using cellchat based on the differences in
+“receptor ligand”.
+In addition, the usage of CellPhoneDB can refer to
+FigureYa178receptorLigand<
+https://k.youshop10.com/YICoy-XB
+>
+环境设置
+Environment settings
+source("install_dependencies.R")
+# 加载Seurat包用于单细胞数据分析（Load the Seurat package for single-cell RNA-seq data analysis）
+library(Seurat)
+# 加载SeuratData包用于获取示例数据集（Load the SeuratData package for accessing example datasets）
+library(SeuratData)
+# 加载RColorBrewer包用于创建自定义配色方案（Load the RColorBrewer package for creating color palettes）
+library(RColorBrewer)
+# 加载dplyr包用于数据处理和转换（Load the dplyr package for data manipulation and transformation）
+library(dplyr)
+# 加载magrittr包以使用管道操作符（Load the magrittr package to use pipe operators）
+library(magrittr)
+# 加载CellChat包用于细胞间通讯分析（Load the CellChat package for cell-cell communication analysis）
+library(CellChat)
+# 加载patchwork包用于组合多个ggplot2图形（Load the patchwork package for combining multiple ggplot2 plots）
+library(patchwork)
+library(ifnb.SeuratData)
+library(presto)
+# 设置系统环境以显示英文错误信息（Set system environment to display error messages in English）
+Sys.setenv(LANGUAGE = "en") 
+# 禁止自动将字符串转换为因子类型（Prevent automatic conversion of strings to factors）
+options(stringsAsFactors = FALSE)
+输入数据预处理
+ifnb
+- A Seurat object with the PBMC
+control/IFNB-stimulated dataset。出自
+https://pubmed.ncbi.nlm.nih.gov/29227470/
+，已被打包到SeuratData里，我们直接安装、加载它。
+示例数据ifnb有STIM和CTRL两组：
+先拆分成两个seurat
+object，对两个数据集单独进行normalize并识别各自的高变异基因，使用高变异基因在两个基因集中分别执行PCA。
+然后对两个数据集进行整合，进行常规数据预处理，存入immune.combined，以便进行后续分析。
+Input data preprocessing
+ifnb
+- A Seurat object with the PBMC
+control/IFNB-stimulated dataset。 From<
+https://pubmed.ncbi.nlm.nih.gov/29227470/
+>, has been
+packaged into SeuratData, we can directly install and load it.
+The example data ifnb has two groups: STIM and CTRL:
+-First, split it into two seurat objects, normalize the two datasets
+separately and identify their respective highly variable genes. Use the
+highly variable genes to perform PCA on the two gene sets separately.
+-Then integrate the two datasets, perform regular data preprocessing,
+and store them in immunembined for subsequent analysis.
+提取数据分别创建CellChat对象
+STIM和CTRL两组，分别提取数据，创建CellChat对象。
+运行时间约10min
+Extract data and create CellChat objects separately
+Extract data from STIM and CTRL groups respectively, and create
+CellChat objects.
+Running time is about 10 minutes
+开始画图
+Start drawing
+细胞间互作次数bar图
+Bar chart of intercellular interaction frequency
+Comparing the number of inferred communication links between
+different datasets
+# 比较两组间的细胞通讯相互作用（默认使用通讯频率）
+# Compare cell-cell communication interactions between two groups (default: communication frequency)
+gg1 <- compareInteractions(cellchat, show.legend = F, group = c(1,2))
+# 比较两组间的细胞通讯相互作用（使用通讯权重）
+# Compare cell-cell communication interactions between two groups (using communication weight)
+gg2 <- compareInteractions(cellchat, show.legend = F, group = c(1,2), measure = "weight")
+
+# 保存比较结果为PDF文件
+# Save the comparison results as a PDF file
+pdf("compareInteractions.pdf", height = 5, width = 8)
+# 组合两个图形
+# Combine the two graphs
+gg1 + gg2
+# 关闭图形设备
+# Close the graphics device
+dev.off()
+细胞间互作次数网络图
+Circle plot showing differential cell-cell communication network
+between two datasets
+红色为STIM组相比CTRL组互作次数和互作强度增加，线越粗表示差异越大；蓝色则表示减少。
+两个数据集之间的细胞-细胞通信网络中的交互或交互强度的差异数量可以使用圆形图来可视化，其中红色(或蓝色)边表示第二个数据集相比于第一个数据集增加(或减少)的信号。
+Network diagram of intercellular interaction frequency
+Circle plot showing differential cell-cell communication network
+between two datasets
+The red color indicates an increase in the number and intensity of
+interactions between the STIM group and the CTRL group, with thicker
+lines indicating greater differences; Blue indicates a decrease.
+The difference in the number of interactions or interaction strengths
+in the cell-cell communication network between two datasets can be
+visualized using a circular graph, where the red (or blue) edges
+represent the signal increase (or decrease) in the second dataset
+compared to the first dataset.
+# 创建PDF文件用于保存差异相互作用网络图
+# Create a PDF file to save differential interaction network plots
+pdf("netVisual_diffInteraction.pdf", height = 8, width = 8)
+# 设置图形布局为1行1列，并允许图形元素超出绘图区域
+# Set plot layout to 1 row and 1 column, allow elements to extend beyond plot area
+par(mfrow = c(1,1), xpd = TRUE)
+
+# 可视化两组间的差异细胞通讯相互作用（基于通讯概率）
+# Visualize differential cell-cell communication interactions between groups (based on communication probability)
+netVisual_diffInteraction(cellchat, weight.scale = T)
+# 可视化两组间的差异细胞通讯相互作用（基于通讯权重）
+# Visualize differential cell-cell communication interactions between groups (based on communication weight)
+netVisual_diffInteraction(cellchat, weight.scale = T, measure = "weight")
+
+# 关闭PDF设备
+# Close the PDF device
+dev.off()
+结果解读：
+Interpretation of Results:
+红色表示处理 vs 对照后受体-配体对增加，蓝色表示降低。 可以看到CD14
+Mono的线很粗，线越粗数量越多。这样就可以回答文中提出的假设了。
+把圆形网络拉开看更明显：
+Red indicates an increase in receptor ligand pairs after treatment
+compared to control, while blue indicates a decrease. It can be seen
+that the lines of CD14 Mono are very thick, and the thicker the lines,
+the more they are. This will answer the hypothesis proposed in the
+article.
+Pull open the circular network to see more clearly:
+# 计算STIM组与CTRL组之间细胞通讯次数的差异矩阵
+# Calculate the difference matrix of cell-cell communication counts between STIM and CTRL groups
+diff.count <- cellchat@net$STIM$count - cellchat@net$CTRL$count
+
+# 将STIM组和CTRL组的通讯次数矩阵保存为CSV文件
+# Save communication count matrices of STIM and CTRL groups to CSV files
+write.csv(cellchat@net$STIM$count, "output_STIMcount.csv", quote = F)
+write.csv(cellchat@net$CTRL$count, "output_CTRLcount.csv", quote = F)
+
+# 加载pheatmap包用于绘制热图
+# Load the pheatmap package for heatmap visualization
+library(pheatmap)
+
+# 绘制差异通讯次数热图，展示两组间细胞通讯的变化
+# Plot heatmap of differential communication counts to show changes between groups
+pheatmap(diff.count,
+         treeheight_row = 0,    # 不显示行聚类树 (Suppress row clustering tree)
+         treeheight_col = 0,    # 不显示列聚类树 (Suppress column clustering tree)
+         cluster_rows = TRUE,   # 对行进行聚类 (Cluster rows)
+         cluster_cols = TRUE)   # 对列进行聚类 (Cluster columns)
+热图虽然朴素，更直观。或者自己用cytoscape画，更自如一点。
+另外，cellchat里有丰富的“受体-配体”分析结果，可以运行下面这行查看。结合自己的假设，设计合适的图形展示数据。
+Although heat maps are simple, they are more intuitive.
+Alternatively, you can use Cytoscape to draw on your own, which would be
+more comfortable.
+In addition, CellChat provides rich results of “receptor ligand”
+analysis, which can be viewed by running the following line. Design
+appropriate graphics to display data based on one’s own assumptions.
+# 在RStudio中打开交互式查看器查看CellChat对象的结构和内容
+# Open an interactive viewer in RStudio to explore the structure and contents of the CellChat object
+View(cellchat)
+Session Info
+sessionInfo()

@@ -1,0 +1,57 @@
+Starting package installation...
+===========================================
+
+1. Installing CRAN packages...
+✓ Package already installed: cluster 
+Installing CRAN package: phangorn 
+Warning: dependency ‘Biostrings’ is not available
+also installing the dependencies ‘stringi’, ‘utf8’, ‘httpuv’, ‘sourcetools’, ‘later’, ‘promises’, ‘commonmark’, ‘plyr’, ‘stringr’, ‘pillar’, ‘tibble’, ‘tidyselect’, ‘permute’, ‘shiny’, ‘reshape2’, ‘dplyr’, ‘vegan’, ‘farver’, ‘labeling’, ‘RColorBrewer’, ‘viridisLite’, ‘pixmap’, ‘sp’, ‘RcppArmadillo’, ‘pkgbuild’, ‘rprojroot’, ‘crayon’, ‘magrittr’, ‘pkgconfig’, ‘vctrs’, ‘cpp11’, ‘adegenet’, ‘gtable’, ‘isoband’, ‘S7’, ‘scales’, ‘withr’, ‘curl’, ‘htmlwidgets’, ‘ade4’, ‘segmented’, ‘brio’, ‘callr’, ‘desc’, ‘pkgload’, ‘praise’, ‘processx’, ‘ps’, ‘waldo’, ‘diffobj’, ‘xml2’, ‘ape’, ‘fastmatch’, ‘generics’, ‘igraph’, ‘quadprog’, ‘Rcpp’, ‘apex’, ‘ggseqlogo’, ‘ggplot2’, ‘magick’, ‘rgl’, ‘seqinr’, ‘testthat’, ‘tinytest’, ‘vdiffr’, ‘xtable’
+
+✓ Successfully installed: phangorn 
+✓ Package already installed: ape 
+✓ Package already installed: reshape2 
+
+2. Installing Bioconductor packages...
+Installing Bioconductor package: ComplexHeatmap 
+'getOption("repos")' replaces Bioconductor standard repositories, see
+'help("repositories", package = "BiocManager")' for details.
+Replacement repositories:
+    CRAN: https://cloud.r-project.org/
+Bioconductor version 3.21 (BiocManager 1.30.26), R 4.5.1 (2025-06-13)
+Installing package(s) 'BiocVersion', 'ComplexHeatmap'
+also installing the dependencies ‘shape’, ‘rjson’, ‘BiocGenerics’, ‘S4Vectors’, ‘iterators’, ‘circlize’, ‘GetoptLong’, ‘colorspace’, ‘clue’, ‘GlobalOptions’, ‘png’, ‘IRanges’, ‘matrixStats’, ‘foreach’, ‘doParallel’
+
+✓ Successfully installed: ComplexHeatmap 
+Installing Bioconductor package: limma 
+'getOption("repos")' replaces Bioconductor standard repositories, see
+'help("repositories", package = "BiocManager")' for details.
+Replacement repositories:
+    CRAN: https://cloud.r-project.org/
+Bioconductor version 3.21 (BiocManager 1.30.26), R 4.5.1 (2025-06-13)
+Installing package(s) 'limma'
+also installing the dependency ‘statmod’
+
+✓ Successfully installed: limma 
+Installing Bioconductor package: ConsensusClusterPlus 
+'getOption("repos")' replaces Bioconductor standard repositories, see
+'help("repositories", package = "BiocManager")' for details.
+Replacement repositories:
+    CRAN: https://cloud.r-project.org/
+Bioconductor version 3.21 (BiocManager 1.30.26), R 4.5.1 (2025-06-13)
+Installing package(s) 'ConsensusClusterPlus'
+also installing the dependencies ‘Biobase’, ‘ALL’
+
+✓ Successfully installed: ConsensusClusterPlus 
+
+3. Verifying installation...
+✓ cluster is installed
+✓ phangorn is installed
+✓ ape is installed
+✓ reshape2 is installed
+✓ ComplexHeatmap is installed
+✓ limma is installed
+✓ ConsensusClusterPlus is installed
+
+4. Testing package loading...
+
+Installation completed!

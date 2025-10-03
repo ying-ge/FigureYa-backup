@@ -1,0 +1,73 @@
+Starting R package installation...
+===========================================
+
+Installing CRAN packages...
+Installing CRAN package: SuperExactTest 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+trying URL 'https://cloud.r-project.org/src/contrib/SuperExactTest_1.1.0.tar.gz'
+Content type 'application/x-gzip' length 88073 bytes (86 KB)
+==================================================
+downloaded 86 KB
+
+* installing *source* package ‘SuperExactTest’ ...
+** this is package ‘SuperExactTest’ version ‘1.1.0’
+** package ‘SuperExactTest’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c binom.c -o binom.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c cmp.c -o cmp.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c dmvhyper.c -o dmvhyper.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c dmvhyperLog.c -o dmvhyperLog.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c pmvhyper.c -o pmvhyper.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c registerDynamicSymbol.c -o registerDynamicSymbol.o
+gcc -std=gnu2x -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o SuperExactTest.so binom.o cmp.o dmvhyper.o dmvhyperLog.o pmvhyper.o registerDynamicSymbol.o -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-SuperExactTest/00new/SuperExactTest/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (SuperExactTest)
+
+The downloaded source packages are in
+	‘/tmp/RtmpuL5jhF/downloaded_packages’
+Successfully installed: SuperExactTest 
+Installing CRAN package: VennDiagram 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+trying URL 'https://cloud.r-project.org/src/contrib/VennDiagram_1.7.3.tar.gz'
+Content type 'application/x-gzip' length 78508 bytes (76 KB)
+==================================================
+downloaded 76 KB
+
+* installing *source* package ‘VennDiagram’ ...
+** this is package ‘VennDiagram’ version ‘1.7.3’
+** package ‘VennDiagram’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (VennDiagram)
+
+The downloaded source packages are in
+	‘/tmp/RtmpuL5jhF/downloaded_packages’
+Successfully installed: VennDiagram 
+
+===========================================
+Package installation completed!
+You can now run your R scripts in this directory.

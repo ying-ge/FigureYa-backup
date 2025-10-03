@@ -1,0 +1,13 @@
+Starting R package installation...
+===========================================
+
+Installing CRAN packages...
+Package already installed: dplyr 
+Package already installed: ggplot2 
+Package already installed: magrittr 
+Package already installed: readxl 
+Package already installed: tibble 
+
+===========================================
+Package installation completed!
+You can now run your R scripts in this directory.

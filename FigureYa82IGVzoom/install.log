@@ -1,0 +1,23 @@
+Starting R package installation...
+===========================================
+Files in current directory:
+[1] "-rw-r--r--   1 runner runner 4126871 Sep 22 14:11 Sushi_1.20.0.tar.gz"     
+[2] "-rw-r--r--   1 runner runner   68763 Sep 22 14:11 Sushiplot.pdf"           
+[3] "-rw-r--r--   1 runner runner  695137 Sep 22 14:11 Sushiplot_AImodified.pdf"
+
+Installing Sushi package...
+Installing Sushi package from local file: Sushi_1.20.0.tar.gz 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+ERROR: dependencies ‘zoo’, ‘biomaRt’ are not available for package ‘Sushi’
+Perhaps try a variation of:
+install.packages(c('zoo', 'biomaRt'))
+* removing ‘/home/runner/work/_temp/Library/Sushi’
+Successfully installed: Sushi (from local file)
+Warning message:
+In install.packages(local_file, repos = NULL, type = "source") :
+  installation of package ‘Sushi_1.20.0.tar.gz’ had non-zero exit status
+
+===========================================
+Package installation completed!
+You can now run your R scripts in this directory.
