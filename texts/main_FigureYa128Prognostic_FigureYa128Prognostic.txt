@@ -1,7 +1,11 @@
 FigureYa128Prognostic
 FigureYa128Prognostic
-Xiaofan Lu, Taojun Ye
-2025-09-22
+Author(s)
+: Xiaofan Lu, Taojun Ye
+Reviewer(s)
+: Ying Ge
+Date
+: 2025-09-30
 Academic Citation
 If you use this code in your work or research, we kindly request that
 you cite our publication:
