@@ -277,20 +277,10 @@ RMD Render Summary
 [SKIPPED] - ./FigureYa306slingshot/FigureYa306slingshot.Rmd (Not listed in auto_Knit_online.txt)
 [SKIPPED] - ./FigureYa112Plus_venn/FigureYa112Plus_venn.Rmd (Not listed in auto_Knit_online.txt)
 [SKIPPED] - ./FigureYa93UMAP/FigureYa93UMAP.Rmd (Not listed in auto_Knit_online.txt)
-[FAILED] - ./FigureYa255TIME/FigureYa255TIME.Rmd
---- Error Log for ./FigureYa255TIME/FigureYa255TIME.Rmd ---
-Error in `dimnames(x) <- dn`:
-! length of 'dimnames' [1] not equal to array extent
-Backtrace:
-    ▆
- 1. └─base::`rownames<-`(`*tmp*`, value = `<chr>`)
-
-Quitting from FigureYa255TIME.Rmd:139-201 [unnamed-chunk-4]
-Execution halted
------------------------------------
+[SKIPPED] - ./FigureYa255TIME/FigureYa255TIME.Rmd (Not listed in auto_Knit_online.txt)
 [SKIPPED] - ./FigureYa192breakpoint/FigureYa192breakpoint.Rmd (Not listed in auto_Knit_online.txt)
 [SKIPPED] - ./FigureYa294HCCdrug/FigureYa294HCCdrug.Rmd (Not listed in auto_Knit_online.txt)
-[SKIPPED] - ./FigureYa261circGene/FigureYa261circGene.Rmd (Not listed in auto_Knit_online.txt)
+[SUCCESS] - ./FigureYa261circGene/FigureYa261circGene.Rmd
 [SKIPPED] - ./FigureYa239ST_PDAC/FigureYa239ST_PDAC.Rmd (Not listed in auto_Knit_online.txt)
 [SKIPPED] - ./FigureYa244PCAPlot/FigureYa244PCAPlot.Rmd (Not listed in auto_Knit_online.txt)
 [SKIPPED] - ./FigureYa293machineLearning/FigureYa293machineLearning.Rmd (Not listed in auto_Knit_online.txt)

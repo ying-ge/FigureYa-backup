@@ -1,8 +1,0 @@
-Error in `dimnames(x) <- dn`:
-! length of 'dimnames' [1] not equal to array extent
-Backtrace:
-    ▆
- 1. └─base::`rownames<-`(`*tmp*`, value = `<chr>`)
-
-Quitting from FigureYa255TIME.Rmd:139-201 [unnamed-chunk-4]
-Execution halted

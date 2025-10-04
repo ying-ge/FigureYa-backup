@@ -15,6 +15,10 @@ If you use this code in your work or research, we kindly request that you cite o
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
 
+To cite package 'RCircos' in publications use:
+
+Hongen Zhang, Paul Meltzer and Sean Davis (2013), RCircos: an R package for Circos 2D track plots, BMC Bioinformatics 14:244
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
@@ -45,13 +49,9 @@ d The location of CNV alteration of m6A regulators on 23 chromosomes using GSE62
 
 如果基因太多，可以画成直的，可参考FigureYa10chromosome，可以同时展示基因表达量/变化倍数、分类等信息。
 
-如果还想展示基因之间的关系，可参考FigureYa74OmicCircos。
-
 Mark the genes of interest on the genome, which can be drawn in a circular layout like the example provided.
 
 If there are too many genes, a linear layout can be used (refer to FigureYa10chromosome), which can simultaneously display gene expression levels/fold changes, classifications, and other information.
-
-If you also want to illustrate relationships between genes, refer to FigureYa74OmicCircos.
 
 # 环境设置
 # Environment Setup
@@ -59,10 +59,10 @@ If you also want to illustrate relationships between genes, refer to FigureYa74O
 ```{r}
 source("install_dependencies.R")
 
-library(RCircos)
-library(magrittr)
-library(tidyverse)
-library(rtracklayer)
+library(RCircos)      # 用于绘制环形基因组图，主图形绘制功能
+library(magrittr)     # 提供 %>% 管道操作符，简化数据处理流程
+library(tidyverse)    # 数据处理与可视化工具集，主要用于数据筛选、变换（如 dplyr、readr）
+library(rtracklayer)  # 用于读取和处理基因组注释文件（如 GTF），提取基因位置信息
 
 # 显示英文报错信息
 # Show English error messages
@@ -80,13 +80,13 @@ options(stringsAsFactors = FALSE)
 
 easy_input_gene.txt，根据需要定义一个基因集，后面将把基因名标在画成环状的染色体上。
 
-hg38.gtf，基因组上所有基因所在位置，从中提取出目标基因的位置。可以从[gencode](https://www.gencodegenes.org)下载<https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_39/gencode.v39.annotation.gtf.gz>。
+gencode.v39.annotation.gtf，基因组上所有基因所在位置，从中提取出目标基因的位置。可以从[gencode](https://www.gencodegenes.org)下载<https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_39/gencode.v39.annotation.gtf.gz>。
 
 If you already have very_easy_input.txt, you can skip this step and proceed directly to "Start Plotting."
 
 easy_input_gene.txt: Define a gene set as needed. These gene names will later be labeled on the circular chromosome plot.
 
-hg38.gtf: Contains the genomic coordinates of all genes. Extract the positions of your target genes from this file. You can download the hg38.gtf file from [gencode](https://www.gencodegenes.org) at: <https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_39/gencode.v39.annotation.gtf.gz>.
+gencode.v39.annotation.gtf: Contains the genomic coordinates of all genes. Extract the positions of your target genes from this file. You can download the gencode.v39.annotation.gtf file from [gencode](https://www.gencodegenes.org) at: <https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_39/gencode.v39.annotation.gtf.gz>.
 
 ```{r eval=FALSE}
 # 根据需要定义一个基因集，可以从文件读入
@@ -100,7 +100,7 @@ genes <- read.table("easy_input_gene.txt", header = T)$SYMBOL
 
 # 根据基因集提取出目的基因所在位置
 # Extract genomic positions of target genes
-gene_pos <- import("hg38.gtf") %>% # 载入gtf文件
+gene_pos <- import("gencode.v39.annotation.gtf") %>% # 载入gtf文件
   as.data.frame %>% 
   
   # 仅选择基因，去除转录本等等
