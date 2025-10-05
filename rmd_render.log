@@ -1,0 +1,62 @@
+trying URL 'https://cloud.r-project.org/src/contrib/ridge_3.3.tar.gz'
+Content type 'application/x-gzip' length 144986 bytes (141 KB)
+==================================================
+downloaded 141 KB
+
+* installing *source* package ‘ridge’ ...
+** this is package ‘ridge’ version ‘3.3’
+** package ‘ridge’ successfully unpacked and MD5 sums checked
+** using staged installation
+checking for gcc... gcc -std=gnu2x
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether the compiler supports GNU C... yes
+checking whether gcc -std=gnu2x accepts -g... yes
+checking for gcc -std=gnu2x option to enable C11 features... none needed
+checking for gsl-config... no
+configure: WARNING: gsl-config not found, is GSL installed?
+configure: WARNING: ridge will be installed but some functions will be unavailable
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c ReadInData.c -o ReadInData.o
+In file included from ReadInData.h:1,
+                 from ReadInData.c:1:
+depends.h:14:10: fatal error: gsl/gsl_blas.h: No such file or directory
+   14 | #include <gsl/gsl_blas.h>
+      |          ^~~~~~~~~~~~~~~~
+compilation terminated.
+make: *** [/opt/R/4.5.1/lib/R/etc/Makeconf:202: ReadInData.o] Error 1
+ERROR: compilation failed for package ‘ridge’
+* removing ‘/home/runner/work/_temp/Library/ridge’
+
+The downloaded source packages are in
+	'/tmp/Rtmpxb9cgd/downloaded_packages'
+Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
+Hit:2 http://azure.archive.ubuntu.com/ubuntu noble InRelease
+Hit:3 http://azure.archive.ubuntu.com/ubuntu noble-updates InRelease
+Hit:6 https://packages.microsoft.com/repos/azure-cli noble InRelease
+Hit:4 http://azure.archive.ubuntu.com/ubuntu noble-backports InRelease
+Hit:5 http://azure.archive.ubuntu.com/ubuntu noble-security InRelease
+Hit:7 https://packages.microsoft.com/ubuntu/24.04/prod noble InRelease
+Reading package lists...
+Reading package lists...
+Building dependency tree...
+Reading state information...
+libblas-dev is already the newest version (3.12.0-3build1.1).
+liblapack-dev is already the newest version (3.12.0-3build1.1).
+gfortran is already the newest version (4:13.2.0-7ubuntu1).
+libcurl4-openssl-dev is already the newest version (8.5.0-2ubuntu10.6).
+libssl-dev is already the newest version (3.0.13-0ubuntu3.6).
+0 upgraded, 0 newly installed, 0 to remove and 18 not upgraded.
+Error in `file()`:
+! cannot open the connection
+Backtrace:
+    ▆
+ 1. └─utils::read.table(...)
+ 2.   └─base::file(file, "rt")
+
+Quitting from FigureYa212drugTargetV2.Rmd:247-259 [unnamed-chunk-7]
+Execution halted

@@ -1,11 +1,11 @@
 FigureYa74omicCircos
 FigureYa74omicCircos
 Author(s)
-: Li Yin, Taojun Ye
+: Yin Li, Taojun Ye
 Reviewer(s)
 : Ying Ge
 Date
-: 2025-09-22
+: 2025-10-04
 Academic Citation
 If you use this code in your work or research, we kindly request that
 you cite our publication:
@@ -19,24 +19,15 @@ Requirement Description
 Reproduce a diagram from an article in R
 出自
 https://onlinelibrary.wiley.com/doi/abs/10.1111/all.13222
-from
+From
 https://onlinelibrary.wiley.com/doi/abs/10.1111/all.13222
 应用场景
 Application scenarios
-visualizing genomic variations, including mutation patterns, copy
-number variations (CNVs), expression patterns, and methylation
-patterns.
 支持hg18、hg19、mm9、mm10
 例如像例文那样展示多个芯片基因的表达变化和之间的link关系
 Support hg18, hg19, mm9, mm10
 For example, displaying the expression changes of multiple chip genes
 and the link relationships between them as in the example text
-参考资料：
-https://journals.sagepub.com/doi/10.4137/CIN.S13495
-https://www.bioconductor.org/packages/devel/bioc/html/OmicCircos.html
-reference:
-https://journals.sagepub.com/doi/10.4137/CIN.S13495
-https://www.bioconductor.org/packages/devel/bioc/html/OmicCircos.html
 环境设置
 Environment settings
 source("install_dependencies.R")
@@ -104,11 +95,8 @@ gene_chr_fc <- gene_chr_fc[!duplicated(gene_chr_fc$id),]
 
 # 保存合并后的数据到新文件 / Save merged data to new file
 write.csv(gene_chr_fc, "easy_input.csv", row.names = F)
-分别准备图中各部分所需的数据
-热图
-Prepare the data required for each part of the diagram
-separately
-Heat map
+准备热图所需的数据
+Prepare the data required for heatmap
 # 读取CSV文件并存储为data.frame对象gene_chr_fc
 # Read CSV file and store as data.frame object gene_chr_fc
 gene_chr_fc <- read.csv("easy_input.csv")
@@ -133,9 +121,7 @@ exp2 <- gene_chr_fc[,c(2,3,1,7,8,9)]
 # 提取第三组样本数据：选取第2、3、1、10、11、12列
 # Extract data for the third group of samples: select columns 2, 3, 1, 10, 11, 12
 exp3 <- gene_chr_fc[,c(2,3,1,10,11,12)]
-连线
 处理基因名字为一一对应关系，红色连红色，蓝色连蓝色
-Connect
 Process gene names into one-to-one correspondence, with red connected
 to red and blue connected to blue
 # 提取基因标签数据：选取第2、3、1、4列
@@ -227,13 +213,13 @@ genelink22 <- gene_link2 %>%
 gene_link2 <- cbind(genelink2, genelink22)
 开始画图
 R代表半径位置，W是宽度，cir是染色体
-图中的三组样品的文字需要用AI进行标记
+图中的三组样品的文字需要用Illustrator进行标记
 包里自带的写染色体名字的位置不合理，也没有参数可以调整，这里提供两种方法来处理：
 Start drawing
 R represents the radius position, W is the width, and cir is the
 chromosome
 The text of the three sets of samples in the picture needs to be
-marked with AI
+marked with Illustrator
 The position of writing chromosome names in the package is
 unreasonable, and there are no parameters to adjust. Here are two
 methods to deal with it:
@@ -303,16 +289,16 @@ circos(R=100, cir="hg19", W=10, mapping=gene_link1, type="link2", lwd=2, col='re
 dev.off()
 方法二：修改包里的代码
 修改了染色体名字的位置，顺便修改了scale的位置。
-修改后的函数命名为circos_plus，保存为sourceOmiccircos.R，位于当前文件夹。查找#Ya#可看到修改的代码。
+修改后的函数命名为circos_plus，保存为Omiccircos_plus.R，位于当前文件夹。查找#Ya#可看到修改的代码。
 Method 2: Modify the code in the package
 Changed the position of chromosome names and also modified the
 position of scales.
 The modified function is named circos_plus and saved as
-sourceOmiccircos.R in the current folder. Search for # Ya # to see the
+Omiccircos_plus.R in the current folder. Search for # Ya # to see the
 modified code.
 # 加载OmicCircos_plus所需的自定义函数库
 # Load custom function library required for OmicCircos_plus visualization
-source("sourceOmiccircos.R")
+source("Omiccircos_plus.R")
 
 # 创建PDF设备，设置输出文件名为OmicCircos_plus.pdf，宽度和高度均为8英寸
 # Create PDF device with specified dimensions for output file

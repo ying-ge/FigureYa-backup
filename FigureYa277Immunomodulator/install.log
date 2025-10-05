@@ -1,0 +1,53 @@
+Starting R package installation...
+===========================================
+
+Installing CRAN packages...
+Package already installed: data.table 
+
+Installing Bioconductor packages...
+Package already installed: genefu 
+Installing Bioconductor package: ChAMPdata 
+'getOption("repos")' replaces Bioconductor standard repositories, see
+'help("repositories", package = "BiocManager")' for details.
+Replacement repositories:
+    CRAN: https://cloud.r-project.org/
+Bioconductor version 3.21 (BiocManager 1.30.26), R 4.5.1 (2025-06-13)
+Installing package(s) 'ChAMPdata'
+trying URL 'https://bioconductor.org//packages/3.21/data/experiment/src/contrib/ChAMPdata_2.40.0.tar.gz'
+Content type 'application/x-gzip' length 699454745 bytes (667.1 MB)
+==================================================
+downloaded 667.1 MB
+
+* installing *source* package ‘ChAMPdata’ ...
+** this is package ‘ChAMPdata’ version ‘2.40.0’
+** using staged installation
+** data
+** inst
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (ChAMPdata)
+
+The downloaded source packages are in
+	‘/tmp/Rtmp349YuP/downloaded_packages’
+Successfully installed: ChAMPdata 
+Package already installed: ComplexHeatmap 
+Package already installed: circlize 
+
+Checking for additional packages...
+
+===========================================
+Package installation completed!
+
+Verifying package installation...
+✓ data.table is installed
+✓ genefu is installed
+✓ ChAMPdata is installed
+✓ ComplexHeatmap is installed
+✓ circlize is installed
+
+All required packages are installed successfully!
+You can now run your R scripts in this directory.

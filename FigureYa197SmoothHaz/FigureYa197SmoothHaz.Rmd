@@ -82,6 +82,44 @@ library(muhaz)    # 风险评估 # risk assessment
 library(dplyr)    # 数据清洗 # Data cleansing
 library(ggplot2)  # 绘图 # plot
 library(cowplot)  # 拼图 # jigsaw puzzle
+
+# 设置字体
+# Set the font
+# 施普林格·自然杂志社图片文字要求8号Helvetica or Arial，（https://www.nature.com/documents/aj-artworkguidelines.pdf）
+# Springer Nature Magazine Picture text request No. 8 Helvetica or Arial,（https://www.nature.com/documents/aj-artworkguidelines.pdf）
+library(extrafont)
+# 加载字体包（如果可用）
+font_available <- require(extrafont, quietly = TRUE)
+
+if (font_available) {
+  # 尝试加载字体
+  tryCatch({
+    # 检查是否已有字体数据
+    if (length(extrafont::fonts()) == 0) {
+      # 导入字体
+      extrafont::font_import(prompt = FALSE)
+    }
+    extrafont::loadfonts(device = "pdf", quiet = TRUE)
+    cat("字体系统初始化成功\n")
+  }, error = function(e) {
+    cat("字体初始化失败:", e$message, "\n")
+    font_available <- FALSE
+  })
+}
+
+# 如果没有字体支持，使用默认设置
+if (!font_available) {
+  cat("使用默认字体设置\n")
+  # 设置默认字体族
+  if (.Platform$OS.type == "windows") {
+    default_font <- "sans"
+  } else {
+    default_font <- "Helvetica"
+  }
+} else {
+  default_font <- "Arial"
+}
+
 Sys.setenv(LANGUAGE = "en") #显示英文报错信息 # error messages are displayed in English
 options(stringsAsFactors = FALSE) #禁止chr转成factor # It is forbidden to convert chr into factor
 ```
@@ -257,55 +295,6 @@ The muhaz package comes with plot.muhaz, here I choose ggplot2 to draw the plot,
 ## 1. 先画风险曲线
 ## 1. Draw the risk curve first
 ```{r, fig.width=3, fig.height=3}
-# 设置字体
-# Set the font
-# 施普林格·自然杂志社图片文字要求8号Helvetica or Arial，（https://www.nature.com/documents/aj-artworkguidelines.pdf）
-# Springer Nature Magazine Picture text request No. 8 Helvetica or Arial,（https://www.nature.com/documents/aj-artworkguidelines.pdf）
-
-# 检查并安装必要的包
-if (!require(extrafont)) {
-  cat("extrafont 包未安装，尝试安装...\n")
-  # 尝试安装 extrafont
-  if (!require(remotes)) install.packages("remotes")
-  tryCatch({
-    install.packages("extrafont")
-  }, error = function(e) {
-    remotes::install_github("wch/extrafont")
-  })
-}
-
-# 加载字体包（如果可用）
-font_available <- require(extrafont, quietly = TRUE)
-
-if (font_available) {
-  # 尝试加载字体
-  tryCatch({
-    # 检查是否已有字体数据
-    if (length(extrafont::fonts()) == 0) {
-      # 导入字体
-      extrafont::font_import(prompt = FALSE)
-    }
-    extrafont::loadfonts(device = "pdf", quiet = TRUE)
-    cat("字体系统初始化成功\n")
-  }, error = function(e) {
-    cat("字体初始化失败:", e$message, "\n")
-    font_available <- FALSE
-  })
-}
-
-# 如果没有字体支持，使用默认设置
-if (!font_available) {
-  cat("使用默认字体设置\n")
-  # 设置默认字体族
-  if (.Platform$OS.type == "windows") {
-    default_font <- "sans"
-  } else {
-    default_font <- "Helvetica"
-  }
-} else {
-  default_font <- "Arial"
-}
-
 # 自定义颜色
 # Custom colors
 orange <- "#EB292A"

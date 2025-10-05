@@ -44,19 +44,24 @@ Scenario 1: After drawing the heatmap of RNA-seq data from multiple samples, I f
 Scenario 2: I have identified a new transcription factor, what is its function? Sequence similarity predicts function similarity, perform multiple sequence comparison to find known transcription factors with similar sequences first, then download public data to see if their expression profiles are also consistent.
 
 ## 环境设置
-
 ## Environment settings
 
 ```{r}
 source("install_dependencies.R")
-
+# 加载所需的R包
+# Load required R packages
+library(pheatmap)  # 用于绘制热图的包 # For creating heatmaps
+library(msa)       # 用于多序列比对的包 # For multiple sequence alignment
+library(seqinr)    # 提供序列处理和分析功能的包 # Provides sequence processing and analysis functions
+library(ape)       # 用于进化分析的包 # For evolutionary analysis
+library(ggtree)    # 用于可视化进化树的包 # For visualizing phylogenetic trees
 # 设置系统环境，使R显示英文错误信息
 # Set the system environment to display English error messages
-Sys.setenv(LANGUAGE = "en") 
+Sys.setenv(LANGUAGE = "en")
 
 # 全局选项设置：禁止将字符型变量自动转换为因子类型
 # Global option setting: Prevent automatic conversion of character variables to factors
-options(stringsAsFactors = FALSE) 
+options(stringsAsFactors = FALSE)
 ```
 
 ## 表达谱聚类
@@ -67,7 +72,6 @@ options(stringsAsFactors = FALSE)
 Adding the same color to the samples of the same group shows that the samples of the two groups are clustered into two categories, indicating that these genes can be used to distinguish between the two groups
 
 ```{r,fig.height=3}
-require(pheatmap)
 df<-read.table("easy_input.txt",header = T, row.names = 1,as.is = 1)
 
 annotation_col = data.frame(group = factor(rep(c("group1","group2"),c(6,12))))
@@ -95,7 +99,6 @@ msa包需要LaTex，MAC系统推荐安装MacTex
 The msa package requires LaTex, and it is recommended to install MacTex in the MAC system
 
 ```{r,message=FALSE,warning=FALSE}
-require(msa)
 #输入文件
 #借用msa自带的exampleAA.fasta
 #input file
@@ -126,18 +129,15 @@ msaPrettyPrint(myFirstAlignment, output="pdf",
 ```{r,message=FALSE,warning=FALSE}
 #用多序列比对的结果计算距离
 #calculate the distance using the results of multiple sequence comparison
-require(seqinr)
 myAlignment <- msaConvert(myFirstAlignment, type="seqinr::alignment")
 d <- dist.alignment(myAlignment, "identity")
 
 #构建NJ树
 #construct the NJ tree
-require(ape)
 tree <- nj(d)
 
 #画树并输出到PDF文件ggtree.pdf
 #draw the tree and output to PDF file ggtree.pdf
-require(ggtree)
 p2 <- ggtree(tree, layout='circular') + geom_tiplab2(size=3, offset=.1) + xlim(-.2, 3) 
 p2
 #输出pdf文件

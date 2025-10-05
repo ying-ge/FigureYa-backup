@@ -15,6 +15,16 @@ If you use this code in your work or research, we kindly request that you cite o
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
 
+If you use circlize in published research, please cite:
+
+Gu, Z. circlize implements and enhances circular visualization in R. Bioinformatics 2014.
+
+If you use ComplexHeatmap in published research, please cite:
+
+Zuguang Gu, et al., Complex heatmaps reveal patterns and correlations in multidimensional genomic data, Bioinformatics, 2016.
+
+Zuguang Gu. Complex Heatmap Visualization, iMeta, 2022.
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```

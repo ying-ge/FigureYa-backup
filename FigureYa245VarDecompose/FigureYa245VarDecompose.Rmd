@@ -75,13 +75,16 @@ This script implements the following functions:
 
 ```{r}
 source("install_dependencies.R")
+# 加载所需的R包
+# Load required R packages
+library(tidyverse)      # 用于数据操作和可视化的包 # For data manipulation and visualization
+library(lme4)           # 用于实现线性混合模型 (LMM) 的包 # Used to implement linear mixed model (LMM)
+library(doParallel)     # 用于并行计算的包 # For parallel computing
 
-suppressPackageStartupMessages({
-  library(tidyverse)
-  library(lme4) # 用于实现linear mixed model (LMM) # Used to implement linear mixed model (LMM)
-})
-Sys.setenv(LANGUAGE = "en") #显示英文报错信息 # error messages are displayed in English
-options(stringsAsFactors = FALSE) #禁止chr转成factor # chr is not allowed to be converted to factor
+# 设置环境变量
+# Set environment variables
+Sys.setenv(LANGUAGE = "en")  # 显示英文报错信息 # Display error messages in English
+options(stringsAsFactors = FALSE)  # 禁止字符型数据自动转换为因子型 # Prevent automatic conversion of character data to factors
 ```
 
 # 输入文件
@@ -214,8 +217,6 @@ lmm.var.dcp <- pbapply::pblapply(gene.pairs, function(xx) {
 ## Parallel Computing (Recommended)
 
 ```{r eval=FALSE}
-require(doParallel)
-
 ## ==== do parallel start ====
 ## apply for 20 workers
 # 设定CPU数量，例如20，取决于你用的服务器 # Set the number of CPUs, e.g. 20, depending on the server you are using

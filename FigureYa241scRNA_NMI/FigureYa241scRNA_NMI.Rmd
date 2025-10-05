@@ -10,7 +10,6 @@ output: html_document
 **Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()`  
 
-
 # Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
@@ -62,21 +61,24 @@ In Figures 2D and 2G of the example paper, expression programs were extracted us
 
 ```{r}
 source("install_dependencies.R")
-install.packages("infotheo")
+# 加载所需的R包
+# Load required R packages
+library(ggsignif)      # 用于添加显著性标记的包 # For adding significance annotations
+library(doParallel)    # 用于并行计算的包 # For parallel computing
+library(entropy)       # 用于计算信息熵和互信息的包 # For calculating entropy and mutual information
+library(Seurat)        # 用于单细胞数据分析的包 # For single-cell data analysis
+library(rhdf5)         # 用于读取和写入HDF5文件的包 # For reading and writing HDF5 files
+library(tidyverse)     # 用于数据操作和可视化的包 # For data manipulation and visualization
+library(infotheo)      # 用于信息论分析的包 # For information-theoretic analysis
 
-library(Seurat)
-library(rhdf5)
-library(tidyverse)
-library(infotheo)
+# 设置环境变量
+# Set environment variables
 Sys.setenv(LANGUAGE = "en") #显示英文报错信息 #Display English error messages
 options(stringsAsFactors = FALSE) #禁止chr转成factor #Disable conversion of chr to factor
 ``` 
 
 # 0. 导入数据
 # 0. Import data
-
-输入数据的微云链接：<https://share.weiyun.com/GqYbpeGV>
-Weiyun download link for input data: <https://share.weiyun.com/GqYbpeGV>
 
 ## 0.1 cell meta信息
 ## 0.1 Cell metadata
@@ -241,8 +243,6 @@ $$ NMI(X,Y)=\frac{I(X;Y)}{\sqrt{H(X)H(Y)}} $$
 Here, we use a pair of cells as an example to calculate NMI.
 
 ```{r}
-require(entropy)
-
 x <- disc.expr[, 1] # discretized transcriptional profile of cell 1 
 y <- disc.expr[, 2] # discretized transcriptional profile of cell 2
 
@@ -440,8 +440,6 @@ data.use %>%
 Parallel computing requires `doParallel` package
 
 ```{r}
-require(doParallel)
-
 ## ==== do parallel start ====
 ## apply for 20 workers
 cl <- makeCluster(20) # 设定CPU数量 # Set the number of CPUs
@@ -565,8 +563,6 @@ sapply(compare, function(xx) {
 # 5. Final plot
 
 ```{r, eval=TRUE}
-require(ggsignif)
-
 segment.y <- 0.19 # 横线的位置  # Position of horizontal line
 text.y <- 0.2 # 文字的位置 # Position of text
 p.y <- sapply(compare, function(xx) quantile(subset(data.use, stages %in% xx)$nmi, 0.99)) + 0.005 # P值的位置 # Position of P value

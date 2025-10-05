@@ -2,7 +2,34 @@ Starting R package installation...
 ===========================================
 
 Installing CRAN packages...
-Package already installed: ggsci 
+Installing CRAN package: ggsci 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+trying URL 'https://cloud.r-project.org/src/contrib/ggsci_4.0.0.tar.gz'
+Content type 'application/x-gzip' length 2126417 bytes (2.0 MB)
+==================================================
+downloaded 2.0 MB
+
+* installing *source* package ‘ggsci’ ...
+** this is package ‘ggsci’ version ‘4.0.0’
+** package ‘ggsci’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (ggsci)
+
+The downloaded source packages are in
+	‘/tmp/Rtmp450MNX/downloaded_packages’
+Successfully installed: ggsci 
 Package already installed: parallel 
 
 Installing Bioconductor packages...

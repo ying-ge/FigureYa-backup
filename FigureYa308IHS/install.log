@@ -1,0 +1,120 @@
+Starting R package installation...
+===========================================
+
+Installing CRAN packages...
+Package already installed: ggplot2 
+Package already installed: ggrepel 
+Package already installed: nlme 
+Installing CRAN package: optparse 
+Installing package into ‘/home/runner/work/_temp/Library’
+(as ‘lib’ is unspecified)
+also installing the dependency ‘getopt’
+
+trying URL 'https://cloud.r-project.org/src/contrib/getopt_1.20.4.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/optparse_1.7.5.tar.gz'
+* installing *source* package ‘getopt’ ...
+** this is package ‘getopt’ version ‘1.20.4’
+** package ‘getopt’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** exec
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (getopt)
+* installing *source* package ‘optparse’ ...
+** this is package ‘optparse’ version ‘1.7.5’
+** package ‘optparse’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** exec
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (optparse)
+
+The downloaded source packages are in
+	‘/tmp/Rtmpe7FHv9/downloaded_packages’
+Successfully installed: optparse 
+Package already installed: spatstat.explore 
+
+Installing Bioconductor packages...
+Installing Bioconductor package: viper 
+'getOption("repos")' replaces Bioconductor standard repositories, see
+'help("repositories", package = "BiocManager")' for details.
+Replacement repositories:
+    CRAN: https://cloud.r-project.org/
+Bioconductor version 3.21 (BiocManager 1.30.26), R 4.5.1 (2025-06-13)
+Installing package(s) 'viper'
+trying URL 'https://bioconductor.org//packages/3.21/bioc/src/contrib/viper_1.42.0.tar.gz'
+Content type 'application/x-gzip' length 515346 bytes (503 KB)
+==================================================
+downloaded 503 KB
+
+* installing *source* package ‘viper’ ...
+** this is package ‘viper’ version ‘1.42.0’
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (viper)
+
+The downloaded source packages are in
+	‘/tmp/Rtmpe7FHv9/downloaded_packages’
+Successfully installed: viper 
+
+===========================================
+Package installation completed!
+You can now run your R scripts in this directory.
+
+Testing viper package...
+
+Attaching package: ‘generics’
+
+The following objects are masked from ‘package:base’:
+
+    as.difftime, as.factor, as.ordered, intersect, is.element, setdiff,
+    setequal, union
+
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    anyDuplicated, aperm, append, as.data.frame, basename, cbind,
+    colnames, dirname, do.call, duplicated, eval, evalq, Filter, Find,
+    get, grep, grepl, is.unsorted, lapply, Map, mapply, match, mget,
+    order, paste, pmax, pmax.int, pmin, pmin.int, Position, rank,
+    rbind, Reduce, rownames, sapply, saveRDS, table, tapply, unique,
+    unsplit, which.max, which.min
+
+Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with
+    'browseVignettes()'. To cite Bioconductor, see
+    'citation("Biobase")', and for packages 'citation("pkgname")'.
+
+✅ viper package loaded successfully!

@@ -50,7 +50,7 @@ cat("===========================================\n")
 
 # Installing CRAN packages
 cat("\nInstalling CRAN packages...\n")
-cran_packages <- c("KP_20w_ND_m4", "KP_20w_ND_m5", "KP_20w_ND_m6", "KP_30w_ND_m1_T1", "KP_30w_ND_m1_T2", "KP_30w_ND_m1_T4", "KP_30w_ND_m2_T1", "KP_30w_ND_m2_T2", "KP_30w_ND_m3_T1", "KP_30w_ND_m3_T7", "KP_30w_ND_m3_T9", "Seurat", "doParallel", "entropy", "ggsignif", "rhdf5", "tidyverse")
+cran_packages <- c("Seurat", "doParallel", "entropy", "ggsignif", "rhdf5", "tidyverse", "infotheo")
 
 for (pkg in cran_packages) {
   install_cran_package(pkg)

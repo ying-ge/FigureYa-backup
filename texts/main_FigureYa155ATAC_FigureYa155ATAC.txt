@@ -5,7 +5,7 @@ Author(s)
 Reviewer(s)
 : Ying Ge, Junyi Shen
 Date
-: 2025-09-22
+: 2025-10-04
 Academic Citation
 If you use this code in your work or research, we kindly request that
 you cite our publication:
@@ -13,6 +13,9 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization
 Framework for Enhancing Biomedical Data Interpretation and Research
 Efficiency. iMetaMed.
 https://doi.org/10.1002/imm3.70005
+If you use circlize in published research, please cite:
+Gu, Z. circlize implements and enhances circular visualization in R.
+Bioinformatics 2014.
 需求描述
 Requirement Description
 复现染色质开放程度差异的热图。 Reproduce a heatmap showing
@@ -66,9 +69,6 @@ deeptools，
 https://deeptools.readthedocs.io/en/develop/content/installation.html
 安装R包 Install R packages
 source("install_dependencies.R")
-BiocManager::install("DESeq2")
-BiocManager::install("ChIPseeker")
-Load package
 library(dplyr)
 library(DESeq2)
 library(ChIPseeker)
@@ -87,12 +87,6 @@ If you already have the
 rawCount.txt
 file, you can skip
 this step and proceed directly to “Start Drawing.”
-sra和bam文件已上传到百度云，链接：
-https://pan.baidu.com/s/1_iUX6rb1aZYRU42jeqtE4w，提取码：j2k1
-The sra and bam files have been uploaded to Baidu Cloud. Link:
-https://pan.baidu.com/s/1_iUX6rb1aZYRU42jeqtE4w
-,
-extraction code: j2k1
 下载参考基因组
 Download the reference genome
 从

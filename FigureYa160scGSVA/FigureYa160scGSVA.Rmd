@@ -10,11 +10,16 @@ output: html_document
 **Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()`  
 
-
 # Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
+
+If you use ComplexHeatmap in published research, please cite:
+
+Zuguang Gu, et al., Complex heatmaps reveal patterns and correlations in multidimensional genomic data, Bioinformatics, 2016.
+
+Zuguang Gu. Complex Heatmap Visualization, iMeta, 2022.
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -45,13 +50,15 @@ Single-cell data: From matrix to grouping, calculate pathway expression using GS
 ```{r}
 source("install_dependencies.R")
 
-library(dplyr)
-library(Seurat)
-library(ComplexHeatmap)
-library(GSVA)
-library(GSEABase)
-library(limma)
-library(ggplot2)
+# 加载所需的R包
+# Load required R packages
+library(dplyr)         # 用于数据操作和处理的包 # For data manipulation and processing
+library(Seurat)        # 用于单细胞数据分析的包 # For single-cell data analysis
+library(ComplexHeatmap) # 用于绘制复杂热图的包 # For creating complex heatmaps
+library(GSVA)          # 用于基因集变异分析的包 # For gene set variation analysis
+library(GSEABase)      # 用于基因集富集分析的包 # For gene set enrichment analysis
+library(limma)         # 用于差异表达分析的包 # For differential expression analysis
+library(ggplot2)       # 用于数据可视化的包 # For data visualization
 Sys.setenv(LANGUAGE = "en") #显示英文报错信息 # Display English error messages
 options(stringsAsFactors = FALSE) #禁止chr转成factor # Disable conversion of chr to factor
 ```
@@ -223,12 +230,6 @@ print(gsvascore[1:5, 1:5])
 ### 3. 绘制热图 / Draw heatmap
 # 确保分组信息与列名匹配 / Ensure group information matches column names
 if (ncol(gsvascore) == nrow(df.group)) {
-  # 确保安装了ComplexHeatmap包
-  if (!require(ComplexHeatmap)) {
-    install.packages("ComplexHeatmap")
-    library(ComplexHeatmap)
-  }
-  
   ha.t <- HeatmapAnnotation(
     Cluster = df.group$cluster,
     col = list(Cluster = c("6" = "red", "8" = "blue"))
@@ -267,11 +268,6 @@ design <- model.matrix(~ cluster.group)
 colnames(design) <- c("Intercept", "Group2vs1")
 
 # 使用limma进行差异分析 / Perform differential analysis using limma
-if (!require(limma)) {
-  install.packages("limma")
-  library(limma)
-}
-
 fit <- lmFit(gsvascore, design)
 fit <- eBayes(fit)
 

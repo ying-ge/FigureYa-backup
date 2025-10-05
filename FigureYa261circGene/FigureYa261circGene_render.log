@@ -1,0 +1,20 @@
+
+
+processing file: FigureYa261circGene.Rmd
+1/12                  
+2/12 [setup]          
+3/12                  
+4/12 [unnamed-chunk-1]
+5/12                  
+6/12 [unnamed-chunk-2]
+7/12                  
+8/12 [unnamed-chunk-3]
+9/12                  
+10/12 [unnamed-chunk-4]
+11/12                  
+12/12 [unnamed-chunk-5]
+output file: FigureYa261circGene.knit.md
+
+/opt/hostedtoolcache/pandoc/3.1.11/x64/pandoc +RTS -K512m -RTS FigureYa261circGene.knit.md --to html4 --from markdown+autolink_bare_uris+tex_math_single_backslash --output FigureYa261circGene.html --lua-filter /home/runner/work/_temp/Library/rmarkdown/rmarkdown/lua/pagebreak.lua --lua-filter /home/runner/work/_temp/Library/rmarkdown/rmarkdown/lua/latex-div.lua --embed-resources --standalone --variable bs3=TRUE --section-divs --template /home/runner/work/_temp/Library/rmarkdown/rmd/h/default.html --no-highlight --variable highlightjs=1 --variable theme=bootstrap --mathjax --variable 'mathjax-url=https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' --include-in-header /tmp/Rtmp9XAoM4/rmarkdown-str9a3256a95817.html 
+
+Output created: FigureYa261circGene.html

@@ -75,7 +75,7 @@ in method for ‘slingshot’ with signature ‘data="ClusterExperiment"’: no 
 * DONE (slingshot)
 
 The downloaded source packages are in
-	‘/tmp/Rtmp4K6oAg/downloaded_packages’
+	‘/tmp/RtmpYUjPOg/downloaded_packages’
 Successfully installed: slingshot 
 Installing Bioconductor package: tradeSeq 
 'getOption("repos")' replaces Bioconductor standard repositories, see
@@ -106,7 +106,7 @@ downloaded 5.2 MB
 * DONE (tradeSeq)
 
 The downloaded source packages are in
-	‘/tmp/Rtmp4K6oAg/downloaded_packages’
+	‘/tmp/RtmpYUjPOg/downloaded_packages’
 Successfully installed: tradeSeq 
 Package already installed: ComplexHeatmap 
 Package already installed: circlize 

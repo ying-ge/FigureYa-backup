@@ -3,7 +3,7 @@ FigureYa236circGroup
 Author(s)
 : Xiaofan Lu
 Date
-: 2025-09-22
+: 2025-10-04
 Academic Citation
 If you use this code in your work or research, we kindly request that
 you cite our publication:
@@ -11,6 +11,9 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization
 Framework for Enhancing Biomedical Data Interpretation and Research
 Efficiency. iMetaMed.
 https://doi.org/10.1002/imm3.70005
+If you use circlize in published research, please cite:
+Gu, Z. circlize implements and enhances circular visualization in R.
+Bioinformatics 2014.
 需求描述
 用圆圈图的方式展示不同分组的关系。网上没有找到可以实现的代码。最好是R语言做。
 Requirement Description

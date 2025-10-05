@@ -8,12 +8,10 @@ output: html_document
 **Author(s)**: `r params$author`  
 **Date**: `r Sys.Date()`  
 
-
 # Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
-
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -25,7 +23,6 @@ knitr::opts_chunk$set(echo = TRUE)
 计算coxHR，单因素cox和多因素cox，输出为表格
 
 Calculate coxHR, univariate cox and multivariate cox, output as table
-
 
 ![](example.png)
 
@@ -44,6 +41,21 @@ Compare and demonstrate the impact of clinical-related factors and gene expressi
 
 For example, TCGA data, large-scale clinical trial data, etc.
 
+# 环境设置
+# Environment setting
+
+```{r}
+source("install_dependencies.R")
+# 加载所需的R包
+# Load required R packages
+library(survival)    # 用于生存分析的包 # For survival analysis
+library(caret)       # 用于机器学习和数据分割的包 # For machine learning and data partitioning
+library(kableExtra)  # 用于增强表格输出的包 # For enhanced table outputs
+library(officer)     # 用于生成和操作Office文档的包 # For creating and editing Office documents
+Sys.setenv(LANGUAGE = "en") #显示英文报错信息 display English error messages
+options(stringsAsFactors = FALSE) #禁止chr转成factor prohibit the conversion of chr to factor
+```
+
 ## 输入数据
 ## Input data
 
@@ -52,7 +64,6 @@ For example, TCGA data, large-scale clinical trial data, etc.
 It contains the relevant factors studied in the example table, one column for each factor, and the last two columns are the expression matrices of the two genes; each row is a sample.
 
 ```{r}
-source("install_dependencies.R")
 clin_mRNA_miRNA <- read.csv("easy_input.csv", as.is = T)
 head(clin_mRNA_miRNA)
 ```
@@ -146,7 +157,6 @@ str(clin_mRNA_miRNA)
 ```{r}
 #单因素回归分析
 #univariate regression analysis
-library(survival)
 sur<-Surv(time=clin_mRNA_miRNA$`OS`, event = clin_mRNA_miRNA$`EVENT`)
 
 #批量多个单因素cox回归
@@ -211,7 +221,6 @@ uni_multi$characteristics <- as.character(uni_multi$characteristics)
 Since the article did not upload the validation dataset, 70% of the data was randomly selected from clin_mRNA_miRNA as the training set using the parameter `p = 0.7`, and the remaining data was used as the validation set.  
 
 ```{r,message=FALSE}
-if(!require(caret))(install.packages(caret))
 set.seed(121)
 samdata<- createDataPartition(clin_mRNA_miRNA$`EVENT`, p=0.7, list=F)
 valid<-clin_mRNA_miRNA[-samdata,]
@@ -294,7 +303,6 @@ comtable[is.na(comtable)] <- ""
 
 #生成html
 #generate html
-require(kableExtra)
 
 if (knitr:::is_html_output()) {
     cn = sub("\n", "<br>", colnames(comtable))
@@ -359,8 +367,6 @@ cohort and independent validation cohort'
 table1<-comtable
 mynote <- "Note: ..."
 
-if(!require(officer)) (install.packages('officer'))
-library(officer)
 my_doc <- read_docx()  #初始化一个docx initialize a docx
 
 my_doc %>%

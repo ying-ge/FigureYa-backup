@@ -8,7 +8,6 @@ output: html_document
 **Author(s)**: `r params$author`  
 **Date**: `r Sys.Date()`  
 
-
 [<img src="https://guangchuangyu.github.io/blog_images/biobabble.jpg" width="100px"/>](https://guangchuangyu.github.io/blog_images/biobabble.jpg) 
 
 # Academic Citation
@@ -48,9 +47,11 @@ If you also want to add the expression data of a certain gene, and calculate the
 
 ```{r}
 source("install_dependencies.R")
-library(TCGAbiolinks)
-library(dplyr)
-library(kableExtra)
+# 加载所需的R包
+# Load required R packages
+library(TCGAbiolinks)  # 用于从TCGA数据库下载和准备数据的包 # For downloading and preparing data from the TCGA database
+library(dplyr)         # 用于数据操作和处理的包 # For data manipulation and processing
+library(kableExtra)    # 用于生成增强表格输出的包 # For generating enhanced table outputs
 ```
 
 你可能还需要安装pdflatex

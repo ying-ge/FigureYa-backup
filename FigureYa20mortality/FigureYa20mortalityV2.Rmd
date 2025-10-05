@@ -8,14 +8,12 @@ output: html_document
 **Author(s)**: `r params$author`  
 **Date**: `r Sys.Date()`  
 
-
 [<img src="https://guangchuangyu.github.io/blog_images/biobabble.jpg" width="100px"/>](https://guangchuangyu.github.io/blog_images/biobabble.jpg) 
 
 # Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
-
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -49,12 +47,30 @@ Demonstrate the relationship between mortality and tumor size.
 
 It can also be used to demonstrate the relationship between metastasis rate and tumor size.
 
+## 环境设置
+## Environment Setup
+
+```{r}
+source("install_dependencies.R")
+# 加载所需的R包
+# Load required R packages
+library(dplyr)    # 用于数据操作和处理的包 # For data manipulation and processing
+library(ggplot2)  # 用于数据可视化的包 # For data visualization
+
+# 显示英文报错信息
+# Show English error messages
+Sys.setenv(LANGUAGE = "en") 
+
+# 禁止chr转成factor
+# Prevent character-to-factor conversion
+options(stringsAsFactors = FALSE) 
+```
+
 ## 输入数据及处理
 ## Input data and processing
 
 ```{r,message=FALSE,warning=FALSE}
-source("install_dependencies.R")
-x = read.csv("easy_input.csv")
+x <- read.csv("easy_input.csv")
 head(x)
 ## 第一列Survival里的1为死亡事件，其它当一类处理，你可以按照实现的标记灵活处理一下。
 ## 第二列Time的时间单位是月，5年即60个月。
@@ -71,7 +87,6 @@ head(x)
 
 ## 按照Tumor size切分，计算死亡率，及0.95的置信区间
 ## calculate the mortality rate and the 0.95 confidence interval based on tumor size.
-require(dplyr)
 y <- group_by(x, Tumor.size) %>%
   summarize(ratio = mean(Survival == 1),
             int95 = qt(0.975, length(Survival)-1) * sd(Survival==1)/sqrt(length(Survival))) 
@@ -82,8 +97,6 @@ head(y)
 ## Start drawing
 
 ```{r}
-require(ggplot2)
-
 p1 <-ggplot(y, aes(Tumor.size, ratio)) +
      geom_ribbon(aes(ymin=ratio-int95, ymax=ratio+int95), fill="grey") + 
      geom_line() + xlab("Tumor Size (mm)") +

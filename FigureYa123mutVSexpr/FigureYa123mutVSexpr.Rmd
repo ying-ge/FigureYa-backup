@@ -10,12 +10,16 @@ output: html_document
 **Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()`  
 
-
 # Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
 
+If you use ComplexHeatmap in published research, please cite:
+
+Zuguang Gu, et al., Complex heatmaps reveal patterns and correlations in multidimensional genomic data, Bioinformatics, 2016.
+
+Zuguang Gu. Complex Heatmap Visualization, iMeta, 2022.
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -46,7 +50,6 @@ Used to demonstrate the correlation (independence) between mutations and express
 
 ## 环境设置
 
-
 ## Environment settings
 
 ```{r}
@@ -54,15 +57,15 @@ source("install_dependencies.R")
 
 # 加载coin包，用于进行置换检验(非参数检验方法)
 # Load the coin package for permutation tests (non-parametric test methods)
-library(coin) 
+library(coin)
 
 # 加载ComplexHeatmap包，用于绘制复杂热图(支持柱状图等多种注释)
 # Load the ComplexHeatmap package for creating complex heatmaps (supports various annotations like bar charts)
-library(ComplexHeatmap) 
+library(ComplexHeatmap)
 
 # 设置系统环境变量，强制R显示英文错误信息(便于定位问题)
 # Set system environment variable to force R to display error messages in English (facilitates troubleshooting)
-Sys.setenv(LANGUAGE = "en") 
+Sys.setenv(LANGUAGE = "en")
 
 # 全局选项设置：禁止自动将字符向量转换为因子类型
 # Global option setting: prevent automatic conversion of character vectors to factors

@@ -10,12 +10,20 @@ output: html_document
 **Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()`  
 
-
 # Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
 
+If you use circlize in published research, please cite:
+
+Gu, Z. circlize implements and enhances circular visualization in R. Bioinformatics 2014.
+
+If you use ComplexHeatmap in published research, please cite:
+
+Zuguang Gu, et al., Complex heatmaps reveal patterns and correlations in multidimensional genomic data, Bioinformatics, 2016.
+
+Zuguang Gu. Complex Heatmap Visualization, iMeta, 2022.
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -193,7 +201,9 @@ write.csv(gtf_v22, "gtf_v22.csv", quote = F, row.names = F)
 # Read gene expression data matrix with gene IDs as row names
 # Parameter description:
 # "not_easy_input_expr.csv" - Original expression matrix file with gene IDs as row names
-tcga_expr <- read.csv("not_easy_input_expr.csv", header = T, stringsAsFactors = F, row.names = 1)
+#tcga_expr <- read.csv("not_easy_input_expr.csv", header = T, stringsAsFactors = F, row.names = 1)
+tcga_expr <- read.csv(unz("not_easy_input_expr.csv.zip", "not_easy_input_expr.csv"), 
+                      header = TRUE, stringsAsFactors = FALSE, row.names = 1)
 tcga_expr[1:3,1:3]  
 
 # 读取之前生成的基因ID映射表(含ENTREZID和gene_id)

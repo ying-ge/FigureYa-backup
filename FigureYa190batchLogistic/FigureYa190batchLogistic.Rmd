@@ -20,7 +20,6 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 # 需求描述
-
 # Requirement
 
 逻辑回归，这篇文章应该是一个一个做的，我主要想要的是批量。
@@ -29,10 +28,8 @@ Logistic regression. This article should be done one by one. What I mainly want 
 ![](example.png)
 
 出自<https://doi.org/10.1371/journal.pone.0201515>
-fromhttps://doi.org/10.1371/journal.pone.0201515
 
 # 应用场景
-
 # Application Scenarios
 
 批量计算单变量和多变量逻辑回归。
@@ -42,20 +39,24 @@ Batch calculation of univariate and multivariate logistic regression.
 This is logistic regression. If you want cox regression, you can refer to Figure A47HR2Table.
 
 # 环境设置
-
 # Environment Setup
 
 ```{r}
 source("install_dependencies.R")
 
+# 加载所需的R包
+# Load required R packages
 library(SimDesign) # 用于沉默逐步回归的信息 # Information for silent stepwise regression
+library(officer)   # 用于生成和操作Office文档的包 # For creating and editing Office documents
+library(dplyr)     # 用于数据操作和处理的包 # For data manipulation and processing
 
+# 设置环境变量
+# Set environment variables
 Sys.setenv(LANGUAGE = "en") #显示英文报错信息  # displays an English error message
 options(stringsAsFactors = FALSE) #禁止chr转成factor   # prohibit chr from being converted to factor
 ```
 
 # 输入文件
-
 # Input File
 
 easy_input.csv，每行一个sample，第一列就是sample ID，第二列为分组（响应变量），其后每列一个特征（自变量）。这里是基因的表达量，可以换其他临床信息。
@@ -72,7 +73,6 @@ colnames(dat) <- gsub("-","_",colnames(dat))
 ```
 
 # 循环运算单变量逻辑回归
-
 # Loop operation for univariate logistic regression
 
 ```{r}
@@ -107,7 +107,6 @@ for (v in vname) {
 ```
 
 # 多变量回归
-
 # Multivariate regression
 
 ```{r}
@@ -147,11 +146,9 @@ step.or.lab <- rep("NA", length(vname)); names(step.or.lab) <- vname; step.or.la
 ```
 
 # 输出表格文件
-
 # Output the table file
 
 ## 生成简易表格
-
 ## Generate a simple table
 
 ```{r}
@@ -162,7 +159,6 @@ write.table(outTab,"batch logistic results.txt",sep = "\t",row.names = F,quote =
 ```
 
 ## 输出CSV格式
-
 ## Output in CSV format
 
 ```{r}
@@ -175,7 +171,6 @@ write.csv(comtable,"Table.csv", quote = F, row.names = F)
 ```
 
 ## 输出WORD格式
-
 ## Output in WORD format
 
 ```{r}
@@ -190,9 +185,6 @@ title_name<-'Table *. Univariate and multivariate logistic regression'
 table1 <- comtable
 mynote <- "Note: ..."
 
-if(!require(officer)) (install.packages('officer'))
-library(officer)
-library(dplyr)
 my_doc <- read_docx()  #初始化一个docx  # Initialize a docx
 my_doc %>%
   ##添加段落标题名称

@@ -8,14 +8,12 @@ output: html_document
 **Author(s)**: `r params$author`  
 **Date**: `r Sys.Date()`  
 
-
 [<img src="https://guangchuangyu.github.io/blog_images/biobabble.jpg" width="120px"/>](https://guangchuangyu.github.io/blog_images/biobabble.jpg) 
 
 # Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
-
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -42,7 +40,7 @@ Figure 2
 
 出自<https://www.frontiersin.org/articles/10.3389/fphys.2018.00399/full>
 
-from<https://www.frontiersin.org/articles/10.3389/fphys.2018.00399/full>
+From<https://www.frontiersin.org/articles/10.3389/fphys.2018.00399/full>
 
 ## 使用场景
 ## Usage scenario
@@ -50,6 +48,25 @@ from<https://www.frontiersin.org/articles/10.3389/fphys.2018.00399/full>
 用boxplot展示基因表达量分布，同时计算p value。
 
 Use a boxplot to show the distribution of gene expression and calculate the p-value.
+
+## 环境设置
+## Environment Setup
+
+```{r}
+source("install_dependencies.R")
+# 加载所需的R包
+# Load required R packages
+library(ggplot2)  # 用于数据可视化的包 # For data visualization
+library(tidyr)    # 用于数据整理的包 # For data tidying
+library(cowplot)  # 用于将多个图拼接成一个图的包 # For combining multiple plots into one
+# 显示英文报错信息
+# Show English error messages
+Sys.setenv(LANGUAGE = "en") 
+
+# 禁止chr转成factor
+# Prevent character-to-factor conversion
+options(stringsAsFactors = FALSE) 
+```
 
 ## 输入数据
 ## Input data
@@ -66,11 +83,6 @@ easy_input_expr.csv, expression of all genes in multiple samples.
 It includes stage1, stage2, and stage3, with 10 samples each. Stage is indicated by `_number` following the sample name.
 
 ```{r}
-source("install_dependencies.R")
-require(ggplot2)
-require(tidyr)
-require(cowplot)
-
 d <- read.csv("easy_input_expr.csv", row.names=1)
 dim(d)
 head(d)
@@ -106,9 +118,6 @@ down<-read.table("easy_input_down.txt",header = T, as.is = T, row.names = 1)
 Draw the upregulated and downregulated genes separately, then combine them using cowplot.
 
 ```{r fig.width=15.5, fig.height=6.6}
-require(tidyr)
-require(ggplot2)
-
 box <- lapply(list(up=row.names(up), down=row.names(down)), function(ii) {
     dd <- d[ii,]
     dd$gene = rownames(dd)
@@ -142,7 +151,6 @@ box <- lapply(list(up=row.names(up), down=row.names(down)), function(ii) {
 
 #拼图
 #pictures put together
-require(cowplot)
 plot_grid(plotlist=box, labels=c("A", "B"), ncol=1)
 
 #保存到pdf文件
@@ -182,7 +190,6 @@ box <- lapply(list(up=row.names(up), down=row.names(down)), function(ii) {
       xlab(NULL)+ylab("Relative expression (log2)")
 })
 
-require(cowplot)
 plot_grid(plotlist=box, labels=c("A", "B"), ncol=1)
 ggsave(file="box2.pdf")
 ```

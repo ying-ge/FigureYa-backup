@@ -8,12 +8,14 @@ output: html_document
 **Author(s)**: `r params$author`  
 **Date**: `r Sys.Date()`  
 
-
 # Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
 
+If you use circlize in published research, please cite:
+
+Gu, Z. circlize implements and enhances circular visualization in R. Bioinformatics 2014.
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -30,7 +32,7 @@ Show the correlation using ⭕️ to draw a graph like the one in the paper
 
 出自<https://doi.org/10.1080/2162402X.2017.1382792>
 
-from<https://doi.org/10.1080/2162402X.2017.1382792>
+From<https://doi.org/10.1080/2162402X.2017.1382792>
 
 # 应用场景
 # Application scenario
@@ -54,23 +56,12 @@ More usage:
 # 环境设置
 # Environment setting
 
-
-use the domestic mirror installation package
-
 ```{r}
 source("install_dependencies.R")
-#安装circlize包
-#install the circlize package
-#install.packages("circlize")
-```
 
-
-load package
-
-```{r}
-library(circlize)
-library(ggsci)
-library(parallel)
+library(circlize)   # 用于绘制环形相关图 circos correlation plot
+library(ggsci)      # 提供科学期刊风格的配色方案 Provides scientific journal-style color palettes
+library(parallel)   # 支持并行计算，加速相关系数计算 Supports parallel computing to accelerate correlation calculations
 Sys.setenv(LANGUAGE = "en") #显示英文报错信息 display English error messages
 options(stringsAsFactors = FALSE) #禁止chr转成factor prohibit the conversion of chr to factor
 ```

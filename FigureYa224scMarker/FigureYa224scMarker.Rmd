@@ -55,16 +55,18 @@ Single-cell data showing cell ratios and marker genes.
 ```{r}
 source("install_dependencies.R")
 
-library(dplyr)
-library(Seurat)
-library(patchwork)
-library(reshape2)
-library(RColorBrewer)
-library(scales)
-library(ggplot2)
-library(ggpubr)
-library(ggplotify)
-library(pheatmap)
+# 加载所需的R包
+# Load required R packages
+library(dplyr)         # 用于数据操作和处理的包 # For data manipulation and processing
+library(Seurat)        # 用于单细胞数据分析的包 # For single-cell data analysis
+library(patchwork)     # 用于拼接多个图的包 # For combining multiple plots
+library(reshape2)      # 用于数据重塑的包 # For data reshaping
+library(RColorBrewer)  # 提供颜色调色板的包 # For color palettes
+library(scales)        # 用于缩放和格式化数据的包 # For scaling and formatting data
+library(ggplot2)       # 用于数据可视化的包 # For data visualization
+library(ggpubr)        # 用于增强ggplot2功能的包 # For enhancing ggplot2 functionalities
+library(ggplotify)     # 将其他图形对象转换为ggplot对象的包 # For converting other plot objects to ggplot objects
+library(pheatmap)      # 用于绘制热图的包 # For creating heatmaps
 Sys.setenv(LANGUAGE = "en") #显示英文报错信息 # error messages are displayed in English
 options(stringsAsFactors = FALSE) #禁止chr转成factor # chr is not allowed to be converted to factor
 ```
@@ -338,7 +340,6 @@ ph3 <- pheatmap(heatmap_AveE,cluster_cols = F,cluster_rows = F,show_colnames=F,s
                 annotation_colors = annotation_colors,
                 annotation_names_row = F,annotation_names_col = T)
 
-require(ggplotify)
 pB3 = as.ggplot(ph3) ### 将pheatmap对象转为ggplot对象，便于后续拼图 ### Convert the pheatmap object to a ggplot object for easy follow-up puzzles
 ```
 

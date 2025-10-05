@@ -14,7 +14,6 @@ If you use this code in your work or research, we kindly request that you cite o
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
 
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
@@ -47,6 +46,25 @@ Scenario 1: Trends in the genes within the module obtained by WGCNA
 
 Scenario 2: Trends of genes within clusters obtained from cluster analysis
 
+## 环境设置
+## Environment Setup
+
+```{r}
+source("install_dependencies.R")
+# 加载所需的R包
+# Load required R packages
+library(plyr)     # 用于数据操作和汇总的包 # For data manipulation and summarization
+library(ggplot2)  # 用于数据可视化的包 # For data visualization
+library(cowplot)  # 用于将多个图拼接成一个图的包 # For combining multiple plots into one
+# 显示英文报错信息
+# Show English error messages
+Sys.setenv(LANGUAGE = "en") 
+
+# 禁止chr转成factor
+# Prevent character-to-factor conversion
+options(stringsAsFactors = FALSE) 
+```
+
 ## 输入数据
 ## Input data
 
@@ -76,7 +94,6 @@ head(t)
 ### Draw plots
 
 ```{r,warning=FALSE,message=FALSE,fig.width=8,fig.height=4}
-library(ggplot2)
 ggplot(t,aes(x = tp,y = tpm_mean)) +
   geom_smooth(color="black") + #拟合曲线的颜色 color of the fitted curve
   labs(x = "Days after injury", y = "Expression Level", title = "black") + 
@@ -105,7 +122,6 @@ fnames
 fdataset<-lapply(fnames,read.csv)
 names(fdataset) <- fnames
 
-library(plyr)
 result <- ldply(fdataset, data.frame)
 head(result)
 df<-result[,2:22]
@@ -118,7 +134,6 @@ df1<-df[2:22]
 ### Draw plots
 
 ```{r,warning=FALSE,message=FALSE,fig.width=8,fig.height=6}
-library(ggplot2)
 plist=list()
 tag = 0
 for (mod in unique(df1$module)){
@@ -136,7 +151,6 @@ for (mod in unique(df1$module)){
   geom_hline(yintercept = t$tpm_mean[1],linetype="dashed") #在第一个时间点处画虚线 draw a dotted line at the first time point
 }
 
-require(cowplot)
 plot_grid(plotlist=plist, ncol=2)
 ggsave(file="myfitting.pdf")
 ```

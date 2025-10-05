@@ -4,7 +4,7 @@ Author(s)
 : Zhaodong Hao, Jiacheng Lou; Ying Ge,
 Yijing Chen
 Date
-: 2025-09-22
+: 2025-10-04
 Academic Citation
 If you use this code in your work or research, we kindly request that
 you cite our publication:
@@ -12,6 +12,9 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization
 Framework for Enhancing Biomedical Data Interpretation and Research
 Efficiency. iMetaMed.
 https://doi.org/10.1002/imm3.70005
+If you use circlize in published research, please cite:
+Gu, Z. circlize implements and enhances circular visualization in R.
+Bioinformatics 2014.
 需求描述
 Requirement description
 用⭕️的方式展示correlation，画出像paper里这样的图
@@ -19,7 +22,7 @@ Show the correlation using ⭕️ to draw a graph like the one in the
 paper
 出自
 https://doi.org/10.1080/2162402X.2017.1382792
-from
+From
 https://doi.org/10.1080/2162402X.2017.1382792
 应用场景
 Application scenario
@@ -42,12 +45,7 @@ please refer to the “condensed strategy” at the end of this article:
 https://mp.weixin.qq.com/s/UFbF5Ru8Pd67AcxCLODsfw
 环境设置
 Environment setting
-use the domestic mirror installation package
 source("install_dependencies.R")
-#安装circlize包
-#install the circlize package
-#install.packages("circlize")
-load package
 library(circlize)
 library(ggsci)
 library(parallel)
