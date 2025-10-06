@@ -71,18 +71,22 @@ Draw chord diagrams in pan-cancer based on tissue categories and specific scores
 # Environment Setup
 
 ```{r}
+# 加载依赖安装脚本
+# Load dependency installation script
 source("install_dependencies.R")
 
-library(circlize)
-library(ComplexHeatmap)
+# 加载所需的R包
+# Load required R packages
+library(circlize)        # 用于绘制环形图 # For creating circular plots
+library(ComplexHeatmap)  # 用于绘制复杂热图 # For creating complex heatmaps
 
-# 显示英文报错信息
-# Show English error messages
-Sys.setenv(LANGUAGE = "en") 
+# 设置环境变量
+# Set environment variables
+Sys.setenv(LANGUAGE = "en") # 显示英文报错信息 # Show English error messages
 
-# 禁止chr转成factor
-# Prevent character-to-factor conversion
-options(stringsAsFactors = FALSE) 
+# 禁止字符型数据自动转换为因子型
+# Prevent automatic conversion of character data to factors
+options(stringsAsFactors = FALSE)
 ```
 
 # 输入文件的生成

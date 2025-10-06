@@ -46,15 +46,21 @@ To show the overlap genes between multiple groups and each specific gene, a venn
 # Environment settings
 
 ```{r}
-source("install_dependencies.R")
+# 加载依赖安装脚本
+# Load dependency installation script
+source("install_dependencies.R")  # 确保依赖包已安装 # Ensure dependencies are installed
 
-library(ggVennDiagram) # 找overlap基因 # Find overlap genes
-library(ggplot2)
-library(magrittr)
-library(RColorBrewer)
+# 加载所需的R包
+# Load required R packages
+library(ggVennDiagram)  # 用于绘制韦恩图并找出overlap基因 # For drawing Venn diagrams and finding overlap genes
+library(ggplot2)        # 用于数据可视化 # For data visualization
+library(magrittr)       # 提供管道操作符 %>% # Provides the pipe operator %>%
+library(RColorBrewer)   # 提供颜色调色板 # Provides color palettes
 
-Sys.setenv(LANGUAGE = "en") #显示英文报错信息 # An error message is displayed in English
-options(stringsAsFactors = FALSE) #禁止chr转成factor # chr is not allowed to be converted to factor
+# 设置环境变量
+# Set environment variables
+Sys.setenv(LANGUAGE = "en")  # 显示英文报错信息 # Display error messages in English
+options(stringsAsFactors = FALSE)  # 禁止字符型数据自动转换为因子型 # Prevent automatic conversion of character data to factors```
 ```
 
 # 输入差异表达分析结果

@@ -1,7 +1,9 @@
 FigureYa249Regulon
 FigureYa249Regulon
-Xiaofan Lu
-2025-5-20
+Author(s)
+: Xiaofan Lu
+Date
+: 2025-10-05
 Academic Citation
 If you use this code in your work or research, we kindly request that
 you cite our publication:
@@ -9,6 +11,10 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization
 Framework for Enhancing Biomedical Data Interpretation and Research
 Efficiency. iMetaMed.
 https://doi.org/10.1002/imm3.70005
+If you use ComplexHeatmap in published research, please cite:
+Zuguang Gu, et al., Complex heatmaps reveal patterns and correlations
+in multidimensional genomic data, Bioinformatics, 2016.
+Zuguang Gu. Complex Heatmap Visualization, iMeta, 2022.
 需求描述
 Figure2a中regulon的计算方法（看起来上半部分是癌种特异性的，下半部分是通用的，随便哪个都行）。
 Requirement Description
@@ -72,7 +78,6 @@ Figure 5b可参考FigureYa12box，f可参考FigureYa162boxViolin
 Figure
 6可参考FigureYa35batch_bestSeparation，FigureYa144DiagHeatmap或
 https://mp.weixin.qq.com/s/34WRZRBVPHUNRLlzNH2nzw
-接下来会继续实现Figure3a，欢迎添加小丫为好友（微信ID：epigenomics），查看朋友圈，关注后续实现进展。
 Many of the pictures in the article have been crowdsourced, such
 as:
 For more information about Figure 1b, see FigureYa196PanPie
@@ -84,9 +89,6 @@ FigureYa162boxViolin
 For Figure 6, see FigureYa35batch_bestSeparation,
 FigureYa144DiagHeatmap, or
 https://mp.weixin.qq.com/s/34WRZRBVPHUNRLlzNH2nzw
-Next, we will continue to draw Figure3a, welcome to add Xiaoya as a
-friend (WeChat ID: epigenomics), check the circle of friends, and pay
-attention to the follow-up crowdsourcing progress.
 环境设置
 Environment settings
 source("install_dependencies.R")
@@ -171,7 +173,6 @@ regulatoryElements <- intersect(tfs$regulon, rownames(tcgaBLCA))
 # we used the R package “RTN” to reconstruct transcriptional regulatory networks (regulons)
 rtni_tcgaBLCA <- tni.constructor(expData = as.matrix(log2(tcgaBLCA + 1)), # 样图计算时候没有取对数,  # There is no logarithm when calculating the sample,
                                  regulatoryElements = regulatoryElements)
-
 # 通过置换以及bootstrap计算reference regulatory network.
 # Reference regulatory network is calculated by substitution and bootstrap.
 # mutual information analysis and Spearman rank-order correlation deduced the possible associations between a regulator and all potential target from the transcriptome expression profile, and permutation analysis was utilized to erase associations with an FDR > 0.00001. Bootstrapping strategy removed unstable associations through one thousand times of resampling with consensus bootstrap greater than 95%. 
@@ -186,7 +187,6 @@ stopCluster(getOption("cluster")) # 关闭并行计算 # Turn off parallel compu
 # Calculate the DPI-filtered regulatory network
 # Data processing inequality filtering eliminated the weakest associations in triangles of two regulators and common targets
 rtni_tcgaBLCA <- tni.dpi.filter(rtni_tcgaBLCA, eps = 0, sizeThreshold = TRUE, minRegulonSize = 15)
-
 # 保存TNI对象以便后续分析
 # Save the TNI object for later analysis
 save(rtni_tcgaBLCA, file="rtni_tcgaBLCA.RData")

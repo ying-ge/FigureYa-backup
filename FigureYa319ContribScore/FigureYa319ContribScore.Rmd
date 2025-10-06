@@ -48,26 +48,30 @@ Calculate cell subset contribution scores from scRNA-seq data and plot circular 
 # Environment Setup
 
 ```{r}
-source("install_dependencies.R")
+# 加载依赖安装脚本
+# Load dependency installation script
+source("install_dependencies.R")  # 确保依赖包已安装 # Ensure dependencies are installed
 
-library(Seurat)
-library(magrittr)
-library(GEOquery)
-library(SingleR)
-library(plyr)
-library(openxlsx)
-library(GSVA)
-library(dplyr)
-library(reshape2)
-library(ggplot2)
+# 加载所需的R包
+# Load required R packages
+library(Seurat)        # 用于单细胞数据分析 # For single-cell data analysis
+library(magrittr)      # 提供管道操作符 %>% # Provides the pipe operator %>%
+library(GEOquery)      # 用于从GEO数据库下载数据 # For downloading data from the GEO database
+library(SingleR)       # 用于单细胞数据的自动注释 # For automatic annotation of single-cell data
+library(plyr)          # 用于数据操作和汇总 # For data manipulation and summarization
+library(openxlsx)      # 用于读取和写入Excel文件 # For reading and writing Excel files
+library(GSVA)          # 用于基因集变异分析 # For gene set variation analysis
+library(dplyr)         # 用于数据操作和处理 # For data manipulation and processing
+library(reshape2)      # 用于数据重塑 # For data reshaping
+library(ggplot2)       # 用于数据可视化 # For data visualization
 
 # 显示英文报错信息
 # Show English error messages
 Sys.setenv(LANGUAGE = "en") 
 
-# 禁止chr转成factor
-# Prevent character-to-factor conversion
-options(stringsAsFactors = FALSE) 
+# 禁止字符型数据自动转换为因子型
+# Prevent automatic conversion of character data to factors
+options(stringsAsFactors = FALSE)
 ```
 
 # 输入文件

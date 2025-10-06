@@ -13,7 +13,6 @@ reviewers: Ying Ge,Hui Huang
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
@@ -30,7 +29,7 @@ It looks beautiful to use the grouped data directly in a fan chart to show the d
 
 出自<https://www.nature.com/articles/s41388-019-1026-9>
 
-from <https://www.nature.com/articles/s41388-019-1026-9>
+From <https://www.nature.com/articles/s41388-019-1026-9>
 
 Fig. 4 Identification of CNV-driven rRNA metabolism-related genes with clinical relevance.
 f, g Pie charts showing the Chi-squared test of clinicopathologic factors for PRE in CRC (f) and LUAD (g) tumor samples from the TCGA. 
@@ -50,10 +49,8 @@ Once you understand the mapping between input data and visual outputs, as well a
 # Environment Configuration
 
 ```{r}
-source("install_dependencies.R")
-
-library(dplyr)
-library(ggplot2)
+source("install_dependencies.R") # 确保依赖包已安装 # Ensure dependencies are installed
+library(dplyr) # 用于数据操作和处理 # For data manipulation and processing
 Sys.setenv(LANGUAGE = "en") #显示英文报错信息 # error messages are displayed in English
 options(stringsAsFactors = FALSE) #禁止chr转成factor # It is forbidden to convert chr into factor
 ```
@@ -107,11 +104,10 @@ for (i in vname) {
 
 用base plot画图，如果你要查看某部分代码的效果，请从plot所在的行到当前位置一起，整段运行。
 
-f you want to preview the output of a specific code segment, run the entire code block from the line containing the plot() command to the current cursor position.
+If you want to preview the output of a specific code segment, run the entire code block from the line containing the plot() command to the current cursor position.
 
 ```{r}
-# 设置颜色
-# Set the color
+# 定义颜色变量
 black  <- "#1E1E1B"
 blue   <- "#3C4E98"
 yellow <- "#E4DB36"
@@ -119,17 +115,15 @@ orange <- "#E19143"
 green  <- "#57A12B"
 cherry <- "#8D3A86"
 
-# 创建颜色
-# Create a color
-status.col <- c("grey80",black)
-stage.col <- alpha(blue, c(0.4, 0.6, 0.8, 1))
+# 设置颜色透明度
+status.col <- c("grey80", black)
+stage.col <- sapply(c(0.4, 0.6, 0.8, 1), function(alpha) adjustcolor(blue, alpha.f = alpha))
 M.col <- c(yellow, orange)
-N.col <- alpha(green, c(0.5, 0.7, 1))
-T.col <- alpha(cherry, c(0.4, 0.6, 0.8, 1))
+N.col <- sapply(c(0.5, 0.7, 1), function(alpha) adjustcolor(green, alpha.f = alpha))
+T.col <- sapply(c(0.4, 0.6, 0.8, 1), function(alpha) adjustcolor(cherry, alpha.f = alpha))
 
 # 硬核base plot一块一块画，当然也可以把其中的pie chart提取出来后期AI或者PPT拼接也是比较方便的
-
-# Hardcore base plotting system allows manual construction of plots piece by piece. Alternatively, you can export individual pie charts for post-processing and assembly in tools like Adobe Illustrator or PowerPoint—this hybrid workflow offers flexibility.
+# Base plotting system allows manual construction of plots piece by piece. Alternatively, you can export individual pie charts for post-processing and assembly in tools like Adobe Illustrator or PowerPoint—this hybrid workflow offers flexibility.
 
 pdf("pieTable.pdf",width = 7, height = 5)
 showLayout <- F # 默认不在最终pdf的首页显示layout结构，不过建议初次绘制的时候改为TRUE看一下，方便理解。# By default, the layout structure is not displayed on the first page of the final PDF. However, it is recommended to set this option to TRUE during initial plotting to visualize the layout, which aids in comprehension.

@@ -161,7 +161,7 @@ Bootstrap calculates that the reference regulatory network takes a long time to 
 
 In order to facilitate the repeated running of the debugging code, the intermediate data is saved to a file. You can skip this step and go to Start Drawing.
 
-```{r eval=FALSE}
+```{r}
 # 取共有的基因名
 # Take the common gene name
 regulatoryElements <- intersect(tfs$regulon, rownames(tcgaBLCA))

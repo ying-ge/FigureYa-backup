@@ -72,14 +72,9 @@ Taking the TF-GO-target gene interaction as an example, the transcriptome finds 
 ## 环境设置
 ## Environment settings
 
-
 ```{r}
 source("install_dependencies.R")
-```
 
-Load package
-
-```{r}
 library(ggplot2) #用于画图 #For drawing
 library(dplyr) #用于数据处理 #For data processing
 Sys.setenv(LANGUAGE = "en") #显示英文报错信息 #Display English error message

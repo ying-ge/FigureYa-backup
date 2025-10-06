@@ -1,44 +1,34 @@
 FigureYa220repeatedLasso
 FigureYa220repeatedLasso
-Xiaofan Lu
-2025-5-20
+Author(s)
+: Xiaofan Lu
+Date
+: 2025-10-06
 Academic Citation
-If you use this code in your work or research, we kindly request that
-you cite our publication:
-Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization
-Framework for Enhancing Biomedical Data Interpretation and Research
-Efficiency. iMetaMed.
+If you use this code in your work or research, we kindly request that you cite our publication:
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed.
 https://doi.org/10.1002/imm3.70005
 需求描述
-FigureYa182RFSurv和FigureYa198SignatureComb都是根据基因的重要性筛选的。直接根据随机森林的准确度或cox模型的frequency筛选，又是另一种不同的展示方式。
 Requirement Description
-Both FigureYa182RFSurv and FigureYa198SignatureComb were screened
-based on the importance of genes. Filtering directly based on the
-accuracy of the random forest or the frequency of the COX model is
-another different way to display it.
+FigureYa182RFSurv和FigureYa198SignatureComb都是根据基因的重要性筛选的。直接根据随机森林的准确度或cox模型的frequency筛选，又是另一种不同的展示方式。
+Both FigureYa182RFSurv and FigureYa198SignatureComb were screened based on the importance of genes. Filtering directly based on the accuracy of the random forest or the frequency of the COX model is another different way to display it.
 出自
 https://translational-medicine.biomedcentral.com/articles/10.1186/s12967-019-1824-4
-from
+From
 https://translational-medicine.biomedcentral.com/articles/10.1186/s12967-019-1824-4
-Fig. 2 a Generation of the ten gene groups after 1000 iteration. The
-gene model with 30 immune related genes was selected to construct the
-signature as its highest frequencies of 211 compared to other nine gene
-models. b The c‐index of both training and testing sets. The c‐index for
-TCGA dataset, GSE30219, GSE31210, GSE3141, and GSE81089 were 0.723,
-0.657, 0.7061, 0.641, and 0.619 respectively
+Fig. 2 a Generation of the ten gene groups after 1000 iteration. The gene model with 30 immune related genes was selected to construct the signature as its highest frequencies of 211 compared to other nine gene models. b The c‐index of both training and testing sets. The c‐index for TCGA dataset, GSE30219, GSE31210, GSE3141, and GSE81089 were 0.723, 0.657, 0.7061, 0.641, and 0.619 respectively
 应用场景
-这里用的cox模型的10折交叉验证
 Application Scenarios
+这里用的cox模型的10折交叉验证
 Here is a 10-fold cross-validation of the COX model
-Using Cox proportional hazards model (iteration = 1000) with an lasso
-penalty to find the best gene model.
+Using Cox proportional hazards model (iteration = 1000) with an lasso penalty to find the best gene model.
 环境设置
 Environment settings
-source("install_dependencies.R")
-library(survival)
-library(glmnet)
-library(pbapply)
-library(survcomp)
+source("install_dependencies.R")  # 加载依赖安装脚本 # Load dependency installation script
+library(survival)  # 用于生存分析的包 # For survival analysis
+library(glmnet)    # 用于Lasso和Elastic-Net正则化的包 # For Lasso and Elastic-Net regularization
+library(pbapply)   # 用于显示进度条的包 # For displaying progress bars
+library(survcomp)  # 用于生存数据比较的包 # For survival data comparison
 Sys.setenv(LANGUAGE = "en") #显示英文报错信息 # error messages are displayed in English
 options(stringsAsFactors = FALSE) #禁止chr转成factor # chr is not allowed to be converted to factor
 自定义函数 Custom functions
@@ -49,6 +39,7 @@ display.progress = function (index, totalN, breakN=20) {
   }
 }
 输入文件
+Input files
 表达谱文件
 InnateDB_genes.csv，免疫基因集。数据来自
 https://www.innatedb.com/redirect.do?go=resourcesGeneLists
@@ -59,7 +50,6 @@ easy_input_surv.txt，生存数据
 测试集，GEO数据的下载及数据预处理请参考FigureYa203ComBat，其余测试集如法炮制
 easy_validation_expr.txt，表达谱
 easy_validation_surv.txt，生存数据
-Input files
 The expression profile file
 InnateDB_genes.csv, immune gene set. Data from
 https://www.innatedb.com/redirect.do?go=resourcesGeneLists
@@ -67,16 +57,13 @@ Immunogenetic Related Information Source (IRIS)
 Training sets
 easy_input_expr.txt, expression profile
 easy_input_surv.txt, survival data
-For the test set, please refer to FigureYa203ComBat for
-downloading GEO data and data preprocessing, and the rest of the test
-sets are prepared in the same way
+For the test set, please refer to FigureYa203ComBat for downloading GEO data and data preprocessing, and the rest of the test sets are prepared in the same way
 easy_validation_expr.txt, expression profile
 easy_validation_surv.txt, survival data
 用训练集筛基因
-单变量cox模型筛选基因，KM估计筛选基因，二者取交集。
 Sifting genes with training sets
-The univariate cox model screened genes, and KM estimated the
-screened genes, and the two intersected.
+单变量cox模型筛选基因，KM估计筛选基因，二者取交集。
+The univariate cox model screened genes, and KM estimated the screened genes, and the two intersected.
 # 单变量cox模型筛选基因
 # Univariate Cox model for gene screening
 Coxoutput <- NULL

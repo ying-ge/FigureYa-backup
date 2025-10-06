@@ -59,7 +59,7 @@ We have previously created many scatter plots in vertical coordinate systems , u
 ```{r}
 source("install_dependencies.R")
 
-library(circlize)
+library(circlize) # 用于绘制环形图 # For creating circular plots
 
 # 显示英文报错信息
 # Show English error messages

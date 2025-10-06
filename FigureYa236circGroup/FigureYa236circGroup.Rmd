@@ -61,17 +61,19 @@ We have also crowdsourced Figure 1ABC for example, which selects co-expressed ge
 # Environment settings
 
 ```{r}
-source("install_dependencies.R")
+source("install_dependencies.R")  # 加载依赖安装脚本 # Load dependency installation script
+# 加载所需的R包
+# Load required R packages
+library(circlize)        # 用于绘制环形图 # For creating circular plots
+library(gridBase)        # 提供基础图形功能 # Provides basic graphic functions
+library(grid)            # 用于图形布局 # For graphical layout
+library(ComplexHeatmap)  # 用于绘制复杂热图 # For creating complex heatmaps
+library(SimDesign)       # 提供模拟设计和分析功能 # Provides simulation design and analysis functions
 
-library(circlize)
-library(gridBase)
-library(grid)
-library(ComplexHeatmap)
-library(SimDesign)
-
-Sys.setenv(LANGUAGE = "en") #显示英文报错信息 # messages are displayed in English
-options(stringsAsFactors = FALSE) #禁止chr转成factor # chr is not allowed to be converted to factor
-```
+# 设置环境变量
+# Set environment variables
+Sys.setenv(LANGUAGE = "en") # 显示英文报错信息 # Messages are displayed in English
+options(stringsAsFactors = FALSE) # 禁止字符型数据自动转换为因子型 # Prevent automatic conversion of character data to factors```
 
 # 输入文件
 

@@ -147,6 +147,7 @@ FigureYa213customizeHeatmap
 FigureYa214KEGG_hierarchyV2
 FigureYa218Elasticnet
 FigureYa219GMM
+FigureYa220repeatedLasso
 FigureYa225GiViTl
 FigureYa227boxdensity
 FigureYa229PCOA
@@ -159,6 +160,7 @@ FigureYa244PCAPlot
 FigureYa245VarDecompose
 FigureYa247oncoPredict
 FigureYa248MutLandscape
+FigureYa249Regulon
 FigureYa250ImmGenePair
 FigureYa251NPHSurv
 FigureYa257armCNV

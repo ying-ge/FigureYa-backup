@@ -47,10 +47,9 @@ install_bioc_package <- function(package_name) {
 cat("Starting R package installation...\n")
 cat("===========================================\n")
 
-
 # Installing CRAN packages
 cat("\nInstalling CRAN packages...\n")
-cran_packages <- c("dplyr", "ggplot2", "grey80")
+cran_packages <- c("dplyr")
 
 for (pkg in cran_packages) {
   install_cran_package(pkg)

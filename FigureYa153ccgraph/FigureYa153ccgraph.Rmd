@@ -82,16 +82,23 @@ Displaying hierarchical structures. For example:
 
 
 ```{r}
-source("install_dependencies.R")
-library(clusterProfiler)
-library(GOplot)
-library(tidyverse)
-library(data.table)
-library(ggraph)
-library(tidygraph)
-Sys.setenv(LANGUAGE = "en") #显示英文报错信息 #Display English error messages
-options(stringsAsFactors = FALSE) #禁止chr转成factor #Disable conversion of chr to factor
-```
+# 加载依赖安装脚本
+# Load dependency installation script
+source("install_dependencies.R")  # 确保依赖包已安装 # Ensure dependencies are installed
+
+# 加载所需的R包
+# Load required R packages
+library(clusterProfiler)  # 用于功能富集分析 # For functional enrichment analysis
+library(GOplot)          # 用于可视化基因本体分析结果 # For visualizing Gene Ontology analysis results
+library(tidyverse)       # 用于数据操作和可视化的集合包 # A collection of packages for data manipulation and visualization
+library(data.table)      # 用于高效的数据操作 # For efficient data manipulation
+library(ggraph)          # 用于基于图形的可视化 # For graph-based visualizations
+library(tidygraph)       # 用于处理图形数据的包 # For handling graph data
+
+# 设置环境变量
+# Set environment variables
+Sys.setenv(LANGUAGE = "en")  # 显示英文报错信息 # Display error messages in English
+options(stringsAsFactors = FALSE)  # 禁止字符型数据自动转换为因子型 # Prevent automatic conversion of character data to factors```
 
 加载自定义函数
 Loading a custom function
