@@ -1,0 +1,204 @@
+FigureYa196Plus_PanPie
+FigureYa196Plus_PanPie
+Author(s)
+: Ying Ge
+Date
+: 2025-10-06
+Academic Citation
+If you use this code in your work or research, we kindly request that you cite our publication:
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed.
+https://doi.org/10.1002/imm3.70005
+需求描述
+Requirement Description
+用scatterpie包画图，展示不同临床预后分期的分布差异。
+Use the scatterpie package to visualize the distribution differences across different clinical prognostic stages.
+出自
+https://www.nature.com/articles/s41388-019-1026-9
+From
+https://www.nature.com/articles/s41388-019-1026-9
+Fig. 4 Identification of CNV-driven rRNA metabolism-related genes with clinical relevance. f, g Pie charts showing the Chi-squared test of clinicopathologic factors for PRE in CRC (f) and LUAD (g) tumor samples from the TCGA.
+图 4 具有临床相关性的 CNV 驱动的 rRNA 代谢相关基因的鉴定。f、g饼图显示了来自TCGA的CRC（f）和 LUAD（g）肿瘤样本中 PRE 临床病理因素的卡方检验。
+应用场景
+Application Scenarios
+搞清楚输入数据跟图的对应关系、理解每部分代码所画的内容，就可以套用到更多类型的数据上。
+Once you understand the mapping between input data and visual outputs, as well as the role of each code block in generating plots, you can adapt this workflow to broader data types.
+环境设置
+Environment Configuration
+source("install_dependencies.R") # 确保依赖包已安装 # Ensure dependencies are installed
+library(dplyr)         # 用于数据操作和处理 # For data manipulation and processing
+library(scatterpie)    # 用于绘制散点饼图 # For drawing scatter pie charts
+library(ggplot2)       # 用于数据可视化 # For data visualization
+Sys.setenv(LANGUAGE = "en") #显示英文报错信息 # error messages are displayed in English
+options(stringsAsFactors = FALSE) #禁止chr转成factor # It is forbidden to convert chr into factor
+输入文件
+Input files
+easy_input.txt
+第一列sample ID，每行一个sample，扇形大小对应每一类sample的数量；
+第二列Risk有两类：high和low，对应表格中的两行；
+第三列往后，对应表格中的各列。
+easy_input.txt
+First column (Sample ID): Each row represents one sample. The sector size in visualizations corresponds to the number of samples in each category.
+Second column (Risk): Contains two classes: High and Low, mapped to the two rows in the table.
+Third column onward: Correspond to the columns in the original table.
+dat <- read.table("easy_input.txt",row.names = 1,sep = "\t",header = T,check.names = F,stringsAsFactors = F)
+head(dat)
+# 按Risk分成High和Low，计算各列数值。
+# The value of each column is calculated according to the risk divided into high and low.
+gname <- "Risk"
+vname <- setdiff(colnames(dat), gname)
+pie.high <- pie.low <- list()
+fisher.p <- c()
+for (i in vname) {
+  tmp <- table(dat[,gname], dat[,i])
+  p <- format(fisher.test(tmp)$p.value,digits = 2)
+  names(p) <- i
+  fisher.p <- c(fisher.p, p)
+  
+  pie.dat <- 
+    tmp %>% as.data.frame() %>% group_by(Var1) %>% mutate(Pct = Freq/sum(Freq)) %>% as.data.frame()
+  
+  # 表格内的两行对应Risk的两类：Risk high和Risk low
+  # The two rows in the table correspond to the two types of Risk: Risk high and Risk low
+  pie.high[[i]] <- pie.dat[which(pie.dat$Var1 == "High"),]
+  pie.low[[i]] <- pie.dat[which(pie.dat$Var1 == "Low"),]
+}
+开始画图
+Start plotting
+# 设置颜色 / Set colors
+status.col <- c("grey80", "#1E1E1B")
+M.col <- c("#E4DB36", "#E19143")
+stage.col <- c("#EFF3FF", "#BDD7E7", "#6BAED6", "#2171B5")
+N.col <- c("#E5F5E0", "#A1D99B", "#31A354") 
+T.col <- c("#F2F0F7", "#CBC9E2", "#9E9AC8", "#6A51A3")  
+
+prepare_pie_data <- function(pie.list, group) {
+  # 获取所有可能的类别水平
+  # Get all possible category levels
+  all_levels <- unique(unlist(lapply(pie.list, function(x) as.character(x$Var2))))
+  
+  # 创建基础数据框
+  # Create base data frame
+  pie_data <- data.frame(
+    category = names(pie.list),
+    x = 1:length(pie.list),
+    y = ifelse(group == "High", 2, 1),
+    radius = 0.4,
+    stringsAsFactors = FALSE
+  )
+  
+  # 为所有可能的水平添加列，初始化为0
+  # Add columns for all possible levels, initialized to 0
+  for (level in all_levels) {
+    pie_data[[level]] <- 0
+  }
+  
+  # 填充饼图数据
+  # Fill pie chart data
+  for (i in 1:length(pie.list)) {
+    category <- names(pie.list)[i]
+    pie_df <- pie.list[[i]]
+    
+    for (j in 1:nrow(pie_df)) {
+      level <- as.character(pie_df$Var2[j])  # 确保转换为字符 # Ensure conversion to character
+      pct <- pie_df$Pct[j]
+      pie_data[i, level] <- pct
+    }
+  }
+  
+  return(pie_data)
+}
+
+# 调整饼图的 x 和 y 坐标
+# Adjust x and y coordinates for pie charts
+pie_data_high <- prepare_pie_data(pie.high, "High")
+pie_data_low <- prepare_pie_data(pie.low, "Low")
+
+# 设置 High 组饼图的坐标
+# Set coordinates for High group pie charts
+pie_data_high$x <- 1:5  # x 坐标从 1 到 5
+pie_data_high$y <- 2    # y 坐标固定为 2
+
+# 设置 Low 组饼图的坐标
+# Set coordinates for Low group pie charts
+pie_data_low$x <- 1:5   # x 坐标从 1 到 5
+pie_data_low$y <- 1     # y 坐标固定为 1
+
+# 合并数据
+# Combine data
+pie_data <- rbind(pie_data_high, pie_data_low)
+
+# 创建颜色映射
+# Create color mapping
+color_mapping <- c(
+  "Alive" = status.col[1], "Dead" = status.col[2],
+  "I" = stage.col[1], "II" = stage.col[2], "III" = stage.col[3], "IV" = stage.col[4],
+  "M0" = M.col[1], "M1" = M.col[2],
+  "N0" = N.col[1], "N1" = N.col[2], "N2" = N.col[3],
+  "T1" = T.col[1], "T2" = T.col[2], "T3" = T.col[3], "T4" = T.col[4]
+)
+
+# 获取饼图数据中实际存在的列
+# Get columns that actually exist in pie chart data
+available_cols <- intersect(names(color_mapping), colnames(pie_data))
+
+# 修正p值标签 - 确保长度匹配
+# Correct p-value labels - Ensure length matches
+p_value_labels <- c(
+  paste0("p = ", fisher.p["Status"]),
+  paste0("p = ", fisher.p["Stage"]),
+  paste0("p = ", fisher.p["M"]),
+  paste0("p = ", fisher.p["N"]),
+  paste0("p = ", fisher.p["T"])
+)
+
+print(pie_data)
+# 创建主图 # Create main plot
+p <- ggplot() +
+  # 绘制High组饼图 # Draw High group pie charts
+  geom_scatterpie(
+    aes(x = x, y = y, r = radius),
+    data = pie_data_high,
+    cols = available_cols,
+    color = "white",
+    alpha = 0.8
+  ) +
+  # 绘制Low组饼图 # Draw Low group pie charts
+  geom_scatterpie(
+    aes(x = x, y = y, r = radius),
+    data = pie_data_low,
+    cols = available_cols,
+    color = "white",
+    alpha = 0.8
+  ) +
+  # 设置颜色 # Set colors
+  scale_fill_manual(
+    name = "Categories",
+    values = color_mapping,
+    breaks = names(color_mapping)
+  ) +
+  # 坐标轴和主题设置 # Coordinate axis and theme settings
+  coord_equal() +
+  theme_void() +
+  theme(
+    plot.margin = margin(1, 1, 1, 1, "cm"),
+    #legend.position = "bottom",
+    #legend.box = "horizontal",
+    legend.text = element_text(size = 10)
+  ) +
+  # 添加标题标签 # Add title labels
+  annotate("text", x = 0:5, y = 2.7, label = c("CRC", "Status", "Stage", "M", "N", "T"), 
+          size = 6, fontface = "bold") +
+  # 添加组标签  # Add group labels
+  annotate("text", x = 0, y = 2, label = "High\n(n = 100)", size = 5, hjust = 0.5, vjust = 0.5) +
+  annotate("text", x = 0, y = 1, label = "Low\n(n = 200)", size = 5, hjust = 0.5, vjust = 0.5) +
+  # 添加 p 值标签 # Add p-value labels
+  annotate("text", x = 1:5, y = 0.3, label = p_value_labels, size = 5)+  # 设置坐标轴范围
+  # Set coordinate axis range
+  xlim(0, 6) +
+  ylim(0, 3.5)
+
+# 保存图形 # Save plot
+ggsave("pieTable_scatterpie.pdf", p, width = 12, height = 8)
+print(p)
+Session Info
+sessionInfo()

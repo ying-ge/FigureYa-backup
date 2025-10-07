@@ -1,7 +1,9 @@
 FigureYa200pairwiseAUC
 FigureYa200pairwiseAUC
-Xiaofan Lu
-2025-5-20
+Author(s)
+: Xiaofan Lu
+Date
+: 2025-10-06
 Academic Citation
 If you use this code in your work or research, we kindly request that
 you cite our publication:
@@ -45,6 +47,7 @@ library(pheatmap)
 library(gplots)
 library(pROC)
 library(ggplot2)
+
 Sys.setenv(LANGUAGE = "en") #显示英文报错信息 # error messages are displayed in English
 options(stringsAsFactors = FALSE) #禁止chr转成factor # It is forbidden to convert chr into factor
 自定义函数 Custom functions

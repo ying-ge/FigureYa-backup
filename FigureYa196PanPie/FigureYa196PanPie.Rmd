@@ -2,11 +2,12 @@
 title: "FigureYa196PanPie"
 params:
   author: "Xiaofan Lu"
+  reviewers: Ying Ge,Hui Huang
 output: html_document
-reviewers: Ying Ge,Hui Huang
 ---
 
 **Author(s)**: `r params$author`  
+**Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()`  
 
 # Academic Citation
@@ -66,11 +67,9 @@ easy_input.txt
 
 easy_input.txt
 
--First column (Sample ID): Each row represents one sample. The sector size in visualizations corresponds to the number of samples in each category.
-
--Second column (Risk): Contains two classes: High and Low, mapped to the two rows in the table.
-
--Third column onward: Correspond to the columns in the original table.
+- First column (Sample ID): Each row represents one sample. The sector size in visualizations corresponds to the number of samples in each category.
+- Second column (Risk): Contains two classes: High and Low, mapped to the two rows in the table.
+- Third column onward: Correspond to the columns in the original table.
 
 ```{r}
 dat <- read.table("easy_input.txt",row.names = 1,sep = "\t",header = T,check.names = F,stringsAsFactors = F)

@@ -83,6 +83,7 @@ RMD Render Summary
 [SKIPPED] - ./FigureYa304MAGIC/FigureYa304MAGIC.Rmd (Not listed in auto_Knit_online.txt)
 [SKIPPED] - ./FigureYa48Adonis/FigureYa48Adonis.Rmd (Not listed in auto_Knit_online.txt)
 [SKIPPED] - ./FigureYa296VIPER/FigureYa296VIPER.Rmd (Not listed in auto_Knit_online.txt)
+[SKIPPED] - ./FigureYa196PanPie_scatterpie/FigureYa196PanPie_scatterpie.Rmd (Not listed in auto_Knit_online.txt)
 [SKIPPED] - ./FigureYa290BarGraph/FigureYa290BarGraph.Rmd (Not listed in auto_Knit_online.txt)
 [SKIPPED] - ./FigureYa228linkCor/FigureYa228linkCor.Rmd (Not listed in auto_Knit_online.txt)
 [SKIPPED] - ./FigureYa297Rbar/FigureYa297Rbar.Rmd (Not listed in auto_Knit_online.txt)
@@ -165,7 +166,7 @@ RMD Render Summary
 [SKIPPED] - ./FigureYa21TCGA2table/FigureYa21TCGA2table.Rmd (Not listed in auto_Knit_online.txt)
 [SKIPPED] - ./FigureYa56immune_inflitrationV3/FigureYa56immune_inflitrationV3.Rmd (Not listed in auto_Knit_online.txt)
 [SKIPPED] - ./FigureYa5bubbles/FigureYa5bubbles.Rmd (Not listed in auto_Knit_online.txt)
-[SUCCESS] - ./FigureYa220repeatedLasso/FigureYa220repeatedLasso.Rmd
+[SKIPPED] - ./FigureYa220repeatedLasso/FigureYa220repeatedLasso.Rmd (Not listed in auto_Knit_online.txt)
 [SKIPPED] - ./FigureYa90subgroup/FigureYa90subgroup.Rmd (Not listed in auto_Knit_online.txt)
 [SKIPPED] - ./FigureYa22FPKM2TPM/FigureYa22FPKM2TPM.Rmd (Not listed in auto_Knit_online.txt)
 [SKIPPED] - ./FigureYa208FPI/FigureYa208FPI.Rmd (Not listed in auto_Knit_online.txt)
@@ -243,7 +244,7 @@ RMD Render Summary
 [SKIPPED] - ./FigureYa295ClassDiscovery/FigureYa295ClassDiscovery.Rmd (Not listed in auto_Knit_online.txt)
 [SKIPPED] - ./FigureYa300pancanCor/FigureYa300pancanCor.Rmd (Not listed in auto_Knit_online.txt)
 [SKIPPED] - ./FigureYa155ATAC/FigureYa155ATAC.Rmd (Not listed in auto_Knit_online.txt)
-[SKIPPED] - ./FigureYa200pairwiseAUC/FigureYa200pairwiseAUC.Rmd (Not listed in auto_Knit_online.txt)
+[SUCCESS] - ./FigureYa200pairwiseAUC/FigureYa200pairwiseAUC.Rmd
 [SKIPPED] - ./FigureYa42oncoprintV2_update/FigureYa42oncoprintV2_update.Rmd (Not listed in auto_Knit_online.txt)
 [SKIPPED] - ./FigureYa148SimpleDendrogram/FigureYa148SimpleDendrogram.Rmd (Not listed in auto_Knit_online.txt)
 [SKIPPED] - ./FigureYa125FishertestV2/FigureYa125FishertestV2.Rmd (Not listed in auto_Knit_online.txt)

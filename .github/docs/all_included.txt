@@ -134,6 +134,7 @@ FigureYa191bestLogistic
 FigureYa192breakpoint
 FigureYa193RiskTable
 FigureYa196PanPie
+FigureYa196Plus_PanPie
 FigureYa197SmoothHaz
 FigureYa198SignatureCombinationV2
 FigureYa199crosslink

@@ -2,56 +2,45 @@ let chapters = [];
 let chapterTexts = [];
 
 function highlight(text, terms) {
-  let re = new RegExp("(" + terms.map(t => t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|') + ")", "gi");
-  return text.replace(re, '<span class="highlight">$1</span>');
-}
-
-function getGalleryBase(folder) {
-  // 提取 FigureYa数字 作为图像前缀
-  let m = folder.match(/(FigureYa\d+)/);
-  return m ? m[1] : null;
+  const re = new RegExp("(" + terms.map(t => t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|') + ")", "gi");
+  return text.replace(re, `<span class="highlight">$1</span>`);
 }
 
 function renderToc() {
-  let tocGrid = document.getElementById("tocGrid");
-  if (!tocGrid) {
-    // 若页面还用ul，可以自动替换成div#tocGrid
-    let ul = document.querySelector("ul");
-    if (ul) {
-      tocGrid = document.createElement("div");
-      tocGrid.id = "tocGrid";
-      tocGrid.className = "grid";
-      ul.parentNode.replaceChild(tocGrid, ul);
-    }
-  }
+  const tocGrid = document.getElementById("tocGrid");
   if (!tocGrid) return;
 
-  // 1. 按文件夹分组
-  let folderMap = {};
+  // 1. 按文件夹分组，并保留每个文件夹的第一个条目作为代表，用于后续排序
+  const folderMap = {};
   chapters.forEach(item => {
     if (!folderMap[item.folder]) {
-      folderMap[item.folder] = { htmls: [], folder: item.folder };
+      // 直接使用 item 对象作为基础，它包含了所有需要的信息（folder, thumb）
+      folderMap[item.folder] = { ...item, htmls: [] };
     }
     folderMap[item.folder].htmls.push({ name: item.html.split("/").pop(), href: item.html });
   });
 
-  // 2. 渲染
+  // 2. 将 folderMap 转换为数组并排序
+  // chapters.json 已经有序，所以 folderMap 的键的插入顺序也是有序的。
+  // Object.values() 在现代浏览器中会保留这个顺序，所以这一步确保了最终的显示顺序。
+  const sortedFolders = Object.values(folderMap);
+
+  // 3. 渲染
   let html = '';
-  Object.values(folderMap).forEach(folder => {
-    // 提取编号，拼gallery路径
-    let galleryBase = getGalleryBase(folder.folder);
-    let thumb = galleryBase ? `gallery_compress/${galleryBase}.webp` : null;
+  sortedFolders.forEach(folderData => {
+    // 直接使用从 chapters.json 继承来的 thumb 路径
+    const thumb = folderData.thumb; 
+    
     html += `<div class="card">`;
-    // 图像
-    html += thumb ? `<img src="${thumb}" alt="${folder.folder}" loading="lazy">`
-                  : `<div style="width:100%;height:80px;background:#eee;border-radius:6px;margin-bottom:8px;"></div>`;
-    // 文件夹名
-    html += `<div class="card-title">${folder.folder}</div>`;
-    // html文件链接
+    html += thumb 
+      ? `<img src="${thumb}" alt="${folderData.folder}" loading="lazy">`
+      : `<div style="width:100%;height:80px;background:#eee;border-radius:6px;margin-bottom:8px;"></div>`;
+    
+    html += `<div class="card-title">${folderData.folder}</div>`;
     html += `<div class="card-links">`;
-    folder.htmls.forEach(h =>
-      html += `<a href="${h.href}" target="_blank" style="display:inline-block;margin:0 3px 2px 0">${h.name}</a>`
-    );
+    folderData.htmls.forEach(h => {
+      html += `<a href="${h.href}" target="_blank" style="display:inline-block;margin:0 3px 2px 0">${h.name}</a>`;
+    });
     html += `</div></div>`;
   });
   tocGrid.innerHTML = html;
@@ -62,26 +51,23 @@ function loadAllChapters(callback) {
     .then(res => res.json())
     .then(list => {
       chapters = list;
-      let loaded = 0;
-      chapterTexts = [];
-      if (!chapters.length) callback();
-      chapters.forEach((chap, i) => {
+      const loadedPromises = chapters.map((chap, i) => 
         fetch(chap.text)
           .then(res => res.text())
-          .then(text => {
-            chapterTexts[i] = { ...chap, text };
-            loaded++;
-            if (loaded === chapters.length) callback();
-          })
-          .catch(() => {
-            chapterTexts[i] = { ...chap, text: "[Failed to load text]" };
-            loaded++;
-            if (loaded === chapters.length) callback();
-          });
+          .then(text => ({ ...chap, text }))
+          .catch(() => ({ ...chap, text: "[Failed to load text]" }))
+      );
+      
+      Promise.all(loadedPromises).then(results => {
+        chapterTexts = results;
+        callback();
       });
     })
     .catch(() => {
-      document.getElementById("searchResults").innerHTML = "<p style='color:red'>Failed to load chapters.json</p>";
+      const resultsDiv = document.getElementById("searchResults");
+      if (resultsDiv) {
+        resultsDiv.innerHTML = "<p style='color:red'>Failed to load chapters.json. Please check the file and network.</p>";
+      }
     });
 }
 
@@ -93,27 +79,34 @@ function buildIndex() {
     threshold: 0.4,
     minMatchCharLength: 2,
     ignoreLocation: true,
-    useExtendedSearch: true,
   });
 }
 
 function doSearch() {
   const q = document.getElementById("searchBox").value.trim();
   const resultsDiv = document.getElementById("searchResults");
-  if (!q) { resultsDiv.innerHTML = ""; return; }
-  const terms = q.split(/\s+/);
+  if (!q) {
+    resultsDiv.innerHTML = "";
+    return;
+  }
+  
   const results = fuse.search(q);
   let html = `<p>${results.length} result${results.length === 1 ? '' : 's'} found:</p>`;
+  
   results.forEach(r => {
     let snippet = r.item.text;
-    let idx = snippet.toLowerCase().indexOf(terms[0].toLowerCase());
+    const firstTerm = q.split(/\s+/)[0].toLowerCase();
+    let idx = snippet.toLowerCase().indexOf(firstTerm);
+    
     if (idx > 30) idx -= 30;
     if (idx < 0) idx = 0;
+    
     snippet = snippet.substr(idx, 120).replace(/\n/g, " ");
-    snippet = highlight(snippet, terms);
+    snippet = highlight(snippet, q.split(/\s+/));
+
     html += `<div class="result">
       <div class="result-title"><a href="${r.item.html}" target="_blank">${r.item.title}</a></div>
-      <div class="result-snippet">${snippet}...</div>
+      <div class="result-snippet">...${snippet}...</div>
     </div>`;
   });
   resultsDiv.innerHTML = html;
@@ -124,10 +117,9 @@ function clearSearch() {
   document.getElementById("searchResults").innerHTML = "";
 }
 
-window.onload = function() {
-  loadAllChapters(() => {
-    buildIndex();
-    renderToc();
-    document.getElementById("searchBox").addEventListener("input", doSearch);
-  });
-};
+window.addEventListener('DOMContentLoaded', (event) => {
+    loadAllChapters(() => {
+        buildIndex();
+        renderToc();
+    });
+});

@@ -2,90 +2,60 @@ FigureYa205immunophenoscore_update
 FigureYa205immunophenoscore_update
 Author(s)
 : Xiaofan Lu
+Reviewer(s)
+: Ying Ge, Hui Huang
 Date
-: 2025-09-22
+: 2025-10-06
 Academic Citation
-If you use this code in your work or research, we kindly request that
-you cite our publication:
-Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization
-Framework for Enhancing Biomedical Data Interpretation and Research
-Efficiency. iMetaMed.
+If you use this code in your work or research, we kindly request that you cite our publication:
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed.
 https://doi.org/10.1002/imm3.70005
+To cite ‘Immunophenoscore’ in publications use:
+Charoentong P, Finotello F, Angelova M, Mayer C, Efremova M, Rieder D, et al. Pan-cancer immunogenomic analyses reveal genotype-immunophenotype relationships and predictors of response to checkpoint blockade. Cell Rep. (2017) 18:248–62. doi: 10.1016/j.celrep.2016.12.019
 需求描述
-想实现下这个
-Immunophenoscore的算法，免疫相关的指标有TMB，TILs和免疫细胞浸润等，这个相当于是综合评分，可以丰富下免疫分析的内容。IPS每个基因z
-score后的值，输出到文件。
 Requirement Description
-If you want to try this Immunophenoscore algorithm, immune-related
-indicators include TMB, TILs and immune cell infiltration, etc., which
-is equivalent to a comprehensive score, which can enrich the content of
-immune analysis. The value of the z-score of each gene of IPS is output
-to a file.
+想实现下这个 Immunophenoscore的算法，免疫相关的指标有TMB，TILs和免疫细胞浸润等，这个相当于是综合评分，可以丰富下免疫分析的内容。IPS每个基因z score后的值，输出到文件。
+If you want to try this Immunophenoscore algorithm, immune-related indicators include TMB, TILs and immune cell infiltration, etc., which is equivalent to a comprehensive score, which can enrich the content of immune analysis. The value of the z-score of each gene of IPS is output to a file.
 出自
 https://www.frontiersin.org/articles/10.3389/fimmu.2020.01678/full
-from
+From
 https://www.frontiersin.org/articles/10.3389/fimmu.2020.01678/full
 应用场景
+Application Scenario
 计算Immunophenoscore（IPS），并绘制immunophenogram。
-免疫表型评分（immunophenoscore，缩写为IPS），算法来自例文的参考文献28，也就是这篇Cell
-Rep文章：Charoentong P, Finotello F, Angelova M, Mayer C, Efremova M,
-Rieder D, Hackl H, Trajanoski Z. Pan-cancer Immunogenomic Analyses
-Reveal Genotype-Immunophenotype Relationships and Predictors of Response
-to Checkpoint Blockade. Cell Rep. 2017 Jan 3;18(1):248-262. doi:
-10.1016/j.celrep.2016.12.019. PMID: 28052254.
-免疫表型图（immunophenogram），这种图可单独使用或多组排成矩阵使用，也可以结合散点图展示想要说明的特征。具体用法可参考上述[Cell
-Reports文章] (
+免疫表型评分（immunophenoscore，缩写为IPS），算法来自例文的参考文献28，也就是这篇Cell Rep文章：Charoentong P, Finotello F, Angelova M, Mayer C, Efremova M, Rieder D, Hackl H, Trajanoski Z. Pan-cancer Immunogenomic Analyses Reveal Genotype-Immunophenotype Relationships and Predictors of Response to Checkpoint Blockade. Cell Rep. 2017 Jan 3;18(1):248-262. doi: 10.1016/j.celrep.2016.12.019. PMID: 28052254.
+免疫表型图（immunophenogram），这种图可单独使用或多组排成矩阵使用，也可以结合散点图展示想要说明的特征。具体用法可参考上述[Cell Reports文章] (
 https://www.cell.com/cell-reports/comments/S2211-1247(16)31709-0)的Figure
 5和6，大量用到这种immunophenogram。
-输出IPS每个基因z
-score后的值到文件，便于DIY画出自己喜欢的图。例如多组对比进行统计分析，画box/bar/violin，或者所有sample一起画热图。
+输出IPS每个基因z score后的值到文件，便于DIY画出自己喜欢的图。例如多组对比进行统计分析，画box/bar/violin，或者所有sample一起画热图。
 代码及IPS基因权重文件
 公开于github，
 https://github.com/icbi-lab/Immunophenogram
 。这里稍微改写，并翻译，使用时请
 引用上述文章
 。
-Application Scenario
-Calculate the Immunophenoscore (IPS) and plot the
-immunophenogram.
--Immunophenoscore (IPS): The algorithm is derived from Reference 28
-in the example paper, which is this Cell Reports article: Charoentong P,
-Finotello F, Angelova M, Mayer C, Efremova M, Rieder D, Hackl H,
-Trajanoski Z. Pan-cancer Immunogenomic Analyses Reveal
-Genotype-Immunophenotype Relationships and Predictors of Response to
-Checkpoint Blockade. Cell Rep. 2017 Jan 3;18(1):248-262. doi:
-10.1016/j.celrep.2016.12.019. PMID: 28052254.
--Immunophenogram: This type of plot can be used individually,
-arranged in a matrix for multiple groups, or combined with scatter plots
-to highlight specific features. For specific usage, refer to Figures 5
-and 6 in the above Cell Reports article, where immunophenograms are
-extensively employed.
--Output the z-score-normalized values of each IPS gene to a file,
-enabling users to create customized visualizations. For
+Calculate the Immunohenoscore (IPS) and plot the immunophenogram.
+Immunophenoscore (IPS): The algorithm is derived from Reference 28 in the example paper, which is this Cell Reports article: Charoentong P, Finotello F, Angelova M, Mayer C, Efremova M, Rieder D, Hackl H, Trajanoski Z. Pan-cancer Immunogenomic Analyses Reveal Genotype-Immunophenotype Relationships and Predictors of Response to Checkpoint Blockade. Cell Rep. 2017 Jan 3;18(1):248-262. doi: 10.1016/j.celrep.2016.12.019. PMID: 28052254.
+Immunophenogram: This type of plot can be used individually, arranged in a matrix for multiple groups, or combined with scatter plots to highlight specific features. For specific usage, refer to Figures 5 and 6 in the above Cell Reports article, where immunophenograms are extensively employed.
+Output the z-score-normalized values of each IPS gene to a file, enabling users to create customized visualizations. For
 example:box/bar/violin,or
-Generate a heatmap for all
-samples .
+Generate a heatmap for all samples .
 Code and IPS gene weight files
-are publicly
-available on GitHub:
+are publicly available on GitHub:
 https://github.com/icbi-lab/Immunophenogram
-The code has
-been slightly modified and translated here.
-Please cite the
-original paper
+The code has been slightly modified and translated here.
+Please cite the original paper
 when using this method.
 环境设置
 Environment settings
 source("install_dependencies.R")
-library(ggplot2)
-library(grid)
-library(gridExtra)
-
+library(ggplot2)       # 数据可视化包，用于绘制图形 # Data visualization package for creating plots
+library(grid)          # 网格图形系统，用于布局和图形排列 # Grid graphics system for layout and graphical arrangement
+library(gridExtra)     # 提供额外的网格布局功能，用于组合多个图形 # Provides additional grid layout functionality for combining multiple plots
 Sys.setenv(LANGUAGE = "en") #显示英文报错信息 # error messages are displayed in English
 options(stringsAsFactors = FALSE) #禁止chr转成factor # It is forbidden to convert chr into factor
-自定义函数，用于计算 Immunophenoscore(IPS) Custom functions to
-calculate Immunophenoscore(IPS)
-ipsmap<- function (x) {
+自定义函数，用于计算 Immunophenoscore(IPS) Custom functions to calculate Immunophenoscore(IPS)
+ipsmap <- function (x) {
   if (x<=0) {
     ips<-0
   } else {
@@ -127,13 +97,11 @@ mapbw<-function (x) {
   return(my_palette2[za2])
 }
 输入文件
+Input files
 easy_input_expr.csv，表达矩阵。例如log2(TPM+1)，每行一个基因，每列一个样本。
 easy_input_IPS_genes.txt，IPS基因权重文件。IPS相关基因、分类及其权重。
-Input files
-easy_input_expr.csv, the expression matrix. For example, log2 (TPM
-1), one gene per row, one sample per column.
-easy_input_IPS_genes.txt, IPS gene weight file. IPS-related genes,
-taxonomy and their weights.
+easy_input_expr.csv, the expression matrix. For example, log2 (TPM 1), one gene per row, one sample per column.
+easy_input_IPS_genes.txt, IPS gene weight file. IPS-related genes, taxonomy and their weights.
 unique_ips_genes <- as.vector(unique(IPSG$NAME))
 
 ## 初始化数据

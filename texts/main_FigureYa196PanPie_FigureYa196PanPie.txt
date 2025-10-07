@@ -2,8 +2,10 @@ FigureYa196PanPie
 FigureYa196PanPie
 Author(s)
 : Xiaofan Lu
+Reviewer(s)
+: Ying Ge,Hui Huang
 Date
-: 2025-10-05
+: 2025-10-06
 Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed.
@@ -14,7 +16,7 @@ Requirement Description
 It looks beautiful to use the grouped data directly in a fan chart to show the distribution differences of different clinical prognostic stages.
 出自
 https://www.nature.com/articles/s41388-019-1026-9
-from
+From
 https://www.nature.com/articles/s41388-019-1026-9
 Fig. 4 Identification of CNV-driven rRNA metabolism-related genes with clinical relevance. f, g Pie charts showing the Chi-squared test of clinicopathologic factors for PRE in CRC (f) and LUAD (g) tumor samples from the TCGA.
 图 4 具有临床相关性的 CNV 驱动的 rRNA 代谢相关基因的鉴定。f、g饼图显示了来自TCGA的CRC（f）和 LUAD（g）肿瘤样本中 PRE 临床病理因素的卡方检验。
@@ -35,9 +37,9 @@ easy_input.txt
 第二列Risk有两类：high和low，对应表格中的两行；
 第三列往后，对应表格中的各列。
 easy_input.txt
--First column (Sample ID): Each row represents one sample. The sector size in visualizations corresponds to the number of samples in each category.
--Second column (Risk): Contains two classes: High and Low, mapped to the two rows in the table.
--Third column onward: Correspond to the columns in the original table.
+First column (Sample ID): Each row represents one sample. The sector size in visualizations corresponds to the number of samples in each category.
+Second column (Risk): Contains two classes: High and Low, mapped to the two rows in the table.
+Third column onward: Correspond to the columns in the original table.
 dat <- read.table("easy_input.txt",row.names = 1,sep = "\t",header = T,check.names = F,stringsAsFactors = F)
 head(dat)
 # 按Risk分成High和Low，计算各列数值。
