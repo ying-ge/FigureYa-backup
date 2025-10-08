@@ -1,7 +1,6 @@
 FigureYa1survivalCurve_update
 FigureYa4bestSeparation
 FigureYa5bubbles
-FigureYa6rHRs
 FigureYa7PSM
 FigureYa8radarChart
 FigureYa9heatmap
@@ -138,6 +137,7 @@ FigureYa196Plus_PanPie
 FigureYa197SmoothHaz
 FigureYa198SignatureCombinationV2
 FigureYa199crosslink
+FigureYa200pairwiseAUC
 FigureYa201ClusterCorrelation
 FigureYa202consensusGene
 FigureYa204PCAscore
