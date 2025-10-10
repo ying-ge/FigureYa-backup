@@ -10,7 +10,6 @@ output: html_document
 **Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()`  
 
-
 # Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
@@ -18,7 +17,6 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-# 设置knitr的全局代码块选项 / Set global chunk options for knitr
 ```
 
 ## 需求描述

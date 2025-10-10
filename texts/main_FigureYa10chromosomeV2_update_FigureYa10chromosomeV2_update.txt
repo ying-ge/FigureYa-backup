@@ -3,24 +3,18 @@ FigureYa10chromosomeV2_update
 Author(s)
 : Zhaodong Hao; Ying Ge, Yijing Chen
 Date
-: 2025-09-22
+: 2025-10-09
 Academic Citation
-If you use this code in your work or research, we kindly request that
-you cite our publication:
-Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization
-Framework for Enhancing Biomedical Data Interpretation and Research
-Efficiency. iMetaMed.
+If you use this code in your work or research, we kindly request that you cite our publication:
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. 1(1)
 https://doi.org/10.1002/imm3.70005
 To cite package ‘RIdeogram’ in publications use:
-Hao Z, Lv D, Ge Y, Shi J, Weijers D, Yu G, Chen J. 2020. RIdeogram:
-drawing SVG graphics to visualize and map genome-wide data on the
-idiograms. PeerJ Comput. Sci. 6:e251
+Hao Z, Lv D, Ge Y, Shi J, Weijers D, Yu G, Chen J. 2020. RIdeogram: drawing SVG graphics to visualize and map genome-wide data on the idiograms. PeerJ Comput. Sci. 6:e251
 http://doi.org/10.7717/peerj-cs.251
 需求描述
 Requirement description
 用R代码画出paper里的直的染色体分布图
-Use R code to draw the straight chromosome distribution map in
-paper
+Use R code to draw the straight chromosome distribution map in paper
 出自
 https://academic.oup.com/brain/article/138/3/616/333368
 From
@@ -28,10 +22,7 @@ https://academic.oup.com/brain/article/138/3/616/333368
 应用场景
 Application scenario
 差异表达基因（RNA-seq）、开放染色质（DNase/ATAC-seq）、CTCF结合位点（ChIP-seq）、突变位点（WGS）或DNA甲基化（WGBS）在染色体上的分布，或者只是画Ideogram
-Distribution of differentially expressed genes (RNA-seq), open
-chromatin (DNase/ATAC-seq), CTCF binding sites (ChIP-seq), mutation
-sites (WGS), or DNA methylation (WGBS) on chromosomes, or just drawing
-Ideograms
+Distribution of differentially expressed genes (RNA-seq), open chromatin (DNase/ATAC-seq), CTCF binding sites (ChIP-seq), mutation sites (WGS), or DNA methylation (WGBS) on chromosomes, or just drawing Ideograms
 环境设置
 Environment setting
 source("install_dependencies.R")
@@ -46,32 +37,12 @@ easy_input_heatmap.csv，用来绘制染色体heatmap。包含四列，第一列
 easy_input_mark.csv，如果想画染色体旁边的形状标记，就要提供这个文件。包含六列，第一列type，第二列形状（只支持三种形状：box正方形、triangle三角形和circle圆。如果需要标记的特征超过3种，就用第六列里的颜色区分吧，例如红色的三角形，蓝色的三角形等），第三列染色体，第四、五列染色体上的位置，第六列颜色。
 注意：
 同一type对应的颜色一致。
-Three input files, of which the first is required and the second and
-third are not required:
-karyotype.csv, used for drawing chromosome outlines. It contains
-five columns: the first column is the chromosome name, and the second
-and third columns are the start and end points of the chromosome. If the
-start and end positions of the centromere are available, the fourth
-column (start) and the fifth column (end) are included; if the
-centromere position is unknown, only the first three columns are
-provided. 0-based genomic coordinates (start with 0-based and end with
-1-based).
-easy_input_heatmap.csv, used for drawing chromosome heatmaps. It
-contains four columns: the first column is the chromosome name, the
-second and third columns are the positions on the chromosome, and the
-fourth column is the value at the corresponding position, such as the
-log2 fold change of differential genes, methylation levels, etc.
-easy_input_mark.csv: If you want to draw shape markers next to the
-chromosomes, you need to provide this file. It contains six columns: the
-first column is the type, the second column is the shape (only three
-shapes are supported: box, triangle, and circle. If the features you
-need to mark exceed three types, use the color in the sixth column to
-differentiate, such as red triangles, blue triangles, etc.), the third
-column is the chromosome, the fourth and fifth columns are the positions
-on the chromosome, and the sixth column is the color.
+Three input files, of which the first is required and the second and third are not required:
+karyotype.csv, used for drawing chromosome outlines. It contains five columns: the first column is the chromosome name, and the second and third columns are the start and end points of the chromosome. If the start and end positions of the centromere are available, the fourth column (start) and the fifth column (end) are included; if the centromere position is unknown, only the first three columns are provided. 0-based genomic coordinates (start with 0-based and end with 1-based).
+easy_input_heatmap.csv, used for drawing chromosome heatmaps. It contains four columns: the first column is the chromosome name, the second and third columns are the positions on the chromosome, and the fourth column is the value at the corresponding position, such as the log2 fold change of differential genes, methylation levels, etc.
+easy_input_mark.csv: If you want to draw shape markers next to the chromosomes, you need to provide this file. It contains six columns: the first column is the type, the second column is the shape (only three shapes are supported: box, triangle, and circle. If the features you need to mark exceed three types, use the color in the sixth column to differentiate, such as red triangles, blue triangles, etc.), the third column is the chromosome, the fourth and fifth columns are the positions on the chromosome, and the sixth column is the color.
 Note:
-The color corresponding to the same type should
-be consistent.
+The color corresponding to the same type should be consistent.
 # 染色体长度、中心粒位置
 # chromosome length, centromere position
 karyotype <- read.csv("karyotype.csv")
@@ -120,16 +91,70 @@ convertSVG("chromosome.svg", device = "png")
 Format conversion
 运行完上面这段，当前文件夹里会生成一个“chromosome.svg”文件，是矢量图。可以用Inkscape、Illustrator等工具打开、编辑、转换成其他格式。
 还可以运行下面这段把svg转成pdf或tiff、jpg、png等格式的文件
-After running the above paragraph, a file “chromosome.svg” will be
-generated in the current folder, which is a vector image. You can use
-Inkscape, Illustrator and other tools to open, edit, convert to other
-formats.
-You can also run the following paragraph to svg into pdf or tiff,
-jpg, png and other formats of the file
+After running the above paragraph, a file “chromosome.svg” will be generated in the current folder, which is a vector image. You can use Inkscape, Illustrator and other tools to open, edit, convert to other formats.
+You can also run the following paragraph to svg into pdf or tiff, jpg, png and other formats of the file
 #svg2pdf或svg2tiff、svg2jpg、svg2png
 #svg2pdf or svg2tiff、svg2jpg、svg2png
 svg2pdf("chromosome.svg", 
         width = 12, height = 8, #画布大小 canvas size
         dpi = 300)
+附：karyotype.csv文件的准备
+Appendix: Preparation of karyotype.csv file
+这里提供两种两种方法，二选一即可。  Two methods are provided here, choose one.
+方法一：用rtracklayer实现
+Method 1: Using rtracklayer
+适合处理复杂的基因组数据  Suitable for processing complex genomic data
+library(rtracklayer)
+library(dplyr)
+
+# 读取 GTF 文件 \ Read GTF file
+gtf <- import("your_file.gtf")  # 使用 rtracklayer 导入 GTF 文件 \ Use rtracklayer to import GTF file
+
+# 提取染色体信息 \ Extract chromosome information
+karyotype <- gtf %>%
+  as.data.frame() %>%  # 转换为数据框 \ Convert to data frame
+  filter(type == "chromosome") %>%  # 筛选染色体信息 \ Filter chromosome information
+  select(seqnames, start, end) %>%  # 提取染色体名称、起始位置和终止位置 \ Extract chromosome name, start position, and end position
+  rename(Chromosome = seqnames, Start = start, End = end) %>%
+  mutate(Centromere_Start = NA, Centromere_End = NA)  # 如果没有着丝粒信息，可以填充 NA \ If centromere information is unavailable, fill with NA
+
+# 如果有着丝粒信息，提取并合并 \ If centromere information is available, extract and merge
+centromere <- gtf %>%
+  as.data.frame() %>%
+  filter(type == "centromere") %>%  # 筛选着丝粒信息 \ Filter centromere information
+  select(seqnames, start, end) %>%
+  rename(Chromosome = seqnames, Centromere_Start = start, Centromere_End = end)
+
+karyotype <- karyotype %>%
+  left_join(centromere, by = "Chromosome")
+
+# 保存为 karyotype.csv \ Save as karyotype.csv
+write.csv(karyotype, "karyotype.csv", row.names = FALSE)
+方法二：用dplyr实现
+Method 2: Using dplyr
+适合结构简单的GTF文件  Suitable for simple GTF file structures
+library(dplyr)
+
+# 读取 GTF 文件 \ Read GTF file
+gtf <- read.table("your_file.gtf", sep = "\t", header = FALSE, stringsAsFactors = FALSE)
+
+# 提取染色体信息 \ Extract chromosome information
+karyotype <- gtf %>%
+  filter(V3 == "chromosome") %>%  # 筛选染色体信息 \ Filter chromosome information
+  select(V1, V4, V5) %>%         # 提取染色体名称、起始位置和终止位置 \ Extract chromosome name, start position, and end position
+  rename(Chromosome = V1, Start = V4, End = V5) %>%
+  mutate(Centromere_Start = NA, Centromere_End = NA)  # 如果没有着丝粒信息，可以填充 NA \ If centromere information is unavailable, fill with NA
+
+# 如果有着丝粒信息，提取并合并 \ If centromere information is available, extract and merge
+centromere <- gtf %>%
+  filter(V3 == "centromere") %>%  # 筛选着丝粒信息 \ Filter centromere information
+  select(V1, V4, V5) %>%
+  rename(Chromosome = V1, Centromere_Start = V4, Centromere_End = V5)
+
+karyotype <- karyotype %>%
+  left_join(centromere, by = "Chromosome")
+
+# 保存为 karyotype.csv \ Save as karyotype.csv
+write.csv(karyotype, "karyotype.csv", row.names = FALSE)
 Session Info
 sessionInfo()

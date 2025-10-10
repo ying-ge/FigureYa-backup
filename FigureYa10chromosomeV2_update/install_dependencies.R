@@ -57,12 +57,11 @@ cat("  sudo apt-get install libpng-dev libjpeg-dev librsvg2-dev\n\n")
 
 # Installing RIdeogram dependencies first
 cat("\nInstalling RIdeogram dependencies...\n")
-rideogram_deps <- c("png", "jpeg", "rsvg", "grImport2")
+rideogram_deps <- c("png", "jpeg", "rsvg", "grImport2", "gridSVG", "dplyr")
 
 for (pkg in rideogram_deps) {
   install_cran_package(pkg)
 }
-
 
 # Installing CRAN packages
 cat("\nInstalling CRAN packages...\n")
@@ -70,6 +69,14 @@ cran_packages <- c("RIdeogram", "knitr")
 
 for (pkg in cran_packages) {
   install_cran_package(pkg)
+}
+
+# Installing Bioconductor packages
+cat("\nInstalling Bioconductor packages...\n")
+bioc_packages <- c("rtracklayer")  # 添加 rtracklayer 包 # Add rtracklayer package
+
+for (pkg in bioc_packages) {
+  install_bioc_package(pkg)
 }
 
 cat("\n===========================================\n")

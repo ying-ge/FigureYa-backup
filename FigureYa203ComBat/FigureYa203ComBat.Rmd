@@ -118,7 +118,7 @@ If your expression matrices have already been formatted as easy_input_TCGA.csv a
 ## TCGA数据下载及预处理
 ## Downloading and Preprocessing TCGA Data
 
-```{r eval=FALSE}
+```{r}
 # --- TCGA数据下载及预处理 ---
 # --- TCGA Data Download and Preprocessing ---
 
@@ -196,7 +196,7 @@ Here, we use SangerBox to download and preprocess GEO expression data, as detail
 
 (Alternatively, you can use `FigureYa59Plus_GEO2DEG` to download and preprocess GEO microarray data, obtaining the expression matrix file easy_input_expr.csv)
 
-```{r eval=FALSE}
+```{r}
 # GSE41613数据集处理
 # GSE41613 Dataset Processing
 gse41613.expr <- read.delim("gse41613.expr.txt",sep = "\t",row.names = 1,check.names = F,stringsAsFactors = F,header = T)

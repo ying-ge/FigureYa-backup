@@ -8,11 +8,10 @@ output: html_document
 **Author(s)**: `r params$author`  
 **Date**: `r Sys.Date()`  
 
-
 # Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
-Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. 1(1) https://doi.org/10.1002/imm3.70005
 
 To cite package 'RIdeogram' in publications use:
 
@@ -141,6 +140,73 @@ svg2pdf("chromosome.svg",
 
 ![](chromosome.pdf)
 
+# 附：karyotype.csv文件的准备#
+# Appendix: Preparation of karyotype.csv file
+
+这里提供两种两种方法，二选一即可。 \ Two methods are provided here, choose one.
+
+## 方法一：用rtracklayer实现
+## Method 1: Using rtracklayer
+适合处理复杂的基因组数据 \ Suitable for processing complex genomic data
+
+```{r, eval = FALSE}
+library(rtracklayer)
+library(dplyr)
+
+# 读取 GTF 文件 \ Read GTF file
+gtf <- import("your_file.gtf")  # 使用 rtracklayer 导入 GTF 文件 \ Use rtracklayer to import GTF file
+
+# 提取染色体信息 \ Extract chromosome information
+karyotype <- gtf %>%
+  as.data.frame() %>%  # 转换为数据框 \ Convert to data frame
+  filter(type == "chromosome") %>%  # 筛选染色体信息 \ Filter chromosome information
+  select(seqnames, start, end) %>%  # 提取染色体名称、起始位置和终止位置 \ Extract chromosome name, start position, and end position
+  rename(Chromosome = seqnames, Start = start, End = end) %>%
+  mutate(Centromere_Start = NA, Centromere_End = NA)  # 如果没有着丝粒信息，可以填充 NA \ If centromere information is unavailable, fill with NA
+
+# 如果有着丝粒信息，提取并合并 \ If centromere information is available, extract and merge
+centromere <- gtf %>%
+  as.data.frame() %>%
+  filter(type == "centromere") %>%  # 筛选着丝粒信息 \ Filter centromere information
+  select(seqnames, start, end) %>%
+  rename(Chromosome = seqnames, Centromere_Start = start, Centromere_End = end)
+
+karyotype <- karyotype %>%
+  left_join(centromere, by = "Chromosome")
+
+# 保存为 karyotype.csv \ Save as karyotype.csv
+write.csv(karyotype, "karyotype.csv", row.names = FALSE)
+```
+
+## 方法二：用dplyr实现
+## Method 2: Using dplyr
+适合结构简单的GTF文件 \ Suitable for simple GTF file structures
+
+```{r, eval = FALSE}
+library(dplyr)
+
+# 读取 GTF 文件 \ Read GTF file
+gtf <- read.table("your_file.gtf", sep = "\t", header = FALSE, stringsAsFactors = FALSE)
+
+# 提取染色体信息 \ Extract chromosome information
+karyotype <- gtf %>%
+  filter(V3 == "chromosome") %>%  # 筛选染色体信息 \ Filter chromosome information
+  select(V1, V4, V5) %>%         # 提取染色体名称、起始位置和终止位置 \ Extract chromosome name, start position, and end position
+  rename(Chromosome = V1, Start = V4, End = V5) %>%
+  mutate(Centromere_Start = NA, Centromere_End = NA)  # 如果没有着丝粒信息，可以填充 NA \ If centromere information is unavailable, fill with NA
+
+# 如果有着丝粒信息，提取并合并 \ If centromere information is available, extract and merge
+centromere <- gtf %>%
+  filter(V3 == "centromere") %>%  # 筛选着丝粒信息 \ Filter centromere information
+  select(V1, V4, V5) %>%
+  rename(Chromosome = V1, Centromere_Start = V4, Centromere_End = V5)
+
+karyotype <- karyotype %>%
+  left_join(centromere, by = "Chromosome")
+
+# 保存为 karyotype.csv \ Save as karyotype.csv
+write.csv(karyotype, "karyotype.csv", row.names = FALSE)
+```
 # Session Info
 
 ```{r}

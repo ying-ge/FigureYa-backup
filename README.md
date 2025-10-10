@@ -83,12 +83,8 @@ FigureYa59volcanoV2/
 
 This project is licensed under the **[Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-nc-sa/4.0/)**.
 
-If you use this project in your research, please cite:
-
-> Xiaofan Lu, et al. (2025). *FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency*. iMetaMed. [https://doi.org/10.1002/imm3.70005](https://doi.org/10.1002/imm3.70005)
-
-*A pre-formatted BibTeX entry will be added here upon final publication.*
-
+If you use the code in your research, please cite:
+> Xiaofan Lu, Kailai Li, Zongcheng Li, Anqi Lin, Long Zhao, Rongfang Shen, Zhougeng Xu, Jianing Gao, Dekang Lv, Yasi Zhang, Taojun Ye, Junyi Shen, Yijing Chen, Hui Huang, Zhaodong Hao, Dongqiang Zeng, Haitao Wang, Shipeng Guo, Wen Wang, Yi Xiong, Yin Li, Hao Li, Jingze Gao, Qian Liu, Bin Wei, Jiawei Shi, Shuwen Cheng, Guoqi Li, Yuan Tang, Enyu Lin, Houshi Xu, Guoshuang Feng, Yangzhige He, Yu Sun, Xiaojian Liu, Yufang Wang, Wenxin Song, Jinen Song, Saisai Tian, Ya Zhang, Jie Zhang, Zhongtian Xu, Chengli Song, Yingying Zhang, Hao Wu, Chunhui Gao, Erqiang Hu, Chen Yang, Jiacheng Lou, Di Wang, Xuanyu Wang, Peng Luo, Guangchuang Yu, Ying Ge. (2025). *FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency*. iMetaMed. 1: e70005. [https://doi.org/10.1002/imm3.70005](https://doi.org/10.1002/imm3.70005) ([*Cover Story*](https://onlinelibrary.wiley.com/doi/abs/10.1002/imm3.70013)) [BibTeX](pericles_3066988x1.bib)
 ---
 
 ## 🌱 FigureYa Ecosystem

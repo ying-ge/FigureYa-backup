@@ -1,6 +1,7 @@
 FigureYa1survivalCurve_update
 FigureYa4bestSeparation
 FigureYa5bubbles
+FigureYa6rHRsV2
 FigureYa7PSM
 FigureYa8radarChart
 FigureYa9heatmap
@@ -140,6 +141,7 @@ FigureYa199crosslink
 FigureYa200pairwiseAUC
 FigureYa201ClusterCorrelation
 FigureYa202consensusGene
+FigureYa203ComBat
 FigureYa204PCAscore
 FigureYa205immunophenoscore_update
 FigureYa207Randomization
