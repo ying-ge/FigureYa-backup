@@ -24,7 +24,7 @@ downloaded 580 KB
 * DONE (BiocManager)
 
 The downloaded source packages are in
-	‘/tmp/Rtmpa0uPxN/downloaded_packages’
+	‘/tmp/RtmpKtFcTi/downloaded_packages’
 
 Installing Bioconductor packages...
 Installing Bioconductor package: sva 
@@ -2526,7 +2526,7 @@ installing to /home/runner/work/_temp/Library/00LOCK-sva/00new/sva/libs
 * DONE (sva)
 
 The downloaded source packages are in
-	‘/tmp/Rtmpa0uPxN/downloaded_packages’
+	‘/tmp/RtmpKtFcTi/downloaded_packages’
 Successfully installed: sva 
 Installing Bioconductor package: SummarizedExperiment 
 'getOption("repos")' replaces Bioconductor standard repositories, see
@@ -2718,7 +2718,7 @@ Creating a generic function for ‘qlogis’ from package ‘stats’ in package
 * DONE (SummarizedExperiment)
 
 The downloaded source packages are in
-	‘/tmp/Rtmpa0uPxN/downloaded_packages’
+	‘/tmp/RtmpKtFcTi/downloaded_packages’
 Successfully installed: SummarizedExperiment 
 Installing Bioconductor package: TCGAbiolinks 
 'getOption("repos")' replaces Bioconductor standard repositories, see
@@ -3916,20 +3916,22 @@ installing to /home/runner/work/_temp/Library/00LOCK-tidyr/00new/tidyr/libs
 * DONE (TCGAbiolinks)
 
 The downloaded source packages are in
-	‘/tmp/Rtmpa0uPxN/downloaded_packages’
+	‘/tmp/RtmpKtFcTi/downloaded_packages’
 Successfully installed: TCGAbiolinks 
 Package already installed: edgeR 
+Installing Bioconductor package: ClassDiscovery 
+'getOption("repos")' replaces Bioconductor standard repositories, see
+'help("repositories", package = "BiocManager")' for details.
+Replacement repositories:
+    CRAN: https://cloud.r-project.org/
+Bioconductor version 3.21 (BiocManager 1.30.26), R 4.5.1 (2025-06-13)
+Installing package(s) 'ClassDiscovery'
+also installing the dependencies ‘oompaBase’, ‘mclust’, ‘oompaData’
 
-Installing CRAN packages...
-Package already installed: cluster 
-Installing CRAN package: oompaBase 
-Installing package into ‘/home/runner/work/_temp/Library’
-(as ‘lib’ is unspecified)
 trying URL 'https://cloud.r-project.org/src/contrib/oompaBase_3.2.10.tar.gz'
-Content type 'application/x-gzip' length 129154 bytes (126 KB)
-==================================================
-downloaded 126 KB
-
+trying URL 'https://cloud.r-project.org/src/contrib/mclust_6.1.1.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/oompaData_3.1.5.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/ClassDiscovery_3.4.9.tar.gz'
 * installing *source* package ‘oompaBase’ ...
 ** this is package ‘oompaBase’ version ‘3.2.10’
 ** package ‘oompaBase’ successfully unpacked and MD5 sums checked
@@ -3945,10 +3947,71 @@ downloaded 126 KB
 ** testing if installed package can be loaded from final location
 ** testing if installed package keeps a record of temporary installation path
 * DONE (oompaBase)
+* installing *source* package ‘mclust’ ...
+** this is package ‘mclust’ version ‘6.1.1’
+** package ‘mclust’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+using Fortran compiler: ‘GNU Fortran (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gfortran  -fpic  -g -O2  -c dmvnorm.f -o dmvnorm.o
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c init.c -o init.o
+gfortran  -fpic  -g -O2  -c logsumexp.f -o logsumexp.o
+gfortran  -fpic  -g -O2  -c mclust.f -o mclust.o
+gfortran  -fpic  -g -O2  -c mclustaddson.f -o mclustaddson.o
+gcc -std=gnu2x -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o mclust.so dmvnorm.o init.o logsumexp.o mclust.o mclustaddson.o -llapack -lblas -lgfortran -lm -lquadmath -lgfortran -lm -lquadmath -L/opt/R/4.5.1/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-mclust/00new/mclust/libs
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (mclust)
+* installing *source* package ‘oompaData’ ...
+** this is package ‘oompaData’ version ‘3.1.5’
+** package ‘oompaData’ successfully unpacked and MD5 sums checked
+** using staged installation
+** data
+*** moving datasets to lazyload DB
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (oompaData)
+* installing *source* package ‘ClassDiscovery’ ...
+** this is package ‘ClassDiscovery’ version ‘3.4.9’
+** package ‘ClassDiscovery’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (ClassDiscovery)
 
 The downloaded source packages are in
-	‘/tmp/Rtmpa0uPxN/downloaded_packages’
-Successfully installed: oompaBase 
+	‘/tmp/RtmpKtFcTi/downloaded_packages’
+Successfully installed: ClassDiscovery 
+
+Installing CRAN packages...
+Package already installed: cluster 
+Package already installed: oompaBase 
 Package already installed: limma 
 Package already installed: ggplot2 
 Installing CRAN package: pheatmap 
@@ -3974,7 +4037,7 @@ downloaded 14 KB
 * DONE (pheatmap)
 
 The downloaded source packages are in
-	‘/tmp/Rtmpa0uPxN/downloaded_packages’
+	‘/tmp/RtmpKtFcTi/downloaded_packages’
 Successfully installed: pheatmap 
 
 Checking for system dependencies...
@@ -3992,7 +4055,7 @@ Reading state information...
 libblas-dev is already the newest version (3.12.0-3build1.1).
 liblapack-dev is already the newest version (3.12.0-3build1.1).
 gfortran is already the newest version (4:13.2.0-7ubuntu1).
-0 upgraded, 0 newly installed, 0 to remove and 30 not upgraded.
+0 upgraded, 0 newly installed, 0 to remove and 32 not upgraded.
 
 ===========================================
 Package installation completed!

@@ -1,4 +1,4 @@
-batchPCA =function(indata, batch, fig.dir, PCA.fig.title, pos="bottomright", xy=c(1,2), cols=NULL, showID=FALSE, cex=1, showLegend=T) {
+batchPCA = function(indata, batch, fig.dir, PCA.fig.title, pos="bottomright", xy=c(1,2), cols=NULL, showID=FALSE, cex=1, showLegend=T) {
 # indata is a data matrix with samples in columns and genes in rows.
 # batch is a vector with the order matching the order in indata.
     library(ClassDiscovery)
@@ -27,7 +27,7 @@ batchPCA =function(indata, batch, fig.dir, PCA.fig.title, pos="bottomright", xy=
     for (ii in 1:length(center1)) {
         groupi<-pca@scores[as.numeric(factor(batch))==ii, xy]
         #  print(paste("Cluster", ii))
-        if (class(groupi)=="matrix") {
+        if ("matrix" %in% class(groupi)) {
             for (j in (1:nrow(groupi))) {
                 segments( groupi[j,1], groupi[j,2], center1[ii], center2[ii], col=cols[ii] , lwd=0.3)
             }

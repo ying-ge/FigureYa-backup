@@ -77,31 +77,6 @@ Custom Function
 # 加载绘制PCA图的自定义函数
 # Load custom function for PCA plotting
 source("batchPCA.R")
-
-# 计数转TPM函数
-# Count to TPM conversion function
-countToTpm <- function(counts, geneLength) {
-  
-  # 将输入转换为矩阵格式
-  # Convert input to matrix format
-  counts <- as.matrix(counts)
-  
-  # 验证输入维度
-  # Validate input dimensions
-  stopifnot(nrow(counts) == length(geneLength))
-  
-  # 处理零长度基因（避免除以零）
-  # Handle zero-length genes (avoid division by zero)
-  geneLength[geneLength == 0] <- 1
-  
-  # TPM转换公式
-  # TPM conversion formula
-  rpk <- counts / (geneLength/1000)
-  scalingFactor <- colSums(rpk) / 1e6
-  tpm <- sweep(rpk, 2, scalingFactor, "/")
-  
-  return(tpm)
-}
 ```
 
 # 输入文件
@@ -138,31 +113,16 @@ GDCdownload(expquery, directory = "GDCdata")
 # Prepare and load the data into R as SummarizedExperiment object
 expdata <- GDCprepare(expquery, directory = "GDCdata")
 
-# 获取计数矩阵和基因信息
-# Get count matrix and gene information
-countMatrix <- assay(expdata, "unstranded")  
-geneLengths <- rowData(expdata)$gene_length
+# 1. TPM
+# 1. TPM
+tpmMatrix <- assay(expdata, "tpm_unstrand")
+tumorSamples <- colnames(tpmMatrix)[substr(colnames(tpmMatrix), 14, 15) == "01"]
+tpmMatrix <- tpmMatrix[, tumorSamples]
 
-# 筛选肿瘤样本（01表示肿瘤）
-# Filter tumor samples (01 indicates tumor)
-tumorSamples <- colnames(countMatrix)[substr(colnames(countMatrix), 14, 15) == "01"]
-countMatrix <- countMatrix[, tumorSamples]
-
-# --- 数据转换和过滤 ---
-# --- Data Transformation and Filtering ---
-
-# 1. 转换为TPM
-# 1. Convert to TPM
-tpmMatrix <- countToTpm(countMatrix, geneLengths)
 tpms <- as.data.frame(round(tpmMatrix, 2))
 
-# 2. 过滤低表达基因（基于原始计数）
-# 2. Filter low-expressed genes (based on raw counts)
-keep <- filterByExpr(countMatrix, min.count = 10, min.prop = 0.25)
-tpms <- tpms[keep, ]
-
-# 3. 基因注释（假设已有overlapTable27.txt文件）
-# 3. Gene annotation (assuming overlapTable27.txt exists)
+# 2. 基因注释（假设已有overlapTable27.txt文件）
+# 2. Gene annotation (assuming overlapTable27.txt exists)
 Ginfo <- read.table("overlapTable27.txt", sep = "\t", row.names = 1, 
                     header = TRUE, check.names = FALSE)
 

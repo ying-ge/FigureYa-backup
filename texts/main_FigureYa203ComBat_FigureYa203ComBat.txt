@@ -5,7 +5,7 @@ Author(s)
 Reviewer(s)
 : Ying Ge
 Date
-: 2025-05-20
+: 2025-10-10
 Academic Citation
 If you use this code in your work or research, we kindly request that
 you cite our publication:
@@ -56,31 +56,6 @@ Custom Function
 # 加载绘制PCA图的自定义函数
 # Load custom function for PCA plotting
 source("batchPCA.R")
-
-# 计数转TPM函数
-# Count to TPM conversion function
-countToTpm <- function(counts, geneLength) {
-  
-  # 将输入转换为矩阵格式
-  # Convert input to matrix format
-  counts <- as.matrix(counts)
-  
-  # 验证输入维度
-  # Validate input dimensions
-  stopifnot(nrow(counts) == length(geneLength))
-  
-  # 处理零长度基因（避免除以零）
-  # Handle zero-length genes (avoid division by zero)
-  geneLength[geneLength == 0] <- 1
-  
-  # TPM转换公式
-  # TPM conversion formula
-  rpk <- counts / (geneLength/1000)
-  scalingFactor <- colSums(rpk) / 1e6
-  tpm <- sweep(rpk, 2, scalingFactor, "/")
-  
-  return(tpm)
-}
 输入文件
 Input Files
 这里以一种TCGA肿瘤和两套GEO芯片数据为例，处理更多数据集的方式也是一样的。
@@ -102,41 +77,22 @@ expquery <- GDCquery(project = "TCGA-HNSC",
                      data.category = "Transcriptome Profiling",
                      data.type = "Gene Expression Quantification",
                      workflow.type = "STAR - Counts")
-
-
 # 下载查询到的数据到本地"GDCdata"文件夹
 # Download the queried data to local "GDCdata" folder
 GDCdownload(expquery, directory = "GDCdata")
-
 # 准备数据并加载为SummarizedExperiment对象
 # Prepare and load the data into R as SummarizedExperiment object
 expdata <- GDCprepare(expquery, directory = "GDCdata")
+# 1. TPM
+# 1. TPM
+tpmMatrix <- assay(expdata, "tpm_unstrand")
+tumorSamples <- colnames(tpmMatrix)[substr(colnames(tpmMatrix), 14, 15) == "01"]
+tpmMatrix <- tpmMatrix[, tumorSamples]
 
-# 获取计数矩阵和基因信息
-# Get count matrix and gene information
-countMatrix <- assay(expdata, "unstranded")  
-geneLengths <- rowData(expdata)$gene_length
-
-# 筛选肿瘤样本（01表示肿瘤）
-# Filter tumor samples (01 indicates tumor)
-tumorSamples <- colnames(countMatrix)[substr(colnames(countMatrix), 14, 15) == "01"]
-countMatrix <- countMatrix[, tumorSamples]
-
-# --- 数据转换和过滤 ---
-# --- Data Transformation and Filtering ---
-
-# 1. 转换为TPM
-# 1. Convert to TPM
-tpmMatrix <- countToTpm(countMatrix, geneLengths)
 tpms <- as.data.frame(round(tpmMatrix, 2))
 
-# 2. 过滤低表达基因（基于原始计数）
-# 2. Filter low-expressed genes (based on raw counts)
-keep <- filterByExpr(countMatrix, min.count = 10, min.prop = 0.25)
-tpms <- tpms[keep, ]
-
-# 3. 基因注释（假设已有overlapTable27.txt文件）
-# 3. Gene annotation (assuming overlapTable27.txt exists)
+# 2. 基因注释（假设已有overlapTable27.txt文件）
+# 2. Gene annotation (assuming overlapTable27.txt exists)
 Ginfo <- read.table("overlapTable27.txt", sep = "\t", row.names = 1, 
                     header = TRUE, check.names = FALSE)
 
@@ -189,8 +145,7 @@ gse41613.expr <- read.delim("gse41613.expr.txt",sep = "\t",row.names = 1,check.n
 
 # Inspect the format - notice multiple gene mappings separated by "///" (Important: Check in Excel but NEVER save modifications)
 # 检查数据格式 - 注意行名中存在"///"分隔的多基因匹配（重要提示：可在Excel中检查但不要保存任何修改）
-gse41613.expr[1:3,1:3] 
-
+gse41613.expr[1:3,1:3]
 # 提取///符号前的首要基因名
 # Extract primary gene symbol (before "///") 
 gse41613.expr$Gene <- sapply(strsplit(rownames(gse41613.expr)," /// ",fixed = T),"[",1)
@@ -210,8 +165,7 @@ gse65858.expr <- read.delim("gse65858.expr.txt",sep = "\t",row.names = 1,check.n
 
 # 检查显示基因名规范无需处理
 # Inspection shows clean gene symbols - no need for processing
-gse65858.expr[1:3,1:3] 
-
+gse65858.expr[1:3,1:3]
 gse65858.expr <- as.data.frame(round(gse65858.expr,2))
 write.csv(gse65858.expr, "easy_input_GSE65858.csv", quote = F)
 检查两类数据的量级

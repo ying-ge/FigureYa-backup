@@ -82,6 +82,7 @@ library(impute) # 用于KNN填补药敏数据
 library(SimDesign) # 用于禁止药敏预测过程输出的信息
 library(ggplot2) # 绘图
 library(cowplot) # 合并图像
+library(ridge)
 
 Sys.setenv(LANGUAGE = "en") #显示英文报错信息
 options(stringsAsFactors = FALSE) #禁止chr转成factor
@@ -246,7 +247,7 @@ prism.auc.knn <- prism.auc.knn/ceiling(max(prism.auc.knn))
 
 ```{r}
 # 加载CCLE细胞系的表达谱，作为训练集
-ccl.expr <- read.table("CCLE_RNAseq_rsem_genes_tpm_20180929.txt",sep = "\t",row.names = 1,check.names = F,stringsAsFactors = F,header = T) 
+ccl.expr <- read.table(gzfile("CCLE_RNAseq_rsem_genes_tpm_20180929.txt.gz"), sep = "\t", row.names = 1, check.names = F, stringsAsFactors = F, header = T)
 
 # 加载基因注释文件，用于基因ID转换
 Ginfo <- read.table("overlapTable27.txt",sep = "\t",row.names = 1,check.names = F,stringsAsFactors = F,header = T) # 参考FigureYa34count2FPKMv2制作的基因注释文件

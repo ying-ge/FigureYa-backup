@@ -136,7 +136,7 @@ TCGA.txt, GSE57303.txt, GSE62254.txt, datasets. Rows represent samples, with the
 # Load datasets
 tcga <- read.table("TCGA.txt", header = T,sep = "\t", quote = "", check.names = F)
 GSE57303 <- read.table("GSE57303.txt", header = T, sep = "\t", quote = "", check.names = F)
-GSE62254 <- read.table("GSE62254.txt", header = T, sep = "\t", quote = "", check.names = F)
+GSE62254 <- read.table("GSE62254.txt.gz", header = TRUE, sep = "\t", quote = "", check.names = FALSE)
 
 # 生成包含三个数据集的列表
 # Create a list containing the three datasets

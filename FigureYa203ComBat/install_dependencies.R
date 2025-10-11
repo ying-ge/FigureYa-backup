@@ -54,7 +54,7 @@ if (!is_package_installed("BiocManager")) {
 
 # 安装 Bioconductor 包（包括 sva）
 cat("\nInstalling Bioconductor packages...\n")
-bioc_packages <- c("sva", "SummarizedExperiment", "TCGAbiolinks", "edgeR")
+bioc_packages <- c("sva", "SummarizedExperiment", "TCGAbiolinks", "edgeR", "ClassDiscovery")
 
 for (pkg in bioc_packages) {
   install_bioc_package(pkg)
