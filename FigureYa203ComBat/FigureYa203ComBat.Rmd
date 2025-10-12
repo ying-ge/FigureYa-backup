@@ -104,7 +104,6 @@ expquery <- GDCquery(project = "TCGA-HNSC",
                      data.type = "Gene Expression Quantification",
                      workflow.type = "STAR - Counts")
 
-
 # 下载查询到的数据到本地"GDCdata"文件夹
 # Download the queried data to local "GDCdata" folder
 GDCdownload(expquery, directory = "GDCdata")
@@ -143,6 +142,8 @@ tpms.hugo$Gene <- NULL
 # 保存处理后的数据
 # Save processed data
 write.csv(tpms.hugo, "easy_input_TCGA.csv", quote = FALSE)
+
+unlink("GDCdata", recursive = TRUE)
 ```
 
 ## GEO芯片数据下载及预处理

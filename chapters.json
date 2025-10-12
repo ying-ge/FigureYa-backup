@@ -1568,6 +1568,14 @@
     "thumb": "gallery_compress/FigureYa196Plus_PanPie.webp"
   },
   {
+    "id": "main_FigureYa196Plus_PanPie_py_FigureYa196Plus_PanPie_py",
+    "title": "FigureYa196Plus_PanPie_py/FigureYa196Plus_PanPie_py.html",
+    "html": "FigureYa196Plus_PanPie_py/FigureYa196Plus_PanPie_py.html",
+    "text": "texts/main_FigureYa196Plus_PanPie_py_FigureYa196Plus_PanPie_py.txt",
+    "folder": "FigureYa196Plus_PanPie_py",
+    "thumb": "gallery_compress/FigureYa196Plus_PanPie_py.webp"
+  },
+  {
     "id": "main_FigureYa196PanPie_FigureYa196PanPie",
     "title": "FigureYa196PanPie/FigureYa196PanPie.html",
     "html": "FigureYa196PanPie/FigureYa196PanPie.html",

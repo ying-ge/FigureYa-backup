@@ -1,36 +1,97 @@
-trying URL 'https://cloud.r-project.org/src/contrib/plsRcox_1.8.0.tar.gz'
-Content type 'application/x-gzip' length 1985588 bytes (1.9 MB)
+trying URL 'https://cloud.r-project.org/src/contrib/ridge_3.3.tar.gz'
+Content type 'application/x-gzip' length 144986 bytes (141 KB)
 ==================================================
-downloaded 1.9 MB
+downloaded 141 KB
 
-* installing *source* package ‘plsRcox’ ...
-** this is package ‘plsRcox’ version ‘1.8.0’
-** package ‘plsRcox’ successfully unpacked and MD5 sums checked
+* installing *source* package ‘ridge’ ...
+** this is package ‘ridge’ version ‘3.3’
+** package ‘ridge’ successfully unpacked and MD5 sums checked
 ** using staged installation
-** R
-** data
-** inst
-** byte-compile and prepare package for lazy loading
-** help
-*** installing help indices
-*** copying figures
-** building package indices
-** testing if installed package can be loaded from temporary location
-** testing if installed package can be loaded from final location
-** testing if installed package keeps a record of temporary installation path
-* DONE (plsRcox)
+checking for gcc... gcc -std=gnu2x
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether the compiler supports GNU C... yes
+checking whether gcc -std=gnu2x accepts -g... yes
+checking for gcc -std=gnu2x option to enable C11 features... none needed
+checking for gsl-config... no
+configure: WARNING: gsl-config not found, is GSL installed?
+configure: WARNING: ridge will be installed but some functions will be unavailable
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c ReadInData.c -o ReadInData.o
+In file included from ReadInData.h:1,
+                 from ReadInData.c:1:
+depends.h:14:10: fatal error: gsl/gsl_blas.h: No such file or directory
+   14 | #include <gsl/gsl_blas.h>
+      |          ^~~~~~~~~~~~~~~~
+compilation terminated.
+make: *** [/opt/R/4.5.1/lib/R/etc/Makeconf:202: ReadInData.o] Error 1
+ERROR: compilation failed for package ‘ridge’
+* removing ‘/home/runner/work/_temp/Library/ridge’
 
 The downloaded source packages are in
-	'/tmp/RtmpbF82s8/downloaded_packages'
-Error in `data.frame()`:
-! arguments imply differing number of rows: 269, 268
+	'/tmp/RtmpBEFXzp/downloaded_packages'
+Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
+Hit:2 http://azure.archive.ubuntu.com/ubuntu noble InRelease
+Hit:3 http://azure.archive.ubuntu.com/ubuntu noble-updates InRelease
+Hit:4 http://azure.archive.ubuntu.com/ubuntu noble-backports InRelease
+Hit:6 https://packages.microsoft.com/repos/azure-cli noble InRelease
+Hit:5 http://azure.archive.ubuntu.com/ubuntu noble-security InRelease
+Hit:7 https://packages.microsoft.com/ubuntu/24.04/prod noble InRelease
+Reading package lists...
+Reading package lists...
+Building dependency tree...
+Reading state information...
+libblas-dev is already the newest version (3.12.0-3build1.1).
+liblapack-dev is already the newest version (3.12.0-3build1.1).
+gfortran is already the newest version (4:13.2.0-7ubuntu1).
+libcurl4-openssl-dev is already the newest version (8.5.0-2ubuntu10.6).
+libssl-dev is already the newest version (3.0.13-0ubuntu3.6).
+0 upgraded, 0 newly installed, 0 to remove and 32 not upgraded.
+trying URL 'https://cloud.r-project.org/src/contrib/ridge_3.3.tar.gz'
+Content type 'application/x-gzip' length 144986 bytes (141 KB)
+==================================================
+downloaded 141 KB
+
+* installing *source* package ‘ridge’ ...
+** this is package ‘ridge’ version ‘3.3’
+** package ‘ridge’ successfully unpacked and MD5 sums checked
+** using staged installation
+checking for gcc... gcc -std=gnu2x
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether the compiler supports GNU C... yes
+checking whether gcc -std=gnu2x accepts -g... yes
+checking for gcc -std=gnu2x option to enable C11 features... none needed
+checking for gsl-config... no
+configure: WARNING: gsl-config not found, is GSL installed?
+configure: WARNING: ridge will be installed but some functions will be unavailable
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c ReadInData.c -o ReadInData.o
+In file included from ReadInData.h:1,
+                 from ReadInData.c:1:
+depends.h:14:10: fatal error: gsl/gsl_blas.h: No such file or directory
+   14 | #include <gsl/gsl_blas.h>
+      |          ^~~~~~~~~~~~~~~~
+compilation terminated.
+make: *** [/opt/R/4.5.1/lib/R/etc/Makeconf:202: ReadInData.o] Error 1
+ERROR: compilation failed for package ‘ridge’
+* removing ‘/home/runner/work/_temp/Library/ridge’
+
+The downloaded source packages are in
+	'/tmp/RtmpBEFXzp/downloaded_packages'
+Error in `library()`:
+! there is no package called 'ridge'
 Backtrace:
     ▆
- 1. └─base::lapply(...)
- 2.   └─global FUN(X[[i]], ...)
- 3.     └─base::cbind(x[, 1:2], RS = predict(fit, newdata = x)$predicted)
- 4.       └─base::cbind(deparse.level, ...)
- 5.         └─base::data.frame(..., check.names = FALSE)
+ 1. └─base::library(ridge)
 
-Quitting from FigureYa293machineLearning.Rmd:178-498 [unnamed-chunk-3]
+Quitting from FigureYa212drugTargetV2.Rmd:76-93 [unnamed-chunk-1]
 Execution halted

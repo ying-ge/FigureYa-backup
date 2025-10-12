@@ -56,6 +56,22 @@ if (!is_package_installed("BiocManager")) {
   install.packages("BiocManager")
 }
 
+# 检查 LaTeX/TeX 环境
+cat("\n检查是否安装了 TeX/LaTeX...\n")
+latex_path <- Sys.which("tex")
+if (nchar(latex_path) == 0) {
+  cat("警告：您的系统未检测到 TeX/LaTeX 环境。\n")
+  cat("请在命令行运行以下命令安装（如 Ubuntu）：\n")
+  cat("  sudo apt-get update && sudo apt-get install texlive\n")
+  cat("或安装 texlive-full 以获得更全面支持：\n")
+  cat("  sudo apt-get install texlive-full\n")
+  cat("如果在 GitHub Actions，请在 workflow yaml 文件加上：\n")
+  cat("  - name: Install TeX Live\n")
+  cat("    run: sudo apt-get update && sudo apt-get install -y texlive\n")
+} else {
+  cat("✓ 已检测到 TeX/LaTeX 环境：", latex_path, "\n")
+}
+
 # Installing CRAN packages
 cat("\nInstalling CRAN packages...\n")
 cran_packages <- c("ape", "ggtree", "pheatmap", "seqinr", "ggplot2", "tidyr", "dplyr")

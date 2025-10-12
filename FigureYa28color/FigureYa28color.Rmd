@@ -19,7 +19,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## 需求描述
-## Requirement description
+## requirement description
 
 虽然有那么多调色板：
 
@@ -46,7 +46,7 @@ I still get unsure of my own aesthetic when it comes to picking colors for the p
 Then mimic the color scheme of your (or your boss's) preferred paper!
 
 ## 应用场景
-## Application scenario
+## application scenario
 
 本套代码要做的就是从你心仪的paper里提取它的配色方案。
 
@@ -57,16 +57,17 @@ What this code is going to do is extract its color scheme from your preferred pa
 If you need a lot of colors, then pick a colorful paper.
 
 ## 环境设置
-## Environment setting
+## environment setting
 
-用到Guangchuang Yu推荐的`rPlotter`包<https://mp.weixin.qq.com/s/ZrS8IQOMSwx9R3006HYryA>，先安装它
+用到Y叔推荐的`rPlotter`包<https://mp.weixin.qq.com/s/ZrS8IQOMSwx9R3006HYryA>，先安装它
 
-Use the `rPlotter` package recommended by Guangchuang Yu <https://mp.weixin.qq.com/s/ZrS8IQOMSwx9R3006HYryA>, install it first
+Use the `rPlotter` package recommended by Uncle Y <https://mp.weixin.qq.com/s/ZrS8IQOMSwx9R3006HYryA>, install it first
 
 ```{r}
-source("install_dependencies.R")
-source("extract_colours.R") # from rPlotter package, https://github.com/woobe/rPlotter
-
+source("extract_colours.R") 
+library(rPlotter)
+library(reshape2)
+library(EBImage)
 library(scales)
 library(rgl)
 
@@ -100,6 +101,7 @@ mycol
 
 #展示颜色
 #show colors
+library("scales")
 show_col(mycol)
 
 #保存颜色和代码到PDF文件，制作配色卡
@@ -167,6 +169,8 @@ Have fun!
 allcol_rgb<-data.frame(t(col2rgb(allcol)))
 allcol_rgb$col<-allcol
 
+#install.packages("rgl")
+library(rgl)
 plot3d(allcol_rgb$red,allcol_rgb$green,allcol_rgb$blue,
        xlab = "red",ylab = "green",zlab = "blue",
        col = allcol_rgb$col,
@@ -180,7 +184,7 @@ write.table(allcol,"allcol.txt",row.names = F,col.names = F)
 ```
 
 ## 增减颜色
-## Add or subtract colors
+## add or subtract colors
 
 - 增加过渡色。为了产生同一色系，让画图效果更协调，有时会在几种颜色中间添加过渡色。
 
@@ -275,8 +279,6 @@ Replace the color code in the parentheses with your preferred color code.
 There are several sets of codes with colors written in the input file, modify the colors in the input file, for example `FigureYa8 RadarChart`, `FigureYa10 chromosome`, `FigureYa26 circos_R`.
 
 Open the input file, find the color column and replace the original color with your preferred color code, taking care to remove the `#` symbol.
-
-# Session Info
 
 ```{r}
 sessionInfo()

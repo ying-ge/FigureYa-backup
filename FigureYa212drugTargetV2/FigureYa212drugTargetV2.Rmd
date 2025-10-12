@@ -76,6 +76,10 @@ Chen Yang, Xiaowen Huang, Yan Li, Junfei Chen, Yuanyuan Lv, Shixue Dai, Prognosi
 ```{r}
 source("install_dependencies.R")
 source("predict_from_cgp.R") # 出自pRRophetic，用于药敏预测
+if (!requireNamespace("ridge", quietly = TRUE)) {
+  install.packages("ridge")
+}
+library(ridge)
 library(tidyverse) # 用于读取MAF文件
 library(ISOpureR) # 用于纯化表达谱
 library(impute) # 用于KNN填补药敏数据

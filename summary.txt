@@ -285,29 +285,7 @@ RMD Render Summary
 [SKIPPED] - ./FigureYa261circGene/FigureYa261circGene.Rmd (Not listed in auto_Knit_online.txt)
 [SKIPPED] - ./FigureYa239ST_PDAC/FigureYa239ST_PDAC.Rmd (Not listed in auto_Knit_online.txt)
 [SKIPPED] - ./FigureYa244PCAPlot/FigureYa244PCAPlot.Rmd (Not listed in auto_Knit_online.txt)
-[FAILED] - ./FigureYa293machineLearning/FigureYa293machineLearning.Rmd
---- Error Log for ./FigureYa293machineLearning/FigureYa293machineLearning.Rmd ---
-** building package indices
-** testing if installed package can be loaded from temporary location
-** testing if installed package can be loaded from final location
-** testing if installed package keeps a record of temporary installation path
-* DONE (plsRcox)
-
-The downloaded source packages are in
-	'/tmp/RtmpbF82s8/downloaded_packages'
-Error in `data.frame()`:
-! arguments imply differing number of rows: 269, 268
-Backtrace:
-    ▆
- 1. └─base::lapply(...)
- 2.   └─global FUN(X[[i]], ...)
- 3.     └─base::cbind(x[, 1:2], RS = predict(fit, newdata = x)$predicted)
- 4.       └─base::cbind(deparse.level, ...)
- 5.         └─base::data.frame(..., check.names = FALSE)
-
-Quitting from FigureYa293machineLearning.Rmd:178-498 [unnamed-chunk-3]
-Execution halted
------------------------------------
+[SKIPPED] - ./FigureYa293machineLearning/FigureYa293machineLearning.Rmd (Not listed in auto_Knit_online.txt)
 [SKIPPED] - ./FigureYa193RiskTable/FigureYa193RiskTable.Rmd (Not listed in auto_Knit_online.txt)
 [SKIPPED] - ./FigureYa305PMAPscore/FigureYa305PMAPscore.Rmd (Not listed in auto_Knit_online.txt)
 [SKIPPED] - ./FigureYa20mortality/FigureYa20mortalityV2.Rmd (Not listed in auto_Knit_online.txt)
@@ -338,7 +316,29 @@ Execution halted
 [SKIPPED] - ./FigureYa284pairwiseLogrank/FigureYa284pairwiseLogrank.Rmd (Not listed in auto_Knit_online.txt)
 [SKIPPED] - ./FigureYa10chromosomeV2_update/FigureYa10chromosomeV2_update.Rmd (Not listed in auto_Knit_online.txt)
 [SKIPPED] - ./FigureYa27tSNE_update/FIgureYa27tSNE_update.Rmd (Not listed in auto_Knit_online.txt)
-[SKIPPED] - ./FigureYa212drugTargetV2/FigureYa212drugTargetV2.Rmd (Not listed in auto_Knit_online.txt)
+[FAILED] - ./FigureYa212drugTargetV2/FigureYa212drugTargetV2.Rmd
+--- Error Log for ./FigureYa212drugTargetV2/FigureYa212drugTargetV2.Rmd ---
+In file included from ReadInData.h:1,
+                 from ReadInData.c:1:
+depends.h:14:10: fatal error: gsl/gsl_blas.h: No such file or directory
+   14 | #include <gsl/gsl_blas.h>
+      |          ^~~~~~~~~~~~~~~~
+compilation terminated.
+make: *** [/opt/R/4.5.1/lib/R/etc/Makeconf:202: ReadInData.o] Error 1
+ERROR: compilation failed for package ‘ridge’
+* removing ‘/home/runner/work/_temp/Library/ridge’
+
+The downloaded source packages are in
+	'/tmp/RtmpBEFXzp/downloaded_packages'
+Error in `library()`:
+! there is no package called 'ridge'
+Backtrace:
+    ▆
+ 1. └─base::library(ridge)
+
+Quitting from FigureYa212drugTargetV2.Rmd:76-93 [unnamed-chunk-1]
+Execution halted
+-----------------------------------
 [SKIPPED] - ./FigureYa112venn/FigureYa112venn.Rmd (Not listed in auto_Knit_online.txt)
 [SKIPPED] - ./FigureYa201ClusterCorrelation/FigureYa201ClusterCorrelation.Rmd (Not listed in auto_Knit_online.txt)
 [SKIPPED] - ./FigureYa119Multiclasslimma/FigureYa119Multiclasslimma.Rmd (Not listed in auto_Knit_online.txt)

@@ -83,15 +83,11 @@ pie.high <- pie.low <- list()
 fisher.p <- c()
 for (i in vname) {
   tmp <- table(dat[,gname], dat[,i])
-  p <- format(fisher.test(tmp)$p.value,digits = 2)
+  p <- format(chisq.test(tmp)$p.value, digits = 2) # 用卡方检验
   names(p) <- i
   fisher.p <- c(fisher.p, p)
-  
   pie.dat <- 
     tmp %>% as.data.frame() %>% group_by(Var1) %>% mutate(Pct = Freq/sum(Freq)) %>% as.data.frame()
-  
-  # 表格内的两行对应Risk的两类：Risk high和Risk low
-  # The two rows in the table correspond to the two types of Risk: Risk high and Risk low
   pie.high[[i]] <- pie.dat[which(pie.dat$Var1 == "High"),]
   pie.low[[i]] <- pie.dat[which(pie.dat$Var1 == "Low"),]
 }
@@ -393,6 +389,7 @@ legend("topleft",
 # Close the image handle
 invisible(dev.off())
 ```
+
 
 ![](pieTable.pdf)
 

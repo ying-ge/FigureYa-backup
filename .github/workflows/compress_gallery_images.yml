@@ -46,6 +46,7 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git pull
           git add gallery_compress/*.webp
           git commit -m "Auto-compress gallery images to gallery_compress/ [skip ci]" || echo "Nothing to commit"
           git push

@@ -1,16 +1,13 @@
 #!/usr/bin/env Rscript
-# R dependency installation script for scales and rgl packages
-# This script installs scales and rgl packages
+# R dependency installation script for FigureYa project
+# Installs CRAN and GitHub packages and verifies installation
 
-# Set up mirrors for better download performance
 options("repos" = c(CRAN = "https://cloud.r-project.org/"))
 
-# Function to check if a package is installed
 is_package_installed <- function(package_name) {
-  return(package_name %in% rownames(installed.packages()))
+  package_name %in% rownames(installed.packages())
 }
 
-# Function to install CRAN packages
 install_cran_package <- function(package_name) {
   if (!is_package_installed(package_name)) {
     cat("Installing CRAN package:", package_name, "\n")
@@ -25,23 +22,45 @@ install_cran_package <- function(package_name) {
   }
 }
 
-cat("Starting R package installation for scales and rgl...\n")
+install_github_package <- function(repo) {
+  pkg <- sub(".*/", "", repo)
+  if (!is_package_installed(pkg)) {
+    cat("Installing GitHub package:", repo, "\n")
+    tryCatch({
+      devtools::install_github(repo, quiet = TRUE)
+      cat("✓ Successfully installed:", repo, "\n")
+    }, error = function(e) {
+      cat("✗ Failed to install", repo, ":", e$message, "\n")
+    })
+  } else {
+    cat("✓ GitHub package already installed:", pkg, "\n")
+  }
+}
+
+cat("Starting R package installation for FigureYa project...\n")
 cat("===================================================\n")
 
-# 安装CRAN包（只安装scales和rgl）
+# 1. 安装CRAN包
 cat("\n1. Installing CRAN packages...\n")
-cran_packages <- c("scales", "rgl")
+cran_packages <- c("devtools", "ggplot2", "stringr", "reshape2", "dichromat", "EBImage", "scales", "rgl")
 for (pkg in cran_packages) {
   install_cran_package(pkg)
+}
+
+# 2. 安装GitHub包
+cat("\n2. Installing GitHub packages...\n")
+library(devtools)  # 确保devtools已安装
+github_packages <- c("ramnathv/rblocks", "woobe/rPlotter")
+for (repo in github_packages) {
+  install_github_package(repo)
 }
 
 cat("\n===================================================\n")
 cat("Package installation completed!\n")
 
-# 验证安装
+# 3. 验证安装
 cat("\nVerifying package installation:\n")
-required_packages <- c("scales", "rgl")
-
+required_packages <- c(cran_packages, "rblocks", "rPlotter")
 all_installed <- TRUE
 for (pkg in required_packages) {
   if (is_package_installed(pkg)) {
@@ -52,13 +71,12 @@ for (pkg in required_packages) {
   }
 }
 
-# 测试scales包功能
+# 4. 简单测试核心包功能（示例：scales, rgl, rPlotter）
 if (is_package_installed("scales")) {
   cat("\nTesting scales package...\n")
   tryCatch({
     library(scales)
     cat("✓ scales package loaded successfully\n")
-    # 测试一些常用函数
     test_values <- c(0.1234, 1234.567, 0.0001234)
     cat("Testing percent format:", percent(test_values), "\n")
     cat("Testing comma format:", comma(test_values), "\n")
@@ -69,44 +87,42 @@ if (is_package_installed("scales")) {
   })
 }
 
-# 测试rgl包功能
 if (is_package_installed("rgl")) {
   cat("\nTesting rgl package...\n")
   tryCatch({
     library(rgl)
     cat("✓ rgl package loaded successfully\n")
-    # 检查主要函数是否存在
     if (exists("plot3d") && exists("open3d") && exists("points3d")) {
       cat("✓ rgl main functions are available\n")
-      
-      # 简单的3D绘图测试（可选）
-      if (interactive()) {
-        cat("Creating simple 3D plot...\n")
-        open3d()
-        x <- rnorm(100)
-        y <- rnorm(100)
-        z <- rnorm(100)
-        plot3d(x, y, z, col = "blue", size = 3)
-        cat("✓ 3D plot created successfully\n")
-      }
     }
   }, error = function(e) {
     cat("✗ rgl test failed:", e$message, "\n")
   })
 }
 
+if (is_package_installed("rPlotter")) {
+  cat("\nTesting rPlotter package...\n")
+  tryCatch({
+    library(rPlotter)
+    cat("✓ rPlotter package loaded successfully\n")
+    # 这里可添加简单功能测试，如 rPlotter::show_col(c("#FF0000", "#00FF00", "#0000FF"))
+  }, error = function(e) {
+    cat("✗ rPlotter test failed:", e$message, "\n")
+  })
+}
+
 cat("\n===================================================\n")
 if (all_installed) {
   cat("✅ All required packages installed successfully!\n")
-  cat("You can now use scales and rgl in your R scripts.\n")
+  cat("You can now use all dependencies in your R scripts.\n")
 } else {
   cat("⚠️  Some packages failed to install. You may need to:\n")
   cat("1. Check your internet connection\n")
-  cat("2. Install missing packages manually:\n")
-  cat("   install.packages(c('scales', 'rgl'))\n")
+  cat("2. Install missing packages manually\n")
   cat("3. Check for any system dependencies\n")
 }
 
 cat("\nUsage examples:\n")
-cat("library(scales)  # For formatting numbers and dates\n")
-cat("library(rgl)     # For 3D graphics\n")
+cat("library(scales)    # For formatting numbers and dates\n")
+cat("library(rgl)       # For 3D graphics\n")
+cat("library(rPlotter)  # For color palette extraction\n")

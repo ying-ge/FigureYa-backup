@@ -24,7 +24,7 @@ downloaded 580 KB
 * DONE (BiocManager)
 
 The downloaded source packages are in
-	‘/tmp/RtmpBMldyq/downloaded_packages’
+	‘/tmp/RtmptOFmra/downloaded_packages’
 
 Installing Bioconductor packages...
 Installing Bioconductor package: impute 
@@ -77,7 +77,7 @@ installing to /home/runner/work/_temp/Library/00LOCK-impute/00new/impute/libs
 * DONE (impute)
 
 The downloaded source packages are in
-	‘/tmp/RtmpBMldyq/downloaded_packages’
+	‘/tmp/RtmptOFmra/downloaded_packages’
 Successfully installed: impute 
 Installing Bioconductor package: sva 
 'getOption("repos")' replaces Bioconductor standard repositories, see
@@ -2567,7 +2567,7 @@ installing to /home/runner/work/_temp/Library/00LOCK-sva/00new/sva/libs
 * DONE (sva)
 
 The downloaded source packages are in
-	‘/tmp/RtmpBMldyq/downloaded_packages’
+	‘/tmp/RtmptOFmra/downloaded_packages’
 Successfully installed: sva 
 
 Installing CRAN packages...
@@ -4629,7 +4629,7 @@ installing to /home/runner/work/_temp/Library/00LOCK-testthat/00new/testthat/lib
 * DONE (tidyverse)
 
 The downloaded source packages are in
-	‘/tmp/RtmpBMldyq/downloaded_packages’
+	‘/tmp/RtmptOFmra/downloaded_packages’
 Successfully installed: tidyverse 
 Installing CRAN package: ISOpureR 
 Installing package into ‘/home/runner/work/_temp/Library’
@@ -12365,7 +12365,7 @@ installing to /home/runner/work/_temp/Library/00LOCK-ISOpureR/00new/ISOpureR/lib
 * DONE (ISOpureR)
 
 The downloaded source packages are in
-	‘/tmp/RtmpBMldyq/downloaded_packages’
+	‘/tmp/RtmptOFmra/downloaded_packages’
 Successfully installed: ISOpureR 
 Installing CRAN package: SimDesign 
 Installing package into ‘/home/runner/work/_temp/Library’
@@ -14392,7 +14392,7 @@ install.packages('gsl')
 * DONE (FrF2)
 
 The downloaded source packages are in
-	‘/tmp/RtmpBMldyq/downloaded_packages’
+	‘/tmp/RtmptOFmra/downloaded_packages’
 Successfully installed: SimDesign 
 Installing CRAN package: cowplot 
 Installing package into ‘/home/runner/work/_temp/Library’
@@ -14575,32 +14575,32 @@ configure: creating ./config.status
 config.status: creating src/Makefile
 ** libs
 make -f "/opt/R/4.5.1/lib/R/etc/Makeconf" -f Makefile init.o mapclip.o mapget.o smooth.o thin.o 
-make[1]: Entering directory '/tmp/RtmpZK3a19/R.INSTALLba9679608cb8/maps/src'
+make[1]: Entering directory '/tmp/Rtmp0EdRWR/R.INSTALLbacc4828d297/maps/src'
 gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c init.c -o init.o
 gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c mapclip.c -o mapclip.o
 gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c mapget.c -o mapget.o
 gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c smooth.c -o smooth.o
 gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c thin.c -o thin.o
-make[1]: Leaving directory '/tmp/RtmpZK3a19/R.INSTALLba9679608cb8/maps/src'
+make[1]: Leaving directory '/tmp/Rtmp0EdRWR/R.INSTALLbacc4828d297/maps/src'
 "/opt/R/4.5.1/lib/R/bin/R" CMD SHLIB -o maps.so init.o mapclip.o mapget.o smooth.o thin.o 
-make[1]: Entering directory '/tmp/RtmpZK3a19/R.INSTALLba9679608cb8/maps/src'
+make[1]: Entering directory '/tmp/Rtmp0EdRWR/R.INSTALLbacc4828d297/maps/src'
 gcc -std=gnu2x -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o maps.so init.o mapclip.o mapget.o smooth.o thin.o -L/opt/R/4.5.1/lib/R/lib -lR
-make[1]: Leaving directory '/tmp/RtmpZK3a19/R.INSTALLba9679608cb8/maps/src'
+make[1]: Leaving directory '/tmp/Rtmp0EdRWR/R.INSTALLbacc4828d297/maps/src'
 make -f "/opt/R/4.5.1/lib/R/etc/Makeconf" -f Makefile Gmake
-make[1]: Entering directory '/tmp/RtmpZK3a19/R.INSTALLba9679608cb8/maps/src'
+make[1]: Entering directory '/tmp/Rtmp0EdRWR/R.INSTALLbacc4828d297/maps/src'
 gcc -std=gnu2x -g -O2  -I/usr/local/include -L/usr/local/lib  Gmake.c   -o Gmake
-make[1]: Leaving directory '/tmp/RtmpZK3a19/R.INSTALLba9679608cb8/maps/src'
+make[1]: Leaving directory '/tmp/Rtmp0EdRWR/R.INSTALLbacc4828d297/maps/src'
 make -f "/opt/R/4.5.1/lib/R/etc/Makeconf" -f Makefile Lmake
-make[1]: Entering directory '/tmp/RtmpZK3a19/R.INSTALLba9679608cb8/maps/src'
+make[1]: Entering directory '/tmp/Rtmp0EdRWR/R.INSTALLbacc4828d297/maps/src'
 gcc -std=gnu2x -g -O2  -I/usr/local/include -L/usr/local/lib  Lmake.c   -o Lmake
-make[1]: Leaving directory '/tmp/RtmpZK3a19/R.INSTALLba9679608cb8/maps/src'
+make[1]: Leaving directory '/tmp/Rtmp0EdRWR/R.INSTALLbacc4828d297/maps/src'
 make -f "/opt/R/4.5.1/lib/R/etc/Makeconf" -f Makefile world2.line
-make[1]: Entering directory '/tmp/RtmpZK3a19/R.INSTALLba9679608cb8/maps/src'
+make[1]: Entering directory '/tmp/Rtmp0EdRWR/R.INSTALLbacc4828d297/maps/src'
 Converting world to world2
 gawk -f ./convert.awk < world.line > world2.line
-make[1]: Leaving directory '/tmp/RtmpZK3a19/R.INSTALLba9679608cb8/maps/src'
+make[1]: Leaving directory '/tmp/Rtmp0EdRWR/R.INSTALLbacc4828d297/maps/src'
 make -f "/opt/R/4.5.1/lib/R/etc/Makeconf" -f Makefile county.L state.L usa.L nz.L world.L world2.L italy.L france.L state.vbm.L state.carto.L lakes.L
-make[1]: Entering directory '/tmp/RtmpZK3a19/R.INSTALLba9679608cb8/maps/src'
+make[1]: Entering directory '/tmp/Rtmp0EdRWR/R.INSTALLbacc4828d297/maps/src'
 ./Lmake 0 s b county.line county.linestats ../inst/mapdata/county.L
 ./Lmake 0 s b state.line state.linestats ../inst/mapdata/state.L
 ./Lmake 0 s b usa.line usa.linestats ../inst/mapdata/usa.L
@@ -14612,9 +14612,9 @@ make[1]: Entering directory '/tmp/RtmpZK3a19/R.INSTALLba9679608cb8/maps/src'
 ./Lmake 0 p b state.vbm.line state.vbm.linestats ../inst/mapdata/state.vbm.L
 ./Lmake 0 p b state.carto.line state.carto.linestats ../inst/mapdata/state.carto.L
 ./Lmake 0 s b lakes.line lakes.linestats ../inst/mapdata/lakes.L
-make[1]: Leaving directory '/tmp/RtmpZK3a19/R.INSTALLba9679608cb8/maps/src'
+make[1]: Leaving directory '/tmp/Rtmp0EdRWR/R.INSTALLbacc4828d297/maps/src'
 make -f "/opt/R/4.5.1/lib/R/etc/Makeconf" -f Makefile county.G state.G usa.G nz.G world.G world2.G italy.G france.G state.vbm.G state.carto.G lakes.G
-make[1]: Entering directory '/tmp/RtmpZK3a19/R.INSTALLba9679608cb8/maps/src'
+make[1]: Entering directory '/tmp/Rtmp0EdRWR/R.INSTALLbacc4828d297/maps/src'
 ./Gmake b county.gon county.gonstats ../inst/mapdata/county.G ../inst/mapdata/county.L
 ./Gmake b state.gon state.gonstats ../inst/mapdata/state.G ../inst/mapdata/state.L
 ./Gmake b usa.gon usa.gonstats ../inst/mapdata/usa.G ../inst/mapdata/usa.L
@@ -14626,10 +14626,10 @@ make[1]: Entering directory '/tmp/RtmpZK3a19/R.INSTALLba9679608cb8/maps/src'
 ./Gmake b state.vbm.gon state.vbm.gonstats ../inst/mapdata/state.vbm.G ../inst/mapdata/state.vbm.L
 ./Gmake b state.carto.gon state.carto.gonstats ../inst/mapdata/state.carto.G ../inst/mapdata/state.carto.L
 ./Gmake b lakes.gon lakes.gonstats ../inst/mapdata/lakes.G ../inst/mapdata/lakes.L
-make[1]: Leaving directory '/tmp/RtmpZK3a19/R.INSTALLba9679608cb8/maps/src'
+make[1]: Leaving directory '/tmp/Rtmp0EdRWR/R.INSTALLbacc4828d297/maps/src'
 make -f "/opt/R/4.5.1/lib/R/etc/Makeconf" -f Makefile county.N state.N usa.N nz.N world.N world2.N italy.N france.N state.vbm.N state.carto.N lakes.N
-make[1]: Entering directory '/tmp/RtmpZK3a19/R.INSTALLba9679608cb8/maps/src'
-make[1]: Leaving directory '/tmp/RtmpZK3a19/R.INSTALLba9679608cb8/maps/src'
+make[1]: Entering directory '/tmp/Rtmp0EdRWR/R.INSTALLbacc4828d297/maps/src'
+make[1]: Leaving directory '/tmp/Rtmp0EdRWR/R.INSTALLbacc4828d297/maps/src'
 installing to /home/runner/work/_temp/Library/00LOCK-maps/00new/maps/libs
 ** R
 ** data
@@ -14759,7 +14759,7 @@ installing to /home/runner/work/_temp/Library/00LOCK-e1071/00new/e1071/libs
 * DONE (PASWR)
 
 The downloaded source packages are in
-	‘/tmp/RtmpBMldyq/downloaded_packages’
+	‘/tmp/RtmptOFmra/downloaded_packages’
 Successfully installed: cowplot 
 Installing CRAN package: ridge 
 Installing package into ‘/home/runner/work/_temp/Library’
@@ -14799,7 +14799,7 @@ ERROR: compilation failed for package ‘ridge’
 * removing ‘/home/runner/work/_temp/Library/ridge’
 
 The downloaded source packages are in
-	‘/tmp/RtmpBMldyq/downloaded_packages’
+	‘/tmp/RtmptOFmra/downloaded_packages’
 Successfully installed: ridge 
 Installing CRAN package: car 
 Installing package into ‘/home/runner/work/_temp/Library’
@@ -15030,9 +15030,9 @@ set LDFLAGS=-L/usr/local/lib
 -- Looking for __cplusplus - found
 -- Found JNI: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/11.0.28-6/x64/include  found components: JVM
 -- Found Java: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/11.0.28-6/x64/bin/java (found suitable version "11.0.28", minimum required is "1.5")
--- Configuring done (4.2s)
+-- Configuring done (4.5s)
 -- Generating done (0.0s)
--- Build files have been written to: /tmp/Rtmp9D60rq/R.INSTALLc5273c09df08/nloptr/src/nlopt-build
+-- Build files have been written to: /tmp/Rtmp5NpoFQ/R.INSTALLc5645b82516a/nloptr/src/nlopt-build
 [  2%] Generating nlopt.hpp
 [  2%] Built target generate-cpp
 [  4%] Building C object CMakeFiles/nlopt.dir/src/algs/direct/DIRect.c.o
@@ -15087,17 +15087,17 @@ set LDFLAGS=-L/usr/local/lib
 [100%] Built target nlopt
 Install the project...
 -- Install configuration: "Release"
--- Installing: /tmp/Rtmp9D60rq/R.INSTALLc5273c09df08/nloptr/src/nlopt/lib/pkgconfig/nlopt.pc
--- Installing: /tmp/Rtmp9D60rq/R.INSTALLc5273c09df08/nloptr/src/nlopt/include/nlopt.h
--- Installing: /tmp/Rtmp9D60rq/R.INSTALLc5273c09df08/nloptr/src/nlopt/include/nlopt.hpp
--- Installing: /tmp/Rtmp9D60rq/R.INSTALLc5273c09df08/nloptr/src/nlopt/lib/libnlopt.a
--- Installing: /tmp/Rtmp9D60rq/R.INSTALLc5273c09df08/nloptr/src/nlopt/share/man/man3/nlopt.3
--- Installing: /tmp/Rtmp9D60rq/R.INSTALLc5273c09df08/nloptr/src/nlopt/share/man/man3/nlopt_minimize.3
--- Installing: /tmp/Rtmp9D60rq/R.INSTALLc5273c09df08/nloptr/src/nlopt/share/man/man3/nlopt_minimize_constrained.3
--- Installing: /tmp/Rtmp9D60rq/R.INSTALLc5273c09df08/nloptr/src/nlopt/lib/cmake/nlopt/NLoptLibraryDepends.cmake
--- Installing: /tmp/Rtmp9D60rq/R.INSTALLc5273c09df08/nloptr/src/nlopt/lib/cmake/nlopt/NLoptLibraryDepends-release.cmake
--- Installing: /tmp/Rtmp9D60rq/R.INSTALLc5273c09df08/nloptr/src/nlopt/lib/cmake/nlopt/NLoptConfig.cmake
--- Installing: /tmp/Rtmp9D60rq/R.INSTALLc5273c09df08/nloptr/src/nlopt/lib/cmake/nlopt/NLoptConfigVersion.cmake
+-- Installing: /tmp/Rtmp5NpoFQ/R.INSTALLc5645b82516a/nloptr/src/nlopt/lib/pkgconfig/nlopt.pc
+-- Installing: /tmp/Rtmp5NpoFQ/R.INSTALLc5645b82516a/nloptr/src/nlopt/include/nlopt.h
+-- Installing: /tmp/Rtmp5NpoFQ/R.INSTALLc5645b82516a/nloptr/src/nlopt/include/nlopt.hpp
+-- Installing: /tmp/Rtmp5NpoFQ/R.INSTALLc5645b82516a/nloptr/src/nlopt/lib/libnlopt.a
+-- Installing: /tmp/Rtmp5NpoFQ/R.INSTALLc5645b82516a/nloptr/src/nlopt/share/man/man3/nlopt.3
+-- Installing: /tmp/Rtmp5NpoFQ/R.INSTALLc5645b82516a/nloptr/src/nlopt/share/man/man3/nlopt_minimize.3
+-- Installing: /tmp/Rtmp5NpoFQ/R.INSTALLc5645b82516a/nloptr/src/nlopt/share/man/man3/nlopt_minimize_constrained.3
+-- Installing: /tmp/Rtmp5NpoFQ/R.INSTALLc5645b82516a/nloptr/src/nlopt/lib/cmake/nlopt/NLoptLibraryDepends.cmake
+-- Installing: /tmp/Rtmp5NpoFQ/R.INSTALLc5645b82516a/nloptr/src/nlopt/lib/cmake/nlopt/NLoptLibraryDepends-release.cmake
+-- Installing: /tmp/Rtmp5NpoFQ/R.INSTALLc5645b82516a/nloptr/src/nlopt/lib/cmake/nlopt/NLoptConfig.cmake
+-- Installing: /tmp/Rtmp5NpoFQ/R.INSTALLc5645b82516a/nloptr/src/nlopt/lib/cmake/nlopt/NLoptConfigVersion.cmake
 Moving nlopt/lib to nlopt/lib
 mv: cannot move 'nlopt/lib' to a subdirectory of itself, 'nlopt/lib/lib'
 Copying headers found in src/nlopt/include into inst/include
@@ -15874,7 +15874,7 @@ installing to /home/runner/work/_temp/Library/00LOCK-survey/00new/survey/libs
 * DONE (alr4)
 
 The downloaded source packages are in
-	‘/tmp/RtmpBMldyq/downloaded_packages’
+	‘/tmp/RtmptOFmra/downloaded_packages’
 Successfully installed: car 
 Warning messages:
 1: In install.packages(package_name, dependencies = TRUE) :
@@ -15887,11 +15887,11 @@ Warning messages:
 Checking for system dependencies...
 Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
 Hit:2 http://azure.archive.ubuntu.com/ubuntu noble InRelease
-Hit:6 https://packages.microsoft.com/repos/azure-cli noble InRelease
-Hit:7 https://packages.microsoft.com/ubuntu/24.04/prod noble InRelease
 Hit:3 http://azure.archive.ubuntu.com/ubuntu noble-updates InRelease
 Hit:4 http://azure.archive.ubuntu.com/ubuntu noble-backports InRelease
 Hit:5 http://azure.archive.ubuntu.com/ubuntu noble-security InRelease
+Hit:6 https://packages.microsoft.com/repos/azure-cli noble InRelease
+Hit:7 https://packages.microsoft.com/ubuntu/24.04/prod noble InRelease
 Reading package lists...
 Reading package lists...
 Building dependency tree...
