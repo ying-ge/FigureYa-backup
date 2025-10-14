@@ -210,6 +210,29 @@ RMD Render Summary
 [SKIPPED] - ./FigureYa205immunophenoscore_update/FigureYa205immunophenoscore_update.Rmd (Not listed in auto_Knit_online.txt)
 [SKIPPED] - ./FigureYa301scCoExpr/FigureYa301scCoExpr.Rmd (Not listed in auto_Knit_online.txt)
 [SKIPPED] - ./FigureYa170ImmuLncRNA/FigureYa170ImmuLncRNA.Rmd (Not listed in auto_Knit_online.txt)
+[FAILED] - ./FigureYa293Plus_BinaryClassificationML/FigureYa293Plus_BinaryClassificationML.Rmd
+--- Error Log for ./FigureYa293Plus_BinaryClassificationML/FigureYa293Plus_BinaryClassificationML.Rmd ---
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (plsRcox)
+
+The downloaded source packages are in
+	'/tmp/Rtmpjo25c8/downloaded_packages'
+Error in `library()`:
+! there is no package called 'gbm'
+Backtrace:
+    ▆
+ 1. └─base::library(gbm)
+
+Quitting from FigureYa293Plus_BinaryClassificationML.Rmd:61-117 [unnamed-chunk-1]
+Execution halted
+-----------------------------------
 [SKIPPED] - ./FigureYa71ssGSEA_update/FigureYa71ssGSEA_update.Rmd (Not listed in auto_Knit_online.txt)
 [SKIPPED] - ./FigureYa76corrgram/FigureYa76corrgram.Rmd (Not listed in auto_Knit_online.txt)
 [SKIPPED] - ./FigureYa292HCCsubtype/FigureYa292HCCsubtype.Rmd (Not listed in auto_Knit_online.txt)
@@ -316,29 +339,7 @@ RMD Render Summary
 [SKIPPED] - ./FigureYa284pairwiseLogrank/FigureYa284pairwiseLogrank.Rmd (Not listed in auto_Knit_online.txt)
 [SKIPPED] - ./FigureYa10chromosomeV2_update/FigureYa10chromosomeV2_update.Rmd (Not listed in auto_Knit_online.txt)
 [SKIPPED] - ./FigureYa27tSNE_update/FIgureYa27tSNE_update.Rmd (Not listed in auto_Knit_online.txt)
-[FAILED] - ./FigureYa212drugTargetV2/FigureYa212drugTargetV2.Rmd
---- Error Log for ./FigureYa212drugTargetV2/FigureYa212drugTargetV2.Rmd ---
-In file included from ReadInData.h:1,
-                 from ReadInData.c:1:
-depends.h:14:10: fatal error: gsl/gsl_blas.h: No such file or directory
-   14 | #include <gsl/gsl_blas.h>
-      |          ^~~~~~~~~~~~~~~~
-compilation terminated.
-make: *** [/opt/R/4.5.1/lib/R/etc/Makeconf:202: ReadInData.o] Error 1
-ERROR: compilation failed for package ‘ridge’
-* removing ‘/home/runner/work/_temp/Library/ridge’
-
-The downloaded source packages are in
-	'/tmp/RtmpBEFXzp/downloaded_packages'
-Error in `library()`:
-! there is no package called 'ridge'
-Backtrace:
-    ▆
- 1. └─base::library(ridge)
-
-Quitting from FigureYa212drugTargetV2.Rmd:76-93 [unnamed-chunk-1]
-Execution halted
------------------------------------
+[SKIPPED] - ./FigureYa212drugTargetV2/FigureYa212drugTargetV2.Rmd (Not listed in auto_Knit_online.txt)
 [SKIPPED] - ./FigureYa112venn/FigureYa112venn.Rmd (Not listed in auto_Knit_online.txt)
 [SKIPPED] - ./FigureYa201ClusterCorrelation/FigureYa201ClusterCorrelation.Rmd (Not listed in auto_Knit_online.txt)
 [SKIPPED] - ./FigureYa119Multiclasslimma/FigureYa119Multiclasslimma.Rmd (Not listed in auto_Knit_online.txt)

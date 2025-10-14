@@ -45,8 +45,11 @@ jobs:
             # First run: Compress all folders
             for foldername in $(find . -maxdepth 1 -type d -name 'FigureYa*' | sed 's|^\./||'); do
               zipfile="../target/${foldername}.zip"
-              echo "Compressing $foldername -> $zipfile"
-              zip -r -q "$zipfile" "$foldername"
+              if [ "$foldername" = "FigureYa308IHS" ]; then
+                zip -r -q "$zipfile" "$foldername" -x "$foldername/Results/out_unPruned.rds"
+              else
+                zip -r -q "$zipfile" "$foldername"
+              fi
             done
           else
             # Incremental update: Compress only modified folders
@@ -56,8 +59,11 @@ jobs:
             else
               for foldername in $MODIFIED; do
                 zipfile="../target/${foldername}.zip"
-                echo "Compressing $foldername -> $zipfile"
-                zip -r -q "$zipfile" "$foldername"
+                if [ "$foldername" = "FigureYa308IHS" ]; then
+                  zip -r -q "$zipfile" "$foldername" -x "$foldername/Results/out_unPruned.rds"
+                else
+                  zip -r -q "$zipfile" "$foldername"
+                fi
               done
             fi
           fi

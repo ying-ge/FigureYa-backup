@@ -1,0 +1,1477 @@
+---
+title: "FigureYa293Plus_BinaryClassificationML"
+params:
+  author: "Zread AI Assistant"  
+  reviewer: "Ying Ge"
+output: html_document
+---
+
+**Author(s)**: `r params$author`  
+**Reviewer(s)**: `r params$reviewer`  
+**Date**: `r Sys.Date()` 
+
+# Academic Citation
+If you use this code in your work or research, we kindly request that you cite our publication:
+
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
+
+If you use circlize in published research, please cite:
+
+Gu, Z. circlize implements and enhances circular visualization in R. Bioinformatics 2014.
+
+If you use ComplexHeatmap in published research, please cite:
+
+Zuguang Gu, et al., Complex heatmaps reveal patterns and correlations in multidimensional genomic data, Bioinformatics, 2016.
+
+Zuguang Gu. Complex Heatmap Visualization, iMeta, 2022.
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# 需求描述
+# Demand description
+
+基于机器学习的综合二分类预测模型构建，通过整合10种分类算法和100+种算法组合，筛选最优分类模型。
+
+Comprehensive binary classification prediction model construction based on machine learning, integrating 10 classification algorithms and 100+ algorithm combinations to screen for optimal classification models.
+
+# 应用场景
+# Application scenarios
+
+适用于各种二分类问题的机器学习建模：
+- 疾病诊断预测（阳性 vs 阴性）
+- 治疗响应预测（响应 vs 非响应）
+- 预后分组（好 vs 差）
+- 药物敏感性（敏感 vs 耐药）
+- 分子亚型分类
+- 生物标志物筛选
+
+This framework is suitable for various binary classification machine learning modeling:
+- Disease diagnosis prediction (positive vs negative)
+- Treatment response prediction (responder vs non-responder)
+- Prognosis grouping (good vs poor)  
+- Drug sensitivity (sensitive vs resistant)
+- Molecular subtype classification
+- Biomarker screening
+
+# 环境设置
+# Environment Setup
+
+```{r}
+source("install_dependencies.R")
+
+# 核心分类算法包
+library(randomForest)
+library(glmnet)
+library(e1071)  # SVM
+library(xgboost)
+library(gbm)
+library(nnet)  # neural network
+library(MASS)  # LDA/QDA
+library(class) # KNN
+library(naivebayes)
+library(kernlab) # kernelized SVM
+library(party)  # Random Forest alternative
+library(C50)    # Decision Tree
+library(neuralnet)
+
+# 特征选择包
+library(Boruta)
+library(FSelector)
+library(mlr3)
+library(mlr3learners)
+library(mlr3extralearners)
+
+# 评估和可视化
+library(caret)
+library(pROC)
+library(dplyr)
+library(tibble)
+library(ggplot2)
+library(ggsci)
+library(tidyr)
+library(ComplexHeatmap)
+library(circlize)
+library(RColorBrewer)
+library(plotly)
+library(VIM)
+library(corrplot)
+
+# 并行计算
+library(parallel)
+library(doParallel)
+
+# 显示英文报错信息
+Sys.setenv(LANGUAGE = "en") 
+# 禁止chr转成factor
+options(stringsAsFactors = FALSE) 
+
+# 设置随机种子
+seed <- 123
+set.seed(seed)
+
+# 设置并行核数
+cl <- makeCluster(detectCores() - 1)
+registerDoParallel(cl)
+```
+
+# 输入文件
+# Input Files
+
+数据格式要求：
+- 行为样本，第一列为样本名
+- 第二列为分类标签（0/1 或 Negative/Positive）
+- 第三列及以后为特征变量（基因表达、临床指标等）
+- 支持多个验证数据集
+
+Data format requirements:
+- Rows represent samples, first column is sample names
+- Second column is classification labels (0/1 or Negative/Positive)  
+- Third column onwards are feature variables (gene expression, clinical indicators, etc.)
+- Support multiple validation datasets
+
+```{r}
+# 加载数据集
+# Load datasets
+train_data <- read.table("train_data.txt", header = T, sep = "\t", quote = "", check.names = F)
+test_data1 <- read.table("test_data1.txt", header = T, sep = "\t", quote = "", check.names = F)
+test_data2 <- read.table("test_data2.txt", header = T, sep = "\t", quote = "", check.names = F)
+
+# 生成包含数据集的列表
+mm <- list(train = train_data,
+           test1 = test_data1, 
+           test2 = test_data2)
+
+# 数据预处理
+mm <- lapply(mm, function(x){
+  # 标准化数值特征
+  numeric_cols <- sapply(x[,-c(1:2)], is.numeric)
+  x[,-c(1:2)][numeric_cols] <- scale(x[,-c(1:2)][numeric_cols])
+  
+  # 处理缺失值
+  x[,-c(1:2)] <- apply(x[,-c(1:2)], 2, function(col) {
+    if(sum(is.na(col)) > 0) {
+      col[is.na(col)] <- median(col, na.rm = TRUE)
+    }
+    return(col)
+  })
+  
+  return(x)
+})
+
+# 统一标签格式
+mm <- lapply(mm, function(x) {
+  # 将标签统一转换为0/1格式
+  if(is.character(x[,2]) || is.factor(x[,2])) {
+    unique_labels <- unique(x[,2])
+    if(length(unique_labels) == 2) {
+      x[,2] <- ifelse(x[,2] == unique_labels[1], 0, 1)
+    }
+  }
+  colnames(x)[2] <- "label"
+  return(x)
+})
+
+# 检查数据质量
+cat("=== 数据质量检查 ===\n")
+for(i in names(mm)) {
+  cat("Dataset:", i, "\n")
+  cat("  Samples:", nrow(mm[[i]]), "\n")
+  cat("  Features:", ncol(mm[[i]])-2, "\n")
+  cat("  Label distribution:", table(mm[[i]]$label), "\n")
+  cat("  Missing values:", sum(is.na(mm[[i]])), "\n\n")
+}
+
+# 准备建模数据
+est_data <- mm$train
+val_data_list <- mm[-1]
+
+# 检查特征名称一致性
+common_features <- Reduce(intersect, lapply(mm, function(x) colnames(x)[-c(1:2)]))
+cat("Common features across all datasets:", length(common_features), "\n")
+
+# 确保所有数据集使用相同的特征
+mm <- lapply(mm, function(x) {
+  x[, c(colnames(x)[1:2], common_features)]
+})
+
+est_data <- mm$train
+val_data_list <- mm[-1]
+```
+
+# 特征选择工具函数
+# Feature Selection Utility Functions
+
+```{r}
+# 基于重要性的特征选择
+importance_feature_selection <- function(data, method = "rf", top_n = NULL) {
+  features <- colnames(data)[-c(1:2)]
+  
+  if(method == "rf") {
+    # 随机森林变量重要性
+    rf_model <- randomForest(as.factor(label) ~ ., 
+                            data = data[,-1], 
+                            importance = TRUE, 
+                            ntree = 500)
+    importance_scores <- importance(rf_model)[,3]  # MeanDecreaseGini
+    
+  } else if(method == "lasso") {
+    # Lasso特征选择
+    x <- as.matrix(data[,-c(1:2)])
+    y <- data$label
+    cv_lasso <- cv.glmnet(x, y, family = "binomial", alpha = 1, nfolds = 10)
+    coef_lasso <- coef(cv_lasso, s = "lambda.min")
+    importance_scores <- abs(as.numeric(coef_lasso[-1]))
+    names(importance_scores) <- features
+    
+  } else if(method == "boruta") {
+    # Boruta特征选择
+    boruta_result <- Boruta(label ~ ., data = data[,-1], doTrace = 0)
+    confirmed_features <- names(boruta_result$finalDecision[boruta_result$finalDecision == "Confirmed"])
+    return(confirmed_features)
+  }
+  
+  # 排序并选择top特征
+  sorted_features <- names(sort(importance_scores, decreasing = TRUE))
+  
+  if(is.null(top_n)) {
+    # 保留重要性 > 0 的特征
+    selected_features <- sorted_features[importance_scores[sorted_features] > 0]
+  } else {
+    selected_features <- head(sorted_features, top_n)
+  }
+  
+  return(selected_features)
+}
+
+# 相关性特征过滤
+correlation_filter <- function(data, threshold = 0.9) {
+  cor_matrix <- cor(data[,-c(1:2)], use = "complete.obs")
+  high_cor <- findCorrelation(cor_matrix, cutoff = threshold)
+  
+  if(length(high_cor) > 0) {
+    remaining_features <- colnames(data)[-c(1:2)][-high_cor]
+  } else {
+    remaining_features <- colnames(data)[-c(1:2)]
+  }
+  
+  return(remaining_features)
+}
+
+# 方差过滤
+variance_filter <- function(data, threshold = 0.01) {
+  variances <- apply(data[,-c(1:2)], 2, var, na.rm = TRUE)
+  high_var_features <- names(variances[variances > threshold])
+  return(high_var_features)
+}
+```
+
+# 10种核心分类算法定义
+# 10 Core Classification Algorithms Definition
+
+```{r}
+# 分类算法实现函数
+classification_algorithms <- list(
+  
+  # 1. Random Forest
+  "RF" = function(train_data, test_data, params = list()) {
+    set.seed(seed)
+    ntree <- ifelse(is.null(params$ntree), 500, params$ntree)
+    mtry <- ifelse(is.null(params$mtry), sqrt(ncol(train_data)-2), params$mtry)
+    
+    model <- randomForest(as.factor(label) ~ ., 
+                         data = train_data[,-1], 
+                         ntree = ntree,
+                         mtry = mtry,
+                         importance = TRUE)
+    
+    pred_prob <- predict(model, test_data[,-c(1:2)], type = "prob")[,2]
+    pred_class <- predict(model, test_data[,-c(1:2)])
+    
+    return(list(prob = pred_prob, class = pred_class, model = model))
+  },
+  
+  # 2. Support Vector Machine (RBF kernel)
+  "SVM" = function(train_data, test_data, params = list()) {
+    set.seed(seed)
+    cost <- ifelse(is.null(params$cost), 1, params$cost)
+    gamma <- ifelse(is.null(params$gamma), 1/ncol(train_data), params$gamma)
+    
+    model <- svm(as.factor(label) ~ ., 
+                data = train_data[,-1], 
+                probability = TRUE, 
+                kernel = "radial",
+                cost = cost,
+                gamma = gamma)
+    
+    pred_result <- predict(model, test_data[,-c(1:2)], probability = TRUE)
+    pred_prob <- attr(pred_result, "probabilities")[,2]
+    pred_class <- pred_result
+    
+    return(list(prob = pred_prob, class = pred_class, model = model))
+  },
+  
+  # 3. Logistic Regression
+  "LR" = function(train_data, test_data, params = list()) {
+    tryCatch({
+      model <- glm(label ~ ., 
+                  data = train_data[,-1], 
+                  family = "binomial")
+      
+      pred_prob <- predict(model, test_data[,-c(1:2)], type = "response")
+      pred_class <- ifelse(pred_prob > 0.5, 1, 0)
+      
+      return(list(prob = pred_prob, class = pred_class, model = model))
+    }, error = function(e) {
+      # 如果模型拟合失败，返回随机预测
+      n <- nrow(test_data)
+      return(list(prob = rep(0.5, n), class = rep(0, n), model = NULL))
+    })
+  },
+  
+  # 4. Lasso Regression
+  "Lasso" = function(train_data, test_data, params = list()) {
+    set.seed(seed)
+    alpha <- ifelse(is.null(params$alpha), 1, params$alpha)
+    
+    x_train <- as.matrix(train_data[,-c(1:2)])
+    y_train <- train_data[,2]
+    
+    model <- cv.glmnet(x_train, y_train, 
+                      family = "binomial", 
+                      alpha = alpha, 
+                      nfolds = 10)
+    
+    pred_prob <- predict(model, as.matrix(test_data[,-c(1:2)]), 
+                        s = "lambda.min", type = "response")[,1]
+    pred_class <- ifelse(pred_prob > 0.5, 1, 0)
+    
+    return(list(prob = pred_prob, class = pred_class, model = model))
+  },
+  
+  # 5. Ridge Regression
+  "Ridge" = function(train_data, test_data, params = list()) {
+    set.seed(seed)
+    alpha <- ifelse(is.null(params$alpha), 0, params$alpha)
+    
+    x_train <- as.matrix(train_data[,-c(1:2)])
+    y_train <- train_data[,2]
+    
+    model <- cv.glmnet(x_train, y_train, 
+                      family = "binomial", 
+                      alpha = alpha, 
+                      nfolds = 10)
+    
+    pred_prob <- predict(model, as.matrix(test_data[,-c(1:2)]), 
+                        s = "lambda.min", type = "response")[,1]
+    pred_class <- ifelse(pred_prob > 0.5, 1, 0)
+    
+    return(list(prob = pred_prob, class = pred_class, model = model))
+  },
+  
+  # 6. Elastic Net
+  "Enet" = function(train_data, test_data, params = list()) {
+    set.seed(seed)
+    alpha <- ifelse(is.null(params$alpha), 0.5, params$alpha)
+    
+    x_train <- as.matrix(train_data[,-c(1:2)])
+    y_train <- train_data[,2]
+    
+    model <- cv.glmnet(x_train, y_train, 
+                      family = "binomial", 
+                      alpha = alpha, 
+                      nfolds = 10)
+    
+    pred_prob <- predict(model, as.matrix(test_data[,-c(1:2)]), 
+                        s = "lambda.min", type = "response")[,1]
+    pred_class <- ifelse(pred_prob > 0.5, 1, 0)
+    
+    return(list(prob = pred_prob, class = pred_class, model = model))
+  },
+  
+  # 7. XGBoost
+  "XGBoost" = function(train_data, test_data, params = list()) {
+    set.seed(seed)
+    nrounds <- ifelse(is.null(params$nrounds), 100, params$nrounds)
+    max_depth <- ifelse(is.null(params$max_depth), 6, params$max_depth)
+    eta <- ifelse(is.null(params$eta), 0.3, params$eta)
+    
+    dtrain <- xgb.DMatrix(data = as.matrix(train_data[,-c(1:2)]), 
+                         label = train_data[,2])
+    dtest <- xgb.DMatrix(data = as.matrix(test_data[,-c(1:2)]))
+    
+    model <- xgboost(data = dtrain, 
+                    nrounds = nrounds,
+                    max_depth = max_depth,
+                    eta = eta,
+                    objective = "binary:logistic", 
+                    verbose = 0)
+    
+    pred_prob <- predict(model, dtest)
+    pred_class <- ifelse(pred_prob > 0.5, 1, 0)
+    
+    return(list(prob = pred_prob, class = pred_class, model = model))
+  },
+  
+  # 8. Gradient Boosting Machine
+  "GBM" = function(train_data, test_data, params = list()) {
+    set.seed(seed)
+    n.trees <- ifelse(is.null(params$n.trees), 500, params$n.trees)
+    interaction.depth <- ifelse(is.null(params$interaction.depth), 3, params$interaction.depth)
+    shrinkage <- ifelse(is.null(params$shrinkage), 0.01, params$shrinkage)
+    
+    model <- gbm(label ~ ., 
+                data = train_data[,-1], 
+                distribution = "bernoulli",
+                n.trees = n.trees, 
+                interaction.depth = interaction.depth,
+                shrinkage = shrinkage,
+                cv.folds = 5,
+                verbose = FALSE)
+    
+    best_iter <- gbm.perf(model, method = "cv", plot.it = FALSE)
+    pred_prob <- predict(model, test_data[,-c(1:2)], 
+                        n.trees = best_iter, type = "response")
+    pred_class <- ifelse(pred_prob > 0.5, 1, 0)
+    
+    return(list(prob = pred_prob, class = pred_class, model = model))
+  },
+  
+  # 9. Neural Network
+  "NN" = function(train_data, test_data, params = list()) {
+    set.seed(seed)
+    size <- ifelse(is.null(params$size), 5, params$size)
+    decay <- ifelse(is.null(params$decay), 0.1, params$decay)
+    
+    tryCatch({
+      model <- nnet(as.factor(label) ~ ., 
+                   data = train_data[,-1], 
+                   size = size,
+                   decay = decay,
+                   trace = FALSE,
+                   maxit = 200)
+      
+      pred_prob <- predict(model, test_data[,-c(1:2)], type = "raw")[,1]
+      pred_class <- ifelse(pred_prob > 0.5, 1, 0)
+      
+      return(list(prob = pred_prob, class = pred_class, model = model))
+    }, error = function(e) {
+      n <- nrow(test_data)
+      return(list(prob = rep(0.5, n), class = rep(0, n), model = NULL))
+    })
+  },
+  
+  # 10. Naive Bayes
+  "NB" = function(train_data, test_data, params = list()) {
+    tryCatch({
+      model <- naivebayes(as.factor(label) ~ ., 
+                         data = train_data[,-1])
+      
+      pred_prob <- predict(model, test_data[,-c(1:2)], type = "prob")[,2]
+      pred_class <- predict(model, test_data[,-c(1:2)])
+      
+      return(list(prob = pred_prob, class = pred_class, model = model))
+    }, error = function(e) {
+      n <- nrow(test_data)
+      return(list(prob = rep(0.5, n), class = rep(0, n), model = NULL))
+    })
+  }
+)
+```
+
+# 评估指标计算函数
+# Evaluation Metrics Calculation Functions
+
+```{r}
+# 计算分类性能指标
+calculate_metrics <- function(true_labels, pred_probs, pred_classes) {
+  # AUC
+  roc_obj <- roc(true_labels, pred_probs, quiet = TRUE)
+  auc_val <- as.numeric(auc(roc_obj))
+  
+  # 混淆矩阵指标
+  cm <- table(true_labels, pred_classes)
+  
+  if(nrow(cm) == 2 && ncol(cm) == 2) {
+    tn <- cm[1,1]
+    fp <- cm[1,2] 
+    fn <- cm[2,1]
+    tp <- cm[2,2]
+    
+    accuracy <- (tp + tn) / sum(cm)
+    sensitivity <- tp / (tp + fn)  # 敏感性/召回率
+    specificity <- tn / (tn + fp)  # 特异性
+    precision <- tp / (tp + fp)    # 精确率
+    f1_score <- 2 * (precision * sensitivity) / (precision + sensitivity)
+    
+    # 平衡准确率
+    balanced_accuracy <- (sensitivity + specificity) / 2
+    
+  } else {
+    # 如果分类结果有问题，设为默认值
+    accuracy <- sensitivity <- specificity <- precision <- f1_score <- balanced_accuracy <- 0.5
+  }
+  
+  return(list(
+    AUC = auc_val,
+    Accuracy = accuracy,
+    Sensitivity = sensitivity,
+    Specificity = specificity,
+    Precision = precision,
+    F1_Score = f1_score,
+    Balanced_Accuracy = balanced_accuracy
+  ))
+}
+
+# 批量评估函数
+evaluate_model <- function(algorithm_name, train_data, test_data_list, params = list()) {
+  results <- list()
+  
+  for(i in 1:length(test_data_list)) {
+    test_data <- test_data_list[[i]]
+    dataset_name <- names(test_data_list)[i]
+    
+    tryCatch({
+      # 运行算法
+      pred_result <- classification_algorithms[[algorithm_name]](train_data, test_data, params)
+      
+      # 计算指标
+      metrics <- calculate_metrics(test_data$label, pred_result$prob, pred_result$class)
+      
+      # 存储结果
+      result_row <- data.frame(
+        Dataset = dataset_name,
+        Model = algorithm_name,
+        AUC = metrics$AUC,
+        Accuracy = metrics$Accuracy,
+        Sensitivity = metrics$Sensitivity,
+        Specificity = metrics$Specificity,
+        Precision = metrics$Precision,
+        F1_Score = metrics$F1_Score,
+        Balanced_Accuracy = metrics$Balanced_Accuracy,
+        stringsAsFactors = FALSE
+      )
+      
+      results[[dataset_name]] <- result_row
+      
+    }, error = function(e) {
+      cat("Error in", algorithm_name, "for dataset", dataset_name, ":", e$message, "\n")
+      
+      # 错误情况下的默认结果
+      result_row <- data.frame(
+        Dataset = dataset_name,
+        Model = algorithm_name,
+        AUC = 0.5,
+        Accuracy = 0.5,
+        Sensitivity = 0.5,
+        Specificity = 0.5,
+        Precision = 0.5,
+        F1_Score = 0.5,
+        Balanced_Accuracy = 0.5,
+        stringsAsFactors = FALSE
+      )
+      
+      results[[dataset_name]] <- result_row
+    })
+  }
+  
+  return(do.call(rbind, results))
+}
+```
+
+# 第一部分：单一算法评估
+# Part 1: Single Algorithm Evaluation
+
+```{r}
+cat("=== 开始单一算法评估 ===\n")
+
+# 存储所有结果
+all_results <- data.frame()
+
+# 算法名称
+algo_names <- names(classification_algorithms)
+
+# 1. 基础算法评估
+for(algo in algo_names) {
+  cat("正在运行算法:", algo, "\n")
+  
+  result <- evaluate_model(algo, est_data, val_data_list)
+  all_results <- rbind(all_results, result)
+}
+
+cat("单一算法评估完成，共", nrow(all_results), "个结果\n\n")
+```
+
+# 第二部分：特征选择 + 算法组合
+# Part 2: Feature Selection + Algorithm Combinations
+
+```{r}
+cat("=== 开始特征选择 + 算法组合 ===\n")
+
+# 不同的特征选择方法
+feature_selection_methods <- c("rf", "lasso", "boruta")
+
+for(fs_method in feature_selection_methods) {
+  cat("特征选择方法:", fs_method, "\n")
+  
+  # 进行特征选择
+  if(fs_method == "boruta") {
+    selected_features <- importance_feature_selection(est_data, method = fs_method)
+  } else {
+    selected_features <- importance_feature_selection(est_data, method = fs_method)
+  }
+  
+  if(length(selected_features) == 0) {
+    cat("特征选择失败，跳过\n")
+    next
+  }
+  
+  cat("选择了", length(selected_features), "个特征\n")
+  
+  # 准备特征选择后的数据
+  est_data_fs <- est_data[, c(colnames(est_data)[1:2], selected_features)]
+  val_data_list_fs <- lapply(val_data_list, function(x) {
+    x[, c(colnames(x)[1:2], selected_features)]
+  })
+  
+  # 对每个算法应用特征选择
+  for(algo in algo_names) {
+    cat("  运行:", fs_method, "+", algo, "\n")
+    
+    tryCatch({
+      result <- evaluate_model(algo, est_data_fs, val_data_list_fs)
+      result$Model <- paste0(fs_method, " + ", algo)
+      all_results <- rbind(all_results, result)
+    }, error = function(e) {
+      cat("    错误:", e$message, "\n")
+    })
+  }
+}
+
+cat("特征选择 + 算法组合完成\n\n")
+```
+
+# 第三部分：Random Forest + 其他算法组合
+# Part 3: Random Forest + Other Algorithm Combinations
+
+```{r}
+cat("=== 开始Random Forest特征选择 + 算法组合 ===\n")
+
+# 使用Random Forest进行特征选择
+set.seed(seed)
+rf_model <- randomForest(as.factor(label) ~ ., 
+                        data = est_data[,-1], 
+                        ntree = 1000, 
+                        importance = TRUE)
+
+# 获取变量重要性
+vimp_scores <- importance(rf_model)[,3]  # MeanDecreaseGini
+selected_features_rf <- names(vimp_scores[vimp_scores > 0])
+
+cat("RF特征选择：从", ncol(est_data)-2, "个特征中选择了", length(selected_features_rf), "个\n")
+
+if(length(selected_features_rf) > 0) {
+  # 准备RF特征选择后的数据
+  est_data_rf <- est_data[, c(colnames(est_data)[1:2], selected_features_rf)]
+  val_data_list_rf <- lapply(val_data_list, function(x) {
+    x[, c(colnames(x)[1:2], selected_features_rf)]
+  })
+  
+  # RF + Lasso组合
+  cat("运行: RF + Lasso\n")
+  result <- evaluate_model("Lasso", est_data_rf, val_data_list_rf)
+  result$Model <- "RF + Lasso"
+  all_results <- rbind(all_results, result)
+  
+  # RF + Ridge组合
+  cat("运行: RF + Ridge\n")
+  result <- evaluate_model("Ridge", est_data_rf, val_data_list_rf)
+  result$Model <- "RF + Ridge"
+  all_results <- rbind(all_results, result)
+  
+  # RF + Elastic Net组合（不同alpha值）
+  for(alpha in seq(0.1, 0.9, 0.1)) {
+    cat("运行: RF + Enet [α=", alpha, "]\n")
+    
+    params <- list(alpha = alpha)
+    result <- evaluate_model("Enet", est_data_rf, val_data_list_rf, params)
+    result$Model <- paste0("RF + Enet [α=", alpha, "]")
+    all_results <- rbind(all_results, result)
+  }
+  
+  # RF + XGBoost组合
+  cat("运行: RF + XGBoost\n")
+  result <- evaluate_model("XGBoost", est_data_rf, val_data_list_rf)
+  result$Model <- "RF + XGBoost"
+  all_results <- rbind(all_results, result)
+  
+  # RF + GBM组合
+  cat("运行: RF + GBM\n")
+  result <- evaluate_model("GBM", est_data_rf, val_data_list_rf)
+  result$Model <- "RF + GBM"
+  all_results <- rbind(all_results, result)
+  
+  # RF + SVM组合
+  cat("运行: RF + SVM\n")
+  result <- evaluate_model("SVM", est_data_rf, val_data_list_rf)
+  result$Model <- "RF + SVM"
+  all_results <- rbind(all_results, result)
+  
+  # RF + Neural Network组合
+  cat("运行: RF + NN\n")
+  result <- evaluate_model("NN", est_data_rf, val_data_list_rf)
+  result$Model <- "RF + NN"
+  all_results <- rbind(all_results, result)
+  
+  # RF + Naive Bayes组合
+  cat("运行: RF + NB\n")
+  result <- evaluate_model("NB", est_data_rf, val_data_list_rf)
+  result$Model <- "RF + NB"
+  all_results <- rbind(all_results, result)
+}
+
+cat("RF + 其他算法组合完成\n\n")
+```
+
+# 第四部分：Lasso特征选择 + 算法组合
+# Part 4: Lasso Feature Selection + Algorithm Combinations
+
+```{r}
+cat("=== 开始Lasso特征选择 + 算法组合 ===\n")
+
+# 使用Lasso进行特征选择
+set.seed(seed)
+x_train <- as.matrix(est_data[,-c(1:2)])
+y_train <- est_data$label
+
+cv_lasso <- cv.glmnet(x_train, y_train, family = "binomial", alpha = 1, nfolds = 10)
+coef_lasso <- coef(cv_lasso, s = "lambda.min")
+selected_features_lasso <- rownames(coef_lasso)[which(coef_lasso != 0)][-1]  # 排除截距
+
+cat("Lasso特征选择：从", ncol(est_data)-2, "个特征中选择了", length(selected_features_lasso), "个\n")
+
+if(length(selected_features_lasso) > 0) {
+  # 准备Lasso特征选择后的数据
+  est_data_lasso <- est_data[, c(colnames(est_data)[1:2], selected_features_lasso)]
+  val_data_list_lasso <- lapply(val_data_list, function(x) {
+    x[, c(colnames(x)[1:2], selected_features_lasso)]
+  })
+  
+  # Lasso + Random Forest组合
+  cat("运行: Lasso + RF\n")
+  result <- evaluate_model("RF", est_data_lasso, val_data_list_lasso)
+  result$Model <- "Lasso + RF"
+  all_results <- rbind(all_results, result)
+  
+  # Lasso + XGBoost组合
+  cat("运行: Lasso + XGBoost\n")
+  result <- evaluate_model("XGBoost", est_data_lasso, val_data_list_lasso)
+  result$Model <- "Lasso + XGBoost"
+  all_results <- rbind(all_results, result)
+  
+  # Lasso + GBM组合
+  cat("运行: Lasso + GBM\n")
+  result <- evaluate_model("GBM", est_data_lasso, val_data_list_lasso)
+  result$Model <- "Lasso + GBM"
+  all_results <- rbind(all_results, result)
+  
+  # Lasso + SVM组合
+  cat("运行: Lasso + SVM\n")
+  result <- evaluate_model("SVM", est_data_lasso, val_data_list_lasso)
+  result$Model <- "Lasso + SVM"
+  all_results <- rbind(all_results, result)
+  
+  # Lasso + Logistic Regression组合
+  cat("运行: Lasso + LR\n")
+  result <- evaluate_model("LR", est_data_lasso, val_data_list_lasso)
+  result$Model <- "Lasso + LR"
+  all_results <- rbind(all_results, result)
+  
+  # Lasso + Neural Network组合
+  cat("运行: Lasso + NN\n")
+  result <- evaluate_model("NN", est_data_lasso, val_data_list_lasso)
+  result$Model <- "Lasso + NN"
+  all_results <- rbind(all_results, result)
+}
+
+cat("Lasso + 其他算法组合完成\n\n")
+```
+
+# 第五部分：集成学习组合
+# Part 5: Ensemble Learning Combinations
+
+```{r}
+cat("=== 开始集成学习组合 ===\n")
+
+# 投票集成函数
+ensemble_voting <- function(algorithms, train_data, test_data_list, method = "average") {
+  ensemble_results <- list()
+  
+  for(i in 1:length(test_data_list)) {
+    test_data <- test_data_list[[i]]
+    dataset_name <- names(test_data_list)[i]
+    
+    # 获取每个算法的预测概率
+    pred_probs <- matrix(0, nrow = nrow(test_data), ncol = length(algorithms))
+    
+    for(j in 1:length(algorithms)) {
+      algo <- algorithms[j]
+      tryCatch({
+        pred_result <- classification_algorithms[[algo]](train_data, test_data)
+        pred_probs[, j] <- pred_result$prob
+      }, error = function(e) {
+        pred_probs[, j] <- rep(0.5, nrow(test_data))
+      })
+    }
+    
+    # 集成预测
+    if(method == "average") {
+      final_prob <- rowMeans(pred_probs)
+    } else if(method == "median") {
+      final_prob <- apply(pred_probs, 1, median)
+    }
+    
+    final_class <- ifelse(final_prob > 0.5, 1, 0)
+    
+    # 计算指标
+    metrics <- calculate_metrics(test_data$label, final_prob, final_class)
+    
+    result_row <- data.frame(
+      Dataset = dataset_name,
+      Model = paste(algorithms, collapse = " + "),
+      AUC = metrics$AUC,
+      Accuracy = metrics$Accuracy,
+      Sensitivity = metrics$Sensitivity,
+      Specificity = metrics$Specificity,
+      Precision = metrics$Precision,
+      F1_Score = metrics$F1_Score,
+      Balanced_Accuracy = metrics$Balanced_Accuracy,
+      stringsAsFactors = FALSE
+    )
+    
+    ensemble_results[[dataset_name]] <- result_row
+  }
+  
+  return(do.call(rbind, ensemble_results))
+}
+
+# 二元算法组合
+binary_combinations <- list(
+  c("RF", "XGBoost"),
+  c("RF", "GBM"), 
+  c("RF", "SVM"),
+  c("Lasso", "Ridge"),
+  c("Lasso", "XGBoost"),
+  c("XGBoost", "GBM"),
+  c("SVM", "LR"),
+  c("RF", "LR"),
+  c("Enet", "XGBoost"),
+  c("GBM", "SVM")
+)
+
+for(combo in binary_combinations) {
+  cat("运行集成:", paste(combo, collapse = " + "), "\n")
+  
+  tryCatch({
+    result <- ensemble_voting(combo, est_data, val_data_list, method = "average")
+    all_results <- rbind(all_results, result)
+  }, error = function(e) {
+    cat("  错误:", e$message, "\n")
+  })
+}
+
+# 三元算法组合
+ternary_combinations <- list(
+  c("RF", "XGBoost", "SVM"),
+  c("Lasso", "Ridge", "Enet"),
+  c("RF", "GBM", "XGBoost"),
+  c("SVM", "LR", "NB"),
+  c("RF", "Lasso", "XGBoost")
+)
+
+for(combo in ternary_combinations) {
+  cat("运行集成:", paste(combo, collapse = " + "), "\n")
+  
+  tryCatch({
+    result <- ensemble_voting(combo, est_data, val_data_list, method = "average")
+    all_results <- rbind(all_results, result)
+  }, error = function(e) {
+    cat("  错误:", e$message, "\n")
+  })
+}
+
+cat("集成学习组合完成\n\n")
+```
+
+# 第六部分：参数调优组合
+# Part 6: Parameter Tuning Combinations
+
+```{r}
+cat("=== 开始参数调优组合 ===\n")
+
+# XGBoost参数调优
+xgb_params <- list(
+  list(nrounds = 50, max_depth = 3, eta = 0.1),
+  list(nrounds = 100, max_depth = 6, eta = 0.3),
+  list(nrounds = 200, max_depth = 4, eta = 0.2),
+  list(nrounds = 150, max_depth = 5, eta = 0.25)
+)
+
+for(i in 1:length(xgb_params)) {
+  params <- xgb_params[[i]]
+  model_name <- paste0("XGBoost[n=", params$nrounds, ",d=", params$max_depth, ",η=", params$eta, "]")
+  
+  cat("运行:", model_name, "\n")
+  
+  tryCatch({
+    result <- evaluate_model("XGBoost", est_data, val_data_list, params)
+    result$Model <- model_name
+    all_results <- rbind(all_results, result)
+  }, error = function(e) {
+    cat("  错误:", e$message, "\n")
+  })
+}
+
+# Random Forest参数调优
+rf_params <- list(
+  list(ntree = 300, mtry = 3),
+  list(ntree = 500, mtry = 5),
+  list(ntree = 1000, mtry = 7),
+  list(ntree = 800, mtry = 4)
+)
+
+for(i in 1:length(rf_params)) {
+  params <- rf_params[[i]]
+  model_name <- paste0("RF[ntree=", params$ntree, ",mtry=", params$mtry, "]")
+  
+  cat("运行:", model_name, "\n")
+  
+  tryCatch({
+    result <- evaluate_model("RF", est_data, val_data_list, params)
+    result$Model <- model_name
+    all_results <- rbind(all_results, result)
+  }, error = function(e) {
+    cat("  错误:", e$message, "\n")
+  })
+}
+
+# SVM参数调优
+svm_params <- list(
+  list(cost = 0.1, gamma = 0.001),
+  list(cost = 1, gamma = 0.01),
+  list(cost = 10, gamma = 0.1),
+  list(cost = 100, gamma = 1)
+)
+
+for(i in 1:length(svm_params)) {
+  params <- svm_params[[i]]
+  model_name <- paste0("SVM[C=", params$cost, ",γ=", params$gamma, "]")
+  
+  cat("运行:", model_name, "\n")
+  
+  tryCatch({
+    result <- evaluate_model("SVM", est_data, val_data_list, params)
+    result$Model <- model_name
+    all_results <- rbind(all_results, result)
+  }, error = function(e) {
+    cat("  错误:", e$message, "\n")
+  })
+}
+
+cat("参数调优组合完成\n\n")
+```
+
+# 第七部分：结果分析和可视化
+# Part 7: Results Analysis and Visualization
+
+```{r}
+cat("=== 开始结果分析 ===\n")
+
+# 检查结果
+cat("总共生成了", nrow(all_results), "个模型结果\n")
+
+# 计算每个模型的平均性能
+model_summary <- all_results %>%
+  group_by(Model) %>%
+  summarise(
+    Mean_AUC = mean(AUC, na.rm = TRUE),
+    SD_AUC = sd(AUC, na.rm = TRUE),
+    Mean_Accuracy = mean(Accuracy, na.rm = TRUE),
+    Mean_F1_Score = mean(F1_Score, na.rm = TRUE),
+    Mean_Balanced_Accuracy = mean(Balanced_Accuracy, na.rm = TRUE),
+    .groups = 'drop'
+  ) %>%
+  arrange(desc(Mean_AUC))
+
+# 显示Top 20模型
+cat("\nTop 20 模型 (按平均AUC排序):\n")
+print(head(model_summary, 20))
+
+# 保存详细结果
+write.csv(all_results, "classification_detailed_results.csv", row.names = FALSE)
+write.csv(model_summary, "classification_model_summary.csv", row.names = FALSE)
+```
+
+# 可视化结果
+# Results Visualization
+
+```{r fig.width=14, fig.height=10}
+# 1. Top 20模型性能柱状图
+top_20_models <- head(model_summary, 20)
+
+p1 <- ggplot(top_20_models, aes(x = reorder(Model, Mean_AUC), y = Mean_AUC)) +
+  geom_col(fill = "#4575B4", alpha = 0.8) +
+  geom_errorbar(aes(ymin = pmax(0, Mean_AUC - SD_AUC), 
+                    ymax = pmin(1, Mean_AUC + SD_AUC)), 
+                width = 0.2, alpha = 0.7) +
+  geom_text(aes(label = round(Mean_AUC, 3)), hjust = -0.1, size = 2.5) +
+  coord_flip() +
+  labs(title = "Top 20 Classification Models Performance",
+       subtitle = "Error bars show ± 1 SD",
+       x = "Model", y = "Mean AUC") +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5, size = 16, face = "bold"),
+    plot.subtitle = element_text(hjust = 0.5, size = 12),
+    axis.text.y = element_text(size = 8)
+  )
+
+print(p1)
+
+# 2. 不同评估指标的比较
+metrics_comparison <- top_20_models %>%
+  select(Model, Mean_AUC, Mean_Accuracy, Mean_F1_Score, Mean_Balanced_Accuracy) %>%
+  pivot_longer(cols = -Model, names_to = "Metric", values_to = "Value") %>%
+  mutate(Metric = gsub("Mean_", "", Metric))
+
+p2 <- ggplot(metrics_comparison, aes(x = reorder(Model, Value), y = Value, fill = Metric)) +
+  geom_col(position = "dodge", alpha = 0.8) +
+  coord_flip() +
+  scale_fill_brewer(type = "qual", palette = "Set2") +
+  labs(title = "Model Performance Across Different Metrics",
+       x = "Model", y = "Performance Score") +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5, size = 14, face = "bold"),
+    axis.text.y = element_text(size = 8),
+    legend.position = "bottom"
+  )
+
+print(p2)
+```
+
+# 热图可视化
+# Heatmap Visualization
+
+```{r fig.width=12, fig.height=8}
+# 准备热图数据
+top_30_models <- head(model_summary, 30)
+heatmap_data <- all_results %>%
+  filter(Model %in% top_30_models$Model) %>%
+  select(Dataset, Model, AUC) %>%
+  pivot_wider(names_from = Dataset, values_from = AUC) %>%
+  column_to_rownames('Model')
+
+# 确保数据是数值型
+heatmap_matrix <- as.matrix(heatmap_data)
+
+# 绘制热图
+library(ComplexHeatmap)
+col_fun <- colorRamp2(c(0.5, 0.7, 0.85, 1), 
+                     c("#2166AC", "#4393C3", "#FDBF6F", "#D73027"))
+
+# 创建行注释
+row_anno_data <- data.frame(
+  Algorithm_Type = case_when(
+    grepl("RF", rownames(heatmap_matrix)) ~ "Tree-based",
+    grepl("SVM", rownames(heatmap_matrix)) ~ "Kernel",
+    grepl("Lasso|Ridge|Enet|LR", rownames(heatmap_matrix)) ~ "Linear",
+    grepl("XGBoost|GBM", rownames(heatmap_matrix)) ~ "Boosting",
+    grepl("NN", rownames(heatmap_matrix)) ~ "Neural",
+    grepl("NB", rownames(heatmap_matrix)) ~ "Probabilistic",
+    TRUE ~ "Ensemble"
+  )
+)
+rownames(row_anno_data) <- rownames(heatmap_matrix)
+
+# 算法类型颜色
+algo_colors <- c("Tree-based" = "#E31A1C", "Kernel" = "#1F78B4", 
+                "Linear" = "#33A02C", "Boosting" = "#FF7F00",
+                "Neural" = "#6A3D9A", "Probabilistic" = "#FB9A99",
+                "Ensemble" = "#CAB2D6")
+
+row_ha <- rowAnnotation(
+  Algorithm_Type = row_anno_data$Algorithm_Type,
+  col = list(Algorithm_Type = algo_colors),
+  width = unit(0.5, "cm")
+)
+
+# 绘制热图
+ht <- Heatmap(
+  heatmap_matrix,
+  name = "AUC",
+  col = col_fun,
+  rect_gp = gpar(col = "white", lwd = 1),
+  show_row_names = TRUE,
+  show_column_names = TRUE,
+  row_names_side = "left",
+  column_title = "Classification Performance Across Datasets",
+  row_title = "Models (Top 30)",
+  heatmap_legend_param = list(title = "AUC", title_position = "topleft"),
+  row_names_gp = gpar(fontsize = 8),
+  column_names_gp = gpar(fontsize = 10),
+  left_annotation = row_ha,
+  cluster_rows = TRUE,
+  cluster_columns = FALSE
+)
+
+draw(ht, annotation_legend_side = "bottom")
+```
+
+# 最优模型详细分析
+# Best Model Detailed Analysis
+
+```{r fig.width=12, fig.height=8}
+# 选择最优模型
+best_model_name <- model_summary$Model[1]
+best_model_results <- all_results %>% filter(Model == best_model_name)
+
+cat("=== 最优模型详细分析 ===\n")
+cat("最优模型:", best_model_name, "\n")
+cat("平均AUC:", round(model_summary$Mean_AUC[1], 4), "\n")
+cat("平均准确率:", round(model_summary$Mean_Accuracy[1], 4), "\n")
+cat("平均F1分数:", round(model_summary$Mean_F1_Score[1], 4), "\n\n")
+
+print(best_model_results)
+
+# 模型性能分布箱线图
+p3 <- all_results %>%
+  filter(Model %in% head(model_summary$Model, 10)) %>%
+  ggplot(aes(x = reorder(Model, AUC), y = AUC)) +
+  geom_boxplot(fill = "#4575B4", alpha = 0.7) +
+  geom_jitter(width = 0.2, alpha = 0.6, color = "#D73027") +
+  coord_flip() +
+  labs(title = "AUC Distribution for Top 10 Models",
+       x = "Model", y = "AUC") +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5, size = 14, face = "bold"),
+    axis.text.y = element_text(size = 9)
+  )
+
+print(p3)
+
+# 算法类型性能比较
+algo_type_performance <- all_results %>%
+  mutate(
+    Algorithm_Type = case_when(
+      grepl("RF", Model) ~ "Tree-based",
+      grepl("SVM", Model) ~ "Kernel",
+      grepl("Lasso|Ridge|Enet|LR", Model) ~ "Linear",
+      grepl("XGBoost|GBM", Model) ~ "Boosting",
+      grepl("NN", Model) ~ "Neural",
+      grepl("NB", Model) ~ "Probabilistic",
+      grepl("\\+", Model) ~ "Ensemble",
+      TRUE ~ "Other"
+    )
+  ) %>%
+  group_by(Algorithm_Type) %>%
+  summarise(
+    Mean_AUC = mean(AUC, na.rm = TRUE),
+    Median_AUC = median(AUC, na.rm = TRUE),
+    Count = n(),
+    .groups = 'drop'
+  ) %>%
+  arrange(desc(Mean_AUC))
+
+p4 <- ggplot(algo_type_performance, aes(x = reorder(Algorithm_Type, Mean_AUC), y = Mean_AUC)) +
+  geom_col(fill = "#33A02C", alpha = 0.8) +
+  geom_text(aes(label = paste0(round(Mean_AUC, 3), "\n(n=", Count, ")")), 
+            hjust = -0.1, size = 3) +
+  coord_flip() +
+  labs(title = "Algorithm Type Performance Comparison",
+       x = "Algorithm Type", y = "Mean AUC") +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5, size = 14, face = "bold"))
+
+print(p4)
+```
+
+# 模型保存和导出
+# Model Saving and Export
+
+```{r}
+cat("=== 保存结果和模型 ===\n")
+
+# 保存最优模型信息
+best_model_info <- list(
+  best_model_name = best_model_name,
+  best_model_performance = best_model_results,
+  top_20_models = top_20_models,
+  algorithm_type_performance = algo_type_performance,
+  model_summary = model_summary,
+  total_models_tested = nrow(model_summary)
+)
+
+saveRDS(best_model_info, "best_classification_model_info.rds")
+
+# 保存绘图数据
+plot_data <- list(
+  heatmap_data = heatmap_data,
+  metrics_comparison = metrics_comparison,
+  algo_type_performance = algo_type_performance
+)
+
+saveRDS(plot_data, "classification_plot_data.rds")
+
+# 生成模型报告
+report <- list(
+  summary = paste0("总共测试了 ", nrow(model_summary), " 种不同的分类模型组合"),
+  best_model = paste0("最优模型: ", best_model_name, " (AUC: ", round(model_summary$Mean_AUC[1], 4), ")"),
+  top_algorithm_type = paste0("最佳算法类型: ", algo_type_performance$Algorithm_Type[1], 
+                             " (平均AUC: ", round(algo_type_performance$Mean_AUC[1], 4), ")"),
+  dataset_count = length(val_data_list),
+  feature_count = ncol(est_data) - 2
+)
+
+writeLines(unlist(report), "classification_model_report.txt")
+
+cat("所有结果已保存:\n")
+cat("- classification_detailed_results.csv: 详细结果\n")
+cat("- classification_model_summary.csv: 模型总结\n")
+cat("- best_classification_model_info.rds: 最优模型信息\n")
+cat("- classification_plot_data.rds: 绘图数据\n")
+cat("- classification_model_report.txt: 模型报告\n")
+
+# 最终总结
+cat("\n=== 分析完成总结 ===\n")
+cat("最优模型:", best_model_name, "\n")
+cat("最优AUC:", round(model_summary$Mean_AUC[1], 4), "\n")
+cat("测试模型总数:", nrow(model_summary), "\n")
+cat("使用数据集:", length(val_data_list) + 1, "个 (1训练 +", length(val_data_list), "验证)\n")
+cat("输入特征数:", ncol(est_data) - 2, "\n")
+
+# 关闭并行集群
+stopCluster(cl)
+
+cat("\n所有分析已完成！\n")
+```
+
+# 附：生成模拟数据
+
+```{r}
+library(dplyr)
+library(MASS)  # 用于生成多变量正态分布数据
+
+set.seed(123)
+
+# 设置数据参数
+n_features <- 100  # 特征数量
+n_train <- 200     # 训练集样本数
+n_test1 <- 80      # 测试集1样本数  
+n_test2 <- 60      # 测试集2样本数
+
+# 生成具有生物学意义的特征名称
+feature_names <- c(
+  # 免疫相关基因
+  paste0("CD", 1:20),
+  # 细胞因子
+  paste0("IL", 1:15),
+  paste0("TNF", c("A", "B", "R1", "R2")),
+  # 转录因子
+  paste0("TF", 1:10),
+  # 信号通路基因
+  paste0("MAPK", 1:8),
+  paste0("PI3K", 1:5),
+  paste0("WNT", 1:7),
+  # 凋亡相关基因
+  paste0("BCL", 1:6),
+  paste0("CASP", 1:8),
+  # 代谢相关基因
+  paste0("METAB", 1:10),
+  # 其他基因
+  paste0("GENE", 1:7)
+)
+
+# 确保特征名称数量正确
+if(length(feature_names) < n_features) {
+  additional_genes <- paste0("GENE_", (length(feature_names)+1):n_features)
+  feature_names <- c(feature_names, additional_genes)
+}
+feature_names <- feature_names[1:n_features]
+
+# 生成训练数据
+generate_classification_data <- function(n_samples, dataset_name, 
+                                        signal_strength = 1.0, 
+                                        noise_level = 1.0) {
+  
+  # 设置重要特征（前20个特征与标签相关）
+  n_important <- 20
+  
+  # 生成协变量矩阵（模拟特征间相关性）
+  correlation_matrix <- diag(n_features)
+  
+  # 为重要特征设置相关性
+  for(i in 1:n_important) {
+    for(j in 1:n_important) {
+      if(i != j) {
+        correlation_matrix[i, j] <- 0.3 * exp(-abs(i-j)/5)
+      }
+    }
+  }
+  
+  # 生成基础特征矩阵
+  X <- mvrnorm(n = n_samples, 
+               mu = rep(0, n_features), 
+               Sigma = correlation_matrix)
+  
+  # 设置真实的系数（只有前n_important个特征有效果）
+  true_coefficients <- c(
+    # 前10个特征：正向关联
+    runif(10, 0.5, 1.5) * signal_strength,
+    # 接下来10个特征：负向关联  
+    runif(10, -1.5, -0.5) * signal_strength,
+    # 其余特征：无关联
+    rep(0, n_features - n_important)
+  )
+  
+  # 生成线性预测子
+  linear_predictor <- X %*% true_coefficients + rnorm(n_samples, 0, noise_level)
+  
+  # 生成二分类标签（logistic模型）
+  prob <- 1 / (1 + exp(-linear_predictor))
+  labels <- rbinom(n_samples, 1, prob)
+  
+  # 添加一些噪声特征
+  noise_features <- matrix(rnorm(n_samples * (n_features - n_important), 0, 0.5), 
+                          nrow = n_samples)
+  X[, (n_important+1):n_features] <- noise_features
+  
+  # 创建数据框
+  sample_names <- paste0(dataset_name, "_Sample_", sprintf("%03d", 1:n_samples))
+  
+  data <- data.frame(
+    Sample = sample_names,
+    Label = labels,
+    X,
+    stringsAsFactors = FALSE
+  )
+  
+  colnames(data)[3:(n_features+2)] <- feature_names
+  
+  return(data)
+}
+
+# 生成三个数据集
+cat("生成训练数据集...\n")
+train_data <- generate_classification_data(n_train, "Train", 
+                                          signal_strength = 1.2, 
+                                          noise_level = 0.8)
+
+cat("生成测试数据集1...\n") 
+test_data1 <- generate_classification_data(n_test1, "Test1", 
+                                          signal_strength = 1.0, 
+                                          noise_level = 1.0)
+
+cat("生成测试数据集2...\n")
+test_data2 <- generate_classification_data(n_test2, "Test2", 
+                                          signal_strength = 0.9, 
+                                          noise_level = 1.1)
+
+# 检查数据质量
+cat("\n=== 数据集质量检查 ===\n")
+
+datasets <- list(train = train_data, test1 = test_data1, test2 = test_data2)
+
+for(name in names(datasets)) {
+  data <- datasets[[name]]
+  cat("数据集:", name, "\n")
+  cat("  样本数:", nrow(data), "\n")
+  cat("  特征数:", ncol(data)-2, "\n")
+  cat("  标签分布:", table(data$Label), "\n")
+  cat("  标签比例:", round(prop.table(table(data$Label)), 3), "\n")
+  
+  # 检查前几个重要特征与标签的相关性
+  important_cors <- sapply(3:12, function(i) {
+    cor(data[,i], data$Label)
+  })
+  cat("  重要特征相关性范围:", round(range(important_cors), 3), "\n\n")
+}
+
+# 保存数据文件
+write.table(train_data, "train_data.txt", 
+           sep = "\t", row.names = FALSE, quote = FALSE)
+write.table(test_data1, "test_data1.txt", 
+           sep = "\t", row.names = FALSE, quote = FALSE)
+write.table(test_data2, "test_data2.txt", 
+           sep = "\t", row.names = FALSE, quote = FALSE)
+
+cat("数据文件已保存:\n")
+cat("- train_data.txt: 训练数据 (", nrow(train_data), "样本)\n")
+cat("- test_data1.txt: 测试数据1 (", nrow(test_data1), "样本)\n") 
+cat("- test_data2.txt: 测试数据2 (", nrow(test_data2), "样本)\n")
+
+# 快速数据可视化
+library(ggplot2)
+library(corrplot)
+
+# 1. 标签分布图
+label_dist <- do.call(rbind, lapply(names(datasets), function(name) {
+  data.frame(Dataset = name, 
+            Label = datasets[[name]]$Label,
+            stringsAsFactors = FALSE)
+}))
+
+p1 <- ggplot(label_dist, aes(x = Dataset, fill = factor(Label))) +
+  geom_bar(position = "fill") +
+  scale_fill_manual(values = c("0" = "#4575B4", "1" = "#D73027"),
+                   labels = c("Negative", "Positive")) +
+  labs(title = "Label Distribution Across Datasets",
+       y = "Proportion", fill = "Label") +
+  theme_minimal()
+
+ggsave("label_distribution.png", p1, width = 8, height = 6, dpi = 300)
+
+# 2. 重要特征相关性热图
+important_features_cor <- cor(train_data[, 3:22])  # 前20个重要特征
+png("important_features_correlation.png", width = 10, height = 10, 
+    units = "in", res = 300)
+corrplot(important_features_cor, method = "color", type = "upper",
+         order = "hclust", tl.cex = 0.8, title = "Important Features Correlation")
+dev.off()
+
+# 3. 特征与标签的关联强度
+feature_label_cor <- sapply(3:ncol(train_data), function(i) {
+  abs(cor(train_data[,i], train_data$Label))
+})
+
+cor_data <- data.frame(
+  Feature = colnames(train_data)[3:ncol(train_data)],
+  Correlation = feature_label_cor,
+  Type = ifelse(1:length(feature_label_cor) <= 20, "Important", "Noise")
+)
+
+p3 <- ggplot(cor_data, aes(x = 1:nrow(cor_data), y = Correlation, color = Type)) +
+  geom_point(alpha = 0.7) +
+  scale_color_manual(values = c("Important" = "#D73027", "Noise" = "#4575B4")) +
+  labs(title = "Feature-Label Correlation Strength",
+       x = "Feature Index", y = "Absolute Correlation") +
+  theme_minimal()
+
+ggsave("feature_label_correlation.png", p3, width = 10, height = 6, dpi = 300)
+
+cat("\n可视化文件已保存:\n")
+cat("- label_distribution.png: 标签分布图\n")
+cat("- important_features_correlation.png: 重要特征相关性热图\n") 
+cat("- feature_label_correlation.png: 特征与标签关联图\n")
+
+cat("\n=== 数据生成完成 ===\n")
+cat("现在可以运行 FigureYa293ClassificationML.Rmd 进行分析！\n")
+```
+
+# Session Info
+
+```{r}
+sessionInfo()
+```

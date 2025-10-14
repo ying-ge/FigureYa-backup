@@ -201,9 +201,9 @@ system(paste("Rscript", file.path(pisce.path, "pisce.R"), # pisce主代码位置
              "human", "symbol", 1e-8, 200))               # 物种(human, mouse)，基因名称类型(ensg, symbol)、P值阈值，bootstrap次数 | Species (human/mouse), Gene ID type (ensg/symbol), P-value threshold, Bootstrap iterations
 ```
 
-这里会生成`out_unPruned.rds`文件，用于下一步计算。`out_unPruned.rds`文件已上传至百度网盘，便于测试。下载地址：<https://pan.baidu.com/s/18_Q329zr_33edK2TSJYYnQ?pwd=a6hx>。下载后删除扩展名`.txt`，存入Result文件夹，即可继续往下运行。
+这里会生成`out_unPruned.rds`文件，用于下一步计算。
 
-An `out_unPruned.rds` file will be generated here, which is used for the next step of calculation. The `out_unPruned.rds` file has been uploaded to Baidu Netdisk for testing purposes. Download link: <https://pan.baidu.com/s/18_Q329zr_33edK2TSJYYnQ?pwd=a6hx>. After downloading, delete the .txt file extension, save the file to the "Result" folder, and then you can continue to run the subsequent processes.
+An `out_unPruned.rds` file will be generated here, which is used for the next step of calculation.
 
 ```{r}
 # 读取ARACNe网络推断结果

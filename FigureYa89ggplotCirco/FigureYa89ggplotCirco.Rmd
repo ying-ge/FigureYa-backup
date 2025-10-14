@@ -10,7 +10,6 @@ output: html_document
 **Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()`  
 
-
 # Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
@@ -66,7 +65,7 @@ options(stringsAsFactors = FALSE)  # 禁止自动将字符串转换为因子类�
 
 ## 输入数据的整理
 
-如果你的数据已经整理成easy_input.csv的格式，就可以跳过这步，直接进入“开始画图”。
+如果你的数据已经整理成easy_input.csv的格式，就可以跳过这步，直接进入“输入文件”。
 
 从文献中看，需要读取`TableS2.TCGA_GBM_DiffExpRBPs`和`TableS3.GSCs_DiffExpRBPs`两个sheet。
 
@@ -74,7 +73,7 @@ options(stringsAsFactors = FALSE)  # 禁止自动将字符串转换为因子类�
 
 ## Organizing input data
 
-If your data has already been organized into easy_input.csv format, you can skip this step and directly enter "Start Drawing".
+If your data has already been organized into easy_input.csv format, you can skip this step and directly enter "Input File".
 
 According to the literature, it is necessary to read two sheets, 'TableS2. TCGA-GBM-DiffExpRBPs' and' TableS3. GSCs_DiffExpRBPs'.
 
