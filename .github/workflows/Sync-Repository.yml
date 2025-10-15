@@ -22,7 +22,7 @@ jobs:
         with:
           repository: ying-ge/FigureYa
           path: target-repo
-          token: ${{ secrets.FIGUREYA2ACTION }}
+          token: ${{ secrets.MAIN_REPO_TOKEN }}
 
       - name: Generate LFS file list
         id: lfs_files
