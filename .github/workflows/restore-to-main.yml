@@ -49,7 +49,7 @@ jobs:
  
     - name: Clone main repository
       run: |
-        git clone https://x-access-token:${{ secrets.FIGUREYA2ACTION }}@github.com/${{ github.repository_owner }}/FigureYa.git main-repo
+        git clone https://x-access-token:${{ secrets.MAIN_REPO_TOKEN }}@github.com/${{ github.repository_owner }}/FigureYa.git main-repo
         cd main-repo
         git checkout main || git checkout -b main
         
