@@ -12,7 +12,7 @@ jobs:
   sync-content:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Source Repo (FigureYa)
+      - name: Checkout Source Repo (FigureYa-backup)
         uses: actions/checkout@v4
         with:
           path: source-repo
