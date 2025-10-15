@@ -17,10 +17,10 @@ jobs:
         with:
           path: source-repo
 
-      - name: Checkout Target Repo (FigureYa-backup)
+      - name: Checkout Target Repo (FigureYa)
         uses: actions/checkout@v4
         with:
-          repository: ying-ge/FigureYa-backup
+          repository: ying-ge/FigureYa
           path: target-repo
           token: ${{ secrets.FIGUREYA2ACTION }}
 
