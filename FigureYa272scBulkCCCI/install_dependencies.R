@@ -67,7 +67,6 @@ install_github_package <- function(repo) {
 cat("Starting R package installation...\n")
 cat("===========================================\n")
 
-# 安装CRAN包
 cat("\nInstalling CRAN packages...\n")
 cran_packages <- c("pheatmap", "RColorBrewer", "ggplot2", "ggthemes", "plyr", 
                    "dplyr", "stringr", "tibble", "tidyr", "devtools")
@@ -76,9 +75,7 @@ for (pkg in cran_packages) {
   install_cran_package(pkg)
 }
 
-# 安装ScBulkCCCI包（从GitHub安装）
-cat("\nInstalling ScBulkCCCI from GitHub...\n")
-install_github_package("YaoZhou89/ScBulkCCCI")
+install.packages("ScBulkCCCI_0.1.3.tar.gz", repos = NULL, type = "source")
 
 cat("\n===========================================\n")
 cat("Package installation completed!\n")

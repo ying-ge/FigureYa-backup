@@ -10,12 +10,12 @@ output: html_document
 **Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()`  
 
-
 # Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
 
+Zeng D, Li M, Zhou R, Zhang J, Sun H, Shi M, et al. Tumor microenvironment characterization in gastric cancer identifies prognostic and immunotherapeutically relevant gene signatures. Cancer Immunology Research 2019:canimm.0436.2018 doi 10.1158/2326-6066.CIR-18-0436.
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -23,10 +23,9 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## 需求描述
+## Requirement description
 
 复现原文免疫细胞之间相关性的网络图
-
-## Requirement description
 
 Reproduce the network diagram of the correlation between immune cells in the original text
 
@@ -34,40 +33,26 @@ Reproduce the network diagram of the correlation between immune cells in the ori
 
 出自<http://cancerimmunolres.aacrjournals.org/content/early/2019/03/06/2326-6066.CIR-18-0436>
 
-from<http://cancerimmunolres.aacrjournals.org/content/early/2019/03/06/2326-6066.CIR-18-0436>
+From<http://cancerimmunolres.aacrjournals.org/content/early/2019/03/06/2326-6066.CIR-18-0436>
 
 节点的颜色代表细胞所属的cluster，节点的大小代表生存分析的log_rank_p，用圆心点的颜色展示HR，连线颜色代表正/负相关，连线的粗细代表相关性Pvalue。
 
 The color of the node represents the cluster to which the cell belongs, the size of the node represents the log_rank_p of survival analysis, HR is displayed using the color of the center point, the color of the connecting line represents positive/negative correlation, and the thickness of the connecting line represents correlation Pvalue.
 
 ## 应用场景
+## Application scenarios
 
 用网络图同时展示相关关系、pvalue、聚类/分类结果、跟预后的关系。
 
 - 例如例文中各细胞之间的相关关系、跟预后的关系
 - 或表达谱数据中多个基因的相关性、聚类结果、pvalue、跟预后的关系，比FigureYa37correlation更丰富。
 
-**画法说明：**
-
-- 用代码画出例图中除圆心以外的部分。
-- 再根据“output_HR_corlor.csv”的最后一列，用Illustrator在圆心上画点，点的颜色代表HR的正负。
-- 最后输出的pdf文件是矢量图，可以用Illustrator等软件调整细胞名等文字的位置。
-
-## Application scenarios
-
 Using a network diagram to simultaneously display relevant relationships pvalue、 The relationship between clustering/classification results and prognosis.
 
--For example, the correlation between cells in the example text and their relationship with prognosis
--Or the correlation and clustering results of multiple genes in the expression profile data pvalue、 The relationship with prognosis is richer than the correlation shown in Figure Ya37.
-
-**Painting Description:**
-
--Draw the parts of the example diagram except for the center using code.
--Based on the last column of 'outputting _ HR-color. csv', use Illustrator to draw a point on the center of the circle, with the color of the point representing the positive or negative sign of HR.
--The final output PDF file is a vector image, which can be adjusted using software such as Illustrator to position text such as cell names.
+- For example, the correlation between cells in the example text and their relationship with prognosis
+- Or the correlation and clustering results of multiple genes in the expression profile data pvalue、 The relationship with prognosis is richer than the correlation shown in Figure Ya37.
 
 ## 环境设置
-
 ## Environment settings
 
 ```{r}
@@ -84,7 +69,6 @@ options(stringsAsFactors = FALSE)     # 禁止将字符型变量自动转换为�
 ```
 
 ## 参数设置
-
 ## Parameter settings
 
 ```{r}
@@ -98,14 +82,13 @@ mycol <- c("#FDBF6F", "#1F78B4", "#E31A1C", "#8C510A")
 ```
 
 ## 输入文件
+## Input file
 
 至少要提供easy_input_immune.csv文件，例如免疫细胞矩阵，或基因表达矩阵（把这里的免疫细胞替换成基因即可）。如果没有生存分析结果，可以用其他pvalue代替。
 
 easy_input_immune.csv，免疫细胞矩阵文件，用于计算相关系数和P值、把细胞分成4个cluster、通过卡相关性的P值来建立细胞间的连接关系。每行一个sample，每列一种细胞。最后一列fibioblast用mcpcounter获得，可参考FigureYa56immune_inflitration；文中其他22种免疫细胞用CIBERSORT计算获得，还可以用FigureYa56immune_inflitration或FigureYa71ssGSEA来量化免疫细胞。
 
 easy_input_HR.csv，生存分析结果，需要HR（节点圆心点的颜色，用AI来加）和p value（节点圆的大小）列。可通过FigureYa47HR2table计算获得。
-
-## Input file
 
 At least provide the easy_input_immune.csv file, such as the immune cell matrix or gene expression matrix (replace the immune cells here with genes). If there are no survival analysis results, other p-values can be used instead.
 
@@ -137,14 +120,12 @@ write.csv(bb, "output_HR_corlor.csv", quote = F)  # 输出用于后续绘图的�
 ```
 
 ## 相关性的计算
-
-### 计算每两种细胞间的相关性
-
-计算每两种细胞间的相关性corr，用corrplot可视化，看看聚成几类比较好。
-
 ## Calculation of correlation
 
+### 计算每两种细胞间的相关性
 ### Calculate the correlation between every two types of cells
+
+计算每两种细胞间的相关性corr，用corrplot可视化，看看聚成几类比较好。
 
 Calculate the correlation corr between every two types of cells, visualize it using corrplot, and see which categories are better clustered.
 
@@ -172,10 +153,9 @@ corrplot(corr, title = "",
 ```
 
 ### 计算相关性分析的P值
+### Calculate the P-value for correlation analysis
 
 也可以用Hmsic包来求，但是发现它输出的P值有限制。
-
-### Calculate the P-value for correlation analysis
 
 It can also be calculated using the Hmsic package, but it was found that its output P value is limited.
 
@@ -207,10 +187,9 @@ head(p.corr[, 1:5])  # 显示p值矩阵的前几行和前5列 | Show first few r
 ```
 
 ### 计算节点间的连接关系
+### Calculate the connection relationship between nodes
 
 只保留那些相关性较强的连接
-
-### Calculate the connection relationship between nodes
 
 Only retain connections with strong correlation
 
@@ -257,10 +236,9 @@ write.csv(corpvlue, "output_links.csv")  # 输出用于网络图的连接数据 
 ```
 
 ## 利用矩阵文件进行细胞的聚类
+## Cluster cells using matrix files
 
 细胞聚类的结果综合考虑了"hclust"的结果、"kmeans"聚类的结果、以及目前的研究现状
-
-## Cluster cells using matrix files
 
 The results of cell clustering comprehensively consider the results of "hcluster", "k-means" clustering, and the current research status
 
@@ -302,7 +280,6 @@ nodes  # 显示最终节点数据 | Display final node data
 ```
 
 ## 构建网络的input文件
-
 ## Build the input file for the network
 
 ```{r}
@@ -353,9 +330,20 @@ net <- graph_from_data_frame(d = links, vertices = nodes, directed = T)
 # 从数据框构建图对象：d为连接数据，vertices为节点数据，directed指定有向图 | Build graph: edges from 'links', nodes from 'nodes', directed graph
 ```
 
-### 开始画图
+## 开始画图
+## Start drawing
 
-### Start drawing
+**画法说明：**
+
+- 用代码画出例图中除圆心以外的部分。
+- 再根据“output_HR_corlor.csv”的最后一列，用Illustrator在圆心上画点，点的颜色代表HR的正负。
+- 最后输出的pdf文件是矢量图，可以用Illustrator等软件调整细胞名等文字的位置。
+
+**Painting Description:**
+
+- Draw the parts of the example diagram except for the center using code.
+- Based on the last column of 'outputting _ HR-color. csv', use Illustrator to draw a point on the center of the circle, with the color of the point representing the positive or negative sign of HR.
+- The final output PDF file is a vector image, which can be adjusted using software such as Illustrator to position text such as cell names.
 
 ```{r, fig.width=10, fig.height=8}
 # 根据细胞聚类设置节点颜色 | Set node colors based on cell clusters
@@ -426,6 +414,8 @@ dev.off()  # 关闭图形设备 | Close graphics device
 文字的位置用Illustrator调整；再根据“output_HR_corlor.csv”的最后一列用Illustrator在圆心上画点，点的颜色代表HR的正负。
 
 Adjust the position of the text using Illustrator; Draw a point on the center of the circle using Illustrator based on the last column of 'outputting _ HR-color. csv', where the color of the point represents the positive or negative sign of HR.
+
+## Session Info
 
 ```{r}
 sessionInfo()

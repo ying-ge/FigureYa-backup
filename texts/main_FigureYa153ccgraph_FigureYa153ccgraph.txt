@@ -5,7 +5,7 @@ Author(s)
 Reviewer(s)
 : Ying Ge, Junyi Shen
 Date
-: 2025-09-22
+: 2025-10-16
 Academic Citation
 If you use this code in your work or research, we kindly request that
 you cite our publication:
@@ -111,18 +111,20 @@ Not limited to two-level relationships; more levels are
 supported.
 环境设置
 Environment Setup
-source("install_dependencies.R")
-library(clusterProfiler)
-library(GOplot)
-library(tidyverse)
-library(data.table)
-library(ggraph)
-library(tidygraph)
-Sys.setenv(LANGUAGE = "en") #显示英文报错信息 #Display English error messages
-options(stringsAsFactors = FALSE) #禁止chr转成factor #Disable conversion of chr to factor
-加载自定义函数 Loading a custom function
-source(file = "gather_graph_node.R")
-source(file = "gather_graph_edge.R")
+source("install_dependencies.R")  # 确保依赖包已安装 # Ensure dependencies are installed
+source(file = "gather_graph_node.R") # from ccgragh, https://github.com/gaospecial/ccgraph
+source(file = "gather_graph_edge.R") # from ccgragh, https://github.com/gaospecial/ccgraph
+library(clusterProfiler) # 用于功能富集分析 # For functional enrichment analysis
+library(GOplot)          # 用于可视化基因本体分析结果 # For visualizing Gene Ontology analysis results
+library(tidyverse)       # 用于数据操作和可视化的集合包 # A collection of packages for data manipulation and visualization
+library(data.table)      # 用于高效的数据操作 # For efficient data manipulation
+library(ggraph)          # 用于基于图形的可视化 # For graph-based visualizations
+library(tidygraph)       # 用于处理图形数据 # For handling graph data
+
+# 设置环境变量
+# Set environment variables
+Sys.setenv(LANGUAGE = "en")  # 显示英文报错信息 # Display error messages in English
+options(stringsAsFactors = FALSE)  # 禁止字符型数据自动转换为因子型 # Prevent automatic conversion of character data to factors```
 输入文件的获得
 Obtaining the input file
 如果你的数据已经整理成
@@ -167,7 +169,7 @@ dim(kk)
 # 把ENTREZ ID转为gene symbol，便于查看通路里的基因
 # Convert the ENTREZ ID to a gene symbol to facilitate viewing genes within the pathway
 kk.gsym <- setReadable(kk, 'org.Hs.eg.db', #物种
-                    'ENTREZID')
+                      'ENTREZID')
 
 # 可以用kk.gsym作为输入，用clusterProfiler画图
 # Use kk.gsym as input to plot with clusterProfiler
@@ -245,17 +247,17 @@ to accomplish this task (previously
 loaded).
 这两个函数的参数设置借鉴了
 treemap()
-的实现方式。 The
-parameter settings for these two functions are inspired by the
-implementation of
-treemap()
-.
+的实现方式。
 df
 ：一个数据框
 index
 ：一个索引项（分组项）
 value
 ：要采集的数值
+The parameter settings for these two functions are inspired by the
+implementation of
+treemap()
+.
 df
 : A data frame
 index
@@ -307,8 +309,8 @@ Start drawing the graph
 Customize the color scheme and plot directly
 # 用 `ggraph` 出图 # Plot the graph using `ggraph`
 gc <- ggraph(graph, layout = 'dendrogram', circular = TRUE) + 
-  # 使用 filter 参数去掉 root（前面设置为"all"）节点及与其相连的边
-# Use the filter parameter to remove the root node (previously set to "all") and its connected edges.
+  # 不画中心点，使用 filter 参数去掉 root（前面设置为"all"）节点及与其相连的边
+  # Do not show the center node. Use the filter parameter to remove the root node (previously set to "all") and its connected edges.
   geom_edge_diagonal(aes(color = node1.node.branch,
                          filter=node1.node.level!="all"), 
                      alpha = 1/3,edge_width=1) + 
@@ -389,17 +391,17 @@ geom_edge_diagonal()
 按例文配色，然后后期加背景色
 Follow the example color scheme, then add a background color
 later
+保留中心点和连向中心点的线 ｜ keep the center node and the links to
+it.
 gc1 <- ggraph(graph, layout = 'dendrogram', circular = TRUE) + 
   #画连线 # Draw the lines
-  geom_edge_diagonal(aes(color = node2.color,
-                         filter=node1.node.level!="all"), 
+  geom_edge_diagonal(aes(color = node2.color), 
                      alpha = 0.5, #透明度 # Transparency
                      edge_width=2.5) + #连线的粗细 # Line thickness
   scale_edge_color_manual(values = c("#61C3ED","red","purple","darkgreen")) + #自定义颜色 # Custom color
 
   #画点 # Draw the points
-  geom_node_point(aes(size = node.size,
-                      filter=node.level!="all"), 
+  geom_node_point(aes(size = node.size), 
 # Alpha = 1/3,
                   color = "#61C3ED") + #统一为淡蓝色 # Unify the color to light blue
   scale_size(range = c(0.5,80)) + #做均一化处理，让点的大小介于range之间 # Normalize the points so that the size is between the range
@@ -431,7 +433,8 @@ gc1 <- ggraph(graph, layout = 'dendrogram', circular = TRUE) +
   coord_cartesian(xlim=c(-1.3,1.3),ylim = c(-1.3,1.3)) #扩大坐标系 # Expand the coordinate system
 
 gc1
-后期处理 # Post-processing
+后期处理
+Post-processing
 保存到pdf文件，是矢量图，可以用Illustrator等软件编辑图形、文字和背景
 Save to a PDF file, which is a vector image. You can edit the graphics,
 text, and background using software such as Illustrator.
@@ -508,4 +511,5 @@ ggsave("ccgraph_microbiome.pdf", width = 14, height = 14)
 参考资料
 References
 https://mp.weixin.qq.com/s/JNIncz3W-59yjGk2ibJWUw
+Session Information
 sessionInfo()

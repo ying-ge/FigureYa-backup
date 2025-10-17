@@ -1,0 +1,72 @@
+FoxP3	Target Protein	Cellular Location	Interaction Score
+FOXP3	RUNX1	Nucleus, Cytoplasm	0.999
+FOXP3	NFATC2	Nucleus, Cytoplasm	0.995
+FOXP3	KAT5	Nucleus	0.992
+FOXP3	IL2	Cytoplasm, Plasma membrane	0.991
+FOXP3	HIF1A	Nucleus	0.988
+FOXP3	RORC	Nucleus	0.987
+FOXP3	STAT3	Nucleus, Cytoplasm	0.984
+FOXP3	IFNG	Cytoplasm, Plasma membrane	0.982
+FOXP3	CD4	Plasma membrane	0.979
+FOXP3	CTLA4	Plasma membrane	0.976
+FOXP3	IL2RA	Plasma membrane	0.970
+FOXP3	TNFRSF18	Plasma membrane	0.957
+FOXP3	HDAC9	Nucleus	0.957
+FOXP3	IL10	Cytoplasm	0.955
+FOXP3	IL17A	Cytoplasm	0.953
+FOXP3	HDAC7	Nucleus	0.953
+FOXP3	CD8A	Plasma membrane	0.948
+FOXP3	CD28	Plasma membrane	0.935
+FOXP3	TBX21	Nucleus	0.934
+FOXP3	EZH2	Nucleus	0.931
+FOXP3	IL4	Cytoplasm	0.925
+FOXP3	IKZF4	Nucleus	0.924
+FOXP3	CBFB	Nucleus	0.918
+FOXP3	IL6	Cytoplasm	0.913
+FOXP3	CD274	Plasma membrane	0.912
+FOXP3	TNF	Cytoplasm	0.909
+FOXP3	HDAC1	Nucleus	0.909
+FOXP3	CD80	Plasma membrane	0.909
+FOXP3	CD86	Plasma membrane	0.903
+FOXP3	GATA3	Nucleus	0.898
+FOXP3	IRF4	Nucleus	0.896
+FOXP3	EP300	Nucleus	0.891
+FOXP3	REL	Nucleus	0.882
+FOXP3	ICOS	Plasma membrane	0.881
+FOXP3	IDO1	Cytoplasm	0.879
+FOXP3	PTPRC	Plasma membrane	0.879
+FOXP3	ITGAX	Plasma membrane	0.875
+FOXP3	PPARG	Nucleus	0.873
+FOXP3	CCL22	Extracellular	0.872
+FOXP3	IL7R	Plasma membrane	0.871
+FOXP3	ITGAE	Plasma membrane	0.865
+FOXP3	TGFB1	Cytoplasm, Extracellular	0.865
+FOXP3	SELL	Plasma membrane	0.862
+FOXP3	CD44	Plasma membrane	0.855
+FOXP3	ITGAM	Plasma membrane	0.855
+FOXP3	CD68	Plasma membrane	0.850
+FOXP3	STAT1	Nucleus, Cytoplasm	0.849
+FOXP3	CXCR3	Plasma membrane	0.846
+FOXP3	IL1B	Cytoplasm	0.843
+FOXP3	CXCR5	Plasma membrane	0.843
+FOXP3	FOXP2	Nucleus	0.843
+FOXP3	IDO2	Cytoplasm	0.841
+FOXP3	CD19	Plasma membrane	0.839
+FOXP3	PRF1	Cytoplasm	0.837
+FOXP3	RELA	Nucleus	0.825
+FOXP3	CD69	Plasma membrane	0.823
+FOXP3	GZMB	Cytoplasm	0.823
+FOXP3	FCGR3A	Plasma membrane	0.822
+FOXP3	TIGIT	Plasma membrane	0.822
+FOXP3	FCGR3B	Plasma membrane	0.821
+FOXP3	RAG1	Nucleus	0.813
+FOXP3	FOXP4	Nucleus	0.812
+FOXP3	IL13	Cytoplasm	0.808
+FOXP3	IL15	Cytoplasm	0.807
+FOXP3	LAG3	Plasma membrane	0.807
+FOXP3	IL5	Cytoplasm	0.806
+FOXP3	SMAD3	Nucleus, Cytoplasm	0.805
+FOXP3	IL17F	Cytoplasm	0.803
+FOXP3	CCR7	Plasma membrane	0.802
+FOXP3	BCL6	Nucleus	0.800
+

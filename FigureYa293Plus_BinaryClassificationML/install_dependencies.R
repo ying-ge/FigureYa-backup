@@ -40,22 +40,64 @@ install_bioc_package <- function(package_name) {
   }
 }
 
+# 安装GitHub包
+install_github_package <- function(repo, method = "remotes") {
+  package_name <- strsplit(repo, "/")[[1]][2]
+  if (!is_package_installed(package_name)) {
+    cat("Installing GitHub package:", repo, "\n")
+    tryCatch({
+      if (method == "remotes") {
+        if (!is_package_installed("remotes")) {
+          install.packages("remotes")
+        }
+        remotes::install_github(repo, dependencies = TRUE)
+      } else if (method == "devtools") {
+        if (!is_package_installed("devtools")) {
+          install.packages("devtools")
+        }
+        devtools::install_github(repo, dependencies = TRUE)
+      } else if (method == "pak") {
+        if (!is_package_installed("pak")) {
+          install.packages("pak")
+        }
+        pak::pak(repo)
+      }
+      cat("Successfully installed:", package_name, "\n")
+    }, error = function(e) {
+      cat("Failed to install", repo, ":", e$message, "\n")
+      return(FALSE)
+    })
+    return(TRUE)
+  } else {
+    cat("Package already installed:", package_name, "\n")
+    return(TRUE)
+  }
+}
+
 cat("Starting package installation...\n")
 
 # 先安装基础依赖
 cat("\nInstalling basic dependencies...\n")
-base_deps <- c("remotes", "devtools", "survival", "glmnet")
+base_deps <- c("remotes", "devtools", "survival", "glmnet", "pls", "lars")
 for (pkg in base_deps) {
   install_cran_package(pkg)
 }
+
+options(repos = c(
+  mlrorg = "https://mlr-org.r-universe.dev",
+  CRAN = "https://cloud.r-project.org/"
+))
+
+install.packages("RWekajars_3.9.3-2.tar.gz", repos = NULL, type = "source")
+install.packages("plsRcox-master.tar.gz", repos = NULL, type = "source")
 
 # 安装CRAN包
 cat("\nInstalling CRAN packages...\n")
 cran_packages <- c("BART", "RColorBrewer", "compareC", "dplyr", "ggbreak", 
                    "ggplot2", "ggsci", "miscTools", "plsRcox", "randomForestSRC", 
                    "rlang", "superpc", "survivalsvm", "tibble", "tidyr",
-                   "naivebayes", "party", "C50", "neuralnet", "Boruta", "FSelector",
-                   "mlr3", "mlr3learners", "mlr3extralearners", "caret", "plotly", "VIM"
+                   "naivebayes", "party", "C50", "neuralnet", "Boruta", "RWekajars", "FSelector",
+                   "mlr3", "mlr3learners", "mlr3extralearners", "caret", "plotly", "VIM", "gbm"
 )
 
 for (pkg in cran_packages) {
@@ -101,50 +143,27 @@ if (!is_package_installed("CoxBoost")) {
   cat("CoxBoost already installed\n")
 }
 
-# install gbm3
-install_gbm3 <- function() {
-  cat("\nInstalling gbm3 from GitHub...\n")
-  
-  # 检查是否已安装
-  if (is_package_installed("gbm3")) {
-    cat("gbm3 is already installed\n")
-    return(TRUE)
-  }
-  
-  installation_methods <- list(
-    function() remotes::install_github("gbm-developers/gbm3"),
-    function() remotes::install_github("gbm-developers/gbm3", auth_token = NULL),
-    function() devtools::install_github("gbm-developers/gbm3")
-  )
-  
-  for (i in seq_along(installation_methods)) {
-    tryCatch({
-      installation_methods[[i]]()
-      cat("Successfully installed gbm3 from GitHub (method ", i, ")\n", sep = "")
-      return(TRUE)
-    }, error = function(e) {
-      cat("Installation method ", i, " failed: ", e$message, "\n", sep = "")
-    })
-  }
-  
-  cat("All installation methods failed. Please install gbm3 manually.\n")
-  return(FALSE)
-}
-
-# 使用函数
-install_gbm3()
-
-
 # 验证安装
 cat("\nVerifying installation...\n")
 required_packages <- c("CoxBoost", "survival", "glmnet", "randomForestSRC", "plsRcox",
-                       "BART", "superpc", "survivalsvm", "mlr3", "caret")  # 添加更多关键包
+                       "BART", "superpc", "survivalsvm", "mlr3", "caret", "mlr3extralearners")  # 添加 mlr3extralearners
 for (pkg in required_packages) {
   if (is_package_installed(pkg)) {
     cat("✓", pkg, "is installed\n")
   } else {
     cat("✗", pkg, "is NOT installed\n")
   }
+}
+
+# 测试 mlr3extralearners 是否能正常加载
+cat("\nTesting mlr3extralearners loading...\n")
+if (is_package_installed("mlr3extralearners")) {
+  tryCatch({
+    library(mlr3extralearners)
+    cat("✓ mlr3extralearners loaded successfully\n")
+  }, error = function(e) {
+    cat("✗ Failed to load mlr3extralearners:", e$message, "\n")
+  })
 }
 
 cat("\nInstallation completed!\n")

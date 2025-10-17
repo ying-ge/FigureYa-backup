@@ -10,12 +10,15 @@ output: html_document
 **Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()`  
 
-
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
 
+To cite database 'ComPPI' in publications use:
+
+Veres, D., Gyurko, M. D., Thaler, B., Szalay, K., Fazekas, D., Korcsmaros, T. and Csermely, P. (2015) ComPPI: a cellular compartment-specific database for protein-protein interaction network analysis. Nucleic Acids Res. (Database Issue) 43, D485-D493.
+http://arxiv.org/abs/1410.2494
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -68,20 +71,15 @@ The relationship between transcription factor-target gene can be designed as fol
 ## 环境设置
 ## Environment settings
 
-
 ```{r}
 source("install_dependencies.R")
-```
 
-Load package
-
-```{r}
-library(org.Hs.eg.db)
-library(clusterProfiler)
-library(ggplot2)
-library(reshape2)
-library(igraph)
-library(magrittr)
+library(org.Hs.eg.db)         # 加载人类基因注释数据库｜Load human gene annotation database
+library(clusterProfiler)      # 加载富集分析工具包｜Load enrichment analysis toolkit
+library(ggplot2)              # 加载绘图包｜Load plotting package
+library(reshape2)             # 加载数据重塑包｜Load data reshaping package
+library(igraph)               # 加载网络分析包｜Load network analysis package
+library(magrittr)             # 加载管道操作包｜Load pipe operator package
 
 Sys.setenv(LANGUAGE = "en") #显示英文报错信息 #Display English error message
 options(stringsAsFactors = FALSE) #禁止chr转成factor #Disable chr conversion to factor
@@ -174,8 +172,8 @@ Download file "comppi--interactors_of_Q9NZQ7.txt".
 ### Input data sorting
 
 comppi--interactors_of_Q0GN75.txt，上一步获得的interaction信息。每行一个蛋白质，所有证据和分数都在Major.Loc.With.Loc.Score里面，用｜分隔，需要拆开成每条证据单独一行。
-comppi--interactors_of_Q0GN75.txt, interaction information obtained in the previous step. One protein per line, all evidence and scores are in Major.Loc.With.Loc.Score, separated by |, need to be split into a separate line for each piece of evidence.
 
+comppi--interactors_of_Q0GN75.txt, interaction information obtained in the previous step. One protein per line, all evidence and scores are in Major.Loc.With.Loc.Score, separated by |, need to be split into a separate line for each piece of evidence.
 
 ```{r}
 idata <- read.table(file = "comppi--interactors_of_Q0GN75.txt", sep = "\t", header = T, quote = "")
@@ -233,7 +231,7 @@ write.csv(links, "easy_input.csv", quote = F, row.names = F)
 用igraph画图
 Drawing with igraph
 
-```{r net, fig.height=2, fig.width=2}
+```{r net}
 # 读取相互作用关系和score
 # Read the interaction relationship and score
 links <- read.csv("easy_input.csv", header = T)
@@ -262,7 +260,7 @@ lay <- layout_with_dh(net) #weight.node.dist = unique(links[,c("target","score")
 # to fine tune the network map. 
 # Such as adjust the text position to avoid overlapping.
 
-pdf(file = "interaction.pdf", width = 6, height = 6)
+pdf(file = "interaction.pdf", width = 6, height = 8)
 plot(net, layout = lay, 
      vertex.shape = 'fcircle',
      vertex.size = ifelse(vertexes == sourceGene, 15, 3),

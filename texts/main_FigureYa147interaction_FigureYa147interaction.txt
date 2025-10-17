@@ -5,7 +5,7 @@ Author(s)
 Reviewer(s)
 : Ying Ge, Junyi Shen
 Date
-: 2025-09-22
+: 2025-10-15
 Academic Citation
 If you use this code in your work or research, we kindly request that
 you cite our publication:
@@ -13,6 +13,12 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization
 Framework for Enhancing Biomedical Data Interpretation and Research
 Efficiency. iMetaMed.
 https://doi.org/10.1002/imm3.70005
+To cite database ‘ComPPI’ in publications use:
+Veres, D., Gyurko, M. D., Thaler, B., Szalay, K., Fazekas, D.,
+Korcsmaros, T. and Csermely, P. (2015) ComPPI: a cellular
+compartment-specific database for protein-protein interaction network
+analysis. Nucleic Acids Res. (Database Issue) 43, D485-D493.
+http://arxiv.org/abs/1410.2494
 需求描述
 Requirements description
 用interaction文件作为输入画调控网络图，线的长短与相互作用score对应，线的数量和颜色与证据对应。
@@ -73,13 +79,12 @@ connecting line.
 环境设置
 Environment settings
 source("install_dependencies.R")
-Load package
-library(org.Hs.eg.db)
-library(clusterProfiler)
-library(ggplot2)
-library(reshape2)
-library(igraph)
-library(magrittr)
+library(org.Hs.eg.db)         # 加载人类基因注释数据库｜Load human gene annotation database
+library(clusterProfiler)      # 加载富集分析工具包｜Load enrichment analysis toolkit
+library(ggplot2)              # 加载绘图包｜Load plotting package
+library(reshape2)             # 加载数据重塑包｜Load data reshaping package
+library(igraph)               # 加载网络分析包｜Load network analysis package
+library(magrittr)             # 加载管道操作包｜Load pipe operator package
 
 Sys.setenv(LANGUAGE = "en") #显示英文报错信息 #Display English error message
 options(stringsAsFactors = FALSE) #禁止chr转成factor #Disable chr conversion to factor
@@ -228,6 +233,7 @@ net %<>%
                      value = pal_loc[links$Loc]) %<>%
   set.edge.attribute("weight", 
                      value = links$score)
+
 set.seed(777)
 lay <- layout_with_dh(net) #weight.node.dist = unique(links[,c("target","score")])$score) # weight here may be invalid!
 
@@ -235,7 +241,7 @@ lay <- layout_with_dh(net) #weight.node.dist = unique(links[,c("target","score")
 # to fine tune the network map. 
 # Such as adjust the text position to avoid overlapping.
 
-pdf(file = "interaction.pdf", width = 6, height = 6)
+pdf(file = "interaction.pdf", width = 6, height = 8)
 plot(net, layout = lay, 
      vertex.shape = 'fcircle',
      vertex.size = ifelse(vertexes == sourceGene, 15, 3),

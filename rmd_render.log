@@ -1,11 +1,22 @@
-trying URL 'https://cloud.r-project.org/src/contrib/plsRcox_1.8.0.tar.gz'
-Content type 'application/x-gzip' length 1985588 bytes (1.9 MB)
-==================================================
-downloaded 1.9 MB
-
+* installing *source* package ‘RWekajars’ ...
+** this is package ‘RWekajars’ version ‘3.9.3-2’
+** package ‘RWekajars’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+No man pages found in package  ‘RWekajars’ 
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (RWekajars)
+Warning in untar2(tarfile, files, list, exdir, restore_times) :
+  skipping pax global extended headers
 * installing *source* package ‘plsRcox’ ...
 ** this is package ‘plsRcox’ version ‘1.8.0’
-** package ‘plsRcox’ successfully unpacked and MD5 sums checked
 ** using staged installation
 ** R
 ** data
@@ -19,14 +30,19 @@ downloaded 1.9 MB
 ** testing if installed package can be loaded from final location
 ** testing if installed package keeps a record of temporary installation path
 * DONE (plsRcox)
-
-The downloaded source packages are in
-	'/tmp/Rtmpjo25c8/downloaded_packages'
-Error in `library()`:
-! there is no package called 'gbm'
+Error:
+! protect(): protection stack overflow
 Backtrace:
     ▆
- 1. └─base::library(gbm)
+ 1. └─global importance_feature_selection(est_data, method = fs_method)
+ 2.   ├─randomForest::randomForest(...)
+ 3.   ├─randomForest:::randomForest.formula(...)
+ 4.   │ └─base::eval(m, parent.frame())
+ 5.   │   └─base::eval(m, parent.frame())
+ 6.   ├─stats::model.frame(...)
+ 7.   └─stats::model.frame.default(...)
+ 8.     ├─stats::terms(formula, data = data)
+ 9.     └─stats::terms.formula(formula, data = data)
 
-Quitting from FigureYa293Plus_BinaryClassificationML.Rmd:61-117 [unnamed-chunk-1]
+Quitting from FigureYa293Plus_BinaryClassificationML.Rmd:608-652 [unnamed-chunk-7]
 Execution halted

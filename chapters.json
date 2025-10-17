@@ -53,7 +53,7 @@
     "html": "FigureYa6rHRsV2/FigureYa6rHRsV2.html",
     "text": "texts/main_FigureYa6rHRsV2_FigureYa6rHRsV2.txt",
     "folder": "FigureYa6rHRsV2",
-    "thumb": null
+    "thumb": "gallery_compress/FigureYa6rHRsV2.webp"
   },
   {
     "id": "main_FigureYa7PSM_FigureYa7PSM",
@@ -1174,6 +1174,14 @@
     "text": "texts/main_FigureYa147interaction_FigureYa147interaction.txt",
     "folder": "FigureYa147interaction",
     "thumb": "gallery_compress/FigureYa147interaction.webp"
+  },
+  {
+    "id": "main_FigureYa147Plus_STRING_FigureYa147Plus_STRING",
+    "title": "FigureYa147Plus_STRING/FigureYa147Plus_STRING.html",
+    "html": "FigureYa147Plus_STRING/FigureYa147Plus_STRING.html",
+    "text": "texts/main_FigureYa147Plus_STRING_FigureYa147Plus_STRING.txt",
+    "folder": "FigureYa147Plus_STRING",
+    "thumb": "gallery_compress/FigureYa147Plus_STRING.webp"
   },
   {
     "id": "main_FigureYa148SimpleDendrogram_FigureYa148SimpleDendrogram",

@@ -10,7 +10,7 @@ output: html_document
 **Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()` 
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -23,8 +23,8 @@ Gu, Z. circlize implements and enhances circular visualization in R. Bioinformat
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# 需求描述
-# Demand description
+## 需求描述
+## Demand description
 
 以CellPhoneDB的结果文件作为输入，画出细胞沟通的弦图
 
@@ -46,8 +46,8 @@ Figure 3. Cellular crosstalk analysis.
 Shown are the top 10 differentially expressed cancer cell ligands. 
 **Red** interactions are upregulated in LUAD, and **blue** interactions are upregulated in LUSC.
 
-# 应用场景
-# Application scenarios
+## 应用场景
+## Application scenarios
 
 用cellphoneDB结果，对比展示**两组样本**的配体-受体差异。
 
@@ -60,22 +60,20 @@ Using CellPhoneDB results to comparatively visualize ligand-receptor differences
 ggplot2 to generate a bubble plot (reference: FigureYa178receptorLigand).
 - Use CellChat to analyze and compare ligand-receptor differences between **two sample groups** (reference: FigureYa267scCellChat).
 
-# 环境设置
-# Environment Setup
+## 环境设置
+## Environment Setup
 
 ```{r}
 source("install_dependencies.R")
 
-library(ktplots)
-library(SingleCellExperiment)
-library(reshape2)
-library(Seurat)
-library(circlize)
-library(igraph)
-library(ggraph)
-library(ggrepel)
-library(RColorBrewer)
-library(grid)
+library(SingleCellExperiment) # 单细胞实验数据结构｜Single-cell experiment data structure
+library(reshape2)             # 数据重塑与转换｜Data reshaping and transformation
+library(Seurat)               # 单细胞分析平台｜Single-cell analysis platform
+library(igraph)               # 网络分析与图结构处理｜Network analysis and graph handling
+library(ggraph)               # 网络图可视化扩展｜Network graph visualization extension
+library(ggrepel)              # ggplot标签自动避让｜Automatic label repelling for ggplot
+library(RColorBrewer)         # 专业调色板｜Professional color palettes
+library(grid)                 # 网格图形系统｜Grid graphics system
 
 # 显示英文报错信息
 # Show English error messages
@@ -253,8 +251,8 @@ cpdb.chordgram <- function(seu, means, pvalues,
 }
 ```
 
-# 输入文件的获得
-# Obtaining Input Files
+## 输入文件的获得
+## Obtaining Input Files
 
 先运行cellphoneDB，然后以cellphoneDB的结果文件作为输入画图。
 
@@ -309,8 +307,8 @@ After execution, an 'out' folder will be created containing four files: means.tx
 
 The 'out' folder contains CellPhoneDB output files
 
-# 读取cellphoneDB运行结果
-# Loading CellPhoneDB results
+## 读取cellphoneDB运行结果
+## Loading CellPhoneDB results
 
 ```{r}
 # 读取cellphoneDB运行结果
@@ -332,8 +330,8 @@ plot.data <- cpdb.chordgram(seu = seu, means = means, pvalues = pvalues,
 table(plot.data$source, plot.data$target)
 ```
 
-# 差异分析并画图
-# Differential analysis and visualization
+## 差异分析并画图
+## Differential analysis and visualization
 
 ```{r}
 # 指定细胞类型对应的颜色
@@ -377,7 +375,7 @@ ggsave("cpdb.chordgram.pdf", width = 10, height = 9)
 - To disable filtering, simply delete line 136
 - To apply filtering to both receptors and ligands, use the commented alternative on line 135 instead
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

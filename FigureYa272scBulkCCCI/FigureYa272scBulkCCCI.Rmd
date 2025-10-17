@@ -15,12 +15,16 @@ If you use this code in your work or research, we kindly request that you cite o
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
 
+Zhang L, Li Z, Skrzypczynska KM, Fang Q, Zhang W, O’Brien SA, He Y, Wang L, Zhang Q, Kim A, Gao R, Orf J, Wang T, Sawant D, Kang J, Bhatt D, Lu D, Li CM, Rapaport AS, Perez K, Ye Y, Wang S, Hu X, Ren X, Ouyang W, Shen Z, Egen JG, Zhang Z, Yu X. Single-Cell Analyses Inform Mechanisms of Myeloid-Targeted Therapies in Colon Cancer. Cell. 2020 Apr 16;181(2):442-459.e29. doi: 10.1016/j.cell.2020.03.048. PMID: 32302573.
+
+Zhang L, Yu X, Zheng L, Zhang Y, Li Y, Fang Q, Gao R, Kang B, Zhang Q, Huang JY, Konno H, Guo X, Ye Y, Gao S, Wang S, Hu X, Ren X, Shen Z, Ouyang W, Zhang Z. Lineage tracking reveals dynamic relationships of T cells in colorectal cancer. Nature. 2018 Dec;564(7735):268-272. doi: 10.1038/s41586-018-0694-x. Epub 2018 Oct 29. PMID: 30479382.
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# 需求描述
-# Demand description
+## 需求描述
+## Demand description
 
 基于细胞类型signature识别细胞-细胞互作
 
@@ -40,8 +44,8 @@ Figure S8. Analysis Framework for Correlative Cell-Cell Interaction Networks and
 (A) Workflow illustrating correlative network analysis. 
 Cell **subtype specific genes** were identified from the Smart-seq2 scRNA-seq dataset and were used to **estimate the relative abundance in TCGA/GTEx bulk RNA-seq datasets.** After filtering the self-expressed genes, **high correlative genes** were calculated. Finally, an **enrichment analysis** based on Smart-seq2 profile was performed to **identify all correlated cell subtypes and build the correlative network** (STAR Methods).
 
-# 应用场景
-# Application scenarios
+## 应用场景
+## Application scenarios
 
 借助scRNA-seq找到的signature genes，推断bulk RNA-seq样本的细胞类群互作网络，最后用igraph（静态）和networkD3（动态）两种网络可视化工具来展示结果。
 
@@ -65,23 +69,21 @@ scBulkCCCI: Correlative cell-cell interaction networks based on combining scRNA-
 - Preprocessed data: The preprocessing code can be found in ScBulkCCCI/example/ScBulkCCCI_DataPreprocess.R.
 - Example execution code: ScBulkCCCI.R, located in ScBulkCCCI/example
 
-# 环境设置
-# Environment Setup
+## 环境设置
+## Environment Setup
 
 ```{r}
 source("install_dependencies.R")
-
-library("ScBulkCCCI")
-library("pheatmap")
-library("RColorBrewer")
-library("ggplot2")
-library("ggthemes")
-library("plyr")
-library("dplyr")
-library("stringr")
-library("tibble")
-library("tidyr")
-
+library("ScBulkCCCI")         # 单细胞与bulk数据相关性细胞互作分析｜Correlative cell-cell interaction analysis for scRNA-seq and bulk RNA-seq
+library("pheatmap")           # 热图可视化｜Heatmap visualization
+library("RColorBrewer")       # 调色板与配色方案｜Color palettes for plots
+library("ggplot2")            # 数据可视化与绘图｜Data visualization and plotting
+library("ggthemes")           # ggplot2主题美化｜Themes for ggplot2
+library("plyr")               # 数据整理与分组操作｜Data manipulation and grouping
+library("dplyr")              # 高效数据处理与管道操作｜Efficient data manipulation and piping
+library("stringr")            # 字符串处理与正则表达式｜String manipulation and regular expressions
+library("tibble")             # 增强型数据框结构｜Enhanced dataframe structure
+library("tidyr")              # 数据整理与宽长格式转换｜Data tidying and reshaping
 # 显示英文报错信息
 # Show English error messages
 Sys.setenv(LANGUAGE = "en") 
@@ -115,7 +117,6 @@ CRC.Leukocyte.Smart-seq2.Metadata.txt: 细胞类群信息
 - Sub_Cluster: 二级分类
 
 CRC.Leukocyte.Smart-seq2.TPM.txt: 细胞基因定量矩阵，列是细胞，行是基因
-
 
 CRC.Leukocyte.Smart-seq2.Metadata.txt: Cell population information
 

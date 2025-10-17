@@ -12,17 +12,17 @@ jobs:
   sync-content:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Source Repo (FigureYa-backup)
+      - name: Checkout Source Repo (FigureYa)
         uses: actions/checkout@v4
         with:
           path: source-repo
 
-      - name: Checkout Target Repo (FigureYa)
+      - name: Checkout Target Repo (FigureYa-backup)
         uses: actions/checkout@v4
         with:
-          repository: ying-ge/FigureYa
+          repository: ying-ge/FigureYa-backup
           path: target-repo
-          token: ${{ secrets.MAIN_REPO_TOKEN }}
+          token: ${{ secrets.FIGUREYA2ACTION }}
 
       - name: Generate LFS file list
         id: lfs_files

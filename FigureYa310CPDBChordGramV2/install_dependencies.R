@@ -44,35 +44,8 @@ install_bioc_package <- function(package_name) {
   }
 }
 
-# Function to install ktplots from GitHub with zktuong repository
-install_ktplots <- function() {
-  if (!is_package_installed("ktplots")) {
-    cat("Installing ktplots from GitHub (zktuong repository)...\n")
-    tryCatch({
-      if (!is_package_installed("devtools")) {
-        install.packages("devtools")
-      }
-      devtools::install_github('zktuong/ktplots', dependencies = TRUE)
-      cat("Successfully installed: ktplots\n")
-    }, error = function(e) {
-      cat("Failed to install ktplots:", e$message, "\n")
-      cat("You may need to install it manually: devtools::install_github('zktuong/ktplots', dependencies = TRUE)\n")
-    })
-  } else {
-    cat("Package already installed: ktplots\n")
-  }
-}
-
 cat("Starting R package installation...\n")
 cat("===========================================\n")
-
-# First install devtools for GitHub packages
-cat("\nInstalling devtools package...\n")
-install_cran_package("devtools")
-
-# Install ktplots from GitHub (zktuong repository)
-cat("\nInstalling ktplots from zktuong repository...\n")
-install_ktplots()
 
 # Installing CRAN packages
 cat("\nInstalling CRAN packages...\n")
@@ -84,7 +57,7 @@ for (pkg in cran_packages) {
 
 # Installing Bioconductor packages
 cat("\nInstalling Bioconductor packages...\n")
-bioc_packages <- c("SingleCellExperiment", "circlize")
+bioc_packages <- c("SingleCellExperiment")
 
 for (pkg in bioc_packages) {
   install_bioc_package(pkg)
@@ -92,16 +65,4 @@ for (pkg in bioc_packages) {
 
 cat("\n===========================================\n")
 cat("Package installation completed!\n")
-
-# Test if ktplots can be loaded
-cat("\nTesting ktplots package...\n")
-if (require("ktplots", quietly = TRUE)) {
-  cat("✅ ktplots package loaded successfully!\n")
-  cat("Package version:", as.character(packageVersion("ktplots")), "\n")
-} else {
-  cat("❌ ktplots package could not be loaded.\n")
-  cat("You may need to install it manually:\n")
-  cat("devtools::install_github('zktuong/ktplots', dependencies = TRUE)\n")
-}
-
 cat("You can now run your R scripts in this directory.\n")

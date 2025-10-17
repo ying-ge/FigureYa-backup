@@ -132,16 +132,15 @@ Data format requirements:
 - Support multiple validation datasets
 
 ```{r}
-# 加载数据集
-# Load datasets
-train_data <- read.table("train_data.txt", header = T, sep = "\t", quote = "", check.names = F)
-test_data1 <- read.table("test_data1.txt", header = T, sep = "\t", quote = "", check.names = F)
-test_data2 <- read.table("test_data2.txt", header = T, sep = "\t", quote = "", check.names = F)
+# 这里用FigureYa293machineLearning的输入文件，用其中的生存状态OS作为二分类变量
+train_data <- read.table("TCGA.txt", header = T,sep = "\t", quote = "", check.names = F)
+test_data1 <- read.table("GSE57303.txt", header = T, sep = "\t", quote = "", check.names = F)
+test_data2 <- read.table("GSE62254.txt.gz", header = TRUE, sep = "\t", quote = "", check.names = FALSE)
 
-# 生成包含数据集的列表
-mm <- list(train = train_data,
-           test1 = test_data1, 
-           test2 = test_data2)
+# 生成包含数据集的列表，删掉第三列生存时间，保留第二列作为二分类标签
+mm <- list(train = test_data1[, -3], 
+           test1 = test_data1[, -3], 
+           test2 = test_data2[, -3])
 
 # 数据预处理
 mm <- lapply(mm, function(x){
@@ -275,10 +274,10 @@ variance_filter <- function(data, threshold = 0.01) {
 classification_algorithms <- list(
   
   # 1. Random Forest
-  "RF" = function(train_data, test_data, params = list()) {
+  "RF" = function(train_data, test_data, param = list()) {
     set.seed(seed)
-    ntree <- ifelse(is.null(params$ntree), 500, params$ntree)
-    mtry <- ifelse(is.null(params$mtry), sqrt(ncol(train_data)-2), params$mtry)
+    ntree <- ifelse(is.null(param$ntree), 500, param$ntree)
+    mtry <- ifelse(is.null(param$mtry), sqrt(ncol(train_data)-2), param$mtry)
     
     model <- randomForest(as.factor(label) ~ ., 
                          data = train_data[,-1], 
@@ -293,10 +292,10 @@ classification_algorithms <- list(
   },
   
   # 2. Support Vector Machine (RBF kernel)
-  "SVM" = function(train_data, test_data, params = list()) {
+  "SVM" = function(train_data, test_data, param = list()) {
     set.seed(seed)
-    cost <- ifelse(is.null(params$cost), 1, params$cost)
-    gamma <- ifelse(is.null(params$gamma), 1/ncol(train_data), params$gamma)
+    cost <- ifelse(is.null(param$cost), 1, param$cost)
+    gamma <- ifelse(is.null(param$gamma), 1/ncol(train_data), param$gamma)
     
     model <- svm(as.factor(label) ~ ., 
                 data = train_data[,-1], 
@@ -313,7 +312,7 @@ classification_algorithms <- list(
   },
   
   # 3. Logistic Regression
-  "LR" = function(train_data, test_data, params = list()) {
+  "LR" = function(train_data, test_data, param = list()) {
     tryCatch({
       model <- glm(label ~ ., 
                   data = train_data[,-1], 
@@ -331,9 +330,9 @@ classification_algorithms <- list(
   },
   
   # 4. Lasso Regression
-  "Lasso" = function(train_data, test_data, params = list()) {
+  "Lasso" = function(train_data, test_data, param = list()) {
     set.seed(seed)
-    alpha <- ifelse(is.null(params$alpha), 1, params$alpha)
+    alpha <- ifelse(is.null(param$alpha), 1, param$alpha)
     
     x_train <- as.matrix(train_data[,-c(1:2)])
     y_train <- train_data[,2]
@@ -351,9 +350,9 @@ classification_algorithms <- list(
   },
   
   # 5. Ridge Regression
-  "Ridge" = function(train_data, test_data, params = list()) {
+  "Ridge" = function(train_data, test_data, param = list()) {
     set.seed(seed)
-    alpha <- ifelse(is.null(params$alpha), 0, params$alpha)
+    alpha <- ifelse(is.null(param$alpha), 0, param$alpha)
     
     x_train <- as.matrix(train_data[,-c(1:2)])
     y_train <- train_data[,2]
@@ -371,9 +370,9 @@ classification_algorithms <- list(
   },
   
   # 6. Elastic Net
-  "Enet" = function(train_data, test_data, params = list()) {
+  "Enet" = function(train_data, test_data, param = list()) {
     set.seed(seed)
-    alpha <- ifelse(is.null(params$alpha), 0.5, params$alpha)
+    alpha <- ifelse(is.null(param$alpha), 0.5, param$alpha)
     
     x_train <- as.matrix(train_data[,-c(1:2)])
     y_train <- train_data[,2]
@@ -391,11 +390,11 @@ classification_algorithms <- list(
   },
   
   # 7. XGBoost
-  "XGBoost" = function(train_data, test_data, params = list()) {
+  "XGBoost" = function(train_data, test_data, param = list()) {
     set.seed(seed)
-    nrounds <- ifelse(is.null(params$nrounds), 100, params$nrounds)
-    max_depth <- ifelse(is.null(params$max_depth), 6, params$max_depth)
-    eta <- ifelse(is.null(params$eta), 0.3, params$eta)
+    nrounds <- ifelse(is.null(param$nrounds), 100, param$nrounds)
+    max_depth <- ifelse(is.null(param$max_depth), 6, param$max_depth)
+    eta <- ifelse(is.null(param$eta), 0.3, param$eta)
     
     dtrain <- xgb.DMatrix(data = as.matrix(train_data[,-c(1:2)]), 
                          label = train_data[,2])
@@ -415,11 +414,11 @@ classification_algorithms <- list(
   },
   
   # 8. Gradient Boosting Machine
-  "GBM" = function(train_data, test_data, params = list()) {
+  "GBM" = function(train_data, test_data, param = list()) {
     set.seed(seed)
-    n.trees <- ifelse(is.null(params$n.trees), 500, params$n.trees)
-    interaction.depth <- ifelse(is.null(params$interaction.depth), 3, params$interaction.depth)
-    shrinkage <- ifelse(is.null(params$shrinkage), 0.01, params$shrinkage)
+    n.trees <- ifelse(is.null(param$n.trees), 500, param$n.trees)
+    interaction.depth <- ifelse(is.null(param$interaction.depth), 3, param$interaction.depth)
+    shrinkage <- ifelse(is.null(param$shrinkage), 0.01, param$shrinkage)
     
     model <- gbm(label ~ ., 
                 data = train_data[,-1], 
@@ -439,10 +438,10 @@ classification_algorithms <- list(
   },
   
   # 9. Neural Network
-  "NN" = function(train_data, test_data, params = list()) {
+  "NN" = function(train_data, test_data, param = list()) {
     set.seed(seed)
-    size <- ifelse(is.null(params$size), 5, params$size)
-    decay <- ifelse(is.null(params$decay), 0.1, params$decay)
+    size <- ifelse(is.null(param$size), 5, param$size)
+    decay <- ifelse(is.null(param$decay), 0.1, param$decay)
     
     tryCatch({
       model <- nnet(as.factor(label) ~ ., 
@@ -463,7 +462,7 @@ classification_algorithms <- list(
   },
   
   # 10. Naive Bayes
-  "NB" = function(train_data, test_data, params = list()) {
+  "NB" = function(train_data, test_data, param = list()) {
     tryCatch({
       model <- naivebayes(as.factor(label) ~ ., 
                          data = train_data[,-1])
@@ -525,7 +524,7 @@ calculate_metrics <- function(true_labels, pred_probs, pred_classes) {
 }
 
 # 批量评估函数
-evaluate_model <- function(algorithm_name, train_data, test_data_list, params = list()) {
+evaluate_model <- function(algorithm_name, train_data, test_data_list, param = list()) {
   results <- list()
   
   for(i in 1:length(test_data_list)) {
@@ -534,7 +533,7 @@ evaluate_model <- function(algorithm_name, train_data, test_data_list, params = 
     
     tryCatch({
       # 运行算法
-      pred_result <- classification_algorithms[[algorithm_name]](train_data, test_data, params)
+      pred_result <- classification_algorithms[[algorithm_name]](train_data, test_data, param)
       
       # 计算指标
       metrics <- calculate_metrics(test_data$label, pred_result$prob, pred_result$class)
@@ -694,8 +693,8 @@ if(length(selected_features_rf) > 0) {
   for(alpha in seq(0.1, 0.9, 0.1)) {
     cat("运行: RF + Enet [α=", alpha, "]\n")
     
-    params <- list(alpha = alpha)
-    result <- evaluate_model("Enet", est_data_rf, val_data_list_rf, params)
+    param <- list(alpha = alpha)
+    result <- evaluate_model("Enet", est_data_rf, val_data_list_rf, param)
     result$Model <- paste0("RF + Enet [α=", alpha, "]")
     all_results <- rbind(all_results, result)
   }
@@ -911,21 +910,21 @@ cat("集成学习组合完成\n\n")
 cat("=== 开始参数调优组合 ===\n")
 
 # XGBoost参数调优
-xgb_params <- list(
+xgb_param <- list(
   list(nrounds = 50, max_depth = 3, eta = 0.1),
   list(nrounds = 100, max_depth = 6, eta = 0.3),
   list(nrounds = 200, max_depth = 4, eta = 0.2),
   list(nrounds = 150, max_depth = 5, eta = 0.25)
 )
 
-for(i in 1:length(xgb_params)) {
-  params <- xgb_params[[i]]
-  model_name <- paste0("XGBoost[n=", params$nrounds, ",d=", params$max_depth, ",η=", params$eta, "]")
+for(i in 1:length(xgb_param)) {
+  param <- xgb_param[[i]]
+  model_name <- paste0("XGBoost[n=", param$nrounds, ",d=", param$max_depth, ",η=", param$eta, "]")
   
   cat("运行:", model_name, "\n")
   
   tryCatch({
-    result <- evaluate_model("XGBoost", est_data, val_data_list, params)
+    result <- evaluate_model("XGBoost", est_data, val_data_list, param)
     result$Model <- model_name
     all_results <- rbind(all_results, result)
   }, error = function(e) {
@@ -934,21 +933,21 @@ for(i in 1:length(xgb_params)) {
 }
 
 # Random Forest参数调优
-rf_params <- list(
+rf_param <- list(
   list(ntree = 300, mtry = 3),
   list(ntree = 500, mtry = 5),
   list(ntree = 1000, mtry = 7),
   list(ntree = 800, mtry = 4)
 )
 
-for(i in 1:length(rf_params)) {
-  params <- rf_params[[i]]
-  model_name <- paste0("RF[ntree=", params$ntree, ",mtry=", params$mtry, "]")
+for(i in 1:length(rf_param)) {
+  param <- rf_param[[i]]
+  model_name <- paste0("RF[ntree=", param$ntree, ",mtry=", param$mtry, "]")
   
   cat("运行:", model_name, "\n")
   
   tryCatch({
-    result <- evaluate_model("RF", est_data, val_data_list, params)
+    result <- evaluate_model("RF", est_data, val_data_list, param)
     result$Model <- model_name
     all_results <- rbind(all_results, result)
   }, error = function(e) {
@@ -957,21 +956,21 @@ for(i in 1:length(rf_params)) {
 }
 
 # SVM参数调优
-svm_params <- list(
+svm_param <- list(
   list(cost = 0.1, gamma = 0.001),
   list(cost = 1, gamma = 0.01),
   list(cost = 10, gamma = 0.1),
   list(cost = 100, gamma = 1)
 )
 
-for(i in 1:length(svm_params)) {
-  params <- svm_params[[i]]
-  model_name <- paste0("SVM[C=", params$cost, ",γ=", params$gamma, "]")
+for(i in 1:length(svm_param)) {
+  param <- svm_param[[i]]
+  model_name <- paste0("SVM[C=", param$cost, ",γ=", param$gamma, "]")
   
   cat("运行:", model_name, "\n")
   
   tryCatch({
-    result <- evaluate_model("SVM", est_data, val_data_list, params)
+    result <- evaluate_model("SVM", est_data, val_data_list, param)
     result$Model <- model_name
     all_results <- rbind(all_results, result)
   }, error = function(e) {
@@ -1256,218 +1255,6 @@ cat("输入特征数:", ncol(est_data) - 2, "\n")
 stopCluster(cl)
 
 cat("\n所有分析已完成！\n")
-```
-
-# 附：生成模拟数据
-
-```{r}
-library(dplyr)
-library(MASS)  # 用于生成多变量正态分布数据
-
-set.seed(123)
-
-# 设置数据参数
-n_features <- 100  # 特征数量
-n_train <- 200     # 训练集样本数
-n_test1 <- 80      # 测试集1样本数  
-n_test2 <- 60      # 测试集2样本数
-
-# 生成具有生物学意义的特征名称
-feature_names <- c(
-  # 免疫相关基因
-  paste0("CD", 1:20),
-  # 细胞因子
-  paste0("IL", 1:15),
-  paste0("TNF", c("A", "B", "R1", "R2")),
-  # 转录因子
-  paste0("TF", 1:10),
-  # 信号通路基因
-  paste0("MAPK", 1:8),
-  paste0("PI3K", 1:5),
-  paste0("WNT", 1:7),
-  # 凋亡相关基因
-  paste0("BCL", 1:6),
-  paste0("CASP", 1:8),
-  # 代谢相关基因
-  paste0("METAB", 1:10),
-  # 其他基因
-  paste0("GENE", 1:7)
-)
-
-# 确保特征名称数量正确
-if(length(feature_names) < n_features) {
-  additional_genes <- paste0("GENE_", (length(feature_names)+1):n_features)
-  feature_names <- c(feature_names, additional_genes)
-}
-feature_names <- feature_names[1:n_features]
-
-# 生成训练数据
-generate_classification_data <- function(n_samples, dataset_name, 
-                                        signal_strength = 1.0, 
-                                        noise_level = 1.0) {
-  
-  # 设置重要特征（前20个特征与标签相关）
-  n_important <- 20
-  
-  # 生成协变量矩阵（模拟特征间相关性）
-  correlation_matrix <- diag(n_features)
-  
-  # 为重要特征设置相关性
-  for(i in 1:n_important) {
-    for(j in 1:n_important) {
-      if(i != j) {
-        correlation_matrix[i, j] <- 0.3 * exp(-abs(i-j)/5)
-      }
-    }
-  }
-  
-  # 生成基础特征矩阵
-  X <- mvrnorm(n = n_samples, 
-               mu = rep(0, n_features), 
-               Sigma = correlation_matrix)
-  
-  # 设置真实的系数（只有前n_important个特征有效果）
-  true_coefficients <- c(
-    # 前10个特征：正向关联
-    runif(10, 0.5, 1.5) * signal_strength,
-    # 接下来10个特征：负向关联  
-    runif(10, -1.5, -0.5) * signal_strength,
-    # 其余特征：无关联
-    rep(0, n_features - n_important)
-  )
-  
-  # 生成线性预测子
-  linear_predictor <- X %*% true_coefficients + rnorm(n_samples, 0, noise_level)
-  
-  # 生成二分类标签（logistic模型）
-  prob <- 1 / (1 + exp(-linear_predictor))
-  labels <- rbinom(n_samples, 1, prob)
-  
-  # 添加一些噪声特征
-  noise_features <- matrix(rnorm(n_samples * (n_features - n_important), 0, 0.5), 
-                          nrow = n_samples)
-  X[, (n_important+1):n_features] <- noise_features
-  
-  # 创建数据框
-  sample_names <- paste0(dataset_name, "_Sample_", sprintf("%03d", 1:n_samples))
-  
-  data <- data.frame(
-    Sample = sample_names,
-    Label = labels,
-    X,
-    stringsAsFactors = FALSE
-  )
-  
-  colnames(data)[3:(n_features+2)] <- feature_names
-  
-  return(data)
-}
-
-# 生成三个数据集
-cat("生成训练数据集...\n")
-train_data <- generate_classification_data(n_train, "Train", 
-                                          signal_strength = 1.2, 
-                                          noise_level = 0.8)
-
-cat("生成测试数据集1...\n") 
-test_data1 <- generate_classification_data(n_test1, "Test1", 
-                                          signal_strength = 1.0, 
-                                          noise_level = 1.0)
-
-cat("生成测试数据集2...\n")
-test_data2 <- generate_classification_data(n_test2, "Test2", 
-                                          signal_strength = 0.9, 
-                                          noise_level = 1.1)
-
-# 检查数据质量
-cat("\n=== 数据集质量检查 ===\n")
-
-datasets <- list(train = train_data, test1 = test_data1, test2 = test_data2)
-
-for(name in names(datasets)) {
-  data <- datasets[[name]]
-  cat("数据集:", name, "\n")
-  cat("  样本数:", nrow(data), "\n")
-  cat("  特征数:", ncol(data)-2, "\n")
-  cat("  标签分布:", table(data$Label), "\n")
-  cat("  标签比例:", round(prop.table(table(data$Label)), 3), "\n")
-  
-  # 检查前几个重要特征与标签的相关性
-  important_cors <- sapply(3:12, function(i) {
-    cor(data[,i], data$Label)
-  })
-  cat("  重要特征相关性范围:", round(range(important_cors), 3), "\n\n")
-}
-
-# 保存数据文件
-write.table(train_data, "train_data.txt", 
-           sep = "\t", row.names = FALSE, quote = FALSE)
-write.table(test_data1, "test_data1.txt", 
-           sep = "\t", row.names = FALSE, quote = FALSE)
-write.table(test_data2, "test_data2.txt", 
-           sep = "\t", row.names = FALSE, quote = FALSE)
-
-cat("数据文件已保存:\n")
-cat("- train_data.txt: 训练数据 (", nrow(train_data), "样本)\n")
-cat("- test_data1.txt: 测试数据1 (", nrow(test_data1), "样本)\n") 
-cat("- test_data2.txt: 测试数据2 (", nrow(test_data2), "样本)\n")
-
-# 快速数据可视化
-library(ggplot2)
-library(corrplot)
-
-# 1. 标签分布图
-label_dist <- do.call(rbind, lapply(names(datasets), function(name) {
-  data.frame(Dataset = name, 
-            Label = datasets[[name]]$Label,
-            stringsAsFactors = FALSE)
-}))
-
-p1 <- ggplot(label_dist, aes(x = Dataset, fill = factor(Label))) +
-  geom_bar(position = "fill") +
-  scale_fill_manual(values = c("0" = "#4575B4", "1" = "#D73027"),
-                   labels = c("Negative", "Positive")) +
-  labs(title = "Label Distribution Across Datasets",
-       y = "Proportion", fill = "Label") +
-  theme_minimal()
-
-ggsave("label_distribution.png", p1, width = 8, height = 6, dpi = 300)
-
-# 2. 重要特征相关性热图
-important_features_cor <- cor(train_data[, 3:22])  # 前20个重要特征
-png("important_features_correlation.png", width = 10, height = 10, 
-    units = "in", res = 300)
-corrplot(important_features_cor, method = "color", type = "upper",
-         order = "hclust", tl.cex = 0.8, title = "Important Features Correlation")
-dev.off()
-
-# 3. 特征与标签的关联强度
-feature_label_cor <- sapply(3:ncol(train_data), function(i) {
-  abs(cor(train_data[,i], train_data$Label))
-})
-
-cor_data <- data.frame(
-  Feature = colnames(train_data)[3:ncol(train_data)],
-  Correlation = feature_label_cor,
-  Type = ifelse(1:length(feature_label_cor) <= 20, "Important", "Noise")
-)
-
-p3 <- ggplot(cor_data, aes(x = 1:nrow(cor_data), y = Correlation, color = Type)) +
-  geom_point(alpha = 0.7) +
-  scale_color_manual(values = c("Important" = "#D73027", "Noise" = "#4575B4")) +
-  labs(title = "Feature-Label Correlation Strength",
-       x = "Feature Index", y = "Absolute Correlation") +
-  theme_minimal()
-
-ggsave("feature_label_correlation.png", p3, width = 10, height = 6, dpi = 300)
-
-cat("\n可视化文件已保存:\n")
-cat("- label_distribution.png: 标签分布图\n")
-cat("- important_features_correlation.png: 重要特征相关性热图\n") 
-cat("- feature_label_correlation.png: 特征与标签关联图\n")
-
-cat("\n=== 数据生成完成 ===\n")
-cat("现在可以运行 FigureYa293ClassificationML.Rmd 进行分析！\n")
 ```
 
 # Session Info

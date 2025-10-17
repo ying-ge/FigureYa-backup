@@ -212,25 +212,25 @@ RMD Render Summary
 [SKIPPED] - ./FigureYa170ImmuLncRNA/FigureYa170ImmuLncRNA.Rmd (Not listed in auto_Knit_online.txt)
 [FAILED] - ./FigureYa293Plus_BinaryClassificationML/FigureYa293Plus_BinaryClassificationML.Rmd
 --- Error Log for ./FigureYa293Plus_BinaryClassificationML/FigureYa293Plus_BinaryClassificationML.Rmd ---
-** byte-compile and prepare package for lazy loading
-** help
-*** installing help indices
-*** copying figures
-** building package indices
 ** testing if installed package can be loaded from temporary location
 ** testing if installed package can be loaded from final location
 ** testing if installed package keeps a record of temporary installation path
 * DONE (plsRcox)
-
-The downloaded source packages are in
-	'/tmp/Rtmpjo25c8/downloaded_packages'
-Error in `library()`:
-! there is no package called 'gbm'
+Error:
+! protect(): protection stack overflow
 Backtrace:
     ▆
- 1. └─base::library(gbm)
+ 1. └─global importance_feature_selection(est_data, method = fs_method)
+ 2.   ├─randomForest::randomForest(...)
+ 3.   ├─randomForest:::randomForest.formula(...)
+ 4.   │ └─base::eval(m, parent.frame())
+ 5.   │   └─base::eval(m, parent.frame())
+ 6.   ├─stats::model.frame(...)
+ 7.   └─stats::model.frame.default(...)
+ 8.     ├─stats::terms(formula, data = data)
+ 9.     └─stats::terms.formula(formula, data = data)
 
-Quitting from FigureYa293Plus_BinaryClassificationML.Rmd:61-117 [unnamed-chunk-1]
+Quitting from FigureYa293Plus_BinaryClassificationML.Rmd:608-652 [unnamed-chunk-7]
 Execution halted
 -----------------------------------
 [SKIPPED] - ./FigureYa71ssGSEA_update/FigureYa71ssGSEA_update.Rmd (Not listed in auto_Knit_online.txt)
