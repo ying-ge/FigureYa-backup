@@ -5,7 +5,7 @@ Author(s)
 Reviewer(s)
 : Ying Ge, Junyi Shen
 Date
-: 2025-09-22
+: 2025-10-17
 Academic Citation
 If you use this code in your work or research, we kindly request that
 you cite our publication:
@@ -116,7 +116,6 @@ interaction between hub sites and target genes is the same.
 环境设置
 Environment settings
 source("install_dependencies.R")
-Load package
 library(ggplot2) #用于画图 #For drawing
 library(dplyr) #用于数据处理 #For data processing
 Sys.setenv(LANGUAGE = "en") #显示英文报错信息 #Display English error message
@@ -124,11 +123,11 @@ options(stringsAsFactors = FALSE) #禁止chr转成factor #Prohibit chr from bein
 输入文件
 Input file
 easy_input_node.txt和easy_input_group.txt。从例文41467_2019_9222_MOESM5_ESM.xlsx文件整理而来。
-Organized from the example file 41467_2019_9222_MOESM5_ESM.xlsx.
 easy_input_node.txt，glycan及其分类，用来画外围的点和弧线；
 easy_input_group.txt，protein-glycan-数量的对应关系，用来画中央矩形和连线。每行一个protein，用
 ;
 分隔多个glycon。
+Organized from the example file 41467_2019_9222_MOESM5_ESM.xlsx.
 easy_input_node.txt, glycan and its classification, used to draw the
 outer points and arcs;
 easy_input_group.txt, the correspondence between
@@ -295,4 +294,5 @@ understand the meaning of each number, and the overall idea, and then
 draw inferences from one example. This involves some mathematical
 trigonometric function calculations and angle calculations, and you
 still need to understand the meaning of each number.
+Session Info
 sessionInfo()

@@ -11,7 +11,7 @@ output: html_document
 **Date**: `r Sys.Date()`  
 
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -21,11 +21,10 @@ knitr::opts_chunk$set(echo = TRUE)
 # 设置knitr代码块的全局选项 / Set global options for knitr code chunks
 ```
 
-# 需求描述
+## 需求描述
+## Requirement description
 
 希望用cellchat来实现：
-
-# Requirement description
 
 I hope to use CellChat to achieve:
 
@@ -33,7 +32,7 @@ I hope to use CellChat to achieve:
 
 出自<https://aacrjournals.org/cancerdiscovery/article/12/1/134/675646/Spatiotemporal-Immune-Landscape-of-Colorectal>
 
-from<https://aacrjournals.org/cancerdiscovery/article/12/1/134/675646/Spatiotemporal-Immune-Landscape-of-Colorectal>
+From <https://aacrjournals.org/cancerdiscovery/article/12/1/134/675646/Spatiotemporal-Immune-Landscape-of-Colorectal>
 
 Figure 3. MRC1+ CCL18+ macrophages in metastatic tumors exhibited terminally differentiated and suppressive states. 
 A, The ranked differential tumor–immune cell cross-talk [liver metastasis (LM) vs. colorectal cancer (CRC)] shows MRC1+ CCL18+ M2-like macrophages ranked the second among all ligand–receptor pairs.
@@ -53,34 +52,32 @@ different tissues.” 怎样验证这个假设呢？
 
 提需求的小伙伴要求用cellchat来实现，用cellchat的确可以很方便的实现。详见“开始画图”结尾的“结果解读”。
 
->Comments from the author of this document, Xiao Gu:
+> Comments from the author of this document, Xiao Gu:
 
 Given the enrichment of macrophage subpopulations in liver metastasis, we hypothesize that those liver metastases – enriched macrophages may be functionally distinct across
 How to test this hypothesis for 'different disorders'?
 
 The author uses CellPhoneDB analysis and circlize visualization to solve the problem. Due to CellPhoneDB's inability to directly handle the relationship between two groups, the author used an alternative approach:
 
--Combining all cell types of rectal cancer together, equivalent to one cell type, named tumor, can overcome the difficulty of cellphonedb in comparing the relationship between two groups at once.
+- Combining all cell types of rectal cancer together, equivalent to one cell type, named tumor, can overcome the difficulty of cellphonedb in comparing the relationship between two groups at once.
 
 I actually don't quite agree with this method, as it erases information about the cell types of colon cancer. I personally believe that Cellchat's algorithm is superior to Cellphonedb, especially in analyses with control processing.
 
 The friend who raised the request requested to use Cellchat to implement it, which can indeed be very convenient. See "Interpretation of Results" at the end of "Start Drawing" for details.
 
-# 应用场景
+## 应用场景
+## Application scenarios
 
 单细胞RNA-seq数据，对比两组样本（例文的原发vs.转移、不同亚型、不同发育时期等）之间，基于“受体-配体”的差异，用cellchat来实现。
 
 另外，CellPhoneDB的用法可参考FigureYa178receptorLigand
 
-# Application scenarios
-
 Single cell RNA seq data was compared between two groups of samples (e.g. primary vs. metastasis, different subtypes, different developmental stages, etc.) using cellchat based on the differences in "receptor ligand".
 
 In addition, the usage of CellPhoneDB can refer to FigureYa178receptorLigand< https://k.youshop10.com/YICoy-XB >
 
-# 环境设置
-
-# Environment settings
+## 环境设置
+## Environment settings
 
 ```{r}
 source("install_dependencies.R")
@@ -107,7 +104,8 @@ Sys.setenv(LANGUAGE = "en")
 options(stringsAsFactors = FALSE) 
 ```
 
-# 输入数据预处理
+## 输入数据预处理
+## Input data preprocessing
 
 `ifnb` - A Seurat object with the PBMC control/IFNB-stimulated dataset。出自<https://pubmed.ncbi.nlm.nih.gov/29227470/>，已被打包到SeuratData里，我们直接安装、加载它。
 
@@ -115,8 +113,6 @@ options(stringsAsFactors = FALSE)
 
 - 先拆分成两个seurat object，对两个数据集单独进行normalize并识别各自的高变异基因，使用高变异基因在两个基因集中分别执行PCA。
 - 然后对两个数据集进行整合，进行常规数据预处理，存入immune.combined，以便进行后续分析。
-
-# Input data preprocessing
 
 `ifnb` - A Seurat object with the PBMC control/IFNB-stimulated dataset。 From< https://pubmed.ncbi.nlm.nih.gov/29227470/ >, has been packaged into SeuratData, we can directly install and load it.
 
@@ -211,13 +207,13 @@ saveRDS(immune.combined, "immune.combined.rds")
 
 ![](immune.combined.UMAP.pdf)
 
-# 提取数据分别创建CellChat对象
+## 提取数据分别创建CellChat对象
 
 STIM和CTRL两组，分别提取数据，创建CellChat对象。
 
 运行时间约10min
 
-# Extract data and create CellChat objects separately
+## Extract data and create CellChat objects separately
 
 Extract data from STIM and CTRL groups respectively, and create CellChat objects.
 
@@ -310,9 +306,8 @@ ctrl.cellchat <- netAnalysis_computeCentrality(ctrl.cellchat, slot.name = "netP"
 saveRDS(ctrl.cellchat, "ctrl.cellchat.rds")
 ```
 
-# 开始画图
-
-# Start drawing
+## 开始画图
+## Start drawing
 
 ```{r}
 ## 加载上面保存的运行结果文件，可以从微云下载<https://share.weiyun.com/xcfPWC0L>
@@ -327,9 +322,8 @@ object.list <- list(CTRL = ctrl.cellchat, STIM = stim.cellchat)
 cellchat <- mergeCellChat(object.list, add.names = names(object.list))
 ```
 
-## 细胞间互作次数bar图
-
-## Bar chart of intercellular interaction frequency
+### 细胞间互作次数bar图
+### Bar chart of intercellular interaction frequency
 
 Comparing the number of inferred communication links between different datasets
 
@@ -354,15 +348,14 @@ dev.off()
 
 ![](compareInteractions.pdf)
 
-## 细胞间互作次数网络图
+### 细胞间互作次数网络图
+### Network diagram of intercellular interaction frequency
 
 Circle plot showing differential cell-cell communication network **between two datasets**
 
 红色为STIM组相比CTRL组互作次数和互作强度增加，线越粗表示差异越大；蓝色则表示减少。
 
 两个数据集之间的细胞-细胞通信网络中的交互或交互强度的差异数量可以使用圆形图来可视化，其中红色(或蓝色)边表示第二个数据集相比于第一个数据集增加(或减少)的信号。
-
-## Network diagram of intercellular interaction frequency
 
 Circle plot showing differential cell-cell communication network **between two datasets**
 
@@ -393,7 +386,6 @@ dev.off()
 ![](netVisual_diffInteraction.pdf)
 
 ## 结果解读：
-
 ## Interpretation of Results:
 
 ![](result.png)
@@ -445,7 +437,7 @@ In addition, CellChat provides rich results of "receptor ligand" analysis, which
 View(cellchat)
 ```
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

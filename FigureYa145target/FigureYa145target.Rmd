@@ -10,12 +10,10 @@ output: html_document
 **Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()`  
 
-
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
-
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -85,10 +83,12 @@ options(stringsAsFactors = FALSE) #禁止chr转成factor #Prohibit chr from bein
 ## Input file
 
 easy_input_node.txt和easy_input_group.txt。从例文41467_2019_9222_MOESM5_ESM.xlsx文件整理而来。
-Organized from the example file 41467_2019_9222_MOESM5_ESM.xlsx.
 
 - easy_input_node.txt，glycan及其分类，用来画外围的点和弧线；
 - easy_input_group.txt，protein-glycan-数量的对应关系，用来画中央矩形和连线。每行一个protein，用`;`分隔多个glycon。
+
+Organized from the example file 41467_2019_9222_MOESM5_ESM.xlsx.
+
 - easy_input_node.txt, glycan and its classification, used to draw the outer points and arcs;
 - easy_input_group.txt, the correspondence between protein-glycan-quantity, used to draw the central rectangle and connecting lines. One protein per line, separate multiple glycans with `;`.
 
@@ -270,6 +270,8 @@ Actually, text and numbers can be added in R, but the position needs to be calcu
 
 在用到自己数据的时候，最好先把原数据跑一遍，理解每个数字的含义，和整体的思路，再去举一反三。这里涉及到一些数学的三角函数计算，和角度的计算，还是要理解每个数字的含义的。
 When using your own data, it is best to run the original data first, understand the meaning of each number, and the overall idea, and then draw inferences from one example. This involves some mathematical trigonometric function calculations and angle calculations, and you still need to understand the meaning of each number.
+
+## Session Info
 
 ```{r}
 sessionInfo()
