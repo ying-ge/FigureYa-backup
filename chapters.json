@@ -200,6 +200,30 @@
     "thumb": "gallery_compress/FigureYa24ROC.webp"
   },
   {
+    "id": "main_FigureYa25Plus_Sankey_py_FigureYa25Plus_Sankey_py",
+    "title": "FigureYa25Plus_Sankey_py/FigureYa25Plus_Sankey_py.html",
+    "html": "FigureYa25Plus_Sankey_py/FigureYa25Plus_Sankey_py.html",
+    "text": "texts/main_FigureYa25Plus_Sankey_py_FigureYa25Plus_Sankey_py.txt",
+    "folder": "FigureYa25Plus_Sankey_py",
+    "thumb": "gallery_compress/FigureYa25Plus_Sankey_py.webp"
+  },
+  {
+    "id": "main_FigureYa25Plus_Sankey_py_sankey_direct",
+    "title": "FigureYa25Plus_Sankey_py/sankey_direct.html",
+    "html": "FigureYa25Plus_Sankey_py/sankey_direct.html",
+    "text": "texts/main_FigureYa25Plus_Sankey_py_sankey_direct.txt",
+    "folder": "FigureYa25Plus_Sankey_py",
+    "thumb": "gallery_compress/FigureYa25Plus_Sankey_py.webp"
+  },
+  {
+    "id": "main_FigureYa25Plus_Sankey_py_sankey_full",
+    "title": "FigureYa25Plus_Sankey_py/sankey_full.html",
+    "html": "FigureYa25Plus_Sankey_py/sankey_full.html",
+    "text": "texts/main_FigureYa25Plus_Sankey_py_sankey_full.txt",
+    "folder": "FigureYa25Plus_Sankey_py",
+    "thumb": "gallery_compress/FigureYa25Plus_Sankey_py.webp"
+  },
+  {
     "id": "main_FigureYa25Sankey_update_FigureYa25Sankey_update",
     "title": "FigureYa25Sankey_update/FigureYa25Sankey_update.html",
     "html": "FigureYa25Sankey_update/FigureYa25Sankey_update.html",

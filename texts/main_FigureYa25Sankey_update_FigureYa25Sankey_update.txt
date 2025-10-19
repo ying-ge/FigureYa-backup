@@ -3,7 +3,7 @@ FigureYa25Sankey_update
 Author(s)
 : Ying Ge, Xiaofan Lu; Yijing Chen
 Date
-: 2025-09-22
+: 2025-10-18
 Academic Citation
 If you use this code in your work or research, we kindly request that
 you cite our publication:
@@ -17,7 +17,7 @@ Requirement description
 Use R code to draw the plot in paper.
 出自
 https://www.nature.com/articles/nature22973
-from
+From
 https://www.nature.com/articles/nature22973
 应用场景
 Application scenario

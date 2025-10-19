@@ -10,7 +10,7 @@ output: html_document
 **Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()`  
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -19,9 +19,8 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# 需求描述
-
-# Requirement
+## 需求描述
+## Requirement
 
 这篇文章自带的R代码里没找到这张图的代码……
 I couldn't find the code for this graph in the R code provided with this article...
@@ -38,9 +37,8 @@ It seems that there are actually quite a few places where it can be used. I want
 
 Fig. 5 | Effects of multidimensional hypoxia-associated signatures on drug response. a, Interaction of hypoxia-associated mRNAs, DNA methylation, miRNAs and drug response. Upregulated genes (red bars in upper panel) in hypoxia score-high ESCA negatively correlate (green lines, drug-sensitive) with the response to 17 drugs. Downregulated miRNAs (blue bars, left panel), hypomethylation (blue bars, bottom panel) for the corresponding upregulated genes positively correlate (magenta lines, drug-resistant) to drug response. The target genes and targeted pathways of drugs are listed in the panel to the right. The gold line indicates miRNA-targeted mRNAs; the red line links the drug to its target and targeted pathway. DNA-PK, DNA-dependent protein kinase; Hsp90, heat shock protein 90; KIF11, kinesin family member 11; PRKC, serine/threonine-protein kinase; SHP-1/2, Src homology 2 domain- containing protein tyrosine phosphatase 1/2; STLC, S-trityl-l-cysteine. 
 
-# 应用场景
-
-# Application Scenarios
+## 应用场景
+## Application Scenarios
 
 任意两组、多组连线。
 Connect any two or more groups.
@@ -51,17 +49,16 @@ Multi-column or up-down, left-right arrangement.
 根据自己数据的生物学意义，来排列各个节点的顺序。或许能够出现特殊的模式，从而展示出有意义的生物学规律。
 Arrange the order of each node based on the biological significance of your own data. Perhaps special patterns can emerge, thereby revealing meaningful biological laws.
 
-# 环境设置
-
-# Environment Setup
+## 环境设置
+## Environment Setup
 
 ```{r}
 source("install_dependencies.R")
-source("crosslink.R") # From R package crosslink
-source("layout.R") # From R package crosslink
-source("transfromation.R") # From R package crosslink
-source("utils.R") # From R package crosslink
-source("crossplot.R") # From R package crosslink
+source("crosslink.R") # From R package crosslink, https://github.com/zzwch/crosslink
+source("layout.R") # From R package crosslink, https://github.com/zzwch/crosslink
+source("transfromation.R") # From R package crosslink, https://github.com/zzwch/crosslink
+source("utils.R") # From R package crosslink, https://github.com/zzwch/crosslink
+source("crossplot.R") # From R package crosslink, https://github.com/zzwch/crosslink
 
 library(ggplot2)
 library(aplot)
@@ -72,9 +69,8 @@ Sys.setenv(LANGUAGE = "en") #显示英文报错信息
 options(stringsAsFactors = FALSE) #禁止chr转成factor
 ```
 
-# 输入文件
-
-# Input File
+## 输入文件
+## Input File
 
 easy_input_nodes.txt，所有节点id及其类别type。
 easy_input_nodes.txt, all node ids and their category types.
@@ -289,16 +285,16 @@ p
 ggsave(plot = p, filename = "squarecross.pdf", width = 8, height = 5)
 ```
 
-# 后期处理
+## 后期处理
 
-# Post-processing
+## Post-processing
 
 输出的pdf文件是矢量图，可以用矢量图编辑器打开（例如Illustrator）调整图形、文字。
 The output pdf file is a vector graphic, which can be opened with a vector graphic editor (such as Illustrator) to adjust the graphics and text.
 
-# 附：示例数据生成过程
+## 附：示例数据生成过程
 
-# Attached: Sample data generation process
+## Attached: Sample data generation process
 
 ```{r example_data, eval = F, include=T}
 # nodes
@@ -372,7 +368,7 @@ mirData <- data.frame(
 write.table(mirData, "easy_input_mirData.txt", quote = F, sep = "\t", row.names = F)
 ```
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()
