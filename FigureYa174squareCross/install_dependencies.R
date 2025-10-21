@@ -43,6 +43,8 @@ for (pkg in packages_to_install) {
 
 cat("\n===========================================\n")
 
+remotes::install_github("zzwch/crosslink", build_vignettes = TRUE)
+
 # 验证安装结果 / Verify installation results
 cat("验证安装结果:\n")
 cat("Verifying installation results:\n")

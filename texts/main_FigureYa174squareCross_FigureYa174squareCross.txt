@@ -5,7 +5,7 @@ Author(s)
 Reviewer(s)
 : Ying Ge, Junyi Shen
 Date
-: 2025-09-22
+: 2025-10-19
 Academic Citation
 If you use this code in your work or research, we kindly request that
 you cite our publication:
@@ -52,11 +52,11 @@ meaningful biological laws.
 环境设置
 Environment Setup
 source("install_dependencies.R")
-source("crosslink.R") # From R package crosslink
-source("layout.R") # From R package crosslink
-source("transfromation.R") # From R package crosslink
-source("utils.R") # From R package crosslink
-source("crossplot.R") # From R package crosslink
+source("crosslink.R") # From R package crosslink, https://github.com/zzwch/crosslink
+source("layout.R") # From R package crosslink, https://github.com/zzwch/crosslink
+source("transfromation.R") # From R package crosslink, https://github.com/zzwch/crosslink
+source("utils.R") # From R package crosslink, https://github.com/zzwch/crosslink
+source("crossplot.R") # From R package crosslink, https://github.com/zzwch/crosslink
 
 library(ggplot2)
 library(aplot)
