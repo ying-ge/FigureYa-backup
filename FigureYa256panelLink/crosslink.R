@@ -620,8 +620,8 @@ cl_plot <- function(object, layout = NULL,
 
   # expand
   p <- p +
-    scale_x_continuous(expand = expansion(mult = 0.1)) +
-    scale_y_continuous(expand = expansion(mult = 0.1))
+    scale_x_discrete(expand = expansion(mult = 0.1)) +
+    scale_y_discrete(expand = expansion(mult = 0.1))
 
   if(inherits(add, "list")){
     for(i in seq_along(add)){
@@ -646,11 +646,21 @@ cl_plot <- function(object, layout = NULL,
         i_range <- range(cross_coord[cross_coord$cross == i_b, i_axis])
         i_prange <- ggplot_build(p)$layout$panel_params[[1]][[paste0(i_axis, ".range")]]
         i_expand <- if(i_axis_ann == "x"){
-          if(is.numeric(aplot::xrange(i_p))) scale_x_continuous(expand = expansion(mult = abs(i_range - i_prange)/diff(i_prange)))
-          else scale_x_discrete(expand = expansion(mult = abs(i_range - i_prange)/diff(i_range)))
+          # Check the actual data type from the plot's first layer
+          x_data <- ggplot_build(i_p)$data[[1]][[ifelse("x" %in% names(ggplot_build(i_p)$data[[1]]), "x", "xmin")]]
+          if(is.numeric(x_data)) {
+            scale_x_continuous(expand = expansion(mult = abs(i_range - i_prange)/diff(i_prange)))
+          } else {
+            scale_x_discrete(expand = expansion(mult = abs(i_range - i_prange)/diff(i_range)))
+          }
         }else{
-          if(is.numeric(aplot::yrange(i_p))) scale_y_continuous(expand = expansion(mult = abs(i_range - i_prange)/diff(i_prange)))
-          else scale_y_discrete(expand = expansion(mult = abs(i_range - i_prange)/diff(i_range)))
+          # Check the actual data type from the plot's first layer
+          y_data <- ggplot_build(i_p)$data[[1]][[ifelse("y" %in% names(ggplot_build(i_p)$data[[1]]), "y", "ymin")]]
+          if(is.numeric(y_data)) {
+            scale_y_discrete(expand = expansion(mult = abs(i_range - i_prange)/diff(i_prange)))
+          } else {
+            scale_y_discrete(expand = expansion(mult = abs(i_range - i_prange)/diff(i_range)))
+          }
         }
         annotation[[i]] <- i_p + i_expand
         annotation_flag <- annotation_flag + 1

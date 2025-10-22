@@ -2,14 +2,15 @@
 title: "FigureYa199crosslink"
 params:
   author: "Zongcheng Li"
+  reviewers: "Ying Ge, Hui Huang"
 output: html_document
-reviewers: Ying Ge,Hui Huang
 ---
 
 **Author(s)**: `r params$author`  
-**Date**: `r Sys.Date()`  
+**reviewer(s)**: `r params$reviewers`
+**Date**: `r Sys.Date()`
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -18,11 +19,10 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# 需求描述
+## 需求描述
+## Requirement Description
 
 这幅连线图很有趣，比FigureYa174squareCross多了两层信息：点的大小和颜色。
-
-# Requirement Description
 
 This line diagram is interesting because it has two more layers of information than FigureYa174squareCross: the size and color of the dots.
 
@@ -43,7 +43,8 @@ from<https://molecular-cancer.biomedcentral.com/articles/10.1186/s12943-019-1066
 
 Fig. 2 m6A regulators are correlated with the activation and inhibition of cancer pathways. a Network diagram demonstrating the correlation between m6A regulators and cancer pathways. Red represents a positive correlation, and blue represents a negative correlation. The size of the nodes corresponds to the number of links. 
 
-# 应用场景
+## 应用场景
+## Application Scenario
 
 任意两组、多组连线，同时用颜色大小展示节点的更多信息，用连线的颜色粗细展示关系的类别强弱等信息。
 
@@ -51,24 +52,22 @@ Fig. 2 m6A regulators are correlated with the activation and inhibition of cance
 
 上下左右连线的方法可参考FigureYa174squareCross。
 
-# Application Scenario
 Connect any two or multiple groups with lines, while using color and size to display additional node information, and the color/thickness of the connecting lines to represent relationship categories and strengths.
 
 Arrange the order of nodes based on the biological significance of your data. This may reveal unique patterns, thereby demonstrating meaningful biological insights.
 
 For methods of connecting nodes (top, bottom, left, right), refer to FigureYa174squareCross
 
-# 环境设置
-
-# Environment Setup
+## 环境设置
+## Environment Setup
 
 ```{r}
 source("install_dependencies.R")
-source("crosslink.R") # From R package crosslink
-source("layout.R") # From R package crosslink
-source("transfromation.R") # From R package crosslink
-source("utils.R") # From R package crosslink
-source("crossplot.R") # From R package crosslink
+source("crosslink.R") # From R package crosslink, https://github.com/zzwch/crosslink
+source("layout.R") # From R package crosslink, https://github.com/zzwch/crosslink
+source("transfromation.R") # From R package crosslink, https://github.com/zzwch/crosslink
+source("utils.R") # From R package crosslink, https://github.com/zzwch/crosslink
+source("crossplot.R") # From R package crosslink, https://github.com/zzwch/crosslink
 
 library(dplyr)
 library(ggplot2)
@@ -77,8 +76,8 @@ Sys.setenv(LANGUAGE = "en") #显示英文报错信息 # error messages are displ
 options(stringsAsFactors = FALSE) #禁止chr转成factor # It is forbidden to convert chr into factor
 ```
 
-# 输入文件
-# Input files
+## 输入文件
+## Input files
 
 > 图中每个点、每条线的外观设置有两种方式供你选择。理解之后就可以灵活运用了，例如有些外观用代码写，有些外观填写在输入文件里。
 
@@ -96,19 +95,19 @@ easy_input_edges.csv，每两个被连起来的节点为一行，前两列是两
 
 > There are two ways to customize the appearance of each point and line in the figure. Once understood, you can apply them flexibly—for example, setting some appearances via code while specifying others in the input file.
 
--Option 1: Define appearances in the input file with custom values
+- Option 1: Define appearances in the input file with custom values
  Pros: WYSIWYG (What You See Is What You Get)—the output will match exactly what you write.
  Cons: More tedious to set up.
 
--Option 2: Keep the input file minimal (only id and type columns required) and control appearances via plotting parameters
+- Option 2: Keep the input file minimal (only id and type columns required) and control appearances via plotting parameters
  Pros: Easier to modify; avoids manual editing for each element and integrates smoothly with upstream analysis.
  Cons: Less convenient than Option 1 when dealing with too many appearance variations.
 
--Input File Formats:easy_input_nodes.csv.Each row represents a node. The first column is the node id, followed by its type, color, size, alpha (transparency), and shape.
+- Input File Formats:easy_input_nodes.csv.Each row represents a node. The first column is the node id, followed by its type, color, size, alpha (transparency), and shape.
 
 Example: If a node represents a gene, set type as "gene."Other columns (color, size, alpha, shape) can encode additional features (e.g., expression levels).
 
--easy_input_edges.csvEach row connects two nodes. The first two columns are the linked node ids, followed by color, type, alpha, and size (thickness).These attributes can reflect relationship strength, type, etc.
+- easy_input_edges.csvEach row connects two nodes. The first two columns are the linked node ids, followed by color, type, alpha, and size (thickness).These attributes can reflect relationship strength, type, etc.
 
 ```{r}
 # 载入节点信息
@@ -122,13 +121,11 @@ edges <- read.csv("easy_input_edges.csv", header = T)
 head(edges)
 ```
 
-# 开始画图
+## 开始画图
+## Start drawing
 
-## 方式一：所有外观都由输入文件决定
-
-# Start drawing
-
-## Method 1: All appearances are determined by the input file
+### 方式一：所有外观都由输入文件决定
+### Method 1: All appearances are determined by the input file
 
 ```{r}
 # 写入想画的type
@@ -151,8 +148,8 @@ columnCross2(edges, nodes, columns,
 ggsave(filename = "crosslink_file.pdf", width = 8, height = 5)
 ```
 
-## 方式二：画图时设置外观参数
-## Method 2: Set the appearance parameters when drawing
+### 方式二：画图时设置外观参数
+### Method 2: Set the appearance parameters when drawing
 
 ```{r}
 # 写入想画的type
@@ -185,17 +182,16 @@ columnCross2(edges, nodes, columns,
 ggsave(filename = "crosslink_par.pdf", width = 8, height = 5)
 ```
 
-# 再来一个例子
+## 再来一个例子
+## One more example
 
 如果某类节点太多，可以排成多列，就像需求描述的第二个例子那样。
 
-# One more example
-
 If there are too many nodes of a certain type, you can arrange them into multiple columns, as in the second example of the requirements description.
 
-## 输入文件
+### 输入文件
 
-## Input file
+### Input file
 
 ```{r}
 # 载入节点信息
@@ -209,8 +205,8 @@ edges <- read.csv("easy_input2_edges.csv", header = T)
 head(edges)
 ```
 
-## 开始画图
-# Start plot
+### 开始画图
+### Start plot
 
 ```{r,fig.width=5, fig.height=6}
 # 这里把P和N都拆成两列，当然你也可以拆成更多列
@@ -247,27 +243,24 @@ columnCross2(edges, nodes, columns,
 ggsave(filename = "crosslink_multiCol.pdf", width = 6, height = 8)
 ```
 
-# 后期处理
+## 后期处理
+## Post-processing
 
 输出的pdf文件是矢量图，可以用矢量图编辑器打开（例如Illustrator）调整图形、文字。
 
-# 附
+## 附
+## Attached
 
-## pt_shape的可选参数及其对应的形状
-
-# Post-processing
+### pt_shape的可选参数及其对应的形状
+### Optional parameters for pt_shape and their corresponding shapes
 
 The output pdf file is a vector image, which can be opened with a vector editor (e.g. Illustrator) to adjust graphics, text.
 
-# Attached
-
-## Optional parameters for pt_shape and their corresponding shapes
-
 ![](points-symbols.png){width=200px}
 
-## 示例一的输入数据生成过程
+### 示例一的输入数据生成过程
 
-## Example 1 of the input data generation process
+### Example 1 of the input data generation process
 
 ```{r eval=FALSE}
 # 节点的颜色
@@ -337,8 +330,8 @@ size = sample(1:3, 273, replace = T))
 write.csv(edges, "easy_input_edges.csv", quote = F, row.names = F)
 ```
 
-## 示例二的输入数据的生成过程
-## Example 2: The process of generating input data
+### 示例二的输入数据的生成过程
+### Example 2: The process of generating input data
 
 ```{r eval=FALSE}
 # 节点的颜色
@@ -382,7 +375,7 @@ color = c(rep("red", 100), rep("cornflowerblue", 100)))
 write.csv(edges, "easy_input2_edges.csv", quote = F, row.names = F)
 ```
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

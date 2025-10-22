@@ -1,4 +1,4 @@
-问：我没搭建过AI，要用2025年的DeepSeek-v3、GLM4.6、Claude 4 Sonnet来完成FigureYa293machineLearning做到事，具体怎样实施？
+问：我没搭建过AI，要用2025年的DeepSeek-v3、GLM4.6、Claude 4 Sonnet来完成FigureYa293machineLearning做的事，具体怎样实施？
 
 答：好的！我来为您提供一个完整的实施方案，使用2025年的最新AI模型来完成FigureYa293machineLearning的任务。这个方案专为没有AI搭建经验的用户设计。
 
