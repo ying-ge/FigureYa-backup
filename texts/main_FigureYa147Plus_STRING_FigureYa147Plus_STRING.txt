@@ -3,7 +3,7 @@ FigureYa147Plus_STRING
 Author(s)
 : Zongcheng Li, Ying Ge
 Date
-: 2025-10-16
+: 2025-10-23
 Academic Citation
 If you use this code in your work or research, we kindly request that
 you cite our publication:
@@ -44,7 +44,6 @@ library(ggplot2)              # 加载绘图包｜Load plotting package
 library(reshape2)             # 加载数据重塑包｜Load data reshaping package
 library(igraph)               # 加载网络分析包｜Load network analysis package
 library(magrittr)             # 加载管道操作包｜Load pipe operator package
-
 Sys.setenv(LANGUAGE = "en") #显示英文报错信息 #Display English error message
 options(stringsAsFactors = FALSE) #禁止chr转成factor #Disable chr conversion to factor
 自定义画图函数 Custom drawing function
@@ -123,7 +122,6 @@ net %<>%
                      value = pal_loc[links$Loc]) %<>%
   set.edge.attribute("weight", 
                      value = links$score)
-
 set.seed(777)
 lay <- layout_with_dh(net) #weight.node.dist = unique(links[,c("target","score")])$score) # weight here may be invalid!
 

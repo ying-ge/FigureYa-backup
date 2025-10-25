@@ -1,12 +1,14 @@
 ---
 title: "FigureYa25Sankey_update"
 params:
-  author: "Ying Ge, Xiaofan Lu; Yijing Chen"
+  author: "Ying Ge, Xiaofan Lu"
+  reviewer: "Yijing Chen"
 output: html_document
 ---
 
 **Author(s)**: `r params$author`  
-**Date**: `r Sys.Date()`  
+**Reviewer(s)**: `r params$reviewer`
+**Date**: `r Sys.Date()`
 
 ## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:

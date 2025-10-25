@@ -1,14 +1,16 @@
 ---
 title: "FigureYa26circos_R"
 params:
-  author: "Zhaodong Hao; Ying Ge, Yijing Chen"
+  author: "Zhaodong Hao"
+  reviewer: "Ying Ge, Yijing Chen"
 output: html_document
 ---
 
 **Author(s)**: `r params$author`  
+**Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()`  
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -287,6 +289,8 @@ dev.off()
 ![](circlize.pdf)
 
 ![](circlize_rainbow.pdf)
+
+## Session Info
 
 ```{r}
 sessionInfo()
