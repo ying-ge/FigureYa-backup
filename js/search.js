@@ -6,6 +6,28 @@ function highlight(text, terms) {
   return text.replace(re, `<span class="highlight">$1</span>`);
 }
 
+function getContextSnippet(text, query, contextLength = 50) {
+  const queryLower = query.toLowerCase();
+  const textLower = text.toLowerCase();
+
+  // Find first occurrence of query in text
+  const index = textLower.indexOf(queryLower);
+  if (index === -1) return '';
+
+  // Calculate context boundaries
+  const start = Math.max(0, index - contextLength);
+  const end = Math.min(text.length, index + query.length + contextLength);
+
+  // Extract context
+  let context = text.substring(start, end);
+
+  // Add ellipsis if truncated
+  if (start > 0) context = '...' + context;
+  if (end < text.length) context = context + '...';
+
+  return context;
+}
+
 function renderToc() {
   const tocGrid = document.getElementById("tocGrid");
   if (!tocGrid) return;
@@ -85,39 +107,115 @@ function buildIndex() {
 function doSearch() {
   const q = document.getElementById("searchBox").value.trim();
   const resultsDiv = document.getElementById("searchResults");
+  const tocGrid = document.getElementById("tocGrid");
+
   if (!q) {
     resultsDiv.innerHTML = "";
+    tocGrid.style.display = "flex";
     return;
   }
-  
-  const results = fuse.search(q);
-  let html = `<p>${results.length} result${results.length === 1 ? '' : 's'} found:</p>`;
-  
-  results.forEach(r => {
-    let snippet = r.item.text;
-    const firstTerm = q.split(/\s+/)[0].toLowerCase();
-    let idx = snippet.toLowerCase().indexOf(firstTerm);
-    
-    if (idx > 30) idx -= 30;
-    if (idx < 0) idx = 0;
-    
-    snippet = snippet.substr(idx, 120).replace(/\n/g, " ");
-    snippet = highlight(snippet, q.split(/\s+/));
 
-    html += `<div class="result">
-      <div class="result-title"><a href="${r.item.html}" target="_blank">${r.item.title}</a></div>
-      <div class="result-snippet">...${snippet}...</div>
-    </div>`;
+  const results = fuse.search(q);
+
+  if (results.length === 0) {
+    resultsDiv.innerHTML = `<p>No results found for "${q}"</p>`;
+    tocGrid.style.display = "none";
+    return;
+  }
+
+  // 获取匹配的文件夹并保持去重和顺序
+  const matchedFolders = new Set();
+  results.forEach(r => {
+    matchedFolders.add(r.item.folder);
   });
-  resultsDiv.innerHTML = html;
+
+  // 筛选出匹配的文件夹数据
+  const filteredFolders = [];
+  const folderMap = {};
+
+  // 重新构建文件夹映射，但只包含匹配的文件夹
+  chapters.forEach(item => {
+    if (matchedFolders.has(item.folder)) {
+      if (!folderMap[item.folder]) {
+        folderMap[item.folder] = { ...item, htmls: [] };
+        filteredFolders.push(folderMap[item.folder]);
+      }
+      folderMap[item.folder].htmls.push({ name: item.html.split("/").pop(), href: item.html });
+    }
+  });
+
+  resultsDiv.innerHTML = `<p>${results.length} result${results.length === 1 ? '' : 's'} found in ${filteredFolders.length} module${filteredFolders.length === 1 ? '' : 's'}:</p>`;
+
+  // 隐藏原来的网格，显示筛选后的结果
+  tocGrid.style.display = "none";
+
+  // 创建筛选后的结果网格
+  let filteredHtml = '';
+  filteredFolders.forEach(folderData => {
+    const thumb = folderData.thumb;
+
+    // Find the first matching result for this folder to get context
+    const matchingResult = results.find(r => r.item.folder === folderData.folder);
+    let contextSnippet = '';
+    if (matchingResult) {
+      contextSnippet = getContextSnippet(matchingResult.item.text, q);
+      if (contextSnippet) {
+        // Highlight the search terms in the context
+        const terms = q.split(/\s+/).filter(t => t.length > 0);
+        contextSnippet = highlight(contextSnippet, terms);
+      }
+    }
+
+    filteredHtml += `<div class="card">`;
+    filteredHtml += thumb
+      ? `<img src="${thumb}" alt="${folderData.folder}" loading="lazy">`
+      : `<div style="width:100%;height:80px;background:#eee;border-radius:6px;margin-bottom:8px;"></div>`;
+
+    filteredHtml += `<div class="card-title">${folderData.folder}</div>`;
+    filteredHtml += `<div class="card-links">`;
+    folderData.htmls.forEach(h => {
+      filteredHtml += `<a href="${h.href}" target="_blank" style="display:inline-block;margin:0 3px 2px 0">${h.name}</a>`;
+    });
+    filteredHtml += `</div>`;
+
+    if (contextSnippet) {
+      filteredHtml += `<div class="card-context">${contextSnippet}</div>`;
+    }
+
+    filteredHtml += `</div>`;
+  });
+
+  // 创建新的结果网格容器
+  let resultsGrid = document.getElementById("resultsGrid");
+  if (!resultsGrid) {
+    resultsGrid = document.createElement("div");
+    resultsGrid.id = "resultsGrid";
+    resultsGrid.className = "grid";
+    resultsDiv.parentNode.insertBefore(resultsGrid, resultsDiv.nextSibling);
+  }
+
+  resultsGrid.innerHTML = filteredHtml;
+  resultsGrid.style.display = "flex";
 }
 
 function clearSearch() {
   document.getElementById("searchBox").value = "";
   document.getElementById("searchResults").innerHTML = "";
+
+  // 显示原始网格并隐藏筛选网格
+  const tocGrid = document.getElementById("tocGrid");
+  const resultsGrid = document.getElementById("resultsGrid");
+
+  if (tocGrid) {
+    tocGrid.style.display = "flex";
+  }
+
+  if (resultsGrid) {
+    resultsGrid.style.display = "none";
+  }
 }
 
-window.addEventListener('DOMContentLoaded', (event) => {
+window.addEventListener('DOMContentLoaded', () => {
     loadAllChapters(() => {
         buildIndex();
         renderToc();

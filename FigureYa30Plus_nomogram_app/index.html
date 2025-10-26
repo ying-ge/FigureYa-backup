@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Nomogram Calculator - 医生临床决策助手</title>
+    <meta name="description" content="基于Cox回归模型的患者生存率预测计算器">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="images/icon-192.png">
+    <meta name="theme-color" content="#2196f3">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏥 Nomogram Calculator</h1>
+            <p>患者生存率预测工具 - 基于Cox回归模型</p>
+        </header>
+
+        <div class="form-container">
+            <form id="nomogram-form">
+                <div class="form-group">
+                    <label for="age">年龄 (Age):</label>
+                    <input type="number" id="age" name="age" min="0" max="120" step="0.1" required>
+                    <span class="unit">岁</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="sex">性别 (Sex):</label>
+                    <select id="sex" name="sex" required>
+                        <option value="f">女性 (Female)</option>
+                        <option value="m">男性 (Male)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="bili">胆红素 (Bilirubin):</label>
+                    <input type="number" id="bili" name="bili" min="0" max="50" step="0.1" required>
+                    <span class="unit">mg/dL</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="copper">铜 (Copper):</label>
+                    <input type="number" id="copper" name="copper" min="0" max="1000" step="1" required>
+                    <span class="unit">μg/dL</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="stage">疾病分期 (Stage):</label>
+                    <select id="stage" name="stage" required>
+                        <option value="1">Stage 1</option>
+                        <option value="2">Stage 2</option>
+                        <option value="3">Stage 3</option>
+                        <option value="4">Stage 4</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="trt">治疗方案 (Treatment):</label>
+                    <select id="trt" name="trt" required>
+                        <option value="0">对照组 (Control)</option>
+                        <option value="1">治疗1 (Treatment 1)</option>
+                        <option value="2">治疗2 (Treatment 2)</option>
+                    </select>
+                </div>
+
+                <button type="submit" id="calculate-btn">
+                    <span class="btn-text">计算生存率</span>
+                    <span class="btn-loading" style="display: none;">计算中...</span>
+                </button>
+            </form>
+        </div>
+
+        <div class="results-container" id="results" style="display: none;">
+            <h2>📊 预测结果</h2>
+
+            <div class="result-cards">
+                <div class="result-card">
+                    <h3>2年生存率</h3>
+                    <div class="result-value" id="survival-2y">-</div>
+                </div>
+
+                <div class="result-card">
+                    <h3>5年生存率</h3>
+                    <div class="result-value" id="survival-5y">-</div>
+                </div>
+
+                <div class="result-card">
+                    <h3>8年生存率</h3>
+                    <div class="result-value" id="survival-8y">-</div>
+                </div>
+            </div>
+
+            <div class="explanation">
+                <p><strong>说明：</strong></p>
+                <ul>
+                    <li>基于Cox比例风险模型计算</li>
+                    <li>适用于临床决策参考</li>
+                    <li>结果仅供参考，请结合临床综合判断</li>
+                </ul>
+            </div>
+
+            <div class="nomogram-visualization">
+                <h3>📈 Nomogram评分可视化</h3>
+                <div id="nomogram-chart">
+                    <canvas id="nomogram-canvas" width="600" height="400"></canvas>
+                </div>
+                <div class="chart-legend">
+                    <span class="legend-item high">低风险 (≥80%)</span>
+                    <span class="legend-item medium">中风险 (50-80%)</span>
+                    <span class="legend-item low">高风险 (<50%)</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-section">
+            <details>
+                <summary>ℹ️ 关于此工具</summary>
+                <div class="info-content">
+                    <p><strong>模型来源：</strong>基于临床数据训练的Cox回归模型</p>
+                    <p><strong>预测因子：</strong>年龄、性别、胆红素、铜、疾病分期、治疗方案</p>
+                    <p><strong>适用人群：</strong>肝病患者（基于PBC数据集训练）</p>
+                    <p><strong>参考文献：</strong>FigureYa: A Standardized Visualization Framework</p>
+                </div>
+            </details>
+        </div>
+    </div>
+
+    <script src="js/nomogram.js"></script>
+    <script src="js/nomogram-viz.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

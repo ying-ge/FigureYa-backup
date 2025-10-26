@@ -1,0 +1,47 @@
+Nomogram Calculator - 医生临床决策助手
+🏥 Nomogram Calculator
+患者生存率预测工具 - 基于Cox回归模型
+年龄 (Age):
+岁
+性别 (Sex):
+女性 (Female)
+男性 (Male)
+胆红素 (Bilirubin):
+mg/dL
+铜 (Copper):
+μg/dL
+疾病分期 (Stage):
+Stage 1
+Stage 2
+Stage 3
+Stage 4
+治疗方案 (Treatment):
+对照组 (Control)
+治疗1 (Treatment 1)
+治疗2 (Treatment 2)
+计算生存率
+计算中...
+📊 预测结果
+2年生存率
+-
+5年生存率
+-
+8年生存率
+-
+说明：
+基于Cox比例风险模型计算
+适用于临床决策参考
+结果仅供参考，请结合临床综合判断
+📈 Nomogram评分可视化
+低风险 (≥80%)
+中风险 (50-80%)
+高风险 (<50%)
+ℹ️ 关于此工具
+模型来源：
+基于临床数据训练的Cox回归模型
+预测因子：
+年龄、性别、胆红素、铜、疾病分期、治疗方案
+适用人群：
+肝病患者（基于PBC数据集训练）
+参考文献：
+FigureYa: A Standardized Visualization Framework
