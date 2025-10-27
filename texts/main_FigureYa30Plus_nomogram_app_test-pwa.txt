@@ -1,0 +1,11 @@
+PWA功能测试 - Nomogram Calculator
+📱 PWA功能测试
+此页面用于测试Nomogram应用的PWA功能是否正常工作。
+🔍 基础检测
+📱 PWA特性检测
+🍎 iOS特定功能
+🧪 功能测试
+测试Service Worker
+测试通知
+测试安装提示
+清理缓存

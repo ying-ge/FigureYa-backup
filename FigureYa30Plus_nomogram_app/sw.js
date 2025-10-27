@@ -3,9 +3,9 @@
  * 提供离线功能和缓存管理
  */
 
-const CACHE_NAME = 'nomogram-app-v1.0.0';
-const STATIC_CACHE = 'static-cache-v1';
-const RUNTIME_CACHE = 'runtime-cache-v1';
+const CACHE_NAME = 'nomogram-app-v2.0.0';
+const STATIC_CACHE = 'static-cache-v2';
+const RUNTIME_CACHE = 'runtime-cache-v2';
 
 // 需要缓存的静态资源
 const STATIC_ASSETS = [
@@ -14,7 +14,11 @@ const STATIC_ASSETS = [
   '/css/style.css',
   '/js/nomogram.js',
   '/js/app.js',
+  '/js/nomogram-viz.js',
   '/manifest.json',
+  '/images/icon.svg',
+  '/images/icon-192.png',
+  '/images/icon-512.png',
   'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap'
 ];
 

@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>PWA功能测试 - Nomogram Calculator</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="PWA测试">
+    <link rel="apple-touch-icon" href="images/icon-192.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2196f3">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+        .test-item {
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border-left: 4px solid #ddd;
+            background: #f9f9f9;
+        }
+        .test-item.success {
+            border-left-color: #4caf50;
+            background: #f1f8e9;
+        }
+        .test-item.error {
+            border-left-color: #f44336;
+            background: #ffebee;
+        }
+        .test-item.info {
+            border-left-color: #2196f3;
+            background: #e3f2fd;
+        }
+        .status {
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.9em;
+        }
+        .status.pass { color: #4caf50; }
+        .status.fail { color: #f44336; }
+        .status.info { color: #2196f3; }
+        h1 { color: #2196f3; margin-bottom: 20px; }
+        h2 { color: #333; margin: 20px 0 10px 0; }
+        .button {
+            background: #2196f3;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 10px 5px;
+            font-size: 16px;
+        }
+        .button:hover { background: #1976d2; }
+        .result {
+            background: #f5f5f5;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-family: monospace;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📱 PWA功能测试</h1>
+        <p>此页面用于测试Nomogram应用的PWA功能是否正常工作。</p>
+
+        <h2>🔍 基础检测</h2>
+        <div id="basic-tests"></div>
+
+        <h2>📱 PWA特性检测</h2>
+        <div id="pwa-tests"></div>
+
+        <h2>🍎 iOS特定功能</h2>
+        <div id="ios-tests"></div>
+
+        <h2>🧪 功能测试</h2>
+        <button class="button" onclick="testServiceWorker()">测试Service Worker</button>
+        <button class="button" onclick="testNotification()">测试通知</button>
+        <button class="button" onclick="testInstallPrompt()">测试安装提示</button>
+        <button class="button" onclick="clearCache()">清理缓存</button>
+
+        <div id="test-results"></div>
+    </div>
+
+    <script>
+        // 基础功能检测
+        function runBasicTests() {
+            const container = document.getElementById('basic-tests');
+            const tests = [
+                {
+                    name: 'Service Worker支持',
+                    test: () => 'serviceWorker' in navigator
+                },
+                {
+                    name: 'Manifest支持',
+                    test: () => 'onbeforeinstallprompt' in window
+                },
+                {
+                    name: '通知支持',
+                    test: () => 'Notification' in window
+                },
+                {
+                    name: '本地存储支持',
+                    test: () => 'localStorage' in window
+                },
+                {
+                    name: '地理定位支持',
+                    test: () => 'geolocation' in navigator
+                }
+            ];
+
+            tests.forEach(test => {
+                const result = test.test();
+                const div = document.createElement('div');
+                div.className = `test-item ${result ? 'success' : 'error'}`;
+                div.innerHTML = `
+                    <strong>${test.name}</strong>
+                    <span class="status ${result ? 'pass' : 'fail'}">${result ? '✓ 通过' : '✗ 失败'}</span>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        // PWA特性检测
+        function runPWATests() {
+            const container = document.getElementById('pwa-tests');
+
+            // 检测显示模式
+            const isStandalone = window.matchMedia('(display-mode: standalone)').matches ||
+                               window.navigator.standalone === true;
+
+            const tests = [
+                {
+                    name: '当前显示模式',
+                    test: () => isStandalone ? '独立应用模式' : '浏览器模式'
+                },
+                {
+                    name: '屏幕方向',
+                    test: () => window.orientation || '未知'
+                },
+                {
+                    name: '设备像素比',
+                    test: () => window.devicePixelRatio
+                },
+                {
+                    name: '屏幕尺寸',
+                    test: () => `${window.screen.width}x${window.screen.height}`
+                },
+                {
+                    name: '网络连接',
+                    test: () => navigator.onLine ? '在线' : '离线'
+                }
+            ];
+
+            tests.forEach(test => {
+                const result = test.test();
+                const div = document.createElement('div');
+                div.className = 'test-item info';
+                div.innerHTML = `
+                    <strong>${test.name}</strong>
+                    <span class="status info">${result}</span>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        // iOS特定功能检测
+        function runIOSTests() {
+            const container = document.getElementById('ios-tests');
+            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+                         (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+
+            const tests = [
+                {
+                    name: 'iOS设备检测',
+                    test: () => isIOS
+                },
+                {
+                    name: 'Safari浏览器',
+                    test: () => /^((?!chrome|android).)*safari/i.test(navigator.userAgent)
+                },
+                {
+                    name: '安全区域支持',
+                    test: () => CSS.supports('padding', 'max(0px)')
+                },
+                {
+                    name: 'Web App模式',
+                    test: () => window.navigator.standalone === true
+                },
+                {
+                    name: '触摸支持',
+                    test: () => 'ontouchstart' in window
+                }
+            ];
+
+            tests.forEach(test => {
+                const result = test.test();
+                const div = document.createElement('div');
+                div.className = `test-item ${result ? 'success' : 'error'}`;
+                div.innerHTML = `
+                    <strong>${test.name}</strong>
+                    <span class="status ${result ? 'pass' : 'fail'}">${result ? '✓ 支持' : '✗ 不支持'}</span>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        // 测试Service Worker
+        async function testServiceWorker() {
+            const resultsDiv = document.getElementById('test-results');
+
+            if ('serviceWorker' in navigator) {
+                try {
+                    const registration = await navigator.serviceWorker.getRegistration();
+                    if (registration) {
+                        showResult('Service Worker已注册: ' + registration.scope, 'success');
+                        showResult('更新状态: ' + (registration.active ? '激活' : '未激活'), 'info');
+                    } else {
+                        showResult('Service Worker未注册', 'error');
+                    }
+                } catch (error) {
+                    showResult('Service Worker检测失败: ' + error.message, 'error');
+                }
+            } else {
+                showResult('浏览器不支持Service Worker', 'error');
+            }
+        }
+
+        // 测试通知
+        async function testNotification() {
+            const resultsDiv = document.getElementById('test-results');
+
+            if ('Notification' in window) {
+                try {
+                    const permission = await Notification.requestPermission();
+                    if (permission === 'granted') {
+                        new Notification('测试通知', {
+                            body: 'Nomogram应用通知功能正常',
+                            icon: '/images/icon-192.png'
+                        });
+                        showResult('通知权限已授予，测试通知已发送', 'success');
+                    } else {
+                        showResult('通知权限被拒绝', 'error');
+                    }
+                } catch (error) {
+                    showResult('通知测试失败: ' + error.message, 'error');
+                }
+            } else {
+                showResult('浏览器不支持通知功能', 'error');
+            }
+        }
+
+        // 测试安装提示
+        function testInstallPrompt() {
+            const resultsDiv = document.getElementById('test-results');
+
+            if ('beforeinstallprompt' in window) {
+                showResult('浏览器支持PWA安装提示', 'success');
+            } else if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
+                showResult('iOS设备：需要手动添加到主屏幕', 'info');
+            } else {
+                showResult('浏览器不支持PWA安装提示', 'error');
+            }
+        }
+
+        // 清理缓存
+        async function clearCache() {
+            const resultsDiv = document.getElementById('test-results');
+
+            if ('caches' in window) {
+                try {
+                    const cacheNames = await caches.keys();
+                    await Promise.all(cacheNames.map(name => caches.delete(name)));
+                    showResult(`已清理${cacheNames.length}个缓存`, 'success');
+                } catch (error) {
+                    showResult('缓存清理失败: ' + error.message, 'error');
+                }
+            } else {
+                showResult('浏览器不支持缓存API', 'error');
+            }
+        }
+
+        // 显示测试结果
+        function showResult(message, type) {
+            const resultsDiv = document.getElementById('test-results');
+            const div = document.createElement('div');
+            div.className = `test-item ${type}`;
+            div.innerHTML = `<span class="status ${type}">${message}</span>`;
+            resultsDiv.appendChild(div);
+        }
+
+        // 页面加载时运行测试
+        document.addEventListener('DOMContentLoaded', () => {
+            runBasicTests();
+            runPWATests();
+            runIOSTests();
+        });
+    </script>
+</body>
+</html>

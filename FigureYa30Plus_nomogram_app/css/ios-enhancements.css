@@ -1,0 +1,242 @@
+/* iOS/iPhone 特定优化 */
+
+/* 安全区域适配 (iPhone X 及更新机型) */
+@supports (padding: max(0px)) {
+    .container {
+        padding-left: max(20px, env(safe-area-inset-left));
+        padding-right: max(20px, env(safe-area-inset-right));
+        padding-bottom: max(20px, env(safe-area-inset-bottom));
+    }
+
+    header {
+        padding-top: max(30px, 30px + env(safe-area-inset-top));
+    }
+}
+
+/* iOS Safari 滚动优化 */
+body {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+}
+
+/* iOS 输入框优化 */
+.form-group input,
+.form-group select {
+    -webkit-appearance: none;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: #fafafa;
+}
+
+.form-group select {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 16px;
+    padding-right: 40px;
+}
+
+/* iOS 按钮优化 */
+#calculate-btn {
+    -webkit-appearance: none;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-user-select: none;
+    user-select: none;
+    touch-action: manipulation;
+}
+
+/* iOS 动画优化 */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* iOS 触摸反馈 */
+.form-group input:active,
+.form-group select:active,
+#calculate-btn:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
+}
+
+/* iOS PWA 全屏模式优化 */
+@media all and (display-mode: standalone) {
+    body {
+        padding-top: env(safe-area-inset-top);
+    }
+
+    header {
+        padding-top: max(30px, 20px + env(safe-area-inset-top));
+    }
+
+    .container {
+        max-width: 100%;
+        padding: 15px;
+    }
+
+    header h1 {
+        font-size: 1.8em;
+    }
+
+    header p {
+        font-size: 1em;
+    }
+}
+
+/* 小屏幕 iPhone 优化 (iPhone SE 等) */
+@media screen and (max-width: 375px) {
+    .container {
+        padding: 15px;
+    }
+
+    header {
+        padding: 20px 15px;
+        margin-bottom: 15px;
+    }
+
+    header h1 {
+        font-size: 1.6em;
+        margin-bottom: 8px;
+    }
+
+    header p {
+        font-size: 0.9em;
+    }
+
+    .form-container {
+        padding: 20px 15px;
+        margin-bottom: 15px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        font-size: 1em;
+        margin-bottom: 6px;
+    }
+
+    .form-group input,
+    .form-group select {
+        padding: 12px;
+        font-size: 16px; /* 防止 iOS 放大 */
+    }
+
+    #calculate-btn {
+        padding: 15px;
+        font-size: 1.1em;
+    }
+
+    .results-container {
+        padding: 20px 15px;
+    }
+
+    .results-container h2 {
+        font-size: 1.5em;
+        margin-bottom: 20px;
+    }
+
+    .result-cards {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .result-card {
+        padding: 20px 15px;
+    }
+}
+
+/* 大屏幕 iPhone 优化 (iPhone 12 Pro Max 等) */
+@media screen and (min-width: 414px) {
+    .container {
+        max-width: 430px;
+    }
+
+    .result-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* iOS 状态栏和主页指示器适配 */
+@supports (padding: max(0px)) {
+    .results-container {
+        padding-bottom: max(30px, 30px + env(safe-area-inset-bottom));
+    }
+}
+
+/* iOS 深色模式支持 */
+@media (prefers-color-scheme: dark) {
+    body {
+        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    }
+
+    header,
+    .form-container,
+    .results-container {
+        background: #1e1e1e;
+        color: #ffffff;
+    }
+
+    header h1,
+    .results-container h2 {
+        color: #64b5f6;
+    }
+
+    header p {
+        color: #b0b0b0;
+    }
+
+    .form-group label {
+        color: #ffffff;
+    }
+
+    .form-group input,
+    .form-group select {
+        background: #2a2a2a;
+        border-color: #444444;
+        color: #ffffff;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+        background: #333333;
+        border-color: #64b5f6;
+    }
+
+    .unit {
+        color: #b0b0b0;
+    }
+
+    .result-card {
+        background: linear-gradient(135deg, #2a2a2a 0%, #3a3a3a 100%);
+        color: #ffffff;
+    }
+}
+
+/* iOS 字体渲染优化 */
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+/* iOS 长按禁用 */
+.form-group input,
+.form-group select,
+#calculate-btn {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.form-group input {
+    -webkit-user-select: text;
+    user-select: text;
+}
