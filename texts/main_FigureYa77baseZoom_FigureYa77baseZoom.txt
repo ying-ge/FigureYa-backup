@@ -5,7 +5,7 @@ Author(s)
 Reviewer(s)
 : Ying Ge
 Date
-: 2025-09-22
+: 2025-10-27
 Academic Citation
 If you use this code in your work or research, we kindly request that
 you cite our publication:
@@ -19,7 +19,7 @@ Requirement description
 Use a base plot to draw a C chart with zoom in effect.
 出自
 https://www.sciencedirect.com/science/article/pii/S0092867415011952
-from
+From
 https://www.sciencedirect.com/science/article/pii/S0092867415011952
 应用场景
 有时会遇到这样的问题：点的分布很不均匀，堆在一起的点很难标label。
@@ -37,17 +37,8 @@ in each variant type in two groups, with colors indicating variant types
 and bubble sizes indicating p-value. The position of the bubble towards
 the upper left indicates a higher proportion in IDC than in ILC, and
 vice versa. This map is not limited to genes.
-环境设置
-Environment settings
-source("install_dependencies.R")
-# 设置系统环境变量，将语言设置为英文，确保R的报错信息以英文形式显示
-# Set system environment variable to display R error messages in English
-Sys.setenv(LANGUAGE = "en") 
-
-# 全局选项设置，禁止字符型变量自动转换为因子类型，避免数据类型意外转换
-# Global option to disable automatic conversion of character variables to factors, preventing unexpected data type conversions
-options(stringsAsFactors = FALSE)
 输入文件
+Input file
 easy_input.csv，提供分组、个数及总数（用于计算百分比）、pvalue：
 第一列是基因名；
 第二列是分组；
@@ -55,14 +46,14 @@ easy_input.csv，提供分组、个数及总数（用于计算百分比）、pva
 最后一列是pvalue。
 示例数据整理自例文的Table 1. Recurrently Mutated Genes in Breast
 Cancer，这里只用了mutation，没加CNV，因此泡泡的位置跟原图有出入。
-Input file
 easy_input.csv， Provide grouping, number, and total (for calculating
 percentages) pvalue：
--The first column is the gene name; -The second column is grouping;
--Columns 3-4 and 5-6 represent the quantities and total numbers in ILC
-(horizontal axis) and IDC (vertical axis), respectively. These two
-columns will be used later to calculate the percentage; -The last column
-is the p-value.
+The first column is the gene name;
+The second column is grouping;
+Columns 3-4 and 5-6 represent the quantities and total numbers in
+ILC (horizontal axis) and IDC (vertical axis), respectively. These two
+columns will be used later to calculate the percentage;
+The last column is the p-value.
 The example data is compiled from Table 1 of the example text.
 Recurrent Mutated Genes in Breast Cancer, where only mutation was used
 without adding CNV, resulting in a discrepancy in the position of the
@@ -78,8 +69,8 @@ head(dat2)
 Organize the data in each column into the format required for
 drawing
 开始画图
-Zoom in的效果，也就是画一个整体，再画一个局部。
 Start drawing
+Zoom in的效果，也就是画一个整体，再画一个局部。
 The effect of Zoom in is to draw a whole and then a part.
 画局部
 Draw a partial picture
@@ -220,4 +211,5 @@ recordedplot1 <- recordPlot()
 pdf("baseZoom.pdf",10,5.5)
 recordedplot1
 dev.off()
+Session Info
 sessionInfo()

@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Bash(source:*)"
+      "Bash(source:*)",
+      "Read(//Users/mypro/figureya-cloud-server/frontend/**)"
     ],
     "deny": [],
     "ask": []

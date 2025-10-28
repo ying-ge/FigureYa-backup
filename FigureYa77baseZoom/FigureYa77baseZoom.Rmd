@@ -10,13 +10,10 @@ output: html_document
 **Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()`  
 
-
-
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
-
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -35,7 +32,7 @@ Use a base plot to draw a C chart with zoom in effect.
 
 出自<https://www.sciencedirect.com/science/article/pii/S0092867415011952>
 
-from<https://www.sciencedirect.com/science/article/pii/S0092867415011952>
+From<https://www.sciencedirect.com/science/article/pii/S0092867415011952>
 
 ## 应用场景
 
@@ -53,22 +50,8 @@ Solution: While drawing the whole, draw the parts at the same time, so that you 
 
 The example graph is used to display the percentage of multiple genes in each variant type in two groups, with colors indicating variant types and bubble sizes indicating p-value. The position of the bubble towards the upper left indicates a higher proportion in IDC than in ILC, and vice versa. This map is not limited to genes.
 
-## 环境设置
-
-## Environment settings
-
-```{r}
-source("install_dependencies.R")
-# 设置系统环境变量，将语言设置为英文，确保R的报错信息以英文形式显示
-# Set system environment variable to display R error messages in English
-Sys.setenv(LANGUAGE = "en") 
-
-# 全局选项设置，禁止字符型变量自动转换为因子类型，避免数据类型意外转换
-# Global option to disable automatic conversion of character variables to factors, preventing unexpected data type conversions
-options(stringsAsFactors = FALSE) 
-```
-
 ## 输入文件
+## Input file
 
 easy_input.csv，提供分组、个数及总数（用于计算百分比）、pvalue：
 
@@ -79,14 +62,12 @@ easy_input.csv，提供分组、个数及总数（用于计算百分比）、pva
 
 示例数据整理自例文的Table 1. Recurrently Mutated Genes in Breast Cancer，这里只用了mutation，没加CNV，因此泡泡的位置跟原图有出入。
 
-## Input file
-
 easy_input.csv， Provide grouping, number, and total (for calculating percentages) pvalue：
 
--The first column is the gene name;
--The second column is grouping;
--Columns 3-4 and 5-6 represent the quantities and total numbers in ILC (horizontal axis) and IDC (vertical axis), respectively. These two columns will be used later to calculate the percentage;
--The last column is the p-value.
+- The first column is the gene name;
+- The second column is grouping;
+- Columns 3-4 and 5-6 represent the quantities and total numbers in ILC (horizontal axis) and IDC (vertical axis), respectively. These two columns will be used later to calculate the percentage;
+- The last column is the p-value.
 
 The example data is compiled from Table 1 of the example text. Recurrent Mutated Genes in Breast Cancer, where only mutation was used without adding CNV, resulting in a discrepancy in the position of the bubbles from the original image.
 
@@ -101,7 +82,6 @@ head(dat2)
 ```
 
 ## 把各列数据整理成画图所需的格式
-
 ## Organize the data in each column into the format required for drawing
 
 ```{r}
@@ -142,16 +122,14 @@ names(sizes) <- dat2$Gene
 ```
 
 ## 开始画图
+## Start drawing
 
 Zoom in的效果，也就是画一个整体，再画一个局部。
 
-## Start drawing
-
 The effect of Zoom in is to draw a whole and then a part.
 
-### 画局部 ###
-
-### Draw a partial picture###
+### 画局部
+### Draw a partial picture
 
 ```{r, fig.width=10, fig.height=5.5}
 # 设置图形布局，一行两列，并调整边距为底部留出图例空间
@@ -296,6 +274,8 @@ dev.off()
 ```
 
 ![](baseZoom.pdf)
+
+## Session Info
 
 ```{r}
 sessionInfo()

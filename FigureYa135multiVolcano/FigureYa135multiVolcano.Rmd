@@ -10,12 +10,10 @@ output: html_document
 **Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()`  
 
-
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
-
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -56,20 +54,13 @@ You can also change to differentially expressed genes, replace the horizontal ax
 ## 环境设置
 ## Environment settings
 
-
 ```{r}
 source("install_dependencies.R")
-# BiocManager::install("janitor")
-```
-
-Load package
-
-```{r}
-library(magrittr)
-library(ggplot2)
-library(ggrepel)
-library(janitor)
-library(cowplot)
+library(magrittr)  # 管道操作符及函数组合 | Provides the pipe operator and functional chaining (magrittr)
+library(ggplot2)   # 绘图核心库 | Core plotting library for creating graphics
+library(ggrepel)   # 优雅的标签避免重叠 | Prevents overlapping text labels (smart label placement)
+library(janitor)   # 数据清理与表格整理工具 | Helper functions for cleaning data and tabular formatting
+library(cowplot)   # 多图组合与主题美化 | Plot composition and themes for combined figures
 Sys.setenv(LANGUAGE = "en") #显示英文报错信息 #Display English error message
 options(stringsAsFactors = FALSE) #禁止chr转成factor #Disable chr conversion to factor
 ```
@@ -78,12 +69,14 @@ options(stringsAsFactors = FALSE) #禁止chr转成factor #Disable chr conversion
 ## Input file
 
 easy_input.csv，包含四列：
-easy_input.csv, contains four columns:
 
 - 第一列ID，用于在图中标出P value低的位点ID。
 - 第二列p value，用于画散点图。
 - 第三列deltaBeta（foldchange），用于画散点图。另外，这里会用这列计算hypo和hypermethylated的百分比，用来画顶端百分比图。如果你不想用deltaBeta列来计算百分比，可以直接给出百分比，详见文档中“顶部百分比图 `p3` 的绘制”部分。
 - 第四列feature，用于画右侧柱状图。这里是位点所在的基因组位置特征，也可以换做其他特征，例如差异表达基因所在的通路、编码/非编码、原癌/抑癌等。
+
+easy_input.csv, contains four columns:
+
 - The first column ID is used to mark the site ID with low P value in the figure.
 - The second column p value is used to draw scatter plots.
 - The third column deltaBeta (foldchange) is used to draw scatter plots. In addition, this column will be used to calculate the percentage of hypo and hypermethylated, which is used to draw the top percentage map. If you do not want to use the deltaBeta column to calculate the percentage, you can directly give the percentage. For details, see the "Drawing the top percentage map `p3`" section in the document.
@@ -314,6 +307,8 @@ p
 # Save to file
 ggsave("multiVolcano.pdf")
 ```
+
+## Session Info
 
 ```{r}
 sessionInfo()
