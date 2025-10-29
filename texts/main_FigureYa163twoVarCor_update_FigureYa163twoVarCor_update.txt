@@ -5,7 +5,7 @@ Author(s)
 Reviewer(s)
 : Ying Ge, Junyi Shen
 Date
-: 2025-09-22
+: 2025-10-28
 Academic Citation
 If you use this code in your work or research, we kindly request that
 you cite our publication:
@@ -18,8 +18,8 @@ Requirement Description
 需求一：
 绘制多组数据在两个变量上的相关性散点图。
 Requirement 1:
-Plot a scatter plot of the correlations
-between multiple data sets on two variables.
+Plot a scatter plot of the
+correlations between multiple data sets on two variables.
 Fig. 1 Correlations between DNAm age and chronological age and other
 molecular characteristics of DNAm age groups. a DNAm age of 200 mixed
 normal cervical samples predicts chronological age with a decent
@@ -29,12 +29,12 @@ tumour samples from TCGA.
 Interpretation of the
 Figure
 不同于普通相关性散点图，这里添加了更丰富的信息，类似的有FigureYa143survCor：
+用点的大小展示横纵坐标的差异，类似于FigureYa59volcano用点的大小体现差异倍数和pvalue；
+用了两种颜色，使得两组数据可以画一起，还可用更多颜色展示更多组。
 Unlike ordinary correlation scatter plots, this one adds richer
 information, similar to FigureYa143survCor:
-用点的大小展示横纵坐标的差异，类似于FigureYa59vocano用点的大小体现差异倍数和pvalue；
-用了两种颜色，使得两组数据可以画一起，还可用更多颜色展示更多组。
 The size of the dot indicates the difference between the horizontal
-and vertical axes, similar to FigureYa59vocano, which uses the size of
+and vertical axes, similar to FigureYa59volcano, which uses the size of
 the dot to indicate the fold difference and p-value;
 Two colors are used to allow the two data sets to be plotted
 together, and more colors can be used to display more groups.
@@ -42,25 +42,23 @@ together, and more colors can be used to display more groups.
 审稿人要求我比较两个相关性大小有没有统计学差异，我想知道老师这篇文章里Fisher’s
 r-to-z transformation是怎么计算的？
 Requirement 2:
-The
-reviewer asked me to compare the two correlations to see if they are
-statistically significant. I would like to know how Fisher’s r-to-z
-transformation is calculated in this paper.
-出自
-https://clinicalepigeneticsjournal.biomedcentral.com/articles/10.1186/s13148-020-0822-y
+The reviewer asked me to compare the
+two correlations to see if they are statistically significant. I would
+like to know how Fisher’s r-to-z transformation is calculated in this
+paper.
 From
 https://clinicalepigeneticsjournal.biomedcentral.com/articles/10.1186/s13148-020-0822-y
 应用场景
 Application Scenarios
-展示两个基因/性状之间的相关性，2组/3组/多组都可以画一起。 Show the
-correlation between two genes/traits. Two, three, or more groups can be
-plotted together.
+展示两个基因/性状之间的相关性，2组/3组/多组都可以画一起。
 这里用颜色区分每个分组，如果太多怕区分不开，可参考FigureYa125Fishertest、FigureYa76corrgram或FigureYa97correlationV3，再多的话可以用FigureYa73batchCorrelation做批量相关性分析和画图。
+这里要求两组数据的横纵坐标一致，如果你的两组数据横纵坐标不一致，可参考FigureYa62twoAxis和FigureYa96R2的画法
+Show the correlation between two genes/traits. Two, three, or more
+groups can be plotted together.
 Here, each group is distinguished by color. If there are too many
 groups to distinguish, refer to FigureYa125 Fishertest, FigureYa76
 corrgram, or FigureYa97 correlationV3. For even more, use FigureYa73
 batchCorrelation for batch correlation analysis and plotting.
-这里要求两组数据的横纵坐标一致，如果你的两组数据横纵坐标不一致，可参考FigureYa62twoAxis和FigureYa96R2的画法
 This requires the two data sets to have consistent horizontal and
 vertical coordinates. If your two data sets do not, refer to
 FigureYa62twoAxis and FigureYa96R2 for more information.
@@ -68,9 +66,9 @@ FigureYa62twoAxis and FigureYa96R2 for more information.
 Environment Settings
 Sys.setenv(LANGUAGE = "en") #显示英文报错信息 #Display English error messages
 options(stringsAsFactors = FALSE) #禁止chr转成factor #Disable conversion of chr to factor
-自定义函数，用于比较不同组相关性是否有统计学差异 Custom function used
-to compare statistical differences in correlations between different
-groups
+自定义函数，用于比较不同组相关性是否有统计学差异
+Custom function used to compare statistical differences in
+correlations between different groups
 test2cor = function(x1, x2, y1, y2, method = "pearson") {
   
   # x1：第一组相关性分析的变量1
@@ -122,9 +120,9 @@ test2cor = function(x1, x2, y1, y2, method = "pearson") {
 输入文件
 Input file
 easy_input.csv，第一列和第二列是连续变量，分别对应图上的横纵坐标，第三列是分组。
-easy_input.csv, the first and second columns are continuous variables,
-corresponding to the horizontal and vertical coordinates on the graph,
-respectively. The third column is the grouping.
+easy_input.csv, the first and second columns are continuous
+variables, corresponding to the horizontal and vertical coordinates on
+the graph, respectively. The third column is the grouping.
 cor.data <- read.csv("easy_input.csv", row.names = NULL, check.names = F, header = T, stringsAsFactors = F)
 head(cor.data)
 dim(cor.data)
@@ -138,9 +136,9 @@ t.cor
 n.cor <- cor.test(cor.data[which(cor.data$class == "N"), "age"], cor.data[which(cor.data$class == "N"), "dnamage"])
 n.cor
 比较不同组相关性是否有统计学差异
-直接在屏幕上打印两次相关性的差异显著性
 Compare the correlations between different groups to see if they are
 statistically significant.
+直接在屏幕上打印两次相关性的差异显著性
 Print the significance of the difference between the two correlations
 directly to the screen.
 cor.diff <- test2cor(x1 = cor.data[which(cor.data$class == "T"), "age"], 
@@ -149,8 +147,8 @@ cor.diff <- test2cor(x1 = cor.data[which(cor.data$class == "T"), "age"],
                      y2 = cor.data[which(cor.data$class == "N"), "dnamage"])
 开始画图
 Start plotting
-先计算画图时需要的额外变量 First, calculate the additional variables
-needed for plotting.
+先计算画图时需要的额外变量
+First, calculate the additional variables needed for plotting.
 # 计算散点图里点的大小，根据自己的数据来调整公式
 # Calculate the size of the points in the scatter plot and adjust the formula based on your own data.
 cor.data$diff <- abs(cor.data$dnamage - cor.data$age) # 计算甲基化加速年龄 # Calculate the age of methylation acceleration.
@@ -273,7 +271,7 @@ plot(-1, -1,
      xlab = "", ylab = "",
      xaxt = "n", yaxt = "n")
 invisible(dev.off())
-# 最终图可在AI里稍加修饰
-# Final plot can be slightly modified in AI
+# 最终图可在Illustrator等矢量图编辑器里稍加修饰
+# Final plot can be slightly modified in Illustrator and other vector graphics editors
 Session Info
 sessionInfo()

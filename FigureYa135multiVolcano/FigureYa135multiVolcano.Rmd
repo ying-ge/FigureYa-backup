@@ -89,11 +89,14 @@ colnames(data)[1] <- "Geneid"
 head(data)
 ```
 
+## 开始画图 | Start Drawing
+
 下面分别绘制散点图、顶部比例和右侧bar plot，最后组图。
 The following are the scatter plots, top ratios and right bar plots, and finally the group diagrams.
 
-## 散点图 `p1` 的绘制
-## Draw a scatter plot `p1`
+### 散点图 `p1` 的绘制
+
+Draw a scatter plot `p1`
 
 ```{r }
 p1 <- ggplot(data, aes(deltaBeta, -log10(data$P.Value))) +
@@ -128,8 +131,8 @@ p1 <- p1 + theme_classic() +
 p1
 ```
 
-## 散点图右侧面的柱子图 `p2` 的绘制
-## Draw the column chart `p2` on the right side of the scatter plot
+### 散点图右侧面的柱子图 `p2` 的绘制
+### Draw the column chart `p2` on the right side of the scatter plot
 
 ```{r}
 ### 得到百分比信息
@@ -211,8 +214,8 @@ p2 <- ggplot(Percent, aes(A, n)) +
 p2
 ```
 
-## 顶部百分比图 `p3` 的绘制
-## Drawing of the top percentage graph `p3`
+### 顶部百分比图 `p3` 的绘制
+### Drawing of the top percentage graph `p3`
 
 首先计算 `Hyper` 和 `Hypo` 各占的比例，看图两者加起来是百分之一百，这里没有 0 ，就不考虑 0 了。
 First, calculate the proportion of `Hyper` and `Hypo`. As you can see from the graph, the sum of the two is 100%. There is no 0 here, so 0 is not considered.
@@ -279,8 +282,8 @@ p3 <- ggplot(df1, aes(xmin= xmin, xmax = xmax,
 p3
 ```
 
-## 组图
-## Group pictures
+### 组图
+### Group pictures
 
 ```{r,fig.width = 10, fig.height = 6}
 combined_plot <- insert_xaxis_grob(p1, p3, 
@@ -306,6 +309,24 @@ p
 # 保存到文件
 # Save to file
 ggsave("multiVolcano.pdf")
+```
+
+## 用aplot拼图
+
+```{r}
+library(aplot)
+ 
+# 主火山图
+p_main <- volcano_plot(data)
+ 
+# 顶部百分比条
+p_top <- percentage_bar(data$deltaBeta) 
+ 
+# 右侧特征分布
+p_right <- feature_distribution(data$feature)
+ 
+# aplot 组合
+p_main %v/v% p_top %<+% p_right
 ```
 
 ## Session Info

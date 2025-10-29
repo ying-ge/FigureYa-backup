@@ -10,17 +10,25 @@ output: html_document
 **Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()` 
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
+
+To cite the reproduction method in publications, please use:
+
+Yang C, Huang X, Li Y, Chen J, Lv Y, Dai S. Prognosis and personalized treatment prediction in TP53-mutant hepatocellular carcinoma: an in silico strategy towards precision oncology. Brief Bioinform. 2021 May 20;22(3):bbaa164. doi: 10.1093/bib/bbaa164.
+
+To cite the open source data in publications, please use:
+
+Gao Q, Zhu H, Dong L, Shi W, Chen R, Song Z, Huang C, Li J, Dong X, Zhou Y, Liu Q, Ma L, Wang X, Zhou J, Liu Y, Boja E, Robles AI, Ma W, Wang P, Li Y, Ding L, Wen B, Zhang B, Rodriguez H, Gao D, Zhou H, Fan J. Integrated Proteogenomic Characterization of HBV-Related Hepatocellular Carcinoma. Cell. 2019 Nov 14;179(5):1240. doi: 10.1016/j.cell.2019.10.038. Erratum for: Cell. 2019 Oct 3;179(2):561-577.e22.
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# 需求描述
-# Demand description
+## 需求描述
+## Demand description
 
 希望复现这篇文章的Figure 4DE。
 
@@ -30,26 +38,14 @@ We hope to reproduce Figure 4DE of this article.
 
 出自：<https://academic.oup.com/bib/article-abstract/22/3/bbaa164/5891146?redirectedFrom=fulltext&login=false>
 
-图4. PPS相关生物学过程及药物靶点的鉴定。
-(D) 火山图（左）和散点图（右）展示了PPS评分与药物靶点蛋白表达的Spearman相关性及显著性（另见在线表格S11，链接：https://academic.oup.com/bib）。红点表示显著正相关（P < 0.05且Spearman’s r > 0.3）。
-(E) 火山图（左）和散点图（右）展示了PPS评分与药物靶点CERES评分的Spearman相关性及显著性（另见在线表格S11，链接：https://academic.oup.com/bib）。蓝点表示显著负相关（P < 0.05且Spearman’s r < −0.5）。散点图中标注了TP53突变型肝癌细胞系。
-
-复现方法：Yang C, Huang X, Li Y, Chen J, Lv Y, Dai S. Prognosis and personalized treatment prediction in TP53-mutant hepatocellular carcinoma: an in silico strategy towards precision oncology. Brief Bioinform. 2021 May 20;22(3):bbaa164. doi: 10.1093/bib/bbaa164.
-
-开源数据：Gao Q, Zhu H, Dong L, Shi W, Chen R, Song Z, Huang C, Li J, Dong X, Zhou Y, Liu Q, Ma L, Wang X, Zhou J, Liu Y, Boja E, Robles AI, Ma W, Wang P, Li Y, Ding L, Wen B, Zhang B, Rodriguez H, Gao D, Zhou H, Fan J. Integrated Proteogenomic Characterization of HBV-Related Hepatocellular Carcinoma. Cell. 2019 Nov 14;179(5):1240. doi: 10.1016/j.cell.2019.10.038. Erratum for: Cell. 2019 Oct 3;179(2):561-577.e22.
-
 Source: <https://academic.oup.com/bib/article-abstract/22/3/bbaa164/5891146?redirectedFrom=fulltext&login=false>
 
 Figure 4. Identification of PPS-related biological processes and drug targets.
 (D) Volcano plot (left) and scatter plots (right) of Spearman’s correlations and significance between PPS scores and protein expression of drug targets (see also Table S11 available online at https://academic.oup.com/bib). Red dots indicate the significant positive correlations (P < 0.05, and Spearman’s r > 0.3). 
 (E) Volcano plot (left) and scatter plots (right) of Spearman’s correlations and significance between PPS score and CERES score of drug targets (see also Table S11 available online at https://academic.oup.com/bib). Blue dots indicate the significant negative correlations (P < 0.05, and Spearman’s r < −0.5). TP53-mutant hepatoma cell lines are labeled on the scatter plots.
 
-Reproduction method: Yang C, Huang X, Li Y, Chen J, Lv Y, Dai S. Prognosis and personalized treatment prediction in TP53-mutant hepatocellular carcinoma: an in silico strategy towards precision oncology. Brief Bioinform. 2021 May 20;22(3):bbaa164. doi: 10.1093/bib/bbaa164.
-
-Open source data: Gao Q, Zhu H, Dong L, Shi W, Chen R, Song Z, Huang C, Li J, Dong X, Zhou Y, Liu Q, Ma L, Wang X, Zhou J, Liu Y, Boja E, Robles AI, Ma W, Wang P, Li Y, Ding L, Wen B, Zhang B, Rodriguez H, Gao D, Zhou H, Fan J. Integrated Proteogenomic Characterization of HBV-Related Hepatocellular Carcinoma. Cell. 2019 Nov 14;179(5):1240. doi: 10.1016/j.cell.2019.10.038. Erratum for: Cell. 2019 Oct 3;179(2):561-577.e22.
-
-# 应用场景
-# Application scenarios
+## 应用场景
+## Application scenarios
 
 Identification of potential drug targets for high PPS score HCCs
 例文前面筛选出PPS genes做分子分型，然后想找high PPS score病人的潜在药物。
@@ -78,25 +74,22 @@ The following figures from the example paper can be reproduced using the corresp
 - Figure 3ABC: Refer to FigureYa161stemness 
 - Figure 5BC: Refer to FigureYa59volcano 
 - Fig. S3: Refer to FigureYa141risk 
-- Fig. S4B: Refer to FigureYa92immune_gene ;
-C: Refer to FigureYa68friends ;
-D: Refer to FigureYa165heatmapPvalue 
+- Fig. S4B: Refer to FigureYa92immune_gene, C: Refer to FigureYa68friends; D: Refer to FigureYa165heatmapPvalue 
 - Fig. S5: Refer to FigureYa30nomogram  and FigureYa138NiceCalibration
 
 - FigureYa227boxdensity reproduces Figure 5D, showing differences in sensitivity to sorafenib treatment between two groups.
 - FigureYa212drugTarget reproduces Figure 5FG, predicting drug sensitivity in cancer samples using cell line expression profiles (CCLE) and drug response data (PRISM and CTRP).
 - FigureYa213customizeHeatmap reproduces Figure 6, performing CMap analysis and visualization.
 
-# 环境设置
-# Environment Setup
+## 环境设置
+## Environment Setup
 
 ```{r}
 source("install_dependencies.R")
-
-library(readr)
-library(ggplot2)
-library(ggrepel)
-library(cowplot)
+library(readr)   # 读取并解析数据 | Read and parse data
+library(ggplot2) # 绘图框架 | Plotting with ggplot2
+library(ggrepel) # 防止标签重叠 | Prevent overlapping labels
+library(cowplot) # 组合多个 ggplot 图 | Combine multiple ggplots
 
 # 显示英文报错信息
 # Show English error messages
@@ -107,41 +100,30 @@ Sys.setenv(LANGUAGE = "en")
 options(stringsAsFactors = FALSE) 
 ```
 
-# 输入文件
-# Input Files
+## 输入文件
+## Input Files
 
 例文补充材料中的特征已整理到txt文件中，便于套用。
 
 The features from the supplementary materials of the example paper have been compiled into a txt file for easy application.
 
-## 药物靶点信息
-## Drug Target Information
-
-来自例文补充材料Table S10，是例文作收集的target information of 6125 compounds。用到自己的文章里，记得引用例文哦～
-
-From Table S10 of the supplementary materials of the example paper, this is the target information of 6,125 compounds collected by the authors. If you use it in your own paper, remember to cite the example paper~
-
 ```{r}
+### 药物靶点信息
+### Drug Target Information
+# 来自例文补充材料Table S10，是例文作收集的target information of 6125 compounds。用到自己的文章里，记得引用例文哦～
+# From Table S10 of the supplementary materials of the example paper, this is the target information of 6,125 compounds collected by the authors. If you use it in your own paper, remember to cite the example paper~
 Tinfo <- read.delim("table s10 target.txt",sep = "\t",row.names = NULL,header = T,check.names = F,stringsAsFactors = F)
-```
 
-## 特征基因集（以例文的PPS genes为例）
-## Feature Gene Set (Using the PPS Genes from the Example Paper as an Example)
-
-实际应用时，替换为自己感兴趣的基因集。
-
-In practical applications, replace it with your gene set of interest.
-
-```{r}
+### 特征基因集（以例文的PPS genes为例）
+### Feature Gene Set (Using the PPS Genes from the Example Paper as an Example)
+# 实际应用时，替换为自己感兴趣的基因集。
+# In practical applications, replace it with your gene set of interest.
 # PPS相关的基因和对应系数，来自例文补充材料Table S3
 # PPS-related genes and their corresponding coefficients, sourced from Table S3 of the supplementary materials in the example paper
 pps.coef <- read.table("table s3 pps.txt",sep = "\t",row.names = NULL,header = T,check.names = F,stringsAsFactors = F)
-```
 
-## 临床肿瘤数据
-## Clinical Oncology Data
-
-```{r}
+### 临床肿瘤数据
+### Clinical Oncology Data
 # CHCC队列HCC的表达谱（仅保留了所需的基因）
 # CHCC cohort HCC expression profiles (retaining only required genes) 
 tpm <- read.table("LIHC-CN-TPM.subset.txt",sep = "\t",row.names = 1,check.names = F,stringsAsFactors = F,header = T)
@@ -174,15 +156,12 @@ range(pps)
 proteome <- read.table("LIHC-CN-Proteome.subset.txt",sep = "\t",row.names = 1,check.names = F,stringsAsFactors = F,header = T)
 compro <- intersect(rownames(proteome), Tinfo$`Target genes`)
 proteome <- proteome[compro, names(pps)]
+
+### 细胞系数据
+### Cell Line Data
+# 原版细胞系数据下载地址：<https://depmap.org/portal/download/all/>。
+# The original cell line data can be downloaded from: <https://depmap.org/portal/download/all/>.
 ```
-
-## 细胞系数据
-## Cell Line Data
-
-原版细胞系数据下载地址：<https://depmap.org/portal/download/all/>。我下载好的在百度网盘：<https://pan.baidu.com/s/1KyTmM1YA6U2uxJNGl1BcVg?pwd=mn6f>
-
-The original cell line data can be downloaded from: <https://depmap.org/portal/download/all/>.
-Pre-downloaded files are available on BaiduNetdisk: <https://pan.baidu.com/s/1KyTmM1YA6U2uxJNGl1BcVg?pwd=mn6f>
 
 ![](download.png)
 
@@ -213,7 +192,6 @@ is.element(mutsam.ccle, rownames(expr.ccle))
 is.element(mutsam.ccle, rownames(ceres))
 mutsam.ccle <- intersect(mutsam.ccle, rownames(expr.ccle))
 mutsam.ccle <- intersect(mutsam.ccle, rownames(ceres))
-
 
 # 处理表达谱并计算PPS得分
 # Process expression profiles and calculate PPS scores
@@ -264,8 +242,8 @@ colnames(ceres) <- mapID
 names(pps.ccle) <- mapID
 ```
 
-# 相关性分析及筛选
-# Correlation Analysis and Screening
+## 相关性分析及筛选
+## Correlation Analysis and Screening
 
 对每个药物靶点，计算蛋白谱表达和临床样本的PPS相关性，以及CERES矩阵和细胞系的PPS相关性，设定阈值筛选候选药物靶点。原文：
 
@@ -340,8 +318,8 @@ candidate.target <- intersect(candidate.proteome$target, candidate.CERES$target)
 write.table(candidate.target, "output_candidate.target.txt", quote = F, row.names = F)
 ```
 
-# 开始画图
-# Plotting
+## 开始画图
+## Plotting
 
 ```{r}
 # 设置颜色
@@ -353,8 +331,8 @@ lightblue <- "#37D3FF"
 blue <- "#137BCD"
 ```
 
-## 蛋白谱相关性
-## Proteomic Correlation Analysis
+### 蛋白谱相关性
+### Proteomic Correlation Analysis
 
 ```{r}
 # 给颜色做编号，基础为A，显著的为B，感兴趣的为C
@@ -419,8 +397,8 @@ ggsave(filename = "correlation between proteome and pps in china cohort.pdf", wi
 p.proteome <- p2
 ```
 
-## CERES相关性
-## CERES Score Correlation Analysis
+### CERES相关性
+### CERES Score Correlation Analysis
 
 ```{r}
 corCERES$color <- "A"
@@ -477,8 +455,8 @@ ggsave(filename = "correlation between ceres and pps in ccle dataset.pdf", width
 p.ccle <- p2
 ```
 
-## 相关性子图
-## Correlation Subplots
+### 相关性子图
+### Correlation Subplots
 
 ```{r}
 scatterProteome <- scatterCERES <- list()
@@ -553,8 +531,8 @@ for (i in candidate.target) {
 }
 ```
 
-## 组图
-## Composite Figure
+### 组图
+### Composite Figure
 
 ```{r}
 p <- 
@@ -566,7 +544,7 @@ ggsave(filename = "combined plot.pdf", width = 12, height = 5)
 
 ![](combined plot.pdf)
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()
