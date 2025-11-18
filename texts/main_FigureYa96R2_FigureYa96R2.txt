@@ -5,7 +5,7 @@ Author(s)
 Reviewer(s)
 : Ying Ge
 Date
-: 2025-09-22
+: 2025-11-17
 Academic Citation
 If you use this code in your work or research, we kindly request that
 you cite our publication:
@@ -13,10 +13,9 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization
 Framework for Enhancing Biomedical Data Interpretation and Research
 Efficiency. iMetaMed.
 https://doi.org/10.1002/imm3.70005
-需求描述
+需求描述 Requirement Description
 FigureYa92immune_gene只是1个基因跟免疫浸润的关系。我想要展示两个基因表达跟免疫浸润高/低的关系。
 左右两侧纵坐标分别展示两个基因的表达量；横坐标按其中一个基因排序，两种颜色展示高/低免疫浸润，可以用FigureYa71ssGSEA热图中对高/低免疫浸润的结果作为输入。
-Requirement Description
 FigureYa92immune_gene is just 1 gene in relation to immune
 infiltration. I want to show the relationship between the expression of
 two genes and the high/low immune infiltration.
@@ -25,25 +24,33 @@ two genes; the horizontal coordinates are sorted by one of the genes,
 and the two colors show the high/low immune infiltration, which can be
 used as inputs with the results of the FigureYa71ssGSEA heatmap for
 high/low immune infiltration.
-出自
+From
 https://www.nature.com/articles/s41467-018-06648-6
-from
-https://www.nature.com/articles/s41467-018-06648-6
-应用场景
+Fig 1. HNF4α is heterogeneously expressed in HCC. f mRNA expression
+of HNF4a in human HCC tumors and surrounding normal liver tissue (R2:
+genomics analysis and visualization platform).
+应用场景 Application Scenarios
 评价基因对免疫浸润的影响；
 批量筛选出影响免疫浸润的候选基因；
 同样适用于展示转录因子和靶基因表达调控的关系。
-Application Scenarios
 Evaluate the effect of genes on immune infiltration;
 Batch screening of candidate genes affecting immune infiltration;
 It is also applicable to show the relationship between transcription
 factors and target gene expression regulation.
-输入文件的获得
+环境设置 Environment settings
+source("install_dependencies.R")
+library(pheatmap) # 画热图 / draw heatmap
+library(ggplot2) # 数据可视化 / data visualization
+library(dplyr) # 数据操作和转换 / data manipulation and transformation
+library(future.apply) # 并行计算 / parallel computing 
+
+Sys.setenv(LANGUAGE = "en")  # Set error messages to English for easier troubleshooting  
+options(stringsAsFactors = FALSE)  # Disable automatic conversion of strings to factors to avoid unexpected data type conversion
+输入文件的获得 Getting the input file
 如果你的数据已经整理成very_easy_input.csv的格式，就可以跳过这步，直接进入“开始画图”。
 这里基于免疫细胞矩阵把样品分为两类，并把分类信息加到基因表达矩阵里。要求两个文件的样本名一致：
 ssGSEA_output.csv，免疫细胞矩阵，列是免疫细胞，行是样本，由FigureYa71ssGSEA产生。目的是给样品分类，可以换成其他临床信息、突变信息等等。
 easy_input_expr.csv，基因表达矩阵，列是样本，行是基因。行也可以是转录本，甚至是临床信息。
-Getting the input file
 If your data has been organized into very_easy_input.csv format, you
 can skip this step and go directly to “Start drawing”.
 Here, the samples are classified into two categories based on the
@@ -57,7 +64,6 @@ information, mutation information, etc.
 easy_input_expr.csv, gene expression matrix, columns are samples,
 rows are genes. Rows can also be transcripts or even clinical
 information.
-source("install_dependencies.R")
 # 免疫细胞的数据加载与预处理
 # Loading and preprocessing of immune cell data
 
@@ -136,8 +142,8 @@ grp <- cutree(dd_hclust, k = 2)
 # the number of samples in each cluster
 table(grp)
 把分组信息加入到表达矩阵里
-用表达量的样本来重新排列样本顺序，构建一个数据框。行是样本，列是基因，再加一类样本分类的数据，这就足够画图了。
 Add grouping information to the expression matrix
+用表达量的样本来重新排列样本顺序，构建一个数据框。行是样本，列是基因，再加一类样本分类的数据，这就足够画图了。
 Use the samples of expression to reorder the samples to construct a
 data frame. The rows are the samples, the columns are the genes, and add
 a class of samples categorized by data, and that’s enough to draw a
@@ -166,10 +172,9 @@ data[1:10, 1:10]
 # Save only the first 3 rows for format reference. 
 # Uncomment the line above and comment this line in actual use.
 write.csv(data[1:3, ], "very_easy_input.csv", quote = FALSE, row.names = FALSE)
-输入文件
+输入文件 Input file
 带有样品分组信息的基因表达矩阵。
 每行一个样品，第一列是样品分组信息，此处是两组，还可以是更多组，之后每列一个基因。
-Input file
 Gene expression matrix with sample grouping information.
 One sample per row, sample grouping information in the first column,
 two groups here, could be more, one gene per column after that.
@@ -180,7 +185,7 @@ two groups here, could be more, one gene per column after that.
 # 查看数据前3行和前6列，确认数据结构和内容
 # View first 3 rows and first 6 columns to confirm data structure and content
 data[1:3, 1:6]
-开始画图
+开始画图 Start drawing a graph
 用ggplot2画图，基本的逻辑如下：
 横坐标是样本，按照第一个基因的表达量来排序
 纵坐标两个基因的表达量，分别用两个坐标轴来表示
@@ -188,7 +193,6 @@ data[1:3, 1:6]
 底部的竖线用geom_rug来实现
 文字使用geom_textl来打印，打印的位置固定在纵坐标的下1/8处
 实现文字的相对位置固定，需要先画出一部分图，保存为ggplot对象，再在对象中选取
-Start drawing a graph
 To draw a graph with ggplot2, the basic logic is as follows:
 The horizontal coordinate is the samples, sorted by the expression
 of the first gene.
@@ -204,10 +208,6 @@ draw a part of the map, save it as a ggplot object, and then select it
 in the object.
 直接画图
 Direct drawing
-# 加载ggplot2和dplyr包用于数据可视化和处理
-# Load ggplot2 and dplyr packages for data visualization and manipulation
-library(ggplot2)
-library(dplyr)
 # 创建基因表达散点图，按SRGN基因表达量排序样本
 # Create a scatter plot of gene expression, ordering samples by SRGN expression
 p <- data %>% 
@@ -357,6 +357,7 @@ dgplot("SRGN", "BCL2A1")
 # These two genes show no significant correlation in immune subgroup samples
 dgplot("PERM1", "ISG15")
 批量筛选高度正/负相关的基因
+Batch screen highly positive/negative correlated genes
 上面用三对基因画出的三个图，分别展示了两个基因之间正相关、负相关和不相关的规律，同时还能看出基因表达量跟免疫浸润之间的关系。
 而最后一个图，横坐标比较乱，说明PERM1的表达量和免疫浸润关系不大，而且PERM1和ISG15这两个基因也没有相关性。
 怎样画出像前两对基因那样的效果呢？
@@ -364,7 +365,6 @@ dgplot("PERM1", "ISG15")
 如果要想画出同时跟免疫相关、两个基因又相关的图，需要经过两次计算：
 选出跟免疫浸润相关的基因
 选出给定基因的高相关基因
-Batch screen highly positive/negative correlated genes
 The three graphs drawn above with three pairs of genes show the
 pattern of positive, negative and no correlation between two genes, and
 also the relationship between gene expression and immune
@@ -380,9 +380,9 @@ both genes are related, two calculations are required:
 pick the gene that is related to immune infiltration
 select the highly correlated genes for a given gene
 选出跟免疫浸润相关的基因
+Selected genes related to immune infiltration.
 目前跟免疫直接相关的数据，我们拥有的是每个样本中的免疫细胞数据。要获得基因的数据，需要批量计算跟免疫细胞相关的基因。
 计算相关性之前，保证免疫矩阵和表达量矩阵两者的样本排序一致。
-Selected genes related to immune infiltration.
 Currently, we have data on the immune cells in each sample that are
 directly related to immunization. To get the gene data, we need to batch
 calculate the genes associated with immune cells.
@@ -432,16 +432,12 @@ y <- as.numeric(tcga_gsva[, index])
 # and Neutrophils enrichment score
 my_cor("SRGN", y)
 1. 批量计算基因与特定免疫细胞的相关性
-免疫细胞以Neutrophils为例，批量计算所有基因的表达谱跟免疫细胞Neutrophils的相关性，进而筛选到跟免疫细胞Neutrophils相关性高的基因。
 1. Batch calculation of correlation between genes and specific
 immune cells
+免疫细胞以Neutrophils为例，批量计算所有基因的表达谱跟免疫细胞Neutrophils的相关性，进而筛选到跟免疫细胞Neutrophils相关性高的基因。
 Neutrophils is used as an example to batch calculate the correlation
 between the expression profiles of all the genes and Neutrophils, and
 then filter the genes with high correlation with Neutrophils.
-# 加载future.apply包进行并行计算
-# Load future.apply package for parallel computation
-library(future.apply)
-
 # 设置并行计算方式为多进程模式
 # Set parallel computation mode to multiprocess
 # plan(multiprocess)
@@ -477,10 +473,6 @@ head(result1)
 write.csv(result1, "output_corr.csv", quote = FALSE, row.names = FALSE)
 筛选出相关性最高的Top10
 Filtering the Top 10 with the highest relevance
-# 加载dplyr包用于数据筛选和排序
-# Load the dplyr package for data filtering and sorting
-library(dplyr)
-
 # 筛选显著相关的基因并按相关系数降序排列
 # Filter genes with significant correlation and sort by correlation coefficient descending
 result1 %>% 
@@ -518,10 +510,6 @@ result2 <- data.frame(
 )
 筛选正相关的Top10
 Filter positively correlated Top10
-# 加载dplyr包用于数据筛选和排序
-# Load the dplyr package for data filtering and sorting
-library(dplyr)
-
 # 筛选与SRGN基因显著正相关的基因并显示前几个
 # Filter genes significantly positively correlated with SRGN and show the top ones
 result2 %>% 
@@ -533,10 +521,6 @@ result2 %>%
 The second highest ranked BCL2A1 is the gene in the positive
 correlation example graph
 Filtering for negative correlations in the Top 10
-# 加载dplyr包用于数据筛选和排序
-# Load the dplyr package for data filtering and sorting
-library(dplyr)
-
 # 筛选与SRGN基因显著负相关的基因并显示前几个
 # Filter genes significantly negatively correlated with SRGN and show the top ones
 result2 %>% 

@@ -1,0 +1,127 @@
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  FigureYa245Plus 基因方差分解查询工具 - 快速使用指南
+  Gene Variance Decomposition Explorer - Quick Guide
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🚀 最快开始方法 | Quickest Way to Start
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. 双击打开 index.html 文件
+   Double-click index.html file
+
+2. 点击上传区域，选择 lmm_var_dcp_with_groups.csv 文件
+   Click upload area, select lmm_var_dcp_with_groups.csv
+
+3. 输入基因名搜索（例如：Fox）
+   Enter gene name to search (e.g., Fox)
+
+4. 查看结果和模型推荐！
+   View results and recommendations!
+
+
+📁 文件说明 | File Description
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+index.html
+  → 主应用程序（双击打开）
+  → Main application (double-click to open)
+
+lmm_var_dcp_with_groups.csv
+  → 数据文件（14,803个基因对）
+  → Data file (14,803 gene pairs)
+
+README.md
+  → 详细使用说明
+  → Detailed instructions
+
+
+🔍 搜索示例 | Search Examples
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+搜索单个基因 | Search single gene:
+  输入 | Input: EMC10_Emc10
+  或 | Or: EMC10
+  或 | Or: Emc10
+
+搜索另一个基因 | Search another gene:
+  输入 | Input: LRRIQ3_Lrriq3
+  或 | Or: LRRIQ3
+
+搜索基因家族 | Search gene family:
+  输入 | Input: EMC
+  结果 | Result: 显示所有EMC家族基因（EMC1, EMC10等）
+                   Shows all EMC family genes (EMC1, EMC10, etc.)
+
+
+📊 结果解读 | Result Interpretation
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+绿色区域 | Green Region
+  ✓ 小鼠模型可靠，推荐使用
+  ✓ Mouse model is reliable, recommended
+  → 基因在组织间差异大，人鼠间保守
+  → High tissue variance but conserved between species
+
+红色区域 | Red Region
+  ⚠ 考虑类器官或人源化模型
+  ⚠ Consider organoids or humanized models
+  → 基因在人鼠间表达差异显著
+  → Significant species variance
+
+蓝色区域 | Blue Region
+  ℹ 两种模型都可以
+  ℹ Either model works
+  → 组织间和物种间差异都不显著
+  → Neither tissue nor species variance is dominant
+
+
+💡 使用技巧 | Tips
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. 支持模糊匹配 | Supports fuzzy matching
+   输入部分基因名即可 | Enter partial gene name
+
+2. 图表可交互 | Interactive plot
+   - 鼠标滚轮缩放 | Mouse wheel to zoom
+   - 拖拽平移 | Drag to pan
+   - 悬停查看详情 | Hover for details
+
+3. 导出图片 | Export image
+   点击图表右上角相机图标 | Click camera icon at top-right
+
+4. 数据统计 | Statistics
+   自动显示各区域基因数量 | Auto-display gene counts
+
+
+⚠️ 注意事项 | Important Notes
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. 确保两个文件在同一文件夹
+   Ensure both files are in the same folder
+
+2. 首次加载需要网络（加载CDN库）
+   First load requires internet (for CDN libraries)
+
+3. 之后可完全离线使用
+   Can use offline afterwards
+
+4. 推荐使用Chrome、Firefox或Safari浏览器
+   Recommended: Chrome, Firefox, or Safari
+
+
+📖 详细文档 | Detailed Documentation
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+查看 README.md 获取更多信息：
+See README.md for more information:
+  - 完整功能说明 | Full feature description
+  - 数据来源和方法 | Data source and methods
+  - 学术引用 | Citation information
+  - 常见问题解答 | FAQ
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+版本 | Version: 1.0
+日期 | Date: 2025-10-31
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+

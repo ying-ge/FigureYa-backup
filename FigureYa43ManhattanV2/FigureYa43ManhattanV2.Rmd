@@ -1,19 +1,19 @@
 ---
 title: "FigureYa43ManhattanV2"
 params:
-  author: "Zhaodong Hao; Ying Ge, Yijing Chen"
+  author: "Zhaodong Hao"
+  reviewer: "Ying Ge, Yijing Chen"
 output: html_document
 ---
 
 **Author(s)**: `r params$author`  
+**Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()`  
 
-
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
-
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -28,9 +28,9 @@ Draw a picture of Manhattan from the paper, the text labels look better.
 
 ![](example.png)
 
-出自<https://www.nature.com/articles/s41588-018-0045-8>
+Fig. 1: Manhattan plot for associations between genetic variants and ESCC risk.
 
-from<https://www.nature.com/articles/s41588-018-0045-8>
+From<https://www.nature.com/articles/s41588-018-0045-8>
 
 ## 应用场景
 ## Application scenario
@@ -38,6 +38,18 @@ from<https://www.nature.com/articles/s41588-018-0045-8>
 展示每条染色体上的SNP分布，通常作为外显子组测序文章里的第一个图。
 
 Show the distribution of SNP on each chromosome, usually presented as the first figure in an exon sequencing article.
+
+## 环境设置
+## Environment setting
+
+```{r}
+source("install_dependencies.R")
+library("dplyr") #数据操作和处理 | Data manipulation and processing
+library("ggplot2") #绘图框架 | Plotting with ggplot2
+library("ggrepel") #防止标签重叠 | Prevent overlapping labels 
+Sys.setenv(LANGUAGE = "en") #显示英文报错信息 | Display English error messages
+options(stringsAsFactors = FALSE) #禁止chr转成factor | prohibit the conversion of chr to factor
+```
 
 ## 输入文件
 ## Input file
@@ -51,9 +63,6 @@ easy_input.csv, including chromosome name, SNP number, position on the chromosom
 Type and gene are not required, if the gene name can be provided, it should be written in the gene column; if different shapes are used to display different classes of SNPs, the type will be written in type.
 
 ```{r,message=FALSE}
-source("install_dependencies.R")
-library(dplyr)
-
 gwas <- read.csv("easy_input.csv", as.is = T)
 head(gwas)
 str(gwas)
@@ -146,7 +155,6 @@ mycol <- rep(c("#223D6C","#D20A13","#FFD121","#088247","#11AA4D","#58CDD9","#7A1
 #chromosome names as x-axis labels
 axisdf = gwas %>% group_by(chr) %>% summarize(center=( max(SNPx) + min(SNPx) ) / 2 )
 
-library("ggplot2")
 p <- ggplot(data = gwas, mapping = aes(x = SNPx, y = SNPy)) + 
   geom_point(aes(colour = chr, #每条染色体用不同的颜色 use a different color for each chromosome
                  shape = type, #不同类型用不同形状 different shapes for different types
@@ -200,7 +208,6 @@ p2
 ### Add more arrows and labels
 
 ```{r,fig.width=7,fig.height=4}
-library(ggrepel)
 p2 + geom_text_repel(aes(label = label), 
                      size = 2, #标签文字的字号 font size of label text
                      point.padding = unit(0.5, "lines"), # label与point之间的连接显示 connection display between label and point
@@ -240,13 +247,11 @@ p1 + geom_label_repel(aes(label = label),
 )
 ```
 
-参考资料<http://rstudio-pubs-static.s3.amazonaws.com/155546_17c0cb7ee350417e902dfb9031b81f48.html>
+参考资料: <http://rstudio-pubs-static.s3.amazonaws.com/155546_17c0cb7ee350417e902dfb9031b81f48.html>
 
-曼哈顿图的更多画法参考这篇：<https://www.r-graph-gallery.com/wp-content/uploads/2018/02/Manhattan_plot_in_R.html>
+References: <http://rstudio-pubs-static.s3.amazonaws.com/155546_17c0cb7ee350417e902dfb9031b81f48.html>
 
-References<http://rstudio-pubs-static.s3.amazonaws.com/155546_17c0cb7ee350417e902dfb9031b81f48.html>
-
-Refer to this article for more drawing methods of the Manhattan map: <https://www.r-graph-gallery.com/wp-content/uploads/2018/02/Manhattan_plot_in_R.html>
+## Session Info
 
 ```{r}
 sessionInfo()

@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>基因方差分解查询工具 - Gene Variance Decomposition Explorer</title>
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Google Sans', 'Product Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'PingFang SC', sans-serif;
+            background: #f8f9fa;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 1px 3px 0 rgba(60,64,67,.3), 0 4px 8px 3px rgba(60,64,67,.15);
+            overflow: hidden;
+        }
+
+        .header {
+            background: white;
+            color: #202124;
+            padding: 40px 30px;
+            text-align: center;
+            border-bottom: 1px solid #e8eaed;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            font-weight: 400;
+            color: #202124;
+        }
+
+        .header p {
+            color: #5f6368;
+            font-size: 14px;
+            font-weight: 400;
+        }
+
+        .main-content {
+            padding: 30px;
+        }
+
+        .upload-section {
+            background: #fff;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            border: 1px solid #dadce0;
+            box-shadow: 0 1px 2px 0 rgba(60,64,67,.3);
+        }
+
+        .upload-section h3 {
+            color: #202124;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .upload-box {
+            background: #fafafa;
+            border: 2px dashed #dadce0;
+            border-radius: 8px;
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .upload-box:hover {
+            background: #f1f3f4;
+            border-color: #4285F4;
+            box-shadow: 0 1px 3px 0 rgba(60,64,67,.3);
+        }
+
+        .upload-box input[type="file"] {
+            display: none;
+        }
+
+        .upload-box .icon {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+
+        .upload-box .text {
+            color: #555;
+        }
+
+        .upload-box.has-file {
+            background: #e8f5e9;
+            border-color: #34A853;
+            border-style: solid;
+        }
+
+        .search-section {
+            background: #fff;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            border: 1px solid #dadce0;
+            box-shadow: 0 1px 2px 0 rgba(60,64,67,.3);
+            display: none;
+        }
+
+        .search-section.show {
+            display: block;
+        }
+
+        .search-section h3 {
+            margin-bottom: 15px;
+            color: #202124;
+            font-weight: 500;
+        }
+
+        .search-box {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .search-box input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 1px solid #dadce0;
+            border-radius: 24px;
+            font-size: 14px;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            background: #fff;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: #4285F4;
+            box-shadow: 0 1px 6px 0 rgba(66,133,244,.3);
+        }
+
+        .search-box button {
+            padding: 12px 32px;
+            background: #4285F4;
+            color: white;
+            border: none;
+            border-radius: 24px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 1px 2px 0 rgba(60,64,67,.3), 0 1px 3px 1px rgba(60,64,67,.15);
+        }
+
+        .search-box button:hover {
+            background: #1a73e8;
+            box-shadow: 0 1px 3px 0 rgba(60,64,67,.3), 0 4px 8px 3px rgba(60,64,67,.15);
+        }
+
+        .search-box button:active {
+            background: #1765cc;
+            box-shadow: 0 1px 2px 0 rgba(60,64,67,.3);
+        }
+
+        .btn-clear {
+            background: #fff !important;
+            color: #5f6368 !important;
+            border: 1px solid #dadce0 !important;
+        }
+        
+        .btn-clear:hover {
+            background: #f8f9fa !important;
+            border-color: #dadce0 !important;
+        }
+
+        .help-text {
+            font-size: 13px;
+            color: #5f6368;
+            margin-top: 10px;
+        }
+        
+        .help-text p {
+            margin: 6px 0;
+            line-height: 1.6;
+        }
+
+        .help-text code {
+            background: #f1f3f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: #202124;
+        }
+
+        .result-box {
+            background: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            border: 2px solid #e0e0e0;
+            display: none;
+        }
+
+        .result-box.show {
+            display: block;
+        }
+
+        .result-box.success {
+            border-color: #28a745;
+            background: #f0fff4;
+        }
+
+        .result-box.warning {
+            border-color: #ffc107;
+            background: #fffbf0;
+        }
+
+        .result-box.error {
+            border-color: #dc3545;
+            background: #fff5f5;
+        }
+
+        .gene-info {
+            margin-bottom: 15px;
+        }
+
+        .gene-info h4 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .gene-info p {
+            margin: 5px 0;
+            color: #555;
+        }
+
+        .recommendation {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        .recommendation h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .recommendation ul {
+            margin-left: 20px;
+            color: #555;
+        }
+
+        .recommendation ul li {
+            margin: 8px 0;
+            line-height: 1.6;
+        }
+
+        .region-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-left: 8px;
+        }
+
+        .badge-green {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .badge-red {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .badge-blue {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+
+        #plotDiv {
+            width: 100%;
+            height: 700px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            display: none;
+        }
+
+        #plotDiv.show {
+            display: block;
+        }
+
+        .stats-panel {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+            display: none;
+        }
+
+        .stats-panel.show {
+            display: grid;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 24px;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid #dadce0;
+            box-shadow: 0 1px 2px 0 rgba(60,64,67,.3);
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .stat-card:hover {
+            box-shadow: 0 1px 3px 0 rgba(60,64,67,.3), 0 4px 8px 3px rgba(60,64,67,.15);
+        }
+
+        .stat-card .value {
+            font-size: 36px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .stat-card .label {
+            font-size: 13px;
+            color: #5f6368;
+            font-weight: 400;
+        }
+
+        .stat-card.green .value { color: #34A853; }
+        .stat-card.red .value { color: #EA4335; }
+        .stat-card.blue .value { color: #4285F4; }
+        .stat-card.total .value { color: #4285F4; }
+
+        .legend-section {
+            background: #f8f9fa;
+            padding: 24px;
+            border-radius: 12px;
+            margin-top: 25px;
+            border: 1px solid #e8eaed;
+        }
+
+        .legend-section h3 {
+            color: #202124;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin: 12px 0;
+        }
+
+        .legend-color {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            margin-right: 12px;
+        }
+
+        .legend-item .text {
+            flex: 1;
+        }
+
+        .legend-item .title {
+            font-weight: 500;
+            color: #202124;
+            margin-bottom: 2px;
+        }
+
+        .legend-item .description {
+            font-size: 12px;
+            color: #5f6368;
+            line-height: 1.7;
+        }
+        
+        .legend-item .title {
+            line-height: 1.5;
+        }
+
+        .citation {
+            background: #e8f0fe;
+            padding: 24px;
+            border-radius: 12px;
+            margin-top: 25px;
+            border: 1px solid #d2e3fc;
+        }
+
+        .citation h4 {
+            color: #1a73e8;
+            margin-bottom: 12px;
+            font-weight: 500;
+        }
+
+        .citation p {
+            color: #3c4043;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>基因方差分解查询工具 | Gene Variance Decomposition Explorer</h1>
+            <p>人鼠模型选择指南 | Mouse Model Selection Guide</p>
+        </div>
+
+        <div class="main-content">
+            <div class="upload-section">
+                <h3>上传数据文件 | Upload Data File</h3>
+                <div class="upload-box" id="uploadBox" onclick="document.getElementById('fileInput').click()">
+                    <input type="file" id="fileInput" accept=".csv" onchange="handleFileUpload(event)">
+                    <div class="icon">↑</div>
+                    <div class="text">
+                        <p><strong>点击上传 lmm_var_dcp_with_groups.csv 文件</strong></p>
+                        <p><strong>Click to upload lmm_var_dcp_with_groups.csv file</strong></p>
+                        <p style="font-size: 12px; color: #999; margin-top: 8px;">或将文件拖拽到此处 | Or drag and drop file here</p>
+                    </div>
+                </div>
+                <div class="help-text" style="margin-top: 15px;">
+                    <p><strong>提示 | Tip:</strong></p>
+                    <p>文件位置 | File location: <code>FigureYa245Plus_VarDecompose/lmm_var_dcp_with_groups.csv</code></p>
+                </div>
+            </div>
+
+            <div class="search-section" id="searchSection">
+                <h3>基因搜索 | Gene Search</h3>
+                <div class="search-box">
+                    <input type="text" id="geneInput" placeholder="输入基因名 | Enter gene name, e.g. EMC10_Emc10 or LRRIQ3">
+                    <button onclick="searchGene()">搜索 | Search</button>
+                    <button class="btn-clear" onclick="clearSearch()">清除 | Clear</button>
+                </div>
+                <div class="help-text">
+                    <p><strong>提示 | Tip:</strong></p>
+                    <p>支持输入人类基因名（如 <code>EMC10</code>）、小鼠基因名（如 <code>Emc10</code>）或基因对（如 <code>EMC10_Emc10</code>）</p>
+                    <p>Supports human gene names (e.g. <code>EMC10</code>), mouse gene names (e.g. <code>Emc10</code>), or gene pairs (e.g. <code>EMC10_Emc10</code>)</p>
+                    <p>支持模糊匹配，如 <code>EMC</code> 可匹配所有EMC家族基因 | Supports fuzzy matching, e.g. <code>EMC</code> matches all EMC family genes</p>
+                </div>
+            </div>
+
+            <div id="resultBox" class="result-box"></div>
+
+            <div class="stats-panel" id="statsPanel">
+                <div class="stat-card total">
+                    <div class="value" id="totalGenes">0</div>
+                    <div class="label">总基因对数<br>Total Gene Pairs</div>
+                </div>
+                <div class="stat-card green">
+                    <div class="value" id="greenCount">0</div>
+                    <div class="label">组织间差异大<br>High across tissues</div>
+                </div>
+                <div class="stat-card red">
+                    <div class="value" id="redCount">0</div>
+                    <div class="label">物种间差异大<br>High across species</div>
+                </div>
+                <div class="stat-card blue">
+                    <div class="value" id="noneCount">0</div>
+                    <div class="label">差异不显著<br>Not significant</div>
+                </div>
+            </div>
+
+            <div id="plotDiv"></div>
+
+            <div class="legend-section">
+                <h3>图例说明 | Legend</h3>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #34A853;"></div>
+                    <div class="text">
+                        <div class="title">绿色区域 - 组织间方差大<br>Green Region - High across tissues</div>
+                        <div class="description">
+                            基因表达在不同组织间差异大，但在人鼠间保守<br>
+                            Gene expression varies across tissues but is conserved between species<br>
+                            → <strong>小鼠模型可靠，推荐使用 | Mouse model is reliable, recommended</strong>
+                        </div>
+                    </div>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #EA4335;"></div>
+                    <div class="text">
+                        <div class="title">红色区域 - 物种间方差大<br>Red Region - High across species</div>
+                        <div class="description">
+                            基因表达在人鼠间差异大<br>
+                            Gene expression varies between species<br>
+                            → <strong>建议考虑类器官或人源化模型 | Consider organoids or humanized models</strong>
+                        </div>
+                    </div>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #4285F4;"></div>
+                    <div class="text">
+                        <div class="title">蓝色区域 - 差异不显著<br>Blue Region - Not significant</div>
+                        <div class="description">
+                            组织间和物种间差异都不显著<br>
+                            Neither tissue nor species variance is dominant<br>
+                            → <strong>两种模型都可以，看具体研究需求 | Either model works, depends on research needs</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="citation">
+                <h4>Citation</h4>
+                <p><strong>FigureYa Framework:</strong> Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005</p>
+                <br>
+                <p><strong>Variance Decomposition Method:</strong> Yue, F., Cheng, Y., Breschi, A. et al. A comparative encyclopedia of DNA elements in the mouse genome. Nature 515, 355–364 (2014). https://doi.org/10.1038/nature13992</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let allData = null;
+        let currentHighlight = null;
+
+        // 文件上传处理
+        function handleFileUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const uploadBox = document.getElementById('uploadBox');
+            uploadBox.innerHTML = '<div class="icon">...</div><div class="text"><p>正在加载数据... | Loading data...</p></div>';
+
+            Papa.parse(file, {
+                header: true,
+                dynamicTyping: true,
+                complete: function(results) {
+                    allData = results.data.filter(d => d.GenePairs);
+                    console.log('数据加载成功！共', allData.length, '个基因对');
+                    
+                    uploadBox.className = 'upload-box has-file';
+                    uploadBox.innerHTML = '<div class="icon">√</div><div class="text"><p><strong>数据加载成功！ | Data loaded successfully!</strong></p><p style="font-size: 12px; margin-top: 5px;">共 ' + allData.length.toLocaleString() + ' 个基因对 | ' + allData.length.toLocaleString() + ' gene pairs</p></div>';
+                    
+                    document.getElementById('searchSection').classList.add('show');
+                    document.getElementById('statsPanel').classList.add('show');
+                    document.getElementById('plotDiv').classList.add('show');
+                    
+                    updateStats();
+                    plotData();
+                },
+                error: function(error) {
+                    uploadBox.className = 'upload-box';
+                    uploadBox.innerHTML = '<div class="icon">×</div><div class="text"><p style="color: red;"><strong>数据加载失败 | Data loading failed</strong></p><p style="font-size: 12px; margin-top: 5px;">请检查文件格式 | Please check file format</p></div>';
+                    console.error('解析错误:', error);
+                }
+            });
+        }
+
+        // 拖放支持
+        const uploadBox = document.getElementById('uploadBox');
+        uploadBox.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadBox.style.background = '#f0f0f0';
+        });
+        
+        uploadBox.addEventListener('dragleave', () => {
+            uploadBox.style.background = '';
+        });
+        
+        uploadBox.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadBox.style.background = '';
+            const file = e.dataTransfer.files[0];
+            if (file && file.name.endsWith('.csv')) {
+                document.getElementById('fileInput').files = e.dataTransfer.files;
+                handleFileUpload({ target: { files: [file] } });
+            }
+        });
+
+        function updateStats() {
+            const total = allData.length;
+            const green = allData.filter(d => d.group === 'High across tissues').length;
+            const red = allData.filter(d => d.group === 'High across species').length;
+            const blue = allData.filter(d => d.group === 'None').length;
+
+            document.getElementById('totalGenes').textContent = total.toLocaleString();
+            document.getElementById('greenCount').textContent = green.toLocaleString();
+            document.getElementById('redCount').textContent = red.toLocaleString();
+            document.getElementById('noneCount').textContent = blue.toLocaleString();
+        }
+
+        function plotData(highlightGenes = []) {
+            if (!allData) return;
+
+            const groups = {
+                'High across tissues': { color: '#34A853', name: 'High across tissues', data: [] },
+                'High across species': { color: '#EA4335', name: 'High across species', data: [] },
+                'None': { color: '#4285F4', name: 'Not significant', data: [] }
+            };
+
+            allData.forEach(d => {
+                if (groups[d.group]) {
+                    groups[d.group].data.push(d);
+                }
+            });
+
+            const traces = [];
+            Object.entries(groups).forEach(([key, group]) => {
+                traces.push({
+                    x: group.data.map(d => d['frac.of.var.tissue']),
+                    y: group.data.map(d => d['frac.of.var.species']),
+                    mode: 'markers',
+                    type: 'scatter',
+                    name: group.name,
+                    text: group.data.map(d => d.GenePairs),
+                    marker: {
+                        color: group.color,
+                        size: 4,
+                        opacity: 0.6
+                    },
+                    hovertemplate: '<b>%{text}</b><br>' +
+                                   'Tissue variance: %{x:.3f}<br>' +
+                                   'Species variance: %{y:.3f}<br>' +
+                                   '<extra></extra>'
+                });
+            });
+
+            if (highlightGenes.length > 0) {
+                const highlightData = allData.filter(d => 
+                    highlightGenes.some(h => 
+                        d.GenePairs.toLowerCase().includes(h.toLowerCase())
+                    )
+                );
+
+                if (highlightData.length > 0) {
+                    traces.push({
+                        x: highlightData.map(d => d['frac.of.var.tissue']),
+                        y: highlightData.map(d => d['frac.of.var.species']),
+                        mode: 'markers+text',
+                        type: 'scatter',
+                        name: 'Searched genes',
+                        text: highlightData.map(d => d.GenePairs),
+                        textposition: 'top center',
+                        textfont: {
+                            size: 12,
+                            color: '#202124',
+                            family: 'Google Sans, Roboto, Arial',
+                            weight: 500
+                        },
+                        marker: {
+                            color: '#FBBC04',
+                            size: 12,
+                            line: {
+                                color: '#202124',
+                                width: 2
+                            }
+                        },
+                        hovertemplate: '<b>%{text}</b><br>' +
+                                       'Tissue variance: %{x:.3f}<br>' +
+                                       'Species variance: %{y:.3f}<br>' +
+                                       '<extra></extra>'
+                    });
+                }
+            }
+
+            const layout = {
+                title: {
+                    text: '基因表达方差分解图<br><sub>Gene Expression Variance Decomposition</sub>',
+                    font: { 
+                        size: 20,
+                        family: 'Google Sans, Product Sans, Roboto, Arial',
+                        color: '#202124'
+                    }
+                },
+                xaxis: {
+                    title: {
+                        text: 'Fraction of variance across tissues<br>(组织间方差比例)',
+                        font: { family: 'Google Sans, Roboto, Arial', color: '#5f6368' }
+                    },
+                    gridcolor: '#e8eaed',
+                    zeroline: false,
+                    tickfont: { color: '#5f6368' }
+                },
+                yaxis: {
+                    title: {
+                        text: 'Fraction of variance across species<br>(物种间方差比例)',
+                        font: { family: 'Google Sans, Roboto, Arial', color: '#5f6368' }
+                    },
+                    gridcolor: '#e8eaed',
+                    zeroline: false,
+                    tickfont: { color: '#5f6368' }
+                },
+                hovermode: 'closest',
+                showlegend: true,
+                legend: {
+                    x: 1.02,
+                    y: 1,
+                    xanchor: 'left',
+                    bgcolor: 'rgba(255,255,255,0.95)',
+                    bordercolor: '#dadce0',
+                    borderwidth: 1,
+                    font: { family: 'Google Sans, Roboto, Arial', color: '#202124' }
+                },
+                paper_bgcolor: '#fafafa',
+                plot_bgcolor: 'white',
+                autosize: true,
+                margin: { l: 80, r: 200, t: 100, b: 80 }
+            };
+
+            const config = {
+                responsive: true,
+                displayModeBar: true,
+                modeBarButtonsToRemove: ['lasso2d', 'select2d'],
+                toImageButtonOptions: {
+                    format: 'png',
+                    filename: 'gene_variance_decomposition',
+                    height: 800,
+                    width: 1200,
+                    scale: 2
+                }
+            };
+
+            Plotly.newPlot('plotDiv', traces, layout, config);
+        }
+
+        function searchGene() {
+            const input = document.getElementById('geneInput').value.trim();
+            if (!input) {
+                alert('请输入基因名！ | Please enter a gene name!');
+                return;
+            }
+
+            if (!allData || allData.length === 0) {
+                alert('请先上传数据文件！ | Please upload data file first!');
+                return;
+            }
+
+            const matches = allData.filter(d => 
+                d.GenePairs.toLowerCase().includes(input.toLowerCase())
+            );
+
+            const resultBox = document.getElementById('resultBox');
+            
+            if (matches.length === 0) {
+                resultBox.className = 'result-box show error';
+                resultBox.innerHTML = `
+                    <h4>未找到匹配的基因 | No Matching Genes Found</h4>
+                    <p>没有找到包含 "<strong>${input}</strong>" 的基因对 | No gene pairs containing "<strong>${input}</strong>" were found. 请检查拼写或尝试其他关键词 | Please check spelling or try other keywords.</p>
+                `;
+                return;
+            }
+
+            resultBox.className = 'result-box show success';
+            let html = `<h4>找到 ${matches.length} 个匹配的基因对 | Found ${matches.length} Matching Gene Pair(s)</h4>`;
+            
+            matches.forEach((gene, index) => {
+                const region = gene.group === 'High across tissues' ? 'green' : 
+                              gene.group === 'High across species' ? 'red' : 'blue';
+                const regionName = gene.group === 'High across tissues' ? '绿色区域 - 组织间差异大' : 
+                                  gene.group === 'High across species' ? '红色区域 - 物种间差异大' : 
+                                  '蓝色区域 - 差异不显著';
+                const badgeClass = region === 'green' ? 'badge-green' : 
+                                  region === 'red' ? 'badge-red' : 'badge-blue';
+
+                let recommendation = '';
+                if (region === 'green') {
+                    recommendation = `
+                        <div class="recommendation">
+                            <h4>模型推荐 | Model Recommendation</h4>
+                            <ul>
+                                <li><strong>小鼠模型依然可靠，放心大胆地用！ | Mouse model is reliable and recommended!</strong></li>
+                                <li>该基因在不同组织间表达差异大，但在人鼠间保守 | This gene shows high tissue variance but is conserved between species</li>
+                                <li>小鼠研究结果可以较好地转化到人类 | Mouse research results can translate well to humans</li>
+                                <li>推荐使用传统小鼠模型进行研究 | Traditional mouse models are recommended</li>
+                            </ul>
+                        </div>
+                    `;
+                } else if (region === 'red') {
+                    recommendation = `
+                        <div class="recommendation">
+                            <h4>模型推荐 | Model Recommendation</h4>
+                            <ul>
+                                <li><strong>考虑类器官或人源化模型 | Consider organoids or humanized models</strong></li>
+                                <li>该基因在人鼠间表达差异显著 | This gene shows significant species variance</li>
+                                <li>小鼠模型结果转化需谨慎 | Caution needed when translating mouse results</li>
+                                <li>推荐：人源类器官、人源化小鼠或临床样本研究 | Recommended: human organoids, humanized mice, or clinical samples</li>
+                            </ul>
+                        </div>
+                    `;
+                } else {
+                    recommendation = `
+                        <div class="recommendation">
+                            <h4>模型推荐 | Model Recommendation</h4>
+                            <ul>
+                                <li><strong>两种模型都可以，看具体研究需求 | Either model works, depends on research needs</strong></li>
+                                <li>该基因组织间和物种间差异都不显著 | Neither tissue nor species variance is dominant</li>
+                                <li>表达相对稳定或方差主要来自其他因素 | Expression is relatively stable or variance comes from other factors</li>
+                                <li>根据实验条件和研究问题选择合适的模型 | Choose model based on experimental conditions and research questions</li>
+                            </ul>
+                        </div>
+                    `;
+                }
+
+                html += `
+                    <div class="gene-info" style="border-bottom: ${index < matches.length - 1 ? '1px solid #e0e0e0' : 'none'}; padding-bottom: ${index < matches.length - 1 ? '15px' : '0'}; margin-bottom: ${index < matches.length - 1 ? '15px' : '0'};">
+                        <h4>${gene.GenePairs} <span class="region-badge ${badgeClass}">${regionName}</span></h4>
+                        <p><strong>组织间方差比例 | Tissue variance:</strong> ${gene['frac.of.var.tissue'].toFixed(3)}</p>
+                        <p><strong>物种间方差比例 | Species variance:</strong> ${gene['frac.of.var.species'].toFixed(3)}</p>
+                        <p><strong>残差方差比例 | Residual variance:</strong> ${gene['frac.of.var.residual'].toFixed(3)}</p>
+                        ${recommendation}
+                    </div>
+                `;
+            });
+
+            resultBox.innerHTML = html;
+
+            const highlightNames = matches.map(m => m.GenePairs);
+            plotData(highlightNames);
+            currentHighlight = highlightNames;
+        }
+
+        function clearSearch() {
+            document.getElementById('geneInput').value = '';
+            document.getElementById('resultBox').className = 'result-box';
+            document.getElementById('resultBox').innerHTML = '';
+            plotData();
+            currentHighlight = null;
+        }
+
+        document.getElementById('geneInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchGene();
+            }
+        });
+    </script>
+</body>
+</html>
+

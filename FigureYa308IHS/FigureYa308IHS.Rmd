@@ -10,17 +10,21 @@ output: html_document
 **Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()` 
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
+
+To cite the method in publications use:
+
+Yang, C., Zhang, S., Cheng, Z. et al. Multi-region sequencing with spatial information enables accurate heterogeneity estimation and risk stratification in liver cancer. Genome Med 14, 142 (2022). https://doi.org/10.1186/s13073-022-01143-6
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# 需求描述
-# Requirements Description
+## 需求描述
+## Requirements Description
 
 我想实现一下这篇文章里Figure5D，作者写了一个计算基因异质性的方法，然后用VIPER推断检查点蛋白活性以后计算了检查点蛋白的异质性，我想这个方法应该也可以用来计算其他种类蛋白的异质性，应该挺实用的。
 
@@ -44,8 +48,8 @@ Fig. 5 Immune heterogeneity in HCC.
 D, IHS of protein activity of 9 co-inhibitory immune checkpoint genes.
 Dotted lines indicate the median IHS value across 5099 proteins
 
-# 应用场景
-# Requirements Description
+## 应用场景
+## Requirements Description
 
 通过weighted viper推断检查点蛋白活性并计算异质性。
 
@@ -71,30 +75,26 @@ For more heterogeneity figures
 - FigureYa95pairwise: **Multi-dimensional correlation** analysis, useful for investigating the relationship between somatic mutations and immune infiltration in influencing tumor heterogeneity.
 - FigureYa216MetaREM: **Meta-analysis** heterogeneity test, providing Q and p-value.
 
-# 环境设置
-# Environment Setup
+## 环境设置
+## Environment Setup
 
 ```{r}
 source("install_dependencies.R")
 
-library(viper)
-library(nlme)
-library(spatstat.explore)
-library(ggplot2)
-library(ggrepel)
+library(viper) # 计算蛋白活性 To calculate protein activity
+library(nlme) # 计算IHS To calculate IHS
+library(spatstat.explore) # 计算IHS To calculate IHS
+library(ggplot2) # 画图 To draw plots
+library(ggrepel) # 避免标签重叠 To avoid label overlap 
 
-# 显示英文报错信息
-# Show English error messages
+# 显示英文报错信息 To show English error messages
 Sys.setenv(LANGUAGE = "en") 
 
-# 禁止chr转成factor
-# Prevent character to factor conversion
+# 禁止chr转成factor To prevent character to factor conversion
 options(stringsAsFactors = FALSE) 
 ```
 
-自定义函数以计算IHS
-
-Custom function to calculate IHS
+自定义函数以计算IHS To define a custom function to calculate IHS
 
 ```{r}
 CalIHS <- function(vec, clin, method){
@@ -136,8 +136,8 @@ CalIHS <- function(vec, clin, method){
 }
 ```
 
-# 输入文件
-# Input Files
+## 输入文件
+## Input Files
 
 Renji_cohort_MR_exp.matrix，样本表达矩阵。每行一个基因，每列一个样本。第一行是样本名，第一列是基因名。下载自<https://zenodo.org/record/7336311#.ZBE6xbRBzt0>
 
@@ -184,8 +184,8 @@ saveRDS(expr, file.path(res.path, "expr.rds"))
 clin.info <- read.csv("easy_input_cli.csv", header = T)
 ```
 
-# 计算蛋白活性
-# Protein Activity Calculation
+## 计算蛋白活性
+## Protein Activity Calculation
 
 由于需要进行200次bootstrap，耗时较长大概在2天左右，请耐心等待。
 
@@ -220,8 +220,8 @@ vip.mat <- viper(expr, out_unPruned, method = "none",
 saveRDS(vip.mat, file.path(res.path, "vip.mat.rds"))
 ```
 
-# 计算IHS
-# Calculating IHS
+## 计算IHS
+## Calculating IHS
 
 患者内肿瘤异质性越强，integrated heterogeneity score (IHS) 得分越高。
 
@@ -253,8 +253,8 @@ IHS$IHS <- sqrt(IHS$lme * IHS$hclust)
 write.table(IHS, file.path(res.path, "output_IHS.txt"), row.names = T, col.names = T, sep = "\t", quote = F)
 ```
 
-# 开始画图
-# Plotting
+## 开始画图
+## Plotting
 
 ```{r fig.width=4, fig.height=4}
 # 自定义要在图中标注基因名的点
@@ -333,7 +333,7 @@ ggplot(plot.data, aes(x = protein, y = IHS, label = label)) +
 ggsave(file.path(res.path, "IHS.pdf"), width = 4, height = 4)
 ```
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

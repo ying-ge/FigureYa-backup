@@ -1,0 +1,140 @@
+# Instructions
+
+During you interaction with the user, if you find anything reusable in this project (e.g. version of a library, model name), especially about a fix to a mistake you made or a correction you received, you should take note in the `Lessons` section in the `.cursorrules` file so you will not make the same mistake again. 
+
+You should also use the `.cursorrules` file as a scratchpad to organize your thoughts. Especially when you receive a new task, you should first review the content of the scratchpad, clear old different task if necessary, first explain the task, and plan the steps you need to take to complete the task. You can use todo markers to indicate the progress, e.g.
+[X] Task 1
+[ ] Task 2
+Also update the progress of the task in the Scratchpad when you finish a subtask.
+Especially when you finished a milestone, it will help to improve your depth of task accomplishment to use the scratchpad to reflect and plan.
+The goal is to help you maintain a big picture as well as the progress of the task. Always refer to the Scratchpad when you plan the next step.
+
+# Tools
+
+Note all the tools are in python. So in the case you need to do batch processing, you can always consult the python files and write your own script.
+
+## LLM
+
+You always have an LLM at your side to help you with the task. For simple tasks, you could invoke the LLM by running the following command:
+```bash
+cursor-llm --prompt "What is the capital of France?" --provider "anthropic"
+```
+
+The LLM API supports multiple providers:
+- OpenAI (default, model: gpt-4o)
+- DeepSeek (model: deepseek-chat)
+- Anthropic (model: claude-3-sonnet-20240229)
+- Gemini (model: gemini-pro)
+- Local LLM (model: Qwen/Qwen2.5-32B-Instruct-AWQ)
+
+But usually it's a better idea to check the content of the file and use the APIs in the `cursor_agent/tools/llm_api.py` file to invoke the LLM if needed.
+
+## Web browser
+
+You could use the web scraper to fetch web pages:
+```bash
+cursor-scrape --max-concurrent 3 URL1 URL2 URL3
+```
+This will output the content of the web pages.
+
+## Search engine
+
+You could use the search engine to find information:
+```bash
+cursor-search "your search keywords"
+cursor-search --max-results 5 "specific search"
+```
+This will output the search results in the following format:
+```
+URL: https://example.com
+Title: This is the title of the search result
+Snippet: This is a snippet of the search result
+```
+If needed, you can further use the `web_scraper.py` file to scrape the web page content.
+
+# Lessons
+
+## User Specified Lessons
+
+- You have a python venv in ./venv.
+- Include info useful for debugging in the program output.
+- Read the file before you try to edit it.
+- Use LLM to perform flexible text understanding tasks. First test on a few files. After success, make it parallel.
+
+## Cursor learned
+
+- For website image paths, always use the correct relative path (e.g., 'images/filename.png') and ensure the images directory exists
+- For search results, ensure proper handling of different character encodings (UTF-8) for international queries
+- Add debug information to stderr while keeping the main output clean in stdout for better pipeline integration
+- When using seaborn styles in matplotlib, use 'seaborn-v0_8' instead of 'seaborn' as the style name due to recent seaborn version changes
+- Available command-line tools after installation:
+  - `cursor-agent`: Initialize directory with agent capabilities
+  - `cursor-llm`: LLM interaction (OpenAI, DeepSeek, Anthropic, Gemini, Local)
+  - `cursor-scrape`: Web scraping with JavaScript support
+  - `cursor-search`: Search engine integration
+  - `cursor-update`: Update to latest version
+  - `cursor-verify`: Verify setup
+
+## PWA and Mobile App Development Lessons
+
+- For CSV export in web apps, add BOM (\uFEFF) at the beginning to ensure Excel displays Chinese characters correctly
+- Use localStorage for offline data persistence in PWA apps (5-10MB typical limit)
+- Always update Service Worker cache list (sw.js) when adding new JavaScript modules
+- For mobile PWA apps, use Blob and URL.createObjectURL for file downloads (works on both iOS and Android)
+- Include precise timestamps in exported filenames to avoid conflicts (YYYYMMDD_HHMMSS format)
+- For offline-first apps, organize code into separate modules (e.g., csv-export.js) that can be cached independently
+- Test PWA features: must be served via HTTP/HTTPS, not file:// protocol
+- For button styling, use CSS gradient backgrounds for modern look, with hover and active states
+- Use viewport-fit=cover meta tag for proper display on notched devices (iPhone X+)
+- localStorage survives page refresh but cleared when browser cache is cleared - remind users to export backups
+
+## Testing Lessons
+
+- Use pytest fixtures in conftest.py for common test data and setup
+- Mock environment variables with autouse fixture to ensure consistent test environment
+- Test both success and failure cases for each command
+- Verify exact function call arguments using assert_called_once_with
+- Use temporary directories (tmp_path) for file operation tests
+- Keep mock data realistic and consistent with actual API responses
+- Test CLI argument parsing with sys.argv mocking
+- Add proper cleanup in teardown to restore original state
+- Test file operations should use Path objects for cross-platform compatibility
+- Mock external API calls and file operations to make tests reliable and fast
+
+# Scratchpad
+
+## Current Task: 排查未推送的本地修改
+
+任务描述：用户认为本地存在尚未推送的文件修改，但 `git status` 显示工作树干净，需要确认实际状态并协助定位差异。
+
+计划步骤：
+[X] 使用 `git status -sb` 和 `git log --oneline --graph --decorate --all` 复查当前分支状态
+[X] 检查是否存在未跟踪文件或其他分支上的提交
+[X] 根据结果向用户解释原因并提供后续建议
+
+## Current Task: 安装缺失的 R 依赖
+
+任务描述：解决 `FigureYa308IHS.Rmd` Knit 过程中 `viper` 包依赖的 `kernlab` 未安装问题，确保依赖脚本可正确安装并验证。
+
+计划步骤：
+[X] 运行 `install_dependencies.R` 或手动安装 `kernlab`，确认安装日志
+[X] 验证 `viper` 包可正常加载（可通过脚本自检或手动 `library(viper)`）
+[X] 如有必要更新脚本或说明，并向用户反馈处理结果
+
+## Current Task: 调整火山图配色与标注
+
+任务描述：根据用户提供的示例图调整 `FigureYa321volcanoSE` 火山图的配色与标注样式，确保关键基因颜色和透明度一致。
+
+计划步骤：
+[X] 对比示例图提取颜色和透明度信息
+[X] 更新 `FigureYa321volcanoSE.Rmd` 绘图代码中的调色方案和几何图层配置
+[X] 提醒用户重新渲染核对效果
+
+## Current Task: 优化 index.html 导航体验
+
+任务描述：评估仓库根目录下 `index.html` 的结构，提出或实现功能改进方案，使访客更容易定位所需模块，适配 GitHub Pages 访问场景。
+
+计划步骤：
+[X] 阅读 `index.html` 了解现有结构与内容组织方式
+[X] 归纳访客可能的检索路径并列出可改进的交互/导航功能
+[X] 向用户提供功能建议（必要时附带实现思路或示例代码）

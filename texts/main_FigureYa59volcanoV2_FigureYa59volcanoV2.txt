@@ -5,7 +5,7 @@ Author(s)
 Reviewer(s)
 : Ying Ge, Yijing Chen
 Date
-: 2025-10-25
+: 2025-10-31
 Academic Citation
 If you use this code in your work or research, we kindly request that
 you cite our publication:
@@ -188,7 +188,7 @@ p1
 # show gene names for genes with logFC > n
 n = 9
 p1 + geom_text_repel(aes(x = logFC, y = -log10(P.Value), 
-                               label = ifelse(logFC > n, rownames(x),"")),
+                               label = ifelse(logFC > n, x$label, "")),
         colour="darkred", size = 5, box.padding = unit(0.35, "lines"), 
         point.padding = unit(0.3, "lines"))
 # 突出显示候选基因

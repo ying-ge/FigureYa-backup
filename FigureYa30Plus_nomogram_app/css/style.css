@@ -401,3 +401,95 @@ summary:hover {
 .install-prompt button:hover {
     background: #f0f0f0;
 }
+
+/* CSV导出按钮样式 */
+.export-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 25px;
+    padding-top: 25px;
+    border-top: 2px dashed #e1e1e1;
+}
+
+.export-btn {
+    width: 100%;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.export-btn:active {
+    transform: translateY(1px);
+}
+
+/* 主要导出按钮 */
+.export-btn:not(.secondary):not(.danger) {
+    background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
+    color: white;
+}
+
+.export-btn:not(.secondary):not(.danger):hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+}
+
+/* 次要按钮 */
+.export-btn.secondary {
+    background: linear-gradient(135deg, #2196f3 0%, #1976d2 100%);
+    color: white;
+}
+
+.export-btn.secondary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(33, 150, 243, 0.3);
+}
+
+/* 危险按钮 */
+.export-btn.danger {
+    background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%);
+    color: white;
+}
+
+.export-btn.danger:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(244, 67, 54, 0.3);
+}
+
+/* 历史记录信息 */
+.history-info {
+    text-align: center;
+    margin-top: 15px;
+    padding: 12px;
+    background: #f0f8ff;
+    border-radius: 8px;
+    color: #2196f3;
+    font-weight: 600;
+}
+
+.history-info #history-count {
+    font-size: 1.2em;
+    color: #1976d2;
+}
+
+/* 移动端优化 */
+@media (max-width: 480px) {
+    .export-actions {
+        gap: 10px;
+    }
+
+    .export-btn {
+        padding: 12px 15px;
+        font-size: 0.95em;
+    }
+
+    .history-info {
+        font-size: 0.9em;
+        padding: 10px;
+    }
+}

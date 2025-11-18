@@ -21,7 +21,7 @@ jobs:
           sudo apt-get install -y git-lfs libmagick++-dev libgeos-dev libgfortran5 liblapack-dev libblas-dev \
             libpng-dev libjpeg-dev librsvg2-dev libcairo2-dev libnode-dev libproj-dev \
             libxml2-dev libcurl4-openssl-dev libssl-dev libhdf5-dev libv8-dev \
-            libfontconfig1-dev libharfbuzz-dev libfribidi-dev libgdal-dev \
+            libfontconfig1-dev libharfbuzz-dev libfribidi-dev libgdal-dev gfortran \
             libfreetype6-dev libtiff5-dev libudunits2-dev 
           git lfs install
       - name: 3. Set up R

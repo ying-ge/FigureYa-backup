@@ -2,7 +2,15 @@
   "permissions": {
     "allow": [
       "Bash(source:*)",
-      "Read(//Users/mypro/figureya-cloud-server/frontend/**)"
+      "Read(//Users/mypro/figureya-cloud-server/frontend/**)",
+      "WebFetch(domain:www.medrxiv.org)",
+      "Bash(curl:*)",
+      "Bash(sed:*)",
+      "WebSearch",
+      "WebFetch(domain:pubmed.ncbi.nlm.nih.gov)",
+      "WebFetch(domain:www.sciencedirect.com)",
+      "WebFetch(domain:www.nature.com)",
+      "WebFetch(domain:doi.org)"
     ],
     "deny": [],
     "ask": []

@@ -10,8 +10,7 @@ output: html_document
 **Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()`  
 
-
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -22,89 +21,64 @@ Patil, I. (2021). Visualizations with statistical details: The 'ggstatsplot' app
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-# 设置knitr的全局代码块选项 / Set global chunk options for knitr
 ```
 
-# 需求描述
+## 需求描述 Requirement description
 
 计算免疫浸润跟基因的相关性，画图。
-
-# Requirement description
 
 Calculate the correlation between immune infiltration and genes and draw a graph.
 
 ![](example1.png)
 
-出自<https://mp.weixin.qq.com/s/tWJkLVDt1mx5COduw7H35w>
-
 当初是因为果子的idea，用这种方式展示两个转录本和免疫浸润的关系，发布在果子学生信公众号上<https://mp.weixin.qq.com/s/tWJkLVDt1mx5COduw7H35w>。小伙伴看到了也想画，我们就实现了。后来有小伙伴用这个图发表了文章，供参考：
 
-From< https://mp.weixin.qq.com/s/tWJkLVDt1mx5COduw7H35w >
+From <https://mp.weixin.qq.com/s/tWJkLVDt1mx5COduw7H35w>
 
 The original idea was due to the idea of Guozi, which showed the relationship between the two transcripts and immune infiltration in this way, and was published on the official account of Guozi Student Letter< https://mp.weixin.qq.com/s/tWJkLVDt1mx5COduw7H35w >The friends also wanted to draw when they saw it, so we crowdsourced. Later, a friend published an article using this image for reference:
 
 ![](example2.png)
 
-出自<https://s3-us-west-1.amazonaws.com/paperchase-aging/pdf/GpDPdC6dMaFhzrxao.pdf>
-
-from<https://s3-us-west-1.amazonaws.com/paperchase-aging/pdf/GpDPdC6dMaFhzrxao.pdf>
+ From <https://s3-us-west-1.amazonaws.com/paperchase-aging/pdf/GpDPdC6dMaFhzrxao.pdf>
 
 Figure  5.  Validation  of  hub  genes  and  PPI  map  construction.  (A)  Relationship  between  10  hub  genes  expression  and  CD8+  T  cell  infiltration  level;  P  <  0.05  is  considered  statistically  significant.  (B)  Scatter  plot  of  CCL5 expression  and  CD8+ T  cell  infiltration  level.  
 
 ![](example3.png)
 
-出自<https://link.springer.com/article/10.1007/s00109-020-01908-9>
-
-from<https://link.springer.com/article/10.1007/s00109-020-01908-9>
+From <https://link.springer.com/article/10.1007/s00109-020-01908-9>
 
 Fig. 3 Construction of a prognostic immune-related gene signature. g ssGSEA revealed the most significant hallmarks correlated with the immune-related signature.
 
-# 应用场景
+## 应用场景 Application scenarios
 
 评价基因对免疫浸润的影响，甚至可以写成循环，批量筛选出影响免疫浸润的候选基因。
 
 不仅限于基因跟免疫浸润之间的关系，还可以把免疫细胞矩阵替换为基因表达矩阵，计算基因跟基因之间的关系，找出并可视化共表达基因；或者把基因表达矩阵替换为转录本或临床信息，用于分析不同转录本、甚至临床指标跟免疫浸润的关系。
 
-# Application scenarios
-
 Evaluate the impact of genes on immune infiltration, and even write it as a cycle to batch screen candidate genes that affect immune infiltration.
 
 Not limited to the relationship between genes and immune infiltration, the immune cell matrix can also be replaced with a gene expression matrix to calculate the relationship between genes and identify and visualize co expressed genes; Alternatively, the gene expression matrix can be replaced with transcripts or clinical information to analyze the relationship between different transcripts, even clinical indicators, and immune infiltration.
 
-# 环境设置
-# Environment settings
+## 环境设置 Environment settings
 
 ```{r}
 source("install_dependencies.R")
-source("ggscatterstats.R") # from ggstatsplot package https://github.com/IndrajeetPatil/ggstatsplot
 
-# Package for extended statistical visualization based on ggplot2  
-library(data.table)   # 高性能数据处理  
-# Package for high-performance data processing  
-library(dplyr)        # 数据操作工具  
-# Package for data manipulation operations  
-library(tidyr)        # 数据整理工具  
-# Package for data tidying and reshaping  
-library(ggplot2)      # 强大的绘图系统  
-# Powerful plotting system  
-
-
-# 环境设置  
-# Environment settings  
-Sys.setenv(LANGUAGE = "en")  # 设置英文报错信息，便于问题排查  
-# Set error messages to English for easier troubleshooting  
-options(stringsAsFactors = FALSE)  # 禁止字符串自动转换为因子，避免意外的数据类型转换  
-# Disable automatic conversion of strings to factors to avoid unexpected data type conversion  
+library(data.table)   # 高性能数据处理 High-performance data processing  
+library(dplyr)        # 数据操作工具 Data operation tool  
+library(tidyr)        # 数据整理工具 Data tidying and reshaping  
+library(ggplot2)      # 强大的绘图系统 Powerful plotting system  
+library(ggstatsplot)  # 强大的绘图系统 Powerful plotting system  
+Sys.setenv(LANGUAGE = "en")  # Set error messages to English for easier troubleshooting  
+options(stringsAsFactors = FALSE)  # Disable automatic conversion of strings to factors to avoid unexpected data type conversion  
 ```
 
-# 输入文件
+## 输入文件 Input file
 
 要求两个文件的样本名一致
 
 - ssGSEA_output.csv，免疫细胞矩阵，列是免疫细胞，行是样本，由FigureYa71ssGSEA产生。在FigureYa71ssGSEA读取文件的命令行里添加`check.names = F`，避免行名TCGA id的“-”变成“.”。列也可以是基因，即基因表达矩阵。
 - easy_input_expr.txt，基因表达矩阵，列是样本，行是基因。行也可以是转录本，甚至是临床信息。另外，作者还提供了从TCGA表达矩阵（例如not_easy_input_expr.txt）提取某一基因表达谱的代码，见pick1gene.R文件。
-
-# Input file
 
 Request that the sample names of the two files be consistent
 
@@ -164,11 +138,10 @@ y <- as.numeric(tcga_expr)
 head(y)
 ```
 
-# 基因跟免疫细胞的相关性
+## 基因跟免疫细胞的相关性
+## The correlation between genes and immune cells
 
 进行spearman相关性分析，返回相关性系数和p值
-
-# The correlation between genes and immune cells
 
 Perform Spearman correlation analysis, return correlation coefficient and p-value
 
@@ -212,9 +185,7 @@ head(data)
 write.table(data, "output_cor.txt", sep = "\t", quote = F, row.names = F)
 ```
 
-## 开始画图
-
-## Start drawing
+画图 Drawing the graph
 
 ```{r,message=FALSE, warning=FALSE}
 # 读取预先计算好的相关性结果文件（需确保文件格式与output_cor.txt一致）
@@ -244,11 +215,10 @@ data %>%
 ggsave("gene_Xcell.pdf")
 ```
 
-# 基因跟1种免疫细胞的相关性
+## 基因跟1种免疫细胞的相关性 
+## The correlation between genes and one type of immune cell
 
 从上面的图可以看出基因跟不同免疫细胞的相关性有差异，可以进一步挑一个相关性最强的免疫细胞，例如TReg，画出基因表达跟免疫细胞浸润在每个样本里的分布。
-
-# The correlation between genes and one type of immune cell
 
 From the above graph, it can be seen that there are differences in the correlation between genes and different immune cells. Therefore, we can further select the immune cell with the strongest correlation, such as TReg, and draw the distribution of gene expression and immune cell infiltration in each sample.
 
@@ -268,11 +238,10 @@ plot_df <- data.frame(gene = y, imucell = tcga_gsva[, imucell])
 head(plot_df)
 ```
 
-## 用ggscatterstats画图
+### 用ggscatterstats画图
+### Drawing with ggscatterstats function
 
 图好看，但是速度很慢。
-
-## Drawing with ggscatterstats function
 
 The picture looks good, but the speed is very slow.
 
@@ -300,11 +269,10 @@ ggscatterstats(
 #dev.off
 ```
 
-## 用ggplot2画图
+### 用ggplot2画图
+### Drawing with ggplot2
 
 先定义一个函数，返回计算的结果，最终会作为标题放在图上方，他接受两个参数，就是作图文件的两列，分别是免疫数据和表达量数据。
-
-## Draw with ggplot2
 
 First, define a function that returns the calculated result, which will be placed as a title above the graph. It takes two parameters, namely the two columns of the graph file, which are immune data and expression level data.
 
@@ -384,7 +352,7 @@ plot_df %>%  # Operate based on the plotting data frame
 ggsave("gene_1cell_ggplot2.pdf")
 ```
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

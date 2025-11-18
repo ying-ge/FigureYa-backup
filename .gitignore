@@ -175,4 +175,5 @@ temp/
 
 # Local configuration
 local_config.py
-config_local.py
+config_local.pyFigureYa235scDEG/pbmc_test_final.rds
+*.rds

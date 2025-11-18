@@ -1,9 +1,11 @@
 FigureYa62twoAxis
 FigureYa62twoAxis
 Author(s)
-: Xiaojian Liu; Ying Ge, Yijing Chen
+: Xiaojian Liu
+Reviewer(s)
+: Ying Ge, Yijing Chen
 Date
-: 2025-09-22
+: 2025-11-16
 Academic Citation
 If you use this code in your work or research, we kindly request that
 you cite our publication:
@@ -16,9 +18,7 @@ Requirement description
 复现文中的线性回归，画出双坐标轴的图
 Reproduce the linear regression in the text and draw a dual-axis
 graph.
-出自
-https://onlinelibrary.wiley.com/doi/full/10.1111/cas.13744
-from
+From
 https://onlinelibrary.wiley.com/doi/full/10.1111/cas.13744
 应用场景
 Application scenario
@@ -37,9 +37,9 @@ rationalizing the paradox in grade II gliomas with wild‐type IDH.
 环境设置
 Environment setting
 source("install_dependencies.R")
-library(ggplot2)
-library(gtable) #方法二要用到 Method 2 is to be used
-library(grid) #方法二要用到 Method 2 is to be used
+library(ggplot2) #强大的绘图系统 Powerful plotting system  
+library(gtable) # 表格布局工具 Table layout tool  
+library(grid) # 网格布局工具 Grid layout tool  
 
 Sys.setenv(LANGUAGE = "en") #显示英文报错信息 display English error messages
 options(stringsAsFactors = FALSE) #禁止chr转成factor prohibit the conversion of chr to factor
@@ -120,6 +120,7 @@ p <- ggplot(inputData, aes(x=inputData$X )) +
   
   scale_y_continuous(name = ylefttitle, 
                      #breaks = c(5000, 10000, 15000, 20000, 25000), #左侧Y轴刻度 left Y-axis scale
+                     limits = c(0.1 * scaleFactor, NA), # 通过主轴下限控制右轴从0.1开始
                      sec.axis=sec_axis(trans = ~./scaleFactor, name = yrighttitle)) + #画右侧Y轴 draw the right Y-axis
   coord_fixed(ratio = ratioValues) + #坐标轴的宽高比 aspect ratio of coordinate axes
   
@@ -127,7 +128,7 @@ p <- ggplot(inputData, aes(x=inputData$X )) +
   theme(panel.grid = element_blank(), #去除网格线 remove gridlines
         axis.title.x = element_text(size=15), #X轴题目字号 X-axis title font size
         axis.text.x = element_text(size=12), #X轴刻度字号 X-axis scale size
-        axis.title.y.right = element_text(size=15, color = s2Colour), #右侧Y轴刻度字体的颜色 color of the right y-axis scale font
+        axis.title.y.right = element_text(size=15, color = s2Colour, margin = margin(l = 6)), #右侧Y轴刻度字体的颜色 color of the right y-axis scale font
         axis.text.y.right = element_text(size=12, color = s2Colour), #右侧Y轴title颜色 right Y-axis title color
         axis.title.y.left = element_text(size=15, colour = s1Colour), #左侧Y轴刻度字体的颜色 color of the left Y-axis scale font
         axis.text.y.left = element_text(size=12, color = s1Colour)) #左侧Y轴title颜色 left Y-axis title color
@@ -183,6 +184,7 @@ p2 <- ggplot(inputData, aes(x=inputData$X, y=inputData$Y2)) +
   geom_smooth(aes(x=inputData$X, y=inputData$Y2), method="lm", se=F, colour=s2Colour)+
 
   labs(y=yrighttitle) + theme_bw() +
+  scale_y_continuous(limits = c(0.1, NA)) +
   theme(panel.background = element_rect(fill = NA), 
         panel.grid = element_blank(), #去除网格线 remove gridlines
         axis.title.y = element_text(size=15, color = s2Colour),
@@ -205,7 +207,7 @@ Hint:
 Select the part between grid.newpage() and any
 grid.draw(g) to run together to see the drawing effect of this part of
 the code.
-#pdf("TwoPlotOfLinearRegression_plus.pdf", width = 6, height = 3) #想保存到pdf文件，就把这句前的#删掉，同时把最后一句dev.off()前面的#删掉 to save to a pdf file, remove the # before this sentence, and also remove the # before the last sentence dev.off()
+pdf("TwoPlotOfLinearRegression_plus.pdf", width = 6, height = 3) #想保存到pdf文件，就把这句前的#删掉，同时把最后一句dev.off()前面的#删掉 to save to a pdf file, remove the # before this sentence, and also remove the # before the last sentence dev.off()
 grid.newpage()
 
 #画X和Y1的散点、拟合线、相关系数文字
@@ -225,8 +227,24 @@ ax <- ga$children[[2]]
 ax$widths <- rev(ax$widths)
 ax$grobs <- rev(ax$grobs)
 
-g <- gtable_add_cols(g, g2$widths[g2$layout[ia, ]$l], length(g$widths) - 1)
+# 把右移刻度数字移到边框外
+# move the scale label to the outside of the border
+shift_text_x <- function(g, dx){
+  if (inherits(g, "text")) {
+    if (!is.null(g$x)) g$x <- g$x + dx
+    return(g)
+  }
+  if (!is.null(g$children)) {
+    g$children <- lapply(g$children, shift_text_x, dx = dx)
+  }
+  if (!is.null(g$grobs)) {
+    g$grobs <- lapply(g$grobs, shift_text_x, dx = dx)
+  }
+  return(g)
+}
+ax <- shift_text_x(ax, unit(7, "mm")) # 微调位置，根据实际情况调整 offset position, adjust according to the actual situation
 
+g <- gtable_add_cols(g, g2$widths[g2$layout[ia, ]$l], length(g$widths) - 1)
 grid.draw(g)
 
 #画右侧Y轴刻度标签
@@ -247,6 +265,7 @@ g <- gtable_add_cols(g, g2$widths[g2$layout[yLabTitle, ]$l], length(g$widths) - 
 g <- gtable_add_grob(g, axYLT, pp$t, length(g$widths) - 1, pp$b)
 
 grid.draw(g)
-#dev.off()
+
+dev.off()
 Session Info
 sessionInfo()

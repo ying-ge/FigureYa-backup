@@ -3,18 +3,21 @@
  * 提供离线功能和缓存管理
  */
 
-const CACHE_NAME = 'nomogram-app-v2.0.0';
-const STATIC_CACHE = 'static-cache-v2';
-const RUNTIME_CACHE = 'runtime-cache-v2';
+const CACHE_NAME = 'nomogram-app-v2.1.0';
+const STATIC_CACHE = 'static-cache-v2.1';
+const RUNTIME_CACHE = 'runtime-cache-v2.1';
 
 // 需要缓存的静态资源
 const STATIC_ASSETS = [
   '/',
   '/index.html',
   '/css/style.css',
+  '/css/ios-enhancements.css',
   '/js/nomogram.js',
   '/js/app.js',
   '/js/nomogram-viz.js',
+  '/js/csv-export.js',
+  '/js/ios-enhancements.js',
   '/manifest.json',
   '/images/icon.svg',
   '/images/icon-192.png',

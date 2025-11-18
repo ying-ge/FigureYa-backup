@@ -215,7 +215,7 @@ p1
 # show gene names for genes with logFC > n
 n = 9
 p1 + geom_text_repel(aes(x = logFC, y = -log10(P.Value), 
-                               label = ifelse(logFC > n, rownames(x),"")),
+                               label = ifelse(logFC > n, x$label, "")),
         colour="darkred", size = 5, box.padding = unit(0.35, "lines"), 
         point.padding = unit(0.3, "lines"))
 

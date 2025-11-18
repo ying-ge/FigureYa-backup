@@ -10,8 +10,7 @@ output: html_document
 **Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()`  
 
-
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -20,17 +19,23 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# 需求描述 / Requirements Description
-# FPKM跟启动子区甲基化的相关性。输入数据是TCGA的FPKM和DNA甲基化数据。 / Correlation between FPKM and promoter methylation. Input data is TCGA FPKM and DNA methylation data.
+## 需求描述 / Requirements Description
+FPKM跟启动子区甲基化的相关性。输入数据是TCGA的FPKM和DNA甲基化数据。
 
-# 希望能学习到怎么获取基因启动子区的甲基化探针，自己跑代码时就能灵活自定义将启动子区调整TSS1500，TSS200，甚至分析gene body区域甲基化与基因表达的关系。 / Hope to learn how to obtain methylation probes in gene promoter regions, and be able to flexibly customize promoter regions like TSS1500, TSS200, and even analyze the relationship between gene body methylation and gene expression.
+希望能学习到怎么获取基因启动子区的甲基化探针，自己跑代码时就能灵活自定义将启动子区调整TSS1500，TSS200，甚至分析gene body区域甲基化与基因表达的关系。
 
-# 出自 / From: https://academic.oup.com/nar/article/48/D1/D856/5584613
+Correlation between FPKM and promoter methylation. Input data is TCGA FPKM and DNA methylation data.
 
-# 应用场景 / Application Scenario
-# 计算特定基因启动子DNA甲基化与对应表达谱的相关性并绘图。 / Calculate and plot the correlation between specific gene promoter DNA methylation and corresponding expression profiles.
+Hope to learn how to obtain methylation probes in gene promoter regions, and be able to flexibly customize promoter regions like TSS1500, TSS200, and even analyze the relationship between gene body methylation and gene expression.
 
-# 环境设置 / Environment Setup
+From<https://academic.oup.com/nar/article/48/D1/D856/5584613>
+
+## 应用场景 / Application Scenario
+计算特定基因启动子DNA甲基化与对应表达谱的相关性并绘图。
+
+Calculate and plot the correlation between specific gene promoter DNA methylation and corresponding expression profiles.
+
+## 环境设置 / Environment Setup
 
 ```{r}
 source("install_dependencies.R")
@@ -46,9 +51,9 @@ Sys.setenv(LANGUAGE = "en") #显示英文报错信息 / Display error messages i
 options(stringsAsFactors = FALSE) #禁止chr转成factor / Prevent chr from converting to factor
 ```
 
-# 输入文件
+## 输入文件 Input file
 
-TCGA-UCEC.methylation450.tsv.gz，UCEC的DNA甲基化数据，下载自XENA<https://xenabrowser.net/datapages/?dataset=TCGA-UCEC.methylation450.tsv&host=https%3A%2F%2Fgdc.xenahubs.net&removeHub=https%3A%2F%2Fxena.treehouse.gi.ucsc.edu%3A443>
+TCGA-UCEC.methylation450.tsv.gz，UCEC的DNA甲基化数据，下载自XENA<https://xenabrowser.net/datapages/?dataset=TCGA-UCEC.methylation450.tsv&host=https%3A%2F%2Fgdc.xenahubs.net&removeHub=https%3A%2F%2Fxena.treehouse.gi.ucsc.edu%3A443>(需科学上网)
 
 ```{r}
 # 加载基因表达注释文件 / Load gene expression annotation file
@@ -134,8 +139,8 @@ colnames(meth) <- substr(colnames(meth), start = 1,stop = 16) # 取样本名的�
 meth <- meth[,which(substr(colnames(meth), 14, 15) == "01")] # 保留肿瘤样本 / Keep tumor samples only
 ```
 
-# 计算特点基因启动子表观遗传甲基化与对应表达谱的相关性
-# Calculate the correlation between epigenetic methylation of characteristic gene promoters and corresponding expression profiles
+## 计算特点基因启动子表观遗传甲基化与对应表达谱的相关性
+## Calculate the correlation between epigenetic methylation of characteristic gene promoters and corresponding expression profiles
 
 ```{r}
 # 根据需要确定启动子探针 / Determine promoter probes as needed
@@ -174,8 +179,8 @@ ct <- cor.test(corTab$expr,corTab$meth)
 reg <- lm(expr~meth, data=corTab) # 计算回归线 / Calculate regression line
 ```
 
-# 开始画图
-# Start drawing
+## 开始画图
+## Start drawing
 
 ```{r}
 pdf(file = paste0("correlation between expression and methylation of ",gene,".pdf"), width = 4.5,height = 4.5)
@@ -200,7 +205,7 @@ invisible(dev.off())
 
 ![](correlation between expression and methylation of SFN.pdf)
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

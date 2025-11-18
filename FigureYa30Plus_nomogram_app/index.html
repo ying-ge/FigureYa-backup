@@ -119,6 +119,22 @@
                 </ul>
             </div>
 
+            <div class="export-actions">
+                <button type="button" id="export-current-btn" class="export-btn">
+                    💾 导出当前记录
+                </button>
+                <button type="button" id="export-all-btn" class="export-btn secondary">
+                    📥 导出所有历史记录
+                </button>
+                <button type="button" id="clear-history-btn" class="export-btn danger">
+                    🗑️ 清空历史
+                </button>
+            </div>
+
+            <div class="history-info">
+                <p>📊 已保存 <span id="history-count">0</span> 条记录</p>
+            </div>
+
             <div class="nomogram-visualization">
                 <h3>📈 Nomogram评分可视化</h3>
                 <div id="nomogram-chart">
@@ -147,6 +163,7 @@
 
     <script src="js/nomogram.js"></script>
     <script src="js/nomogram-viz.js"></script>
+    <script src="js/csv-export.js"></script>
     <script src="js/app.js"></script>
     <script src="js/ios-enhancements.js"></script>
 </body>

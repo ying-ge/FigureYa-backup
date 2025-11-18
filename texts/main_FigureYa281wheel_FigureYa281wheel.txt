@@ -5,7 +5,7 @@ Author(s)
 Reviewer(s)
 : Ying Ge
 Date
-: 2025-09-22
+: 2025-11-07
 Academic Citation
 If you use this code in your work or research, we kindly request that
 you cite our publication:
@@ -187,6 +187,22 @@ ggsave("wheelplot.pdf", width = 10, height = 8)
 Another grouping layers can be represented through point shapes, as
 demonstrated in reference Figure 7G where distinct shapes differentiate
 hESCs and hiPSCs.
+图的解析：
+Interpretation of the Plot:
+每个点代表一个单细胞；Each point represents a single cell;
+圆形边缘的角代表预定义的细胞类型原型；The angles at the edge of the
+circle represent predefined cell type prototypes;
+点到各原型的距离与该细胞对应原型的相对评分成正比——距离越近表示细胞越像该原型；The
+distance from the point to each prototype is proportional to the
+relative score of that cell for the corresponding prototype—the closer
+the distance, the more similar the cell is to that prototype;
+颜色编码了分化时间，从红色(第0天)到深蓝色(第63天)。Color encodes
+differentiation time, ranging from red (day 0) to dark blue (day
+63).
+直观地展示了干细胞分化的时间动态过程、细胞命运决定以及分化过程中的细胞异质性。It
+visually illustrates the temporal dynamics of stem cell differentiation,
+cell fate determination, and cellular heterogeneity during the
+differentiation process.
 # 创建新分组变量用于形状映射
 # Create new grouping variable for shape mapping
 plot.data$group3 <- "others"

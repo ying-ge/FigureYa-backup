@@ -1,0 +1,27 @@
+# R和Shiny相关
+.Rhistory
+.RData
+.Rproj.user
+*.Rproj
+
+# ShinyApps.io部署配置（包含敏感token信息）
+rsconnect/
+.rsconnect/
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# 临时文件
+*.tmp
+*.log
+*~
+
+# R包开发
+*.tar.gz
+*.Rcheck/
+
+# 个人配置文件
+.Renviron
+.Rprofile
+

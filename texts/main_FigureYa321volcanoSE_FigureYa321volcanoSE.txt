@@ -5,7 +5,7 @@ Author(s)
 Reviewer(s)
 : Ying Ge
 Date
-: 2025-09-22
+: 2025-11-11
 Academic Citation
 If you use this code in your work or research, we kindly request that
 you cite our publication:
@@ -13,19 +13,26 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization
 Framework for Enhancing Biomedical Data Interpretation and Research
 Efficiency. iMetaMed.
 https://doi.org/10.1002/imm3.70005
+To use the PDUI data cite:
+Li, L. TC3A_PDUI. Preprint at
+https://doi.org/10.7303/SYN24982198
+(2021).
+To use Xena cite:
+Goldman, M.J., Craft, B., Hastie, M. et al. Visualizing and
+interpreting cancer genomics data via the Xena platform. Nat Biotechnol
+(2020).
+https://doi.org/10.1038/s41587-020-0546-8
 需求描述
 Demand description
 在癌症中高低分数组中的APA分析，用火山图展示 (图5B)。
 Differential APA analysis between high- and low-risk groups in
 cancer, presented via volcano plot (Fig.5 B).
-出自：
+From
 https://www.frontiersin.org/articles/10.3389/fimmu.2022.1031184/full
 图5 与WM_Score相关的转录和转录后特征。 (B)
 WM_Score_high组和WM_Score_low组各基因的
 PDUI差异
 。
-Source:
-https://www.frontiersin.org/articles/10.3389/fimmu.2022.1031184/full
 FIGURE 5 Transcriptional and post-transcriptional characteristics
 related to WM_Score. (B)
 The differences in the PDUI
@@ -36,21 +43,21 @@ Application scenarios
 例文关注的是PAAD，可以套用于TCGA其他癌症类型。
 使用火山图展示差异分析结果。也可以使用FigureYa其他作者绘制的更复杂的火山图：
 一组：FigureYa59volcano ，FigureYa75baseVolcano
-多组：FigureYa135multiVolcano ，
+多组：FigureYa135multiVolcano
 The example focuses on PAAD but can be adapted to other TCGA cancer
 types.
 Use a volcano plot to display differential analysis results.
 Alternatively, more complex volcano plots created by other authors
 (e.g., FigureYa) can also be utilized.
-A group: FigureYa59volcano ，FigureYa75baseVolcano
-Multiple group: FigureYa135multiVolcano ，
+One group: FigureYa59volcano ，FigureYa75baseVolcano
+Multiple group: FigureYa135multiVolcano
 环境设置
 Environment Setup
 source("install_dependencies.R")
-library(limma)
-library(ggplot2)
-library(ggrepel)
-library(TCGAbiolinks)
+library(limma) # 线性模型拟合 Linear model fitting 
+library(ggplot2) # 绘图 Plotting
+library(ggrepel) # 标签标注 Labeling
+library(TCGAbiolinks) # TCGA数据下载 TCGA data download
 
 # 显示英文报错信息
 # Show English error messages
@@ -62,10 +69,14 @@ options(stringsAsFactors = FALSE)
 输入文件
 Input Files
 TCGA_PAAD_Combined_PDUIs.txt，从synapse网站中下载的TC3A_PDUI（Percentage
-of Distal polyA site Usage Index）的计算结果。下载网址：
-https://doi.org/10.7303/syn24982198
-，里面有TCGA其他癌症的PDUI数据，根据自己的研究兴趣灵活运用。
-TCGA_PAAD.clin.txt，样本分组信息group。原文未提供分型信息，使用xena下载的样本信息，下载自
+of Distal polyA site Usage Index）的计算结果。下载地址：
+https://www.synapse.org/Synapse:syn24982198/files/
+（科学上网后注册下载），里面有TCGA其他癌症的PDUI数据，根据自己的研究兴趣灵活运用。
+TCGA_PAAD.clin.txt，样本分组信息group。原文未提供分型信息，使用xena
+https://xenabrowser.net/datapages/
+下载的样本信息（TCGA
+Pancreatic Cancer (PAAD) (17 datasets) —— phenotype —— Phenotypes
+(n=196) TCGA Hub），点击链接下载：
 https://tcga-xena-hub.s3.us-east-1.amazonaws.com/download/TCGA.PAAD.sampleMap%2FPAAD_clinicalMatrix
 TCGA_PAAD_Combined_PDUIs.txt, the calculation result of TC3A_PDUI
 (Percentage of Distal polyA site Usage Index) downloaded from the
@@ -152,22 +163,32 @@ plot.data$label[plot.data$SYMBOL %in% plotgene] <- plot.data$SYMBOL[plot.data$SY
 
 # 设置颜色分组
 # Color grouping
-plot.data$color <- "#868686"
-plot.data$color[plot.data$logFC < (-0.05) & plot.data$logPadj > 1] <- "#4966AE"
-plot.data$color[plot.data$logFC > 0.05 & plot.data$logPadj > 1] <- "#E9281E"
+plot.data$status <- "NoSig"
+plot.data$status[plot.data$logFC < (-0.05) & plot.data$logPadj > 1] <- "Down"
+plot.data$status[plot.data$logFC > 0.05 & plot.data$logPadj > 1] <- "Up"
+plot.data$status <- factor(plot.data$status, levels = c("Up", "Down", "NoSig"))
 plot.data$size <- abs(plot.data$logFC * plot.data$logPadj)
 
-col <- names(table(plot.data$color))
-names(col) <- col
+palette_volcano <- c(
+  "Up" = "#D93F3C",
+  "Down" = "#184A8C",
+  "NoSig" = "#B3B3B3"
+)
 
 # 绘制火山图
 # Draw volcano plot
-ggplot(data = plot.data, aes(x = logFC, y = logPadj, color = color)) + 
-  geom_point(alpha = 0.6) +
-  scale_color_manual(values = col) +
+ggplot(data = plot.data, aes(x = logFC, y = logPadj, color = status)) + 
+  geom_point(alpha = 0.9, size = 2.2) +
+  scale_color_manual(values = palette_volcano, drop = FALSE) +
   scale_size_continuous(range=c(1, 8)) +
-  geom_label_repel(aes(label = label), box.padding = unit(0.35, "lines"), 
-                   point.padding = unit(0.3, "lines"), size = 4)+
+  geom_label_repel(
+    data = subset(plot.data, !is.na(label)),
+    aes(label = label, color = status),
+    box.padding = unit(0.35, "lines"),
+    point.padding = unit(0.3, "lines"),
+    size = 4,
+    fontface = "bold"
+  )+
   geom_vline(xintercept = c(-0.05, 0.05), color="grey40", linetype="longdash", lwd = 0.25) +
   geom_hline(yintercept = 1, color="grey40", linetype="longdash", lwd = 0.25) +
   theme_bw() +
@@ -177,6 +198,6 @@ ggplot(data = plot.data, aes(x = logFC, y = logPadj, color = color)) +
              color = "black")
 # 保存图片
 # Save plot
-ggsave("volcano.pdf", width = 6, height = 6)
+ggsave("volcano.pdf", width = 6, height = 4)
 Session Info
 sessionInfo()

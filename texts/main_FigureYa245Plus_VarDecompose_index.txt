@@ -1,0 +1,70 @@
+基因方差分解查询工具 - Gene Variance Decomposition Explorer
+基因方差分解查询工具 | Gene Variance Decomposition Explorer
+人鼠模型选择指南 | Mouse Model Selection Guide
+上传数据文件 | Upload Data File
+↑
+点击上传 lmm_var_dcp_with_groups.csv 文件
+Click to upload lmm_var_dcp_with_groups.csv file
+或将文件拖拽到此处 | Or drag and drop file here
+提示 | Tip:
+文件位置 | File location:
+FigureYa245Plus_VarDecompose/lmm_var_dcp_with_groups.csv
+基因搜索 | Gene Search
+搜索 | Search
+清除 | Clear
+提示 | Tip:
+支持输入人类基因名（如
+EMC10
+）、小鼠基因名（如
+Emc10
+）或基因对（如
+EMC10_Emc10
+）
+Supports human gene names (e.g.
+EMC10
+), mouse gene names (e.g.
+Emc10
+), or gene pairs (e.g.
+EMC10_Emc10
+)
+支持模糊匹配，如
+EMC
+可匹配所有EMC家族基因 | Supports fuzzy matching, e.g.
+EMC
+matches all EMC family genes
+0
+总基因对数
+Total Gene Pairs
+0
+组织间差异大
+High across tissues
+0
+物种间差异大
+High across species
+0
+差异不显著
+Not significant
+图例说明 | Legend
+绿色区域 - 组织间方差大
+Green Region - High across tissues
+基因表达在不同组织间差异大，但在人鼠间保守
+Gene expression varies across tissues but is conserved between species
+→
+小鼠模型可靠，推荐使用 | Mouse model is reliable, recommended
+红色区域 - 物种间方差大
+Red Region - High across species
+基因表达在人鼠间差异大
+Gene expression varies between species
+→
+建议考虑类器官或人源化模型 | Consider organoids or humanized models
+蓝色区域 - 差异不显著
+Blue Region - Not significant
+组织间和物种间差异都不显著
+Neither tissue nor species variance is dominant
+→
+两种模型都可以，看具体研究需求 | Either model works, depends on research needs
+Citation
+FigureYa Framework:
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
+Variance Decomposition Method:
+Yue, F., Cheng, Y., Breschi, A. et al. A comparative encyclopedia of DNA elements in the mouse genome. Nature 515, 355–364 (2014). https://doi.org/10.1038/nature13992

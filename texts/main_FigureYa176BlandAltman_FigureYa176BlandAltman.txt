@@ -5,7 +5,7 @@ Author(s)
 Reviewer(s)
 : Ying Ge, Junyi Shen
 Date
-: 2025-09-22
+: 2025-11-05
 Academic Citation
 If you use this code in your work or research, we kindly request that
 you cite our publication:
@@ -13,15 +13,13 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization
 Framework for Enhancing Biomedical Data Interpretation and Research
 Efficiency. iMetaMed.
 https://doi.org/10.1002/imm3.70005
-需求描述
-Requirement
+需求描述 Requirement
 作者用Bland-Altman的方法比较了自己建立的模型和传统的模型的一致性。网上找了下，好像没有可以重复这个的代码。
-The author compared the consistency between the model he established and
-the traditional model using the Bland-Altman method. I searched online
-and it seems there’s no code that can repeat this.
-出自
+The author compared the consistency between the model he established
+and the traditional model using the Bland-Altman method. I searched
+online and it seems there’s no code that can repeat this.
+From
 https://www.sciencedirect.com/science/article/pii/S2352396420300992
-fromhttps://www.sciencedirect.com/science/article/pii/S2352396420300992
 Figure S1. Bland-Altman plots reveal consistency between the V-Net
 derived segmentation and the gold standard. The differences (y-axis) are
 plotted versus the average (x-axis) of two appraisers (i.e., the
@@ -33,18 +31,38 @@ provided for testing a constant difference based on a null
 hypothesis—the slope equals to 0. Critical difference is ‘two’ times
 standard deviation of differences, equals half the difference of lower
 and upper limit.
-应用场景
-Application Scenarios
+应用场景 Application Scenarios
 Bland-Altman
-plot用于比较不同evaluation之间的agreement，并进行一致性(斜率)检验。 The
-Bland-Altman plot was used to compare the agreements among different
-evaluations and to conduct consistency (slope) tests.
-环境设置
-Environment Setup
+plot用于比较不同evaluation之间的agreement，并进行一致性(斜率)检验。
+直观展示两种方法的差异模式和一致性程度，通过散点分布和置信区间判断一致性范围，斜率检验的P值帮助判断是否存在系统性偏差。
+适合连续性变量，需要评估可替换性，想发现系统性偏差的情况；
+不适合分类变量（阳性/阴性），只关心总体准确率，样本量太小（<30个）。
+AI时代涌现大量新方法、新工具，需要跟传统方法比较。
+这不是简单的准确率问题，需要发现AI的系统性偏差：例如AI在轻度病例上表现很好，但在重度病例上系统性地低估严重程度。这种模式在Bland-Altman图上一目了然。
+如果AI和经典方法的系统性偏差超过临床可接受范围，即使AI准确率很高，也不能直接替换使用。
+The Bland-Altman plot was used to compare the agreements among
+different evaluations and to conduct consistency (slope) tests.
+It can be used to compare the agreement between different evaluations
+and to conduct consistency (slope) tests.
+It is suitable for continuous variables, requires assessment of
+replaceability, and wants to find situations with systematic bias;
+It is not suitable for categorical variables (positive/negative),
+only cares about overall accuracy, and the sample size is too small
+(<30).
+There is a surge of new methods and tools in the AI era that need to
+be compared with traditional methods.
+It is not a simple accuracy issue, but a need to find the systematic
+bias of AI: for example, AI performs well in mild cases, but
+systematically underestimates the severity in severe cases. This pattern
+is obvious in the Bland-Altman graph.
+If the systematic bias between AI and classical methods exceeds the
+clinically acceptable range, AI cannot be directly replaced even if its
+accuracy is very high.
+环境设置 Environment Setup
 source("install_dependencies.R")
-library(BlandAltmanLeh)
-library(MethComp)
-library(smatr)
+library(BlandAltmanLeh) # Bland-Altman相关函数 # Bland-Altman related functions
+library(MethComp) # Bland-Altman相关函数 # Bland-Altman related functions
+library(smatr) # 斜率检验相关函数 # Slope test related functions
 
 Sys.setenv(LANGUAGE = "en") #显示英文报错信息 # Display an English error message
 options(stringsAsFactors = FALSE) #禁止chr转成factor # prohibit chr from being converted to factor
@@ -143,8 +161,7 @@ BA.baseplot <- function(measurement1 = NULL, # 方法一的结果 # the result o
   # Close the image handle
   invisible(dev.off())
 }
-输入文件
-Input File
+输入文件 Input File
 easy_input.csv，第一列error，第二列为分组信息，这里是测试结果和金标准结果。
 easy_input.csv, the first column is error and the second column is
 grouping information. Here are the test results and the gold standard
@@ -152,11 +169,10 @@ results.
 dat <- read.table("easy_input.txt", sep = "\t", row.names = NULL, header = T, check.names = F, stringsAsFactors = F)
 head(dat)
 table(dat$dataset)
-分析并画图
-Analyze and Draw Diagrams
-调用前面的自定义函数，检验和画图一步到位。 By calling the previous
-custom function, verification and drawing can be accomplished in one
-step.
+分析并画图 Analyze and Draw Diagrams
+调用前面的自定义函数，检验和画图一步到位。
+By calling the previous custom function, verification and drawing can
+be accomplished in one step.
 # 测试结果
 # Test Results
 test <- abs(dat[which(dat$dataset == "TEST"),"error"]) 

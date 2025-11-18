@@ -126,6 +126,11 @@ async function handleFormSubmit(event) {
         // 更新nomogram可视化
         updateVisualization(params, results);
 
+        // 保存记录到历史
+        if (window.CSVExportManager) {
+            window.CSVExportManager.saveRecord(params, results);
+        }
+
         // 记录使用情况（可选）
         console.log('Nomogram calculation completed:', {
             params,
@@ -214,6 +219,41 @@ function initPWA() {
 }
 
 /**
+ * 初始化CSV导出功能
+ */
+function initCSVExport() {
+    const exportCurrentBtn = document.getElementById('export-current-btn');
+    const exportAllBtn = document.getElementById('export-all-btn');
+    const clearHistoryBtn = document.getElementById('clear-history-btn');
+
+    if (exportCurrentBtn) {
+        exportCurrentBtn.addEventListener('click', () => {
+            if (window.CSVExportManager) {
+                window.CSVExportManager.exportCurrent();
+            }
+        });
+    }
+
+    if (exportAllBtn) {
+        exportAllBtn.addEventListener('click', () => {
+            if (window.CSVExportManager) {
+                window.CSVExportManager.exportAll();
+            }
+        });
+    }
+
+    if (clearHistoryBtn) {
+        clearHistoryBtn.addEventListener('click', () => {
+            if (window.CSVExportManager) {
+                window.CSVExportManager.clearHistory();
+            }
+        });
+    }
+
+    console.log('CSV Export功能已初始化');
+}
+
+/**
  * 初始化应用
  */
 function initApp() {
@@ -225,6 +265,9 @@ function initApp() {
 
     // 初始化PWA功能
     initPWA();
+
+    // 初始化CSV导出功能
+    initCSVExport();
 
     // 添加键盘快捷键支持
     document.addEventListener('keydown', (event) => {

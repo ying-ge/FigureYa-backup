@@ -10,7 +10,7 @@ output: html_document
 **Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()` 
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -19,8 +19,8 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# 需求描述
-# Requirements Description
+## 需求描述
+## Requirements Description
 
 用R画出多角图wheel plot。比如有九个角，然后我有个dataframe是各数据点到九个角的数值，想画一个图表示。这里是用python画的<https://github.com/linnarsson-lab/ipynb-lamanno2016/blob/master/ipynb-lamanno2016-cellscoring.ipynb>，想用R画。
 
@@ -58,8 +58,8 @@ Figure S7 Stem Cells Differentiation Protocol and Machine Learning Performance a
 Figure 7. Single-Cell Analysis of Differentiated In Vitro Human ESC and iPSC Cultures and Prototype-Based Scoring
 (G) Wheel plot showing the prototype scores for hESCs and hiPSCs. Dots represent individual cells and the **distance to each prototype is proportional to the relative score of that prototype**. Colors indicate time point of differentiation (red, day 0; dark blue, day 63).
 
-# 应用场景
-# Application Scenario
+## 应用场景
+## Application Scenario
 
 特别适合两种独立分组方式的数据：外围的角代表第一种分组，点的颜色形状代表第二种分组，点跟角的距离代表数值高低。
 
@@ -69,8 +69,8 @@ Particularly suitable for data with two independent grouping methods: the periph
 
 Additionally, you can refer to the visualization method in FigureYa235scDEG, where the first grouping is arranged from left to right in a straight line, the second grouping is plotted on the upper and lower sides (if there are more than two groups, additional features like color and shape need to be introduced to differentiate them), and the distance from points to the horizontal axis represents the magnitude of values.
 
-# 环境设置
-# Environment Setup
+## 环境设置
+## Environment Setup
 
 ```{r}
 source("install_dependencies.R")
@@ -86,8 +86,8 @@ Sys.setenv(LANGUAGE = "en")
 options(stringsAsFactors = FALSE) 
 ```
 
-# 输入文件
-# Input Files
+## 输入文件
+## Input Files
 
 easy_input.txt，最后一列跟点的颜色相对应，前面各列的列名跟图中的角相对应，数值对应点到角的距离。
 
@@ -107,8 +107,8 @@ easy_input.txt: The last column corresponds to the point colors, while the colum
 raw.data <- read.table("easy_input.txt", header = T, stringsAsFactors = T)
 ```
 
-# 为画图准备数据
-# Preparing Data for Visualization
+## 为画图准备数据
+## Preparing Data for Visualization
 
 ```{r}
 # 记录末列的名称
@@ -174,8 +174,8 @@ color.palette <- lapply(color.palette, function(x){
 color.palette <- unlist(color.palette) 
 ```
 
-# 开始画图
-# Plotting
+## 开始画图
+## Plotting
 
 ```{r}
 # 轮状图绘制 
@@ -200,6 +200,15 @@ ggsave("wheelplot.pdf", width = 10, height = 8)
 还可以用形状区分另一层分组，就像例文Figure 7G用不同形状进一步区分hESCs and hiPSCs
 
 Another grouping layers can be represented through point shapes, as demonstrated in reference Figure 7G where distinct shapes differentiate hESCs and hiPSCs.
+
+**图的解析：** Interpretation of the Plot:
+
+- 每个点代表一个单细胞；Each point represents a single cell;
+- 圆形边缘的角代表预定义的细胞类型原型；The angles at the edge of the circle represent predefined cell type prototypes;
+- 点到各原型的距离与该细胞对应原型的相对评分成正比——距离越近表示细胞越像该原型；The distance from the point to each prototype is proportional to the relative score of that cell for the corresponding prototype—the closer the distance, the more similar the cell is to that prototype;
+- 颜色编码了分化时间，从红色(第0天)到深蓝色(第63天)。Color encodes differentiation time, ranging from red (day 0) to dark blue (day 63).
+
+直观地展示了干细胞分化的时间动态过程、细胞命运决定以及分化过程中的细胞异质性。It visually illustrates the temporal dynamics of stem cell differentiation, cell fate determination, and cellular heterogeneity during the differentiation process.
 
 ```{r}
 # 创建新分组变量用于形状映射
@@ -230,7 +239,7 @@ ggplot(plot.data, aes(x = x, y = y)) +
 ggsave("wheelplot_plus.pdf", width = 8, height = 6) 
 ```
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

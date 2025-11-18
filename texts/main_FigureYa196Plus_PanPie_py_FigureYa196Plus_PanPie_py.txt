@@ -3,7 +3,7 @@ FigureYa196Plus_PanPie_py
 ¶
 Author:
 Ying Ge
-In [104]:
+In [1]:
 from
 datetime
 import
@@ -34,9 +34,9 @@ current_date
 }
 "
 )
-Out[104]:
+Out[1]:
 Date
-: 2025-10-11
+: 2025-10-30
 Academic Citation
 ¶
 If you use this code in your work or research, we kindly request that you cite our publication:
@@ -62,12 +62,12 @@ Understand the relationship between the input data and the figure, and grasp wha
 ¶
 Environment Configuration
 ¶
-In [105]:
+In [2]:
 #python --version
 #pip install jupyter ipykernel pandas numpy matplotlib seaborn
 #pip install scipy statsmodels plotly
 #pip install notebook nbconvert
-In [106]:
+In [3]:
 import
 pandas
 as
@@ -88,6 +88,10 @@ import
 matplotlib.colors
 as
 mcolors
+import
+matplotlib.gridspec
+as
+gridspec
 输入文件
 ¶
 Input files
@@ -104,7 +108,7 @@ Third column onward: Correspond to the columns in the original table.
 ¶
 Start plotting
 ¶
-In [107]:
+In [4]:
 # 读取数据 \ Read data
 data
 =
@@ -1190,10 +1194,9 @@ __name__
 :
 create_figureya196_python
 ()
-In [ ]:
 Session Info
 ¶
-In [108]:
+In [6]:
 import
 IPython
 print

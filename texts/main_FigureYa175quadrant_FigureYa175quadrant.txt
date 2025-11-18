@@ -5,7 +5,7 @@ Author(s)
 Reviewer(s)
 : Ying Ge, Junyi Shen
 Date
-: 2025-09-22
+: 2025-10-30
 Academic Citation
 If you use this code in your work or research, we kindly request that
 you cite our publication:
@@ -13,83 +13,69 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization
 Framework for Enhancing Biomedical Data Interpretation and Research
 Efficiency. iMetaMed.
 https://doi.org/10.1002/imm3.70005
-需求描述
-Requirement
+需求描述 Requirement description
 画出文章中这种九宫格的散点图，在图中标出想突出显示的基因名。 Draw a
 scatter plot of the nine-square grid in the article and mark the names
 of the genes you want to highlight on the plot.
-出自<dx.doi.org/10.3390/ijms21051686>
-from<dx.doi.org/10.3390/ijms21051686>
+From
+https://dx.doi.org/10.3390/ijms21051686
 Figure 5. Relationship between mRNA and protein expression in TW/NW
 (A) and TW/OW (B).
-出自<www.nature.com/articles/nature21036>
-from<www.nature.com/articles/nature21036>
+From
+https://www.nature.com/articles/nature21036
 Figure 1. The translational landscape of the epidermis during
 premalignant transformation. d, Transcriptional and translational
 changes comparing SOX2 with wild-type P4 epidermis. Colour-coded are
 genes with the adjusted P value < 0.05 (DESeq2; ref. 43; n = 3 per
 group for ribosome profiling; n =2 for RNA-seq).
-出自
+From
 https://science.sciencemag.org/content/362/6413/eaav1898
-fromhttps://science.sciencemag.org/content/362/6413/eaav1898
-应用场景
-Application Scenarios
-同时展示两种特征，尤其适合多组学关联的展示。 Simultaneously
-presenting two features is particularly suitable for the display of
-multi-omics associations.
+应用场景 Application Scenarios
+同时展示两种特征，尤其适合多组学关联的展示。
 像前两篇例文那样，RNA-seq跟蛋白质组数据，展示同一基因在两个维度的一致性。或者RNA-seq跟ATAC-seq，或者RNA-seq跟ChIP-seq，也是同样的道理。
-As in the previous two sample articles, RNA-seq and proteomic data
-demonstrate the consistency of the same gene in two dimensions. The same
-principle applies to RNA-seq and ATAC-seq, or RNA-seq and ChIP-seq.
 像第三篇例文那样，ATAC-seq数据，展示accessibility跟footprint
-depth的关系。 As in the third example, the ATAC-seq data shows the
-relationship between accessibility and footprint depth.
-展示同一样本的两种生物学/临床特征。 Display two biological/clinical
-characteristics of the same sample.
-另外可参考这两个FigureYa： In addition, you can refer to these two
-figureYa:
-同时展示两组数据相关性的FigureYa163TwoVarCor； FigureYa163TwoVarCor
-simultaneously presents the correlation between two sets of data;
+depth的关系。
+展示同一样本的两种生物学/临床特征。
+Simultaneously presenting two features is particularly suitable for
+the display of multi-omics associations. - As in the previous two sample
+articles, RNA-seq and proteomic data demonstrate the consistency of the
+same gene in two dimensions. The same principle applies to RNA-seq and
+ATAC-seq, or RNA-seq and ChIP-seq. - As in the third example, the
+ATAC-seq data shows the relationship between accessibility and footprint
+depth. - Display two biological/clinical characteristics of the same
+sample.
+另外可参考这两个FigureYa：
+同时展示两组数据相关性的FigureYa163TwoVarCor；
 展示相关性的同时给出各区域点所占的比例的FigureYa143survCor。
-FigureYa143survCor shows the correlation while providing the proportion
-of each regional point.
-环境设置
-Environment Setup
+In addition, you can refer to these two figureYa:
+FigureYa163TwoVarCor simultaneously presents the correlation between
+two sets of data;
+FigureYa143survCor shows the correlation while providing the
+proportion of each regional point.
+环境设置 Environment Setup
 source("install_dependencies.R")
-Loading package
-# 加载需要的包
-# Load the required packages
-library(dplyr)
-library(ggplot2)
-library(ggrepel)
-library(cowplot)
+library(dplyr) # 数据处理 | Data processing
+library(ggplot2) # 画图 | Plotting
+library(ggrepel) # 避免标签重叠 | Avoid overlapping labels
+library(cowplot) # 拼图 | Plot composition
 
 Sys.setenv(LANGUAGE = "en") #显示英文报错信息 # displays an English error message
 options(stringsAsFactors = FALSE) #禁止chr转成factor # prohibit chr from being converted to factor
-输入文件
-Input File
+输入文件 Input File
 easy_input.txt，每行一个点，第一列为点的ID，第二列x作为横坐标，第三列y作为纵坐标。
 easy_input.txt, each line contains one point. The first column is the
 point ID, the second column x serves as the abscissa, and the third
 column y serves as the ordinate.
 示例数据每个点代表一个基因，x为该基因转录水平的变化倍数，y为蛋白水平变化倍数。
-Each point in the sample data represents a gene, where x is the multiple
-of change at the transcriptional level of the gene and y is the multiple
-of change at the protein level.
+Each point in the sample data represents a gene, where x is the
+multiple of change at the transcriptional level of the gene and y is the
+multiple of change at the protein level.
 # 读取数据 # Reading Data
 data <- read.table("easy_input.txt", header = T, row.names = 1)
 head(data)
 tail(data)
-开始画图
-Start drawing
-# 要显示名称的点的ID
-# The ID of the point whose name is to be displayed
-# 一定要跟输入文件easy_input.txt文件中的第一行一致
-# It must be consistent with the first line in the input file easy_input.txt
+开始画图 Start Drawing
 genes_to_showname <- c("gene1", "gene2", "gene3", "gene114", "gene3552")
-# 如果不想显示点的ID，就用下面这行
-# If you don't want to display the ID of the dot, use the following line
-#genes_to_showname <- ""
 
 data$gene_label <- ""
 data[genes_to_showname, ]$gene_label <- genes_to_showname

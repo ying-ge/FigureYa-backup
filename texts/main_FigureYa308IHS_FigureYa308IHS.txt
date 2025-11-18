@@ -5,7 +5,7 @@ Author(s)
 Reviewer(s)
 : Ying Ge
 Date
-: 2025-10-10
+: 2025-11-10
 Academic Citation
 If you use this code in your work or research, we kindly request that
 you cite our publication:
@@ -13,6 +13,11 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization
 Framework for Enhancing Biomedical Data Interpretation and Research
 Efficiency. iMetaMed.
 https://doi.org/10.1002/imm3.70005
+To cite the method in publications use:
+Yang, C., Zhang, S., Cheng, Z. et al. Multi-region sequencing with
+spatial information enables accurate heterogeneity estimation and risk
+stratification in liver cancer. Genome Med 14, 142 (2022).
+https://doi.org/10.1186/s13073-022-01143-6
 需求描述
 Requirements Description
 我想实现一下这篇文章里Figure5D，作者写了一个计算基因异质性的方法，然后用VIPER推断检查点蛋白活性以后计算了检查点蛋白的异质性，我想这个方法应该也可以用来计算其他种类蛋白的异质性，应该挺实用的。
@@ -106,21 +111,18 @@ test, providing Q and p-value.
 环境设置
 Environment Setup
 source("install_dependencies.R")
-library(viper)
-library(nlme)
-library(spatstat.explore)
-library(ggplot2)
-library(ggrepel)
+library(viper) # 计算蛋白活性 To calculate protein activity
+library(nlme) # 计算IHS To calculate IHS
+library(spatstat.explore) # 计算IHS To calculate IHS
+library(ggplot2) # 画图 To draw plots
+library(ggrepel) # 避免标签重叠 To avoid label overlap 
 
-# 显示英文报错信息
-# Show English error messages
+# 显示英文报错信息 To show English error messages
 Sys.setenv(LANGUAGE = "en") 
 
-# 禁止chr转成factor
-# Prevent character to factor conversion
+# 禁止chr转成factor To prevent character to factor conversion
 options(stringsAsFactors = FALSE)
-自定义函数以计算IHS
-Custom function to calculate IHS
+自定义函数以计算IHS To define a custom function to calculate IHS
 CalIHS <- function(vec, clin, method){
   # vec：各样本的活性值
   # clin：样本临床信息，样本顺序应当与活性值的顺序一致，应有Patient列标识样本的患者来源
@@ -222,24 +224,10 @@ system(paste("Rscript", file.path(pisce.path, "pisce.R"), # pisce主代码位置
 这里会生成
 out_unPruned.rds
 文件，用于下一步计算。
-out_unPruned.rds
-文件已上传至百度网盘，便于测试。下载地址：
-https://pan.baidu.com/s/18_Q329zr_33edK2TSJYYnQ?pwd=a6hx
-。下载后删除扩展名
-.txt
-，存入Result文件夹，即可继续往下运行。
 An
 out_unPruned.rds
 file will be generated here, which
-is used for the next step of calculation. The
-out_unPruned.rds
-file has been uploaded to Baidu Netdisk
-for testing purposes. Download link:
-https://pan.baidu.com/s/18_Q329zr_33edK2TSJYYnQ?pwd=a6hx
-.
-After downloading, delete the .txt file extension, save the file to the
-“Result” folder, and then you can continue to run the subsequent
-processes.
+is used for the next step of calculation.
 # 读取ARACNe网络推断结果
 # Read ARACNe network results 
 out_unPruned <- readRDS(file.path(res.path, "out_unPruned.rds")) 

@@ -10,7 +10,7 @@ output: html_document
 **Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()`  
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -30,8 +30,9 @@ knitr::opts_chunk$set(echo = TRUE)
 knitr::opts_chunk$set(warning = FALSE)
 knitr::opts_chunk$set(message = FALSE)
 ```
-# 需求描述
-# Description of the Task
+
+## 需求描述
+## Description of the Task
 
 药物分析，Connectivity map(CMap)分析鉴定能够靶向干性特征的潜在化合物/抑制剂，重复出下图
 Drug analysis: Connectivity map (CMap) analysis identifies potential compounds/inhibitors that can target stemness features. Reproduce the figure below.
@@ -46,8 +47,8 @@ Figure 7. Correlation of cancer stemness with drug resistance – Connectivity m
 (B) Heatmap showing each compound (perturbagen) from the CMap that share Mechanism of actions (rows). Sorted by descending number of compound with shared mechanism of actions.
 See also Figure S7 and Tables S3 and S4.
 
-# 应用场景
-Application Scenario
+## 应用场景
+## Application Scenario
 
 任何感兴趣的差异基因都可以用CMap分析得到可能的靶向药物，关于CMap的介绍和原理可以参考[The Connectivity Map-揭示化合物，基因和疾病状态的功能联系](https://mp.weixin.qq.com/s/N0ZvANnWsbBB3XJpSr1j1g).
 Any differentially expressed genes of interest can be used for CMap analysis to identify possible targeted drugs. For an introduction to CMap and its principles, refer to The Connectivity Map - Revealing functional links between compounds, genes, and disease states. (https://mp.weixin.qq.com/s/N0ZvANnWsbBB3XJpSr1j1g).
@@ -61,8 +62,8 @@ The author still uses CMap build 02 for this query step.
 而在分析mechanism of actions (MoA)和drug-target部分则选用的是[CLUE](https://clue.io/)，对感兴趣的小分子进行MoA药物作用机制分析，探索其共同的内在作用机制。
 In the analysis of mechanism of actions (MoA) and drug-target, [CLUE](https://clue.io/) is used to perform MoA drug action mechanism analysis on the small molecules of interest and explore their common intrinsic mechanisms of action.
 
-# 环境设置
-# Environment Setup
+## 环境设置
+## Environment Setup
 
 ```{r}
 source("install_dependencies.R")
@@ -79,13 +80,15 @@ Sys.setenv(LANGUAGE = "en") #显示英文报错信息 Display English error mess
 options(stringsAsFactors = FALSE) #禁止chr转成factor Disable conversion of chr to factor
 ```
 
-# PART 1: 重复出文章Figure 7A
-# PART 1: Repeat Figure 7A
+## PART 1: 重复出文章Figure 7A
+## PART 1: Repeat Figure 7A
 
-## 生成CMap输入文件
-## Generate Input Files for CMap
+### 生成CMap输入文件
+
+### Generate Input Files for CMap
 
 pandif_mRNAsi.xlsx，这里用的是TCGA泛癌数据根据mRNAsi指标高低求出的差异基因。出自例文附件Table S3<https://ars.els-cdn.com/content/image/1-s2.0-S0092867418303581-mmc3.xlsx>，你也可以用任何你感兴趣的差异基因作为输入。
+
 pandif_mRNAsi.xlsx, here we use the differentially expressed genes from the TCGA pan-cancer data according to the mRNAsi index. From the example text attachment Table S3 <https://ars.els-cdn.com/content/image/1-s2.0-S0092867418303581-mmc3.xlsx>, you can also use any differentially expressed genes you are interested in as input.
 
 ```{r}
@@ -140,7 +143,7 @@ for (i in 1:pan_n){
 }
 ```
 
-## CMap query
+### CMap query
 
 需要用到CMap，具体操作方法见同一文件夹下的**CMap query_update.docx**文件，这里以ACC为例，获得ACC_CMap_result.xls。
 CMap is needed. For specific operation methods, see the **CMap query_update.docx** file in the same folder. Here, ACC is taken as an example to obtain ACC_CMap_result.xls.
@@ -173,26 +176,32 @@ paper_cmap <- ACC_CMap_result[ACC_CMap_result$cmap.name %in% ACC_CMap_paper$cmap
 head(paper_cmap)
 ```
 
-# 虽然跟原文提供的结果不是完全一致。分析的原因可能是在处理输入差异基因这一步骤上，文章说在匹配gpl96探针数据FC排序之后去掉重复的ID。这一步骤我是多个探针匹配同一个基因只保留一个探针。还试过删除掉多个探针匹配一个基因的全部探针以及保留全部的unique探针。结果都不能达到完全一致。
-# Although the results are not exactly the same as those provided in the article, the likely reason lies in the preprocessing step of input differential genes. The article mentions removing duplicate IDs after FC ranking with gpl96 probe data. In my case, I retained only one probe per gene when multiple probes matched the same gene. I also tried removing all such probes or keeping all unique probes, but none achieved perfect consistency.
+虽然跟原文提供的结果不是完全一致。分析的原因可能是在处理输入差异基因这一步骤上，文章说在匹配gpl96探针数据FC排序之后去掉重复的ID。这一步骤我是多个探针匹配同一个基因只保留一个探针。还试过删除掉多个探针匹配一个基因的全部探针以及保留全部的unique探针。结果都不能达到完全一致。
 
-# 可以看到在`r nrow(ACC_CMap_paper)`有`r camp_inter`个交集，并且rank在前面的compound基本一致。
-# As shown, there are `r camp_inter` overlapping compounds among the `r nrow(ACC_CMap_paper)` compounds, and the top-ranked compounds are mostly consistent.
+Although the results are not exactly the same as those provided in the article, the likely reason lies in the preprocessing step of input differential genes. The article mentions removing duplicate IDs after FC ranking with gpl96 probe data. In my case, I retained only one probe per gene when multiple probes matched the same gene. I also tried removing all such probes or keeping all unique probes, but none achieved perfect consistency.
 
-# 因此差异应该是由于数据预处理问题，方法是没有问题的。
-# Therefore, the discrepancy is likely due to data preprocessing rather than methodological issues.
+可以看到在`r nrow(ACC_CMap_paper)`有`r camp_inter`个交集，并且rank在前面的compound基本一致。
 
-## 画图
-## Plotting
+As shown, there are `r camp_inter` overlapping compounds among the `r nrow(ACC_CMap_paper)` compounds, and the top-ranked compounds are mostly consistent.
 
-# 按照操作文档CMap query_update.docx里的方法，对全部癌种执行完CMap query之后，整理好文件。
-# According to the method described in CMap query_update.docx, after performing CMap queries for all cancer types, organize the output files.
+因此差异应该是由于数据预处理问题，方法是没有问题的。
 
-# 这里就不重复这一过程了，我们直接拿文章的附件来画图。
-# This step is omitted here; we use the data from the article's supplementary files for plotting.
+Therefore, the discrepancy is likely due to data preprocessing rather than methodological issues.
 
-# Connectivity_Map_Output.xlsx: 全部癌种的Connectivity Map Output结果。出自例文附件Table S4，https://ars.els-cdn.com/content/image/1-s2.0-S0092867418303581-mmc4.xlsx。
-# Connectivity_Map_Output.xlsx: Connectivity Map Output results for all cancer types from Supplementary Table S4 of the article.
+### 画图
+### Plotting
+
+按照操作文档CMap query_update.docx里的方法，对全部癌种执行完CMap query之后，整理好文件。
+
+According to the method described in CMap query_update.docx, after performing CMap queries for all cancer types, organize the output files.
+
+这里就不重复这一过程了，我们直接拿文章的附件来画图。
+
+This step is omitted here; we use the data from the article's supplementary files for plotting.
+
+Connectivity_Map_Output.xlsx: 全部癌种的Connectivity Map Output结果。出自例文附件Table S4，https://ars.els-cdn.com/content/image/1-s2.0-S0092867418303581-mmc4.xlsx。
+
+Connectivity_Map_Output.xlsx: Connectivity Map Output results for all cancer types from Supplementary Table S4 of the article.
 
 ```{r}
 camp_outputlist <- list()
@@ -263,11 +272,11 @@ dev.off()
 
 ![](CMap_heatmap.pdf)
 
-# PART 2: 重复出文章Figure 7B
-# PART 2: Reproducing Figure 7B from the article
+## PART 2: 重复出文章Figure 7B
+## PART 2: Reproducing Figure 7B from the article
 
-## MoA分析
-## MoA Analysis
+### MoA分析
+### MoA Analysis
 
 探讨感兴趣药物的作用机制，具体操作方法参考操作文档CMap_MoA.docx。
 Explore the mechanism of action of the drug of interest. For specific operation methods, refer to the operation document CMap_MoA.docx.
@@ -330,8 +339,8 @@ colnames(oncoprintinput) <- PerturbagenID[colnames(oncoprintinput)]
 oncoprintinput <- oncoprintinput[, order(colnames(oncoprintinput))]
 ```
 
-## 画图
-## Plotting
+### 画图
+### Plotting
 
 ```{r}
 alter_fun = list(
@@ -368,6 +377,8 @@ dev.off()
 ```
 
 ![](MoA.pdf)
+
+## Session Info
 
 ```{r}
 sessionInfo()

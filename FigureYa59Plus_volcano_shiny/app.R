@@ -326,7 +326,7 @@ server <- function(input, output, session) {
     if (input$logFClabel > 0) {
       p1 <- p1 +
         geom_text_repel(aes(x = logFC, y = -log10(P.Value),
-                           label = ifelse(abs(logFC) > input$logFClabel, rownames(x), "")),
+                           label = ifelse(abs(logFC) > input$logFClabel, label, "")),
                       colour = "darkred", size = 5,
                       box.padding = unit(0.35, "lines"),
                       point.padding = unit(0.3, "lines"))
@@ -440,7 +440,7 @@ server <- function(input, output, session) {
     if (input$logFClabel > 0) {
       p1 <- p1 +
         geom_text_repel(aes(x = logFC, y = -log10(P.Value),
-                           label = ifelse(abs(logFC) > input$logFClabel, rownames(x), "")),
+                           label = ifelse(abs(logFC) > input$logFClabel, label, "")),
                       colour = "darkred", size = 5,
                       box.padding = unit(0.35, "lines"),
                       point.padding = unit(0.3, "lines"))

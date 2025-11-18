@@ -1,7 +1,11 @@
 FigureYa235scDEG
 FigureYa235scDEG
-Xiao Gu
-2025-9-12
+Author(s)
+: Xiao Gu
+Reviewer(s)
+: Ying Ge, Hui Huang
+Date
+: 2025-11-04
 Academic Citation
 If you use this code in your work or research, we kindly request that
 you cite our publication:
@@ -9,47 +13,41 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization
 Framework for Enhancing Biomedical Data Interpretation and Research
 Efficiency. iMetaMed.
 https://doi.org/10.1002/imm3.70005
-需求描述
+需求描述 Requirement Description
 单细胞测序分不同的cluster，然后在每个cluster上做DEGs的点图，最好是log2FC为负的标蓝。然后自定义显示想要的点。
 输入数据用seurat用的PBMC那个测试数据吧
-Requirement Description
 Single-cell sequencing is divided into different clusters, and then a
 dot plot of DEGs is made on each cluster, preferably with a negative
 log2FC in blue. Then customize the display of the desired points. The
 input data will be the PBMC test data for the seurat
-出自
-https://www.sciencedirect.com/science/article/pii/S0092867419312826?via%3Dihub
-from
+From
 https://www.sciencedirect.com/science/article/pii/S0092867419312826?via%3Dihub
 Figure 2. Global Spatiotemporal Analysis of Three Cardiac
 Developmental Stages (H) Differential gene expression analysis showing
 up- and down-regulated genes across all ten clusters. An adjusted p
 value < 0.01 is indicated in red, while an adjusted p value R 0.01 is
 indicated in black.
-应用场景
+应用场景 Application Scenarios
 分类展示各cluster的marker gene表达趋势变化的分布情况。
 可以像原文那样标注显著上调或下调表达的基因名，或者标注参与某一通路的基因名。
-Application Scenarios
 The distribution of marker gene expression trends in each cluster is
 displayed by category.
 Gene names that are significantly up- or down-regulated, or gene
 names involved in a pathway, can be labeled as in the original text.
-环境设置
-Environment settings
+环境设置 Environment settings
 source("install_dependencies.R")
-library(dplyr)
-library(Seurat)
-library(patchwork)
-library(reshape2)
-library(RColorBrewer)
-library(ggplot2)
-library(ggrepel)  # Used to annotate text
-library(magrittr)
+library(dplyr) #数据处理 Data processing
+library(Seurat) # 单细胞数据处理 Single-cell data processing
+library(patchwork) #拼图 Plotting
+library(reshape2) #数据处理 Data processing
+library(RColorBrewer) #颜色 Color
+library(ggplot2) #绘图 Plotting
+library(ggrepel)  # 标注文本 Annotation text
+library(magrittr) #数据处理 Data processing
 
 Sys.setenv(LANGUAGE = "en") #显示英文报错信息 # error messages are displayed in English
 options(stringsAsFactors = FALSE) #禁止chr转成factor # chr is not allowed to be converted to factor
-输入文件及预处理
-输入文件
+输入文件 Input files
 这部分与“FigureYa224scMarker”相同
 以Seurat官网PBMC数据为例，跟FigureYa111markerGene和FigureYa160scGSVA用的是同一套数据，出自不同作者之手，可相互参考。
 下载
@@ -57,8 +55,6 @@ https://cf.10xgenomics.com/samples/cell/pbmc3k/pbmc3k_filtered_gene_bc_matrices.
 ，解压到当前文件夹。
 预处理过程参考
 https://satijalab.org/seurat/v3.2/pbmc3k_tutorial.html
-Input files and preprocessing
-Input files
 This part is the same as “FigureYa224scMarker”.
 Taking the PBMC data on the official website of Seurat as an example,
 it uses the same set of data as FigureYa111markerGene and
@@ -70,9 +66,8 @@ and extract it to the current folder.
 Refer to
 https://satijalab.org/seurat/v3.2/pbmc3k_tutorial.html
 for the pretreatment process
-# 解压缩
-# Unzip
-tar -zxvf pbmc3k_filtered_gene_bc_matrices.tar.gz
+untar("pbmc3k_filtered_gene_bc_matrices.tar.gz", exdir = ".")
+
 # Load the PBMC dataset
 pbmc.data <- Read10X(data.dir = "filtered_gene_bc_matrices/hg19/")
 # Initialize the Seurat object with the raw (non-normalized data).
@@ -197,7 +192,7 @@ ggsave("plotA_all.pdf", plot = pA_all, width = 12, height = 6)
 
 celltype <- c("T","Mono","B","NK","DC","Platelet")
 pbmc@meta.data$celltype <- factor(pbmc@meta.data$celltype, celltype)
-saveRDS(pbmc, "pbmc_test_final.rds")
+#saveRDS(pbmc, "pbmc_test_final.rds")
 设置cutoff，定义显著/非显著的上/下调marker gene
 Set cutoff to define significant/non-significant up/down marker
 gene
@@ -222,8 +217,8 @@ pbmc.markers$cluster %<>% as.vector(.) %>% as.numeric(.)
 # Save to file
 write.csv(pbmc.markers, "output_pbmc.markers.csv", quote = F)
 自定义显示想要展示的基因名
-这里挑选log2FC为top5的基因进行展示
 Customize the display of the gene name you want to display
+这里挑选log2FC为top5的基因进行展示
 Here, log2FC is selected as the top 5 genes for display
 top_up_label <- pbmc.markers %>% 
   subset(., threshold%in%"Up") %>% 
@@ -314,7 +309,7 @@ p <- ggplot() +
 plot1 <- p + theme(panel.grid.minor = element_blank(), ##去除网格线 ## Remove grid lines
                    panel.grid.major = element_blank(),
                    axis.text.y = element_text(colour = 'black', size = 14),
-                   axis.text.x = element_text(colour = 'black', size = 14, vjust = 50), #调整x轴坐标,vjust的值按照最终结果稍加调整 # Adjust the x-axis coordinates, and the value of vjust will be slightly adjusted according to the final result
+                   axis.text.x = element_text(colour = 'black', size = 14, vjust = 46), #调整x轴坐标,vjust的值按照最终结果稍加调整 # Adjust the x-axis coordinates, and the value of vjust will be slightly adjusted according to the final result
                    panel.border = element_blank(), ## 去掉坐标轴 ## Remove the axes
                    axis.ticks.x = element_blank(), ## 去掉的坐标刻度线 ## Removed coordinate tick marks
                    axis.line.y = element_line(colour = "black")) #添加y轴坐标轴 # Add the y-axis

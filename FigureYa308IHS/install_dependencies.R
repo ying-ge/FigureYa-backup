@@ -49,7 +49,7 @@ cat("===========================================\n")
 
 # Installing CRAN packages
 cat("\nInstalling CRAN packages...\n")
-cran_packages <- c("ggplot2", "ggrepel", "nlme", "optparse", "spatstat.explore")
+cran_packages <- c("ggplot2", "ggrepel", "nlme", "optparse", "spatstat.explore", "kernlab")
 
 for (pkg in cran_packages) {
   install_cran_package(pkg)

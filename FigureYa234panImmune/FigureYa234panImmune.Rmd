@@ -2,11 +2,12 @@
 title: "FigureYa234panImmune"
 params:
   author: "Houshi Xu"
+  reviewers: Ying Ge,Hui Huang
 output: html_document
-reviewers: Ying Ge,Hui Huang
 ---
 
 **Author(s)**: `r params$author`  
+**Reviewer(s)**: `r params$reviewers`
 **Date**: `r Sys.Date()`  
 
 # Academic Citation

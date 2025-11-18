@@ -5,7 +5,7 @@ Author(s)
 Reviewer(s)
 : Ying Ge
 Date
-: 2025-09-22
+: 2025-11-09
 Academic Citation
 If you use this code in your work or research, we kindly request that
 you cite our publication:
@@ -13,18 +13,20 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization
 Framework for Enhancing Biomedical Data Interpretation and Research
 Efficiency. iMetaMed.
 https://doi.org/10.1002/imm3.70005
+To use the method please cite:
+Chen Yang, et al. (2022). A survey of optimal strategy for
+signature-based drug repositioning and an application to liver cancer.
+eLife 11:e71880.
 需求描述
 Demand description
 有篇最近的文章可以替代一下FigureYa131cMAP，好像能用类似cmap的方法来进行药物预测，但这篇没有没有提供代码，。
 I came across a recent article that also uses a CMAP-like method for
 drug prediction, but the authors didn’t provide the code. This could
 also serve as an alternative to FigureYa131cMAP.
-出自：
+From
 https://elifesciences.org/articles/71880
 图1.
 LINCS数据驱动的治疗发现概述。基于”特征逆转”的计算方法工作原理。首先需要识别代表异常表达模式的疾病特征（G1、G2和G3表示疾病状态下上调的基因，而G4、G5和G6表示下调的基因）。利用这一特征，可以查询药理学扰动数据集，寻找能够逆转疾病表达模式的化合物（抑制G1、G2和G3的表达，同时诱导G4、G5和G6的表达）。确定候选化合物后，需要通过实验和临床验证将计算结果转化为临床应用。LINCS，集成网络细胞特征库。
-Source:
-https://elifesciences.org/articles/71880
 Figure 1. Overview of LINCS data-driven therapeutic discovery. The
 working principle of ‘signature reversion’-based computational approach.
 A disease signature representing discordant expression pattern needs
@@ -89,17 +91,17 @@ please cite the referenced paper (PMID: 35191375).
 环境设置
 Environment Setup
 source("install_dependencies.R")
-library(PharmacoGx)
-library(parallel)
-library(dplyr)
-library(stringr)
-library(tidyverse)
-library(tibble)
-library(clusterProfiler)
-library(ggplot2)
-library(ggrepel)
-library(ggthemes)
-library(gridExtra)
+library(PharmacoGx) # 药物-细胞系毒性分析 using cmap database
+library(parallel) # 并行计算 Parallel computation
+library(dplyr) # 数据处理 Data processing
+library(stringr) # 字符串处理 String processing
+library(tidyverse) # 数据处理 Data processing
+library(tibble) # 数据处理 Data processing
+library(clusterProfiler) # 富集分析 Enrichment analysis
+library(ggplot2) # 绘图绘制图形 Plotting
+library(ggrepel) # 避免标签重叠 Avoid label overlap
+library(ggthemes) # 主题风格 Theme style
+library(gridExtra) # 组合多张图 Combine multiple plots
 # 显示英文报错信息
 # Show English error messages
 Sys.setenv(LANGUAGE = "en")
@@ -115,10 +117,10 @@ camp_sig.rds，这里作演示的文件只包含了部分药物。实际应用�
 完整的
 camp_sig.rds 文件
 。
-CMAP_gene_signatures.RData – Preprocessed CMap data, available for
+CMAP_gene_signatures.RData, Preprocessed CMap data, available for
 download at
 https://www.pmgenomics.ca/bhklab/sites/default/files/downloads/CMAP_gene_signatures.RData
-camp_sig.rds – This demo file contains only a subset of drugs. For
+camp_sig.rds, This demo file contains only a subset of drugs. For
 practical applications, the full CMap dataset should be used. Please
 download CMAP_gene_signatures.RData and run the following code to
 generate
