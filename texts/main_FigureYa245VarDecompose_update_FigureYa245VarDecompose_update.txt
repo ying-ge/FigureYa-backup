@@ -3,10 +3,9 @@ FigureYa245VarDecompose_update
 Author(s)
 : Jianing Gao
 Reviewer(s)
-:
-Ying Ge, Hui Huang
+: Ying Ge, Hui Huang
 Date
-: 2025-10-31
+: 2025-11-18
 Academic Citation
 If you use this code in your work or research, we kindly request that
 you cite our publication:
@@ -118,11 +117,11 @@ Sys.setenv(LANGUAGE = "en")  # 显示英文报错信息 # Display error messages
 options(stringsAsFactors = FALSE)  # 禁止字符型数据自动转换为因子型 # Prevent automatic conversion of character data to factors
 输入文件 Input files
 human.tissue.fpkm.rds和mouse.tissue.fpkm.rds，人和鼠各器官的表达矩阵。
-human2mouse.ortholog.txt，人和鼠同源基因的对应关系。
+mart_export.txt，人和鼠同源基因的对应关系。
 human.tissue.fpkm.rds and mouse.tissue.fpkm.rds, expression matrices
 of human and mouse organs.
-human2mouse.ortholog.txt, correspondence between human and mouse
-homologous genes.
+mart_export.txt, correspondence between human and mouse homologous
+genes.
 # 在结果中搜索你的目标基因 Search for your target gene in the results
 highlight_pattern <- "^fox[a-zA-Z][0-9]" # 以FoxA1, FoxB1, FoxC2等基因为例
 
@@ -139,7 +138,16 @@ mouse <- readRDS("mouse.tissue.fpkm.rds")
 
 # 加载同源基因对应关系
 # Load homologous gene correspondence
-orthologs <- read_tsv("human2mouse.ortholog.txt")
+# 新文件格式：CSV格式，列名为 "Mouse gene name" 和 "Gene name"（人类基因名称）
+# New file format: CSV format with column names "Mouse gene name" and "Gene name" (human gene name)
+orthologs <- read.csv("mart_export.txt", stringsAsFactors = FALSE)
+# 重命名列以便后续使用 / Rename columns for later use
+colnames(orthologs) <- c("Mouse_gene_name", "Human_gene_name")
+# 移除空行 / Remove empty rows
+orthologs <- orthologs[!is.na(orthologs$Mouse_gene_name) & orthologs$Mouse_gene_name != "", ]
+# 移除重复项 / Remove duplicates
+orthologs <- orthologs[!duplicated(orthologs), ]
+cat("加载的同源基因对数量 / Number of orthologous gene pairs loaded:", nrow(orthologs), "\n")
 Filter genes:
 Genes with a maximum RPKM greater than 0.1 in each dataset were
 kept.
@@ -152,23 +160,62 @@ mouse <- mouse[kept.rows, ]
 1) 按照直系同源关系(one2one orthologs)合并人鼠转录组
 1) Merge human-mouse transcriptomes according to orthologous
 relationships (one2one orthologs).
-in.human <- orthologs$`Gene stable ID` %in% human$Gene.ID
-in.mouse <- orthologs$`Mouse gene stable ID` %in% mouse$Gene.ID
-# 取人鼠的转录组都检测到的one2one.orthologs
-# Take the transcriptomes of human mice that are detected by one2one.orthologs
+# 统计原始同源基因对数量 / Count original orthologous gene pairs
+cat("原始同源基因对数量 / Original number of orthologous gene pairs:", nrow(orthologs), "\n")
+# 使用基因名称匹配（新文件格式使用基因名称而非Ensembl ID）
+# Match using gene names (new file format uses gene names instead of Ensembl IDs)
+in.human <- orthologs$Human_gene_name %in% human$Gene.Name
+in.mouse <- orthologs$Mouse_gene_name %in% mouse$Gene.Name
+# 取人鼠的转录组都检测到的同源基因对
+# Take orthologous gene pairs detected in both human and mouse transcriptomes
 orthologs <- orthologs[in.human & in.mouse, ]
-human <- human %>% filter(Gene.ID %in% orthologs$`Gene stable ID`)
-mouse <- mouse %>% filter(Gene.ID %in% orthologs$`Mouse gene stable ID`)
+
+# 统计筛选后的同源基因对数量 / Count filtered orthologous gene pairs
+cat("筛选后同源基因对数量（在人鼠转录组中都检测到的） / Filtered number of orthologous gene pairs (detected in both human and mouse transcriptomes):", nrow(orthologs), "\n")
+# 检查orthologs中是否有重复的基因名称 / Check for duplicate gene names in orthologs
+duplicate_human <- duplicated(orthologs$Human_gene_name) | duplicated(orthologs$Human_gene_name, fromLast = TRUE)
+duplicate_mouse <- duplicated(orthologs$Mouse_gene_name) | duplicated(orthologs$Mouse_gene_name, fromLast = TRUE)
+if (any(duplicate_human) || any(duplicate_mouse)) {
+  cat("警告：发现重复的同源基因对，将只保留第一个 / Warning: Duplicate orthologous gene pairs found, keeping only the first occurrence\n")
+  orthologs <- orthologs[!duplicated(orthologs$Human_gene_name) & !duplicated(orthologs$Mouse_gene_name), ]
+  cat("去重后的同源基因对数量 / Number of orthologous gene pairs after deduplication:", nrow(orthologs), "\n")
+}
+# 使用基因名称筛选数据 / Filter data using gene names
+human <- human %>% filter(Gene.Name %in% orthologs$Human_gene_name)
+mouse <- mouse %>% filter(Gene.Name %in% orthologs$Mouse_gene_name)
+
+# 检查human和mouse中是否有重复的基因名称 / Check for duplicate gene names in human and mouse data
+if (any(duplicated(human$Gene.Name))) {
+  cat("警告：human数据中有重复的基因名称，将只保留第一个 / Warning: Duplicate gene names in human data, keeping only the first occurrence\n")
+  human <- human[!duplicated(human$Gene.Name), ]
+}
+if (any(duplicated(mouse$Gene.Name))) {
+  cat("警告：mouse数据中有重复的基因名称，将只保留第一个 / Warning: Duplicate gene names in mouse data, keeping only the first occurrence\n")
+  mouse <- mouse[!duplicated(mouse$Gene.Name), ]
+}
+# 确保human和mouse数据按照同源关系对齐 / Ensure human and mouse data are aligned by orthologous relationship
+# 按照orthologs的顺序排序 / Sort according to orthologs order
+human <- human[match(orthologs$Human_gene_name, human$Gene.Name), ]
+mouse <- mouse[match(orthologs$Mouse_gene_name, mouse$Gene.Name), ]
+
+# 移除匹配失败的NA行 / Remove NA rows from failed matches
+human <- human[!is.na(human$Gene.Name), ]
+mouse <- mouse[!is.na(mouse$Gene.Name), ]
+# 更新orthologs以匹配实际匹配成功的基因对 / Update orthologs to match successfully matched gene pairs
+orthologs <- orthologs[orthologs$Human_gene_name %in% human$Gene.Name & orthologs$Mouse_gene_name %in% mouse$Gene.Name, ]
 
 all(dim(human) == dim(mouse)) # should be TRUE
+cat("最终用于分析的同源基因对数量 / Final number of orthologous gene pairs for analysis:", nrow(orthologs), "\n")
 colnames(human) <- paste0("Human_", colnames(human))
 colnames(mouse) <- paste0("Mouse_", colnames(mouse))
 
-# Order by orthologs
-rownames(human) <- human$Human_Gene.ID
-rownames(mouse) <- mouse$Mouse_Gene.ID
-human <- human[orthologs$`Gene stable ID`, ] %>% as_tibble()
-mouse <- mouse[orthologs$`Mouse gene stable ID`, ] %>% as_tibble()
+# Order by orthologs (using gene names now)
+# 使用行号作为行名，避免重复基因名称的问题 / Use row numbers as row names to avoid duplicate gene name issues
+rownames(human) <- paste0("Human_", seq_len(nrow(human)))
+rownames(mouse) <- paste0("Mouse_", seq_len(nrow(mouse)))
+# 按照orthologs的顺序重新排序 / Reorder according to orthologs order
+human <- human[match(orthologs$Human_gene_name, human$Human_Gene.Name), ] %>% as_tibble()
+mouse <- mouse[match(orthologs$Mouse_gene_name, mouse$Mouse_Gene.Name), ] %>% as_tibble()
 data <- cbind(human, mouse)
 2) 数据重构，使之方便应用线性混合模型
 2) Data reconstruction to facilitate the application of linear
@@ -243,6 +290,35 @@ lmm.var.dcp <- foreach(
   }
 
 head(lmm.var.dcp)
+# 输出到文件，便于查看和选择自己感兴趣的基因
+# Export to a file for easy viewing and selection of genes of interest
+write.csv(lmm.var.dcp, "output_lmm.var.dcp.csv", quote = F, row.names = F)
+
+# 生成带分组信息的CSV文件（用于FigureYa245Plus_VarDecompose）
+# Generate CSV file with group information (for FigureYa245Plus_VarDecompose)
+cat("生成带分组信息的CSV文件...\n")
+# 计算分位数 / Calculate quantiles
+top.quantile.tissue <- quantile(lmm.var.dcp$frac.of.var.tissue)[4]
+top.quantile.species <- quantile(lmm.var.dcp$frac.of.var.species)[4]
+
+# 添加group列 / Add group column
+lmm.var.dcp.with.groups <- lmm.var.dcp %>% 
+  mutate(group = ifelse(
+    frac.of.var.tissue > top.quantile.tissue & 
+      frac.of.var.tissue > frac.of.var.species, "High across tissues", 
+    ifelse(
+      frac.of.var.species > top.quantile.species & 
+        frac.of.var.species > frac.of.var.tissue, "High across species", "None")
+  ))
+
+# 统计各组的数量 / Count genes in each group
+cat("各组数量统计 / Group statistics:\n")
+print(table(lmm.var.dcp.with.groups$group))
+# 保存到FigureYa245Plus_VarDecompose目录 / Save to FigureYa245Plus_VarDecompose directory
+output_file <- "../FigureYa245Plus_VarDecompose/lmm_var_dcp_with_groups.csv"
+write.csv(lmm.var.dcp.with.groups, output_file, quote = FALSE, row.names = FALSE)
+cat("文件已保存到 / File saved to:", output_file, "\n")
+cat("文件行数 / Number of rows:", nrow(lmm.var.dcp.with.groups), "\n")
 开始画图 - Fig.2b
 Start Drawing - Fig.2b
 lmm.var.dcp <- readRDS("lmm.var.dcp.rds")
@@ -335,6 +411,7 @@ data %>% filter(GenePairs=="FOXK2_Foxk2") %>%
   geom_text(aes(label=Tissue))
 效果还挺明显 The effect is quite obvious
 组织效应和物种效应都不显著的基因
+Genes with insignificant tissue and species effects
 subset(lmm.var.dcp, GenePairs=="FOXO3_Foxo3")
 data %>% filter(GenePairs=="FOXO3_Foxo3") %>% 
   ggplot(aes(Tissue, lgFPKM, color=Species)) + 

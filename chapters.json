@@ -200,30 +200,6 @@
     "thumb": "gallery_compress/FigureYa24ROC.webp"
   },
   {
-    "id": "main_FigureYa25Plus_Sankey_py_FigureYa25Plus_Sankey_py",
-    "title": "FigureYa25Plus_Sankey_py/FigureYa25Plus_Sankey_py.html",
-    "html": "FigureYa25Plus_Sankey_py/FigureYa25Plus_Sankey_py.html",
-    "text": "texts/main_FigureYa25Plus_Sankey_py_FigureYa25Plus_Sankey_py.txt",
-    "folder": "FigureYa25Plus_Sankey_py",
-    "thumb": "gallery_compress/FigureYa25Plus_Sankey_py.webp"
-  },
-  {
-    "id": "main_FigureYa25Plus_Sankey_py_sankey_direct",
-    "title": "FigureYa25Plus_Sankey_py/sankey_direct.html",
-    "html": "FigureYa25Plus_Sankey_py/sankey_direct.html",
-    "text": "texts/main_FigureYa25Plus_Sankey_py_sankey_direct.txt",
-    "folder": "FigureYa25Plus_Sankey_py",
-    "thumb": "gallery_compress/FigureYa25Plus_Sankey_py.webp"
-  },
-  {
-    "id": "main_FigureYa25Plus_Sankey_py_sankey_full",
-    "title": "FigureYa25Plus_Sankey_py/sankey_full.html",
-    "html": "FigureYa25Plus_Sankey_py/sankey_full.html",
-    "text": "texts/main_FigureYa25Plus_Sankey_py_sankey_full.txt",
-    "folder": "FigureYa25Plus_Sankey_py",
-    "thumb": "gallery_compress/FigureYa25Plus_Sankey_py.webp"
-  },
-  {
     "id": "main_FigureYa25Sankey_update_FigureYa25Sankey_update",
     "title": "FigureYa25Sankey_update/FigureYa25Sankey_update.html",
     "html": "FigureYa25Sankey_update/FigureYa25Sankey_update.html",
@@ -840,22 +816,6 @@
     "thumb": "gallery_compress/FigureYa103coAbundant.webp"
   },
   {
-    "id": "main_FigureYa104GEOmining_FigureYa104GEOmining",
-    "title": "FigureYa104GEOmining/FigureYa104GEOmining.html",
-    "html": "FigureYa104GEOmining/FigureYa104GEOmining.html",
-    "text": "texts/main_FigureYa104GEOmining_FigureYa104GEOmining.txt",
-    "folder": "FigureYa104GEOmining",
-    "thumb": "gallery_compress/FigureYa104GEOmining.webp"
-  },
-  {
-    "id": "main_FigureYa104GEOmining_GEO_citations",
-    "title": "FigureYa104GEOmining/GEO_citations.html",
-    "html": "FigureYa104GEOmining/GEO_citations.html",
-    "text": "texts/main_FigureYa104GEOmining_GEO_citations.txt",
-    "folder": "FigureYa104GEOmining",
-    "thumb": "gallery_compress/FigureYa104GEOmining.webp"
-  },
-  {
     "id": "main_FigureYa105GDSC_FigureYa105GDSC",
     "title": "FigureYa105GDSC/FigureYa105GDSC.html",
     "html": "FigureYa105GDSC/FigureYa105GDSC.html",
@@ -872,22 +832,6 @@
     "thumb": "gallery_compress/FigureYa106immunotherapy.webp"
   },
   {
-    "id": "main_FigureYa107ChIPheatmap_FigureYa107ChIPheatmap",
-    "title": "FigureYa107ChIPheatmap/FigureYa107ChIPheatmap.html",
-    "html": "FigureYa107ChIPheatmap/FigureYa107ChIPheatmap.html",
-    "text": "texts/main_FigureYa107ChIPheatmap_FigureYa107ChIPheatmap.txt",
-    "folder": "FigureYa107ChIPheatmap",
-    "thumb": "gallery_compress/FigureYa107ChIPheatmap.webp"
-  },
-  {
-    "id": "main_FigureYa108RNAseqChIP_FigureYa108RNAseqChIP",
-    "title": "FigureYa108RNAseqChIP/FigureYa108RNAseqChIP.html",
-    "html": "FigureYa108RNAseqChIP/FigureYa108RNAseqChIP.html",
-    "text": "texts/main_FigureYa108RNAseqChIP_FigureYa108RNAseqChIP.txt",
-    "folder": "FigureYa108RNAseqChIP",
-    "thumb": "gallery_compress/FigureYa108RNAseqChIP.webp"
-  },
-  {
     "id": "main_FigureYa109SubtypeGSEA_update_FigureYa109SubtypeGSEA_update",
     "title": "FigureYa109SubtypeGSEA_update/FigureYa109SubtypeGSEA_update.html",
     "html": "FigureYa109SubtypeGSEA_update/FigureYa109SubtypeGSEA_update.html",
@@ -902,30 +846,6 @@
     "text": "texts/main_FigureYa110mutationSignature_FigureYa110mutationSignature.txt",
     "folder": "FigureYa110mutationSignature",
     "thumb": "gallery_compress/FigureYa110mutationSignature.webp"
-  },
-  {
-    "id": "main_FigureYa111markerGene_FigureYa111markerGene_step1",
-    "title": "FigureYa111markerGene/FigureYa111markerGene_step1.html",
-    "html": "FigureYa111markerGene/FigureYa111markerGene_step1.html",
-    "text": "texts/main_FigureYa111markerGene_FigureYa111markerGene_step1.txt",
-    "folder": "FigureYa111markerGene",
-    "thumb": "gallery_compress/FigureYa111markerGene.webp"
-  },
-  {
-    "id": "main_FigureYa111markerGene_FigureYa111markerGene_step2_linuxMAC",
-    "title": "FigureYa111markerGene/FigureYa111markerGene_step2_linuxMAC.html",
-    "html": "FigureYa111markerGene/FigureYa111markerGene_step2_linuxMAC.html",
-    "text": "texts/main_FigureYa111markerGene_FigureYa111markerGene_step2_linuxMAC.txt",
-    "folder": "FigureYa111markerGene",
-    "thumb": "gallery_compress/FigureYa111markerGene.webp"
-  },
-  {
-    "id": "main_FigureYa111markerGene_FigureYa111markerGene_step2_win10",
-    "title": "FigureYa111markerGene/FigureYa111markerGene_step2_win10.html",
-    "html": "FigureYa111markerGene/FigureYa111markerGene_step2_win10.html",
-    "text": "texts/main_FigureYa111markerGene_FigureYa111markerGene_step2_win10.txt",
-    "folder": "FigureYa111markerGene",
-    "thumb": "gallery_compress/FigureYa111markerGene.webp"
   },
   {
     "id": "main_FigureYa112Plus_venn_FigureYa112Plus_venn",
@@ -1078,14 +998,6 @@
     "text": "texts/main_FigureYa129TCGAbox_FigureYa129TCGAbox.txt",
     "folder": "FigureYa129TCGAbox",
     "thumb": "gallery_compress/FigureYa129TCGAbox.webp"
-  },
-  {
-    "id": "main_FigureYa130coxSVM_FigureYa130coxSVM_step12",
-    "title": "FigureYa130coxSVM/FigureYa130coxSVM_step12.html",
-    "html": "FigureYa130coxSVM/FigureYa130coxSVM_step12.html",
-    "text": "texts/main_FigureYa130coxSVM_FigureYa130coxSVM_step12.txt",
-    "folder": "FigureYa130coxSVM",
-    "thumb": "gallery_compress/FigureYa130coxSVM.webp"
   },
   {
     "id": "main_FigureYa131CMap_update_FigureYa131CMap_update",
@@ -1608,14 +1520,6 @@
     "thumb": "gallery_compress/FigureYa196Plus_PanPie.webp"
   },
   {
-    "id": "main_FigureYa196Plus_PanPie_py_FigureYa196Plus_PanPie_py",
-    "title": "FigureYa196Plus_PanPie_py/FigureYa196Plus_PanPie_py.html",
-    "html": "FigureYa196Plus_PanPie_py/FigureYa196Plus_PanPie_py.html",
-    "text": "texts/main_FigureYa196Plus_PanPie_py_FigureYa196Plus_PanPie_py.txt",
-    "folder": "FigureYa196Plus_PanPie_py",
-    "thumb": "gallery_compress/FigureYa196Plus_PanPie_py.webp"
-  },
-  {
     "id": "main_FigureYa196PanPie_FigureYa196PanPie",
     "title": "FigureYa196PanPie/FigureYa196PanPie.html",
     "html": "FigureYa196PanPie/FigureYa196PanPie.html",
@@ -1846,14 +1750,6 @@
     "text": "texts/main_FigureYa225GiViTl_FigureYa225GiViTl.txt",
     "folder": "FigureYa225GiViTl",
     "thumb": "gallery_compress/FigureYa225GiViTl.webp"
-  },
-  {
-    "id": "main_FigureYa226scRNA_cNMF_FigureYa226scRNA_cNMF",
-    "title": "FigureYa226scRNA_cNMF/FigureYa226scRNA_cNMF.html",
-    "html": "FigureYa226scRNA_cNMF/FigureYa226scRNA_cNMF.html",
-    "text": "texts/main_FigureYa226scRNA_cNMF_FigureYa226scRNA_cNMF.txt",
-    "folder": "FigureYa226scRNA_cNMF",
-    "thumb": "gallery_compress/FigureYa226scRNA_cNMF.webp"
   },
   {
     "id": "main_FigureYa227boxdensity_FigureYa227boxdensity",
@@ -2518,46 +2414,6 @@
     "text": "texts/main_FigureYa308IHS_FigureYa308IHS.txt",
     "folder": "FigureYa308IHS",
     "thumb": "gallery_compress/FigureYa308IHS.webp"
-  },
-  {
-    "id": "main_FigureYa309cell2location_01_explore_space_transcriptome",
-    "title": "FigureYa309cell2location/01_explore_space_transcriptome.html",
-    "html": "FigureYa309cell2location/01_explore_space_transcriptome.html",
-    "text": "texts/main_FigureYa309cell2location_01_explore_space_transcriptome.txt",
-    "folder": "FigureYa309cell2location",
-    "thumb": "gallery_compress/FigureYa309cell2location.webp"
-  },
-  {
-    "id": "main_FigureYa309cell2location_02_cell2location_signature",
-    "title": "FigureYa309cell2location/02_cell2location_signature.html",
-    "html": "FigureYa309cell2location/02_cell2location_signature.html",
-    "text": "texts/main_FigureYa309cell2location_02_cell2location_signature.txt",
-    "folder": "FigureYa309cell2location",
-    "thumb": "gallery_compress/FigureYa309cell2location.webp"
-  },
-  {
-    "id": "main_FigureYa309cell2location_03_cell2location_mapping",
-    "title": "FigureYa309cell2location/03_cell2location_mapping.html",
-    "html": "FigureYa309cell2location/03_cell2location_mapping.html",
-    "text": "texts/main_FigureYa309cell2location_03_cell2location_mapping.txt",
-    "folder": "FigureYa309cell2location",
-    "thumb": "gallery_compress/FigureYa309cell2location.webp"
-  },
-  {
-    "id": "main_FigureYa309cell2location_04_cell2location_plot",
-    "title": "FigureYa309cell2location/04_cell2location_plot.html",
-    "html": "FigureYa309cell2location/04_cell2location_plot.html",
-    "text": "texts/main_FigureYa309cell2location_04_cell2location_plot.txt",
-    "folder": "FigureYa309cell2location",
-    "thumb": "gallery_compress/FigureYa309cell2location.webp"
-  },
-  {
-    "id": "main_FigureYa309cell2location_FigureYa309cell2location",
-    "title": "FigureYa309cell2location/FigureYa309cell2location.html",
-    "html": "FigureYa309cell2location/FigureYa309cell2location.html",
-    "text": "texts/main_FigureYa309cell2location_FigureYa309cell2location.txt",
-    "folder": "FigureYa309cell2location",
-    "thumb": "gallery_compress/FigureYa309cell2location.webp"
   },
   {
     "id": "main_FigureYa310CPDBChordGramV2_FigureYa310CPDBChordGramV2",

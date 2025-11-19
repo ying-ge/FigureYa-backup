@@ -101,6 +101,17 @@ If needed, you can further use the `web_scraper.py` file to scrape the web page 
 - Test file operations should use Path objects for cross-platform compatibility
 - Mock external API calls and file operations to make tests reliable and fast
 
+## GitHub Actions and CI/CD Lessons
+
+- For GitHub Actions workflows with disk space issues, optimize by:
+  1. Using `fetch-depth: 1` instead of `fetch-depth: 0` to only fetch latest commit
+  2. Clean up disk space before checkout: `sudo apt-get clean`, remove `/tmp/*`, `/var/tmp/*`, Docker cache, `$AGENT_TOOLSDIRECTORY/*`, `/usr/local/share/boost`
+  3. After checkout, remove large unnecessary files (e.g., `.Rmd`, `.rda`, `.rds`, data directories, images except needed ones) before building
+  4. Use `--no-cache-dir` for pip installs to save space
+  5. Add `df -h` commands to monitor disk usage at key steps
+- For workflows that only need HTML files, delete source files (Rmd), data files, and large images after checkout to save significant disk space
+- GitHub Pages automatic build and GitHub Actions workflows are separate - modifying one doesn't affect the other
+
 # Scratchpad
 
 ## Current Task: 排查未推送的本地修改
@@ -130,11 +141,14 @@ If needed, you can further use the `web_scraper.py` file to scrape the web page 
 [X] 更新 `FigureYa321volcanoSE.Rmd` 绘图代码中的调色方案和几何图层配置
 [X] 提醒用户重新渲染核对效果
 
-## Current Task: 优化 index.html 导航体验
+## Current Task: 优化 GitHub Actions workflow 磁盘空间使用
 
-任务描述：评估仓库根目录下 `index.html` 的结构，提出或实现功能改进方案，使访客更容易定位所需模块，适配 GitHub Pages 访问场景。
+任务描述：解决 GitHub Actions workflow 运行时的磁盘空间不足问题（"No space left on device"）。
 
 计划步骤：
-[X] 阅读 `index.html` 了解现有结构与内容组织方式
-[X] 归纳访客可能的检索路径并列出可改进的交互/导航功能
-[X] 向用户提供功能建议（必要时附带实现思路或示例代码）
+[X] 分析问题原因：GitHub Actions runner 磁盘空间不足
+[X] 优化 workflow：在 checkout 前清理系统缓存和临时文件
+[X] 优化 workflow：使用 `fetch-depth: 1` 只拉取最新提交
+[X] 优化 workflow：在 checkout 后删除不需要的大文件（Rmd、数据文件、图片等）
+[X] 添加磁盘空间监控步骤（`df -h`）
+[X] 验证优化效果 - 成功解决磁盘空间问题

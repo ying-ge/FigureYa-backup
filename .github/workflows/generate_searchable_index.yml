@@ -11,22 +11,86 @@ jobs:
     permissions:
       contents: write
     steps:
+      - name: Clean up disk space before checkout
+        run: |
+          # 清理系统缓存和临时文件（在 checkout 之前）
+          sudo apt-get clean || true
+          sudo rm -rf /var/lib/apt/lists/* || true
+          sudo rm -rf /tmp/* || true
+          sudo rm -rf /var/tmp/* || true
+          # 清理 Docker 缓存（如果存在）
+          sudo docker system prune -af || true
+          # 清理 runner 工具目录（如果存在且不需要）
+          if [ -n "$AGENT_TOOLSDIRECTORY" ]; then
+            sudo rm -rf "$AGENT_TOOLSDIRECTORY"/* || true
+          fi
+          # 清理 boost 库（通常不需要）
+          sudo rm -rf /usr/local/share/boost || true
+          # 显示可用磁盘空间
+          echo "=== Disk space before checkout ==="
+          df -h
+          
       - name: Checkout main branch to root
         uses: actions/checkout@v4
         with:
           ref: main
-          fetch-depth: 0
+          fetch-depth: 1  # 只拉取最新提交，减少磁盘使用
+
+      - name: Remove large files to save disk space
+        run: |
+          # 显示 checkout 后的初始磁盘使用情况
+          echo "=== Disk space after checkout (before cleanup) ==="
+          df -h
+          du -sh . 2>/dev/null | head -1 || true
+          
+          # 删除不需要的大文件以节省空间
+          echo "=== Removing large files ==="
+          # 删除 Rmd 源文件（只需要 HTML）
+          find . -type f -name "*.Rmd" -delete 2>/dev/null || true
+          # 删除数据文件
+          find . -type f \( -name "*.rda" -o -name "*.rds" -o -name "*.RData" \) -delete 2>/dev/null || true
+          # 删除图片文件（只需要 webp 缩略图）
+          find . -type f \( -name "*.png" -o -name "*.jpg" -o -name "*.jpeg" -o -name "*.pdf" \) -not -path "*/gallery_compress/*" -delete 2>/dev/null || true
+          # 删除压缩文件
+          find . -type f \( -name "*.gz" -o -name "*.zip" -o -name "*.tar" -o -name "*.tar.gz" \) -delete 2>/dev/null || true
+          # 删除大数据目录
+          find . -type d -name "GDCdata" -exec rm -rf {} + 2>/dev/null || true
+          find . -type d -name "data" -exec rm -rf {} + 2>/dev/null || true
+          find . -type d -name "seurat" -exec rm -rf {} + 2>/dev/null || true
+          find . -type d -name "filtered_gene_bc_matrices" -exec rm -rf {} + 2>/dev/null || true
+          # 删除数据文件
+          find . -type f \( -name "*.mtx" -o -name "*.tsv" -o -name "*.csv" -o -name "*.bed" -o -name "*.bw" -o -name "*.bam" -o -name "*.sam" \) -delete 2>/dev/null || true
+          
+          # 清理 Python 缓存
+          find . -type d -name __pycache__ -exec rm -rf {} + 2>/dev/null || true
+          find . -type f -name "*.pyc" -delete 2>/dev/null || true
+          
+          # 显示清理后的磁盘使用情况
+          echo "=== Disk space after cleanup ==="
+          df -h
+          du -sh . 2>/dev/null | head -1 || true
 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.x'
+          cache: 'pip'  # 使用缓存可能节省空间
 
       - name: Install bs4
-        run: pip install beautifulsoup4
+        run: pip install --no-cache-dir beautifulsoup4
 
       - name: Build searchable docs
         run: python .github/scripts/generate_searchable_index_png.py
+
+      - name: Clean up after build
+        if: always()
+        run: |
+          # 清理临时文件以释放空间
+          find . -type d -name __pycache__ -exec rm -rf {} + 2>/dev/null || true
+          find . -type f -name "*.pyc" -delete 2>/dev/null || true
+          # 显示最终磁盘使用情况
+          df -h
+          du -sh texts/ 2>/dev/null || echo "texts directory not found"
 
       - name: Commit and push index/search files
         run: |
