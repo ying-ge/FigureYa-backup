@@ -1,11 +1,11 @@
 FigureYa95pairwise
 FigureYa95pairwise
 Author(s)
-: Xiaofan Lu, Taojun Ye
+: Xiaofan Lu
 Reviewer(s)
-: Ying Ge
+: Ying Ge, Taojun Ye
 Date
-: 2025-09-22
+: 2025-11-19
 Academic Citation
 If you use this code in your work or research, we kindly request that
 you cite our publication:
@@ -14,44 +14,41 @@ Framework for Enhancing Biomedical Data Interpretation and Research
 Efficiency. iMetaMed.
 https://doi.org/10.1002/imm3.70005
 需求描述
+Requirement Description
 用TCGA的表达谱和体细胞突变作为输入，把体细胞突变MAF文件转为二元突变矩阵，用表达谱计算免疫细胞浸润得分；计算样本相似性并绘制相关性散点图。
 （实质：对距离矩阵或相似性矩阵作相关性分析）
-Requirement Description
 Use TCGA expression profiles and somatic mutations as inputs, convert
 somatic mutation MAF files to binary mutation matrices, use expression
 profiles to calculate immune cell infiltration scores; calculate sample
 similarity and plot correlation scatter plots.
 (Substance: correlation analysis of distance matrix or similarity
 matrix)
-出自
-https://www.nature.com/articles/s41586-019-1032-7
-from
+Fig. 2: Immune editing at the DNA level. a, Pairwise genomic and
+immune distances between every two tumour regions from the same tumour
+are compared (lung adenocarcinoma, P = 3.5 × 10−4 , n = 217;lung
+squamous cell carcinoma, P = 0.002, n = 186). From
 https://www.nature.com/articles/s41586-019-1032-7
 应用场景
-多维度相关性研究，例如：推断体细胞突变和免疫浸润在影响肿瘤异质性上的相关程度。
 Application Scenarios
+多维度相关性研究，例如：推断体细胞突变和免疫浸润在影响肿瘤异质性上的相关程度。
 Multidimensional correlation studies, e.g., to infer the extent to
 which somatic mutations and immune infiltration are relevant in
 influencing tumor heterogeneity.
 环境设置
 Environment settings
 source("install_dependencies.R")
-# 加载GSVA包，用于基因集变异分析 (Load the GSVA package for gene set variation analysis)
-library(GSVA)
-# 加载ClassDiscovery包，用于外部聚类分析 (Load the ClassDiscovery package for external clustering analysis)
-library(ClassDiscovery)
-# 加载vegan包，用于生态与二元变量的距离计算 (Load the vegan package for ecological and binary variable distance calculations)
-library(vegan)
-# 设置环境语言为英文，以便显示英文报错信息 (Set environment language to English for English error messages)
-Sys.setenv(LANGUAGE = "en") 
-# 禁止字符串自动转换为因子类型，避免数据处理中的意外转换 (Disable automatic conversion of strings to factors)
-options(stringsAsFactors = FALSE)
-输入数据预处理
+library(GSVA) # 用于基因集变异分析 (Load the GSVA package for gene set variation analysis)
+library(ClassDiscovery) # 用于外部聚类分析 (Load the ClassDiscovery package for external clustering analysis)
+library(vegan) # 用于生态与二元变量的距离计算 (Load the vegan package for ecological and binary variable distance calculations)
+
+Sys.setenv(LANGUAGE = "en") # 设置环境语言为英文，以便显示英文报错信息 (Set environment language to English for English error messages)
+options(stringsAsFactors = FALSE) # 禁止字符串自动转换为因子类型，避免数据处理中的意外转换 (Disable automatic conversion of strings to factors)
+输入文件
+Input files
 需要三种文件：
 easy_input_expr1.csv，easy_input_expr2.csv，TCGA的表达数据。数据下载可参考FigureYa34count2FPKMv2。
 easy_input_maf1.txt，easy_input_maf2.txt，TCGA的突变数据。数据下载可参考FigureYa18oncoplot。
 immunitygene.csv，免疫细胞marker基因，这里用GSVA。还可以用MCPcounter，可参考FigureYa56immune_inflitration，或FigureYa71ssGSEA。
-Input data preprocessing
 Three files are needed:
 easy_input_expr1.csv, easy_input_expr2.csv, TCGA expression data.
 For data download, please refer to FigureYa34count2FPKMv2.
@@ -89,9 +86,9 @@ immune.signature <- read.csv("immunitygene.csv",check.names = F,stringsAsFactors
 # View the first few rows of the gene set data
 head(immune.signature)
 将详细突变的MAF文件转化为二元突变矩阵
-先自定义个函数
 Convert a MAF file of detailed mutations into a binary mutation
 matrix
+先自定义个函数
 Let’s customize a function.
 # 将MAF格式突变数据转换为二元突变矩阵
 # 参数:
@@ -251,11 +248,11 @@ scat.lusc <- dist2xy(dist1 = dist.gsva.lusc, dist2 = dist.mut.lusc,sam = sam_lus
 # View basic structure of the data
 scat.lusc[1:3,1:2]
 开始画图
+Start plotting
 画相关性散点图，这里只简单使用baseplot画scatter
 plot，可换用ggplot、ggpubr。
 多组情况也可参考FigureYa62twoAxis，把突变和免疫浸润分别画在左右两个y轴上
 如果嫌点太多，可以通过取bin来缩减点的数量。
-Start plotting
 Draw correlation scatter plot, here only simply use baseplot to draw
 scatter plot, can be replaced with ggplot, ggpubr.
 You can also refer to FigureYa62twoAxis for more than one group, and
