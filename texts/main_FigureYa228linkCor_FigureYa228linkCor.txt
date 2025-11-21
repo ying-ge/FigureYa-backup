@@ -1,12 +1,17 @@
 FigureYa228linkCor
+Code
+Show All Code
+Hide All Code
 FigureYa228linkCor
 Author(s)
 : Xiaofan Lu
 Reviewer(s)
 : Ying Ge, Hui Huang
 Date
-: 2025-10-22
-Academic Citation
+: 2025-11-20
+0.1
+Academic
+Citation
 If you use this code in your work or research, we kindly request that
 you cite our publication:
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization
@@ -26,8 +31,10 @@ Theranostics 2021; 11(7):3089-3108.
 doi:10.7150/thno.53649
 .
 https://www.thno.org/v11p3089.htm
-需求描述
-这个图10D可以实现吗？真的很漂亮，蝴蝶图 | Can this Figure 10D be
+0.2
+需求描述 Requirement
+description
+这个图10D可以实现吗？真的很漂亮，蝴蝶图 Can this Figure 10D be
 implemented? It’s really beautiful, butterfly plot
 From
 https://www.thno.org/v11p3089.html
@@ -54,7 +61,9 @@ Use lines to show the correlation between Siglec15 and each specific
 pathway of the two types. Solid lines represent positive correlation,
 dashed lines represent negative correlation, and color represents the
 P-value.
-应用场景 | Application Scenario
+0.3
+应用场景 Application
+Scenario
 展示相关性分析结果，多对多（C热图、D热图）、1对多（Siglec15跟C的连线，Siglec15跟D的连线）、两组对比（C和D画一起）画一起。
 例文是1个基因跟多个通路的相关性，可以替换为1个基因跟多个基因之间、或1个通路跟多个基因之间等等，灵活套用。
 如果只有一组，就是单独的C或D；如果有两组，就像例文一样拼成蝴蝶；如果有更多组，同样套用easy_input*文件，画出多个图后，按自己的审美组合。
@@ -69,42 +78,160 @@ If there is only one group, it’s a separate C or D; if there are two
 groups, combine them like a butterfly as in the example; if there are
 more groups, apply the same easy_input* files, create multiple plots,
 and combine them according to your aesthetic preferences.
-环境设置 | Environment Setup
-source("install_dependencies.R") # 如果没有安装相关包，先运行这行代码安装依赖包 | If you haven't installed the required packages, run this line to install dependencies
-library(data.table) # 读取大数据集 | for reading large datasets
-library(GSVA) # 计算通路富集得分 | for calculating pathway enrichment scores
-library(ggplot2) # 画图 | for plotting
-library(ggcor) # 相关性图 | for correlation plots by Yuhui Li
-Sys.setenv(LANGUAGE = "en") #显示英文报错信息
-options(stringsAsFactors = FALSE) #禁止chr转成factor
+0.4
+环境设置 Environment
+Setup
+source
+(
+"install_dependencies.R"
+)
+# 如果没有安装相关包，先运行这行代码安装依赖包 If you haven't installed the required packages, run this line to install dependencies
+library
+(data.table)
+# 读取大数据集 for reading large datasets
+library
+(GSVA)
+# 计算通路富集得分 for calculating pathway enrichment scores
+library
+(ggplot2)
+# 画图 for plotting
+library
+(ggcor)
+# 相关性图 for correlation plots by Yuhui Li
+Sys.setenv
+(
+LANGUAGE =
+"en"
+)
+#显示英文报错信息
+options
+(
+stringsAsFactors =
+FALSE
+)
+#禁止chr转成factor
 自定义函数（来自cogena），用于提取msigdb特定通路的基因，参考FigureYa151pathifier
 Custom function (from cogena) for extracting genes of specific
 pathways from msigdb, reference FigureYa151pathifier
 # 读取gmt文件为列表形式，满足pathifier的输入要求
 # Read gmt file as list format to meet pathifier input requirements
-
-gmt2list <- function(annofile){
-  if (!file.exists(annofile)) {
-    stop("There is no such gmt file.")
-  }
-  
-  if (tools::file_ext(annofile) == "xz") {
-    annofile <- xzfile(annofile)
-    x <- scan(annofile, what="", sep="\n", quiet=TRUE)
-    close(annofile)
-  } else if (tools::file_ext(annofile) == "gmt") {
-    x <- scan(annofile, what="", sep="\n", quiet=TRUE)
-  } else {
-    stop ("Only gmt and gmt.xz are accepted for gmt2list")
-  }
-  
-  y <- strsplit(x, "\t")
-  names(y) <- sapply(y, `[[`, 1)
-  
-  annoList <- lapply(y, `[`, c(-1,-2))
-  return(annoList)
+gmt2list
+<-
+function
+(annofile){
+if
+(
+!
+file.exists
+(annofile)) {
+stop
+(
+"There is no such gmt file."
+)
 }
-输入文件的获得 | Obtaining Input Files
+if
+(tools
+::
+file_ext
+(annofile)
+==
+"xz"
+) {
+annofile
+<-
+xzfile
+(annofile)
+x
+<-
+scan
+(annofile,
+what=
+""
+,
+sep=
+"
+\n
+"
+,
+quiet=
+TRUE
+)
+close
+(annofile)
+}
+else
+if
+(tools
+::
+file_ext
+(annofile)
+==
+"gmt"
+) {
+x
+<-
+scan
+(annofile,
+what=
+""
+,
+sep=
+"
+\n
+"
+,
+quiet=
+TRUE
+)
+}
+else
+{
+stop
+(
+"Only gmt and gmt.xz are accepted for gmt2list"
+)
+}
+y
+<-
+strsplit
+(x,
+"
+\t
+"
+)
+names
+(y)
+<-
+sapply
+(y,
+`
+[[
+`
+,
+1
+)
+annoList
+<-
+lapply
+(y,
+`
+[
+`
+,
+c
+(
+-
+1
+,
+-
+2
+))
+return
+(annoList)
+}
+0.5
+输入文件的获得
+Obtaining Input Files
 如果你的数据已经整理为
 easy_input_*.txt
 的格式，就可以直接进入“开始画图”。
@@ -151,7 +278,7 @@ enrichment scores of immunotherapy-predicted pathways. Organized from
 Table S9.xlsx of the example paper, Therapeutic predicted pathways,
 selecting Pathways with Description as Anticancer_immunotherapy and
 their corresponding Genes. Can be directly used in your own article,
-remember to cite the example paper
+remember to cite the example paper~~
 “A set of
 gene signatures positively correlated with the
 clinical response of an anti-PD-L1 agent (atezolizumab) in BLCA
@@ -165,48 +292,252 @@ signatures
 non-inflamed TME, targeted therapy-associated gene signatures, and gene
 signatures predicting radiotherapy responses (Table S9).”
 # load TCGA-BLCA FPKM
-expr <- read.table("tcga_blca_fpkm.txt",sep = "\t",row.names = 1,check.names = F,stringsAsFactors = F,header = T)
-tumsam <- colnames(expr)[substr(colnames(expr),11,13) == "01A"] # 取出肿瘤样本
+expr
+<-
+read.table
+(
+"tcga_blca_fpkm.txt"
+,
+sep =
+"
+\t
+"
+,
+row.names =
+1
+,
+check.names =
+F,
+stringsAsFactors =
+F,
+header =
+T)
+tumsam
+<-
+colnames
+(expr)[
+substr
+(
+colnames
+(expr),
+11
+,
+13
+)
+==
+"01A"
+]
+# 取出肿瘤样本
 # load immunotherapy-predicted pathways
-immPath <- read.table("immunotherapy predicted pathways.txt",sep = "\t",row.names = 1,check.names = F,stringsAsFactors = F,header = T)
-immPath.list <- list()
-for (i in rownames(immPath)) {
-  tmp <- immPath[i,"Genes"]
-  tmp <- toupper(unlist(strsplit(tmp,", ",fixed = T)))
-  tmp <- gsub(" ","",tmp)
-  immPath.list[[i]] <- tmp
+immPath
+<-
+read.table
+(
+"immunotherapy predicted pathways.txt"
+,
+sep =
+"
+\t
+"
+,
+row.names =
+1
+,
+check.names =
+F,
+stringsAsFactors =
+F,
+header =
+T)
+immPath.list
+<-
+list
+()
+for
+(i
+in
+rownames
+(immPath)) {
+tmp
+<-
+immPath[i,
+"Genes"
+]
+tmp
+<-
+toupper
+(
+unlist
+(
+strsplit
+(tmp,
+", "
+,
+fixed =
+T)))
+tmp
+<-
+gsub
+(
+" "
+,
+""
+,tmp)
+immPath.list[[i]]
+<-
+tmp
 }
-
 # load bladder cancer related signatures
-blcaPath <- read.table("bladder cancer signature.txt",sep = "\t",row.names = 1,check.names = F,stringsAsFactors = F,header = T)
-blcaPath.list <- list()
-for (i in rownames(blcaPath)) {
-  tmp <- blcaPath[i,"Genes"]
-  tmp <- toupper(unlist(strsplit(tmp,", ",fixed = T)))
-  tmp <- gsub(" ","",tmp)
-  blcaPath.list[[i]] <- tmp
+blcaPath
+<-
+read.table
+(
+"bladder cancer signature.txt"
+,
+sep =
+"
+\t
+"
+,
+row.names =
+1
+,
+check.names =
+F,
+stringsAsFactors =
+F,
+header =
+T)
+blcaPath.list
+<-
+list
+()
+for
+(i
+in
+rownames
+(blcaPath)) {
+tmp
+<-
+blcaPath[i,
+"Genes"
+]
+tmp
+<-
+toupper
+(
+unlist
+(
+strsplit
+(tmp,
+", "
+,
+fixed =
+T)))
+tmp
+<-
+gsub
+(
+" "
+,
+""
+,tmp)
+blcaPath.list[[i]]
+<-
+tmp
 }
 计算富集得分，保存到文件，便于套用
 Calculate enrichment scores, save to files for easy reuse
 # 计算immunotherapy-predicted pathways的富集得分
 # Calculate enrichment scores for immunotherapy-predicted pathways
-immPath.param <- GSVA::ssgseaParam(
-  as.matrix(log2(expr[,tumsam] + 1)),
-  immPath.list
+immPath.param
+<-
+GSVA
+::
+ssgseaParam
+(
+as.matrix
+(
+log2
+(expr[,tumsam]
++
+1
+)),
+immPath.list
 )
-immPath.score <- GSVA::gsva(immPath.param, verbose = FALSE)
-# 保存到文件，便于套用 | Save to file for easy reuse
-write.table(immPath.score, "easy_input_immPath.txt", sep = "\t", row.names = TRUE, col.names = NA, quote = FALSE)
-
+immPath.score
+<-
+GSVA
+::
+gsva
+(immPath.param,
+verbose =
+FALSE
+)
+# 保存到文件，便于套用 Save to file for easy reuse
+write.table
+(immPath.score,
+"easy_input_immPath.txt"
+,
+sep =
+"
+\t
+"
+,
+row.names =
+TRUE
+,
+col.names =
+NA
+,
+quote =
+FALSE
+)
 # 计算膀胱癌相关签名的富集得分
 # Calculate enrichment scores for bladder cancer related signatures
-blcaPath.param <- GSVA::ssgseaParam(
-  as.matrix(log2(expr[,tumsam] + 1)),
-  blcaPath.list
+blcaPath.param
+<-
+GSVA
+::
+ssgseaParam
+(
+as.matrix
+(
+log2
+(expr[,tumsam]
++
+1
+)),
+blcaPath.list
 )
-blcaPath.score <- GSVA::gsva(blcaPath.param, verbose = FALSE)
-# 保存到文件，便于套用 | Save to file for easy reuse
-write.table(blcaPath.score, "easy_input_blcaPath.txt", sep = "\t", row.names = TRUE, col.names = NA, quote = FALSE)
+blcaPath.score
+<-
+GSVA
+::
+gsva
+(blcaPath.param,
+verbose =
+FALSE
+)
+# 保存到文件，便于套用 Save to file for easy reuse
+write.table
+(blcaPath.score,
+"easy_input_blcaPath.txt"
+,
+sep =
+"
+\t
+"
+,
+row.names =
+TRUE
+,
+col.names =
+NA
+,
+quote =
+FALSE
+)
 对于自己的数据，你可能想提取自己感兴趣的通路计算通路的富集得分。可以从
 msigdb
 下载gmt文件
@@ -216,36 +547,104 @@ For your own data, you may want to extract pathways of interest and
 calculate their enrichment scores. You can download the gmt file
 c5.all.v7.4.symbols.gmt from msigdb, extract pathways of interest and
 their corresponding genes, and calculate enrichment scores.
-# 从gmt文件提取感兴趣的通路 | Extract pathways of interest from gmt file
-# 例如提取带有`METABOLISM`字样的通路 | For example, extract pathways containing `METABOLISM`
-gset <- gmt2list("c5.all.v7.4.symbols.gmt") 
-
+# 从gmt文件提取感兴趣的通路 Extract pathways of interest from gmt file
+# 例如提取带有`METABOLISM`字样的通路 For example, extract pathways containing `METABOLISM`
+gset
+<-
+gmt2list
+(
+"c5.all.v7.4.symbols.gmt"
+)
 # 使用data.table的%like%操作符提取包含METABOLISM的通路
 # Use data.table's %like% operator to extract pathways containing METABOLISM
-gset.list <- gset[names(gset) %like% "METABOLISM"]
-
-# 检查基因集是否为空 ｜ Check if gene set is empty
-if (length(gset.list) == 0) {
-  stop("No pathways found containing 'METABOLISM'. Please check your gmt file and filter criteria.")
-}
-
-cat("Found", length(gset.list), "pathways containing 'METABOLISM'\n")
-
-# 计算通路富集得分 | Calculate pathway enrichment scores
-gset.score <- GSVA::gsva(
-  expr = as.matrix(log2(expr[, tumsam] + 1)),
-  gset.idx.list = gset.list,
-  method = "ssgsea",
-  verbose = FALSE,  # 减少输出信息 ｜ Reduce output information
-  parallel.sz = 1   # 单线程运行，避免并行问题 ｜ Run single-threaded to avoid parallel issues
+gset.list
+<-
+gset[
+names
+(gset)
+%like%
+"METABOLISM"
+]
+# 检查基因集是否为空 Check if gene set is empty
+if
+(
+length
+(gset.list)
+==
+0
+) {
+stop
+(
+"No pathways found containing 'METABOLISM'. Please check your gmt file and filter criteria."
 )
-
-# 保存到文件 | Save to file
-write.table(gset.score, "easy_input_gset.txt", sep = "\t", row.names = TRUE, col.names = NA, quote = FALSE)
-
-cat("Pathway enrichment scores saved to 'easy_input_gset.txt'\n")
-开始画图 ｜ Start Plotting
-关于 -log10(p-value) 的使用说明 | About -log10(p-value)
+}
+cat
+(
+"Found"
+,
+length
+(gset.list),
+"pathways containing 'METABOLISM'
+\n
+"
+)
+# 计算通路富集得分 Calculate pathway enrichment scores
+gset.score
+<-
+GSVA
+::
+gsva
+(
+expr =
+as.matrix
+(
+log2
+(expr[, tumsam]
++
+1
+)),
+gset.idx.list =
+gset.list,
+method =
+"ssgsea"
+,
+verbose =
+FALSE
+,
+# 减少输出信息 Reduce output information
+parallel.sz =
+1
+# 单线程运行，避免并行问题 Run single-threaded to avoid parallel issues
+)
+# 保存到文件 Save to file
+write.table
+(gset.score,
+"easy_input_gset.txt"
+,
+sep =
+"
+\t
+"
+,
+row.names =
+TRUE
+,
+col.names =
+NA
+,
+quote =
+FALSE
+)
+cat
+(
+"Pathway enrichment scores saved to 'easy_input_gset.txt'
+\n
+"
+)
+0.6
+开始画图 Start
+Plotting
+关于 -log10(p-value) 的使用说明 About -log10(p-value)
 Usage
 本图使用 -log10(p-value)
 来可视化显著性水平，这是生物信息学中的标准做法。数值越大表示显著性越强：
@@ -263,105 +662,669 @@ Reference:
 https://mp.weixin.qq.com/s/dyaeBr8tnJhxN-fuYjE-hQ
 # 加载单个基因的表达量，也就是"1对多"的"1"
 # Load expression of a single gene, which is the "1" in "1-to-many"
-siglec15 <- read.csv("easy_input_gene.csv", row.names = 1, check.names = F)
-
-# 加载第一组富集得分 | Load first set of enrichment scores
-immPath.score <- read.table("easy_input_immPath.txt", check.names = F)
-# 跟目标基因SIGLEC15的表达量合并 | Merge with target gene SIGLEC15 expression
-immPath.score <- rbind.data.frame(immPath.score,
-                                  siglec15)
-
-# 加载第二组富集得分 | Load second set of enrichment scores
-blcaPath.score <- read.table("easy_input_blcaPath.txt", check.names = F)
-# 跟目标基因SIGLEC15的表达量合并 | Merge with target gene SIGLEC15 expression
-blcaPath.score <- rbind.data.frame(blcaPath.score,
-                                   siglec15)
-循环计算相关性并画图 | Loop to calculate correlations and plot
+siglec15
+<-
+read.csv
+(
+"easy_input_gene.csv"
+,
+row.names =
+1
+,
+check.names =
+F)
+# 加载第一组富集得分 Load first set of enrichment scores
+immPath.score
+<-
+read.table
+(
+"easy_input_immPath.txt"
+,
+check.names =
+F)
+# 跟目标基因SIGLEC15的表达量合并 Merge with target gene SIGLEC15 expression
+immPath.score
+<-
+rbind.data.frame
+(immPath.score,
+siglec15)
+# 加载第二组富集得分 Load second set of enrichment scores
+blcaPath.score
+<-
+read.table
+(
+"easy_input_blcaPath.txt"
+,
+check.names =
+F)
+# 跟目标基因SIGLEC15的表达量合并 Merge with target gene SIGLEC15 expression
+blcaPath.score
+<-
+rbind.data.frame
+(blcaPath.score,
+siglec15)
+循环计算相关性并画图 Loop to calculate correlations and plot
 # 循环计算相关性并绘制左下角｜Loop to calculate correlations and plot bottom left
-immCorSiglec15 <- NULL
-for (i in rownames(immPath.score)) {
-  # 确保数据是数值型 ｜ Ensure data is numeric
-  x_data <- as.numeric(immPath.score[i,])
-  y_data <- as.numeric(siglec15)
-
-  cr <- cor.test(x_data, y_data, method = "pearson")
-  immCorSiglec15 <- rbind.data.frame(immCorSiglec15,
-                                     data.frame(gene = "Siglec15",
-                                                path = i,
-                                                r = cr$estimate,
-                                                p = cr$p.value,
-                                                stringsAsFactors = F),
-                                     stringsAsFactors = F)
+immCorSiglec15
+<-
+NULL
+for
+(i
+in
+rownames
+(immPath.score)) {
+# 确保数据是数值型 Ensure data is numeric
+x_data
+<-
+as.numeric
+(immPath.score[i,])
+y_data
+<-
+as.numeric
+(siglec15)
+cr
+<-
+cor.test
+(x_data, y_data,
+method =
+"pearson"
+)
+immCorSiglec15
+<-
+rbind.data.frame
+(immCorSiglec15,
+data.frame
+(
+gene =
+"Siglec15"
+,
+path =
+i,
+r =
+cr
+$
+estimate,
+p =
+cr
+$
+p.value,
+stringsAsFactors =
+F),
+stringsAsFactors =
+F)
 }
-immCorSiglec15$sign <- ifelse(immCorSiglec15$r > 0,"pos","neg")
-immCorSiglec15$absR <- abs(immCorSiglec15$r)
-immCorSiglec15$rSeg <- as.character(cut(immCorSiglec15$absR,c(0,0.25,0.5,0.75,1),labels = c("0.25","0.50","0.75","1.00"),include.lowest = T))
-immCorSiglec15$pSeg <- as.character(cut(-log10(immCorSiglec15$p),c(0,2,5,10,Inf),labels = c("ns (p≥0.01)","<0.01 (2≤-log10p<5)","<0.001 (5≤-log10p<10)","<1e-10 (-log10p≥10)"),include.lowest = T))
-immCorSiglec15[nrow(immCorSiglec15),"pSeg"] <- "Not Applicable"
-
-immCorSiglec15$rSeg <- factor(immCorSiglec15$rSeg, levels = c("0.25","0.50","0.75","1.00"))
-immCorSiglec15$pSeg <- factor(immCorSiglec15$pSeg, levels = c("<1e-10 (-log10p≥10)","<0.001 (5≤-log10p<10)","<0.01 (2≤-log10p<5)","Not Applicable","ns (p≥0.01)"))
-immCorSiglec15$sign <- factor(immCorSiglec15$sign, levels = c("pos","neg"))
-
-p1 <- quickcor(t(immPath.score), 
-         type = "lower",
-         show.diag = TRUE) + 
-  geom_colour() +
-  add_link(df = immCorSiglec15, 
-           mapping = aes(colour = pSeg, size = rSeg, linetype = sign),
-           spec.key = "gene",
-           env.key = "path",
-           diag.label = FALSE) +
-  scale_size_manual(values = c(0.5, 1, 1.5, 2)) +
-  scale_color_manual(values = c("#19A078","#DA6003","#7570B4","#E8288E","#65A818")) +
-  scale_fill_gradient2(low = "#9483E1",mid = "white",high = "#E11953",midpoint=0) +
-  remove_axis("x")
+immCorSiglec15
+$
+sign
+<-
+ifelse
+(immCorSiglec15
+$
+r
+>
+0
+,
+"pos"
+,
+"neg"
+)
+immCorSiglec15
+$
+absR
+<-
+abs
+(immCorSiglec15
+$
+r)
+immCorSiglec15
+$
+rSeg
+<-
+as.character
+(
+cut
+(immCorSiglec15
+$
+absR,
+c
+(
+0
+,
+0.25
+,
+0.5
+,
+0.75
+,
+1
+),
+labels =
+c
+(
+"0.25"
+,
+"0.50"
+,
+"0.75"
+,
+"1.00"
+),
+include.lowest =
+T))
+immCorSiglec15
+$
+pSeg
+<-
+as.character
+(
+cut
+(
+-
+log10
+(immCorSiglec15
+$
+p),
+c
+(
+0
+,
+2
+,
+5
+,
+10
+,
+Inf
+),
+labels =
+c
+(
+"ns (p≥0.01)"
+,
+"<0.01 (2≤-log10p<5)"
+,
+"<0.001 (5≤-log10p<10)"
+,
+"<1e-10 (-log10p≥10)"
+),
+include.lowest =
+T))
+immCorSiglec15[
+nrow
+(immCorSiglec15),
+"pSeg"
+]
+<-
+"Not Applicable"
+immCorSiglec15
+$
+rSeg
+<-
+factor
+(immCorSiglec15
+$
+rSeg,
+levels =
+c
+(
+"0.25"
+,
+"0.50"
+,
+"0.75"
+,
+"1.00"
+))
+immCorSiglec15
+$
+pSeg
+<-
+factor
+(immCorSiglec15
+$
+pSeg,
+levels =
+c
+(
+"<1e-10 (-log10p≥10)"
+,
+"<0.001 (5≤-log10p<10)"
+,
+"<0.01 (2≤-log10p<5)"
+,
+"Not Applicable"
+,
+"ns (p≥0.01)"
+))
+immCorSiglec15
+$
+sign
+<-
+factor
+(immCorSiglec15
+$
+sign,
+levels =
+c
+(
+"pos"
+,
+"neg"
+))
 p1
-ggsave(filename = "ggcor plot in bottom left.pdf", width = 10,height = 8)
+<-
+quickcor
+(
+t
+(immPath.score),
+type =
+"lower"
+,
+show.diag =
+TRUE
+)
++
+geom_colour
+()
++
+add_link
+(
+df =
+immCorSiglec15,
+mapping =
+aes
+(
+colour =
+pSeg,
+size =
+rSeg,
+linetype =
+sign),
+spec.key =
+"gene"
+,
+env.key =
+"path"
+,
+diag.label =
+FALSE
+)
++
+scale_size_manual
+(
+values =
+c
+(
+0.5
+,
+1
+,
+1.5
+,
+2
+))
++
+scale_color_manual
+(
+values =
+c
+(
+"#19A078"
+,
+"#DA6003"
+,
+"#7570B4"
+,
+"#E8288E"
+,
+"#65A818"
+))
++
+scale_fill_gradient2
+(
+low =
+"#9483E1"
+,
+mid =
+"white"
+,
+high =
+"#E11953"
+,
+midpoint=
+0
+)
++
+remove_axis
+(
+"x"
+)
+p1
+ggsave
+(
+filename =
+"ggcor plot in bottom left.pdf"
+,
+width =
+10
+,
+height =
+8
+)
 # 循环计算相关性并绘制右上角｜Loop to calculate correlations and plot top right
-blcaCorSiglec15 <- NULL
-for (i in rownames(blcaPath.score)) {
-  # 确保数据是数值型｜Ensure data is numeric
-  x_data <- as.numeric(blcaPath.score[i,])
-  y_data <- as.numeric(siglec15)
-  
-  cr <- cor.test(x_data, y_data, method = "pearson")
-  blcaCorSiglec15 <- rbind.data.frame(blcaCorSiglec15,
-                                     data.frame(gene = "Siglec15",
-                                                path = i,
-                                                r = cr$estimate,
-                                                p = cr$p.value,
-                                                stringsAsFactors = F),
-                                     stringsAsFactors = F)
+blcaCorSiglec15
+<-
+NULL
+for
+(i
+in
+rownames
+(blcaPath.score)) {
+# 确保数据是数值型｜Ensure data is numeric
+x_data
+<-
+as.numeric
+(blcaPath.score[i,])
+y_data
+<-
+as.numeric
+(siglec15)
+cr
+<-
+cor.test
+(x_data, y_data,
+method =
+"pearson"
+)
+blcaCorSiglec15
+<-
+rbind.data.frame
+(blcaCorSiglec15,
+data.frame
+(
+gene =
+"Siglec15"
+,
+path =
+i,
+r =
+cr
+$
+estimate,
+p =
+cr
+$
+p.value,
+stringsAsFactors =
+F),
+stringsAsFactors =
+F)
 }
-blcaCorSiglec15$sign <- ifelse(blcaCorSiglec15$r > 0,"pos","neg")
-blcaCorSiglec15$absR <- abs(blcaCorSiglec15$r)
-blcaCorSiglec15$rSeg <- as.character(cut(blcaCorSiglec15$absR,c(0,0.25,0.5,0.75,1),labels = c("0.25","0.50","0.75","1.00"),include.lowest = T))
-blcaCorSiglec15$pSeg <- as.character(cut(-log10(blcaCorSiglec15$p),c(0,2,5,10,Inf),labels = c("ns (p≥0.01)","<0.01 (2≤-log10p<5)","<0.001 (5≤-log10p<10)","<1e-10 (-log10p≥10)"),include.lowest = T))
-blcaCorSiglec15[nrow(blcaCorSiglec15),"pSeg"] <- "Not Applicable"
-
-blcaCorSiglec15$rSeg <- factor(blcaCorSiglec15$rSeg, levels = c("0.25","0.50","0.75","1.00"))
-blcaCorSiglec15$pSeg <- factor(blcaCorSiglec15$pSeg, levels = c("<1e-10 (-log10p≥10)","<0.001 (5≤-log10p<10)","<0.01 (2≤-log10p<5)","Not Applicable","ns (p≥0.01)"))
-blcaCorSiglec15$sign <- factor(blcaCorSiglec15$sign, levels = c("pos","neg"))
-
-p2 <- quickcor(t(blcaPath.score), 
-         type = "upper",
-         show.diag = TRUE) + 
-  geom_colour() +
-  add_link(df = blcaCorSiglec15, 
-           mapping = aes(colour = pSeg, size = rSeg, linetype = sign),
-           spec.key = "gene",
-           env.key = "path",
-           diag.label = FALSE) +
-  scale_size_manual(values = c(0.5, 1, 1.5, 2)) +
-  scale_color_manual(values = c("#19A078","#DA6003","#7570B4","#E8288E","#65A818")) +
-  scale_fill_gradient2(low = "#9483E1",mid = "white",high = "#E11953",midpoint=0) +
-  remove_axis("x")
+blcaCorSiglec15
+$
+sign
+<-
+ifelse
+(blcaCorSiglec15
+$
+r
+>
+0
+,
+"pos"
+,
+"neg"
+)
+blcaCorSiglec15
+$
+absR
+<-
+abs
+(blcaCorSiglec15
+$
+r)
+blcaCorSiglec15
+$
+rSeg
+<-
+as.character
+(
+cut
+(blcaCorSiglec15
+$
+absR,
+c
+(
+0
+,
+0.25
+,
+0.5
+,
+0.75
+,
+1
+),
+labels =
+c
+(
+"0.25"
+,
+"0.50"
+,
+"0.75"
+,
+"1.00"
+),
+include.lowest =
+T))
+blcaCorSiglec15
+$
+pSeg
+<-
+as.character
+(
+cut
+(
+-
+log10
+(blcaCorSiglec15
+$
+p),
+c
+(
+0
+,
+2
+,
+5
+,
+10
+,
+Inf
+),
+labels =
+c
+(
+"ns (p≥0.01)"
+,
+"<0.01 (2≤-log10p<5)"
+,
+"<0.001 (5≤-log10p<10)"
+,
+"<1e-10 (-log10p≥10)"
+),
+include.lowest =
+T))
+blcaCorSiglec15[
+nrow
+(blcaCorSiglec15),
+"pSeg"
+]
+<-
+"Not Applicable"
+blcaCorSiglec15
+$
+rSeg
+<-
+factor
+(blcaCorSiglec15
+$
+rSeg,
+levels =
+c
+(
+"0.25"
+,
+"0.50"
+,
+"0.75"
+,
+"1.00"
+))
+blcaCorSiglec15
+$
+pSeg
+<-
+factor
+(blcaCorSiglec15
+$
+pSeg,
+levels =
+c
+(
+"<1e-10 (-log10p≥10)"
+,
+"<0.001 (5≤-log10p<10)"
+,
+"<0.01 (2≤-log10p<5)"
+,
+"Not Applicable"
+,
+"ns (p≥0.01)"
+))
+blcaCorSiglec15
+$
+sign
+<-
+factor
+(blcaCorSiglec15
+$
+sign,
+levels =
+c
+(
+"pos"
+,
+"neg"
+))
 p2
-ggsave(filename = "ggcor plot in top right.pdf", width = 10,height = 8)
-后期处理 ｜ Post-processing
+<-
+quickcor
+(
+t
+(blcaPath.score),
+type =
+"upper"
+,
+show.diag =
+TRUE
+)
++
+geom_colour
+()
++
+add_link
+(
+df =
+blcaCorSiglec15,
+mapping =
+aes
+(
+colour =
+pSeg,
+size =
+rSeg,
+linetype =
+sign),
+spec.key =
+"gene"
+,
+env.key =
+"path"
+,
+diag.label =
+FALSE
+)
++
+scale_size_manual
+(
+values =
+c
+(
+0.5
+,
+1
+,
+1.5
+,
+2
+))
++
+scale_color_manual
+(
+values =
+c
+(
+"#19A078"
+,
+"#DA6003"
+,
+"#7570B4"
+,
+"#E8288E"
+,
+"#65A818"
+))
++
+scale_fill_gradient2
+(
+low =
+"#9483E1"
+,
+mid =
+"white"
+,
+high =
+"#E11953"
+,
+midpoint=
+0
+)
++
+remove_axis
+(
+"x"
+)
+p2
+ggsave
+(
+filename =
+"ggcor plot in top right.pdf"
+,
+width =
+10
+,
+height =
+8
+)
+0.7
+后期处理
+Post-processing
 输出的PDF文件是矢量图，可以用矢量图编辑器打开，编辑文字和图形。
 The output PDF files are vector graphics that can be opened with
 vector graphic editors to edit text and graphics.
+0.8
 Session Info
-sessionInfo()
+sessionInfo
+()

@@ -1,12 +1,17 @@
 FigureYa321volcanoSE
+Code
+Show All Code
+Hide All Code
 FigureYa321volcanoSE
 Author(s)
-: Xiaofan Lu; Yasi Zhang
+: Xiaofan Lu
 Reviewer(s)
-: Ying Ge
+: Ying Ge, Yasi Zhang
 Date
-: 2025-11-11
-Academic Citation
+: 2025-11-20
+0.1
+Academic
+Citation
 If you use this code in your work or research, we kindly request that
 you cite our publication:
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization
@@ -22,28 +27,32 @@ Goldman, M.J., Craft, B., Hastie, M. et al. Visualizing and
 interpreting cancer genomics data via the Xena platform. Nat Biotechnol
 (2020).
 https://doi.org/10.1038/s41587-020-0546-8
-需求描述
-Demand description
+0.2
+需求描述 Requirement
+description`
 在癌症中高低分数组中的APA分析，用火山图展示 (图5B)。
 Differential APA analysis between high- and low-risk groups in
 cancer, presented via volcano plot (Fig.5 B).
 From
 https://www.frontiersin.org/articles/10.3389/fimmu.2022.1031184/full
-图5 与WM_Score相关的转录和转录后特征。 (B)
-WM_Score_high组和WM_Score_low组各基因的
-PDUI差异
-。
 FIGURE 5 Transcriptional and post-transcriptional characteristics
 related to WM_Score. (B)
 The differences in the PDUI
 of
 each gene between WM_Score_high and WM_Score_low groups.
-应用场景
-Application scenarios
+0.3
+应用场景 Application
+scenarios
+TC3A (The Cancer 3′ UTR Atlas) 专门分析了TCGA
+33种癌症类型的3′UTR长度，系统注释了可变多聚腺苷化位点APA (Alternative
+Polyadenylation, 可变多聚腺苷化)。
 例文关注的是PAAD，可以套用于TCGA其他癌症类型。
 使用火山图展示差异分析结果。也可以使用FigureYa其他作者绘制的更复杂的火山图：
 一组：FigureYa59volcano ，FigureYa75baseVolcano
 多组：FigureYa135multiVolcano
+TC3A (The Cancer 3′ UTR Atlas) specifically analyzes the 3′UTR length
+of 33 cancer types in TCGA and systematically annotates alternative
+polyadenylation (APA) sites.
 The example focuses on PAAD but can be adapted to other TCGA cancer
 types.
 Use a volcano plot to display differential analysis results.
@@ -51,23 +60,42 @@ Alternatively, more complex volcano plots created by other authors
 (e.g., FigureYa) can also be utilized.
 One group: FigureYa59volcano ，FigureYa75baseVolcano
 Multiple group: FigureYa135multiVolcano
-环境设置
-Environment Setup
-source("install_dependencies.R")
-library(limma) # 线性模型拟合 Linear model fitting 
-library(ggplot2) # 绘图 Plotting
-library(ggrepel) # 标签标注 Labeling
-library(TCGAbiolinks) # TCGA数据下载 TCGA data download
-
+0.4
+环境设置 Environment
+Setup
+source
+(
+"install_dependencies.R"
+)
+library
+(limma)
+# 线性模型拟合 Linear model fitting
+library
+(ggplot2)
+# 绘图 Plotting
+library
+(ggrepel)
+# 标签标注 Labeling
+library
+(TCGAbiolinks)
+# TCGA数据下载 TCGA data download
 # 显示英文报错信息
 # Show English error messages
-Sys.setenv(LANGUAGE = "en") 
-
+Sys.setenv
+(
+LANGUAGE =
+"en"
+)
 # 禁止chr转成factor
 # Prevent character-to-factor conversion
-options(stringsAsFactors = FALSE)
-输入文件
-Input Files
+options
+(
+stringsAsFactors =
+FALSE
+)
+0.5
+输入文件 Input
+Files
 TCGA_PAAD_Combined_PDUIs.txt，从synapse网站中下载的TC3A_PDUI（Percentage
 of Distal polyA site Usage Index）的计算结果。下载地址：
 https://www.synapse.org/Synapse:syn24982198/files/
@@ -91,113 +119,560 @@ downloaded using xena Download the
 https://tcga-xena-hub.s3.us-east-1.amazonaws.com/download/TCGA.PAAD.sampleMap%2FPAAD_clinicalMatrix
 # 读取PDUI信息和样本信息
 # Reading PDUI data and sample info
-PDUI <- read.table("TCGA_PAAD_Combined_PDUIs.txt", header = T)
-rownames(PDUI) <- PDUI$event_id
-
-# 移除前三列非数值列 
+PDUI
+<-
+read.table
+(
+"TCGA_PAAD_Combined_PDUIs.txt"
+,
+header =
+T)
+rownames
+(PDUI)
+<-
+PDUI
+$
+event_id
+# 移除前三列非数值列
 # Remove first 3 non-numeric columns
-PDUI <- PDUI[, -c(1:3)]
-
+PDUI
+<-
+PDUI[,
+-
+c
+(
+1
+:
+3
+)]
 # 标准化样本ID
 # Standardize sample IDs
-colnames(PDUI) <- substr(colnames(PDUI), 1, 15)
-
-group <- read.table("TCGA_PAAD.clin.txt", sep = "\t", header = T, row.names = 1)
-rownames(group) <- gsub("-", "\\.", rownames(group))
-
-samples <- intersect(rownames(group), colnames(PDUI))
-PDUI <- PDUI[, samples]; group <- group[samples, ]
-
+colnames
+(PDUI)
+<-
+substr
+(
+colnames
+(PDUI),
+1
+,
+15
+)
+group
+<-
+read.table
+(
+"TCGA_PAAD.clin.txt"
+,
+sep =
+"
+\t
+"
+,
+header =
+T,
+row.names =
+1
+)
+rownames
+(group)
+<-
+gsub
+(
+"-"
+,
+"
+\\
+."
+,
+rownames
+(group))
+samples
+<-
+intersect
+(
+rownames
+(group),
+colnames
+(PDUI))
+PDUI
+<-
+PDUI[, samples]; group
+<-
+group[samples, ]
 # 创建分组因子
 # Create grouping factor
-group <- setNames(object = ifelse(test = group$vital_status == "LIVING",
-                                  yes = "LIVING", no = "DEAD"), 
-                  nm = samples)
-
+group
+<-
+setNames
+(
+object =
+ifelse
+(
+test =
+group
+$
+vital_status
+==
+"LIVING"
+,
+yes =
+"LIVING"
+,
+no =
+"DEAD"
+),
+nm =
+samples)
 # 设定测试组和对照组
 # Set up the test group and the control group
-group <- factor(group, levels = c("LIVING", "DEAD"))
+group
+<-
+factor
+(group,
+levels =
+c
+(
+"LIVING"
+,
+"DEAD"
+))
+0.6
 进行差异分析
 Differential Analysis
 # 创建设计矩阵
 # Create design matrix
-design <- model.matrix(~0 + factor(group))
-colnames(design) = levels(factor(group))
-rownames(design) = names(group)
-
+design
+<-
+model.matrix
+(
+~
+0
++
+factor
+(group))
+colnames
+(design)
+=
+levels
+(
+factor
+(group))
+rownames
+(design)
+=
+names
+(group)
 # 设置对比组
 # Set contrast (Test vs Control)
-contrast.matrix <- makeContrasts(paste0(unique(group),collapse = "-"), 
-                                 levels = design)
-
+contrast.matrix
+<-
+makeContrasts
+(
+paste0
+(
+unique
+(group),
+collapse =
+"-"
+),
+levels =
+design)
 # 线性模型拟合
 # Linear model fitting
-fit <- lmFit(PDUI[, names(group)], design)
-fit2 <- contrasts.fit(fit, contrast.matrix)
-fit2 <- eBayes(fit2) # Empirical Bayes Statistics for Differential Expression
-
+fit
+<-
+lmFit
+(PDUI[,
+names
+(group)], design)
+fit2
+<-
+contrasts.fit
+(fit, contrast.matrix)
+fit2
+<-
+eBayes
+(fit2)
+# Empirical Bayes Statistics for Differential Expression
 # 获取差异分析结果
 # Get differential analysis results
-DEGs = topTable(fit2, coef=1, n=Inf)
-
+DEGs
+=
+topTable
+(fit2,
+coef=
+1
+,
+n=
+Inf
+)
 # 添加基因注释
 # Add gene annotations
-DEGs$RefSeq <- gsub("(.+)\\|(.+)\\|(.+)\\|(.+)", "\\1", rownames(DEGs))
-DEGs$SYMBOL <- gsub("(.+)\\|(.+)\\|(.+)\\|(.+)", "\\2", rownames(DEGs))
-DEGs$CHR <- gsub("(.+)\\|(.+)\\|(.+)\\|(.+)", "\\3", rownames(DEGs))
-
+DEGs
+$
+RefSeq
+<-
+gsub
+(
+"(.+)
+\\
+|(.+)
+\\
+|(.+)
+\\
+|(.+)"
+,
+"
+\\
+1"
+,
+rownames
+(DEGs))
+DEGs
+$
+SYMBOL
+<-
+gsub
+(
+"(.+)
+\\
+|(.+)
+\\
+|(.+)
+\\
+|(.+)"
+,
+"
+\\
+2"
+,
+rownames
+(DEGs))
+DEGs
+$
+CHR
+<-
+gsub
+(
+"(.+)
+\\
+|(.+)
+\\
+|(.+)
+\\
+|(.+)"
+,
+"
+\\
+3"
+,
+rownames
+(DEGs))
 # 保存结果
 # Save results
-openxlsx::write.xlsx(DEGs, "output_DEGs.xlsx")
-开始画图
-Plotting
+openxlsx
+::
+write.xlsx
+(DEGs,
+"output_DEGs.xlsx"
+)
+0.7
+开始画图 Start
+drawing the graph
 # 准备绘图数据
 # Prepare plotting data
-plot.data <- DEGs
-plot.data$logPadj <- -log(plot.data$adj.P.Val)
-
+plot.data
+<-
+DEGs
+plot.data
+$
+logPadj
+<-
+-
+log
+(plot.data
+$
+adj.P.Val)
 # 设置要标记的基因
 # Genes to label
-plotgene <- c("DKK1", "COL1A2", "AREG", "CEACAM6") 
-plot.data$label[plot.data$SYMBOL %in% plotgene] <- plot.data$SYMBOL[plot.data$SYMBOL %in% plotgene]
-
+plotgene
+<-
+c
+(
+"DKK1"
+,
+"COL1A2"
+,
+"AREG"
+,
+"CEACAM6"
+)
+plot.data
+$
+label[plot.data
+$
+SYMBOL
+%in%
+plotgene]
+<-
+plot.data
+$
+SYMBOL[plot.data
+$
+SYMBOL
+%in%
+plotgene]
 # 设置颜色分组
 # Color grouping
-plot.data$status <- "NoSig"
-plot.data$status[plot.data$logFC < (-0.05) & plot.data$logPadj > 1] <- "Down"
-plot.data$status[plot.data$logFC > 0.05 & plot.data$logPadj > 1] <- "Up"
-plot.data$status <- factor(plot.data$status, levels = c("Up", "Down", "NoSig"))
-plot.data$size <- abs(plot.data$logFC * plot.data$logPadj)
-
-palette_volcano <- c(
-  "Up" = "#D93F3C",
-  "Down" = "#184A8C",
-  "NoSig" = "#B3B3B3"
+plot.data
+$
+status
+<-
+"NoSig"
+plot.data
+$
+status[plot.data
+$
+logFC
+<
+(
+-
+0.05
 )
-
+&
+plot.data
+$
+logPadj
+>
+1
+]
+<-
+"Down"
+plot.data
+$
+status[plot.data
+$
+logFC
+>
+0.05
+&
+plot.data
+$
+logPadj
+>
+1
+]
+<-
+"Up"
+plot.data
+$
+status
+<-
+factor
+(plot.data
+$
+status,
+levels =
+c
+(
+"Up"
+,
+"Down"
+,
+"NoSig"
+))
+plot.data
+$
+size
+<-
+abs
+(plot.data
+$
+logFC
+*
+plot.data
+$
+logPadj)
+palette_volcano
+<-
+c
+(
+"Up"
+=
+"#D93F3C"
+,
+"Down"
+=
+"#184A8C"
+,
+"NoSig"
+=
+"#B3B3B3"
+)
 # 绘制火山图
 # Draw volcano plot
-ggplot(data = plot.data, aes(x = logFC, y = logPadj, color = status)) + 
-  geom_point(alpha = 0.9, size = 2.2) +
-  scale_color_manual(values = palette_volcano, drop = FALSE) +
-  scale_size_continuous(range=c(1, 8)) +
-  geom_label_repel(
-    data = subset(plot.data, !is.na(label)),
-    aes(label = label, color = status),
-    box.padding = unit(0.35, "lines"),
-    point.padding = unit(0.3, "lines"),
-    size = 4,
-    fontface = "bold"
-  )+
-  geom_vline(xintercept = c(-0.05, 0.05), color="grey40", linetype="longdash", lwd = 0.25) +
-  geom_hline(yintercept = 1, color="grey40", linetype="longdash", lwd = 0.25) +
-  theme_bw() +
-  theme(panel.grid=element_blank(), plot.title = element_text(hjust = 0.5), legend.position = "none") +
-  geom_point(data = subset(plot.data, !is.na(label)),  alpha = 1, shape = 1, 
-             stroke = 0.5, 
-             color = "black")
+ggplot
+(
+data =
+plot.data,
+aes
+(
+x =
+logFC,
+y =
+logPadj,
+color =
+status))
++
+geom_point
+(
+alpha =
+0.9
+,
+size =
+2.2
+)
++
+scale_color_manual
+(
+values =
+palette_volcano,
+drop =
+FALSE
+)
++
+scale_size_continuous
+(
+range=
+c
+(
+1
+,
+8
+))
++
+geom_label_repel
+(
+data =
+subset
+(plot.data,
+!
+is.na
+(label)),
+aes
+(
+label =
+label,
+color =
+status),
+box.padding =
+unit
+(
+0.35
+,
+"lines"
+),
+point.padding =
+unit
+(
+0.3
+,
+"lines"
+),
+size =
+4
+,
+fontface =
+"bold"
+)
++
+geom_vline
+(
+xintercept =
+c
+(
+-
+0.05
+,
+0.05
+),
+color=
+"grey40"
+,
+linetype=
+"longdash"
+,
+lwd =
+0.25
+)
++
+geom_hline
+(
+yintercept =
+1
+,
+color=
+"grey40"
+,
+linetype=
+"longdash"
+,
+lwd =
+0.25
+)
++
+theme_bw
+()
++
+theme
+(
+panel.grid=
+element_blank
+(),
+plot.title =
+element_text
+(
+hjust =
+0.5
+),
+legend.position =
+"none"
+)
++
+geom_point
+(
+data =
+subset
+(plot.data,
+!
+is.na
+(label)),
+alpha =
+1
+,
+shape =
+1
+,
+stroke =
+0.5
+,
+color =
+"black"
+)
 # 保存图片
 # Save plot
-ggsave("volcano.pdf", width = 6, height = 4)
+ggsave
+(
+"volcano.pdf"
+,
+width =
+6
+,
+height =
+4
+)
+0.8
 Session Info
-sessionInfo()
+sessionInfo
+()

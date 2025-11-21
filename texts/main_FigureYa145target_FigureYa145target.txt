@@ -1,27 +1,31 @@
 FigureYa145target
+Code
+Show All Code
+Hide All Code
 FigureYa145target
 Author(s)
 : Long Zhao
 Reviewer(s)
 : Ying Ge, Junyi Shen
 Date
-: 2025-10-17
-Academic Citation
+: 2025-11-20
+0.1
+Academic
+Citation
 If you use this code in your work or research, we kindly request that
 you cite our publication:
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization
 Framework for Enhancing Biomedical Data Interpretation and Research
 Efficiency. iMetaMed.
 https://doi.org/10.1002/imm3.70005
-需求描述
-Requirement description
+0.2
+需求描述 Requirement
+description
 从形式上复现原图。 Reproduce the original image in form.
 有时没有现成的包能画出一模一样的图，我们可以通过计算图中每个元素的位置，然后画出想要的效果。
 Sometimes there is no ready-made package that can draw the same image.
 We can calculate the position of each element in the image and then draw
 the desired effect.
-出自
-https://www.nature.com/articles/s41467-019-09222-w
 From
 https://www.nature.com/articles/s41467-019-09222-w
 Fig. 2 Characteristics of glycosites identified with AI-ETD. f A
@@ -92,8 +96,9 @@ igraph
 library70, and the arcplot were created with arcdiagram library.
 这里用ggplot2画图，先计算位置再画图。 Here we use ggplot2 to draw the
 graph, first calculate the position and then draw the graph.
-应用场景
-Application scenario
+0.3
+应用场景 Application
+scenario
 展示分类、分组跟元素之间的关系。例如：glycan-数量-glycoprotein，GO-TF-targe
 gene、表观修饰-上下调-gene、enhancer-motif-promoter等。 Show the
 relationship between classification, grouping and elements. For example:
@@ -113,15 +118,34 @@ bind to these peripheral genes found in our public database. As a
 result, it is clear at a glance which transcription factors activate
 genes and which inhibit them. If there is HiC or ChIA-pet data, the
 interaction between hub sites and target genes is the same.
-环境设置
-Environment settings
-source("install_dependencies.R")
-library(ggplot2) #用于画图 #For drawing
-library(dplyr) #用于数据处理 #For data processing
-Sys.setenv(LANGUAGE = "en") #显示英文报错信息 #Display English error message
-options(stringsAsFactors = FALSE) #禁止chr转成factor #Prohibit chr from being converted to factor
-输入文件
-Input file
+0.4
+环境设置 Environment
+settings
+source
+(
+"install_dependencies.R"
+)
+library
+(ggplot2)
+#用于画图 #For drawing
+library
+(dplyr)
+#用于数据处理 #For data processing
+Sys.setenv
+(
+LANGUAGE =
+"en"
+)
+#显示英文报错信息 #Display English error message
+options
+(
+stringsAsFactors =
+FALSE
+)
+#禁止chr转成factor #Prohibit chr from being converted to factor
+0.5
+输入文件 Input
+file
 easy_input_node.txt和easy_input_group.txt。从例文41467_2019_9222_MOESM5_ESM.xlsx文件整理而来。
 easy_input_node.txt，glycan及其分类，用来画外围的点和弧线；
 easy_input_group.txt，protein-glycan-数量的对应关系，用来画中央矩形和连线。每行一个protein，用
@@ -135,16 +159,41 @@ protein-glycan-quantity, used to draw the central rectangle and
 connecting lines. One protein per line, separate multiple glycans with
 ;
 .
-Glycan <- read.table("easy_input_node.txt", sep = "\t", head=T)
-head(Glycan)
-dim(Glycan)
-protein <- read.table("easy_input_group.txt",head=T)
-head(protein)
-dim(protein)
+Glycan
+<-
+read.table
+(
+"easy_input_node.txt"
+,
+sep =
+"
+\t
+"
+,
+head=
+T)
+head
+(Glycan)
+dim
+(Glycan)
+protein
+<-
+read.table
+(
+"easy_input_group.txt"
+,
+head=
+T)
+head
+(protein)
+dim
+(protein)
+0.6
 计算图中各元素位置
 Calculate the position of each element in the graph
-计算点（Glycan）的坐标
-Calculate the coordinates of the point (Glycan)
+0.6.1
+计算点（Glycan）的坐标 Calculate the coordinates of the point
+(Glycan)
 一共有117个点，右侧（第一、四象限）59个，左侧（二、三象限）58个。
 There are 117 points in total, 59 on the right (first and fourth
 quadrants) and 58 on the left (second and third quadrants).
@@ -162,13 +211,87 @@ one is -255 degrees.
 calculating the coordinates, we took into account that we would need to
 draw a central rectangle later, so we used the number of proteins/2 as
 the radius.
-Glycan$angle <- ifelse(Glycan$Node < 60,
-                       75-(150/58*(Glycan$Node-1)),
-                       75-(150/58*(Glycan$Node-1))-30)
-
-Glycan$G.x <- cos(Glycan$angle*pi/180.0)*(nrow(protein)/2)
-Glycan$G.y <- sin(Glycan$angle*pi/180.0)*(nrow(protein)/2)
-head(Glycan)
+Glycan
+$
+angle
+<-
+ifelse
+(Glycan
+$
+Node
+<
+60
+,
+75
+-
+(
+150
+/
+58
+*
+(Glycan
+$
+Node
+-1
+)),
+75
+-
+(
+150
+/
+58
+*
+(Glycan
+$
+Node
+-1
+))
+-
+30
+)
+Glycan
+$
+G.x
+<-
+cos
+(Glycan
+$
+angle
+*
+pi
+/
+180.0
+)
+*
+(
+nrow
+(protein)
+/
+2
+)
+Glycan
+$
+G.y
+<-
+sin
+(Glycan
+$
+angle
+*
+pi
+/
+180.0
+)
+*
+(
+nrow
+(protein)
+/
+2
+)
+head
+(Glycan)
+0.6.2
 计算最外围的弧线
 Calculate the outermost arc
 外围的弧线内侧是圆半径的1.1倍，外侧是1.15倍 The inner side of the
@@ -176,101 +299,432 @@ outer arc is 1.1 times the radius of the circle, and the outer side is
 1.15 times
 # 取Gly.clu列
 # Get the Gly.clu column
-curve <- Glycan[,3, drop=F]
-
-curve$x.start <- Glycan$G.x*1.1
-curve$x.end <- Glycan$G.x*1.15
-curve$y.start <- Glycan$G.y*1.1
-curve$y.end <- Glycan$G.y*1.15
-
+curve
+<-
+Glycan[,
+3
+, drop
+=
+F]
+curve
+$
+x.start
+<-
+Glycan
+$
+G.x
+*
+1.1
+curve
+$
+x.end
+<-
+Glycan
+$
+G.x
+*
+1.15
+curve
+$
+y.start
+<-
+Glycan
+$
+G.y
+*
+1.1
+curve
+$
+y.end
+<-
+Glycan
+$
+G.y
+*
+1.15
 # 给弧线之间留个空隙，根据自己的数据调整数量吧
 # Leave a gap between the arcs and adjust the number according to your own data
-curve <- curve[-c(9:10, #9是第一类Paucimannose的数量，以此类推
+curve
+<-
+curve[
+-
+c
+(
+9
+:
+10
+,
+#9是第一类Paucimannose的数量，以此类推
 #9 is the number of first-class Paucimannose, and so on
-                  45:46,73:74,107:108),]
-head(curve)
-中央矩形
-Central rectangle
+45
+:
+46
+,
+73
+:
+74
+,
+107
+:
+108
+),]
+head
+(curve)
+0.6.3
+中央矩形 Central
+rectangle
 根据glycosites数量分成5类，其中4和5一组，>5一组，与右侧图例对应。
 According to the number of glycosites, they are divided into 5
 categories, with 4 and 5 in one group and >5 in another group,
 corresponding to the legend on the right.
-protein.pos <- protein[,1:2]
-protein.pos <- arrange(protein.pos, Count)
-
-protein.pos$P.x <- 0
-protein.pos$P.y <- seq(floor(nrow(protein)/2),-floor(nrow(protein)/2))
-
-protein.pos$cluster <- ifelse(protein.pos$Count < 4, protein.pos$Count, ifelse(protein.pos$Count < 6, "4", "5"))
-
-head(protein.pos)
-连接线，即Glycan-protein
-Connecting line, Glycan-protein
-connect <- protein[,c(1,3)]
-Gly.name <- strsplit(as.character(connect[,2]),split=";")
-connect.count <- sapply(Gly.name,length)
-connection <- data.frame(Protein=rep(connect$Protein,connect.count),Glycan=unlist(Gly.name))
+protein.pos
+<-
+protein[,
+1
+:
+2
+]
+protein.pos
+<-
+arrange
+(protein.pos, Count)
+protein.pos
+$
+P.x
+<-
+0
+protein.pos
+$
+P.y
+<-
+seq
+(
+floor
+(
+nrow
+(protein)
+/
+2
+),
+-
+floor
+(
+nrow
+(protein)
+/
+2
+))
+protein.pos
+$
+cluster
+<-
+ifelse
+(protein.pos
+$
+Count
+<
+4
+, protein.pos
+$
+Count,
+ifelse
+(protein.pos
+$
+Count
+<
+6
+,
+"4"
+,
+"5"
+))
+head
+(protein.pos)
+0.6.4
+连接线，即Glycan-protein Connecting line, Glycan-protein
+connect
+<-
+protein[,
+c
+(
+1
+,
+3
+)]
+Gly.name
+<-
+strsplit
+(
+as.character
+(connect[,
+2
+]),
+split=
+";"
+)
+connect.count
+<-
+sapply
+(Gly.name,length)
+connection
+<-
+data.frame
+(
+Protein=
+rep
+(connect
+$
+Protein,connect.count),
+Glycan=
+unlist
+(Gly.name))
+0.6.5
 Merge
 seg.clu主要是为了画最后一个Glycan那一点点黄色 seg.clu is mainly used
 to draw the last little bit of yellow of Glycan
-all <- merge(connection,Glycan,by="Glycan")
-all1 <- merge(all,protein.pos,by="Protein")
-all1$seg.clu <- ifelse(all1$Glycan=="HexNAc(2)Hex(6)Phospho(1)","zz",all1$Gly.clu)
-head(all1)
-开始画图
-Start drawing
+all
+<-
+merge
+(connection,Glycan,
+by=
+"Glycan"
+)
+all1
+<-
+merge
+(all,protein.pos,
+by=
+"Protein"
+)
+all1
+$
+seg.clu
+<-
+ifelse
+(all1
+$
+Glycan
+==
+"HexNAc(2)Hex(6)Phospho(1)"
+,
+"zz"
+,all1
+$
+Gly.clu)
+head
+(all1)
+0.7
+开始画图 Start
+drawing
 # 自定义颜色
 # Custom color
-cols <- c("royalblue4","gray80","seagreen3","powderblue","steelblue","goldenrod1")
-fills <- c("#FFFFD4","#FEE391","#FEC44F","#FE9929","#D95F0E")
+cols
+<-
+c
+(
+"royalblue4"
+,
+"gray80"
+,
+"seagreen3"
+,
+"powderblue"
+,
+"steelblue"
+,
+"goldenrod1"
+)
+fills
+<-
+c
+(
+"#FFFFD4"
+,
+"#FEE391"
+,
+"#FEC44F"
+,
+"#FE9929"
+,
+"#D95F0E"
+)
 # 查看颜色
 # View colors
-library(scales)
-show_col(cols)
-show_col(fills)
+library
+(scales)
+show_col
+(cols)
+show_col
+(fills)
 # 画点
 # Draw points
-p <- ggplot(all1) +
-  geom_point(aes(G.x,G.y,color=Gly.clu))
+p
+<-
+ggplot
+(all1)
++
+geom_point
+(
+aes
+(G.x,G.y,
+color=
+Gly.clu))
 p
 # 画连线
 # Draw lines
-p1 <- p + 
-  geom_segment(aes(x=G.x,y=G.y,xend=P.x,yend=P.y,color=seg.clu),alpha=0.1)
+p1
+<-
+p
++
+geom_segment
+(
+aes
+(
+x=
+G.x,
+y=
+G.y,
+xend=
+P.x,
+yend=
+P.y,
+color=
+seg.clu),
+alpha=
+0.1
+)
 p1
 # 画矩形
 # Draw rectangles
-p2 <- p1 + 
-  geom_rect(aes(xmin=-15,xmax=15,ymin=P.y,ymax=P.y+1,fill=cluster)) +
-  geom_rect(aes(xmin=500,xmax=530,ymin=P.y,ymax=P.y+1,fill=cluster))
+p2
+<-
+p1
++
+geom_rect
+(
+aes
+(
+xmin=
+-
+15
+,
+xmax=
+15
+,
+ymin=
+P.y,
+ymax=
+P.y
++
+1
+,
+fill=
+cluster))
++
+geom_rect
+(
+aes
+(
+xmin=
+500
+,
+xmax=
+530
+,
+ymin=
+P.y,
+ymax=
+P.y
++
+1
+,
+fill=
+cluster))
 p2
 # 画弧线
 # Draw an arc
-p3 <- p2 + 
-  geom_segment(data=curve,aes(x=x.start,xend=x.end,y=y.start,yend=y.end,color=Gly.clu),size=5)
+p3
+<-
+p2
++
+geom_segment
+(
+data=
+curve,
+aes
+(
+x=
+x.start,
+xend=
+x.end,
+y=
+y.start,
+yend=
+y.end,
+color=
+Gly.clu),
+size=
+5
+)
 p3
 # 清空背景和坐标轴
 # Clear background and coordinate axes
-p4 <- p3 +
-  theme_minimal() +
-  theme(
-    legend.position = "none",
-    axis.text = element_blank(),
-    axis.title = element_blank(),
-    panel.grid = element_blank()
-    )  
+p4
+<-
+p3
++
+theme_minimal
+()
++
+theme
+(
+legend.position =
+"none"
+,
+axis.text =
+element_blank
+(),
+axis.title =
+element_blank
+(),
+panel.grid =
+element_blank
+()
+)
 p4
 # 用自定义颜色填充和画线
 # Fill and draw lines with custom colors
-p5 <- p4 +
-  scale_color_manual(values=cols) +
-  scale_fill_manual(values=fills)
+p5
+<-
+p4
++
+scale_color_manual
+(
+values=
+cols)
++
+scale_fill_manual
+(
+values=
+fills)
 p5
 # 输出到文件
 # Output to file
-pdf(file="target.pdf", height=5, width=5.5)
- p5
-dev.off()
+pdf
+(
+file=
+"target.pdf"
+,
+height=
+5
+,
+width=
+5.5
+)
+p5
+dev.off
+()
+0.8
 后期处理
 Post-processing
 输出的PDF文件是矢量图，可以用PS或AI等矢量图编辑器打开，编辑图形和文字。
@@ -294,5 +748,7 @@ understand the meaning of each number, and the overall idea, and then
 draw inferences from one example. This involves some mathematical
 trigonometric function calculations and angle calculations, and you
 still need to understand the meaning of each number.
+0.9
 Session Info
-sessionInfo()
+sessionInfo
+()

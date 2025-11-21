@@ -1,24 +1,28 @@
 FigureYa153ccgraph
+Code
+Show All Code
+Hide All Code
 FigureYa153ccgraph
 Author(s)
 : Chunhui Gao
 Reviewer(s)
 : Ying Ge, Junyi Shen
 Date
-: 2025-10-16
-Academic Citation
+: 2025-11-20
+0.1
+Academic
+Citation
 If you use this code in your work or research, we kindly request that
 you cite our publication:
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization
 Framework for Enhancing Biomedical Data Interpretation and Research
 Efficiency. iMetaMed.
 https://doi.org/10.1002/imm3.70005
-需求描述
-Requirement Description
+0.2
+需求描述 Requirement
+description
 用R从形式上复现原图。 Use R to reproduce the original figure in a
 formal manner.
-出自
-https://academic.oup.com/jnci/article-lookup/doi/10.1093/jnci/djy156
 From
 https://academic.oup.com/jnci/article-lookup/doi/10.1093/jnci/djy156
 Figure 1. Plot of all alterations detected by plasma next-generation
@@ -87,8 +91,9 @@ ggraph
 package and wrote a lengthy article:
 Understanding
 ggraph in One Article
-应用场景
-Application Scenarios
+0.3
+应用场景 Application
+Scenarios
 展示层级结构。例如： Displaying hierarchical structures. For
 example:
 基因跟突变的关系，像例文那样；
@@ -109,22 +114,59 @@ absolute values; it cannot display positive or negative
 differences;
 Not limited to two-level relationships; more levels are
 supported.
-环境设置
-Environment Setup
-source("install_dependencies.R")  # 确保依赖包已安装 # Ensure dependencies are installed
-source(file = "gather_graph_node.R") # from ccgragh, https://github.com/gaospecial/ccgraph
-source(file = "gather_graph_edge.R") # from ccgragh, https://github.com/gaospecial/ccgraph
-library(clusterProfiler) # 用于功能富集分析 # For functional enrichment analysis
-library(GOplot)          # 用于可视化基因本体分析结果 # For visualizing Gene Ontology analysis results
-library(tidyverse)       # 用于数据操作和可视化的集合包 # A collection of packages for data manipulation and visualization
-library(data.table)      # 用于高效的数据操作 # For efficient data manipulation
-library(ggraph)          # 用于基于图形的可视化 # For graph-based visualizations
-library(tidygraph)       # 用于处理图形数据 # For handling graph data
-
+0.4
+环境设置 Environment
+Setup
+source
+(
+"install_dependencies.R"
+)
+# 确保依赖包已安装 # Ensure dependencies are installed
+source
+(
+file =
+"gather_graph_node.R"
+)
+# from ccgragh, https://github.com/gaospecial/ccgraph
+source
+(
+file =
+"gather_graph_edge.R"
+)
+# from ccgragh, https://github.com/gaospecial/ccgraph
+library
+(clusterProfiler)
+# 用于功能富集分析 # For functional enrichment analysis
+library
+(GOplot)
+# 用于可视化基因本体分析结果 # For visualizing Gene Ontology analysis results
+library
+(tidyverse)
+# 用于数据操作和可视化的集合包 # A collection of packages for data manipulation and visualization
+library
+(data.table)
+# 用于高效的数据操作 # For efficient data manipulation
+library
+(ggraph)
+# 用于基于图形的可视化 # For graph-based visualizations
+library
+(tidygraph)
+# 用于处理图形数据 # For handling graph data
 # 设置环境变量
 # Set environment variables
-Sys.setenv(LANGUAGE = "en")  # 显示英文报错信息 # Display error messages in English
-options(stringsAsFactors = FALSE)  # 禁止字符型数据自动转换为因子型 # Prevent automatic conversion of character data to factors```
+Sys.setenv
+(
+LANGUAGE =
+"en"
+)
+# 显示英文报错信息 # Display error messages in English
+options
+(
+stringsAsFactors =
+FALSE
+)
+# 禁止字符型数据自动转换为因子型 # Prevent automatic conversion of character data to factors```
+0.5
 输入文件的获得
 Obtaining the input file
 如果你的数据已经整理成
@@ -138,39 +180,94 @@ Preprocessing.”
 先用clusterProfiler做KEGG的GSEA，然后用例图的形式展示结果。 First,
 use clusterProfiler to perform KEGG GSEA, then present the results using
 a case diagram.
-gsym.fc <- read.table("easy_input_rnk.txt", header = T)
-dim(gsym.fc)
-head(gsym.fc)
-
+gsym.fc
+<-
+read.table
+(
+"easy_input_rnk.txt"
+,
+header =
+T)
+dim
+(gsym.fc)
+head
+(gsym.fc)
 # 把gene symbol转换为ENTREZ ID
 # Convert gene symbols to ENTREZ IDs
 # 此处物种是人，其他物种的ID转换方法，请参考FigureYa52GOplot
 # The species here is human. For ID conversion methods for other species, please refer to FigureYa52GOplot
-gsym.id <- bitr(gsym.fc$SYMBOL, fromType = "SYMBOL", toType = "ENTREZID", OrgDb = "org.Hs.eg.db")
-
+gsym.id
+<-
+bitr
+(gsym.fc
+$
+SYMBOL,
+fromType =
+"SYMBOL"
+,
+toType =
+"ENTREZID"
+,
+OrgDb =
+"org.Hs.eg.db"
+)
 #让基因名、ENTREZID、foldchange对应起来
 # Align gene name, ENTREZ ID, and foldchange
-gsym.fc.id <- merge(gsym.fc, gsym.id, by="SYMBOL", all=F)
-
+gsym.fc.id
+<-
+merge
+(gsym.fc, gsym.id,
+by=
+"SYMBOL"
+,
+all=
+F)
 #按照foldchange排序
 # Sort by foldchange
-gsym.fc.id.sorted <- gsym.fc.id[order(gsym.fc.id$logFC, decreasing = T),]
-
+gsym.fc.id.sorted
+<-
+gsym.fc.id[
+order
+(gsym.fc.id
+$
+logFC,
+decreasing =
+T),]
 #获得ENTREZID、foldchange列表，做为GSEA的输入
 # Obtain the ENTREZ ID and foldchange list as input for GSEA
-id.fc <- gsym.fc.id.sorted$logFC
-names(id.fc) <- gsym.fc.id.sorted$ENTREZID
-
+id.fc
+<-
+gsym.fc.id.sorted
+$
+logFC
+names
+(id.fc)
+<-
+gsym.fc.id.sorted
+$
+ENTREZID
 #这一条语句就做完了KEGG的GSEA分析
 # This single statement completes the KEGG GSEA analysis
-kk <- gseKEGG(id.fc, organism = "hsa")
-dim(kk)
-
+kk
+<-
+gseKEGG
+(id.fc,
+organism =
+"hsa"
+)
+dim
+(kk)
 # 把ENTREZ ID转为gene symbol，便于查看通路里的基因
 # Convert the ENTREZ ID to a gene symbol to facilitate viewing genes within the pathway
-kk.gsym <- setReadable(kk, 'org.Hs.eg.db', #物种
-                      'ENTREZID')
-
+kk.gsym
+<-
+setReadable
+(kk,
+'org.Hs.eg.db'
+,
+#物种
+'ENTREZID'
+)
 # 可以用kk.gsym作为输入，用clusterProfiler画图
 # Use kk.gsym as input to plot with clusterProfiler
 # 用法看这里https://yulab-smu.github.io/clusterProfiler-book/chapter12.html
@@ -178,43 +275,115 @@ kk.gsym <- setReadable(kk, 'org.Hs.eg.db', #物种
 # gsym.fc.l <- gsym.fc$logFC
 # Names(gsym.fc.l) <- gsym.fc$SYMBOL
 # Cnetplot(sortkk, foldChange = gsym.fc.l, circular = TRUE)
-
 # 按照enrichment score从高到低排序，取前5（up）和后5（down）
 # Sort by enrichment score, taking the top 5 (up) and bottom 5 (down)
 # Sortkk <- kk.gsym[order(kk.gsym@result$enrichmentScore, decreasing = T),][c(1:5, (nrow(kk.gsym)-5):nrow(kk.gsym)),]
 # 这里提取感兴趣的3个通路，数量太多拥挤的话不好看基因名
 # Extract the three pathways of interest here. Too many gene names will make the gene names look cluttered.
-sortkk <- kk.gsym[kk.gsym@result$Description %like% "DNA" | 
-                    kk.gsym@result$Description %like% "cycle" | 
-                    kk.gsym@result$Description %like% "p53",]
-
+sortkk
+<-
+kk.gsym[kk.gsym
+@
+result
+$
+Description
+%like%
+"DNA"
+|
+kk.gsym
+@
+result
+$
+Description
+%like%
+"cycle"
+|
+kk.gsym
+@
+result
+$
+Description
+%like%
+"p53"
+,]
 # 把富集分析结果整理为GOplot所需的格式
 # Format the enrichment analysis results into the format required by GOplot
-go <- data.frame(Category = "KEGG",
-                 ID = sortkk$ID,
-                 Term = sortkk$Description, 
-                 Genes = gsub("/", ", ", sortkk$core_enrichment), 
-                 adj_pval = sortkk$p.adjust)
-
+go
+<-
+data.frame
+(
+Category =
+"KEGG"
+,
+ID =
+sortkk
+$
+ID,
+Term =
+sortkk
+$
+Description,
+Genes =
+gsub
+(
+"/"
+,
+", "
+, sortkk
+$
+core_enrichment),
+adj_pval =
+sortkk
+$
+p.adjust)
 # 基因变化倍数
 # Fold change of genes
-genelist <- data.frame(ID = gsym.fc.id$SYMBOL, logFC = gsym.fc.id$logFC)
-
+genelist
+<-
+data.frame
+(
+ID =
+gsym.fc.id
+$
+SYMBOL,
+logFC =
+gsym.fc.id
+$
+logFC)
 # 把富集分析和倍数整合在一起
 # Integrate the enrichment analysis and fold change
-circ <- circle_dat(go, genelist)
-head(circ)
+circ
+<-
+circle_dat
+(go, genelist)
+head
+(circ)
 # 可以用circ作为输入，用GOplot画图
 # Use circ as input to plot with GOplot
 # 用法看这里https://wencke.github.io/
 # See here for usage: https://wencke.github.io/
 # GOCircle(circ)
-
 # 保存到文件
 # Save to file
-write.csv(circ[,c(3,5,6)],"very_easy_input.csv", quote = F, row.names = F)
-输入文件预处理
-Input file preprocessing
+write.csv
+(circ[,
+c
+(
+3
+,
+5
+,
+6
+)],
+"very_easy_input.csv"
+,
+quote =
+F,
+row.names =
+F)
+0.6
+输入文件预处理 Input
+file preprocessing
 very_easy_input.csv，这里以上面的富集分析结果为例，展示通路和通路里的基因变化倍数FC。三列依次是通路-基因-倍数，可以自由替换成“应用场景”里其他需要展示的信息。
 very_easy_input.csv, using the above enrichment analysis results as an
 example, displays pathways and gene fold-change FC within them. The
@@ -224,11 +393,33 @@ gene_special.txt，要突出显示的基因。第一列是基因名，第二列�
 gene_special.txt, genes to be highlighted. The first column is the gene
 name, and the second column is the type (e.g., gene family
 information).
-df <- read.csv("very_easy_input.csv")
-head(df)
-geneSpecial <- read.table("gene_special.txt", header = T)
-geneCol <- geneSpecial$Type
-names(geneCol) <- geneSpecial$Gene
+df
+<-
+read.csv
+(
+"very_easy_input.csv"
+)
+head
+(df)
+geneSpecial
+<-
+read.table
+(
+"gene_special.txt"
+,
+header =
+T)
+geneCol
+<-
+geneSpecial
+$
+Type
+names
+(geneCol)
+<-
+geneSpecial
+$
+Gene
 geneCol
 图由两个部分组成，节点（node）和边（edge）。 A graph consists of two
 components: nodes and edges.
@@ -288,73 +479,314 @@ node
 , while edge attributes are prefixed with
 edge
 .
-nodes <- gather_graph_node(df, index = c("term", "genes"), value = "logFC", root="all")
-edges <- gather_graph_edge(df, index = c("term", "genes"), root = "all")
-nodes <- nodes %>% mutate_at(c("node.level","node.branch"),as.character)
-head(nodes, 10)
-head(edges, 10)
+nodes
+<-
+gather_graph_node
+(df,
+index =
+c
+(
+"term"
+,
+"genes"
+),
+value =
+"logFC"
+,
+root=
+"all"
+)
+edges
+<-
+gather_graph_edge
+(df,
+index =
+c
+(
+"term"
+,
+"genes"
+),
+root =
+"all"
+)
+nodes
+<-
+nodes
+%>%
+mutate_at
+(
+c
+(
+"node.level"
+,
+"node.branch"
+),as.character)
+head
+(nodes,
+10
+)
+head
+(edges,
+10
+)
 # 把要突出显示的基因类型信息加到nodes里
 # Add the gene type information to be highlighted to nodes
-nodes$color <- "normal"
-nodes[nodes$node.short_name %in% geneSpecial$Gene,]$color <- geneCol[nodes[nodes$node.short_name %in% geneSpecial$Gene,]$node.short_name]
-nodes[nodes$node.short_name %in% geneSpecial$Gene,]
-nodes$color <- factor(nodes$color, levels = unique(nodes$color))
-
+nodes
+$
+color
+<-
+"normal"
+nodes[nodes
+$
+node.short_name
+%in%
+geneSpecial
+$
+Gene,]
+$
+color
+<-
+geneCol[nodes[nodes
+$
+node.short_name
+%in%
+geneSpecial
+$
+Gene,]
+$
+node.short_name]
+nodes[nodes
+$
+node.short_name
+%in%
+geneSpecial
+$
+Gene,]
+nodes
+$
+color
+<-
+factor
+(nodes
+$
+color,
+levels =
+unique
+(nodes
+$
+color))
 # 有了节点和边的数据，使用 `tbl_graph()` 便可以得到一个图。
 # With the node and edge data, use `tbl_graph()` to create a graph.
-graph <- tbl_graph(nodes, edges)
-开始画图
-Start drawing the graph
-自定义配色，直接出图
-Customize the color scheme and plot directly
+graph
+<-
+tbl_graph
+(nodes, edges)
+0.7
+开始画图 Start
+drawing the graph
+0.7.1
+自定义配色，直接出图 Customize the color scheme and plot directly
 # 用 `ggraph` 出图 # Plot the graph using `ggraph`
-gc <- ggraph(graph, layout = 'dendrogram', circular = TRUE) + 
-  # 不画中心点，使用 filter 参数去掉 root（前面设置为"all"）节点及与其相连的边
-  # Do not show the center node. Use the filter parameter to remove the root node (previously set to "all") and its connected edges.
-  geom_edge_diagonal(aes(color = node1.node.branch,
-                         filter=node1.node.level!="all"), 
-                     alpha = 1/3,edge_width=1) + 
-  geom_node_point(aes(size = node.size, 
-                      color = node.branch,
-                      filter=node.level!="all"), alpha = 1/3) + 
-  scale_size(range = c(0.5,80)) + #做均一化处理，让点的大小介于range之间 # Normalize the points so that the size is between the range.
-  theme(legend.position = "none") + #不画图例 # Do not draw the legend.
-  
-  # 点和边的配色
-# Coloring of points and edges.
-  # 如果要改变边的配色，需要同时给边和点变色，否则会对应不上
-# If you want to change the edge color, you need to change both the edge and the points at the same time; otherwise, the colors will not match.
-  scale_edge_color_brewer(palette = "Set1") + #用?scale_color_brewer查看更多配色方案 # Use ?scale_color_brewer to view more color schemes
-  scale_color_brewer(palette = "Set1") +
-  
-  # 添加周围注释文字，此处是基因名gene
-# Add surrounding annotation text, here is the gene name
-  geom_node_text(
-    aes(
-      x = 1.048 * x, #控制字跟点的距离 # Control distance between the word and the dot
-      y = 1.048 * y, #控制字跟点的距离 # Control distance between the word and the dot
-      label = node.short_name,
-      angle = -((-node_angle(x, y) + 90) %% 180) + 90,
-      filter = leaf,
-      color = node.branch
-      ),
-    size = 6, hjust = 'outward') +
-  
-  # 添加内环文字，此处是通路名term
-# Add inner ring text, here is the pathway name
-  geom_node_text(
-    aes(label=node.short_name,
-        filter = !leaf & (node.level != "all"),
-        color = node.branch),
-    fontface="bold",
-    size=6,
-    family="sans"
-  ) + 
-  theme(panel.background = element_rect(fill = NA)) +
-  coord_cartesian(xlim=c(-1.3,1.3),ylim = c(-1.3,1.3)) #扩大坐标系 # Expand the coordinate system
-
 gc
-ggsave("ccgraph_color.pdf", width = 14, height = 14)
+<-
+ggraph
+(graph,
+layout =
+'dendrogram'
+,
+circular =
+TRUE
+)
++
+# 不画中心点，使用 filter 参数去掉 root（前面设置为"all"）节点及与其相连的边
+# Do not show the center node. Use the filter parameter to remove the root node (previously set to "all") and its connected edges.
+geom_edge_diagonal
+(
+aes
+(
+color =
+node1.node.branch,
+filter=
+node1.node.level
+!=
+"all"
+),
+alpha =
+1
+/
+3
+,
+edge_width=
+1
+)
++
+geom_node_point
+(
+aes
+(
+size =
+node.size,
+color =
+node.branch,
+filter=
+node.level
+!=
+"all"
+),
+alpha =
+1
+/
+3
+)
++
+scale_size
+(
+range =
+c
+(
+0.5
+,
+80
+))
++
+#做均一化处理，让点的大小介于range之间 # Normalize the points so that the size is between the range.
+theme
+(
+legend.position =
+"none"
+)
++
+#不画图例 # Do not draw the legend.
+# 点和边的配色
+# Coloring of points and edges.
+# 如果要改变边的配色，需要同时给边和点变色，否则会对应不上
+# If you want to change the edge color, you need to change both the edge and the points at the same time; otherwise, the colors will not match.
+scale_edge_color_brewer
+(
+palette =
+"Set1"
+)
++
+#用?scale_color_brewer查看更多配色方案 # Use ?scale_color_brewer to view more color schemes
+scale_color_brewer
+(
+palette =
+"Set1"
+)
++
+# 添加周围注释文字，此处是基因名gene
+# Add surrounding annotation text, here is the gene name
+geom_node_text
+(
+aes
+(
+x =
+1.048
+*
+x,
+#控制字跟点的距离 # Control distance between the word and the dot
+y =
+1.048
+*
+y,
+#控制字跟点的距离 # Control distance between the word and the dot
+label =
+node.short_name,
+angle =
+-
+((
+-
+node_angle
+(x, y)
++
+90
+)
+%%
+180
+)
++
+90
+,
+filter =
+leaf,
+color =
+node.branch
+),
+size =
+6
+,
+hjust =
+'outward'
+)
++
+# 添加内环文字，此处是通路名term
+# Add inner ring text, here is the pathway name
+geom_node_text
+(
+aes
+(
+label=
+node.short_name,
+filter =
+!
+leaf
+&
+(node.level
+!=
+"all"
+),
+color =
+node.branch),
+fontface=
+"bold"
+,
+size=
+6
+,
+family=
+"sans"
+)
++
+theme
+(
+panel.background =
+element_rect
+(
+fill =
+NA
+))
++
+coord_cartesian
+(
+xlim=
+c
+(
+-
+1.3
+,
+1.3
+),
+ylim =
+c
+(
+-
+1.3
+,
+1.3
+))
+#扩大坐标系 # Expand the coordinate system
+gc
+ggsave
+(
+"ccgraph_color.pdf"
+,
+width =
+14
+,
+height =
+14
+)
 在上面的图形中，线条的颜色由
 geom_edge_diagonal(aes(color = node1.node.branch))
 指定。
@@ -388,59 +820,209 @@ color
 in
 geom_edge_diagonal()
 .
-按例文配色，然后后期加背景色
-Follow the example color scheme, then add a background color
-later
+0.7.2
+按例文配色，然后后期加背景色 Follow the example color scheme, then add a
+background color later
 保留中心点和连向中心点的线 ｜ keep the center node and the links to
 it.
-gc1 <- ggraph(graph, layout = 'dendrogram', circular = TRUE) + 
-  #画连线 # Draw the lines
-  geom_edge_diagonal(aes(color = node2.color), 
-                     alpha = 0.5, #透明度 # Transparency
-                     edge_width=2.5) + #连线的粗细 # Line thickness
-  scale_edge_color_manual(values = c("#61C3ED","red","purple","darkgreen")) + #自定义颜色 # Custom color
-
-  #画点 # Draw the points
-  geom_node_point(aes(size = node.size), 
-# Alpha = 1/3,
-                  color = "#61C3ED") + #统一为淡蓝色 # Unify the color to light blue
-  scale_size(range = c(0.5,80)) + #做均一化处理，让点的大小介于range之间 # Normalize the points so that the size is between the range
-  theme(legend.position = "none") + #不画图例 # Do not draw the legend
-  
-  # 添加周围注释文字，此处是基因名gene # Add surrounding annotation text, here is the gene name
-  geom_node_text(
-    aes(
-      x = 1.05 * x, #控制字跟点的距离 # Control the distance between the word and the point
-      y = 1.05 * y, #控制字跟点的距离 # Control the distance between the word and the point
-      label = node.short_name,
-      angle = -((-node_angle(x, y) + 90) %% 180) + 90,
-      filter = leaf
-      ),
-    color="black", #统一为黑色字 # Uniformly use black text
-    size = 6, hjust = 'outward') +
-  
-  # 添加内环文字，此处是通路名term # Add inner ring text, here is the pathway name
-  geom_node_text(
-    aes(label=node.short_name,
-        filter = !leaf & (node.level != "all")
-        ),
-    color="black", #统一为黑色字 # Uniformly use black text
-    fontface="bold",
-    size=6,
-    family="sans"
-  ) + 
-  theme(panel.background = element_rect(fill = NA)) + #背景透明色 # Transparent background color
-  coord_cartesian(xlim=c(-1.3,1.3),ylim = c(-1.3,1.3)) #扩大坐标系 # Expand the coordinate system
-
 gc1
+<-
+ggraph
+(graph,
+layout =
+'dendrogram'
+,
+circular =
+TRUE
+)
++
+#画连线 # Draw the lines
+geom_edge_diagonal
+(
+aes
+(
+color =
+node2.color),
+alpha =
+0.5
+,
+#透明度 # Transparency
+edge_width=
+2.5
+)
++
+#连线的粗细 # Line thickness
+scale_edge_color_manual
+(
+values =
+c
+(
+"#61C3ED"
+,
+"red"
+,
+"purple"
+,
+"darkgreen"
+))
++
+#自定义颜色 # Custom color
+#画点 # Draw the points
+geom_node_point
+(
+aes
+(
+size =
+node.size),
+# Alpha = 1/3,
+color =
+"#61C3ED"
+)
++
+#统一为淡蓝色 # Unify the color to light blue
+scale_size
+(
+range =
+c
+(
+0.5
+,
+80
+))
++
+#做均一化处理，让点的大小介于range之间 # Normalize the points so that the size is between the range
+theme
+(
+legend.position =
+"none"
+)
++
+#不画图例 # Do not draw the legend
+# 添加周围注释文字，此处是基因名gene # Add surrounding annotation text, here is the gene name
+geom_node_text
+(
+aes
+(
+x =
+1.05
+*
+x,
+#控制字跟点的距离 # Control the distance between the word and the point
+y =
+1.05
+*
+y,
+#控制字跟点的距离 # Control the distance between the word and the point
+label =
+node.short_name,
+angle =
+-
+((
+-
+node_angle
+(x, y)
++
+90
+)
+%%
+180
+)
++
+90
+,
+filter =
+leaf
+),
+color=
+"black"
+,
+#统一为黑色字 # Uniformly use black text
+size =
+6
+,
+hjust =
+'outward'
+)
++
+# 添加内环文字，此处是通路名term # Add inner ring text, here is the pathway name
+geom_node_text
+(
+aes
+(
+label=
+node.short_name,
+filter =
+!
+leaf
+&
+(node.level
+!=
+"all"
+)
+),
+color=
+"black"
+,
+#统一为黑色字 # Uniformly use black text
+fontface=
+"bold"
+,
+size=
+6
+,
+family=
+"sans"
+)
++
+theme
+(
+panel.background =
+element_rect
+(
+fill =
+NA
+))
++
+#背景透明色 # Transparent background color
+coord_cartesian
+(
+xlim=
+c
+(
+-
+1.3
+,
+1.3
+),
+ylim =
+c
+(
+-
+1.3
+,
+1.3
+))
+#扩大坐标系 # Expand the coordinate system
+gc1
+0.8
 后期处理
 Post-processing
 保存到pdf文件，是矢量图，可以用Illustrator等软件编辑图形、文字和背景
 Save to a PDF file, which is a vector image. You can edit the graphics,
 text, and background using software such as Illustrator.
-ggsave("ccgraph.pdf",width = 14,height = 14)
-多层嵌套
-Multi-layer nesting
+ggsave
+(
+"ccgraph.pdf"
+,
+width =
+14
+,
+height =
+14
+)
+0.9
+多层嵌套 Multi-layer
+nesting
 这套代码不仅可以画两层的图，理论上支持更多层（要不然怎么叫“圆环套圆环”呢？）。
 This code can not only draw two layers of graphs, but theoretically
 supports more layers (otherwise, how can we say “rings within
@@ -449,67 +1031,333 @@ circles”?).
 OTU 表）。 Below is an example using a common microbiome dataset (a
 randomly generated OTU table).
 #随机生成一套数据 # Generate a random data set
-n <- 1000
-microbiome <- data.frame(
-  otu = paste("OTU",1:n,sep="_"),
-  phylum = sample(paste("phylum",1:5,sep="_"),n,replace = T),
-  class = sample(paste("class",6:30,sep="_"),n,replace=T),
-  order = sample(paste("order",31:80,sep="_"),n,replace = T),
-  value = runif(n,min=1,max=1000)
+n
+<-
+1000
+microbiome
+<-
+data.frame
+(
+otu =
+paste
+(
+"OTU"
+,
+1
+:
+n,
+sep=
+"_"
+),
+phylum =
+sample
+(
+paste
+(
+"phylum"
+,
+1
+:
+5
+,
+sep=
+"_"
+),n,
+replace =
+T),
+class =
+sample
+(
+paste
+(
+"class"
+,
+6
+:
+30
+,
+sep=
+"_"
+),n,
+replace=
+T),
+order =
+sample
+(
+paste
+(
+"order"
+,
+31
+:
+80
+,
+sep=
+"_"
+),n,
+replace =
+T),
+value =
+runif
+(n,
+min=
+1
+,
+max=
+1000
 )
-head(microbiome)
-
+)
+head
+(microbiome)
 #保存到文件，便于小白套用格式 # Save to a file for easy formatting
-write.csv(microbiome, "microbiome.csv", quote = F, row.names = F)
+write.csv
+(microbiome,
+"microbiome.csv"
+,
+quote =
+F,
+row.names =
+F)
 加载输入数据 Load input data
 microbiome.csv，想画几层就给几+1列。这里前4列对应4层，最后一列是最底层节点对应的数值。
 microbiome.csv. Add as many layers as you want + 1 column. Here, the
 first four columns correspond to the four layers, and the last column is
 the value corresponding to the bottom-level node.
-microbiome <- read.csv("microbiome.csv", header = T)
-index_micro <- c("phylum","class","order") #除了最低层以外的列名 #Column names except the lowest level
-nodes_micro <- gather_graph_node(microbiome,index=index_micro,
-                                  root = "bacteria") #root名字自己随便取 #The root name can be chosen by yourself
-edges_micro <- gather_graph_edge(microbiome,index=index_micro,root = "bacteria")
+microbiome
+<-
+read.csv
+(
+"microbiome.csv"
+,
+header =
+T)
+index_micro
+<-
+c
+(
+"phylum"
+,
+"class"
+,
+"order"
+)
+#除了最低层以外的列名 #Column names except the lowest level
+nodes_micro
+<-
+gather_graph_node
+(microbiome,
+index=
+index_micro,
+root =
+"bacteria"
+)
+#root名字自己随便取 #The root name can be chosen by yourself
+edges_micro
+<-
+gather_graph_edge
+(microbiome,
+index=
+index_micro,
+root =
+"bacteria"
+)
 画图 Draw a picture
-graph_micro <- tbl_graph(nodes_micro,edges_micro)
-ggraph(graph_micro,layout = "dendrogram",circular=T) +
-  geom_edge_diagonal(aes(color = node1.node.branch,filter=node1.node.level!="bacteria", alpha = node1.node.level),edge_width=1) + 
-  geom_node_point(aes(size = node.size, color = node.branch,filter=node.level!="bacteria"), alpha = 1/3) + 
-  scale_size(range = c(0.5,80)) + #做均一化处理，让点的大小介于range之间 # Normalize the points so that they are within the range
-  theme(legend.position = "none")+ #不画图例 # Do not draw a legend
-  
-  scale_edge_color_brewer(palette = "Set1") + #用?scale_color_brewer查看更多配色方案 # Use ?scale_color_brewer to view more color schemes
-  scale_color_brewer(palette = "Set1") +
-
-  # 添加周围注释文字，此处是基因名gene
+graph_micro
+<-
+tbl_graph
+(nodes_micro,edges_micro)
+ggraph
+(graph_micro,
+layout =
+"dendrogram"
+,
+circular=
+T)
++
+geom_edge_diagonal
+(
+aes
+(
+color =
+node1.node.branch,
+filter=
+node1.node.level
+!=
+"bacteria"
+,
+alpha =
+node1.node.level),
+edge_width=
+1
+)
++
+geom_node_point
+(
+aes
+(
+size =
+node.size,
+color =
+node.branch,
+filter=
+node.level
+!=
+"bacteria"
+),
+alpha =
+1
+/
+3
+)
++
+scale_size
+(
+range =
+c
+(
+0.5
+,
+80
+))
++
+#做均一化处理，让点的大小介于range之间 # Normalize the points so that they are within the range
+theme
+(
+legend.position =
+"none"
+)
++
+#不画图例 # Do not draw a legend
+scale_edge_color_brewer
+(
+palette =
+"Set1"
+)
++
+#用?scale_color_brewer查看更多配色方案 # Use ?scale_color_brewer to view more color schemes
+scale_color_brewer
+(
+palette =
+"Set1"
+)
++
+# 添加周围注释文字，此处是基因名gene
 # Add surrounding annotation text, here is the gene name
-  geom_node_text(
-    aes(
-      x = 1.058 * x, #控制字跟点的距离 # Distance between the control word and the point
-      y = 1.058 * y, #控制字跟点的距离 # Distance between the control word and the point
-      label = node.short_name,
-      angle = -((-node_angle(x, y) + 90) %% 180) + 90,
-      filter = leaf,
-      color = node.branch
-      ),
-    size = 1, hjust = 'outward') +
-  
-  # 添加内环文字，此处是通路名term
+geom_node_text
+(
+aes
+(
+x =
+1.058
+*
+x,
+#控制字跟点的距离 # Distance between the control word and the point
+y =
+1.058
+*
+y,
+#控制字跟点的距离 # Distance between the control word and the point
+label =
+node.short_name,
+angle =
+-
+((
+-
+node_angle
+(x, y)
++
+90
+)
+%%
+180
+)
++
+90
+,
+filter =
+leaf,
+color =
+node.branch
+),
+size =
+1
+,
+hjust =
+'outward'
+)
++
+# 添加内环文字，此处是通路名term
 # Add inner ring text, here is the pathway name
-  geom_node_text(
-    aes(label=node.short_name,
-        filter = !leaf & (node.level == "phylum"),
-        color = node.branch),
-    fontface="bold",
-    size=6,
-    family="sans"
-  ) + 
-  theme(panel.background = element_rect(fill = NA)) +
-  coord_cartesian(xlim=c(-1.3,1.3),ylim = c(-1.3,1.3)) #扩大坐标系 # Expand the coordinate system
-ggsave("ccgraph_microbiome.pdf", width = 14, height = 14)
+geom_node_text
+(
+aes
+(
+label=
+node.short_name,
+filter =
+!
+leaf
+&
+(node.level
+==
+"phylum"
+),
+color =
+node.branch),
+fontface=
+"bold"
+,
+size=
+6
+,
+family=
+"sans"
+)
++
+theme
+(
+panel.background =
+element_rect
+(
+fill =
+NA
+))
++
+coord_cartesian
+(
+xlim=
+c
+(
+-
+1.3
+,
+1.3
+),
+ylim =
+c
+(
+-
+1.3
+,
+1.3
+))
+#扩大坐标系 # Expand the coordinate system
+ggsave
+(
+"ccgraph_microbiome.pdf"
+,
+width =
+14
+,
+height =
+14
+)
+0.10
 参考资料
 References
 https://mp.weixin.qq.com/s/JNIncz3W-59yjGk2ibJWUw
-Session Information
-sessionInfo()
+0.11
+Session
+Information
+sessionInfo
+()
