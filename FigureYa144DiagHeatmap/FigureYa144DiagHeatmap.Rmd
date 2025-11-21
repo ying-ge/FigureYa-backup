@@ -3,7 +3,15 @@ title: "FigureYa144DiagHeatmap"
 params:
   author: "Xiaofan Lu"
   reviewer: "Ying Ge, Junyi Shen"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
@@ -11,7 +19,7 @@ output: html_document
 **Date**: `r Sys.Date()`  
 
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -21,8 +29,7 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## 需求描述
-## Requirement description
+## 需求描述 Requirement description
 
 绘制元素对角化热图。
 Draw the element diagonalization heat map.
@@ -64,8 +71,7 @@ Sys.setenv(LANGUAGE = "en") #显示英文报错信息  #Display English error me
 options(stringsAsFactors = FALSE) #禁止chr转成factor #Disable chr conversion to factor
 ```
 
-## 输入文件
-## Input file
+## 输入文件 Input file
 
 
 easy_input_amp.txt和easy_input_del.txt，两个矩阵。分别对应热图中的左上角（amplification）和右下角（deletion）。例文是突变数据，每行一个基因，每列一种癌症类型，两个文件一一对应。还可以是基因表达量等数值。数据来源：例文的Additional file 1<https://static-content.springer.com/esm/art%3A10.1186%2Fs12943-019-1066-3/MediaObjects/12943_2019_1066_MOESM1_ESM.xlsx>
@@ -146,8 +152,7 @@ head(heatmat)
 tail(heatmat)
 ```
 
-## 开始画图
-## Start drawing
+## 开始画图 Start drawing
 
 用base plot一笔一笔画图
 Draw one stroke at a time using base plot

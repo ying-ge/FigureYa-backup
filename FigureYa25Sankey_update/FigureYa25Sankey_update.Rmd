@@ -3,7 +3,15 @@ title: "FigureYa25Sankey_update"
 params:
   author: "Ying Ge, Xiaofan Lu"
   reviewer: "Yijing Chen"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
@@ -19,8 +27,7 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## 需求描述
-## Requirement description
+## 需求描述 Requirement description
 
 用R代码画出paper里的图。
 
@@ -28,12 +35,9 @@ Use R code to draw the plot in paper.
 
 ![](example.png)
 
-出自<https://www.nature.com/articles/nature22973>
+From <https://www.nature.com/articles/nature22973>
 
-From<https://www.nature.com/articles/nature22973>
-
-## 应用场景
-## Application scenario
+## 应用场景 Application scenario
 
 一套数据集可能有多重属性，每层属性之间有交叉，就可以用这种图来展示。另外，以第一变量为参照，往后的多层变量均参考与第一变量的关系，从而展示第一变量的流向。
 
@@ -59,21 +63,19 @@ Original text: Graphical summary of the most frequently mutated genes (≥10 aff
 
 - Scenario 3: The population is grouped by gender, age, family history and other characteristics, to show the pattern of cancer in different groups.
 
-## 环境设置
-## Environment setting
+## 环境设置 Environment setting
 
 ```{r}
 source("install_dependencies.R")
 
-library(ggalluvial)
-library(dplyr)
+library(ggalluvial) # 画桑基图 draw sankey
+library(dplyr) # 数据处理 data processing
 
 Sys.setenv(LANGUAGE = "en") #显示英文报错信息 display English error messages
 options(stringsAsFactors = FALSE) #禁止chr转成factor prohibit the conversion of chr to factor
 ```
 
-## 输入数据
-## Input data
+## 输入数据 Input data
 
 easy_input.txt，至少要有两列，想画出几列就提供几列数据。此处第一列是基因，第二列是突变，第三列是癌症亚型；想画更多层次关系就继续向后添加列。
 
@@ -92,8 +94,7 @@ head(df)
 mycol <- rep(c("#223D6C","#D20A13","#FFD121","#088247","#11AA4D","#58CDD9","#7A142C","#5D90BA","#029149","#431A3D","#91612D","#6E568C","#E0367A","#D8D155","#64495D","#7CC767"),2)
 ```
 
-## 开始画图
-## Start drawing
+## 开始画图 Start drawing
 
 两种方式展示前后关系：
 
@@ -105,8 +106,7 @@ Two ways to show the before and after relationships:
 - The latter layer inherits the relationship of the former layer;
 - Multiple layers behind inherit the relationship of the first layer.
 
-### 后一层继承前一层的关系
-### The latter layer inherits the relationship of the former layer
+### 后一层继承前一层的关系 The latter layer inherits the relationship of the former layer
 
 ```{r,fig.width=6,fig.height=6}
 #格式转换
@@ -187,8 +187,7 @@ ggplot(UCB_lodes,
 ggsave("sankey_stratum_2.pdf")
 ```
 
-### 后面多层继承第一层的关系（作者：Xiaofan Lu）
-### Multiple layers behind inherit the relationship of the first layer
+### 后面多层继承第一层的关系（作者：Xiaofan Lu） Multiple layers behind inherit the relationship of the first layer
 
 用到参数：stat = "alluvium"，即传说中的“冲击图”
 

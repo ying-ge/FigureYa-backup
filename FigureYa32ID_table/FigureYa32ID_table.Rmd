@@ -2,7 +2,15 @@
 title: "FigureYa32 ID_table"
 params:
   author: "Shipeng Guo; Ying Ge, Yijing Chen"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
@@ -11,7 +19,7 @@ output: html_document
 
 ![](guozixueshengxin.jpeg)
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -21,15 +29,13 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## 需求描述
-## Requirement description
+## 需求描述 Requirement description
 
 用基因ID提取基因表达量，输出csv文件，作为下一步分析的输入文件。
 
 Gene ID is used to extract the gene expression and output a csv file to be used as an input file for the next analysis.
 
-## 应用场景
-## Application scenario
+## 应用场景 Application scenario
 
 场景一：GO富集分析获得了GO term里的多个基因，需要获得这些基因的表达矩阵。
 
@@ -59,8 +65,7 @@ In the next step, visualize with these codes below as per the actual need:
 
 - Batch plot expression profiles with `FigureYa16 fitting`.
 
-## 输入文件
-## Input file
+## 输入文件 Input file
 
 需要两种文件：
 

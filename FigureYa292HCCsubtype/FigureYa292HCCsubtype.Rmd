@@ -3,14 +3,22 @@ title: "FigureYa292HCCsubtype"
 params:
   author: "Xiaofan Lu; Yasi Zhang"  
   reviewer: "Ying Ge"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
 **Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()` 
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -66,15 +74,13 @@ Source: <https://linkinghub.elsevier.com/retrieve/pii/S0092867417306396>
 
 Figure 2. Liver Cancers Show Distinct Gene Hypermethylation Patterns. (A) Unsupervised clustering analysis of gene hypermethylation in HCC tumor relative to normal tissue reveals four distinct subgroups. Roughly 15,000 CpG sites showing significant hypermethylation in 196 HCC patients were analyzed and are shown in heatmap format with normal tissues and tumors organized in columns according to cluster designation. Intensity of methylation for each CpG site is indicated by row. Above the heatmap the four distinct hypermethylation clusters are shown, and below are bars indicating the distribution of clinical and molecular attributes of the individual tumors by cluster. To the right, p values indicate significant non-random distributions for each attribute.
 
-# 应用场景
-# Application Scenario
+# 应用场景 Application Scenario
 
 根据表达谱对HCC样本进行聚类，并和其他已有的分类器做比较。
 
 Clustering of HCC samples based on expression profiles and comparison with other existing classifiers.
 
-# 环境设置
-# Environment Setup
+# 环境设置 Environment Setup
 
 ```{r}
 source("install_dependencies.R")
@@ -424,7 +430,7 @@ write.table(outTabMS, file = "independent test between ms and other classificati
 
 The output PDF files are vector graphics that can be opened and edited with vector graphic tools like Illustrator to add p-values. If you prefer to add p-values programmatically, please refer to FigureYa165heatmapPvalue or FigureYa280TMEofSTS.
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

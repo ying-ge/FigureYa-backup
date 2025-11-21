@@ -1,16 +1,24 @@
 ---
 title: "FigureYa263panDiff"
 params:
-  author: "Xiaofan Lu; Yasi Zhang"  
-  reviewer: "Ying Ge"
-output: html_document
+  author: "Xiaofan Lu"  
+  reviewer: "Ying Ge, Yasi Zhang"
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
 **Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()`  
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -25,8 +33,7 @@ Zuguang Gu. Complex Heatmap Visualization, iMeta, 2022.
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# 需求描述
-# Demand description
+## 需求描述 Requirement Description
 
 想实现这篇铁死亡泛癌的其他图片，主要是Figure 1。感觉这个套路只要换一个通路就可以测试，我看Xiaofan Lu写了这篇文章的Figure 2A（铁死亡基因在泛癌肿瘤与正常的差异箱线图，FigureYa208FPI），Figure 3B（铁死亡与免疫通路的相关性，FigureYa253panGSEA），可否请Xiaofan Lu详细写一下文章Figure 1的相关代码？
 
@@ -54,40 +61,32 @@ This time we're crowdsourcing Figure 1B: differential expression of ferroptosis 
 
 ![](example.png)
 
-出自：<https://linkinghub.elsevier.com/retrieve/pii/S2589004220304892>
-
-图1. 铁死亡调控基因(FRGs)的异常表达。
-其中正调控因子和负调控因子分别用红色和蓝色标记。
-(B) 柱状图(上图)显示显著差异表达基因的数量，热图展示各癌症中FRGs的倍数变化和FDR值。显著上调和下调的基因分别用红色和绿色标记。
-
-Source: <https://linkinghub.elsevier.com/retrieve/pii/S2589004220304892>
+From <https://linkinghub.elsevier.com/retrieve/pii/S2589004220304892>
 
 Figure 1. The Dysregulation of Ferroptosis Regulator Genes (FRGs).
 For which the positive and negative regulators are marked in red and blue, respectively.
 (B) Histogram (upper panel) shows the number of significantly differentially expressed genes, and the heatmap shows the fold change and FDR of FRGs in each cancer. Significantly upregulated and downregulated genes are marked in red and green, respectively.
 
-# 应用场景
-# Application scenarios
+## 应用场景 Application Scenario
 
 分析基因在肿瘤与正常组织中的差异表达情况并绘制拼接的点图与柱状图。
 
 Analyze differential gene expression between tumor and normal tissues and generate composite dot plots with bar charts.
 
-# 环境设置
-# Environment Setup
+## 环境设置 Environment Setting
 
 ```{r}
 source("install_dependencies.R")
 
-library(ggplot2)
-library(data.table)
-library(randomcoloR)
-library(ggpubr)
-library(GSVA)
-library(clusterProfiler)
-library(impute)
-library(ComplexHeatmap)
-source("twoclasslimma.R")
+library(ggplot2) #数据可视化 data visualization
+library(data.table) #数据处理 data processing
+library(randomcoloR) #颜色处理 color processing
+library(ggpubr) #颜色处理 color processing
+library(GSVA) #基因集变异分析 gene set variation analysis
+library(clusterProfiler) #基因功能富集分析 gene enrichment analysis
+library(impute) #数据缺失值插补 data missing value imputation
+library(ComplexHeatmap) #复杂热图绘制 complex heatmap visualization
+source("twoclasslimma.R") #差异表达分析 differential expression analysis
 
 # 显示英文报错信息
 # Show English error messages
@@ -98,9 +97,7 @@ Sys.setenv(LANGUAGE = "en")
 options(stringsAsFactors = FALSE) 
 ```
 
-# 输入文件
-# Input Files
-
+## 输入文件 Input Files
 跟FigureYa253panGSEA使用的是同一套数据，已经下载的小伙伴就不用重复下载了。
 
 merged_sample_quality_annotations.tsv，下载自<https://gdc.cancer.gov/about-data/publications/pancanatlas>，下载地址<http://api.gdc.cancer.gov/data/1a7d7be8-675d-4e60-a105-19d4121bdebf>
@@ -179,8 +176,7 @@ colnames(expr_sub) <- substr(colnames(expr_sub),1,15)
 expr_sub <- expr_sub[,!duplicated(colnames(expr_sub))]
 ```
 
-# 差异表达分析
-# Differential Expression Analysis
+## 差异表达分析 Differential Expression Analysis
 
 ```{r}
 # 初始化结果存储对象
@@ -289,8 +285,7 @@ for (i in tumors) {
 ndegs$Group <- factor(ndegs$Group, levels = c("UP","DOWN"))
 ```
 
-# 开始画图
-# Plotting
+## 开始画图 Start Drawing
 
 ```{r fig.width=8, fig.height=8}
 # 产生上部注释
@@ -339,7 +334,8 @@ ggsave("Figure 1B differential expression of interested genes in pancancer.pdf",
 # Clean up memory
 rm(expr); gc()
 ```
-# Session Info
+
+## Session Info
 
 ```{r}
 sessionInfo()

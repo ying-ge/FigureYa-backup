@@ -2,14 +2,22 @@
 title: "FigureYa60GSEA_clusterProfiler"
 params:
   author: "Ying Ge, Di Wang; Yijing Chen"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
 **Date**: `r Sys.Date()`  
 
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -18,8 +26,7 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## 需求描述
-## Requirement description
+## 需求描述 Requirement description
 
 clusterProfiler的GSEA结果作为输入，画出像paper里这样美的GSEA结果图。
 
@@ -31,8 +38,7 @@ Use the GSEA results from clusterProfiler as input to draw a GSEA result plot as
 
 from<https://www.nature.com/articles/s41467-018-06944-1>
 
-## 应用场景
-## Application scenario
+## 应用场景 Application scenario
 
 可用于在一张图上对比多个通路（上面的例图），以及同一通路多组间对比（下图）。
 
@@ -52,8 +58,7 @@ Suitable for: those who have done enrichment analysis with clusterProfiler and w
 
 If you want to use Java version of GSEA to do enrichment analysis and DIY result plot by yourself, please use FigureYa13GSEA_Java.
 
-## 环境设置
-## Environment setting
+## 环境设置 Environment setting
 
 ```{r}
 source("install_dependencies.R")
@@ -410,7 +415,7 @@ plot_grid(p.res, p2, ncol = 1, align="v", rel_heights = c(1.5, .2))
 ggsave("GSEA_multi_groups.pdf",width=5,height=3)
 ```
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

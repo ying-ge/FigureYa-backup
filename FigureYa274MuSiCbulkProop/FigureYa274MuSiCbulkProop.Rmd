@@ -3,14 +3,22 @@ title: "FigureYa274MuSiCbulkProop"
 params:
   author: "Xiao Gu; Yasi Zhang"  
   reviewer: "Ying Ge"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
 **Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()`  
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -71,8 +79,7 @@ We will cover two scenarios to help you successfully complete the analysis:
 - Option 1: Predicting cell type proportions in bulk data **without pre-grouping**.
 - Option 2: Predicting cell type proportions in bulk data **based on pre-grouped cell types**.
 
-# 环境设置
-# Environment Setup
+# 环境设置 Environment Setup
 
 ```{r}
 source("install_dependencies.R")
@@ -572,7 +579,7 @@ pheatmap(plot.df2,
 
 Prediction results: PT (Proximal Tubule) cells account for the highest proportion in this bulk data.
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

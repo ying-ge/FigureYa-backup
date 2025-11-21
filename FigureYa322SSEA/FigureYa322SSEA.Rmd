@@ -3,14 +3,22 @@ title: "FigureYa322SSEA"
 params:
   author: "Xiaofan Lu; Yasi Zhang"  
   reviewer: "Ying Ge"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
 **Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()` 
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -51,8 +59,7 @@ Suitable for simultaneously displaying multiple features across multiple dataset
 
 A single dataset with multiple features or multiple datasets with a single feature, you can refer to FigureYa8radar  to create petal-style radar charts.
 
-# 环境设置
-# Environment Setup
+# 环境设置 Environment Setup
 
 ```{r}
 source("install_dependencies.R")
@@ -238,7 +245,7 @@ dev.copy2pdf(file = file.path("SSEA.radar.pdf"),
              width = 8, height = 8)
 ```
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

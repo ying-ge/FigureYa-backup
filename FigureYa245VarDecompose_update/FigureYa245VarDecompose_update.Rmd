@@ -3,7 +3,15 @@ title: "FigureYa245VarDecompose_update"
 params:
   author: "Jianing Gao"
   reviewer: "Ying Ge, Hui Huang"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
@@ -129,8 +137,7 @@ table(kept.rows)
 mouse <- mouse[kept.rows, ]
 ```
 
-## 1) 按照直系同源关系(one2one orthologs)合并人鼠转录组
-## 1) Merge human-mouse transcriptomes according to orthologous relationships (one2one orthologs).
+## 1) 按照直系同源关系(one2one orthologs)合并人鼠转录组 Merge human-mouse transcriptomes according to orthologous relationships (one2one orthologs).
 
 ```{r}
 # 统计原始同源基因对数量 / Count original orthologous gene pairs
@@ -197,8 +204,7 @@ mouse <- mouse[match(orthologs$Mouse_gene_name, mouse$Mouse_Gene.Name), ] %>% as
 data <- cbind(human, mouse)
 ```
 
-## 2) 数据重构，使之方便应用线性混合模型
-## 2) Data reconstruction to facilitate the application of linear hybrid models
+## 2) 数据重构，使之方便应用线性混合模型 Data reconstruction to facilitate the application of linear hybrid models
 
 ```{r}
 data <- data %>% 
@@ -219,8 +225,7 @@ data$Species <- factor(data$Species) # Species should be factor for LMM model
 head(data)
 ```
 
-## 3) 批量对每个基因构建线性混合模型(LMM)，并计算物种和组织两个随机效应分别对基因表达方差的贡献
-## 3) Construct a linear mixed model (LMM) for each gene in batches, and calculate the contribution of two random effects of species and tissue to gene expression variance, respectively
+## 3) 批量对每个基因构建线性混合模型(LMM)，并计算物种和组织两个随机效应分别对基因表达方差的贡献 Construct a linear mixed model (LMM) for each gene in batches, and calculate the contribution of two random effects of species and tissue to gene expression variance, respectively
 
 Gene expression was modeled as a function of tissue and the species (considered as random factors). 
 
@@ -238,8 +243,7 @@ logFPKM ~ 1 + (1|Tissue)     +     (1|Species)
 这里提供两种计算方式，“串行计算”慢，推荐找个服务器运行“并行运算”。
 There are two computing methods here, "serial computing" is slow, it is recommended to find a server to run "parallel computing".
 
-### 串行计算：大约15min
-### Serial calculation: about 15min
+### 串行计算：大约15min Serial calculation: about 15min
 
 ```{r, warning=FALSE, message=FALSE}
 gene.pairs <- unique(data$GenePairs)
@@ -257,8 +261,7 @@ lmm.var.dcp <- pbapply::pblapply(gene.pairs, function(xx) {
 }) %>% do.call(rbind, .)
 ```
 
-### 并行计算(推荐)
-### Parallel Computing (Recommended)
+### 并行计算(推荐) Parallel Computing (Recommended)
 
 ```{r}
 ## ==== do parallel start ====
@@ -337,8 +340,7 @@ cat("文件已保存到 / File saved to:", output_file, "\n")
 cat("文件行数 / Number of rows:", nrow(lmm.var.dcp.with.groups), "\n")
 ```
 
-## 开始画图 - Fig.2b
-## Start Drawing - Fig.2b
+## 开始画图 - Fig.2b Start Drawing - Fig.2b
 
 ```{r}
 lmm.var.dcp <- readRDS("lmm.var.dcp.rds")
@@ -373,7 +375,7 @@ lmm.var.dcp %>%
 ggsave("VarDecompose.pdf")
 ```
 
-在图中标出感兴趣的基因
+在图中标出感兴趣的基因 Mark genes on the figure
 
 ```{r}
 # 修改的绘图代码
@@ -415,11 +417,9 @@ lmm.var.dcp %>%
 ggsave("VarDecompose_gene.pdf")
 ```
 
-## 顺便看两个同源基因
-## By the way, look at the two homologous genes
+## 顺便看两个同源基因By the way, look at the two homologous genes
 
-### 在人鼠之间基因表达水平相对保守的基因
-### Genes with relatively conserved gene expression levels between humans and mice
+### 在人鼠之间基因表达水平相对保守的基因 Genes with relatively conserved gene expression levels between humans and mice
 
 分别画图看一下人鼠之间基因表达水平相对保守/有差异的基因
 
@@ -435,8 +435,7 @@ data %>% filter(GenePairs=="FOXL1_Foxl1") %>%
   geom_text(aes(label=Tissue))
 ```
 
-### 在人鼠之间基因表达水平有差异的基因
-### Genes with differential gene expression levels between humans and mice
+### 在人鼠之间基因表达水平有差异的基因 Genes with differential gene expression levels between humans and mice
 
 Example of genes with higher between-species contribution
 
@@ -451,8 +450,7 @@ data %>% filter(GenePairs=="FOXK2_Foxk2") %>%
 > 效果还挺明显
 > The effect is quite obvious
 
-### 组织效应和物种效应都不显著的基因
-### Genes with insignificant tissue and species effects
+### 组织效应和物种效应都不显著的基因 Genes with insignificant tissue and species effects
 
 ```{r}
 subset(lmm.var.dcp, GenePairs=="FOXO3_Foxo3")

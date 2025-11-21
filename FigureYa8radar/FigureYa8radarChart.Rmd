@@ -1,15 +1,24 @@
 ---
-title: "FigureYa8 Radar chart"
+title: "FigureYa8RadarChart"
 params:
-  author: "Zhaodong Hao; Ying Ge, Yijing Chen"
-output: html_document
+  author: "Zhaodong Hao"
+  reviewer: "Ying Ge, Yijing Chen"
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
-**Author(s)**: `r params$author`  
+**Author(s)**: `r params$author`
+**Reviewer(s)**: `r params$reviewer`
 **Date**: `r Sys.Date()`  
 
-
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -18,8 +27,7 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## 需求描述
-## Requirement description
+## 需求描述 Requirement description
 
 用R代码画出paper里的图
 
@@ -27,12 +35,9 @@ Draw the figure in paper with R code
 
 ![](example.png)
 
-出自<https://www.nature.com/articles/nplants2015221>
+From <https://www.nature.com/articles/nplants2015221>
 
-from<https://www.nature.com/articles/nplants2015221>
-
-## 使用场景
-## Usage scenario
+## 使用场景 Application scenario
 
 场景一：评估一个总体的不同组分的比例变化
 
@@ -42,8 +47,7 @@ Scenario 1: Evaluate the proportional changes of different components of a whole
 
 Scenario 2: Evaluate different indicators under the same measurement system
 
-## 环境设置
-## Environment setting
+## 环境设置 Environment setting
 
 ```{r}
 source("install_dependencies.R")
@@ -52,8 +56,7 @@ Sys.setenv(LANGUAGE = "en") #显示英文报错信息 display English error mess
 options(stringsAsFactors = FALSE) #禁止chr转成factor prohibit the conversion of chr to factor
 ```
 
-## 输入数据
-## Input data
+## 输入数据 Input data
 
 包含Name、ratio、fill、text_size、text_color的文件，用tab间隔
 
@@ -72,8 +75,7 @@ mydata <- read.table("easy_input.txt", sep = "\t", header = T, stringsAsFactors 
 head(mydata)
 ```
 
-## 开始画图
-## Start drawing
+## 开始画图 Start drawing
 
 画布将设置为21cm * 29.7cm（宽高）的A4纸
 
@@ -83,11 +85,8 @@ The canvas will be set to 21cm * 29.7cm (width and height) A4 paper
 
 1cm = 35.43307px
 
-### 准备svg语句
-### Prepare the svg statement
-
-#### 1.画4个圆
-#### 1.Draw 4 circles
+### 准备svg语句 Prepare the svg statement
+#### 1.画4个圆 Draw 4 circles
 
 svg圆语句格式为\<circle cx cy r style="stroke:#006600;fill:#00cc00"/\>，其中参数cx、cy定义原点坐标，r定义圆半径，style定义线颜色宽度类型填充等（其中，stroke定义线的颜色，stroke-width定义线的宽度，stroke-dasharray定义虚线，fill定义圆的填充颜色）
 
@@ -108,16 +107,13 @@ circos <- data.frame(paste("<circle cx=\"", rx, "\" cy=\"", ry, "\" r=\"", .25 *
 )
 ```
 
-#### 2.通过路径（path）画花瓣
-#### 2.Draw flower petals through a path
+#### 2.通过路径（path）画花瓣 Draw flower petals through a path
 
-原理图
-
-schematic diagram
+原理图 Schematic diagram
 
 ![](schematics.png)
 
-绘图者：Zhaodong Hao
+绘图者 Drawn by Zhaodong Hao
 
 花瓣的语句格式为\<path d="Mx,y Cx1,y1 x2,y2 x3,y3" style="stroke: #006666; fill:none;"/\> ，其中的参数M表示“移动到”，M后的x,y表示路径起点坐标,C表示“三次贝塞尔曲线到”，C后的x1,y1 x2,y2 x3,y3分别表示贝塞尔曲线2个控制点和终点坐标
 
@@ -147,12 +143,9 @@ cy2<-cy1
 mydata$bezier <- paste("<path d=\"M",rx,",",ry," C", cx1, ",", cy1, ",", cx2, ",", cy2, ",",rx,",",ry,"\" transform=\"rotate(", mydata$angle, " ",rx," ",ry,")\"", " fill=\"#", mydata$fill, "\" stroke = \"black\" stroke-width = \"0.5px\" />", sep = "")
 ```
 
-#### 3.文本语句
-#### 3.Text statements
+#### 3.文本语句 Text statements
 
-svg文本格式为\<text x y font-size fill >words\</text\>，x，y是文本左下角的坐标
-
-The svg text is formatted as \<text x y font-size fill >words\</text\>, x, y are the coordinates of the lower left corner of the text
+svg文本格式为\<text x y font-size fill >words\</text\>，x，y是文本左下角的坐标 The svg text is formatted as \<text x y font-size fill >words\</text\>, x, y are the coordinates of the lower left corner of the text
 
 ```{r}
 #设置文本坐标
@@ -164,12 +157,9 @@ ty<-ry - rr - 6
 mydata$text <- paste("<text x=\"", tx, "\" y=\"", ty, "\" font-size=\"", mydata$text_size, "\" transform=\"rotate(", mydata$angle, " ",rx," ",ry,")\"", " fill=\"#", mydata$text_color, "\" >", mydata$Name, "</text>", sep = "")
 ```
 
-### 将准备好的svg语句写入.svg文件
-### Write prepared svg statements to .svg file
+### 将准备好的svg语句写入.svg文件 Write prepared svg statements to .svg file
 
-首先写入XML声明、svg dtd、svg代码开始标签\</svg>
-
-First write the XML declaration, svg dtd, svg code start tag \</svg>
+首先写入XML声明、svg dtd、svg代码开始标签\</svg> First write the XML declaration, svg dtd, svg code start tag \</svg>
 
 ```{r}
 first_line <- data.frame("<?xml version=\"1.0\" standalone=\"no\"?>",
@@ -185,8 +175,7 @@ write.table(first_line[1, 4], "radar.svg", col.names = FALSE, row.names = FALSE,
 write.table(first_line[1, 5], "radar.svg", col.names = FALSE, row.names = FALSE, quote = FALSE, append = TRUE)
 ```
 
-### 写入准备好的画圆、花瓣、文本语句
-### Write the prepared drawing circles, petals, and text
+### 写入准备好的画圆、花瓣、文本语句 Write the prepared drawing circles, petals, and text
 
 ```{r}
 write.table(circos[1, 1], "radar.svg", col.names = FALSE, row.names = FALSE, quote = FALSE, append = TRUE)
@@ -202,8 +191,7 @@ last_line <- data.frame(paste("</svg>"))
 write.table(last_line[1, 1], "radar.svg", col.names = FALSE, row.names = FALSE, quote = FALSE, append = TRUE)
 ```
 
-## 输出文件
-## Output file
+## 输出文件 Output file
 
 *.svg文件，矢量图，可以用illustrator、Inkscape等工具打开
 
@@ -220,7 +208,7 @@ rsvg_pdf("radar.svg", file = "radar.pdf")
 
 ![](radar.pdf)
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

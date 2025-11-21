@@ -3,7 +3,15 @@ title: "FigureYa173fancybar"
 params:
   author: "Xiaofan Lu"
   reviewer: "Ying Ge, Junyi Shen"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
@@ -52,8 +60,7 @@ Note: Some journals prohibit the use of se in data descriptions (visually giving
 该绘图代码在出图前需要不断调整坐标或文字位置，需要在理解的基础上加以使用。
 This plotting code requires constant adjustment of coordinates or text positions before plotting, so it should be used with understanding.
 
-# 环境设置
-# Environment Setup
+# 环境设置 Environment Setup
 
 自定义函数求解se
 Custom Function to Solve for se
@@ -147,8 +154,7 @@ fvsm.t <- t.test(full1$diff,c(manu1$diff,manu2$diff,manu3$diff,manu4$diff,manu5$
 svsm.t <- t.test(c(semi1$diff,semi2$diff,semi3$diff),c(manu1$diff,manu2$diff,manu3$diff,manu4$diff,manu5$diff))$p.value # semi vs manul p=0.1779296
 ```
 
-# 开始画图
-# Start drawing
+# 开始画图 Start Drawing
 
 代码中常使用到的par("usr")参数简单解释如下：
 The par("usr") parameter commonly used in the code is briefly explained as follows:
@@ -329,7 +335,7 @@ invisible(dev.off())
 
 ![](fancybar.pdf)
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

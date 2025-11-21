@@ -3,7 +3,15 @@ title: "FigureYa139TMB_titv"
 params:
   author: "Rongfang Shen"
   reviewer: "Ying Ge, Junyi Shen"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
@@ -11,7 +19,7 @@ output: html_document
 **Date**: `r Sys.Date()`  
 
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -23,8 +31,7 @@ knitr::opts_chunk$set(message = FALSE)
 knitr::opts_chunk$set(warning = FALSE)
 ```
 
-## 需求描述
-## Requirement description
+## 需求描述 Requirement description
 
 输入TCGA突变的数据，重复出如下图。
 Input TCGA mutation data and repeat the following figure.
@@ -57,8 +64,7 @@ Upper part scatter plot:
 底部为每个matched tumor-normal pair中6种碱基突变方式所占的比例
 The bottom is the proportion of the six base mutations in each matched tumor-normal pair
 
-## 应用场景
-## Application scenario
+## 应用场景 Application scenario
 
 同时展示TCGA泛癌样本TMB情况以及6种碱基转换和颠换情况(T>G, T>A, T>C, C>G, C>T, C>A )。像例文一样用于直观展示感兴趣癌种与TCGA其他癌种的整体TMB情况。
 Show the TMB of TCGA pan-cancer samples and the six base conversions and transversions (T>G, T>A, T>C, C>G, C>T, C>A) at the same time. Like the example text, it is used to intuitively display the overall TMB of the cancer of interest and other TCGA cancers.
@@ -214,8 +220,7 @@ all(names(TMB.plot) == names(titv.dat2))
 tcga.cohort.med$Median_Mutations_log10 <- log10(tcga.cohort.med$median + 1)
 ```
 
-## 开始画图
-## Start drawing
+## 开始画图 Start drawing
 
 用base plot一笔一笔画图
 Use base plot to draw one stroke at a time

@@ -3,7 +3,15 @@ title: "FigureYa92immune_gene_update"
 params:
   author: "Shipeng Guo, Taojun Ye"
   reviewer: "Ying Ge"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  

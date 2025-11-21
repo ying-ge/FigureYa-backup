@@ -3,7 +3,15 @@ title: "FigureYa158MutationPattern"
 params:
   author: "Rongfang Shen"
   reviewer: "Ying Ge, Junyi Shen"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
@@ -11,7 +19,7 @@ output: html_document
 **Date**: `r Sys.Date()`  
 
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -20,8 +28,7 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# 需求描述
-# Requirement Description
+# 需求描述 Requirement Description
 
 输入TCGA突变数据，用非负矩阵分解方法NMF分析突变特征，重复出如下图。
 Input TCGA mutation data and analyze mutation signatures using the non-negative matrix factorization (NMF) method, producing the following image.
@@ -31,8 +38,7 @@ Input TCGA mutation data and analyze mutation signatures using the non-negative 
 出自<https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4610178/>
 From <https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4610178/>
 
-# 应用场景
-# Application Scenario
+# 应用场景 Application Scenario
 
 突变特征定义：体细胞突变是多个突变过程如DNA修复缺陷，暴露于外源或内源诱变剂等综合结果。不同的突变过程会产生不同组合的突变类型，即突变特征。利用突变特征分析感兴趣癌种突变特征，探讨其可能的发生病因及机制。
 目前已经有很多的R包可以帮助我们完成mutation signature分析如MutationalPatterns,maftools,deconstructSigs ,SomaticSignatures.
@@ -42,8 +48,7 @@ Currently, many R packages exist to assist with mutation signature analysis, suc
 在这里我们选用maftools + MutationalPatterns来完成分析。
 Here, we use maftools + MutationalPatterns to perform this analysis.
 
-# 环境设置
-# Environment Setup
+# 环境设置 Environment Setup
 
 ```{r}
 source("install_dependencies.R")
@@ -292,7 +297,7 @@ dev.off()
 
 ![](MutationPatterns.pdf)
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

@@ -3,7 +3,15 @@ title: "FigureYa164PCA3D"
 params:
   author: "Bin Wei"
   reviewer: "Ying Ge, Junyi Shen"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
@@ -11,7 +19,7 @@ output: html_document
 **Date**: `r Sys.Date()`  
 
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -50,8 +58,7 @@ Scenario 1: PCA is generally used for quality control, providing an overall asse
 Scenario 2: Showing differences in specific genes between groups. Compare Figures 2 C and D. C uses whole genome expression data, lumping all samples together. D, using immune-related gene sets, clearly divides patients into two sections, indicating their remarkable differences in immune phenotype.
 Similarly, Figure 1 A uses the immune-related gene set for PCA, indicating distinct immune phenotypes among histologic grades.
 
-# 环境设置
-# Environment Setup
+# 环境设置 Environment Setup
 
 
 ```{r}
@@ -239,7 +246,7 @@ rgl.snapshot("PCA.png")
 
 ![](PCA.png)
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

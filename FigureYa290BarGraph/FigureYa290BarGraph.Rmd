@@ -3,14 +3,22 @@ title: "FigureYa290BarGraph"
 params:
   author: "Xiaofan Lu; Yasi Zhang"  
   reviewer: "Ying Ge"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
 **Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()` 
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -43,8 +51,7 @@ Extended Data Fig. 4 |. scRNA-seq of Havcr2fl/fl and Havcr2cko total CD45+ cells
 
 The single-cell data were processed and typed, the cell proportion bar chart was drawn and enrichment tests were conducted.
 
-# 环境设置
-# Environment Setup
+# 环境设置 Environment Setup
 
 ```{r}
 source("install_dependencies.R")
@@ -241,7 +248,7 @@ p2
 ggsave(filename = "p2.pdf", width = 8, height = 4)
 ```
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

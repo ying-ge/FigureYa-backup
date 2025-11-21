@@ -1,15 +1,24 @@
 ---
-title: "FigureYa5 bubbles"
+title: "FigureYa5bubbles"
 params:
-  author: "Dekang Lv; Ying Ge, Yijing Chen"
-output: html_document
+  author: "Dekang Lv"
+  reviewer: "Ying Ge, Yijing Chen"
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
+**Reviewer(s)**: `r params$reviewer`
 **Date**: `r Sys.Date()`  
 
-
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -18,20 +27,16 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## 需求描述
-## Requirement description
+## 需求描述 Requirement description
 
 想模仿出2016年XieWei老师那篇Nature的泡泡图。
 I want to imitate the bubble chart of Nature by Professor Xie Wei in 2016.
 
 ![](https://media.springernature.com/m685/nature-assets/nature/journal/v534/n7609/images/nature18606-f4.jpg)
 
-出自<http://dx.doi.org/10.1038/nature18606>
+From <http://dx.doi.org/10.1038/nature18606>
 
-from<http://dx.doi.org/10.1038/nature18606>
-
-## 使用场景
-## Usage scenario
+## 使用场景 Usage scenario
 
 同时展示pvalue和表达量，例如：
 
@@ -45,49 +50,41 @@ Scenario 1, showing the p-value of the motif and the expression of the correspon
 
 Scenario 2: When doing gene function enrichment analysis, display the q-value of the enriched pathway and the number of genes or geneRatio.
 
-## 输入数据
-## Input data
+## 环境设置 Environment settings
+```{r}
+source("install_dependencies.R")
+library(data.table) #数据处理 data processing
+library(ggplot2) #数据可视化 data visualization
+library(reshape2) #数据处理 data processing
+```
 
-第一种：
+## 输入数据 Input data
 
-把自己的数据整理成easy_input.txt的格式，就可以跳过“输入数据的格式化”，直接进入“开始画图”。第一列是基因名，后面几列依次是各个sample里motif的pvalue，然后是motif的名字，后面是FPKM值。
+第一种：把自己的数据整理成easy_input.txt的格式，就可以跳过“输入数据的格式化”，直接进入“开始画图”。第一列是基因名，后面几列依次是各个sample里motif的pvalue，然后是motif的名字，后面是FPKM值。
 
-第二种：
-
-motif的pvalue，用homer找motif，产生knownResults.txt，其中包含了在peak（目标基因组区域）中富集的已知motif。一共10个sample，分别保存在10个文件夹里。
+第二种：motif的pvalue，用homer找motif，产生knownResults.txt，其中包含了在peak（目标基因组区域）中富集的已知motif。一共10个sample，分别保存在10个文件夹里。
 
 RNA-seq表达值，在终端里运行下面两行代码，下载并解压缩FPKM：
 
-wget ftp://ftp.ncbi.nlm.nih.gov/geo/series/GSE66nnn/GSE66582/suppl/GSE66582_stage_FPKM.txt.gz
+The first: Organize your data into easy_input.txt format, you can skip “Formatting input data” and go directly to “Start drawing”. The first column is the gene name, followed by the p-value of the motif in each sample, then the name of the motif, followed by the FPKM value.
 
-gunzip GSE66582_stage_FPKM.txt.gz
-
-需要对输入数据进行格式化。
-
-The first:
-
-Organize your data into easy_input.txt format, you can skip “Formatting input data” and go directly to “Start drawing”. The first column is the gene name, followed by the p-value of the motif in each sample, then the name of the motif, followed by the FPKM value.
-
-The second:
-
-The p-value of motifs, using homer to find motifs, produces knownResults.txt, which contains known motifs enriched in the peak (target genomic region). There are 10 samples in total, which are saved in 10 folders respectively.
+The second: The p-value of motifs, using homer to find motifs, produces knownResults.txt, which contains known motifs enriched in the peak (target genomic region). There are 10 samples in total, which are saved in 10 folders respectively.
 
 RNA-seq expression values, run the following two lines of code in a terminal, download and extract FPKM:
 
+```bash
 wget ftp://ftp.ncbi.nlm.nih.gov/geo/series/GSE66nnn/GSE66582/suppl/GSE66582_stage_FPKM.txt.gz
-
 gunzip GSE66582_stage_FPKM.txt.gz
+```
+
+需要对输入数据进行格式化。
 
 The input data needs to be formatted.
 
-## 输入数据的格式化
-## Formatting input data
+## 输入数据的格式化 Formatting input data
 ```{r,message=FALSE,warning=FALSE}
-source("install_dependencies.R")
-
 ##读入knownResults.txt中的记录
 ## Read the records in knownResults.txt
-library(data.table)
 cell2<-read.delim(file="2cell_peaks_motifDir/knownResults.txt",header=T,as.is=T)
 cell8<-read.delim(file="8cell_peaks_motifDir/knownResults.txt",header=T,as.is=T)
 cell4<-read.delim(file="4cell_peaks_motifDir/knownResults.txt",header=T,as.is=T)
@@ -143,8 +140,7 @@ mergefpkm<-mergefpkm[order(mergefpkm$gene),]
 write.table(mergefpkm,"easy_input.txt",row.names = F,quote = F,sep = "\t")
 ```
 
-## 开始画图
-## Start drawing
+## 开始画图 Start drawing
 
 你可以把自己的数据整理成easy_input.txt这样的格式，就可以跳过上面调整格式的步骤。
 
@@ -203,8 +199,8 @@ p2<-ggplot(m5,aes(type,id,size=`-logP`))+
 ggsave(file="filtered_genes.pdf",height=20,width = 4)
 ```
 
-## 输出的图
-## Output graphs
+## 输出的图 Output graphs
+
 查看filtered_motifs.pdf，是按照paper的描述筛选出来的motif；
 
 查看filtered_genes.pdf，是上述motif对应的转录因子。
@@ -271,7 +267,7 @@ ggplot(pm5,aes(type,id,size=`-logP`))+
 ggsave(file="paper_gene.pdf",height=8.4,width = 3.2)
 ```
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

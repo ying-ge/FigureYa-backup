@@ -3,7 +3,15 @@ title: "FigureYa140mosaicPie"
 params:
   author: "Zongcheng Li"
   reviewer: "Ying Ge, Junyi Shen"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
@@ -11,7 +19,7 @@ output: html_document
 **Date**: `r Sys.Date()`  
 
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -20,8 +28,7 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## 需求描述
-## Requirement description
+## 需求描述 Requirement description
 
 输入TCGA数据，画出这种图。
 Input TCGA data and draw this kind of graph.
@@ -53,8 +60,7 @@ The A graph is also divided into High reliability and Intermediate reliability. 
 另外，还将展示从下载TCGA的DNA甲基化数据（用于定义激活/抑制）到画图。
 In addition, it will also show the process from downloading TCGA DNA methylation data (used to define activation/inhibition) to drawing.
 
-## 应用场景
-## Application scenario
+## 应用场景 Application scenario
 
 用饼图展示百分比，再把饼图排成矩阵，就可以对应多组数据。
 Use pie charts to show percentages, and then arrange the pie charts into a matrix to correspond to multiple sets of data.
@@ -280,7 +286,7 @@ mosaicplot(ggData$MH450)
 mosaicplot(ggData$Expr)
 ```
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

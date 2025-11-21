@@ -2,14 +2,22 @@
 title: "FigureYa18oncoplot_update"
 params:
   author: "Ying Ge; Yijing Chen"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
 **Date**: `r Sys.Date()`  
 
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -18,8 +26,7 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# 需求描述
-# Requirement description
+# 需求描述 Requirement Description
 
 用R代码画出paper里的这种瀑布图。
 
@@ -31,8 +38,7 @@ Use R code to draw oncoplot like the one in the paper.
 
 from<https://www.cell.com/cell/abstract/S0092-8674(17)30639-6>
 
-# 使用场景
-# Usage scenario
+# 使用场景 Usage Scenario
 
 展示多个样本中多个基因的突变情况，包括但不限于SNP、indel、CNV。
 
@@ -56,8 +62,7 @@ Here, use TCGAbiolinks to download data and draw with maftools. If you want more
 
 Maftools are rich in functions, browse <https://bioconductor.org/packages/release/bioc/vignettes/maftools/inst/doc/maftools.html> to know what kind of graphs you can draw with it, and then come to it when you need it~
 
-# 环境设置
-# Environment setting
+# 环境设置 Environment Setting
 
 ```{r}
 source("install_dependencies.R")
@@ -154,8 +159,7 @@ mut <- as.data.frame(maf_data)
 maf <- read.maf(maf = mut, clinicalData = cliquery, isTCGA = T)
 ```
 
-# 开始画图
-# Start drawing
+# 开始画图 Start Drawing
 
 oncoplot画法：<https://bioconductor.org/packages/release/bioc/vignettes/maftools/inst/doc/oncoplots.html>
 
@@ -260,7 +264,7 @@ dev.off()
 
 ![](oncoplotGroup.pdf)
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

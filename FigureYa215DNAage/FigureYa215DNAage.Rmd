@@ -2,14 +2,22 @@
 title: "FigureYa215DNAage"
 params:
   author: "Xiaofan Lu; Ying Ge, Yijing Chen"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
 **Date**: `r Sys.Date()`  
 
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -18,8 +26,7 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# 需求描述
-# Requirement description
+# 需求描述 Requirement Description
 
 求文中甲基化年龄的确定方法。
 
@@ -31,8 +38,7 @@ Determine the method for calculating the methylation age mentioned in the text.
 
 from<https://clinicalepigeneticsjournal.biomedcentral.com/articles/10.1186/s13148-020-0822-y>
 
-# 应用场景
-# Application scenario
+# 应用场景 Application Scenario
 
 根据DNA甲基化beta值计算甲基化年龄，并与真实年龄（chronological age）做差值，计算甲基化年龄加速（Epigenetic age acceleration）。
 
@@ -64,8 +70,7 @@ For the drawing method of Fig.1e, you can refer to FigureYa162boxViolin;
 For the drawing method of Fig.2b, you can refer to FigureYa60GSEA_clusterProfiler;
 for Fig.4f, you can refer to FigureYa99smoothHR.
 
-# 环境设置
-# Environment setting
+# 环境设置 Environment Setting
 
 ```{r}
 source("install_dependencies.R")
@@ -166,8 +171,7 @@ dec.num <- table(dnamage$agestatus)[2]
 write.table(dnamage, "DNA methylation age and clinical age.txt",sep = "\t",row.names = T,col.names = NA,quote = F)
 ```
 
-# 开始画图
-# Start drawing
+# 开始画图 Start Drawing
 
 用以上结果可以画出例文Fig. 3的中间部分，对比DNA甲基化年龄和真实年龄的acceleration
 
@@ -227,7 +231,7 @@ invisible(dev.off())
 
 ![](barplot for DNA methylation acceleration.pdf)
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

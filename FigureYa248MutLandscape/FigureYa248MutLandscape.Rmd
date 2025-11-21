@@ -2,14 +2,22 @@
 title: "FigureYa248MutLandscape"
 params:
   author: "Xiaofan Lu"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 reviewers: Ying Ge, Hui Huang
 ---
 
 **Author(s)**: `r params$author`  
 **Date**: `r Sys.Date()`  
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -458,7 +466,7 @@ I'm not that proficient in using complexheatmap, and maybe there are other param
 
 3. The same is the stacked histogram on the right, because each annotation has a name, so the PCT above will appear in the background of the lower histogram, which is removed by AI, I don't know if there are any parameters to hide the name.
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

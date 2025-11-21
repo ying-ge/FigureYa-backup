@@ -3,7 +3,15 @@ title: "FigureYa142circosBar"
 params:
   author: "Hao Wu"
   reviewer: "Ying Ge, Junyi Shen"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
@@ -120,8 +128,7 @@ write.csv(v3_mean_filt,file = "./oriData/1heatmap/4.Final_heat.csv",quote=FALSE,
 - 柱状图：这部分主要展示GSH和GSL在每个KEGG B分类中统计到的KO的数目，并绘制成柱状图（6.hist_GSH.xlsx，7.hist_GSL.xlsx）。由于我在统计KEGG分类的时候是手动的，所以柱状图统计的时候和文章结果存在略微出入，但是方法是正确的。大家在应用自己的数据的时候，改变数据即可。
 - Bar graph: This part mainly shows the number of KOs counted by GSH and GSL in each KEGG B classification, and draws a bar graph (6.hist_GSH.xlsx, 7.hist_GSL.xlsx). Since I counted the KEGG classification manually, there was a slight discrepancy between the bar graph and the results of the article, but the method was correct. When you apply your own data, just change the data.
 
-## 输入文件
-## Input file
+## 输入文件 Input file
 
 位于Ya_circos文件夹，包含两类文件，输入数据（位于data文件夹）和配置文件（位于etc文件夹）。**图长什么样，全靠配置文件\*.conf**。
 Located in the Ya_circos folder, it contains two types of files, input data (located in the data folder) and configuration files (located in the etc folder). **What the graph looks like depends on the configuration file\*.conf**.
@@ -174,8 +181,7 @@ The reason why each GS in the heat map must be made into a separate file for dra
 - data/hist_GSH.txt and hist_GSL.txt, histogram files. The histogram files in this figure show how many KOs belong to this pathway in the KEGG B-level classification. Red indicates how many KOs there are in GSH, and green indicates how many KOs there are in GSL.
 - data/highlight.txt, set the background color on chromosome hs2. This background color is assigned according to the background color of KEGG A-level classification. The first column is the chromosome number, the second and third columns are the starting and ending positions of the background color, and the fourth column is the background color and radius.
 
-## 开始画图
-## Start drawing
+## 开始画图 Start drawing
 
 以上设置好染色体和准备好输入文件，就可以在终端（MAC或Linux系统的terminal，Windows10用WSL）运行命令完成绘图：
 After setting up the chromosomes and preparing the input files, you can run the command in the terminal (terminal of MAC or Linux system, WSL for Windows 10) to complete the drawing:

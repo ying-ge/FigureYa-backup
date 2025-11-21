@@ -3,7 +3,15 @@ title: "FigureYa26circos_R"
 params:
   author: "Zhaodong Hao"
   reviewer: "Ying Ge, Yijing Chen"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
@@ -23,8 +31,7 @@ Gu, Z. circlize implements and enhances circular visualization in R. Bioinformat
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## 需求描述
-## Requirement description
+## 需求描述 Requirement description
 
 用R代码画出paper里的图。
 
@@ -36,12 +43,9 @@ Use R code to draw the plot in paper.
 
 **Figure 2** Results of the clustering analysis per state. Only 5% of the functional connectivity matrix in each state is shown, representing the strongest connections (i.e. the largest absolute value correlation coefficients). Each square colour represents one of the seven networks. Red lines represent **positive functional connectivity**, and blue lines represent **negative functional connectivity**. BG = basal ganglia; AUD = auditory; SMN = sensorimotor; VIS = visual; CEN = cognitive executive; CB = cerebellar network
 
-出自<https://academic.oup.com/brain/article-lookup/doi/10.1093/brain/awx233>
+From <https://academic.oup.com/brain/article-lookup/doi/10.1093/brain/awx233>
 
-From<https://academic.oup.com/brain/article-lookup/doi/10.1093/brain/awx233>
-
-## 应用场景
-## Application scenario
+## 应用场景 Application scenario
 
 如果展示A-B-C之间的关系，用sankey图就够了，见FigureYa25sankey。
 
@@ -63,8 +67,7 @@ This diagram uses circles and connecting lines to show relationships between mul
 
 - Scenario 2: As in the example diagram, the same group of genes is displayed in the same color, and the positive and negative regulatory relationships between genes are displayed with lines of two colors, so that the regulatory relationships between groups can be seen at a glance.
 
-## 环境设置
-# Environment Setup
+## 环境设置 Environment Setup
 
 ```{r}
 source("install_dependencies.R") #自动识别缺哪些R包，自动安装
@@ -81,8 +84,7 @@ Sys.setenv(LANGUAGE = "en")
 options(stringsAsFactors = FALSE) 
 ```
 
-## 输入文件
-## Input file
+## 输入文件 Input file
 
 需要三个文件：
 
@@ -129,8 +131,7 @@ head(Links)
 GeneID$GeneID <- factor(GeneID$GeneID, levels = GeneID$GeneID)
 ```
 
-## 开始画图
-## Start drawing
+## 开始画图 Start drawing
 
 **注意：**如果你用复制粘贴代码的方式运行，需要从pdf到dev.off之间的语句要一次性全部复制。
 

@@ -58,7 +58,8 @@ for (pkg in bioc_core_packages) {
 
 # Installing CRAN packages
 cat("\nInstalling CRAN packages...\n")
-cran_packages <- c("shape", "survMisc", "survival")
+# Note: KMsurv is a dependency of survMisc but needs to be installed separately
+cran_packages <- c("shape", "KMsurv", "survMisc", "survival")
 
 for (pkg in cran_packages) {
   install_cran_package(pkg)

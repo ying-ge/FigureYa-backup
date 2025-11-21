@@ -1,16 +1,26 @@
 ---
 title: "FigureYa12 box"
 params:
-  author: "Guangchuang Yu; Ying Ge, Yijing Chen"
-output: html_document
+  author: "Guangchuang Yu"
+  reviewer: "Ying Ge, Yijing Chen"
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
+**Reviewer(s)**: `r params$reviewer`
 **Date**: `r Sys.Date()`  
 
 [<img src="https://guangchuangyu.github.io/blog_images/biobabble.jpg" width="120px"/>](https://guangchuangyu.github.io/blog_images/biobabble.jpg) 
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -19,8 +29,7 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## 需求描述
-## Requirement description
+## 需求描述 Requirement description
 
 用R代码画出paper里的图
 
@@ -42,8 +51,7 @@ Figure 2
 
 From<https://www.frontiersin.org/articles/10.3389/fphys.2018.00399/full>
 
-## 使用场景
-## Usage scenario
+## 使用场景 Usage scenario
 
 用boxplot展示基因表达量分布，同时计算p value。
 
@@ -68,11 +76,9 @@ Sys.setenv(LANGUAGE = "en")
 options(stringsAsFactors = FALSE) 
 ```
 
-## 输入数据
-## Input data
+## 输入数据 Input data
 
-### 1. 基因表达量列表
-### 1. gene expression list
+### 1. 基因表达量列表 Gene expression list
 
 easy_input_expr.csv，多个sample中所有基因的表达量。
 
@@ -91,8 +97,7 @@ head(d)
 
 There are `r nrow(d)` gene expression in total
 
-### 2. 差异表达的基因名列表
-### 2. list of differentially expressed gene names
+### 2. 差异表达的基因名列表 list of differentially expressed gene names
 
 单独一列基因名；
 
@@ -107,11 +112,9 @@ up<-read.table("easy_input_up.txt",header = T, as.is = T, row.names = 1)
 down<-read.table("easy_input_down.txt",header = T, as.is = T, row.names = 1)
 ```
 
-## 开始画图
-## Start drawing
+## 开始画图 Start drawing
 
-### 1. 多组画在同一个绘图区域
-### 1. multiple groups in the same drawing area
+### 1. 多组画在同一个绘图区域 multiple groups in the same drawing area
 
 分别绘制上下调的基因，然后用cowplot来拼。
 
@@ -194,8 +197,7 @@ plot_grid(plotlist=box, labels=c("A", "B"), ncol=1)
 ggsave(file="box2.pdf")
 ```
 
-### 2. 多个小图拼成一个大图
-### 2. Multiple small images into one large image
+### 2. 多个小图拼成一个大图 Multiple small images into one large image
 
 ```{r fig.width=20, fig.height=23}
 box2 <- lapply(c(row.names(up), row.names(down)), function(i) {
@@ -234,6 +236,8 @@ plot_grid(plotlist=box2, ncol=6)
 ggsave(file="box3.pdf")
 
 ```
+
+## SessionInfo
 ```{r}
 sessionInfo()
 ```

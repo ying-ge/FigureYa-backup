@@ -1,15 +1,24 @@
 ---
 title: "FigureYa7PSM"
 params:
-  author: "Ying Ge; Yijing Chen"
-output: html_document
+    author: "Ying Ge"
+    reviewer: "Yijing Chen"
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
+**Reviewer(s)**: `r params$reviewer`
 **Date**: `r Sys.Date()`  
 
-
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -18,8 +27,7 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## 需求描述
-## Requirement description
+## 需求描述 Requirement description
 
 主要目的是在病例组数据集和对照组数据集里面进行快速的1:1匹配。要求性别相同，年龄不超过两岁。虽然不是作图的。但估计群里好多临床的人肯定也特别想用的。如果CASE1和CONTROL1匹配后，那么就算CASE3和CONTROL1也可以匹配，但是也不能匹配了。
 
@@ -33,8 +41,7 @@ Essentially, the requester wants to perform propensity score matching. Propensit
 
 R packages have already accounted for various scenarios, making it easy for us to perform propensity score matching.
 
-## 使用场景
-## Usage scenario
+## 使用场景 Usage scenario
 
 与健康相关的生活质量（HRQOL）被认为是癌症治疗的重要结果之一。对癌症患者而言，最常用的HRQOL测度是通过欧洲癌症研究与治疗中心的调查问卷计算得出的。EORTC QLD-C30是一个由30个项目组成，包括5个功能量表，9个症状量表和一个全球生活质量量表的的问卷。所有量表都会给出一个0-100之间的得分。症状量表得分越高代表被调查人生活压力越大，其余两个量表得分越高代表生活质量越高。
 
@@ -56,24 +63,26 @@ original text: https://datascienceplus.com/how-to-use-r-for-matching-samples-pro
 
 translation: http://www.ituring.com.cn/article/260460
 
-## 生成输入数据
-## Generate input data
+## 环境设置 Environment settings
+```{r}
+source("install_dependencies.R")
+#install.packages("wakefield")
+library(wakefield)
+```
+
+## 生成输入数据 Generate input data
 
 如果你自己有数据，保存成easy_input.txt那样的格式，就可以跳过“生成输入数据”这步，直接进入“倾向得分匹配”；
 
 If you have your own data, save it in easy_input.txt format, you can skip the “Generate Input Data” step and go directly to “Propensity Score Matching”;
 
-### 生成患者人群
-### Generate a patient population
+### 生成患者人群 Generate a patient population
 
 创建一个名为df.patients的数据框，我希望它包含250个病人的年龄和性别数据，所有病人的年龄都要在30-78岁之间，并且70%的病人被设定为男性。
 
 Create a dataframe called df.patients, I would like it to contain age and gender data for 250 patients, all of which should be between 30-78 years old and 70% of which are set to be male.
 
 ```{r}
-source("install_dependencies.R")
-#install.packages("wakefield")
-library(wakefield)
 set.seed(1234)
 df.patients <- r_data_frame(n = 250, 
                             age(x = 30:78, 
@@ -86,8 +95,7 @@ df.patients$ID<-paste("CASE",rownames(df.patients),sep = "")
 summary(df.patients)
 ```
 
-### 生成正常对照人群
-### Generate a normal control population
+### 生成正常对照人群 Generate a normal control population
 
 创建一个名为df.population的数据框。我希望这个数据集的数据和患者的有些不同，因此正常人群的年龄区间被设定为18-80岁，并且男女各占一半。
 
@@ -106,8 +114,7 @@ df.population$ID<-paste("CONTROL",rownames(df.population),sep = "")
 summary(df.population)
 ```
 
-### 合并人群
-### Merge populations
+### 合并人群 Merge populations
 
 把上面这两个数据框合并，也就是把患者混进正常人群，这样就模拟出一个自然人群，完成了全部的准备工作。
 
@@ -121,8 +128,7 @@ tail(mydata)
 write.table(mydata,"easy_input.txt",row.names = F,quote = F,sep = "\t")
 ```
 
-## 倾向得分匹配
-## Propensity score matching
+## 倾向得分匹配 Propensity score matching
 
 生成匹配的病例组数据集和对照组数据集
 
@@ -146,8 +152,7 @@ match.it <- matchit(Group ~ Age + Sex, data = mydata, method="nearest", ratio=1)
 plot(match.it, type = 'jitter', interactive = FALSE)
 ```
 
-## 生成CASE-CONTROL一一配对的格式
-## Generate CASE-CONTROL one-to-one matching format
+## 生成CASE-CONTROL一一配对的格式 Generate CASE-CONTROL one-to-one matching format
 
 ```{r}
 df.match <- match.data(match.it)[1:ncol(mydata)]
@@ -167,7 +172,7 @@ head(dfpair)
 write.table(dfpair,"pair_ID.txt",quote = F,sep = "\t",row.names = F )
 ```
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

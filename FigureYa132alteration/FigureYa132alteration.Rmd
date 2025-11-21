@@ -3,7 +3,15 @@ title: "FigureYa132alteration"
 params:
   author: "Zongcheng Li"
   reviewer: "Ying Ge, Junyi Shen"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
@@ -11,7 +19,7 @@ output: html_document
 **Date**: `r Sys.Date()`  
 
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -21,8 +29,7 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## 需求描述
-## Requirement description
+## 需求描述 Requirement description
 
 复现文章里的扫雷图。
 Reproduce the minesweeper diagram in the article.
@@ -47,8 +54,7 @@ Figure 4. (B) Detailed heatmap of alteration frequencies in members of the RTK-R
 例文作者选取了10个重要pathway，并总结出参与这些pathway的基因共187个，保存在NIHMS957693-supplement-7.xlsx文件。提取出这些基因在TCGA 33种癌症（NIHMS957693-supplement-5.xlsx）中的alteration，总结成alteration层面、gene层面和pathway层面，保存在NIHMS957693-supplement-8.xlsx文件。
 The author of the example selected 10 important pathways and summarized a total of 187 genes involved in these pathways, which are saved in the NIHMS957693-supplement-7.xlsx file. Extract the alterations of these genes in 33 types of TCGA cancer (NIHMS957693-supplement-5.xlsx), summarize them at the alteration level, gene level and pathway level, and save them in the NIHMS957693-supplement-8.xlsx file.
 
-## 应用场景
-## Application scenario
+## 应用场景 Application scenario
 
 可以从作者总结的参与10个重要通路的187个基因中提取出感兴趣的基因的alteration，画你感兴趣的癌症类型里他们的突变频率图。
 You can extract the alterations of the genes of interest from the 187 genes involved in 10 important pathways summarized by the author, and draw their mutation frequency charts in the cancer types you are interested in.
@@ -118,8 +124,7 @@ multiColorMapping <- function(x, type, colors = c("blue", "red"), log = T){
 }
 ```
 
-## 输入文件
-## Input file
+## 输入文件 Input file
 
 例文的supplementary作为输入文件，都是例文作者整理好的pan-cancer信息。用到自己的paper里时，记得引用这篇例文。
 The supplementary of the example paper is used as an input file. It contains pan-cancer information compiled by the author of the example paper. When using it in your own paper, remember to cite this example paper.
@@ -262,8 +267,7 @@ row_annot <- data.frame(Gene = c(gene_levels),
 row_annot$Gene <- factor(row_annot$Gene, gene_levels)
 ```
 
-## 开始画图
-## Start drawing
+## 开始画图 Start drawing
 
 分别画出图的每一部分，最后组图
 Draw each part of the picture separately, and then combine them into one

@@ -3,14 +3,22 @@ title: "FigureYa205immunophenoscore_update"
 params:
   author: "Xiaofan Lu"
   reviewers: Ying Ge, Hui Huang
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
 **Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()`  
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -23,8 +31,7 @@ Charoentong P, Finotello F, Angelova M, Mayer C, Efremova M, Rieder D, et al. Pa
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# 需求描述
-# Requirement Description
+## 需求描述 Requirement Description
 
 想实现下这个 Immunophenoscore的算法，免疫相关的指标有TMB，TILs和免疫细胞浸润等，这个相当于是综合评分，可以丰富下免疫分析的内容。IPS每个基因z score后的值，输出到文件。
 
@@ -35,8 +42,7 @@ If you want to try this Immunophenoscore algorithm, immune-related indicators in
 出自<https://www.frontiersin.org/articles/10.3389/fimmu.2020.01678/full>
 From<https://www.frontiersin.org/articles/10.3389/fimmu.2020.01678/full>
 
-# 应用场景
-# Application Scenario
+## 应用场景 Application Scenario
 
 ![](example.png)
 
@@ -58,8 +64,7 @@ Charoentong P, Finotello F, Angelova M, Mayer C, Efremova M, Rieder D, Hackl H, 
 > **Code and IPS gene weight files** are publicly available on GitHub: <https://github.com/icbi-lab/Immunophenogram>
 The code has been slightly modified and translated here. **Please cite the original paper** when using this method.
 
-# 环境设置
-# Environment settings
+## 环境设置 Environment settings
 
 ```{r}
 source("install_dependencies.R")
@@ -122,8 +127,7 @@ mapbw<-function (x) {
 }
 ```
 
-# 输入文件
-# Input files
+## 输入文件 Input files
 
 easy_input_expr.csv，表达矩阵。例如log2(TPM+1)，每行一个基因，每列一个样本。
 
@@ -197,8 +201,7 @@ if (length(MISSING_GENES) > 0) { # 若存在缺失基因报出（如果上面两
 }
 ```
 
-# 计算并画图
-# Calculate and draw
+## 计算并画图 Calculate and draw
 
 ```{r}
 ## 循环每个样本
@@ -369,7 +372,7 @@ write.table(outTab, file = "output_zscore.txt", row.names = TRUE, col.names = NA
 write.table(DF,file = "output_IPS.txt", row.names = FALSE, col.names = TRUE, quote=FALSE, sep="\t") 
 ```
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

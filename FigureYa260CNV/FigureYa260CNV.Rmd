@@ -3,14 +3,22 @@ title: "FigureYa260CNV"
 params:
   author: "Shuwen Cheng; Yasi Zhang"  
   reviewer: "Ying Ge"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
 **Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()`  
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -49,8 +57,7 @@ Exome sequencing data can generate similar plots.
 
 RNA-seq data can also be leveraged for in-depth analysis using such approaches. For example, when RNA-seq identifies hundreds or thousands of differentially expressed genes, how can we pinpoint the key drivers? By what mechanisms do they regulate downstream gene expression? One possible explanation could be high-frequency copy number variations (gain/loss) in certain genes.
 
-# 环境设置
-# Environment Setup
+# 环境设置 Environment Setup
 
 ```{r}
 source("install_dependencies.R")
@@ -289,7 +296,7 @@ The frequencies we calculated show significant discrepancies from those reported
 
 ![](cBioportal_oncoprint.pdf)
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

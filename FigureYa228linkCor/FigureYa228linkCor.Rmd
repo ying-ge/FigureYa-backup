@@ -3,7 +3,15 @@ title: "FigureYa228linkCor"
 params:
   author: "Xiaofan Lu"
   reviewer: "Ying Ge, Hui Huang"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
@@ -27,9 +35,9 @@ Hu J, Yu A, Othmane B, Qiu D, Li H, Li C, Liu P, Ren W, Chen M, Gong G, Guo X, Z
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## 需求描述
+## 需求描述 Requirement description
 
-这个图10D可以实现吗？真的很漂亮，蝴蝶图 | Can this Figure 10D be implemented? It's really beautiful, butterfly plot
+这个图10D可以实现吗？真的很漂亮，蝴蝶图 Can this Figure 10D be implemented? It's really beautiful, butterfly plot
 
 ![](example.png)
 
@@ -51,7 +59,7 @@ Figure 6. Roles of Siglec15 in predicting immune phenotypes in the XiangYing coh
 - The two heatmaps, C and D, respectively show the correlation analysis results of two types of pathways, placed together for easy comparison.
 - Use lines to show the correlation between Siglec15 and each specific pathway of the two types. Solid lines represent positive correlation, dashed lines represent negative correlation, and color represents the P-value.
 
-## 应用场景 | Application Scenario
+## 应用场景 Application Scenario
 
 展示相关性分析结果，多对多（C热图、D热图）、1对多（Siglec15跟C的连线，Siglec15跟D的连线）、两组对比（C和D画一起）画一起。
 
@@ -65,14 +73,14 @@ The example shows correlations between 1 gene and multiple pathways, which can b
 
 If there is only one group, it's a separate C or D; if there are two groups, combine them like a butterfly as in the example; if there are more groups, apply the same easy_input* files, create multiple plots, and combine them according to your aesthetic preferences.
 
-## 环境设置 | Environment Setup
+## 环境设置 Environment Setup
 
 ```{r}
-source("install_dependencies.R") # 如果没有安装相关包，先运行这行代码安装依赖包 | If you haven't installed the required packages, run this line to install dependencies
-library(data.table) # 读取大数据集 | for reading large datasets
-library(GSVA) # 计算通路富集得分 | for calculating pathway enrichment scores
-library(ggplot2) # 画图 | for plotting
-library(ggcor) # 相关性图 | for correlation plots by Yuhui Li
+source("install_dependencies.R") # 如果没有安装相关包，先运行这行代码安装依赖包 If you haven't installed the required packages, run this line to install dependencies
+library(data.table) # 读取大数据集 for reading large datasets
+library(GSVA) # 计算通路富集得分 for calculating pathway enrichment scores
+library(ggplot2) # 画图 for plotting
+library(ggcor) # 相关性图 for correlation plots by Yuhui Li
 Sys.setenv(LANGUAGE = "en") #显示英文报错信息
 options(stringsAsFactors = FALSE) #禁止chr转成factor
 ```
@@ -108,7 +116,7 @@ gmt2list <- function(annofile){
 }
 ```
 
-## 输入文件的获得 | Obtaining Input Files
+## 输入文件的获得 Obtaining Input Files
 
 如果你的数据已经整理为`easy_input_*.txt`的格式，就可以直接进入“开始画图”。
 
@@ -167,7 +175,7 @@ immPath.param <- GSVA::ssgseaParam(
   immPath.list
 )
 immPath.score <- GSVA::gsva(immPath.param, verbose = FALSE)
-# 保存到文件，便于套用 | Save to file for easy reuse
+# 保存到文件，便于套用 Save to file for easy reuse
 write.table(immPath.score, "easy_input_immPath.txt", sep = "\t", row.names = TRUE, col.names = NA, quote = FALSE)
 
 # 计算膀胱癌相关签名的富集得分
@@ -177,7 +185,7 @@ blcaPath.param <- GSVA::ssgseaParam(
   blcaPath.list
 )
 blcaPath.score <- GSVA::gsva(blcaPath.param, verbose = FALSE)
-# 保存到文件，便于套用 | Save to file for easy reuse
+# 保存到文件，便于套用 Save to file for easy reuse
 write.table(blcaPath.score, "easy_input_blcaPath.txt", sep = "\t", row.names = TRUE, col.names = NA, quote = FALSE)
 ```
 
@@ -186,39 +194,39 @@ write.table(blcaPath.score, "easy_input_blcaPath.txt", sep = "\t", row.names = T
 > For your own data, you may want to extract pathways of interest and calculate their enrichment scores. You can download the gmt file c5.all.v7.4.symbols.gmt from msigdb, extract pathways of interest and their corresponding genes, and calculate enrichment scores.
 
 ```{r eval=FALSE}
-# 从gmt文件提取感兴趣的通路 | Extract pathways of interest from gmt file
-# 例如提取带有`METABOLISM`字样的通路 | For example, extract pathways containing `METABOLISM`
+# 从gmt文件提取感兴趣的通路 Extract pathways of interest from gmt file
+# 例如提取带有`METABOLISM`字样的通路 For example, extract pathways containing `METABOLISM`
 gset <- gmt2list("c5.all.v7.4.symbols.gmt") 
 
 # 使用data.table的%like%操作符提取包含METABOLISM的通路
 # Use data.table's %like% operator to extract pathways containing METABOLISM
 gset.list <- gset[names(gset) %like% "METABOLISM"]
 
-# 检查基因集是否为空 ｜ Check if gene set is empty
+# 检查基因集是否为空 Check if gene set is empty
 if (length(gset.list) == 0) {
   stop("No pathways found containing 'METABOLISM'. Please check your gmt file and filter criteria.")
 }
 
 cat("Found", length(gset.list), "pathways containing 'METABOLISM'\n")
 
-# 计算通路富集得分 | Calculate pathway enrichment scores
+# 计算通路富集得分 Calculate pathway enrichment scores
 gset.score <- GSVA::gsva(
   expr = as.matrix(log2(expr[, tumsam] + 1)),
   gset.idx.list = gset.list,
   method = "ssgsea",
-  verbose = FALSE,  # 减少输出信息 ｜ Reduce output information
-  parallel.sz = 1   # 单线程运行，避免并行问题 ｜ Run single-threaded to avoid parallel issues
+  verbose = FALSE,  # 减少输出信息 Reduce output information
+  parallel.sz = 1   # 单线程运行，避免并行问题 Run single-threaded to avoid parallel issues
 )
 
-# 保存到文件 | Save to file
+# 保存到文件 Save to file
 write.table(gset.score, "easy_input_gset.txt", sep = "\t", row.names = TRUE, col.names = NA, quote = FALSE)
 
 cat("Pathway enrichment scores saved to 'easy_input_gset.txt'\n")
 ```
 
-## 开始画图 ｜ Start Plotting
+## 开始画图 Start Plotting
 
-**关于 -log10(p-value) 的使用说明 | About -log10(p-value) Usage**
+**关于 -log10(p-value) 的使用说明 About -log10(p-value) Usage**
 
 本图使用 -log10(p-value) 来可视化显著性水平，这是生物信息学中的标准做法。数值越大表示显著性越强：
 
@@ -237,26 +245,26 @@ This plot uses -log10(p-value) to visualize significance levels, which is a stan
 # Load expression of a single gene, which is the "1" in "1-to-many"
 siglec15 <- read.csv("easy_input_gene.csv", row.names = 1, check.names = F)
 
-# 加载第一组富集得分 | Load first set of enrichment scores
+# 加载第一组富集得分 Load first set of enrichment scores
 immPath.score <- read.table("easy_input_immPath.txt", check.names = F)
-# 跟目标基因SIGLEC15的表达量合并 | Merge with target gene SIGLEC15 expression
+# 跟目标基因SIGLEC15的表达量合并 Merge with target gene SIGLEC15 expression
 immPath.score <- rbind.data.frame(immPath.score,
                                   siglec15)
 
-# 加载第二组富集得分 | Load second set of enrichment scores
+# 加载第二组富集得分 Load second set of enrichment scores
 blcaPath.score <- read.table("easy_input_blcaPath.txt", check.names = F)
-# 跟目标基因SIGLEC15的表达量合并 | Merge with target gene SIGLEC15 expression
+# 跟目标基因SIGLEC15的表达量合并 Merge with target gene SIGLEC15 expression
 blcaPath.score <- rbind.data.frame(blcaPath.score,
                                    siglec15)
 ```
 
-循环计算相关性并画图 | Loop to calculate correlations and plot
+循环计算相关性并画图 Loop to calculate correlations and plot
 
 ```{r}
 # 循环计算相关性并绘制左下角｜Loop to calculate correlations and plot bottom left
 immCorSiglec15 <- NULL
 for (i in rownames(immPath.score)) {
-  # 确保数据是数值型 ｜ Ensure data is numeric
+  # 确保数据是数值型 Ensure data is numeric
   x_data <- as.numeric(immPath.score[i,])
   y_data <- as.numeric(siglec15)
 
@@ -338,7 +346,7 @@ p2
 ggsave(filename = "ggcor plot in top right.pdf", width = 10,height = 8)
 ```
 
-## 后期处理 ｜ Post-processing
+## 后期处理 Post-processing
 
 输出的PDF文件是矢量图，可以用矢量图编辑器打开，编辑文字和图形。
 

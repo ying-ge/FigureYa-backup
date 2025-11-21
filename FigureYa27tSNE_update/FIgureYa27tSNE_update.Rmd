@@ -2,7 +2,15 @@
 title: "FigureYa27t-SNE_update"
 params:
   author: "Zhougeng Xu; Ying Ge, Yijing Chen"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
@@ -11,7 +19,7 @@ output: html_document
 
 ![](hoptop.jpg)
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -20,8 +28,7 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# 需求描述
-# Requirement description
+# 需求描述 Requirement Description
 
 用R做单细胞RNA-seq的t-SNE图。
 
@@ -41,8 +48,7 @@ You may get stuck on two problems: R package installation and dataset preprocess
 
 This code takes you through these two problems smoothly, drawing t-SNE plots, exporting cell classification and candidate marker genes to file.
 
-# 应用场景
-# Application scenario
+# 应用场景 Application Scenario
 
 场景一：单细胞测序的上百个细胞，识别亚群，找到marker基因；
 
@@ -52,8 +58,7 @@ Scenario 1: Hundreds of cells from single cell sequencing, identify subpopulatio
 
 Scenario 2: Hundreds of tumor samples, identify subtypes, find marker genes. Used to classify methylation subtypes like the example image.
 
-# 环境设置
-# Environment setting
+# 环境设置 Environment Setting
 
 ```{r, warning=FALSE,message=FALSE}
 source("install_dependencies.R")
@@ -282,8 +287,7 @@ obj <- RunTSNE(
 )
 ```
 
-# 开始画图
-# Start drawing
+# 开始画图 Start Drawing
 
 按照细胞分群(`group.by="ident"`)进行着色
 
@@ -468,7 +472,7 @@ write.csv(t(cell_type_df),"molecules_in_cell_types.csv")
 ```
 
 # 会话信息
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

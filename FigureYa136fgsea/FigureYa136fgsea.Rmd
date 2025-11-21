@@ -3,7 +3,15 @@ title: "FigureYa136fgsea"
 params:
   author: "Rongfang Shen"
   reviewer: "Ying Ge, Junyi Shen"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
@@ -11,7 +19,7 @@ output: html_document
 **Date**: `r Sys.Date()`  
 
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -20,8 +28,7 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## 需求描述
-## Requirement description
+## 需求描述 Requirement description
 
 用paper里这种类似fgsea的图展示GSEA富集分析结果。兼容Java版和clusterProfiler版GSEA：
 Use a fgsea-like graph in the paper to display the results of GSEA enrichment analysis. Compatible with Java and clusterProfiler versions of GSEA:
@@ -52,8 +59,7 @@ Figure 2. Biological processes associated with cancer stemness
 3. The size, NES, FDR and other information of each geneset are listed on the right side, concentrated in one figure, which is neat and not crowded, and the amount of information displayed is still very large.
 4. If there are fewer gene sets, you can even mark the key genes on the rank like FigureYa60GSEA_clusterProfiler.
 
-## 应用场景
-## Application scenario
+## 应用场景 Application scenario
 
 做完GSEA富集分析，接下来就该考虑如何在一张图中合理的展示多组或多条通路的结果。
 After completing the GSEA enrichment analysis, the next step is to consider how to reasonably display the results of multiple groups or multiple pathways in one figure.
@@ -458,7 +464,7 @@ par(opar)
 
 ![](javagsea.pdf)
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

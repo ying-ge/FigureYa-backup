@@ -3,7 +3,15 @@ title: "FigureYa172ggplot2Gviz"
 params:
   author: "Long Zhao"
   reviewer: "Ying Ge, Junyi Shen"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
@@ -11,7 +19,7 @@ output: html_document
 **Date**: `r Sys.Date()`  
 
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -65,8 +73,7 @@ Which combination will best demonstrate the evidence for transcriptional regulat
 - You can place an RNA-seq bar plot on the left, as in the example.
 - You can also add a motif track below, or even add the motif logo.
 
-# 环境设置
-# Environment Setup
+# 环境设置 Environment Setup
 
 画图前的代码需要在terminal里运行，可参考这篇方法<https://www.jianshu.com/p/c16c7095e4b2?from=singlemessage&isappinstalled=0>
 Before drawing, the code needs to be run in a terminal. Refer to this method <https://www.jianshu.com/p/c16c7095e4b2?from=singlemessage&isappinstalled=0>
@@ -150,8 +157,7 @@ The Igll1 gene used in the example contains two exon transcripts, which we will 
 grep Igll1 gencode.vM9.annotation.gtf | grep ENSMUST00000124649.1 |grep exon | awk '{print $4,$5,$3}' OFS="\t" > Igll1.gene.txt
 ```
 
-# 开始画图
-# Start drawing
+# 开始画图 Start Drawing
 
 策略是用ggplot2画track和gene structure，然后用cowplot拼在一起
 The strategy is to use ggplot2 to plot the track and gene structure, then combine them using cowplot.
@@ -297,7 +303,7 @@ plot_grid(pe0,pa0,pe1,pa1,pe2,pa2,pe3,pa3,peg,peg,
 ggsave("ggplot2Gviz_2col.pdf")
 ```
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

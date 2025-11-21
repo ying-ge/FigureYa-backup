@@ -2,14 +2,22 @@
 title: "FigureYa24 ROC"
 params:
   author: "yeoli; Ying Ge, Yijing Chen"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
 **Date**: `r Sys.Date()`  
 
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -19,15 +27,13 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## 需求描述
-## Requirement description
+## 需求描述 Requirement description
 
 用R画出ROC曲线（receiver operating characteristic curve）。
 
 Draw the ROC curve in R（receiver operating characteristic curve）
 
-## 应用场景
-## Application scenario
+## 应用场景 Application scenario
 
 在分类任务中，直观展示敏感性和特异性连续变量的综合指标。
 
@@ -54,8 +60,7 @@ df <- read.table("easy_input.txt",head=T,sep="\t",check.names = F)
 head(df)
 ```
 
-## 开始画图
-## Start drawing
+## 开始画图 Start drawing
 
 ```{r,message=FALSE,warning=FALSE}
 #install.packages("pROC")

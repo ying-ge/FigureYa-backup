@@ -3,7 +3,15 @@ title: "FigureYa135multiVolcano"
 params:
   author: "Qian Liu"
   reviewer: "Ying Ge, Junyi Shen"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
@@ -19,15 +27,13 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## 需求描述
-## Requirement description
+## 需求描述 Requirement description
 
 从形式上复现文章里的这个复杂火山图。
 Reproduce the complex volcano map in the article in form.
 
 ![](example.png)
 
-出自<https://onlinelibrary.wiley.com/doi/abs/10.1002/ijc.31765>
 From <https://onlinelibrary.wiley.com/doi/abs/10.1002/ijc.31765>
 
 Figure 1. DMPs analysis in LSTs cases and controls. (b) Volcano plot of top DMPs and position of methylation probes in relation to the gene (IGR, intergenic region; TSS, transcription start site; UTR, untranslated region). The percentages of hypermethylated and hypomethylated DMPs are displayed on top. The proportions of different genomic features are shown on the right.
@@ -42,8 +48,7 @@ Figure 1. DMPs analysis in LSTs cases and controls. (b) Volcano plot of top DMPs
 - The right side is the percentage of sites located in each feature region, calculated based on the feature
 - The top is another layer of classification information for the site, the percentage of hypo and hyper, calculated based on the horizontal axis beta-value of the scatter plot
 
-## 应用场景
-## Application scenarios
+## 应用场景 Application scenarios
 
 同时展示多层信息，不仅限于例文中的甲基化位点。
 Show multiple layers of information at the same time, not limited to the methylation sites in the example text.
@@ -51,8 +56,7 @@ Show multiple layers of information at the same time, not limited to the methyla
 还可以换成差异表达基因，把横坐标deltabeta换成foldchange，feature换成基因分类即可。
 You can also change to differentially expressed genes, replace the horizontal axis deltabeta with foldchange, and replace feature with gene classification.
 
-## 环境设置
-## Environment settings
+## 环境设置 Environment settings
 
 ```{r}
 source("install_dependencies.R")
@@ -65,8 +69,7 @@ Sys.setenv(LANGUAGE = "en") #显示英文报错信息 #Display English error mes
 options(stringsAsFactors = FALSE) #禁止chr转成factor #Disable chr conversion to factor
 ```
 
-## 输入文件
-## Input file
+## 输入文件 Input files
 
 easy_input.csv，包含四列：
 
@@ -89,7 +92,7 @@ colnames(data)[1] <- "Geneid"
 head(data)
 ```
 
-## 开始画图 | Start Drawing
+## 开始画图 | Start drawing the graph
 
 下面分别绘制散点图、顶部比例和右侧bar plot，最后组图。
 The following are the scatter plots, top ratios and right bar plots, and finally the group diagrams.
@@ -131,8 +134,7 @@ p1 <- p1 + theme_classic() +
 p1
 ```
 
-### 散点图右侧面的柱子图 `p2` 的绘制
-### Draw the column chart `p2` on the right side of the scatter plot
+### 散点图右侧面的柱子图 `p2` 的绘制 Draw the column chart `p2` on the right side of the scatter plot
 
 ```{r}
 ### 得到百分比信息
@@ -214,8 +216,7 @@ p2 <- ggplot(Percent, aes(A, n)) +
 p2
 ```
 
-### 顶部百分比图 `p3` 的绘制
-### Drawing of the top percentage graph `p3`
+### 顶部百分比图 `p3` 的绘制 Drawing of the top percentage graph `p3`
 
 首先计算 `Hyper` 和 `Hypo` 各占的比例，看图两者加起来是百分之一百，这里没有 0 ，就不考虑 0 了。
 First, calculate the proportion of `Hyper` and `Hypo`. As you can see from the graph, the sum of the two is 100%. There is no 0 here, so 0 is not considered.
@@ -282,8 +283,7 @@ p3 <- ggplot(df1, aes(xmin= xmin, xmax = xmax,
 p3
 ```
 
-### 组图
-### Group pictures
+### 组图 Group pictures
 
 ```{r,fig.width = 10, fig.height = 6}
 combined_plot <- insert_xaxis_grob(p1, p3, 
@@ -309,24 +309,6 @@ p
 # 保存到文件
 # Save to file
 ggsave("multiVolcano.pdf")
-```
-
-## 用aplot拼图
-
-```{r}
-library(aplot)
- 
-# 主火山图
-p_main <- volcano_plot(data)
- 
-# 顶部百分比条
-p_top <- percentage_bar(data$deltaBeta) 
- 
-# 右侧特征分布
-p_right <- feature_distribution(data$feature)
- 
-# aplot 组合
-p_main %v/v% p_top %<+% p_right
 ```
 
 ## Session Info

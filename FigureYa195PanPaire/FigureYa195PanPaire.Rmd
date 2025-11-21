@@ -3,14 +3,22 @@ title: "FigureYa195PanPair"
 params:
   author: "Xiaofan Lu; Yasi Zhang"  
   reviewer: "Ying Ge"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
 **Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()` 
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -40,8 +48,7 @@ Fig. 1 Expression landscape of rRNA metabolism-related genes in human cancer.
 a) rRNA metabolic score among all samples grouped by cancer from the TCGA. Y-axis representing rRNA metabolic score, which was calculated by ssGSEA based on the gene expression in the TCGA. Boxplots show median, quartiles, min, and max, each point representing one sample. p-values are based on the Mann–Whitneytest. 
 b) Similar to (a), but **in paired samples** grouped by cancer from the TCGA. Each point representing one sample. p-values are based on two-tailed Student t-test.
 
-# 应用场景
-# Application Scenario
+# 应用场景 Application Scenario
 
 提取TCGA泛癌里配对样本的表达量，再从中提取感兴趣的通路里的基因，计算通路富集得分，画出连线图。
 
@@ -59,8 +66,7 @@ The paired-sample expression data can be used for additional analyses and visual
 
 You can also replace the gene sets with your own signatures or biomarkers of interest. For instance, DEGs identified in a specific cohort can be further examined in TCGA pan-cancer to compare similarities and differences.
 
-# 环境设置
-# Environment Setup
+# 环境设置 Environment Setup
 
 ```{r}
 source("install_dependencies.R")
@@ -558,7 +564,7 @@ invisible(dev.off())
 
 ![](Metabolic landscape of tcga paired sample.pdf)
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

@@ -1,14 +1,24 @@
 ---
 title: "FigureYa2ggtree+pheatmap+msa"
 params:
-  author: "Guangchuang Yu; Ying Ge, Yijing Chen"
-output: html_document
+  author: "Guangchuang Yu"
+  reviewer: "Ying Ge, Yijing Chen"
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
+**Reviewer(s)**: `r params$reviewer`
 **Date**: `r Sys.Date()`  
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -17,8 +27,7 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## 需求描述
-## Requirement description
+## 需求描述 Requirement description
 
 基因家族成员进化树、表达谱聚类、多序列比对，组图
 
@@ -32,8 +41,7 @@ This document separately draws three figures, not grouped into one figure.
 
 Another document to solve the grouping problem (by Guangchuang Yu)
 
-## 使用场景
-## Usage scenario
+## 使用场景 Usage scenario
 
 场景一：多组sample的RNA-seq数据画完heatmap，发现我感兴趣的基因家族所在的cluster当中，有一些功能未知的基因。这些功能未知基因是否也属于这个基因家族？做多序列比对看看，它们是否具有相似的结构区域。
 
@@ -43,8 +51,7 @@ Scenario 1: After drawing the heatmap of RNA-seq data from multiple samples, I f
 
 Scenario 2: I have identified a new transcription factor, what is its function? Sequence similarity predicts function similarity, perform multiple sequence comparison to find known transcription factors with similar sequences first, then download public data to see if their expression profiles are also consistent.
 
-## 环境设置
-## Environment settings
+## 环境设置 Environment settings
 
 ```{r}
 source("install_dependencies.R")
@@ -64,8 +71,7 @@ Sys.setenv(LANGUAGE = "en")
 options(stringsAsFactors = FALSE)
 ```
 
-## 表达谱聚类
-## Expression profile clustering
+## 表达谱聚类 Expression profile clustering
 
 给同一group的sample加上同一种颜色，就能看出两个group的sample分别被聚到两类，说明这些基因能够用来区分两个group
 
@@ -91,8 +97,7 @@ p1
 dev.off()
 ```
 
-## 多序列比对
-## Multiple sequence comparison
+## 多序列比对 Multiple sequence comparison
 
 msa包需要LaTex，MAC系统推荐安装MacTex
 
@@ -123,8 +128,7 @@ msaPrettyPrint(myFirstAlignment, output="pdf",
 ```
 ![](myFirstAlignment.pdf)
 
-## 进化树
-## Evolutionary tree
+## 进化树 Evolutionary tree
 
 ```{r,message=FALSE,warning=FALSE}
 #用多序列比对的结果计算距离
@@ -147,7 +151,7 @@ p2
 dev.off()
 ```
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

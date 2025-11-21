@@ -3,7 +3,15 @@ title: "FigureYa171subgroupSurv"
 params:
   author: "Shipeng Guo"
   reviewer: "Ying Ge, Junyi Shen"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
@@ -11,7 +19,7 @@ output: html_document
 **Date**: `r Sys.Date()`  
 
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -37,8 +45,7 @@ From <https://www.onlinelibrary.wiley.com/doi/full/10.1002/cam4.1498>
 
 Figure 7. Subgroup analyses revealed by Kaplan-Meier survival curve. (A) Stratified survival analyses based on the clinicopathological features age, clinical stage, histological stage, and neoplasm histological grade for the 7-miRNA-based OS classifier.
 
-# 应用场景
-# Application Scenario
+# 应用场景 Application Scenario
 
 本质上就是每次按条件筛选数据，然后做生存分析。
 Essentially, we filter the data by condition each time and then perform a survival analysis.
@@ -46,8 +53,7 @@ Essentially, we filter the data by condition each time and then perform a surviv
 你可能还想看这篇： 8秒完成2万个基因的生存分析，人人都可以！ <https://mp.weixin.qq.com/s/o4e1HzG4zPIQoGT6-7D0ug>
 You may also want to read this article: Complete survival analysis of 20,000 genes in 8 seconds, everyone can do it! <https://mp.weixin.qq.com/s/o4e1HzG4zPIQoGT6-7D0ug>
 
-# 环境设置
-# Environment Setup
+# 环境设置 Environment Setup
 
 
 ```{r}
@@ -185,7 +191,7 @@ res <- arrange_ggsurvplots(p, print = F,
 ggsave("subgroupSurv.pdf", res, width = 20, height = 10)
 ```
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

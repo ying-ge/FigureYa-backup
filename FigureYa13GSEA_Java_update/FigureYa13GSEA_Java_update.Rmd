@@ -1,15 +1,24 @@
 ---
 title: "FigureYa13GSEA_JavaV2_update"
 params:
-  author: "Guangchuang Yu; Ying Ge, Yijing Chen"
-output: html_document
+  author: "Guangchuang Yu"
+  reviewer: "Ying Ge, Yijing Chen"
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
+**Reviewer(s)**: `r params$reviewer`
 **Date**: `r Sys.Date()`  
 
-
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -18,8 +27,7 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## 需求描述
-## Requirement description
+## 需求描述 Requirement description
 
 已经用[Java版GSEA](http://software.broadinstitute.org/gsea/index.jsp)做出了GSEA分析结果，想自己画图。
 
@@ -55,8 +63,7 @@ Figure 3: Barcode + Heat Map
 
 from<https://thorax.bmj.com/content/69/1/14>
 
-## 应用场景
-## Application scenario
+## 应用场景 Application scenario
 
 以Java版GSEA的输出结果作为输入，DIY结果图，把多个通路画到一张图里。
 
@@ -66,22 +73,20 @@ Using the output of the Java version of GSEA as input, do-it-yourself result map
 
 If you do GSEA analysis with clusterProfiler and want to DIY the result plots, plot multiple pathways to a single plot, or plot multiple comparisons of the same pathway to a single plot, use FigureYa60GSEA_clusterprofiler.
 
-## 环境设置
-## Environment setting
+## 环境设置 Environment setting
 
 ```{r}
 source("install_dependencies.R")
 
-library(plyr)
-library(ggplot2)
-library(RColorBrewer)
-library(gridExtra)
-library(grid)
-library(cowplot)
+library(plyr) #数据处理 data processing
+library(ggplot2) #数据可视化 data visualization
+library(RColorBrewer) #颜色处理 color processing
+library(gridExtra) #拼图工具 graph combining tool
+library(grid) #网格工具 grid tool
+library(cowplot) #拼图工具 graph combining tool
 ```
 
-## 输入数据的准备
-## Preparation of input data
+## 输入数据的准备 Preparation of input data
 
 Java版GSEA的输出文件夹中有每个通路的Excel文件，把你感兴趣的通路的Excel文件复制到当前文件夹。
 
@@ -104,8 +109,7 @@ head(result)
 mycol <- c("red","navy","darkgreen","blueviolet","chocolate4")
 ```
 
-## 开始画图
-## Start drawing
+## 开始画图 Start drawing
 
 用官方GSEA输出的Excel文件重新画图，画这种散点图最合适。如果画折线图，你会发现跟Java版GSEA输出的图像不一致。那是因为官方GSEA输出的Excel文件不是所有基因的enrichment score，它只给出了这个通路内的基因的enrichment score。
 
@@ -304,7 +308,7 @@ plot_grid(plotlist=pbar, ncol=1,rel_heights = c(2,2,2,1))
 ggsave("prettyGSEAbar.pdf")
 ```
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

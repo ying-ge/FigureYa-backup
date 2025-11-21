@@ -124,7 +124,6 @@ CD274,COG4,Secretory-pathway,0
 CD274,ATR,Nucleus,0
 CD274,ATR,Secretory-pathway,0
 CD274,FAM114A2,Cytosol,0
-NA,NA,NA,NA
 CD274,XPO4,Cytosol,0
 CD274,XPO4,Nucleus,0
 CD274,TNPO3,Cytosol,0
@@ -148,7 +147,6 @@ CD274,ATM,Nucleus,0
 CD274,ATM,Secretory-pathway,0
 CD274,THADA,Cytosol,0
 CD274,THADA,Nucleus,0
-NA,NA,NA,NA
 CD274,XPO7,Cytosol,0
 CD274,XPO7,Mitochondrion,0
 CD274,XPO7,Nucleus,0
@@ -163,7 +161,6 @@ CD274,COG7,Extracellular,0
 CD274,COG1,Secretory-pathway,0
 CD274,COG1,Extracellular,0
 CD274,STAG1,Cytosol,0
-NA,NA,NA,NA
 CD274,STAG1,Nucleus,0
 CD274,PTPN11,Cytosol,0
 CD274,PTPN11,Mitochondrion,0

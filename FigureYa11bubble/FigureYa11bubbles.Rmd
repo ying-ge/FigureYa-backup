@@ -1,26 +1,33 @@
 ---
 title: "FigureYa11bubbles"
 params:
-  author: "Ying Ge; Yijing Chen"
-output: html_document
+  author: "Ying Ge"
+  reviewer: "Yijing Chen"
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
+**Reviewer(s)**: `r params$reviewer`
 **Date**: `r Sys.Date()`  
 
-
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
-
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# 需求描述
-# Requirement description
+## 需求描述 Requirement Description
 
 用R代码画出paper里的基因功能富集分析泡泡图，按对角线排列很好看
 
@@ -32,8 +39,7 @@ Heat maps are solved with code 9, this code solves bubble maps
 
 ![](example.png)
 
-# 使用场景
-# Usage scenario
+## 使用场景 Usage Scenario
 
 场景一：展示基因功能富集分析的结果
 
@@ -43,8 +49,7 @@ Scenario 1: Present the results of gene function enrichment analysis
 
 Scenario 2: Multi-dimensional data information display
 
-# 环境设置
-# Environment setting
+## 环境设置 Environment Setting
 
 ```{r}
 source("install_dependencies.R")
@@ -55,8 +60,7 @@ Sys.setenv(LANGUAGE = "en") #显示英文报错信息 display English error mess
 options(stringsAsFactors = FALSE) #禁止chr转成factor prohibit the conversion of chr to factor
 ```
 
-# 输入数据
-# Input data
+## 输入数据 Input Data
 
 例文左半部分是下调表达的基因，右侧是上调表达的基因。
 
@@ -78,8 +82,7 @@ head(df)
 df$GeneRatio <- df$Pop.Hits/df$Count
 ```
 
-# 开始画图
-# Start drawing
+## 开始画图 Start Drawing
 
 例图横坐标是GeneRatio，点的大小是组内基因数量，颜色代表pvalue。
 
@@ -159,8 +162,7 @@ plot_grid(pl, pr, labels = "")
 ggsave(file="bubbles.pdf")
 ```
 
-# 会话信息
-# SessionInfo
+## SessionInfo
 
 ```{r}
 sessionInfo()

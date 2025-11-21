@@ -1,16 +1,24 @@
 ---
 title: "FigureYa259circLink"
 params:
-  author: "Zongcheng Li; Yasi Zhang"  
-  reviewer: "Ying Ge"
-output: html_document
+  author: "Zongcheng Li"  
+  reviewer: "Ying Ge, Yasi Zhang"
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
 **Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()`  
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -19,8 +27,7 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# 需求描述
-# Demand description
+## 需求描述 Requirement description
 
 画出这种连线图。
 
@@ -28,12 +35,7 @@ Draw this connection diagram.
 
 ![](example1.png)
 
-出自：<https://molecular-cancer.biomedcentral.com/articles/10.1186/s12943-021-01322-w>，跟FigureYa260CNV出自同一篇文章
-
-图5 与WM评分相关的转录及转录后调控特征。
-a TCGA-COAD/READ队列中WM评分高/低组间miRNA靶向信号通路的差异。红线表示高WM评分组中低表达的miRNA，蓝线表示低WM评分组中高表达的miRNA。红点对应高WM评分组中高表达的miRNA靶基因，蓝点对应低WM评分组中高表达的miRNA靶基因。圆圈代表靶基因富集的信号通路。
-
-Source: <https://molecular-cancer.biomedcentral.com/articles/10.1186/s12943-021-01322-w>, from the same article as FigureYa260CNV.
+From <https://molecular-cancer.biomedcentral.com/articles/10.1186/s12943-021-01322-w>, from the same article as FigureYa260CNV.
 
 Fig. 5 Transcriptional and post-transcriptional characteristics associated with the WM_Score. 
 a Differences in miRNA-targeted signaling pathways in the TCGA-COAD/READ cohort between the WM_Score-high and -low groups. The red line represents a low expression of miRNA in the high WM_Score group, and the blue line represents a high expression of miRNA in the low WM_Score group. Red dots correspond to miRNA-targeted genes highly expressed in the high WM_Score group, and blue dots correspond to miRNA-targeted genes highly expressed in the low WM_Score group. The circle represents a signaling pathway enriched with targeted genes. 
@@ -46,16 +48,12 @@ A similar image:
 
 出自：<https://doi.org/10.1038/s42255-019-0045-8>，跟FigureYa174squareCross、FigureYa199crosslink、FigureYa256panelLink出自同一篇文章。这篇文章以连线著称，总是被模仿，不知道会不会被超越。
 
-图3 | 倾向性评分算法概述及跨癌种低氧相关分子模式。
-c图展示1,074个癌细胞系中低氧相关基因mRNA表达水平与药物敏感性之间的斯皮尔曼等级相关性。x轴上的深绿色圆点代表低氧相关基因；橙色圆点表示按不同信号通路聚类的药物。橙色圆点的大小反映与药物敏感性相关基因的数量（|rs| > 0.3且FDR < 0.05）；条形图显示与基因存在相关性的药物数量。粉色与青色线条分别表示正相关与负相关。JNK指Jun N末端激酶。
-
-Source: <https://doi.org/10.1038/s42255-019-0045-8>, from the same article as FigureYa174squareCross, FigureYa199crosslink, and FigureYa256panelLink. This paper is renowned for its connection designs—constantly imitated, yet to be surpassed.
+From <https://doi.org/10.1038/s42255-019-0045-8>, from the same article as FigureYa174squareCross, FigureYa199crosslink, and FigureYa256panelLink. This paper is renowned for its connection designs—constantly imitated, yet to be surpassed.
 
 Fig. 3 | overview of the propensity score algorithm and the hypoxia-associated molecular patterns across cancer types. 
 c, Association between mRNA expression levels of hypoxia-associated genes and drug sensitivity across 1,074 cancer cell lines by Spearman’s rank correlation. The dark green dots along the x axis indicate hypoxia-related genes; the orange dots denote drugs that are clustered by different signalling pathways. The size of the orange dot indicates the number of genes correlated with drug sensitivity (|rs| > 0.3, FDR < 0.05); the bar plot shows the number of drugs correlated with the genes. The pink and cyan lines indicate positive and negative correlation, respectively. JNK, Jun N-terminal kinase.
 
-# 应用场景
-# Application scenarios
+## 应用场景 Application scenarios
 
 展示miRNA-靶基因（或基因-药物等）的关系，连线和节点的颜色代表节点类型（例如例文的high和low WM_Score）。同一通路的基因画在同一圆圈里，并标注通路名。
 
@@ -65,8 +63,7 @@ This figure displays miRNA-target gene (or gene-drug, etc.) relationships, where
 
 To create this visualization, we enhanced the crosslink R package, which will continue to incorporate more innovative connection features. Those interested can visit <https://github.com/zzwch/crosslink> to explore the latest version and functionalities. GitHub also allows users to submit issues for direct communication with the author.
 
-# 环境设置
-# Environment Setup
+## 环境设置 Environment Setup
 
 ```{r}
 source("install_dependencies.R")
@@ -75,11 +72,11 @@ source("layout.R") # From R package crosslink
 source("transfromation.R") # From R package crosslink
 source("utils.R") # From R package crosslink
 
-library(magrittr)
-library(tidyverse)
-library(ggplot2)
-library(rlang)
-library(patchwork)
+library(magrittr)    # 管道操作符 Pipe operations
+library(tidyverse)   # 数据整理与可视化 Data wrangling & visualization
+library(ggplot2)     # 绘图 Plotting
+library(rlang)       # 编程辅助 Programming tools
+library(patchwork)   # 拼图 Plot composition
 
 # 显示英文报错信息
 # Show English error messages
@@ -90,8 +87,7 @@ Sys.setenv(LANGUAGE = "en")
 options(stringsAsFactors = FALSE) 
 ```
 
-# 输入文件
-# Input Files
+## 输入文件 Input Files
 
 easy_input_links.csv，连线表示source（miRNA）和target（靶基因）的关系。连线的颜色表示source的类型source_type（high WM_Score和low WM_Score）。
 
@@ -132,11 +128,9 @@ tar_up_col <- "red"
 tar_dn_col <- "blue"
 ```
 
-# 开始画图
-# Plotting
+## 开始画图 Plotting
 
-## 1. 快速预览 
-## 1. Take a glance
+### 1. 快速预览 Take a glance of the data
 
 > 重要提示！节点和边数据中不能包含列名 'node'、'cross'、'node.type'、'x'、'y'、'degree'！
 
@@ -158,8 +152,7 @@ toy <- crosslink(
 cl_plot(toy)
 ```
 
-## 2. 按通路将靶点转换为圆形分布
-## 2. Transform the targets into circle by pathways
+### 2. 按通路将靶点转换为圆形分布 Transform the targets into circle by pathways
 
 ```{r}
 # 自定义函数
@@ -191,8 +184,7 @@ toy_circle <- toy %>% tf_fun(
 toy_circle %>% cl_plot(label = NA)
 ```
 
-## 3. 后处理
-## 3. Post-processing
+### 3. 后处理 Post-processing
 
 ```{r}
 ## 对圆形布局进行几何变换
@@ -208,8 +200,7 @@ toy_final <- toy_circle %>%
 toy_final %>% cl_plot(label = NA) %>% cl_void()
 ```
 
-## 4. 微调
-## 4. Fine tuning
+### 4. 微调 Fine tuning
 
 ```{r}
 # 显示可用图形属性
@@ -303,8 +294,7 @@ p <- p + geom_point(
   )
 ```
 
-## 5. 添加注释图
-## 5. Add annotation plots
+### 5. 添加注释图 Add annotation plots
 
 把source的'signif'标注在source名字的下方
 
@@ -333,8 +323,7 @@ cl_plot2(
 ggsave("circLink.pdf", width = 10, height = 5)
 ```
 
-# 附：示例数据生成过程
-# Appendix: Example Data Generation Process
+## 附：示例数据生成过程 Appendix: Example Data Generation Process
 
 ```{r eval=FALSE}
 # 生成节点名称
@@ -376,7 +365,7 @@ write.csv(links, "easy_input_links.csv", row.names = F, quote = F)
 write.csv(nodes, "easy_input_nodes.csv", row.names = F, quote = F)
 ```
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

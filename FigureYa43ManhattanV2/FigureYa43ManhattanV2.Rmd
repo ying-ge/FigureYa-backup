@@ -3,7 +3,15 @@ title: "FigureYa43ManhattanV2"
 params:
   author: "Zhaodong Hao"
   reviewer: "Ying Ge, Yijing Chen"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
@@ -19,8 +27,7 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## 需求描述
-## Requirement description
+## 需求描述 Requirement description
 
 画出paper里的曼哈顿图，文字标签好看些。
 
@@ -30,17 +37,15 @@ Draw a picture of Manhattan from the paper, the text labels look better.
 
 Fig. 1: Manhattan plot for associations between genetic variants and ESCC risk.
 
-From<https://www.nature.com/articles/s41588-018-0045-8>
+From <https://www.nature.com/articles/s41588-018-0045-8>
 
-## 应用场景
-## Application scenario
+## 应用场景 Application scenario
 
 展示每条染色体上的SNP分布，通常作为外显子组测序文章里的第一个图。
 
 Show the distribution of SNP on each chromosome, usually presented as the first figure in an exon sequencing article.
 
-## 环境设置
-## Environment setting
+## 环境设置 Environment setting
 
 ```{r}
 source("install_dependencies.R")
@@ -51,8 +56,7 @@ Sys.setenv(LANGUAGE = "en") #显示英文报错信息 | Display English error me
 options(stringsAsFactors = FALSE) #禁止chr转成factor | prohibit the conversion of chr to factor
 ```
 
-## 输入文件
-## Input file
+## 输入文件 Input file
 
 easy_input.csv，包括染色体名字、SNP编号、在染色体上的位置（第几个碱基）、pvalue、类型type、基因名gene。
 
@@ -100,8 +104,7 @@ chrx <- data.frame(chr = chrom$chr, chrx = chrom$chrx)
 chrx$chr <- factor(chrx$chr,levels=c(1:18,"X","Y"))#给染色体排序 order chromosomes
 ```
 
-## 计算每个SNP的坐标
-## Calculate the coordinates of each SNP
+## 计算每个SNP的坐标 Calculate the coordinates of each SNP
 
 ```{r}
 #计算每条染色体在x轴上的坐标
@@ -115,8 +118,7 @@ gwas <- left_join(gwas, chrx, by=c("chr"="chr")) %>%
 gwas$SNPy <- -log10(gwas$P_value)
 ```
 
-## 用阈值分类
-## Classify by threshold
+## 用阈值分类 Classify by threshold
 
 ```{r}
 #设置阈值
@@ -140,11 +142,9 @@ tail(gwas)
 str(gwas)
 ```
 
-## 开始画图
-## Start drawing
+## 开始画图 Start drawing
 
-#### 先画点
-#### Draw dots first
+### 先画点 Draw dots first
 
 ```{r,fig.width=7,fig.height=4}
 #不喜欢默认的配色，自定义足够多的颜色
@@ -204,8 +204,7 @@ p2 <- p + theme(axis.ticks.x = element_blank(), axis.text.x = element_blank()) +
 p2
 ```
 
-### 再加箭头和标签
-### Add more arrows and labels
+### 再加箭头和标签 Add more arrows and labels
 
 ```{r,fig.width=7,fig.height=4}
 p2 + geom_text_repel(aes(label = label), 

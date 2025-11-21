@@ -3,14 +3,22 @@ title: "FigureYa241scRNA_NMI"
 params:
   author: "Jianing Gao"
   reviewer: "Ying Ge, Junyi Shen"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
 **Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()`  
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -36,8 +44,7 @@ Figure1. Increased Transcriptional Heterogeneity in Mouse LUAD Evolution Is Repr
 
 ![](method.png)
 
-# 应用场景
-# Application Scenario
+# 应用场景 Application Scenario
 
 利用单细胞数据评估同一(时间点)肿瘤样本的转录异质性
 Using Single-Cell Data to Assess Transcriptional Heterogeneity in Tumor Samples at the Same Time Point
@@ -56,8 +63,7 @@ Problem: The same sample contains multiple cells. Note that the transcriptome we
 例文的Figure 2D和G，利用cNMF提取expression programs，并通过整合其它已发表的数据，利用Gene set analysis来推断expression programs的生物学意义。做法可参考FigureYa226scRNA_cNMF
 In Figures 2D and 2G of the example paper, expression programs were extracted using cNMF. Gene set analysis was then used to infer the biological significance of these expression programs by integrating with other published data. For instructions, see FigureYa226scRNA_cNMF 
 
-# 环境设置
-# Environment Setup
+# 环境设置 Environment Setup
 
 ```{r}
 source("install_dependencies.R")
@@ -583,7 +589,7 @@ data.use %>%
   scale_x_discrete(labels=c("T\n2 wk","KT & KPT\n2 wk","KT\n12 wk","KT\n30 wk","KPT\n12 wk","KPT\n20 wk","KPT\n30 wk"))
 ```
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

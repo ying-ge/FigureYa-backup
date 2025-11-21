@@ -2,19 +2,26 @@
 title: "FigureYa55panCancer_violinV2"
 params:
   author: "Yi Xiong, Zhougeng Xu, Ying Ge; Ying Ge, Yijing Chen"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
 **Date**: `r Sys.Date()`  
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
 
-## 需求描述
-## Requirement description
+## 需求描述 Requirement description
 
 TCGA里的正常组织太少，把GTEx的正常组织加进去，用分裂小提琴图展示某个基因在TCGA肿瘤和正常组织中的表达差异。
 
@@ -26,8 +33,7 @@ There is too little normal tissue in TCGA, add normal tissue from GTEx and use s
 
 from<https://www.sciencedirect.com/science/article/pii/S0896627318308481>, Supplemental material, Figure 3b
 
-## 应用场景
-## Application scenario
+## 应用场景 Application scenario
 
 适用于：
 
@@ -41,8 +47,7 @@ Applicable to:
 
 2. Display expression data using split violin plots
 
-## 环境设置
-## Environment setting
+## 环境设置 Environment setting
 
 ```{r}
 source("install_dependencies.R")
@@ -291,8 +296,7 @@ tcga_gtex_MESO <- tcga_gtex[tcga_gtex$tissue=="MESO",]
 tcga_gtex_UVM <- tcga_gtex[tcga_gtex$tissue=="UVM",]
 ```
 
-## 开始画图
-## Start drawing
+## 开始画图 Start drawing
 
 要用到SplitViolin的图层和函数，保存在GeomSplitViolin.R文件中，位于当前文件夹。
 

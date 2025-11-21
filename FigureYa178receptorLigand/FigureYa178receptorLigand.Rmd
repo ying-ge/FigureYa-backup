@@ -3,14 +3,22 @@ title: "FigureYa178receptorLigand"
 params:
   author: "Xiao Gu"
   reviewer: "Ying Ge, Junyi Shen"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
 **Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()`  
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -304,7 +312,7 @@ The output pdf file is a vector graphic, which can be opened with tools such as 
 图中两种细胞类型之间用'|'分隔，可以参考例文的方式手动修改。
 The two cell types in the figure are separated by '/', which can be manually modified by referring to the example text.
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

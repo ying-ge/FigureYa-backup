@@ -2,14 +2,22 @@
 title: "FigureYa17 WGCNA_heatmap"
 params:
   author: "Ying Ge; Yijing Chen"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
 **Date**: `r Sys.Date()`  
 
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -19,8 +27,7 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## 需求描述
-## Requirement description
+## 需求描述 Requirement description
 
 用R代码画出paper里WGCNA module的heatmap
 
@@ -32,8 +39,7 @@ Draw the heatmap of the WGCNA module in paper using R code
 
 from<https://www.cell.com/cell/abstract/S0092-8674(18)30511-7>
 
-## 使用场景
-## Usage scenario
+## 使用场景 Usage scenario
 
 WGCNA找出了gene module，展示各module的基因在各组样本中的表达谱变化。
 
@@ -98,8 +104,7 @@ df.sort <- df.merged[order(df.merged$order),]
 write.table(df.sort[1:22],"easy_input.txt",row.names = F, quote = F)
 ```
 
-## 开始画图
-## Start drawing
+## 开始画图 Start drawing
 
 ```{r}
 #读取带有module信息的基因表达量文件

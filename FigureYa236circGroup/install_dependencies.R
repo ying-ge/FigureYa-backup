@@ -50,7 +50,7 @@ cat("===========================================\n")
 
 # Installing CRAN packages
 cat("\nInstalling CRAN packages...\n")
-cran_packages <- c("Cholesterogenic", "Classical", "Glycolytic", "Immunogenic", "Mixed", "Progenitor", "Quiescent", "SimDesign", "Squamous", "grid", "gridBase")
+cran_packages <- c("grid", "gridBase", "SimDesign")
 
 for (pkg in cran_packages) {
   install_cran_package(pkg)
@@ -58,7 +58,7 @@ for (pkg in cran_packages) {
 
 # Installing Bioconductor packages
 cat("\nInstalling Bioconductor packages...\n")
-bioc_packages <- c("ComplexHeatmap", "circlize")
+bioc_packages <- c("circlize", "ComplexHeatmap")
 
 for (pkg in bioc_packages) {
   install_bioc_package(pkg)

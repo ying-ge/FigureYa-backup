@@ -2,14 +2,22 @@
 title: "FigureYa55plus_pancancer_boxplot"
 params:
   author: "Chris Lou, Yijing Chen"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
 **Date**: `r Sys.Date()`  
 
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -19,8 +27,7 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# 需求描述
-# Requirement description
+# 需求描述 Requirement Description
 
 问：FigureYa55pancancer_violin的图能不能画成box plot？
 
@@ -38,8 +45,7 @@ Q：Can I use the output file easy_input.csv of FigureYa55pancancer_violin as in
 
 A: Yes. Thanks to Jiacheng Lou for helping to update and share two versions of the solution: ggpubr version and pure ggplot2 version
 
-# 环境设置
-# Environment setting
+# 环境设置 Environment Setting
 
 ```{r}
 source("install_dependencies.R")
@@ -71,8 +77,7 @@ tcga_gtex <- read.csv("easy_input.csv", row.names = 1, header = T, as.is = F)
 head(tcga_gtex)
 ```
 
-# 开始画图
-# Start drawing
+# 开始画图 Start Drawing
 
 ## 方法一：ggpubr
 ## Method 1: ggpubr
@@ -203,7 +208,7 @@ p.box.dot +
 ggsave("pancancer_ggplot2boxDot_all.pdf", width = 14, height = 5)
 ```
 
-# Session Info
+## Session Info
 # 会话信息
 
 ```{r}

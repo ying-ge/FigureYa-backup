@@ -1,9 +1,17 @@
 ---
 title: "FigureYa282CMAP_XSum"
 params:
-  author: "Chen Yang; Yasi Zhang"  
-  reviewer: "Ying Ge"
-output: html_document
+  author: "Chen Yang"  
+  reviewer: "Ying Ge, Yasi Zhang"
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
@@ -23,8 +31,7 @@ Chen Yang, et al. (2022). A survey of optimal strategy for signature-based drug 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## 需求描述
-## Demand description
+## 需求描述 Requirement description
 
 有篇最近的文章可以替代一下FigureYa131cMAP，好像能用类似cmap的方法来进行药物预测，但这篇没有没有提供代码，。
 
@@ -34,12 +41,9 @@ I came across a recent article that also uses a CMAP-like method for drug predic
 
 From <https://elifesciences.org/articles/71880>
 
-图1. LINCS数据驱动的治疗发现概述。基于"特征逆转"的计算方法工作原理。首先需要识别代表异常表达模式的疾病特征（G1、G2和G3表示疾病状态下上调的基因，而G4、G5和G6表示下调的基因）。利用这一特征，可以查询药理学扰动数据集，寻找能够逆转疾病表达模式的化合物（抑制G1、G2和G3的表达，同时诱导G4、G5和G6的表达）。确定候选化合物后，需要通过实验和临床验证将计算结果转化为临床应用。LINCS，集成网络细胞特征库。
-
 Figure 1. Overview of LINCS data-driven therapeutic discovery. The working principle of ‘signature reversion’-based computational approach. A disease signature representing discordant expression pattern needs first to be identified (G1, G2, and G3 stand for upregulated genes while G4, G5, and G6 stand for down-regulated genes in disease state). With this signature, pharmacologic perturbation data sets can be queried to find compounds with the ability to reverse disease expression pattern (suppress expression of G1, G2, and G3 and induce expression of G4, G5, and G6). After determining the candidate compounds, experimental and clinical validation are required to translate computational findings to clinical applications. LINCS, Library of Integrated Network-based Cellular Signatures.
 
-## 应用场景
-## Application scenarios
+## 应用场景 Application scenarios
 
 CMap分析主要涉及三个部分：
 
@@ -61,8 +65,7 @@ The referenced study (Yang et al. Elife 2022, https://elifesciences.org/articles
 
 If you use the methods described in the following demonstration, please cite the referenced paper (PMID: 35191375).
 
-## 环境设置
-## Environment Setup
+## 环境设置 Environment settings
 
 ```{r}
 source("install_dependencies.R")
@@ -88,8 +91,7 @@ Sys.setenv(LANGUAGE = "en")
 options(stringsAsFactors = FALSE) 
 ```
 
-## CMap数据下载及预处理  
-## Downloading and Preprocessing CMap Data
+## CMap数据下载及预处理 Downloading and Preprocessing CMap Data
 
 CMAP_gene_signatures.RData，处理好的CMap数据，下载地址<https://www.pmgenomics.ca/bhklab/sites/default/files/downloads/CMAP_gene_signatures.RData> 
 
@@ -120,8 +122,7 @@ camp_sig <- column_to_rownames(camp_sig, var = "SYMBOL"); camp_sig <- camp_sig[,
 saveRDS(camp_sig, "camp_sig.rds")
 ```
 
-## 疾病分子特征预处理  
-## Preprocessing Disease Molecular Signatures
+## 疾病分子特征预处理 Preprocessing Disease Molecular Signatures
 
 以下演示将以肝癌数据为例，通过癌与癌旁的差异分析得到疾病分子特征。 
 
@@ -168,8 +169,7 @@ write.table(dis_sig, "dis_sig.csv", sep=",", quote=F, row.names=F, col.names=T)
 head(dis_sig)
 ```
 
-## 计算CMap score  
-## Calculating CMap Score
+## 计算CMap score Calculating CMap Score
 
 ```{r}
 # 读入drug signature
@@ -218,8 +218,7 @@ head(xsum)
 
 According to the CMap theory (which has been extensively validated by numerous studies), the lower the score obtained here, the more likely the drug is to reverse the disease's molecular signature, and theoretically more likely to have therapeutic potential for that disease. The results from this demonstration dataset suggest that X4.5-dianilinophthalimide is the most promising candidate drug for treating liver cancer.
 
-## 结果可视化  
-## Visualization of Results
+## 结果可视化 Visualization of Results
 
 ```{r, ig.align='center'}
 xsum$number <- 1:nrow(xsum)

@@ -1,15 +1,24 @@
 ---
 title: "FigureYa59Plus_GEO2DEG"
 params:
-  author: "Haitao Wang; Ying Ge, Yijing Chen"
-output: html_document
+  author: "Haitao Wang"
+  reviewer: "Ying Ge, Yijing Chen"
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
+**Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()`  
 
-
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -18,38 +27,34 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## 需求描述
-## Requirement description
+## 需求描述 Requirement description
 
 从GEO数据库下载芯片数据，筛选差异表达基因，无缝对接FigureYa59volcano画火山图。
 
 Download chip data from the GEO database, screen for differentially expressed genes, and seamlessly connect with FigureYa59volcano to plot a volcano map.  
 
-## 应用场景
-## Application scenario
+## 应用场景 Application scenario
 
 适用于GEO数据库里的芯片数据。
 
 Applicable to chip data in the GEO database.
 
-## 环境设置
-## Environment setting
+## 环境设置 Environment setting
 
 ```{r}
 source("install_dependencies.R")
 
-library(GEOquery)
-library(limma)
-library(ggplot2)
-library(ggrepel)
-library(ggthemes)
+library(GEOquery) # 用于下载GEO数据库中的数据 # For downloading data from the GEO database
+library(limma) # 用于差异表达分析 # For differential expression analysis
+library(ggplot2) # 用于画图 # For plotting
+library(ggrepel) # 用于避免标签重叠 # For avoiding label overlap
+library(ggthemes) # 用于画图主题 # For plotting themes
 
 Sys.setenv(LANGUAGE = "en") #显示英文报错信息 display English error messages
 options(stringsAsFactors = FALSE) #禁止chr转成factor prohibit the conversion of chr to factor
 ```
 
-## 输入数据的获得
-## Obtain input data
+## 输入数据的获得 Obtain input data
 
 如果你的数据已经整理成“easy_input_expr.csv”和“easy_input_pheno.csv”的格式，包含所有基因的表达矩阵，每行一个基因，每列一个sample，就可以跳过这步，直接进入“输入数据预处理”；
 
@@ -59,8 +64,7 @@ If your data have been organized into "easy_input_expr.csv" and "easy_input_phen
 
 If it has been organized into the format of "easy_input_limma.csv", which contains the differential expression analysis results of all the genes, one gene per row, the first column is the gene name, followed by log2foldchange, P.value or adj.Pvalue, then directly jump to "Start drawing".
 
-### 从GEO下载表达矩阵和芯片注释文件
-### Download expression matrix and chip annotation file from GEO
+### 从GEO下载表达矩阵和芯片注释文件 Download expression matrix and chip annotation file from GEO
 
 此处以GSE17215<https://www.ncbi.nlm.nih.gov/gds/?term=GSE17215>为例，用芯片平台自带的探针组和gene symbol对应关系：Affymetrix HT Human Genome U133A Array: GPL3921<https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GPL3921>。如果芯片平台自带的注释信息不符合你的要求，需要重注释，请使用FigureYa58lncRNAreannotation，获得探针ID跟gene symbol的对应关系。
 
@@ -117,8 +121,7 @@ dim(Table(gpl)) #查看一共有多少行探针组 view how many rows of probe s
 # up to this point, the required expression matrix and chip platform annotations have been downloaded.
 ```
 
-### 整理芯片平台注释信息
-### Organize chip platform annotation information
+### 整理芯片平台注释信息 Organize chip platform annotation information
 
 此处使用芯片平台自带的探针组和gene symbol对应关系。
 
@@ -153,8 +156,7 @@ colnames(annotation) <- c("probe_id", "gsym", "entrez_id")
 write.csv(annotation, "gplTOgene.csv", row.names = F)
 ```
 
-### 把表达矩阵的探针组ID换成Gene Symbol
-### Replace the probe set ID of the expression matrix with Gene Symbol
+### 把表达矩阵的探针组ID换成Gene Symbol Replace the probe set ID of the expression matrix with Gene Symbol
 
 需要用到前面整理好的芯片自带的注释，或重注释获得的“gplTOgene.csv”文件。
 
@@ -188,8 +190,7 @@ head(express)
 write.csv(express, "easy_input_expr.csv", quote = F)
 ```
 
-### 按照实验设计整理分组信息
-### Organize group information according to experimental design
+### 按照实验设计整理分组信息 Organize group information according to experimental design
 
 ```{r}
 # 获得样品信息
@@ -209,8 +210,7 @@ group_list
 write.table(group_list, "easy_input_pheno.txt", quote = F, sep = "\t", row.names = F)
 ```
 
-## 输入数据预处理
-## Input data preprocessing
+## 输入数据预处理 Input data preprocessing
 
 输入数据：
 
@@ -222,8 +222,7 @@ Input data
 - easy_input_expr.csv, gene expression matrix, one gene per row, named by gene symbol, one sample per column
 - easy_input_pheno.txt, sample grouping, first column is sample ID, second column is grouping
 
-### 均一化处理
-### Normalization
+### 均一化处理 Normalization
 
 如果你的数据已经进行过均一化处理，就直接运行下面这段的最后一行
 
@@ -257,8 +256,7 @@ boxplot(express.norm, outline=F) #均一化后 after normalization
 #express.norm <- express
 ```
 
-### 离群sample的处理
-### Process outlier samples
+### 离群sample的处理 Process outlier samples
 
 如果不需要处理离群sample，就只运行下面这段的第一行。
 
@@ -286,8 +284,7 @@ heatmap(cor(express.norm),scale="none")
 round(cor(express.norm),2)
 ```
 
-### 差异表达分析
-### Differential expression analysis
+### 差异表达分析 Differential expression analysis
 
 用于差异表达基因分析（DEG）的 Limma ([limma powers differential expression analyses](https://academic.oup.com/nar/article/43/7/e47/2414268/limma-powers-differential-expression-analyses-for))**
 
@@ -318,14 +315,13 @@ x <- topTable(fit2, coef = 1, n = Inf, adjust.method = "BH", sort.by = "P")
 write.csv(x, "easy_input_limma.csv", quote = F)
 ```
 
-## 开始画图
-## Start drawing
+## 开始画图 Start drawing
 
 用上面获得的`easy_input_limma.csv`作为输入文件，继续运行FigureYa59volcano里的代码，即可画最美火山图。
 
 Use the `easy_input_limma.csv` obtained above as the input file and continue to run the code in FigureYa59volcano to draw the most beautiful volcano map.
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

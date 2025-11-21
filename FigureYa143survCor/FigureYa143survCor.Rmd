@@ -3,61 +3,70 @@ title: "FigureYa143survCor"
 params:
   author: "Xiaofan Lu"
   reviewer: "Ying Ge, Junyi Shen"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
 **Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()`  
 
-
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
-
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## 需求描述
-## Requirement description
+## 需求描述 Requirement description
 
 绘制较复杂的相关性图，包括计算每个表达值下的logrank score；以肠癌MSS和MSI样本为例。
 Draw a more complex correlation graph, including calculating the logrank score for each expression value; take colorectal cancer MSS and MSI samples as an example.
 
 ![](example.png)
 
-出自<https://www.jci.org/articles/view/127046>
 From <https://www.jci.org/articles/view/127046>
 
 Figure 1. Comparison of TME stratification based on CD8A and CD274 gene expression between TCGA melanoma and CRC. Scatter plots of log2-transformed CD8A and CD274 **gene expression** values are shown (A and C) for melanoma (n = 459) and CRC (n = 599), respectively. A linear regression line is plotted with the **gray shaded region showing the 95% confidence interval**. Pearson’s correlation coefficient r and P values are given at the bottom. **MSI (black triangles) and MSS (gray circles) statuses** are labeled for CRC samples. **Median values of CD8A and CD274 expression are indicated with dashed gray lines**. log-rank statistics were applied to identify the optimal cut-off for transforming the continuous variable of gene expression into categorical high- and low-expression groups in a survfit model. The test score at each candidate cut-off across the log-transformed gene expression values was plotted. **The highest test score (indicated with a blue arrow) was applied for best separating patients into 4 different risk groups (using solid blue lines; named groups I to IV)**. To compare risk groups between melanoma and CRC, we also applied a secondary peak of test scores (red arrow with an asterisk, which revealed a reverse pattern of survival in CRC as shown in Supplemental Figure 2) for CD274 stratification (indicated with a solid red line instead of a blue line; named groups I, II, III* and IV*). Each stratified risk group is labeled with its population fraction in percentages. 
 
 **Statistics**. CD8A and PD-L1 gene expression were chosen for investigation from the 20 correlated genes (Bedognetti et al.; ref. 12). We used **log-rank statistics** to identify the **optimal expression cut-off** for each gene with regard to the associated hazard of death or relapse events in a survfit model (63), using the cutp function of the **R package survMisc** (version 0.5.5; https://CRAN.R-project.org/package=survMisc). The cut-off with the **highest log-rank test score was selected for best separating patients into high- and low-expression groups with different risks**. Upon observing a bimodal distribution of marginal log-rank statistics for CRC, but not melanoma, CD274 expression value at a secondary mode was used to identify a second set of high-risk subjects. 
 
-## 应用场景
-## Application scenarios
+## 应用场景 Application scenarios
 
 用log-rank statistics找最佳分组cut-off。
-Use log-rank statistics to find the best grouping cut-off.
 
 用复杂相关性图同时展示基因表达相关性、MSI/MSS状态、最佳cut-off、分组等信息。
-Use complex correlation graphs to simultaneously display gene expression correlation, MSI/MSS status, best cut-off, grouping and other information.
 
 如果只想计算并展示相关性，画出类似的图，可参考FigureYa92immune_gene。
+
+Use log-rank statistics to find the best grouping cut-off.
+
+Use complex correlation graphs to simultaneously display gene expression correlation, MSI/MSS status, best cut-off, grouping and other information.
+
 If you only want to calculate and display the correlation and draw a similar graph, refer to FigureYa92immune_gene.
 
-## 环境设置
-## Environment settings
-
+## 环境设置 ## Environment settings
 
 ```{r}
 source("install_dependencies.R")
-```
 
+# 检查并安装 KMsurv（survMisc 的依赖）
+# Check and install KMsurv (dependency of survMisc)
+if (!requireNamespace("KMsurv", quietly = TRUE)) {
+  cat("KMsurv 包未安装，正在自动安装...\n")
+  cat("KMsurv package not installed, installing automatically...\n")
+  install.packages("KMsurv", repos = "https://cloud.r-project.org/")
+}
 
-```{r}
 library(TCGAbiolinks) # Download data
 library(survival) # Calculate survdiff
 library(survMisc) # Calculate cutoff
@@ -67,16 +76,18 @@ Sys.setenv(LANGUAGE = "en") #Display English error message
 options(stringsAsFactors = FALSE) #Disable conversion of chr to factor
 ```
 
-## 输入文件
-## Input file
+## 输入文件 Input file
 
 easy_input_expr.txt，基因表达矩阵。第一列是样本ID，二、三列分别是CD274和CD8A的TPM。每行一个样本。TPM的获得可参考FigureYa23count2TPM或FigureYa56immune_inflitration。或者直接用FigureYa34count2FPKM下载FPKM值。
-easy_input_expr.txt, gene expression matrix. The first column is the sample ID, and the second and third columns are the TPM of CD274 and CD8A respectively. One sample per row. For TPM, refer to FigureYa23count2TPM or FigureYa56immune_inflitration. Or directly use FigureYa34count2FPKM to download the FPKM value.
 
 easy_input_survival.txt，生存信息，跟表达矩阵的样本ID对应。
-easy_input_survival.txt, survival information, corresponding to the sample ID of the expression matrix.
 
 msi_results.rda，下载的MSI信息保存在这里，以便重复使用。
+
+easy_input_expr.txt, gene expression matrix. The first column is the sample ID, and the second and third columns are the TPM of CD274 and CD8A respectively. One sample per row. For TPM, refer to FigureYa23count2TPM or FigureYa56immune_inflitration. Or directly use FigureYa34count2FPKM to download the FPKM value.
+
+easy_input_survival.txt, survival information, corresponding to the sample ID of the expression matrix.
+
 msi_results.rda, the downloaded MSI information is saved here for reuse.
 
 ```{r}
@@ -95,9 +106,10 @@ head(surv)
 Download MSI information:
 
 下载过程完成后存储为当前文件夹下的msi_results.rda文件，便于重复使用。
+
 After the download process is completed, it is stored as the msi_results.rda file in the current folder for easy reuse.
 
-```r
+```{r}
 # COAD结肠癌
 # COAD colon cancer
 msiquery1 <- GDCquery(project = "TCGA-COAD",
@@ -155,8 +167,7 @@ expr <- round(log2(expr[com_sam,] + 1),2) # 表达谱对数转化
 surv <- surv[com_sam,]
 ```
 
-## 计算logrank score和相关性
-## Calculate logrank score and correlation
+## 计算logrank score和相关性 Calculate logrank score and correlation
 
 ```{r}
 #-------------------#
@@ -218,8 +229,7 @@ reg <- lm(CD8A~CD274,data=expr[order(expr$CD274),]) # 注意要按照x轴排序 
 ci <- as.data.frame(predict(reg, newdata = expr[order(expr$CD274),], interval = 'confidence')) # 计算置信域 # Calculate confidence region
 ```
 
-## 开始画图
-## Start drawing
+## 开始画图 Start drawing
 
 ```{r}
 # 设置颜色
@@ -410,6 +420,7 @@ invisible(dev.off())
 
 ![](complex correlation with logrank score.pdf)
 
+## Session Info
 ```{r}
 sessionInfo()
 ```

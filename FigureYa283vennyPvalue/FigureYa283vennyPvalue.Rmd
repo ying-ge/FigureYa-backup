@@ -3,14 +3,22 @@ title: "FigureYa283vennyPvalue"
 params:
   author: "Xiaofan Lu; Yasi Zhang"  
   reviewer: "Ying Ge"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
 **Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()` 
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -40,15 +48,13 @@ d, Venn diagram displaying the intersection of pathways activated
 in persister cells from the three PDX models, among MSigDB c2_curated Breast/Mammary and c7_Hallmark pathways (left). The P value below the
 Venn diagram is associated with the intersection (exact test of multiset intersections). Barplot displaying the top five pathways (for each category) activated in persister cells (right). The x axis corresponds to –log10 q-values for the model PDX_95. 
 
-# 应用场景
-# Application Scenario
+# 应用场景 Application Scenario
 
 韦恩图及p值计算（基于多个数据集交集精确检验，Exact test of multiset intersect）
 
 Venn diagram and p-value calculation (exact test of multiset intersections)
 
-# 环境设置
-# Environment Setup
+# 环境设置 Environment Setup
 
 ```{r}
 source("install_dependencies.R")
@@ -152,7 +158,7 @@ dev.copy2pdf(file = "venny.pdf", width = 5, height = 5)
 ```
 
 # 会话信息
-# Session Info
+## Session Info
 
 ```{r}
 # 显示会话信息

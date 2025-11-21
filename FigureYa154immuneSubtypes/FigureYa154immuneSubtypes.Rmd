@@ -3,7 +3,15 @@ title: "FigureYa154immuneSubtypes"
 params:
   author: "Yufang Wang"
   reviewer: "Ying Ge, Junyi Shen"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
@@ -11,7 +19,7 @@ output: html_document
 **Date**: `r Sys.Date()`  
 
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -20,8 +28,7 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## 需求描述
-## Requirement description
+## 需求描述 Requirement description
 
 复现文章里的结果图
 Reproduce the result graph in the article
@@ -65,8 +72,7 @@ Sys.setenv(LANGUAGE = "en") #显示英文报错信息 #Display English error mes
 options(stringsAsFactors = FALSE) #禁止chr转成factor #Disable conversion of chr to factor
 ```
 
-## 输入文件
-## Input file
+## 输入文件 Input file
 
 mmc2.xlsx，即例文的Table S1，包含TCGA里33种癌症1万多个样本的免疫浸润结果。
 mmc2.xlsx, also known as Table S1 in the example article, contains immune infiltration results for over 10,000 samples from 33 cancer types collected by TCGA.
@@ -288,7 +294,7 @@ You can refer to this article <https://mp.weixin.qq.com/s/yVLgGQQi0CQ9Q9UfIKl5aA
 输出的pdf文件是矢量图，可以用Illustrator等矢量图软件打开，拼接、编辑图形和文字。
 The output PDF file is a vector image and can be opened in vector graphics software such as Illustrator to stitch and edit graphics and text.
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

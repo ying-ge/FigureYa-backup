@@ -3,7 +3,15 @@ title: "FigureYa148SimpleDendrogram"
 params:
   author: "Xiaofan Lu"
   reviewer: "Ying Ge, Junyi Shen"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
@@ -11,7 +19,7 @@ output: html_document
 **Date**: `r Sys.Date()`  
 
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -21,8 +29,7 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## 需求描述
-## Requirement description
+## 需求描述 Requirement description
 
 绘制带有注释信息的dendrogram。
 Draw a dendrogram with annotation information.
@@ -43,8 +50,7 @@ For ideas, please refer to this article: <https://mp.weixin.qq.com/s/ul0XPjBDuqM
 用两套数据对上文找出的淋巴结转移signature（marker  genes）做验证：GEO数据（A）已知是否有淋巴结转移，MSKCC（B）已知生存期。用signature做分类，同时把已知信息画在图上，让分类效果一目了然。
 Use two sets of data to verify the lymph node metastasis signature (marker genes) found above: GEO data (A) is known to have lymph node metastasis, and MSKCC (B) is known to have survival. Use the signature for classification and draw the known information on the graph to make the classification effect clear at a glance.
 
-## 应用场景
-## Application scenario
+## 应用场景 Application scenario
 
 用TCGA数据找到的signature，再用其他数据集做验证。可以用这个图展示预测效果。
 Use the signature found by TCGA data and then use other data sets for verification. This graph can be used to show the prediction effect.

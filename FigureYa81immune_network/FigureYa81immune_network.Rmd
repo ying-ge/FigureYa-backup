@@ -1,16 +1,24 @@
 ---
 title: "FigureYa81immune_network"
 params:
-  author: "Dongqiang Zeng, Taojun Ye"
-  reviewer: "Ying Ge"
-output: html_document
+  author: "Dongqiang Zeng"
+  reviewer: "Ying Ge, Taojun Ye"
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
 **Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()`  
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -19,11 +27,9 @@ Zeng D, Li M, Zhou R, Zhang J, Sun H, Shi M, et al. Tumor microenvironment chara
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-# 设置knitr的全局代码块选项 / Set global chunk options for knitr
 ```
 
-## 需求描述
-## Requirement description
+## 需求描述 Requirement description
 
 复现原文免疫细胞之间相关性的网络图
 
@@ -31,16 +37,13 @@ Reproduce the network diagram of the correlation between immune cells in the ori
 
 ![](example.png)
 
-出自<http://cancerimmunolres.aacrjournals.org/content/early/2019/03/06/2326-6066.CIR-18-0436>
-
-From<http://cancerimmunolres.aacrjournals.org/content/early/2019/03/06/2326-6066.CIR-18-0436>
+From <http://cancerimmunolres.aacrjournals.org/content/early/2019/03/06/2326-6066.CIR-18-0436>
 
 节点的颜色代表细胞所属的cluster，节点的大小代表生存分析的log_rank_p，用圆心点的颜色展示HR，连线颜色代表正/负相关，连线的粗细代表相关性Pvalue。
 
 The color of the node represents the cluster to which the cell belongs, the size of the node represents the log_rank_p of survival analysis, HR is displayed using the color of the center point, the color of the connecting line represents positive/negative correlation, and the thickness of the connecting line represents correlation Pvalue.
 
-## 应用场景
-## Application scenarios
+## 应用场景 Application scenarios
 
 用网络图同时展示相关关系、pvalue、聚类/分类结果、跟预后的关系。
 
@@ -52,8 +55,7 @@ Using a network diagram to simultaneously display relevant relationships pvalue�
 - For example, the correlation between cells in the example text and their relationship with prognosis
 - Or the correlation and clustering results of multiple genes in the expression profile data pvalue、 The relationship with prognosis is richer than the correlation shown in Figure Ya37.
 
-## 环境设置
-## Environment settings
+## 环境设置 Environment settings
 
 ```{r}
 source("install_dependencies.R")
@@ -68,8 +70,7 @@ Sys.setenv(LANGUAGE = "en")           # 设置显示英文报错信息 | Set err
 options(stringsAsFactors = FALSE)     # 禁止将字符型变量自动转换为因子 | Disable automatic conversion of strings to factors
 ```
 
-## 参数设置
-## Parameter settings
+## 参数设置 Parameter settings
 
 ```{r}
 # 定义网络图中连线的颜色 | Define colors for edges in network graph
@@ -81,8 +82,7 @@ mycol <- c("#FDBF6F", "#1F78B4", "#E31A1C", "#8C510A")
 # 用于不同聚类的颜色，如果有更多类，需要添加更多颜色 | Colors for different clusters, add more if needed
 ```
 
-## 输入文件
-## Input file
+## 输入文件 Input file
 
 至少要提供easy_input_immune.csv文件，例如免疫细胞矩阵，或基因表达矩阵（把这里的免疫细胞替换成基因即可）。如果没有生存分析结果，可以用其他pvalue代替。
 
@@ -119,11 +119,9 @@ head(bb)                         # 查看处理后的数据集 | Preview process
 write.csv(bb, "output_HR_corlor.csv", quote = F)  # 输出用于后续绘图的带颜色信息的文件 | Output file with color info for plotting
 ```
 
-## 相关性的计算
-## Calculation of correlation
+## 相关性的计算 Calculation of correlation
 
-### 计算每两种细胞间的相关性
-### Calculate the correlation between every two types of cells
+### 计算每两种细胞间的相关性 Calculate the correlation between every two types of cells
 
 计算每两种细胞间的相关性corr，用corrplot可视化，看看聚成几类比较好。
 
@@ -152,8 +150,7 @@ corrplot(corr, title = "",
          tl.srt = 60)              # 文本标签旋转角度 | Text label rotation angle
 ```
 
-### 计算相关性分析的P值
-### Calculate the P-value for correlation analysis
+### 计算相关性分析的P值 Calculate the P-value for correlation analysis
 
 也可以用Hmsic包来求，但是发现它输出的P值有限制。
 
@@ -186,8 +183,7 @@ p.corr <- cor.mtest(input_data)
 head(p.corr[, 1:5])  # 显示p值矩阵的前几行和前5列 | Show first few rows and 5 columns of p-value matrix
 ```
 
-### 计算节点间的连接关系
-### Calculate the connection relationship between nodes
+### 计算节点间的连接关系 Calculate the connection relationship between nodes
 
 只保留那些相关性较强的连接
 
@@ -235,8 +231,7 @@ corpvlue$color <- ifelse(corpvlue$cor < 0, negcol, poscol)  # 负相关为蓝色
 write.csv(corpvlue, "output_links.csv")  # 输出用于网络图的连接数据 | Output edge data for network visualization
 ```
 
-## 利用矩阵文件进行细胞的聚类
-## Cluster cells using matrix files
+## 利用矩阵文件进行细胞的聚类 Cluster cells using matrix files
 
 细胞聚类的结果综合考虑了"hclust"的结果、"kmeans"聚类的结果、以及目前的研究现状
 
@@ -279,8 +274,7 @@ nodes$media <- as.character(nodes$media)  # 将细胞名称转换为字符型 | 
 nodes  # 显示最终节点数据 | Display final node data
 ```
 
-## 构建网络的input文件
-## Build the input file for the network
+## 构建网络的input文件 Build the input file for the network
 
 ```{r}
 # 合并生存分析数据和细胞分类数据 | Merge survival analysis data and cell classification data
@@ -330,8 +324,7 @@ net <- graph_from_data_frame(d = links, vertices = nodes, directed = T)
 # 从数据框构建图对象：d为连接数据，vertices为节点数据，directed指定有向图 | Build graph: edges from 'links', nodes from 'nodes', directed graph
 ```
 
-## 开始画图
-## Start drawing
+## 开始画图 Start drawing
 
 **画法说明：**
 

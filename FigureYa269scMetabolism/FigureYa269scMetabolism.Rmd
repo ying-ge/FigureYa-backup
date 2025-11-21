@@ -3,14 +3,22 @@ title: "FigureYa269scMetabolism"
 params:
   author: "Yandong Zheng; Yasi Zhang"  
   reviewer: "Ying Ge"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
 **Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()`  
 
-# Academic Citation
+## Academic Citation
 
 如果您在工作或研究中使用了本代码，恳请您引用我们的出版物：
 
@@ -54,8 +62,7 @@ Mining metabolic activity at single-cell resolution. For ease of use, the author
 
 This document guides you through running the R version of scMetabolism, which is suitable for scRNA-seq data and seamlessly integrates with Seurat.
 
-# 环境设置
-# Environment Setup
+# 环境设置 Environment Setup
 
 ```{r}
 source("install_dependencies.R")
@@ -402,7 +409,7 @@ dev.off()
 
 ![](significance_metabolism pathway_pheatmap.pdf)
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

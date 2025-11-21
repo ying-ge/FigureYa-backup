@@ -44,6 +44,33 @@ install_bioc_package <- function(package_name) {
   }
 }
 
+# Function to install SeuratData package (from GitHub)
+install_seurat_data <- function() {
+  if (!is_package_installed("SeuratData")) {
+    cat("Installing SeuratData package...\n")
+    tryCatch({
+      # Try CRAN first
+      install.packages("SeuratData", repos = "https://cloud.r-project.org/")
+      if (!is_package_installed("SeuratData")) {
+        # If CRAN fails, try GitHub
+        if (!is_package_installed("devtools")) {
+          install.packages("devtools", repos = "https://cloud.r-project.org/")
+        }
+        devtools::install_github("satijalab/seurat-data", quiet = TRUE)
+      }
+      if (is_package_installed("SeuratData")) {
+        cat("Successfully installed: SeuratData\n")
+      } else {
+        cat("Failed to install SeuratData\n")
+      }
+    }, error = function(e) {
+      cat("Failed to install SeuratData:", e$message, "\n")
+    })
+  } else {
+    cat("Package already installed: SeuratData\n")
+  }
+}
+
 cat("Starting R package installation...\n")
 cat("===========================================\n")
 
@@ -62,6 +89,11 @@ bioc_packages <- c("SingleCellExperiment")
 for (pkg in bioc_packages) {
   install_bioc_package(pkg)
 }
+
+# Installing SeuratData (datasets need to be installed separately when needed)
+cat("\nInstalling SeuratData package...\n")
+cat("Note: To install ifnb dataset, run: SeuratData::InstallData('ifnb')\n")
+install_seurat_data()
 
 cat("\n===========================================\n")
 cat("Package installation completed!\n")

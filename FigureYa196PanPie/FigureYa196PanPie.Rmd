@@ -3,14 +3,22 @@ title: "FigureYa196PanPie"
 params:
   author: "Xiaofan Lu"
   reviewers: Ying Ge,Hui Huang
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
 **Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()`  
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -18,35 +26,26 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# 需求描述
+## 需求描述 Requirement Description
 
 把分组的数据直接用扇形图来展示不同临床预后分期的分布差异，看起来很漂亮。
-
-# Requirement Description
 
 It looks beautiful to use the grouped data directly in a fan chart to show the distribution differences of different clinical prognostic stages.
 
 ![](example.png)
-
-出自<https://www.nature.com/articles/s41388-019-1026-9>
 
 From <https://www.nature.com/articles/s41388-019-1026-9>
 
 Fig. 4 Identification of CNV-driven rRNA metabolism-related genes with clinical relevance.
 f, g Pie charts showing the Chi-squared test of clinicopathologic factors for PRE in CRC (f) and LUAD (g) tumor samples from the TCGA. 
 
-图 4 具有临床相关性的 CNV 驱动的 rRNA 代谢相关基因的鉴定。f、g饼图显示了来自TCGA的CRC（f）和 LUAD（g）肿瘤样本中 PRE 临床病理因素的卡方检验。
-
-# 应用场景
+## 应用场景 Application Scenarios
 
 搞清楚输入数据跟图的对应关系、理解每部分代码所画的内容，就可以套用到更多类型的数据上。
 
-# Application Scenarios
-
 Once you understand the mapping between input data and visual outputs, as well as the role of each code block in generating plots, you can adapt this workflow to broader data types.
 
-# 环境设置
-# Environment Configuration
+## 环境设置 Environment Configuration
 
 ```{r}
 source("install_dependencies.R") # 确保依赖包已安装 # Ensure dependencies are installed
@@ -55,8 +54,7 @@ Sys.setenv(LANGUAGE = "en") #显示英文报错信息 # error messages are displ
 options(stringsAsFactors = FALSE) #禁止chr转成factor # It is forbidden to convert chr into factor
 ```
 
-# 输入文件
-# Input files
+## 输入文件 Input files
 
 easy_input.txt
 
@@ -93,8 +91,7 @@ for (i in vname) {
 }
 ```
 
-# 开始画图
-# Start plotting
+## 开始画图 Start plotting
 
 用base plot画图，如果你要查看某部分代码的效果，请从plot所在的行到当前位置一起，整段运行。
 
@@ -392,7 +389,7 @@ invisible(dev.off())
 
 ![](pieTable.pdf)
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

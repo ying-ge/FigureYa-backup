@@ -2,14 +2,22 @@
 title: "FigureYa319ContribScore"
 params:
   author: "Xiaofan Lu; Yasi Zhang"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
 **Date**: `r Sys.Date()`  
 
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -44,8 +52,7 @@ Calculate cell subset contribution scores from scRNA-seq data and plot circular 
 - Figure 3D，refer to FigureYa285scRNA_monocle
 - Figure 5F，refer to FigureYa178ReceptorLigand
 
-# 环境设置
-# Environment Setup
+# 环境设置 Environment Setup
 
 ```{r}
 # 加载依赖安装脚本
@@ -305,7 +312,7 @@ ggplot(plot.data, aes(x = subtypes, y = FCscore, fill = subtypes)) +
 ggsave("ContributionScore.pdf", width = 6, height = 4) 
 ```
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

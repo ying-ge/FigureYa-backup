@@ -3,7 +3,15 @@ title: "FigureYa166scCNV"
 params:
   author: "Zongcheng Li"
   reviewer: "Ying Ge, Junyi Shen"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
@@ -11,7 +19,7 @@ output: html_document
 **Date**: `r Sys.Date()`  
 
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -20,8 +28,7 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# 需求描述
-# Requirement Description
+# 需求描述 Requirement Description
 
 单细胞CNV的计算和画图。
 Calculate and plot single-cell CNVs.
@@ -48,8 +55,7 @@ Fig. 1. Dissection of melanoma with single-cell RNA-seq. (B) Chromosomal landsca
 用单细胞RNA-seq数据计算CNV，对比展示多组之间的差异。
 Calculate CNVs using single-cell RNA-seq data and compare differences between multiple groups.
 
-# 环境设置
-# Environment Setup
+# 环境设置 Environment Setup
 
 ```{r}
 source("install_dependencies.R")
@@ -306,7 +312,7 @@ you can also sample randomly some of Non-malignant cells for display, just like 
 
 The output PDF file is a vector image. You may use Adobe Illustrator to pretttify the heatmap plot after saving it to a PDF file.
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

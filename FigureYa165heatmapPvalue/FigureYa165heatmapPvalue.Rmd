@@ -3,7 +3,15 @@ title: "FigureYa165heatmapPvalue"
 params:
   author: "Xiaofan Lu"
   reviewer: "Ying Ge, Junyi Shen"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
@@ -11,7 +19,7 @@ output: html_document
 **Date**: `r Sys.Date()`  
 
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -21,8 +29,7 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# 需求描述
-# Requirement Description
+# 需求描述 Requirement Description
 
 热图展示亚型表达谱，并给出表达谱组间比较p值。
 A heatmap displays subtype expression profiles and provides p-values for intergroup comparisons.
@@ -34,8 +41,7 @@ From <https://www.frontiersin.org/articles/10.3389/fonc.2019.01038>
 
 Figure 1. Expression of m6A RNA methylation regulators in gliomas with different clinicopathological features. (A-D) The expression levels of thirteen m6A RNA methylation regulators in gliomas with different WHO grades. 
 
-# 应用场景
-# Application Scenario
+# 应用场景 Application Scenario
 
 针对两组或多组样本，做组间差异检验，提供4种常用非参或参数检验法：
 Test for intergroup differences between two or more groups of samples. Four common nonparametric or parametric tests are provided:
@@ -48,8 +54,7 @@ Test for intergroup differences between two or more groups of samples. Four comm
 用热图展示亚型表达谱，并给出每个基因对应的表达谱组间比较p值。
 Display subtype expression profiles using a heatmap and provide p-values for intergroup comparisons of expression profiles for each gene.
 
-# 环境设置
-# Environment Setup
+# 环境设置 Environment Setup
 
 
 ```{r}
@@ -359,7 +364,7 @@ pheatmap(cellheight = 15, cellwidth = 1,
 输出的pdf文件是矢量图，可使用Illustrator等矢量图工具打开，仿照例文将各个亚型的名字添加在annotation bar的上方。
 The output PDF file is a vector image. You can open it in a vector graphics tool like Illustrator and add the names of each subtype above the annotation bar, following the example text.
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

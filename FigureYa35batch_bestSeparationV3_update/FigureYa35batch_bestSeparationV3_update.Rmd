@@ -2,14 +2,22 @@
 title: "FigureYa35batch_bestSeparationV3_update"
 params:
   author: "Hao Li, Xiaofan Lu; Ying Ge, Yijing Chen"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
 **Date**: `r Sys.Date()`  
 
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -18,8 +26,7 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# 需求描述
-# Requirement description
+# 需求描述 Requirement Description
 
 需求一：批量画生存分析Best separation的图，所有基因保存到一个文件，或每个基因1个文件。
 
@@ -43,8 +50,7 @@ Requirement 2: Figure A is the survival curve drawn with cutoff grouping, I also
 
 from<https://www.frontiersin.org/articles/10.3389/fonc.2019.00488/full>
 
-# 使用场景
-# Usage scenario
+# 使用场景 Usage Scenario
 
 在展示基因表达水平（连续变量）对生存期的影响时找到最佳分组，多个基因，一次出图
 
@@ -54,8 +60,7 @@ Find the best grouping when showing the effect of gene expression levels (contin
 
 Later, you can take the `FigureYa36 two-factor survival analysis` to compare the effect of the combination of high and low levels of two genes on the prognosis.
 
-# 环境设置
-# Environment setting
+# 环境设置 Environment Setting
 
 ```{r}
 source("install_dependencies.R")
@@ -67,8 +72,7 @@ Sys.setenv(LANGUAGE = "en") #显示英文报错信息 display English error mess
 options(stringsAsFactors = FALSE) #禁止chr转成factor prohibit the conversion of chr to factor
 ```
 
-# 输入数据
-# Input data
+# 输入数据 Input Data
 
 第一列是生存时间、第二列是追踪情况、第三列以后是基因表达水平
 
@@ -279,7 +283,7 @@ res <- arrange_ggsurvplots(pl2,
 ggsave("bestSurvPlot_event.pdf",res,width = 12,height = 16)
 ```
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

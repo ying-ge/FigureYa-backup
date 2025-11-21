@@ -3,7 +3,15 @@ title: "FigureYa153ccgraph"
 params:
   author: "Chunhui Gao"
   reviewer: "Ying Ge, Junyi Shen"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
@@ -15,15 +23,13 @@ If you use this code in your work or research, we kindly request that you cite o
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
 
-## 需求描述
-## Requirement Description
+## 需求描述 Requirement description
 
 用R从形式上复现原图。
 Use R to reproduce the original figure in a formal manner.
 
 ![](example.png)
 
-出自<https://academic.oup.com/jnci/article-lookup/doi/10.1093/jnci/djy156>
 From <https://academic.oup.com/jnci/article-lookup/doi/10.1093/jnci/djy156>
 
 Figure 1. Plot of all alterations detected by plasma next-generation sequencing (n=210). Size of circles represents number of patients identified with an alteration.
@@ -56,8 +62,7 @@ I found that the 2019-11-12 graph from [tidytuesday](https://github.com/rfordata
 的使用](https://mp.weixin.qq.com/s/XYVW7wzJIPaHCpBR7j3coQ)
 Using this code as a reference, I used `ggraph` to draw this graph. To this end, I spent several days thoroughly studying the `ggraph` package and wrote a lengthy article: [Understanding ggraph in One Article](https://mp.weixin.qq.com/s/XYVW7wzJIPaHCpBR7j3coQ)
 
-## 应用场景
-## Application Scenarios
+## 应用场景 Application Scenarios
 
 展示层级结构。例如：
 Displaying hierarchical structures. For example:
@@ -77,8 +82,7 @@ Displaying hierarchical structures. For example:
 - The size of surrounding points can only correspond to positive or absolute values; it cannot display positive or negative differences;
 - Not limited to two-level relationships; more levels are supported.
 
-## 环境设置
-## Environment Setup
+## 环境设置 Environment Setup
 
 ```{r}
 source("install_dependencies.R")  # 确保依赖包已安装 # Ensure dependencies are installed
@@ -97,8 +101,7 @@ Sys.setenv(LANGUAGE = "en")  # 显示英文报错信息 # Display error messages
 options(stringsAsFactors = FALSE)  # 禁止字符型数据自动转换为因子型 # Prevent automatic conversion of character data to factors```
 ```
 
-## 输入文件的获得
-## Obtaining the input file
+## 输入文件的获得 Obtaining the input file
 
 如果你的数据已经整理成`very_easy_input.csv`的格式，就可以跳过这步，直接进入“输入文件预处理”。
 If your data is already formatted as `very_easy_input.csv`, you can skip this step and proceed directly to "Input File Preprocessing."
@@ -184,8 +187,7 @@ head(circ)
 write.csv(circ[,c(3,5,6)],"very_easy_input.csv", quote = F, row.names = F)
 ```
 
-## 输入文件预处理
-## Input file preprocessing
+## 输入文件预处理 Input file preprocessing
 
 very_easy_input.csv，这里以上面的富集分析结果为例，展示通路和通路里的基因变化倍数FC。三列依次是通路-基因-倍数，可以自由替换成“应用场景”里其他需要展示的信息。
 very_easy_input.csv, using the above enrichment analysis results as an example, displays pathways and gene fold-change FC within them. The three columns are pathway-gene-fold-change, which can be freely replaced with other information required for the "application scenario."
@@ -252,11 +254,9 @@ nodes$color <- factor(nodes$color, levels = unique(nodes$color))
 graph <- tbl_graph(nodes, edges)
 ```
 
-## 开始画图
-## Start drawing the graph
+## 开始画图 Start drawing the graph
 
-### 自定义配色，直接出图
-### Customize the color scheme and plot directly
+### 自定义配色，直接出图 Customize the color scheme and plot directly
 
 ```{r, fig.width=14, fig.height=14}
 # 用 `ggraph` 出图 # Plot the graph using `ggraph`
@@ -315,8 +315,7 @@ In the graph above, the line color is specified by `geom_edge_diagonal(aes(color
 `node1.node.branch` 指的是出发点（`node1`）的 `node.branch` 属性。如果要改变线条颜色，可以修改 nodes 表，添加一个属性（如 `color`） ，然后在 `geom_edge_diagonal()` 中将其映射到 `color` 上即可。
 `node1.node.branch` refers to the `node.branch` attribute of the starting point (`node1`). To change the line color, modify the nodes table, add an attribute (e.g., `color`), and then map it to `color` in `geom_edge_diagonal()`.
 
-### 按例文配色，然后后期加背景色
-### Follow the example color scheme, then add a background color later
+### 按例文配色，然后后期加背景色 Follow the example color scheme, then add a background color later
 
 保留中心点和连向中心点的线 ｜ keep the center node and the links to it.
 
@@ -363,8 +362,7 @@ gc1 <- ggraph(graph, layout = 'dendrogram', circular = TRUE) +
 gc1
 ```
 
-## 后期处理
-## Post-processing
+## 后期处理 Post-processing
 
 保存到pdf文件，是矢量图，可以用Illustrator等软件编辑图形、文字和背景
 Save to a PDF file, which is a vector image. You can edit the graphics, text, and background using software such as Illustrator.
@@ -373,8 +371,7 @@ Save to a PDF file, which is a vector image. You can edit the graphics, text, an
 ggsave("ccgraph.pdf",width = 14,height = 14)
 ```
 
-## 多层嵌套
-## Multi-layer nesting
+## 多层嵌套 Multi-layer nesting
 
 这套代码不仅可以画两层的图，理论上支持更多层（要不然怎么叫“圆环套圆环”呢？）。
 This code can not only draw two layers of graphs, but theoretically supports more layers (otherwise, how can we say "rings within circles"?).
@@ -454,8 +451,7 @@ ggraph(graph_micro,layout = "dendrogram",circular=T) +
 ggsave("ccgraph_microbiome.pdf", width = 14, height = 14)
 ```
 
-## 参考资料
-## References
+## 参考资料 References
 
 <https://mp.weixin.qq.com/s/JNIncz3W-59yjGk2ibJWUw>
 

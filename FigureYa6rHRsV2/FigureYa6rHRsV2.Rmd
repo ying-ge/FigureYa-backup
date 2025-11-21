@@ -3,14 +3,22 @@ title: "FigureYa6rHRsV2"
 params:
   author: "Dekang Lv"
   reviewers: "Ying Ge, Yijing Chen"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
 **Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()`  
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -19,8 +27,7 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## 需求描述
-## Requirement description
+## 需求描述 Requirement description
 
 临床的亚组分析，我想用R做出文章里的样子。
 
@@ -35,8 +42,7 @@ It is only reproduced here formally, if you need the calculation process, please
 
 From<https://ascopubs.org/doi/full/10.1200/JCO.2017.75.6155?url_ver=Z39.88-2003&rfr_id=ori%3Arid%3Acrossref.org&rfr_dat=cr_pub%3Dpubmed>
 
-## 使用场景
-## Usage scenario
+## 使用场景 Usage scenario
 
 场景一：临床的亚组分析。例如，能从参与临床试验的那么多人当中发现EGFR抑制剂唯独对亚洲非吸烟女性有效。
 
@@ -46,8 +52,7 @@ Scenario 1: Clinical subgroup analysis. For example, it was discovered that amon
 
 Scenario 2: meta-analysis, a graph of a classic meta-analysis.
 
-## 输入数据
-## Input data
+## 输入数据 Input data
 
 临床数据，包括分类、样本数、风险比及置信区间(上限及下限)等
 
@@ -83,8 +88,7 @@ tabletext <- cbind(c("\nSubgroup",NA,NA,data$Variable,NA),
 head(tabletext)
 ```
 
-## 开始画图
-## Start drawing
+## 开始画图 Start drawing
 
 用默认参数画图
 
@@ -103,8 +107,7 @@ Read the documentation carefully, adjust the parameters, and you'll be able to d
 
 **Focus on modifying the third line in the `hrzl_lines` parameter, draw a black line at the bottom, and the number in "" as nrow(data)+5**
 
-## 输出文件
-## Output file
+## 输出文件 Output file
 
 把森林图输出到pdf文件中，测试的输出文件为forestplot.pdf
 
@@ -151,7 +154,7 @@ dev.off()#写入图型并关闭PDF文件 write graphics and close the PDF file
 
 ![](forestplot.pdf)
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

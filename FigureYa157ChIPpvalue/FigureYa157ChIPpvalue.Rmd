@@ -3,14 +3,22 @@ title: "FigureYa157ChIPpvalue"
 params:
   author: "Wen Wang"
   reviewer: "Ying Ge, Junyi Shen"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
 **Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()`  
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -45,8 +53,7 @@ Used to determine whether there is a global change in genome-wide binding. Appli
 - Quantitative ChIP-seq with spike-in, such as the ChIP-RX used in this article <https://mp.weixin.qq.com/s/tY-MunnBeFQ9A4_Svswu0g>
 - Standard ChIP-seq with calibration. For calibration methods, see this article <https://www.notion.so/Paper-191102-ChIPseqSpikeInFree-8e225f58252144d0b1a0a15f99020b66>
 
-# 环境设置
-# Environment Setup
+# 环境设置 Environment Setup
 
 根据自己的系统选择下载链接
 Select the download link based on your operating system.
@@ -249,7 +256,7 @@ dev.off()
 输出的pdf文件是矢量图，可以用illustrator等软件打开编辑，添加星号\*和线段。
 The output PDF file is a vector image, which can be opened and edited with software such as illustrator to add asterisks and line segments.
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

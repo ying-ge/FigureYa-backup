@@ -3,14 +3,22 @@ title: "FigureYa113MutSigCV"
 params:
   author: "Xiaofan Lu, Taojun Ye"
   reviewer: "Ying Ge"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
 **Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()`  
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -413,7 +421,7 @@ Matlab R2019a的30天试用版本，已运行成功。
 
 The 30 day trial version of Matlab R2019a has been successfully run.
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

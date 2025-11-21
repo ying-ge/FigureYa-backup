@@ -11,25 +11,8 @@ Package already installed: dplyr
 Package already installed: scales 
 
 ===========================================
-验证安装结果:
-Verifying installation results:
-✓ ggplot2 已成功安装
-✓ ggplot2 installed successfully
-✓ aplot 已成功安装
-✓ aplot installed successfully
-✓ dplyr 已成功安装
-✓ dplyr installed successfully
-✓ scales 已成功安装
-✓ scales installed successfully
-
-所有包已成功安装！
-
-All packages installed successfully!
-您现在可以使用以下代码加载这些包：
-You can now load these packages with the following code:
-library(ggplot2)
-library(aplot)
-library(dplyr)
-library(scales)  # 包含rescale函数 / Contains rescale function
-安装完成！
-Installation completed!
+Using bundled GitHub PAT. Please add your own PAT using `gitcreds::gitcreds_set()`
+Error: Failed to install 'unknown package' from GitHub:
+  HTTP error 401.
+  Bad credentials
+Execution halted

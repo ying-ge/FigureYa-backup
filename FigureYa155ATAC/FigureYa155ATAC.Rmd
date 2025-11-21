@@ -3,7 +3,15 @@ title: "FigureYa155ATAC"
 params:
   author: "Long Zhao"
   reviewer: "Ying Ge, Junyi Shen"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
@@ -11,7 +19,7 @@ output: html_document
 **Date**: `r Sys.Date()`  
 
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -30,8 +38,7 @@ Zuguang Gu. Complex Heatmap Visualization, iMeta, 2022.
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# 需求描述
-# Requirement Description
+# 需求描述 Requirement Description
 
 复现染色质开放程度差异的热图。
 Reproduce a heatmap showing differences in chromatin accessibility.
@@ -61,8 +68,7 @@ Figure d in the original article primarily indicates that under GW3965 treatment
 用热图展示染色质开放程度差异，同样适用于ChIP-seq数据。
 Using heatmaps to display differences in chromatin accessibility is also applicable to ChIP-seq data.
 
-# 环境设置   
-# Environment Setup
+# 环境设置 Environment Setup
 
 安装要用到的软件：
 Install required software:
@@ -371,7 +377,7 @@ There are a few remaining loci here. The original paper used pvalue<=0.05 for co
 一种猜测就是原文做了4次生物学重复，而作者可能在其中选择某几个重复去做，而不是全部，然后通过不断的尝试，选在最能证明观点的数据进行可视化。
 One hypothesis is that the original paper used four biological replicates, and the authors may have selected a few of these replicates, rather than all, and then, through repeated trial and error, selected the data that best supported their findings for visualization.
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

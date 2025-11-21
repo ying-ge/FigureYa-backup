@@ -3,7 +3,15 @@ title: "FigureYa175quadrant"
 params:
   author: "Bin Wei"
   reviewer: "Ying Ge, Junyi Shen"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
@@ -26,19 +34,19 @@ Draw a scatter plot of the nine-square grid in the article and mark the names of
 
 ![](example1.png)
 
-From<https://dx.doi.org/10.3390/ijms21051686>
+From <https://dx.doi.org/10.3390/ijms21051686>
 
 Figure 5. Relationship between mRNA and protein expression in TW/NW (A) and TW/OW (B).
 
 ![](example2.png)
 
-From<https://www.nature.com/articles/nature21036>
+From <https://www.nature.com/articles/nature21036>
 
 Figure 1. The translational landscape of the epidermis during premalignant transformation. d, Transcriptional and translational changes comparing SOX2 with wild-type P4 epidermis. Colour-coded are genes with the adjusted P value < 0.05 (DESeq2; ref. 43; n = 3 per group for ribosome profiling; n =2 for RNA-seq).
 
 ![](example3.png)
 
-From<https://science.sciencemag.org/content/362/6413/eaav1898>
+From <https://science.sciencemag.org/content/362/6413/eaav1898>
 
 ## 应用场景 Application Scenarios
 

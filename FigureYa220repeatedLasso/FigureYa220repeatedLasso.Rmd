@@ -2,14 +2,22 @@
 title: "FigureYa220repeatedLasso"
 params:
   author: "Xiaofan Lu"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 reviewers: Ying Ge,Hui Huang
 ---
 
 **Author(s)**: `r params$author`  
 **Date**: `r Sys.Date()`  
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -18,8 +26,7 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# 需求描述
-# Requirement Description
+# 需求描述 Requirement Description
 
 FigureYa182RFSurv和FigureYa198SignatureComb都是根据基因的重要性筛选的。直接根据随机森林的准确度或cox模型的frequency筛选，又是另一种不同的展示方式。
 
@@ -295,8 +302,7 @@ cindex.gse <- concordance.index(risk.score.gse,
 
 ```
 
-# 开始画图
-# Start drawing
+# 开始画图 Start Drawing
 
 ```{r}
 par(mfrow = c(1,2)) # 创建画图并分割成左右两块 # Create a drawing and divide it into left and right pieces
@@ -341,7 +347,7 @@ plot(NULL, NULL,
 dev.copy2pdf(file = "frequency and cindex of model.pdf", width = 8, height = 4.5) # 保存图片 # Save the image
 ```
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

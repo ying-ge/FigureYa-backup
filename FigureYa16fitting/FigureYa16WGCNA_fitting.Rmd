@@ -2,14 +2,22 @@
 title: "FigureYa16 WGCNA_fitting"
 params:
   author: "Ying Ge; Yijing Chen"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
 **Date**: `r Sys.Date()`  
 
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -18,8 +26,7 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## 需求描述
-## Requirement description
+## 需求描述 Requirement description
 
 WGCNA得到模块以后，用模块包含的基因表达量做拟合曲线。
 
@@ -31,8 +38,7 @@ After WGCNA gets the module, a fitting curve is made with the expression of the 
 
 from<http://www.pnas.org/content/112/43/13360>
 
-## 使用场景
-## Usage scenario
+## 使用场景 Usage scenario
 
 本质是用一条趋势线代表多个点或线的变化趋势，多用于时间序列数据。
 
@@ -65,8 +71,7 @@ Sys.setenv(LANGUAGE = "en")
 options(stringsAsFactors = FALSE) 
 ```
 
-## 输入数据
-## Input data
+## 输入数据 Input data
 
 用代码15WGCNA输出了各个gene module内的基因表达量，每个module保存在一个csv文件中。
 

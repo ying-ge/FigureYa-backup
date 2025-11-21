@@ -3,14 +3,22 @@ title: "FigureYa278heatmapPoints"
 params:
   author: "Qian Liu; Yasi Zhang"  
   reviewer: "Ying Ge"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
 **Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()`  
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -44,8 +52,7 @@ Figure 2. The immune compartment in MMRd and MMRp CRC
 (A) Compositional changes in immune cell clusters in MMRp and MMRd tumors relative to adjacent normal tissue. 
 Kruskal-Wallis false discovery rate (FDR) < 0.05 for MMRp versus MMRd are marked with asterisks.
 
-# 应用场景
-# Application Scenario
+# 应用场景 Application Scenario
 
 Dr. Guangchuang Yu评价：上下三角的更好替代品。上下三角指的是这个图<https://mp.weixin.qq.com/s/34WRZRBVPHUNRLlzNH2nzw>
 
@@ -55,8 +62,7 @@ Dr. Guangchuang Yu's evaluation: A better alternative to upper and lower triangl
 
 Simultaneously displaying two characteristics of the same object, such as showing both the expression levels and DNA methylation levels of multiple genes across multiple samples, etc.
 
-# 环境设置
-# Environment Setup
+# 环境设置 Environment Setup
 
 ```{r}
 source("install_dependencies.R")
@@ -404,7 +410,7 @@ Finally, let's take a look at the sketches drawn by the author of this article i
 ![Fig2A](./Fig2A_row.png)
 
 # 会话信息
-# Session Info
+## Session Info
 
 ```{r}
 # 显示会话信息

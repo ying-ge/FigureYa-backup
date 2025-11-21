@@ -2,14 +2,22 @@
 title: "FigureYa58 lncRNAreannotation"
 params:
   author: "Yuan Tang; Ying Ge, Yijing Chen"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
 **Date**: `r Sys.Date()`  
 
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -18,8 +26,7 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## 需求描述
-## Requirement description
+## 需求描述 Requirement description
 
 对GEO的芯片进行lncRNA的重新注释，提取芯片中lncRNA的表达量。
 
@@ -31,8 +38,7 @@ The microarray of GEO is re-annotated for lncRNA and the expression of lncRNA in
 
 from: <https://www.nature.com/articles/nsmb.2591>
 
-## 应用场景
-## Application scenario
+## 应用场景 Application scenario
 
 场景一：还没想好要研究哪个lncRNA，想像例文那样从诸多的芯片数据中找到靠谱的lncRNA。
 
@@ -80,8 +86,7 @@ Disadvantages: slow speed. 2 cores were used, and only the first 100 probe seque
 
 Disadvantages: All kinds of scores are not output, and there is only one num_mismatch.
 
-## 环境设置
-## Environment setting
+## 环境设置 Environment setting
 
 **Windows系统：**见压缩包中的word文档。
 
@@ -418,7 +423,7 @@ write.csv(lncRNA.probe.expr, "lncRNA_expr.csv", quote = F, row.names = F)
 
 In addition, software such as Dianmond (linux mac) can also accomplish sequence comparison.
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

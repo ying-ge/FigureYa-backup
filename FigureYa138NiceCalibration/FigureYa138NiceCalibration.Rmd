@@ -3,7 +3,15 @@ title: "FigureYa138NiceCalibration"
 params:
   author: "Xiaofan Lu"
   reviewer: "Ying Ge, Junyi Shen"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
@@ -11,7 +19,7 @@ output: html_document
 **Date**: `r Sys.Date()`  
 
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -20,8 +28,7 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## 需求描述
-## Requirement description
+## 需求描述 Requirement description
 
 想要实现这个漂亮的calibration图（A），用于logistics回归，要有这个Hosmer-Lemeshow test。
 I want to draw this beautiful calibration graph (A) for logistics regression, which requires this Hosmer-Lemeshow test.
@@ -49,8 +56,7 @@ The above article found the indicator LNM Nomogram for predicting lymph node met
 - Use ROC to evaluate discrimination, that is, specificity and sensitivity (see FigureYa24ROC);
 - Use DCA to help determine high-risk patients for intervention and low-risk patients to avoid over-medicalization (see FigureYa33DCA).
 
-## 应用场景
-## Application scenario
+## 应用场景 Application scenario
 
 可用于评价诊断模型，是针对逻辑回归的。不能做预后模型，预后的calibration是不会曲折的。
 It can be used to evaluate diagnostic models, which is for logistic regression. It cannot be used to make prognostic models, and the calibration of prognosis will not be tortuous.
@@ -75,8 +81,7 @@ Sys.setenv(LANGUAGE = "en") #显示英文报错信息 #Display English error mes
 options(stringsAsFactors = FALSE) #禁止chr转成factor #Disable conversion of chr to factor
 ```
 
-## 输入文件
-## Input file
+## 输入文件 Input file
 
 easy_input.csv，每行一个sample。
 - 第一列MetaScore和第二列MLL2突变，自变量；
@@ -118,8 +123,7 @@ full_lrm <- lrm(MetaStatus ~ MetaScore + MLL2,
 full_calibrate <- calibrate(full_lrm, group=dat$MetaStatus) 
 ```
 
-## 开始画图
-## Start drawing
+## 开始画图 Start drawing
 
 ```{r}
 red <- "#FF0197"
@@ -154,7 +158,7 @@ invisible(dev.off())
 
 ![](calibration_for full model.pdf)
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

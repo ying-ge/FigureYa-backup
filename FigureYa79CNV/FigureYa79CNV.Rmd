@@ -3,7 +3,15 @@ title: "FigureYa79CNV"
 params:
   author: "Haitao Wang, Taojun Ye"
   reviewer: "Ying Ge"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
@@ -1324,7 +1332,7 @@ refgenefile=`pwd`/refgenefiles/hg19.UCSC.add_miR.140312.refgene.mat
 ./gistic2 -b $basedir -seg $segfile -refgene $refgenefile -genegistic 1 -smallmem 1 -broad 1 -brlen 0.5 -conf 0.95 -armpeel 1 -savegene 1 -gcm extreme
 ```
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

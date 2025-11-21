@@ -2,14 +2,22 @@
 title: "FigureYa14Circos"
 params:
   author: "Zhaodong Hao; Ying Ge, Yijing Chen"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
 **Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()`  
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -371,8 +379,7 @@ Then tell Circos where the karyotype file is located and which one to use.
 
 Next is the specific parameters of what each input data should be displayed in the circle. Focus on the annotation after `#`, which marks the explanation of important parameters.
 
-## 输入数据
-## Input data
+## 输入数据 Input data
 
 要在圈上展示的数据都保存到circos-0.69-6/Mydata/data文件夹下，想画几个圈就存几个文件。
 
@@ -407,8 +414,7 @@ Chr1    8000000 8999999 39.18
 Chr1    9000000 9999999 37.54
 ```
 
-## 开始画图
-## Start drawing
+## 开始画图 Start drawing
 
 输入数据文件以及其他配置文件都挂在circos-0.69-6/Mydata/etc/circos.conf文件里，因此画图时，只需要告诉Circos，circos.conf在哪里。
 

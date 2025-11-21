@@ -3,7 +3,15 @@ title: "FigureYa167TumorIndex"
 params:
   author: "Rongfang Shen"
   reviewer: "Ying Ge, Junyi Shen"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
@@ -11,7 +19,7 @@ output: html_document
 **Date**: `r Sys.Date()`  
 
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -55,8 +63,7 @@ The article already provides [code](https://github.com/wanyewang1/Index_model), 
 
 We've repackaged the code here to provide a simpler way to use it.
 
-# 环境设置
-# Environment Setup
+# 环境设置 Environment Setup
 
 ```{r}
 source("install_dependencies.R")
@@ -284,7 +291,7 @@ cowplot::plot_grid(plotlist = list(p1 = p1, p2 = p2), ncol = 2)
 ggsave("TumorIndex.pdf", width = 12, height = 8)
 ```
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

@@ -1,9 +1,17 @@
 ---
 title: "FigureYa321volcanoSE"
 params:
-  author: "Xiaofan Lu; Yasi Zhang"  
-  reviewer: "Ying Ge"
-output: html_document
+  author: "Xiaofan Lu"  
+  reviewer: "Ying Ge, Yasi Zhang"
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
@@ -27,8 +35,7 @@ Goldman, M.J., Craft, B., Hastie, M. et al. Visualizing and interpreting cancer 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## 需求描述
-## Demand description
+## 需求描述 Requirement description`
 
 在癌症中高低分数组中的APA分析，用火山图展示 (图5B)。
 
@@ -38,14 +45,10 @@ Differential APA analysis between high- and low-risk groups in cancer, presented
 
 From <https://www.frontiersin.org/articles/10.3389/fimmu.2022.1031184/full>
 
-图5 与WM_Score相关的转录和转录后特征。
-(B) WM_Score_high组和WM_Score_low组各基因的**PDUI差异**。
-
 FIGURE 5 Transcriptional and post-transcriptional characteristics related to WM_Score. 
 (B) **The differences in the PDUI** of each gene between WM_Score_high and WM_Score_low groups.
 
-## 应用场景
-## Application scenarios
+## 应用场景 Application scenarios
 
 TC3A (The Cancer 3′ UTR Atlas) 专门分析了TCGA 33种癌症类型的3′UTR长度，系统注释了可变多聚腺苷化位点APA (Alternative Polyadenylation, 可变多聚腺苷化)。
 
@@ -65,8 +68,7 @@ Use a volcano plot to display differential analysis results. Alternatively, more
 - One group: FigureYa59volcano ，FigureYa75baseVolcano  
 - Multiple group: FigureYa135multiVolcano
 
-## 环境设置
-## Environment Setup
+## 环境设置 Environment Setup
 
 ```{r}
 source("install_dependencies.R")
@@ -85,8 +87,7 @@ Sys.setenv(LANGUAGE = "en")
 options(stringsAsFactors = FALSE) 
 ```
 
-## 输入文件
-## Input Files
+## 输入文件 Input Files
 TCGA_PAAD_Combined_PDUIs.txt，从synapse网站中下载的TC3A_PDUI（Percentage of Distal polyA site Usage Index）的计算结果。下载地址：<https://www.synapse.org/Synapse:syn24982198/files/>（科学上网后注册下载），里面有TCGA其他癌症的PDUI数据，根据自己的研究兴趣灵活运用。
 
 TCGA_PAAD.clin.txt，样本分组信息group。原文未提供分型信息，使用xena<https://xenabrowser.net/datapages/>下载的样本信息（TCGA Pancreatic Cancer (PAAD) (17 datasets) —— phenotype —— Phenotypes (n=196) TCGA Hub），点击链接下载：<https://tcga-xena-hub.s3.us-east-1.amazonaws.com/download/TCGA.PAAD.sampleMap%2FPAAD_clinicalMatrix>
@@ -126,8 +127,7 @@ group <- setNames(object = ifelse(test = group$vital_status == "LIVING",
 group <- factor(group, levels = c("LIVING", "DEAD")) 
 ```
 
-## 进行差异分析
-## Differential Analysis
+## 进行差异分析 Differential Analysis
 
 ```{r}
 # 创建设计矩阵
@@ -162,8 +162,7 @@ DEGs$CHR <- gsub("(.+)\\|(.+)\\|(.+)\\|(.+)", "\\3", rownames(DEGs))
 openxlsx::write.xlsx(DEGs, "output_DEGs.xlsx")
 ```
 
-## 开始画图
-## Plotting
+## 开始画图 Start drawing the graph
 
 ```{r}
 # 准备绘图数据

@@ -2,7 +2,15 @@
 title: "FigureYa76corrgram"
 params:
   author: "Ying Ge, TaojunYe"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  

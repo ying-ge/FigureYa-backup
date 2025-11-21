@@ -1,9 +1,15 @@
 FigureYa26circos_R
+Code
+Show All Code
+Hide All Code
 FigureYa26circos_R
 Author(s)
-: Zhaodong Hao; Ying Ge, Yijing Chen
+: Zhaodong Hao
+Reviewer(s)
+: Ying Ge, Yijing Chen
 Date
-: 2025-10-04
+: 2025-11-20
+1
 Academic Citation
 If you use this code in your work or research, we kindly request that
 you cite our publication:
@@ -14,8 +20,9 @@ https://doi.org/10.1002/imm3.70005
 If you use circlize in published research, please cite:
 Gu, Z. circlize implements and enhances circular visualization in R.
 Bioinformatics 2014.
-需求描述
-Requirement description
+2
+需求描述 Requirement
+description
 用R代码画出paper里的图。
 Use R code to draw the plot in paper.
 图2
@@ -41,12 +48,11 @@ functional connectivity
 . BG = basal ganglia; AUD = auditory;
 SMN = sensorimotor; VIS = visual; CEN = cognitive executive; CB =
 cerebellar network
-出自
+From
 https://academic.oup.com/brain/article-lookup/doi/10.1093/brain/awx233
-from
-https://academic.oup.com/brain/article-lookup/doi/10.1093/brain/awx233
-应用场景
-Application scenario
+3
+应用场景 Application
+scenario
 如果展示A-B-C之间的关系，用sankey图就够了，见FigureYa25sankey。
 如果还要展示A-C的关系，直线排列的sankey图就不适合了。
 本图用圆圈和连线展示多个亚组之间的关系，包括且不限于基因、基因片段、亚型。
@@ -68,26 +74,44 @@ displayed in the same color, and the positive and negative regulatory
 relationships between genes are displayed with lines of two colors, so
 that the regulatory relationships between groups can be seen at a
 glance.
-环境设置
-Environment Setup
-source("install_dependencies.R")
-library(stringi)
-library(circlize)
-library(graphics)
-
+4
+环境设置 Environment
+Setup
+source
+(
+"install_dependencies.R"
+)
+#自动识别缺哪些R包，自动安装
+library
+(stringi)
+# 字符串处理工具包，用于文本操作
+library
+(circlize)
+# 用于绘制环形图（circos plot）的核心包
+library
+(graphics)
+# R 基础绘图包，支持基本图形功能
 # 显示英文报错信息
 # Show English error messages
-Sys.setenv(LANGUAGE = "en") 
-
+Sys.setenv
+(
+LANGUAGE =
+"en"
+)
 # 禁止chr转成factor
 # Prevent character-to-factor conversion
-options(stringsAsFactors = FALSE)
-输入文件
-Input file
+options
+(
+stringsAsFactors =
+FALSE
+)
+5
+输入文件 Input
+file
 需要三个文件：
 Gene_ID.txt，组，此处一个Gene为一组；
 Gene_feature.txt，亚组，Gene内包含多个Subgroup；
-Links.txt，Subgroup之间的inks。
+Links.txt，Subgroup之间的links。
 如果你要突出显示某个基因或某条连线，在输入文件中找到相应的行，修改颜色或高度即可。
 Three files are needed:
 Gene_ID.txt, groups, here a Gene is a group;
@@ -98,28 +122,85 @@ If you want to highlight a gene or a link, find the corresponding
 line in the input file and change the color or height.
 #组ID、组的起止位置
 #Group ID, start and end positions of the group
-GeneID <- read.table("Gene_ID.txt", header = TRUE, sep = "\t")
-head(GeneID)
+GeneID
+<-
+read.table
+(
+"Gene_ID.txt"
+,
+header =
+TRUE
+,
+sep =
+"
+\t
+"
+)
+head
+(GeneID)
 #亚组的名字和起止位置，至少要有前四列
 #最后一列颜色为可选项，可以在输入文件中写好，也可以在后面的代码中指定
 #the name and starting and ending positions of the subgroups, at least the first four columns
 #the last column color is optional and can be written in the input file or specified later in the code
-GeneFe <- read.table("Gene_feature.txt", header = TRUE, sep = "\t")
-head(GeneFe)
+GeneFe
+<-
+read.table
+(
+"Gene_feature.txt"
+,
+header =
+TRUE
+,
+sep =
+"
+\t
+"
+)
+head
+(GeneFe)
 #哪两个亚组之间要画连线、线在亚组上的相对位置，至少要有前四列
 #后两列颜色“link_col”和高度“link_height”为可选项，可以在输入文件中写好，也可以在后面的代码中指定
 #which two subgroups should be connected with a line, and the relative position of the line on the subgroups, with at least the first four columns.
 #the color “link_col” and the height “link_height” of the last two columns are optional, they can be written in the input file or specified in the code behind.
-Links <- read.table("Links.txt", header = TRUE, sep = "\t")
-head(Links)
+Links
+<-
+read.table
+(
+"Links.txt"
+,
+header =
+TRUE
+,
+sep =
+"
+\t
+"
+)
+head
+(Links)
 # 把组ID转换成factor，因为后面画图需要factor
 # convert the group ID to a factor, because you'll need the factor to draw the graph later
-GeneID$GeneID <- factor(GeneID$GeneID, levels = GeneID$GeneID)
-开始画图
-Start drawing
+GeneID
+$
+GeneID
+<-
+factor
+(GeneID
+$
+GeneID,
+levels =
+GeneID
+$
+GeneID)
+6
+开始画图 Start
+drawing
 注意：
 如果你用复制粘贴代码的方式运行，需要从pdf到dev.off之间的语句要一次性全部复制。
 Note:
 If you run it by copying and pasting the code,
 you need to copy all the statements between pdf and dev.off at once.
-sessionInfo()
+7
+Session Info
+sessionInfo
+()

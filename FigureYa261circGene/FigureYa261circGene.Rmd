@@ -1,16 +1,24 @@
 ---
 title: "FigureYa261circGene"
 params:
-  author: "Shuwen Cheng; Yasi Zhang"  
-  reviewer: "Ying Ge"
-output: html_document
+  author: "Shuwen Cheng"  
+  reviewer: "Ying Ge, Yasi Zhang"
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
 **Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()`  
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -23,8 +31,7 @@ Hongen Zhang, Paul Meltzer and Sean Davis (2013), RCircos: an R package for Circ
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# 需求描述
-# Demand description
+## 需求描述 Requirement Description
 
 绘制基因位置的环形图。
 
@@ -32,18 +39,12 @@ Drawing a circular diagram of gene locations.
 
 ![](example.png)
 
-出自：<https://molecular-cancer.biomedcentral.com/articles/10.1186/s12943-020-01170-0>
-
-图1 胃癌中m6A调控因子的遗传及表达变异全景
-d 基于GSE62717队列的m6A调控因子在23条染色体上的拷贝数变异（CNV）位置分布
-
-Source: <https://molecular-cancer.biomedcentral.com/articles/10.1186/s12943-020-01170-0>
+From <https://molecular-cancer.biomedcentral.com/articles/10.1186/s12943-020-01170-0>
 
 Fig. 1 Landscape of genetic and expression variation of m6A regulators in gastric cancer.
 d The location of CNV alteration of m6A regulators on 23 chromosomes using GSE62717 cohort.
 
-# 应用场景
-# Application scenarios
+## 应用场景 Application Scenario
 
 把几个感兴趣的基因标注在基因组上，可以像这篇例文画成圆的。
 
@@ -53,8 +54,7 @@ Mark the genes of interest on the genome, which can be drawn in a circular layou
 
 If there are too many genes, a linear layout can be used (refer to FigureYa10chromosome), which can simultaneously display gene expression levels/fold changes, classifications, and other information.
 
-# 环境设置
-# Environment Setup
+## 环境设置 Environment Setup
 
 ```{r}
 source("install_dependencies.R")
@@ -73,8 +73,7 @@ Sys.setenv(LANGUAGE = "en")
 options(stringsAsFactors = FALSE) 
 ```
 
-# 目标基因位置的获取
-# Obtaining Target Gene Locations
+## 目标基因位置的获取 Obtaining Target Gene Locations
 
 如果你已经获得了very_easy_input.txt，就可以跳过这步，直接进入“开始画图”。
 
@@ -125,8 +124,7 @@ gene_pos$gene_dot <- rnorm(nrow(gene_pos), 0, 2)
 write.csv(gene_pos,"very_easy_input.csv", row.names = F, quote = F)
 ```
 
-# 开始画图
-# Plotting
+## 开始画图 Start Drawing
 
 very_easy_input.csv，基因、基因在染色体上的位置、基因的某一特征数值。
 
@@ -196,14 +194,13 @@ dev.off()
 
 ![](circGene.pdf)
 
-# 后期处理
-# Post-processing
+## 后期处理 Post-processing 
 
 输出到pdf文件为矢量图，可以用Adobe Illustrator等软件打开，编辑图形和文字。例如为避免基因名文字重叠，手动微调文字位置，和修改连线形状。
 
 The plot is exported as a vector graphic in PDF format, which can be opened and edited in software like Adobe Illustrator. For example, you may manually adjust text positions to prevent gene name overlaps and modify connector shapes.
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

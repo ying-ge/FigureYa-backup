@@ -2,14 +2,22 @@
 title: "FigureYa80GOclustering"
 params:
   author: "Ying Ge, Taojun Ye"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
 **Date**: `r Sys.Date()`  
 
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -357,7 +365,7 @@ The final generated PDF file is a vector image that can be opened and edited in 
 
 You can refer to the layout of the example text and manually delete the tree structure or adjust the position of each part.
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

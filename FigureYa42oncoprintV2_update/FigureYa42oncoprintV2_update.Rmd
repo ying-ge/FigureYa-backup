@@ -2,13 +2,21 @@
 title: "FigureYa42oncoprintV2_update"
 params:
   author: "Ying Ge, Yi Xiong; Yijing Chen"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
 **Date**: `r Sys.Date()`  
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -23,8 +31,7 @@ Zuguang Gu. Complex Heatmap Visualization, iMeta, 2022.
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# 需求描述
-# Requirement description
+# 需求描述 Requirement Description
 
 没有具体突变位点信息，只有临床信息和突变名称，对应着每个个体，01矩阵，需要画这样的oncoprint图，按照pathway分开。
 
@@ -41,8 +48,7 @@ Or this
 
 from<https://www.nejm.org/doi/full/10.1056/NEJMoa1301689>
 
-# 应用场景
-# Application scenario
+# 应用场景 Application Scenario
 
 展示多个样本中多个基因的变异，以及临床信息。
 
@@ -64,8 +70,7 @@ If you use it in published research, please cite:
 
 Gu, Z. Complex heatmaps reveal patterns and correlations in multidimensional genomic data. Bioinformatics 2016.
 
-# 环境设置
-# Environment setting
+# 环境设置 Environment Setting
 
 ```{r}
 source("install_dependencies.R")
@@ -104,8 +109,7 @@ onco_matrix[onco_matrix != "1"] <- "0"
 write.csv(onco_matrix, "easy_input.csv", quote = F)
 ```
 
-## 输入文件
-## Input file
+## 输入文件 Input file
 
 `easy_input.csv`，01矩阵，每行一个基因，每列一个sample。01矩阵代表基因在这个sample里是否变异。
 
@@ -214,8 +218,7 @@ mytype <- mytype[sampleOrder$oriOrder,]
 
 Now, this mytype matches the sample in the oncoplot.
 
-## 开始画图
-## Start drawing
+## 开始画图 Start drawing
 
 把临床信息画在下面
 
@@ -299,8 +302,7 @@ dev.off()
 # 场景二：多种变异类型
 # Scenario 2: Multiple variant types
 
-## 输入文件
-## Input file
+## 输入文件 Input file
 
 `onco_matrix.txt`，基因变异矩阵，此处以FigureYa18的输出文件作为输入；
 
@@ -424,8 +426,7 @@ mytype <- mytype[sampleOrder$oriOrder,]
 
 Now, this mytype matches the sample in the oncoplot.
 
-## 开始画图
-## Start drawing
+## 开始画图 Start drawing
 
 ```{r, fig.width=12, fig.height=5}
 #画临床数据的heatmap

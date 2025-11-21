@@ -3,14 +3,22 @@ title: "FigureYa323STpathseq"
 params:
   author: "Xiaofan Lu; Yasi Zhang"  
   reviewer: "Ying Ge"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
 **Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()` 
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -61,8 +69,7 @@ This pipeline can only extract microbiome data if the samples meet specific requ
 
 For guidance on generating compatible sample data, please refer to the original protocol in the cited literature or consult the sequencing provider.
 
-# 环境设置
-# Environment Setup
+# 环境设置 Environment Setup
 
 **注意：**该流程对内存和存储要求很高，内存应当在200G以上，可支配存储应在300G以上（150G参考基因组+每个样本30G~100G数据量）
 
@@ -153,7 +160,7 @@ Spatial distribution map of total microbial RNA【Results/*/outs/*TotalMicrobe.p
 ![](STpathseq/Results/CRC_16/outs/CRC_16.TotalMicrobe.pdf)
 
 # 会话信息
-# Session Info
+## Session Info
 
 ```{r}
 # 显示会话信息

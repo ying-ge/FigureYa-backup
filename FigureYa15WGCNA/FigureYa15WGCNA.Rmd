@@ -2,13 +2,21 @@
 title: "FigureYa15WGCNA"
 params:
   author: "Saisai Tian; Ying Ge, Yijing Chen"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
 **Date**: `r Sys.Date()`  
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -17,8 +25,7 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# 需求描述
-# Requirement description
+# 需求描述 Requirement Description
 
 用R代码画出paper里的WGCNA结果图、输出每个模块的基因表达谱，用于进一步绘制heatmap、功能富集分析、或拟合表达谱曲线。
 
@@ -30,8 +37,7 @@ Use the R code to draw the WGCNA result map in the paper, output the gene expres
 
 from<https://www.cell.com/cell/abstract/S0092-8674(18)30511-7>
 
-# 应用场景
-# Application scenario
+# 应用场景 Application Scenario
 
 不需要筛差异表达基因，直接从全基因组找表达谱相似的gene组成的gene module（模块）。尤其适合样本量超过15的高通量测序数据。
 
@@ -41,8 +47,7 @@ Instead of screening differentially expressed genes, the gene module is composed
 
 It is used to study which genes determine differences in phenotypes, for example, to identify key gene modules that determine responses to different developmental stages, disease subtypes, and drug treatments, and thus to identify new biomarkers or therapeutic targets.
 
-# 环境设置
-# Environment setting
+# 环境设置 Environment Setting
 
 ```{r}
 source("install_dependencies.R")

@@ -2,14 +2,22 @@
 title: "FIgureYa31lasso_update"
 params:
   author: "Ya Zhang, Ying Ge; Yijing Chen"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
 **Date**: `r Sys.Date()`  
 
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -19,8 +27,7 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# 需求描述
-# Requirement description
+# 需求描述 Requirement Description
 
 画出paper中的lasso回归图，给出图中线所对应的基因顺序。
 
@@ -40,8 +47,7 @@ from<https://linkinghub.elsevier.com/retrieve/pii/S1470-2045(13)70491-1>
 
 How to interpret lasso results? Read this: <https://mp.weixin.qq.com/s/Odf3zYOu77DvN-ph4gHPJQ>
 
-# 应用场景
-# Application scenario
+# 应用场景 Application Scenario
 
 筛选差异基因之后，进一步筛选有预后意义的基因，组成基因表达signature。
 
@@ -51,8 +57,7 @@ After screening for differential genes, genes with prognostic significance are f
 
 LASSO is more suitable for high-dimensional, strongly correlated, and small-sample survival data.
 
-# 环境设置
-# Environment setting
+# 环境设置 Environment Setting
 
 采用R包`glmnet`，它是目前最好用的拟合广义线性模型的R包，由`LASSO` 回归的发明人，斯坦福统计学家 Trevor Hastie 领衔开发。 
 
@@ -69,8 +74,7 @@ Sys.setenv(LANGUAGE = "en") #显示英文报错信息 display English error mess
 options(stringsAsFactors = FALSE) #禁止chr转成factor prohibit the conversion of chr to factor
 ```
 
-# 输入数据
-# Input data
+# 输入数据 Input Data
 
 输入文件有两个，一个是生存信息`easy_input_suv.csv`，一个是基因表达矩阵`easy_input_exp.csv`。
 
@@ -99,8 +103,7 @@ if (all(colnames(myexpr) %in% rownames(mysurv))){
 }
 ```
 
-# 开始画图
-# Start drawing
+# 开始画图 Start Drawing
 
 ## 算出lambda值
 ## Calculate the lambda value

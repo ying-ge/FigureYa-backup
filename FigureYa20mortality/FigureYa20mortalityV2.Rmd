@@ -2,7 +2,15 @@
 title: "FigureYa20 mortality"
 params:
   author: "Guangchuang Yu; Ying Ge, Yijing Chen"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
@@ -10,7 +18,7 @@ output: html_document
 
 [<img src="https://guangchuangyu.github.io/blog_images/biobabble.jpg" width="100px"/>](https://guangchuangyu.github.io/blog_images/biobabble.jpg) 
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -19,8 +27,7 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## 需求描述
-## Requirement description
+## 需求描述 Requirement description
 
 用R代码画出paper里的图。
 
@@ -32,8 +39,7 @@ Use R code to draw the plot in paper.
 
 from<http://ascopubs.org/doi/abs/10.1200/JCO.2010.29.5907?url_ver=Z39.88-2003&rfr_id=ori:rid:crossref.org&rfr_dat=cr_pub%3dpubmed>
 
-## 使用场景
-## Usage scenario
+## 使用场景 Usage scenario
 
 根据肿瘤大小分组，以存活时间作为输入，计算死亡率。
 
@@ -93,8 +99,7 @@ y <- group_by(x, Tumor.size) %>%
 head(y)
 ```
 
-## 开始画图
-## Start drawing
+## 开始画图 Start drawing
 
 ```{r}
 p1 <-ggplot(y, aes(Tumor.size, ratio)) +

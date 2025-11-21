@@ -1,17 +1,24 @@
 ---
 title: "FigureYa74omicCircos"
 params:
-  author: "Yin Li, Taojun Ye"
-  reviewer: "Ying Ge"
-output: html_document
+  author: "Yin Li"
+  reviewer: "Ying Ge, Taojun Ye"
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
 **Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()`  
 
-
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -21,34 +28,23 @@ knitr::opts_chunk$set(echo = TRUE)
 # 设置knitr的全局代码块选项 / Set global chunk options for knitr
 ```
 
-## 需求描述
+## 需求描述 Requirement Description
 
 用R复现文章里的图
-
-## Requirement Description
 
 Reproduce a diagram from an article in R
 
 ![](example.png)
 
-出自<https://onlinelibrary.wiley.com/doi/abs/10.1111/all.13222>
+From <https://onlinelibrary.wiley.com/doi/abs/10.1111/all.13222>
 
-From<https://onlinelibrary.wiley.com/doi/abs/10.1111/all.13222>
+## 应用场景 Application Scenario
 
-## 应用场景
+支持hg18、hg19、mm9、mm10，例如像例文那样展示多个芯片基因的表达变化和之间的link关系
 
-## Application scenarios
+Support hg18, hg19, mm9, mm10, for example, displaying the expression changes of multiple chip genes and the link relationships between them as in the example text
 
-支持hg18、hg19、mm9、mm10
-
-例如像例文那样展示多个芯片基因的表达变化和之间的link关系
-
-Support hg18, hg19, mm9, mm10
-
-For example, displaying the expression changes of multiple chip genes and the link relationships between them as in the example text
-
-## 环境设置
-## Environment settings
+## 环境设置 Environment Setting
 
 ```{r}
 source("install_dependencies.R")
@@ -65,15 +61,13 @@ Sys.setenv(LANGUAGE = "en")
 options(stringsAsFactors = FALSE) 
 ```
 
-## 输入数据
+## 输入数据 Input Data
 
 如果你的数据已经保存为easy_input.csv格式，就可以跳过这步，进入“开始画图”
 
 - gene.location.csv，基因在染色体上的位置。至少包括基因所在的染色体、起始位置、基因 ID（例如ensembl ID、ENTREZ ID、gene symbol）。此处以人为例，对应hg19版本，来自TCGAbiolinks。
 
 - signal.csv，图中基因的信号值。第一列是gene ID，跟gene.location.csv里的一种基因ID一致，此处是gene symbol；第二列是图中基因名及其连线的颜色，红色连红色，蓝色连蓝色，你也可以写成其他颜色；第三列之后是三组样品的signal，第一组有两个，第二组有三个，第三组有三个。可以是RNA-seq、ChIP-seq、ATAC-seq、CNV、DNA甲基化等信息。用感兴趣的区段信息替换示例中的基因信息。
-
-## Input data
 
 If your data has already been saved in easy_input.csv format, you can skip this step and enter "Start Drawing"
 
@@ -250,7 +244,7 @@ genelink22 <- gene_link2 %>%
 gene_link2 <- cbind(genelink2, genelink22)
 ```
 
-## 开始画图
+## 开始画图 Start Drawing
 
 R代表半径位置，W是宽度，cir是染色体
 
@@ -258,17 +252,13 @@ R代表半径位置，W是宽度，cir是染色体
 
 包里自带的写染色体名字的位置不合理，也没有参数可以调整，这里提供两种方法来处理：
 
-## Start drawing
-
 R represents the radius position, W is the width, and cir is the chromosome
 
 The text of the three sets of samples in the picture needs to be marked with Illustrator
 
 The position of writing chromosome names in the package is unreasonable, and there are no parameters to adjust. Here are two methods to deal with it:
 
-### 方法一：单独画染色体名字
-
-### Method 1: Draw chromosome names separately
+### 方法一：单独画染色体名字 Method 1: Draw chromosome names separately
 
 ```{r}
 # 创建PDF设备，设置输出文件名为OmicCircos.pdf，宽度和高度均为8英寸
@@ -341,13 +331,11 @@ dev.off()
 
 ![](OmicCircos.pdf)
 
-### 方法二：修改包里的代码
+### 方法二：修改包里的代码 Method 2: Modify the code in the package
 
 修改了染色体名字的位置，顺便修改了scale的位置。
 
 修改后的函数命名为circos_plus，保存为Omiccircos_plus.R，位于当前文件夹。查找#Ya#可看到修改的代码。
-
-### Method 2: Modify the code in the package
 
 Changed the position of chromosome names and also modified the position of scales.
 
@@ -468,7 +456,7 @@ dev.off()
 
 ![](OmicCircos_plus.pdf)
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

@@ -3,14 +3,22 @@ title: "FigureYa286ExprCorORR"
 params:
   author: "Xiaofan Lu; Yasi Zhang"  
   reviewer: "Ying Ge"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
 **Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()` 
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -49,8 +57,7 @@ Plot the correlation between a variable of interest and the objective response r
 
 The ORR calculation process is not included; precomputed ORR values for 21 TCGA cancer types are used directly.
 
-# 环境设置
-# Environment Setup
+# 环境设置 Environment Setup
 
 ```{r}
 source("install_dependencies.R")
@@ -232,7 +239,7 @@ ggsave(filename = paste0("correlation of ", geneOfInterest," and ORR in 21 tumor
 
 Here, I won't modify the boundary color of the confidence interval. The original author indicates that it is AI-modified.
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

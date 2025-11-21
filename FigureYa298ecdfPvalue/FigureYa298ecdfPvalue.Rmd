@@ -3,14 +3,22 @@ title: "FigureYa298ecdfPvalue"
 params:
   author: "Qian Liu; Yasi Zhang"  
   reviewer: "Ying Ge"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
 **Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()` 
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -61,8 +69,7 @@ The difference in gene signature score activity levels between Havcr2fl/fl and H
 
 The two testing methods mentioned in the above articles, `two-sided Wilcoxon and Mann–Whitney test` and `Wilcoxon rank-sum test`, refer to the same thing.
 
-# 应用场景
-# Application Scenario
+# 应用场景 Application Scenario
 
 用经验累积分布函数empirical cumulative distribution function(ECDF)对比分布，并计算两种分布的p value。
 
@@ -86,8 +93,7 @@ This is from <https://seaborn.pydata.org/tutorial/distributions.html#tutorial-ec
 
 We had a similar requirement in FigureYa278heatmapPoints , where we used the `kruskal.test`. This statistical method can also be used to compute the p-value between two distributions.
 
-# 环境设置
-# Environment Setup
+# 环境设置 Environment Setup
 
 ```{r}
 source("install_dependencies.R")
@@ -268,7 +274,7 @@ p2
 ggsave("ecdf_add_Pvalue.pdf", p2, height = 7, width = 7, device = "pdf")
 ```
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

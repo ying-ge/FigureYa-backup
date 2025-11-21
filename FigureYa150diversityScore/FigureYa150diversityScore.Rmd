@@ -3,7 +3,15 @@ title: "FigureYa150diversityScore"
 params:
   author: "Zongcheng Li"
   reviewer: "Ying Ge, Junyi Shen"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
@@ -11,7 +19,7 @@ output: html_document
 **Date**: `r Sys.Date()`  
 
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -38,8 +46,7 @@ By the way, draw the following figure:
 
 Figure 3. Intratumoral Heterogeneity in Liver Cancer. (E) Diversity score of tumor samples according to the median value of diversity: Div-Low, below median value; Div-High, above median value. Data are presented as means ± SEM.
 
-## 应用场景
-## Application scenario
+## 应用场景 Application scenario
 
 用单细胞DNA测序数据计算diversity score，用来评价肿瘤异质性。
 Use single-cell DNA sequencing data to calculate the diversity score to evaluate tumor heterogeneity.
@@ -85,8 +92,7 @@ calcDiversityScore <- function(eigenvectorSpace,
 }
 ```
 
-## 输入文件
-## Input file
+## 输入文件 Input file
 
 按照这个方式，下载和挖掘GEO上已发表的单细胞测序数据：
 Download and mine the single-cell sequencing data published on GEO in this way:
@@ -218,7 +224,7 @@ ggplot(ggData,
 ggsave("diversityScore.pdf", width = 2, height = 3)
 ```
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

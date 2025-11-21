@@ -2,14 +2,22 @@
 title: "FigureYa222PCAgene"
 params:
   author: "Zongcheng Li; Ying Ge, Yijing Chen"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
 **Date**: `r Sys.Date()`  
 
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -18,8 +26,7 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# 需求描述
-# Requirement description
+# 需求描述 Requirement Description
 
 这个PCA很特别
 
@@ -39,8 +46,7 @@ Figure 3. Dynamic Gene-Expression Patterns of Oocyte Subtypes at Stepwise Develo
 (A) PCA plot showing four oocyte subtypes based on gene-expression patterns exhibited by PC1 and PC2.
 (B) Relative gene-expression patterns of representative genes essential for oocyte development along the PC1 dimension.
 
-# 应用场景
-# Application scenario
+# 应用场景 Application Scenario
 
 单细胞RNA-seq，从PCA结果就能看出基因表达模式跟细胞类型的关系。
 
@@ -54,8 +60,7 @@ Original text: Principal component analysis (PCA) revealed that the four oocyte 
 
 Consistently, the relative expression levels of **genes known to be essential for follicular development also varied along PC1 axis** (Figures 3B and S3A). Genes promoting follicle development, such as ZP1, BMP15, and GDF9, were progressively **upregulated from oocyte subtype C1 to C4**. Meiotic M phase genes WEE2 and AURKA as well as DNA methyltransferase, DNMT1 and DNMT3A, were also gradually upregulated from subtype C1 to C4 (Figures 3B and S3A). 
 
-# 环境设置
-# Environment setting
+# 环境设置 Environment Setting
 
 ```{r}
 source("install_dependencies.R")
@@ -144,8 +149,7 @@ pca.pv <- sc_oo@reductions$pca
 dim(pca.pv@feature.loadings)
 ```
 
-# 开始画图
-# Start drawing
+# 开始画图 Start Drawing
 
 ## 画Fig. 3A
 ## Draw Fig. 3A
@@ -342,7 +346,7 @@ save(sc, cluster_colors, file = "sc.seurat.Rdata")
 #write.csv(sc@assays$RNA@data, "easy_input_expr.csv", quote = F)
 ```
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

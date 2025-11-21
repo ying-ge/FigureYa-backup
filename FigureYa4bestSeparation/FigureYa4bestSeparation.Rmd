@@ -1,15 +1,24 @@
 ---
 title: "FigureYa4 bestSeparation"
 params:
-  author: "Dekang Lv; Ying Ge, Yijing Chen"
-output: html_document
+  author: "Dekang Lv"
+  reviewer: "Ying Ge, Yijing Chen"
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
+**Reviewer(s)**: `r params$reviewer`
 **Date**: `r Sys.Date()`  
 
-
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -18,33 +27,33 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## 需求描述
-## Requirement description
+## 需求描述 Requirement description
 
 做生存分析，Best separation和Median separation，后者很简单，很想学前者，求Best separation的代码
 
 Do survival analysis, Best separation and Median separation. The latter is very simple. If you really want to learn the former, look for the code for Best separation.
 
-## 使用场景
-## Usage scenario
+## 使用场景 Usage scenario
 
 在展示基因表达水平（连续变量）对生存期的影响时找到最佳分组
 
 Find the best grouping when showing the impact of gene expression level (continuous variables) on survival
 
-## 输入
-## Input
+## 环境设置 Environment settings
+```{r}
+source("install_dependencies.R")
+library(survival) #生存分析 library for survival analysis
+library("survminer") #生存分析可视化 library for survival analysis visualization
+library(ggplot2) #数据可视化 library for data visualization
+```
+
+## 输入文件 Input file
 
 包含基因表达水平、生存时间、追踪情况等三列的文件，测试用文件为dsg1.txt
 
 A file containing three columns of gene expression levels, survival time, and tracking, the file used for testing is dsg1.txt
 
 ```{r,message=FALSE,warning=FALSE}
-source("install_dependencies.R")
-library(survival)
-library("survminer")
-library(ggplot2)
-
 #读入测试文件dsg1.txt
 #read the test file dsg1.txt
 svdata<-read.table("dsg1.txt",header=T,as.is=T)
@@ -54,15 +63,11 @@ head(svdata)
 sortsv<-svdata[order(svdata$expression),]
 ```
 
-## 输出
-## Output
-
 中位值分组的生存曲线、最佳分组生存曲线、遍历所有分组情况下的P值和Hazard Ratio的分布情况
 
 The survival curve of the median value group, the best group survival curve, and the distribution of P value and Hazard Ratio in all grouping situations
 
-## 中位值分组
-## Median separation
+## 中位值分组 Median separation
 
 ```{r,message=FALSE,warning=FALSE}
 #先根据表达水平的中位值分组，画生存曲线，保存
@@ -107,8 +112,8 @@ head(fd)
 ggplot(fd,aes(x=log2(HR),y=-log10(Pvalue)))+geom_point(shape=21,aes(fill=Tag))+scale_fill_gradientn(colours=c("#4477AA","#77AADD","#FFFFFF","#EE9988","#BB4444"),guide="legend")+geom_hline(yintercept=(-log10(0.05)),linetype="dashed")+geom_vline(xintercept=c(-1,1),linetype="dashed")+annotate("text",y=-log10(pvals[which.min(pvals)]),x=log2(hrs[which.min(pvals)]),label="min-Pvalue")
 ggsave(file="Pvalue_Hazard-Ratio.pdf")
 ```
-## 最佳分组
-## Best separation
+
+## 最佳分组 Best separation
 
 虚线左上角区域的点p值最小，是最佳的分组方式，分组情况如下
 
@@ -132,7 +137,7 @@ dev.off()
 sc_minp
 ```
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

@@ -3,14 +3,22 @@ title: "FigureYa149rankHeatmap"
 params:
   author: "Hao Li"
   reviewer: "Ying Ge, Junyi Shen"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
 **Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()`  
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -25,8 +33,7 @@ Zuguang Gu. Complex Heatmap Visualization, iMeta, 2022.
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## 需求描述
-## Requirement description
+## 需求描述 Requirement description
 
 分类变量的热图。
 Heat map of categorical variables.
@@ -73,8 +80,7 @@ Sys.setenv(LANGUAGE = "en") #显示英文报错信息
 options(stringsAsFactors = FALSE) #禁止chr转成factor
 ```
 
-## 输入文件
-## Input file
+## 输入文件 Input file
 
 - easy_input_logFc.csv，差异表达分析当中的**logFC**值，还可以替换为相关分析的相关系数。
 - easy_input_PVal.csv，差异表达分析当中的**P**值。
@@ -129,8 +135,7 @@ if(!identical(colnames(logfcCat), colnames(p.valOrdered))) p.valOrdered <- p.val
 logfcCat[p.valOrdered >= 0.05] <- "P >= 0.05"
 ```
 
-## 开始画图
-## Start drawing
+## 开始画图 Start drawing
 
 我们使用`ComplexHeatmap`绘图，分三步：
 We use `ComplexHeatmap` to draw, divided into three steps:

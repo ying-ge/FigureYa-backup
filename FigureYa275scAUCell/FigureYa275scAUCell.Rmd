@@ -3,14 +3,22 @@ title: "FigureYa275scAUCell"
 params:
   author: "Xiao Gu; Yasi Zhang"  
   reviewer: "Ying Ge"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
 **Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()`  
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -40,8 +48,7 @@ Fig. 2. ISG score of SLE PBMC cell clusters.
 (a) Score of 178 screened ISG sets. The threshold was chosen as 0.12 and the ISG score of 12 974 cells exceeded the threshold value. 
 (b) UMAP plots based on the ISG score of each cell. High ISG score cell clusters are highlighted. 
 
-# 应用场景
-# Application Scenario
+# 应用场景 Application Scenario
 
 本教程展示如何在单细胞数据中使用AUCell包计算自定义基因集的评分，并画图展示。
 
@@ -62,8 +69,7 @@ Scores epithelial cells with AUCell followed by NMF clustering
 - FigureYa269scMetabolism
 Implements multiple metabolic scoring methods including AUCell
 
-# 环境设置
-# Environment Setup
+# 环境设置 Environment Setup
 
 ```{r}
 source("install_dependencies.R")
@@ -399,7 +405,7 @@ Finally, select genes from the High.ISGs group for GO and pathway analysis. You 
 
 The key is to identify gene sets that align with your research objectives!
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

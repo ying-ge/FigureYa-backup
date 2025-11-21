@@ -3,14 +3,22 @@ title: "FigureYa208FPI"
 params:
   author: "Xiaofan Lu; Yasi Zhang"  
   reviewer: "Ying Ge"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
 **Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()` 
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -42,8 +50,7 @@ Figure 2. The Relations between FPI and Histological Types and Molecular Subtype
 
 Source: <https://linkinghub.elsevier.com/retrieve/pii/S2589004220304892>
 
-# 应用场景
-# Application Scenario
+# 应用场景 Application Scenario
 
 例文通过查文献收集基因，用GSVA计算正负两个基因集的富集分数，然后计算FPI。
 
@@ -57,8 +64,7 @@ This method can be applied to batch-process multiple datasets (e.g., TCGA pan-ca
 
 Additionally, it is not limited to calculating the Ferroptosis Potential Index (FPI). By replacing the gene sets with custom collections related to a specific function, users can define their own "XX Index" following the same approach.
 
-# 环境设置
-# Environment Setup
+# 环境设置 Environment Setup
 
 ```{r}
 source("install_dependencies.R")
@@ -466,7 +472,7 @@ text(1.5, 2.3, paste0("p = ",round(wt$p.value, 3)))
 dev.copy2pdf(file = "FPI_GSE121689.pdf", width = 3, height = 3.8)
 ```
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

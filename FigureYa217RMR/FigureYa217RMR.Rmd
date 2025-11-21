@@ -2,14 +2,22 @@
 title: "FigureYa217RMR"
 params:
   author: "Xiaofan Lu; Ying Ge, Yijing Chen"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
 **Date**: `r Sys.Date()`  
 
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -18,8 +26,7 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# 需求描述
-# Requirement description
+# 需求描述 Requirement Description
 
 基于maximum relevance minimum redundancy (mRMR)算法，采用R语言（包）实现图1。
 
@@ -35,15 +42,13 @@ Data: GSE84465 (a well-known dataset, adopted by several online public accounts)
 
 from<https://www.frontiersin.org/articles/10.3389/fbioe.2020.00167/full>
 
-# 应用场景
-# Application scenario
+# 应用场景 Application Scenario
 
 采用minimal Redundancy Maximal Relevance鉴定差异基因，后采用SVM + LOOCV (支持向量机 + 余一交叉验证)法，根据MCC统计量确定最小且最优基因组合用于构建预测模型。
 
 Differential genes are identified using the minimal Redundancy Maximal Relevance method, followed by the application of SVM + LOOCV (Support Vector Machine + Leave-One-Out Cross-Validation) to determine the smallest and most optimal gene combination based on the MCC for constructing the predictive model.
 
-# 环境设置
-# Environment setting
+# 环境设置 Environment Setting
 
 ```{r}
 source("install_dependencies.R")
@@ -175,8 +180,7 @@ save(mcc,file = "mcc.rda") #保存到文件 Save to file
 message(paste0("--the maximal MCC reaches as ", round(mcc[which.max(mcc)],3)," at gene number of ",which.max(mcc)))
 ```
 
-# 开始画图
-# Start drawing
+# 开始画图 Start Drawing
 
 ```{r}
 # 加载上一步的结果
@@ -205,7 +209,7 @@ dev.copy2pdf(file = "mcc.pdf",width = 4,height = 4)
 # save.image("mRMR.RData")
 ```
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

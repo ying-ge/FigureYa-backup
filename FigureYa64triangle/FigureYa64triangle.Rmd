@@ -2,14 +2,22 @@
 title: "FigureYa64triangle"
 params:
   author: "Yin Li; Ying Ge, Yijing Chen"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
 **Date**: `r Sys.Date()`  
 
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -22,8 +30,7 @@ Hamilton NE and Ferry M (2018). ggtern: Ternary Diagrams Using ggplot2. Journal 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# 需求描述
-# Requirement description
+# 需求描述 Requirement Description
 
 用R画出paper里的Triangle plot
 
@@ -47,8 +54,7 @@ Original analysis:
 - The size of the dots represents the total frequency of mutations in glioma;
 - The color represents the relative mutation frequency
 
-# 应用场景
-# Application scenario
+# 应用场景 Application Scenario
 
 展示3种不同疾病或者3组之间某个指标的相关性，一目了然。
 
@@ -58,8 +64,7 @@ Display the correlation of a certain indicator among 3 different diseases or 3 g
 
 Use your imagination to develop more application scenarios.
 
-# 环境设置
-# Environment setting
+# 环境设置 Environment Setting
 
 ```{r,message=FALSE}
 source("install_dependencies.R")
@@ -173,8 +178,7 @@ df <- read.csv('easy_input.csv')
 head(df)
 ```
 
-# 开始画图
-# Start drawing
+# 开始画图 Start Drawing
 
 ```{r}
 p <- ggtern(data=df, aes(x=df$Frequency.in.pGBM, y=df$Frequency.in.LGG, z=df$Frequency.in.sGBM)) +
@@ -318,7 +322,7 @@ Advantage: Most gene names are well dispersed.
 
 Disadvantage: The parameters in the package are limited. Gene names are far from the genes, requiring referring to Plan 1 to verify the correspondence between genes and dots. Additionally, gene names at the edges overflow. Therefore, it is necessary to use Illustrator for fine-tuning.
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

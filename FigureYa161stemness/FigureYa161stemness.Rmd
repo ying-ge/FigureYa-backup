@@ -3,14 +3,22 @@ title: "FigureYa161stemness"
 params:
   author: "Yi Xiong"
   reviewer: "Ying Ge, Junyi Shen"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
 **Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()`  
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -25,8 +33,7 @@ Zuguang Gu. Complex Heatmap Visualization, iMeta, 2022.
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# 需求描述
-# Requirement Description
+# 需求描述 Requirement Description
 
 用GEO数据计算mRNAsi、mDNAsi，画图。
 Calculate mRNAsi and mDNAsi using GEO data and plot them.
@@ -51,8 +58,7 @@ This tool is used to calculate stemness indices for tumor gene expression and DN
 另外，Fig. 6的分析画图可参考FigureYa131CMap。其余可参考文章作者分享的代码：<https://github.com/richie2019/MBpanel>
 For the analysis plots in Figure 6, please refer to FigureYa131CMap. For other code, please refer to the article author's shared code: <https://github.com/richie2019/MBpanel>
 
-# 环境设置
-# Environment Setup
+# 环境设置 Environment Setup
 
 ```{r}
 source("install_dependencies.R")
@@ -74,8 +80,7 @@ Two files used: pcbc-stemsig.tsv and pcbc-stemsig.p219.Rda, from <https://www.ce
 
 # mRNAsi
 
-## 输入文件
-## Input file
+## 输入文件 Input file
 
 需要表达数据GSE85217和临床信息作为输入：
 Expression data GSE85217 and clinical information are required as input:
@@ -443,7 +448,7 @@ p
 save_plot("mDNAsi.pdf", p,base_width = 10,base_height = 8)
 ```
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

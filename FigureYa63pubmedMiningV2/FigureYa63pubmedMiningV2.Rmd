@@ -2,14 +2,22 @@
 title: "FigureYa63PubmedMiningV2"
 params:
   author: "Haitao Wang, Melvin L.K. Chua; Ying Ge, Yijing Chen"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
 **Date**: `r Sys.Date()`  
 
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -18,15 +26,13 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# 需求描述
-# Requirement description
+# 需求描述 Requirement Description
 
 通过API检索NCBI的Pubmed数据库，批量获得文章信息，整理出摘要里基因的词频。
 
 NCBI's Pubmed database is searched through the API to obtain article information in bulk and organize the word frequencies of the genes in the abstracts.
 
-# 应用场景
-# Application scenario
+# 应用场景 Application Scenario
 
 - 老板交给我的这个基因好陌生，用这套代码跑出表格，一眼望去，发现它的好朋友我都很熟，于是，熟悉的思路、方法都能用上了。
 - 文章做到第三部分卡住了，我的基因到底调控了谁，或者谁调控了它，或者它跟谁是好朋友一同发挥作用？用这套代码跑出表格，一眼望去，发现目的基因跟我熟悉的一类分子一同出现在某篇文章的摘要里，我们实验室有非常完善的研究这类分子的实验体系，接下来就瞄准这个分子了。
@@ -55,8 +61,7 @@ It contains three modules that are relatively independent and can be run separat
 
 [Module 3] **Find a good friend from the abstract**
 
-# 环境设置
-# Environment setting
+# 环境设置 Environment Setting
 
 ```{r}
 source("install_dependencies.R")
@@ -402,7 +407,7 @@ Various databases in NCBI can be accessed through API using the rentrez R packag
 
 Reference: <https://bioconnector.github.io/workshops/r-ncbi.html>
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

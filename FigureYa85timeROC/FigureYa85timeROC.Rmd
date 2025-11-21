@@ -3,7 +3,15 @@ title: "FigureYa85timeROC"
 params:
   author: "Guoshuang Feng, Taojun Ye"
   reviewer: "Ying Ge"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
@@ -11,7 +19,7 @@ output: html_document
 **Date**: `r Sys.Date()`  
 
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -204,7 +212,7 @@ I found a well written post that can be used to draw Figure 3A in the example ar
 
 <https://www.wowodx.com/weishengjiandu/7180143d4c3b48228e7d04e97e2ac3c1.html>
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

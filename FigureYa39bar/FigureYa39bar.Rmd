@@ -2,14 +2,22 @@
 title: "FigureYa39bar"
 params:
   author: "Ying Ge; Yijing Chen"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
 **Date**: `r Sys.Date()`  
 
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -19,8 +27,7 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## 需求描述
-## Requirement description
+## 需求描述 Requirement description
 
 图一：不同的癌症用不同的颜色展示
 
@@ -46,8 +53,7 @@ from<https://www.nature.com/articles/s41591-018-0096-5>
 
 The input data for the original article is the GSVA score; this code only mimics the form and does not include GSVA analysis.
 
-## 应用场景
-## Application scenario
+## 应用场景 Application scenario
 
 场景一：各肿瘤某一指标的比较，例如图一的肿瘤缓解率。
 

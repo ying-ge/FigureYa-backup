@@ -1,9 +1,17 @@
 ---
 title: "FigureYa310CPDBChordGramV2"
 params:
-  author: "Xiaofan Lu; Yasi Zhang"  
-  reviewer: "Ying Ge"
-output: html_document
+  author: "Xiaofan Lu"  
+  reviewer: "Ying Ge, Yasi Zhang"
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
@@ -23,8 +31,7 @@ Gu, Z. circlize implements and enhances circular visualization in R. Bioinformat
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## 需求描述
-## Demand description
+## 需求描述 Requirement description
 
 以CellPhoneDB的结果文件作为输入，画出细胞沟通的弦图
 
@@ -32,22 +39,14 @@ Using the CellPhoneDB result file as input, draw a chord diagram of cell communi
 
 ![](example.png)
 
-出自<https://linkinghub.elsevier.com/retrieve/pii/S1535610822004998>
-
-图3. 细胞互作分析。
-(A) **LUAD与LUSC**中癌细胞对主要免疫细胞的互作关系环形图
-展示的是差异表达最显著的10种癌细胞配体。
-**红色**连线表示在LUAD中上调的互作，**蓝色**连线表示在LUSC中上调的互作。
-
-Source: <https://linkinghub.elsevier.com/retrieve/pii/S1535610822004998>
+From <https://linkinghub.elsevier.com/retrieve/pii/S1535610822004998>
 
 Figure 3. Cellular crosstalk analysis.
 (A) Circos plot of the cellular crosstalk of cancer cells toward the major immune cells in **LUAD versus LUSC**. 
 Shown are the top 10 differentially expressed cancer cell ligands. 
 **Red** interactions are upregulated in LUAD, and **blue** interactions are upregulated in LUSC.
 
-## 应用场景
-## Application scenarios
+## 应用场景 Application scenarios
 
 用cellphoneDB结果，对比展示**两组样本**的配体-受体差异。
 
@@ -60,8 +59,7 @@ Using CellPhoneDB results to comparatively visualize ligand-receptor differences
 ggplot2 to generate a bubble plot (reference: FigureYa178receptorLigand).
 - Use CellChat to analyze and compare ligand-receptor differences between **two sample groups** (reference: FigureYa267scCellChat).
 
-## 环境设置
-## Environment Setup
+## 环境设置 Environment settings
 
 ```{r}
 source("install_dependencies.R")
@@ -251,21 +249,26 @@ cpdb.chordgram <- function(seu, means, pvalues,
 }
 ```
 
-## 输入文件的获得
-## Obtaining Input Files
+## 输入文件的获得 Obtain the input files
 
 先运行cellphoneDB，然后以cellphoneDB的结果文件作为输入画图。
 
-ifnb.rds，A Seurat object。
+ifnb.rds，A Seurat object。如果你还没有这个文件，可以使用下面的代码从SeuratData包加载示例数据并保存为rds文件。
 
 First run CellPhoneDB, then use its output files as input for plotting
 
-ifnb.rds is a Seurat object. 
+ifnb.rds is a Seurat object. If you don't have this file yet, you can use the code below to load the example data from SeuratData package and save it as an rds file.
 
-```{r}
+```{r eval=FALSE}
 # 准备cellphoneDB所需表达数据
 # Preparing expression data for CellPhoneDB
-seu <- readRDS("ifnb.rds")
+library(SeuratData)
+# 加载ifnb数据集
+# Load ifnb dataset
+LoadData("ifnb")
+seu <- UpdateSeuratObject(ifnb)
+saveRDS(seu, "ifnb.rds")  # 保存为rds文件以便下次使用
+
 write.table(as.matrix(seu@assays$RNA@data), 'cellphonedb_count.txt', sep='\t', quote=F)
 
 meta_data <- cbind(colnames(seu), as.character(seu$seurat_annotations))
@@ -307,8 +310,7 @@ After execution, an 'out' folder will be created containing four files: means.tx
 
 The 'out' folder contains CellPhoneDB output files
 
-## 读取cellphoneDB运行结果
-## Loading CellPhoneDB results
+## 读取cellphoneDB运行结果 Loading CellPhoneDB results
 
 ```{r}
 # 读取cellphoneDB运行结果
@@ -316,6 +318,10 @@ The 'out' folder contains CellPhoneDB output files
 means <- read.delim('out/means.txt', check.names = FALSE)
 pvalues <- read.delim('out/pvalues.txt', check.names = FALSE)
 deconvoluted <- read.delim('out/deconvoluted.txt', check.names = FALSE)
+
+# 读取ifnb.rds文件（Seurat对象）
+# Read ifnb.rds file (Seurat object)
+seu <- readRDS("ifnb.rds")
 
 # 查看通过筛选的相互作用
 # View filtered interactions
@@ -330,8 +336,7 @@ plot.data <- cpdb.chordgram(seu = seu, means = means, pvalues = pvalues,
 table(plot.data$source, plot.data$target)
 ```
 
-## 差异分析并画图
-## Differential analysis and visualization
+## 差异分析并画图 Differential analysis and visualization
 
 ```{r}
 # 指定细胞类型对应的颜色

@@ -3,14 +3,22 @@ title: "FigureYa284pairwiseLogrank"
 params:
   author: "Xiaofan Lu; Yasi Zhang"  
   reviewer: "Ying Ge"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
 **Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()` 
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -39,8 +47,7 @@ Source: <https://www.nature.com/articles/s41586-019-1906-8>
 Fig. 2 | SICs and B cells are predictive of the survival of patients with STS. 
 b, Multivariate Cox proportional regression outcome, with all included variables represented. For each variable, the reference level is the first one. A grey bar indicates P > 0.05; and variables indicated by green and red bars are positively and negatively, respectively, significantly associated with prognosis in this multivariate model. Error bars represent the 95% confidence interval. FNCLCC, Fédération Nationale des Centres de Lutte Contrele Cancer.
 
-# 应用场景
-# Application Scenario
+# 应用场景 Application Scenario
 
 对3组及以上的亚组进行生存分析，并打印配对比较的统计表格。
 
@@ -50,8 +57,7 @@ Survival analysis for 3+ subgroups with pairwise comparison statistics table.
 
 Reference: compSurv() function from MOVICS package <https://github.com/xlucpu/MOVICS/blob/master/R/compSurv.R>
 
-# 环境设置
-# Environment Setup
+# 环境设置 Environment Setup
 
 
 Using domestic mirrors for package installation.
@@ -212,7 +218,7 @@ dev.off()
 ```
 
 # 会话信息
-# Session Info
+## Session Info
 
 ```{r}
 # 显示会话信息

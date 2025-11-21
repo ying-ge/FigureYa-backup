@@ -2,7 +2,15 @@
 title: "FigureYa147Plus_STRING"
 params:
   author: "Zongcheng Li, Ying Ge"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
@@ -23,12 +31,12 @@ Nucleic Acids Res. 2023 Jan 6;51(D1):D638-646.
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## 需求描述
-## Requirements description
+## 需求描述 Requirements description
 用STRING数据库的查询结果作为输入，画出FigureYa147interaction那样的图。
 
-## 应用场景
-## Application scenarios
+Use the query results from the STRING database as input and generate a plot similar to FigureYa147interaction.
+
+## 应用场景 Application scenarios
 
 展示相互作用关系，同时展示相互作用证据的来源和打分。
 Show the interaction relationship, and at the same time show the source and score of the interaction evidence.
@@ -39,8 +47,7 @@ Like the protein interaction in the example text, or the relationship between tr
 其中转录因子-靶基因的关系可以这样设计：中央画转录因子，周围画靶基因；连线代表各种证据例如有motif、有ATAC-seq的peak、有H3K27ac的peak等等；自己给这些证据权重，计算一个总体的打分作为连线的长度。
 The relationship between transcription factor-target gene can be designed as follows: draw the transcription factor in the center and the target gene around it; the connecting line represents various evidences such as motif, ATAC-seq peak, H3K27ac peak, etc.; give these evidence weights by yourself and calculate an overall score as the length of the connecting line.
 
-## 环境设置
-## Environment settings
+## 环境设置 Environment settings
 
 ```{r}
 source("install_dependencies.R")
@@ -91,8 +98,7 @@ add.vertex.shape("fcircle", clip=igraph.shape.noclip,
                                   vertex.frame.width=2)) # 边框宽度为2｜Border width = 2
 ```
 
-## 参数设置
-## Parameter settings
+## 参数设置 Parameter settings
 
 ```{r}
 # Give your focus official gene_symbol
@@ -102,17 +108,21 @@ sourceGene <- "FOXP3"
 sourceName <- "FOXP3" 
 ```
 
-## 输入文件
-## Input file
+## 输入文件 Input file
 
-STRING数据库<https://string-db.org>，点击STRING chat。
+STRING数据库 <https://string-db.org>，点击 STRING chat。
 
-输入：“show me a table of proteins interact with FoxP3 in human, with score > 0.8, including four columns: FoxP3, the other protein, location, score”
+输入（中文指令）：“show me a table of proteins interact with FoxP3 in human, with score > 0.8, including four columns: FoxP3, the other protein, location, score”
 
-把表格复制到txt文件，命名为easy_input.txt。
+把表格复制到 txt 文件，命名为 easy_input.txt。
 
-## 开始画图
-## Start drawing
+STRING database <https://string-db.org>, open STRING chat.
+
+Input (English prompt): "show me a table of proteins interact with FoxP3 in human, with score > 0.8, including four columns: FoxP3, the other protein, location, score"
+
+Copy the resulting table to a txt file and name it easy_input.txt.
+
+## 开始画图 Start drawing
 
 用igraph画图
 Drawing with igraph
@@ -172,14 +182,15 @@ dev.off()
 
 ![](interaction.pdf)
 
-## 后期处理
-## Post-processing
+## 后期处理 Post-processing
 
 Use Adobe Illustrator to fine tune the network map. Such as adjust the text position to avoid overlapping.
 
 Want to learn more about network visualization with R?
 
 GO to <https://kateto.net/tutorials/>
+
+## Session Info
 
 ```{r}
 sessionInfo()

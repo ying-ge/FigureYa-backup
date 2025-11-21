@@ -3,7 +3,15 @@ title: "FigureYa235scDEG"
 params:
   author: "Xiao Gu"
   reviewer: "Ying Ge, Hui Huang"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
@@ -29,7 +37,7 @@ The input data will be the PBMC test data for the seurat
 
 ![](example.png)
 
-From<https://www.sciencedirect.com/science/article/pii/S0092867419312826?via%3Dihub>
+From <https://www.sciencedirect.com/science/article/pii/S0092867419312826?via%3Dihub>
 
 Figure 2. Global Spatiotemporal Analysis of Three Cardiac Developmental Stages
 (H) Differential gene expression analysis showing up- and down-regulated genes across all ten clusters. An adjusted p value < 0.01 is indicated in red, while an adjusted p value R 0.01 is indicated in black.
@@ -90,8 +98,7 @@ pbmc <- CreateSeuratObject(counts = pbmc.data, project = "pbmc3k", min.cells = 3
 pbmc
 ```
 
-## 预处理
-## Preprocessing
+## 预处理 Preprocessing
 
 ```{r}
 # 进行QC
@@ -156,7 +163,6 @@ pA1 <- DimPlot(pbmc, reduction = "umap", label = T)+ NoLegend()
 ggsave("plotA_1_UMAP_cluster.pdf", plot = pA1, width = 6, height = 6)
 ```
 
-## 找cluster biomarkers
 ## Find cluster biomarkers
 
 ```{r}
@@ -185,13 +191,11 @@ top10 <- pbmc.markers %>% group_by(cluster) %>% top_n(n = 10, wt = avg_log2FC)
 DoHeatmap(pbmc, features = top10$gene) + NoLegend()
 ```
 
-## 鉴定细胞类型
+## 鉴定细胞类型 Identify cell types
 
 如果只是为了复现文章中的图，可以不鉴定细胞类型，以下部分可不run，根据结合每个cluster的marker基因和生物学知识确定细胞类型。
 
 为了接近真实情况并结合示例数据，这里不将细胞类型划分的这么详细，进行以下更改
-
-## Identify cell types
 
 If you don't need to identify the cell types just to reproduce the diagram in the article, the following section can be done without running and determine the cell type based on the knowledge of the marker genes and biology that binds each cluster.
 
@@ -231,7 +235,7 @@ pbmc@meta.data$celltype <- factor(pbmc@meta.data$celltype, celltype)
 ```
 
 ## 设置cutoff，定义显著/非显著的上/下调marker gene
-## Set cutoff to define significant/non-significant up/down marker gene
+Set cutoff to define significant/non-significant up/down marker gene
 
 ```{r}
 # 查看每个cluster的marker gene
@@ -258,8 +262,7 @@ pbmc.markers$cluster %<>% as.vector(.) %>% as.numeric(.)
 write.csv(pbmc.markers, "output_pbmc.markers.csv", quote = F)
 ```
 
-## 自定义显示想要展示的基因名
-## Customize the display of the gene name you want to display
+## 自定义显示想要展示的基因名 Customize the display of the gene name you want to display
 
 这里挑选log2FC为top5的基因进行展示
 
@@ -291,8 +294,7 @@ top_label$thr_signi %<>%
 
 You can also manually pick out the genes you want to name based on output_pbmc.markers.csv files, such as genes involved in a pathway, and then name the file easy_input_label.csv
 
-## 开始画图
-## Start drawing
+## 开始画图 Start drawing
 
 ```{r}
 # 读取修改后的要标注的基因名文件

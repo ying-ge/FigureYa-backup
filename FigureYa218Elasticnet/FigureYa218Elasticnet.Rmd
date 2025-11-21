@@ -2,14 +2,22 @@
 title: "FigureYa218Elasticnet"
 params:
   author: "Xiaofan Lu; Ying Ge, Yijing Chen"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
 **Date**: `r Sys.Date()`  
 
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -18,8 +26,7 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# 需求描述
-# Requirement description
+# 需求描述 Requirement Description
 
 我想实现弹性网络筛选和分类的数据分析。根据表达矩阵，绘制figure2的A,B,C筛选和系数图，再根据结果绘制分类效果E图，得到准确率。
 
@@ -43,15 +50,13 @@ FIGURE 2 | The screening and validation of 15 genes conducted by the diagnostic 
 (D) Heatmap for describing the expression levels of selected genes in the binomial classifier erected by training datasets. Each row is a gene with its Entrez Gene ID in parentheses; each column is a sample. 
 (E) Estimated probabilities for samples in testing datasets (GSE101685 and ICGC). For each sample, there are two points, corresponding to the probability that the sample belongs to the respective class. Within each dataset and class, samples are sorted by the probability of the true class. For most samples, the probability of the true subtype is near 1, indicating an unambiguous classification.
 
-# 应用场景
-# Application scenario
+# 应用场景 Application Scenario
 
 根据弹性网络筛选变量构建分类模型，生成筛选和系数图，以及分类效果图。
 
 Construct a classification model by selecting variables based on the elastic net, generate screening and coefficient diagrams, as well as classification effect diagrams.
 
-# 环境设置
-# Environment setting
+# 环境设置 Environment Setting
 
 ```{r}
 source("install_dependencies.R")
@@ -280,8 +285,7 @@ pred_test <- data.frame(prob = round(predict(cvfit, newx = x,type="response"),4)
                         tissue = gse.sinfo$tissue)
 ```
 
-# 开始画图
-# Start drawing
+# 开始画图 Start Drawing
 
 生成筛选和系数图，以及分类效果图。
 
@@ -354,7 +358,7 @@ p
 ggsave(file = "Figure2E.pdf",width = 6,height = 4)
 ```
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

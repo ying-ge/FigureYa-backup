@@ -2,13 +2,21 @@
 title: "FigureYa47HR2table"
 params:
   author: "Yuan Tang; Ying Ge, Yijing Chen"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
 **Date**: `r Sys.Date()`  
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -17,8 +25,7 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## 需求描述
-## Requirement description
+## 需求描述 Requirement description
 
 计算coxHR，单因素cox和多因素cox，输出为表格
 
@@ -30,8 +37,7 @@ Calculate coxHR, univariate cox and multivariate cox, output as table
 
 from<https://jhoonline.biomedcentral.com/articles/10.1186/s13045-017-0445-8>
 
-## 应用场景
-## Application scenario
+## 应用场景 Application scenario
 
 对比和展示临床相关因素和基因表达对疾病发病或预后的影响。
 
@@ -41,8 +47,7 @@ Compare and demonstrate the impact of clinical-related factors and gene expressi
 
 For example, TCGA data, large-scale clinical trial data, etc.
 
-# 环境设置
-# Environment setting
+# 环境设置 Environment Setting
 
 ```{r}
 source("install_dependencies.R")
@@ -56,8 +61,7 @@ Sys.setenv(LANGUAGE = "en") #显示英文报错信息 display English error mess
 options(stringsAsFactors = FALSE) #禁止chr转成factor prohibit the conversion of chr to factor
 ```
 
-## 输入数据
-## Input data
+## 输入数据 Input data
 
 包含示例表格中研究的相关因素，每个因素为一列，最后两列是两个基因的表达矩阵；每行是一个sample。
 

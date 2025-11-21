@@ -1,9 +1,17 @@
 ---
 title: "FigureYa96R2"
 params:
-  author: "Shipeng Guo, Taojun Ye"
-  reviewer: "Ying Ge"
-output: html_document
+  author: "Shipeng Guo"
+  reviewer: "Ying Ge, Taojun Ye"
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
@@ -114,8 +122,7 @@ tcga_expr <- tcga_expr[, -1]
 head(tcga_expr)[, 1:4]
 ```
 
-### 通过画热图聚类确定高、低免疫浸润的分组
-### Subgroups of high and low immune infiltration were identified by drawing heat map clusters
+### 通过画热图聚类确定高、低免疫浸润的分组 Subgroups of high and low immune infiltration were identified by drawing heat map clusters
 
 ```{r,fig.width=8, fig.height=8}
 ## 数据需要转置，使得样本成为列
@@ -222,8 +229,7 @@ grp <- cutree(dd_hclust, k = 2)
 table(grp)
 ```
 
-### 把分组信息加入到表达矩阵里
-### Add grouping information to the expression matrix
+### 把分组信息加入到表达矩阵里 Add grouping information to the expression matrix
 
 用表达量的样本来重新排列样本顺序，构建一个数据框。行是样本，列是基因，再加一类样本分类的数据，这就足够画图了。
 
@@ -297,8 +303,7 @@ To draw a graph with ggplot2, the basic logic is as follows:
 - The text is printed using geom_textl, and the print position is fixed at the lower 1/8 of the vertical coordinate.
 - To realize the relative position of the text is fixed, you need to draw a part of the map, save it as a ggplot object, and then select it in the object.
 
-### 直接画图
-### Direct drawing
+### 直接画图 Direct drawing
 
 ```{r,fig.width=8, fig.height=4}
 # 创建基因表达散点图，按SRGN基因表达量排序样本
@@ -346,8 +351,7 @@ p +
   geom_text(aes(x = nrow(data)/3*2, y = ypos, label = "Green-low immune tissues"), col = "springgreen3", size = 5)
 ```
 
-### 或者写成一个作图函数，方便调用
-### Or write it as a graphing function that is easy to call.
+### 或者写成一个作图函数，方便调用 Or write it as a graphing function that is easy to call.
 
 ```{r}
 # 定义基因表达对比可视化函数
@@ -467,8 +471,7 @@ dgplot("SRGN", "BCL2A1")
 dgplot("PERM1", "ISG15")
 ```
 
-## 批量筛选高度正/负相关的基因
-## Batch screen highly positive/negative correlated genes
+## 批量筛选高度正/负相关的基因 Batch screen highly positive/negative correlated genes
 
 上面用三对基因画出的三个图，分别展示了两个基因之间正相关、负相关和不相关的规律，同时还能看出基因表达量跟免疫浸润之间的关系。
 
@@ -496,8 +499,7 @@ To draw a plot that is simultaneously related to immunization and both genes are
 1. pick the gene that is related to immune infiltration
 2. select the highly correlated genes for a given gene
 
-### 选出跟免疫浸润相关的基因
-### Selected genes related to immune infiltration.
+### 选出跟免疫浸润相关的基因 Selected genes related to immune infiltration.
 
 目前跟免疫直接相关的数据，我们拥有的是每个样本中的免疫细胞数据。要获得基因的数据，需要批量计算跟免疫细胞相关的基因。
 
@@ -561,8 +563,7 @@ y <- as.numeric(tcga_gsva[, index])
 my_cor("SRGN", y)
 ```
 
-### 1. 批量计算基因与特定免疫细胞的相关性
-### 1. Batch calculation of correlation between genes and specific immune cells
+### 1. 批量计算基因与特定免疫细胞的相关性 Batch calculation of correlation between genes and specific immune cells
 
 免疫细胞以Neutrophils为例，批量计算所有基因的表达谱跟免疫细胞Neutrophils的相关性，进而筛选到跟免疫细胞Neutrophils相关性高的基因。
 
@@ -623,8 +624,7 @@ result1 %>%
 
 Here we use the top ranked SRGN as the first gene and look for the second gene that is highly correlated with its expression.
 
-### 2. 批量计算SRGN与其他基因的相关性
-### 2. Batch calculation of correlation between SRGN and other genes
+### 2. 批量计算SRGN与其他基因的相关性 Batch calculation of correlation between SRGN and other genes
 
 ```{r,message=FALSE, warning=FALSE}
 # 指定要分析的目标基因（这里选择SRGN）

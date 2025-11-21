@@ -1,16 +1,24 @@
 ---
 title: "FigureYa272scBulkCCCI"
 params:
-  author: "Xiaojian Liu; Yasi Zhang"  
-  reviewer: "Ying Ge"
-output: html_document
+  author: "Xiaojian Liu"  
+  reviewer: "Ying Ge, Yasi Zhang"
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
 **Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()`  
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -19,12 +27,11 @@ Zhang L, Li Z, Skrzypczynska KM, Fang Q, Zhang W, O’Brien SA, He Y, Wang L, Zh
 
 Zhang L, Yu X, Zheng L, Zhang Y, Li Y, Fang Q, Gao R, Kang B, Zhang Q, Huang JY, Konno H, Guo X, Ye Y, Gao S, Wang S, Hu X, Ren X, Shen Z, Ouyang W, Zhang Z. Lineage tracking reveals dynamic relationships of T cells in colorectal cancer. Nature. 2018 Dec;564(7735):268-272. doi: 10.1038/s41586-018-0694-x. Epub 2018 Oct 29. PMID: 30479382.
 
-```{r setup, include=FALSE}
+```{r setup, include=FALSE} 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## 需求描述
-## Demand description
+## 需求描述 Demand description
 
 基于细胞类型signature识别细胞-细胞互作
 
@@ -32,20 +39,13 @@ Identifying cell-cell interactions based on cell type signatures.
 
 ![](workflow.png)
 
-出自：<https://linkinghub.elsevier.com/retrieve/pii/S009286742030341X>
-
-图S8. 相关性细胞互作网络分析框架及人和小鼠肿瘤中髓系细胞亚群概述（与图3和STAR方法相关）。
-(A) 相关性网络分析流程图。
-从Smart-seq2单细胞RNA测序数据中鉴定出细胞**亚型特异性基因**，并用于**估算TCGA/GTEx批量RNA测序数据中的相对丰度**。在过滤掉自身表达的基因后，计算**高相关性基因**。最后，基于Smart-seq2表达谱进行**富集分析**，以**识别所有相关的细胞亚型并构建相关性网络**（STAR方法）。
-
-Source: <https://linkinghub.elsevier.com/retrieve/pii/S009286742030341X>
+From <https://linkinghub.elsevier.com/retrieve/pii/S009286742030341X>
 
 Figure S8. Analysis Framework for Correlative Cell-Cell Interaction Networks and Summary of Myeloid Cell Subsets in Human and Mouse Tumors, Related to Figure 3 and STAR Methods.
 (A) Workflow illustrating correlative network analysis. 
 Cell **subtype specific genes** were identified from the Smart-seq2 scRNA-seq dataset and were used to **estimate the relative abundance in TCGA/GTEx bulk RNA-seq datasets.** After filtering the self-expressed genes, **high correlative genes** were calculated. Finally, an **enrichment analysis** based on Smart-seq2 profile was performed to **identify all correlated cell subtypes and build the correlative network** (STAR Methods).
 
-## 应用场景
-## Application scenarios
+## 应用场景 Application scenarios
 
 借助scRNA-seq找到的signature genes，推断bulk RNA-seq样本的细胞类群互作网络，最后用igraph（静态）和networkD3（动态）两种网络可视化工具来展示结果。
 
@@ -69,8 +69,7 @@ scBulkCCCI: Correlative cell-cell interaction networks based on combining scRNA-
 - Preprocessed data: The preprocessing code can be found in ScBulkCCCI/example/ScBulkCCCI_DataPreprocess.R.
 - Example execution code: ScBulkCCCI.R, located in ScBulkCCCI/example
 
-## 环境设置
-## Environment Setup
+## 环境设置 Environment Setup
 
 ```{r}
 source("install_dependencies.R")
@@ -84,6 +83,10 @@ library("dplyr")              # 高效数据处理与管道操作｜Efficient da
 library("stringr")            # 字符串处理与正则表达式｜String manipulation and regular expressions
 library("tibble")             # 增强型数据框结构｜Enhanced dataframe structure
 library("tidyr")              # 数据整理与宽长格式转换｜Data tidying and reshaping
+library("igraph")             # 网络分析与可视化｜Network analysis and visualization
+library("networkD3")         # 动态网络可视化｜Dynamic network visualization
+library("magrittr")           # 管道操作与链式编程｜Pipe operations and chaining programming
+
 # 显示英文报错信息
 # Show English error messages
 Sys.setenv(LANGUAGE = "en") 
@@ -93,15 +96,13 @@ Sys.setenv(LANGUAGE = "en")
 options(stringsAsFactors = FALSE) 
 ```
 
-# 输入文件
-# Input Files
+## 输入文件 Input Files
 
 输入文件包含两部分：scRNA-seq、bulk RNA-seq（以TCGA数据为例，也可以用其他RNA-seq数据）。
 
 The input files consist of two parts: scRNA-seq and bulk RNA-seq (using TCGA data as an example, though other RNA-seq data can also be used).
 
-## scRNA-seq 数据
-## scRNA-seq data
+### scRNA-seq 数据 scRNA-seq data
 
 下载地址：[GSE146771](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE146771)
 
@@ -130,15 +131,14 @@ CRC.Leukocyte.Smart-seq2.TPM.txt: Cell gene expression matrix (columns: cells, r
 ```{r}
 ## 输入ScRNAseq Smart-seq2
 ## Import ScRNAseq Smart-seq2
-CRC_Leukocyte_SM_MD <- read.table("CRC.Leukocyte.Smart-seq2.Metadata.txt",header = T, sep="\t", check.names = F);dim(CRC_Leukocyte_SM_MD)
+CRC_Leukocyte_SM_MD <- read.table("GSE146771_CRC.Leukocyte.Smart-seq2.Metadata.txt",header = T, sep="\t", check.names = F);dim(CRC_Leukocyte_SM_MD)
 
 # 读取TPM标准化后的单细胞表达矩阵
 # Read TPM-normalized single-cell expression matrix
-CRC_Leukocyte_SM_RNA <- read.table("CRC.Leukocyte.Smart-seq2.TPM.txt",header = T) 
+CRC_Leukocyte_SM_RNA <- read.table("GSE146771_CRC.Leukocyte.Smart-seq2.TPM.txt",header = T) 
 ```
 
-## bulk RNAseq数据
-## Bulk RNA-seq Data
+### bulk RNAseq数据 Bulk RNA-seq Data
 
 从[UCSC Xena](xenabrowser.net)下载后进行预处理（COAD and READ），预处理代码见ScBulkCCCI安装包中的example/ScBulkCCCI_DataPreprocess.R。已打包到R包里，直接加载即可。
 
@@ -161,8 +161,7 @@ dataMerge_normal_allgene <- readRDS(paste(libPath, "/data/dataMerge_normal_allge
 dataMerge_tumor_allgene <- readRDS(paste(libPath, "/data/dataMerge_tumor_allgene.rds",sep="")); dim(dataMerge_tumor_allgene)
 ```
 
-# 特征基因
-# Signature Genes
+## 特征基因 Signature Genes
 
 特征基因用于相关性互作分析
 
@@ -177,7 +176,6 @@ dataMerge_tumor_allgene <- readRDS(paste(libPath, "/data/dataMerge_tumor_allgene
 CCgene_normal.rds: 正常组织富集的免疫细胞类群的signature genes；第一列基因，第二列细胞类群名
 
 CCgene_tumor.rds: 肿瘤组织富集的免疫细胞类群的signature genes；第一列基因，第二列细胞类群名
-
 
 Signature Genes were Used for Correlative Interaction Analysis
 
@@ -211,8 +209,7 @@ head(CCgene_normal)
 head(CCgene_tumor)
 ```
 
-# 相关性矩阵
-# Correlation matrix
+## 相关性矩阵 Correlation matrix
 
 基于**批量RNA测序**数据和**标记基因**评估各细胞簇的丰度
 
@@ -240,11 +237,9 @@ cor_matrix_tumor = corMatrix(CCgene_tumor,
 dim(cor_matrix_tumor)
 ```
 
-# 富集分析
-# Enrichment analysis
+## 富集分析 Enrichment analysis
 
-## 高相关性基因 - 针对特定细胞亚型与其他细胞亚型
-## Highly correlated genes - For a specific cell subtype and another cell subtype
+### 高相关性基因 - 针对特定细胞亚型与其他细胞亚型 Highly correlated genes - For a specific cell subtype and another cell subtype
 
 分析成果：从调整后的相关性矩阵中获得的、特定细胞亚型与其他亚型的非自身表达基因的排序相关性结果
 
@@ -275,8 +270,7 @@ highCorNonSelfGenes <- highCorGene(subcluter_name= subcluter_name,
 highCorNonSelfGenes$correlatioRankPlot
 ```
 
-## 富集评分 - 针对特定细胞亚型与多个细胞亚型
-## Enrich score - For a specific cell subtype and multiple cell subtype
+### 富集评分 - 针对特定细胞亚型与多个细胞亚型 Enrich score - For a specific cell subtype and multiple cell subtype
 
 ```{r}
 # 合并正常和肿瘤组织的所有独特亚群名称
@@ -313,8 +307,7 @@ ggplot() + geom_bar(data = ESData,aes(x=name, y=ES, fill=colorInfo),stat = "iden
 ggsave("EnrichScore.pdf", width = 12, height = 8)
 ```
 
-## 相关性网络分析 - 针对多细胞亚型间互作
-## Correlative network - For multiple cell subtypes and multiple cell subtypes
+### 相关性网络分析 - 针对多细胞亚型间互作 Correlative network - For multiple cell subtypes and multiple cell subtypes
 
 ```{r}
 # 合并正常和肿瘤组织的所有独特亚群名称
@@ -371,8 +364,7 @@ write.table(tumor_subtype_ES, file = "output_tumor_subtype.Correlative.cell_cell
 write.table(subtype_ES, file = "output_correlative.cell_cell.interactions.txt", quote = F, row.names = F, sep = "\t") 
 ```
 
-## 比较ScBulkCCCI与原文的相关细胞相互作用结果。
-## Compare the result of correlative cell cell interactions between ScBulkCCCI and paper.
+### 比较ScBulkCCCI与原文的相关细胞相互作用结果 Compare the result of correlative cell cell interactions between ScBulkCCCI and paper.
 
 ```{r}
 # 筛选hM03开头的亚群且富集分数>1的相互作用
@@ -398,8 +390,7 @@ dplyr::filter(subtype_ES, grepl("^hM13", specificSubtype), EnrichScore>1)
 - - 此外，hM03、hM04或hM12的富集分析结果并不完全相同，但具有相似性。
 - - What's more, the enrichment analysis results of hM03, hM04 or hM12 are not identical, but they are similar.
 
-# 开始画图
-# Plotting
+## 开始画图 Plotting
 
 ```{r}
 # 读取肿瘤亚群间相互作用结果文件
@@ -434,14 +425,9 @@ nodes[is.na(nodes)] ="Not annotation"
 
 Below we present the Enrichment analysis results visualized using two network tools: igraph (static) and networkD3 (interactive).
 
-## 通过igraph绘制网络
-## Plot network by igraph
+### 通过igraph绘制网络 Plot network by igraph
 
 ```{r}
-# 加载igraph网络分析包
-# Load igraph network analysis package
-library("igraph")
-
 # 从数据框创建无向图对象
 # Create undirected graph object from data frame
 g <- graph_from_data_frame(networkData, directed=F, vertices=nodes)
@@ -484,14 +470,9 @@ dev.off()
 
 ![](network_igraph.pdf)
 
-## 绘制动态网络
-## Plot dynamic network
+### 绘制动态网络 Plot dynamic network
 
 ```{r}
-#install.packages("networkD3")
-library(magrittr)
-library(networkD3)
-
 # 创建节点属性数据框
 # Create node attributes dataframe
 nodeData <- data.frame(name=nodes$node,
@@ -528,8 +509,8 @@ forceNetwork(
 
 Open the 'network.html' file and you can view the dynamic network.
 
-# 附：Cell type enrichment across tissues
-# Attached: Cell type enrichment across tissues
+## 附：Cell type enrichment across tissues
+## Attached: Cell type enrichment across tissues
 
 ![](method_tissue.png)
 
@@ -543,14 +524,7 @@ pheatmap::pheatmap(Roe, cluster_rows = F, cluster_cols = F,
                    display_numbers = TRUE,number_color = "black")
 ```
 
-# 参考文献
-# Reference
-
-Zhang L, Li Z, Skrzypczynska KM, Fang Q, Zhang W, O'Brien SA, He Y, Wang L, Zhang Q, Kim A, Gao R, Orf J, Wang T, Sawant D, Kang J, Bhatt D, Lu D, Li CM, Rapaport AS, Perez K, Ye Y, Wang S, Hu X, Ren X, Ouyang W, Shen Z, Egen JG, Zhang Z, Yu X. Single-Cell Analyses Inform Mechanisms of Myeloid-Targeted Therapies in Colon Cancer. Cell. 2020 Apr 16;181(2):442-459.e29. doi: 10.1016/j.cell.2020.03.048. PMID: 32302573.
-
-Zhang L, Yu X, Zheng L, Zhang Y, Li Y, Fang Q, Gao R, Kang B, Zhang Q, Huang JY, Konno H, Guo X, Ye Y, Gao S, Wang S, Hu X, Ren X, Shen Z, Ouyang W, Zhang Z. Lineage tracking reveals dynamic relationships of T cells in colorectal cancer. Nature. 2018 Dec;564(7735):268-272. doi: 10.1038/s41586-018-0694-x. Epub 2018 Oct 29. PMID: 30479382.
-
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

@@ -2,14 +2,22 @@
 title: "FigureYa65SVM"
 params:
   author: "Dongqiang Zeng, Yin Li; Ying Ge, Yijing Chen"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
 **Date**: `r Sys.Date()`  
 
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -18,8 +26,7 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## 需求描述
-## Requirement description
+## 需求描述 Requirement description
 
 利用svm-rfe和lasso logistic regression进行特征变量筛选，重现原文方法
 
@@ -31,8 +38,7 @@ Feature variable screening using svm-rfe and lasso logistic regression to reprod
 
 from<http://ascopubs.org/doi/full/10.1200/JCO.2016.68.2153>
 
-## 应用场景
-## Application scenario
+## 应用场景 Application scenario
 
 svm-rfe（support vector machine - recursive feature elimination）是基于支持向量机的机器学习方法，
 通过删减svm产生的特征向量来寻找最佳变量。
@@ -47,8 +53,7 @@ lasso lr (logistic regression) is also one of the machine learning methods that 
 
 It is mainly used to filter the feature variables to construct the best classification model.
 
-## 环境设置
-## Environment setting
+## 环境设置 Environment setting
 
 ```{r, message=FALSE}
 source("install_dependencies.R")
@@ -63,8 +68,7 @@ library(caret)
 library(randomForest)
 ```
 
-## 输入文件
-## Input file
+## 输入文件 Input file
 
 easy_input.csv，带有分组信息的矩阵。此处用例文自带的GSE75041，经过处理后得到，处理过程见文件夹中的HowToGetEasyInput.R。
 
@@ -309,7 +313,7 @@ In practice, you can run them separately, compare the effect, and then choose on
 
 See Methods 2 and Methods 3 in the Lasso-SVM-REF-algorithm-Feature selection.R file.
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

@@ -2,14 +2,22 @@
 title: "FigureYa44 profile"
 params:
   author: "Wen Wang; Ying Ge, Yijing Chen"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
 **Date**: `r Sys.Date()`  
 
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -19,8 +27,7 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## 需求描述
-## Requirement description
+## 需求描述 Requirement description
 
 用R画出两个样品对比的profile。
 
@@ -44,8 +51,7 @@ Figure 3 | Genome-wide maps of Cxxc1 binding and H3K4me3 modification in DP thym
 
 from<https://www.nature.com/articles/ncomms11687>
 
-## 应用场景
-## Application scenario
+## 应用场景 Application scenario
 
 对比不同的样品在某一区域的信号特征，不仅限于ChIP-seq、DNase-seq、ATAC-seq数据。
 

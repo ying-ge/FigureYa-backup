@@ -2,14 +2,22 @@
 title: "FigureYa30nomogram_update"
 params:
   author: "Dongqiang Zeng, Ying Ge; Yijing Chen"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
 **Date**: `r Sys.Date()`  
 
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -18,8 +26,7 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# 需求描述
-# Requirement description
+# 需求描述 Requirement Description
 
 画出新型nomogram图（d）和对比曲线（f、g）
 
@@ -39,8 +46,7 @@ Fig. 3. (d–e) Nomograms for predicting the probability of patient mortality ba
 
 The c forest plot can be drawn by referring to `FigureYa90subgroup`, and the h and i plots can be drawn by referring to `FigureYa33DCA_update`.
 
-# 应用场景
-# Application scenario
+# 应用场景 Application Scenario
 
 列线图（nomogram，诺莫图）是在平面直角坐标系中用一簇互不相交的线段表示多个独立变量之间函数关系的图。
 
@@ -50,8 +56,7 @@ A nomogram is a graph that represents a functional relationship between multiple
 
 It visualizes the results of a Logistic regression or Cox regression, giving the risk or proportional risk of developing a disease.
 
-# 环境设置
-# Environment setting
+# 环境设置 Environment Setting
 
 ```{r}
 source("install_dependencies.R")
@@ -294,7 +299,7 @@ dev.off()
 
 ![](calibration_compare.pdf)
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

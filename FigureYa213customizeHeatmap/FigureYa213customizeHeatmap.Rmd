@@ -2,14 +2,22 @@
 title: "FigureYa213customizeHeatmap"
 params:
   author: "Xiaofan Lu"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 reviewers: Ying Ge,Hui Huang
 ---
 
 **Author(s)**: `r params$author`  
 **Date**: `r Sys.Date()`  
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -427,7 +435,7 @@ dev.copy2pdf(file = "heatmap.pdf",width = 8,height = 8)
 作者表示整张图片均由热图拼接AI绘制，这里输出的pdf文件是矢量图，图片剩余细节以及图例请使用AI绘制。
 
 The author said that the whole picture is drawn by AI after the heat map is stitched, and the pdf file output here is a vector image, and the remaining details and legends of the picture should be drawn by AI.
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

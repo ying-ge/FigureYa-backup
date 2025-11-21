@@ -3,7 +3,15 @@ title: "FigureYa156enrichSimulation"
 params:
   author: "Zongcheng Li"
   reviewer: "Ying Ge, Junyi Shen"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
@@ -11,7 +19,7 @@ output: html_document
 **Date**: `r Sys.Date()`  
 
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -36,8 +44,7 @@ Repeat the method in the article and provide statistical results to support the 
 出自<https://link.springer.com/article/10.1186%2Fs13059-016-0990-4>
 From <https://link.springer.com/article/10.1186%2Fs13059-016-0990-4>
 
-# 应用场景
-# Application Scenario
+# 应用场景 Application Scenario
 
 通过（蒙特卡洛）随机模拟计算观测事件发生的经验性概率。
 Calculate the empirical probability of an observed event through (Monte Carlo) random simulation.
@@ -45,8 +52,7 @@ Calculate the empirical probability of an observed event through (Monte Carlo) r
 该方法可以从统计学角度帮助判断观测事件是否为小概率事件。
 This method can help determine whether an observed event is a low-probability event from a statistical perspective.
 
-# 环境设置
-# Environment Setup
+# 环境设置 Environment Setup
 
 ```{r}
 source("install_dependencies.R")
@@ -184,7 +190,7 @@ p
 - A probability greater than 0.05 is not a small probability event, so the null hypothesis is accepted.
 - There is no statistical difference between the 21 selected genes and the randomly selected 21 genes.
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

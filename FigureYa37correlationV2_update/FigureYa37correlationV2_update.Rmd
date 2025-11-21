@@ -1,14 +1,24 @@
 ---
 title: "FigureYa37CorrelationV2_update"
 params:
-  author: "Zhaodong Hao, Jiacheng Lou; Ying Ge, Yijing Chen"
-output: html_document
+  author: "Zhaodong Hao, Jiacheng Lou"
+  reviewer: "Ying Ge, Yijing Chen"
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
+**Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()`  
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -21,8 +31,7 @@ Gu, Z. circlize implements and enhances circular visualization in R. Bioinformat
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# 需求描述
-# Requirement description
+## 需求描述 Requirement Description
 
 用⭕️的方式展示correlation，画出像paper里这样的图
 
@@ -30,12 +39,9 @@ Show the correlation using ⭕️ to draw a graph like the one in the paper
 
 ![](example.png)
 
-出自<https://doi.org/10.1080/2162402X.2017.1382792>
+From <https://doi.org/10.1080/2162402X.2017.1382792>
 
-From<https://doi.org/10.1080/2162402X.2017.1382792>
-
-# 应用场景
-# Application scenario
+## 应用场景 Application Scenario
 
 展示每两个基因之间的相关关系，连线的颜色和宽度代表相关系数。
 
@@ -53,8 +59,7 @@ More usage:
 
 - To find the target genes of transcription factors, to find which transcription factors regulate your genes, and to do further filtering, please refer to the “condensed strategy” at the end of this article: <https://mp.weixin.qq.com/s/UFbF5Ru8Pd67AcxCLODsfw>
 
-# 环境设置
-# Environment setting
+## 环境设置 Environment Setting
 
 ```{r}
 source("install_dependencies.R")
@@ -217,8 +222,7 @@ genecor_circleplot <- function(x){
 }
 ```
 
-# 输入文件
-# Input file
+## 输入文件 Input file
 
 not_easy_input.csv，基因表达矩阵。每行一个sample，每列一个基因。
 
@@ -234,8 +238,7 @@ dim(inputtemp)
 head(inputtemp)
 ```
 
-# 计算相关系数
-# Calculate the correlation coefficient
+## 计算相关系数 Calculate the correlation coefficient
 
 ```{r}
 genecorl <- lapply(colnames(inputtemp),function(x){
@@ -258,8 +261,7 @@ genecorrr$p.value <- NULL
 write.table(genecorrr, "easy_input.txt", sep = "\t", quote = F, row.names = F)
 ```
 
-# 开始画图
-# Start drawing
+## 开始画图 Start Drawing
 
 ```{r}
 genecorrr <- read.table("easy_input.txt", header = TRUE, sep = "\t",as.is = T)
@@ -277,6 +279,7 @@ Links <- read.table("easy_input_V2.txt", header = TRUE, sep = "\t",as.is = T)
 genecor_circleplot(Links)
 ```
 
+## Session Info
 ```{r}
 sessionInfo()
 ```

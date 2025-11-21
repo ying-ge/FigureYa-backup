@@ -2,14 +2,23 @@
 title: "FigureYa236circGroup"
 params:
   author: "Xiaofan Lu"
-output: html_document
-reviewers: Ying Ge,Hui Huang
+  reviewer: "Ying Ge,Hui Huang"
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
+**Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()`  
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -28,58 +37,47 @@ Zuguang Gu. Complex Heatmap Visualization, iMeta, 2022.
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# 需求描述
+## 需求描述 Requirement Description
 
 用圆圈图的方式展示不同分组的关系。网上没有找到可以实现的代码。最好是R语言做。
-
-# Requirement Description
 
 Draw this diagram to show the relationship between different groups in the form of a circle diagram. There is no code available online that can be implemented. It's best to do it in R.
 
 ![](example.png)
 
-出自<https://clincancerres.aacrjournals.org/content/26/1/135>
-from<https://clincancerres.aacrjournals.org/content/26/1/135>
+From <https://clincancerres.aacrjournals.org/content/26/1/135>
 
 Figure 3. Alignment of PDAC metabolic subgroups with known gene expression subtypes. 
 A, Overlay of metabolic profiles (inner ring) with PDAC expression subtypes (outer rings) based on the Moffitt and colleagues’ (4), Bailey and colleagues’ (2), and Collisson and colleagues’ (3) classifications.
 
-# 应用场景
+## 应用场景 Application Scenario
 
 将亚型（或其他分类变量）之间的映射关系（一致性）以圈状热图注释的方式展现。
 
 我们还实现过例文的Figure 1ABC，通过基因共识聚类选择共表达的基因集，随后根据表达谱中位数划分四类样本，可参考`FigureYa202consensusGene`
 
-# Application Scenarios
-
 The mapping (agreement) between subtypes (or other categorical variables) is presented as a circular heatmap annotation.
 
 We have also crowdsourced Figure 1ABC for example, which selects co-expressed gene sets through gene consensus clustering, and then divides four types of samples according to the median expression profile, as shown in 'FigureYa202consensusGene'
 
-# 环境设置
-
-# Environment settings
+## 环境设置 Environment Setting
 
 ```{r}
 source("install_dependencies.R")  # 加载依赖安装脚本 # Load dependency installation script
-# 加载所需的R包
-# Load required R packages
+
 library(circlize)        # 用于绘制环形图 # For creating circular plots
 library(gridBase)        # 提供基础图形功能 # Provides basic graphic functions
 library(grid)            # 用于图形布局 # For graphical layout
 library(ComplexHeatmap)  # 用于绘制复杂热图 # For creating complex heatmaps
-library(SimDesign)       # 提供模拟设计和分析功能 # Provides simulation design and analysis functions
+library(SimDesign)       # 提供模拟设计和分析功能 # Provides simulation design and analysis functions 
 
-# 设置环境变量
-# Set environment variables
 Sys.setenv(LANGUAGE = "en") # 显示英文报错信息 # Messages are displayed in English
-options(stringsAsFactors = FALSE) # 禁止字符型数据自动转换为因子型 # Prevent automatic conversion of character data to factors```
+options(stringsAsFactors = FALSE) # 禁止字符型数据自动转换为因子型 # Prevent automatic conversion of character data to factors
+```
 
-# 输入文件
+## 输入文件 Input file
 
 easy_input.txt，多组分类信息。也可用于FigureYa25Sankey，画成桑基图。
-
-# Input the file
 
 easy_input.txt. Multiple groups of classified information. It can also be used for FigureYa25Sankey, which is drawn as a Sankey diagram.
 
@@ -97,13 +95,11 @@ subt <- subt[order(subt$TCGA_subtype,
                    subt$`Collisson subtype`), ]
 ```
 
-# 开始画图
+## 开始画图 Start drawing
 
 用circlize画图，参考作者的电子书<https://jokergoo.github.io/circlize_book/book/>。
 
 看每段开头的注释，了解每段的功能，就可以灵活修改分组的数量、颜色了。
-
-# Start drawing
 
 Draw with circlize, referring to the author's e-book <https://jokergoo.github.io/circlize_book/book/>.
 
@@ -168,7 +164,8 @@ circlize_plot = function() {
                  split = factor(subt$`Collisson subtype`, levels = c("Quasi-mesenchymal", "Exocrine-like", "Classical")), 
                  col = col_subt4, 
                  track.height = 0.14)
-  circos.clear() # 清除图像的连接(注意：每次重新画圈图必须清除图像连接) # Clear the connection of the image (Note: The image connection must be cleared every time you redraw the circle)
+  # 注意：circos.clear() 在函数外部调用，确保每次绘图前状态是干净的
+  # Note: circos.clear() is called outside the function to ensure the state is clean before each plot
 }
 
 ## 开始画图 ## Start drawing
@@ -179,7 +176,8 @@ pushViewport(viewport(x = 0, y = 0.5,
                       height = circle_size,
                       just = c("left", "center")))
 par(omi = gridOMI(), new = TRUE)
-quiet(circlize_plot())
+circos.clear() # 确保 circlize 状态是干净的 # Ensure circlize state is clean
+suppressMessages(suppressWarnings(circlize_plot()))
 
 # 添加正中心的文字
 # Add text in the center
@@ -200,7 +198,7 @@ draw(lgd_list, x = circle_size, just = "left")
 dev.copy2pdf(file = "subtype circos plot.pdf") 
 ```
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

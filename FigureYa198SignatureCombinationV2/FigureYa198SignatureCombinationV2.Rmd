@@ -3,7 +3,15 @@ title: "FigureYa198SignatureCombinationV2"
 params:
   author: "Xiaofan Lu"
   reviewers: "Ying Ge, Hui Huang"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
@@ -19,8 +27,7 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## 需求描述
-## Requirement Description
+## 需求描述 Requirement Description
 
 我想实现下文章Figure 1c的计算方法，FigureYa182RFSurv挑出了importance比较大的基因，后续常规用muticox等方法再缩减基因。这篇文章写的是用1023种组合按KM的 logRank pvalue和基因数目挑选模型，不一样的风格。
 
@@ -28,13 +35,11 @@ I would like to crowdsource the calculation method for Figure 1c in the article.
 
 ![](example.png)
 
-出自<https://onlinelibrary.wiley.com/doi/abs/10.1002/jcp.28600>
-From<https://onlinelibrary.wiley.com/doi/abs/10.1002/jcp.28600>
+From <https://onlinelibrary.wiley.com/doi/abs/10.1002/jcp.28600>
 
 FIGURE 1 Identification of candidate genes and development of an integrated PCG‐lncRNA signature. (a) Volcano plot displayed the lncRNAs and PCGs of the univariate Cox regression analysis. (b) Random survival forest analysis screened 10 genes. (c) After Kaplan–Meier analysis of 2 ‒1 = 1,023 combinations, the top 20 signatures were sorted according to the p value of KM. And the signature included five genes that were screened out, for it had a relative big −log10 p value and a small number of genes. KM: Kaplan–Meier; lncRNA: long noncoding RNA; PCG: protein‐coding gene
 
-## 应用场景
-## Application scenarios
+## 应用场景 Application scenarios
 
 根据随机生存森林分析筛选变量，通过基因组合后利用log-rank检验取p值显著且基因个数较少的组合，定义为预后签名。
 
@@ -52,8 +57,7 @@ The disadvantage is that if the number of genes exceeds 15-20, the amount of cal
 
 It is suitable for use on small-scale gene sets that have already been preliminarily screened by other methods.
 
-## 环境设置
-## Environment settings
+## 环境设置 Environment settings
 
 ```{r}
 source("install_dependencies.R") # 如果缺少包，请先运行此脚本安装依赖包 # If you lack a package, please run this script to install the dependencies
@@ -76,8 +80,7 @@ display.progress = function (index, totalN, breakN=20) {
 }  
 ```
 
-## 输入文件
-## Enter the file
+## 输入文件 Input file
 
 brca.mRNA.expr.txt和brca.lncRNA.expr.txt，基因表达矩阵。
 
@@ -117,8 +120,7 @@ expr <- expr[rowSums(expr) > 0,]
 expr <- as.data.frame(round(t(scale(t(log2(expr + 1)))),3)) 
 ```
 
-## cox回归筛选与OS有关的基因
-## Cox regression to screen genes related to OS
+## cox回归筛选与OS有关的基因 Cox regression to screen genes related to OS
 
 ```{r}
 cox.pcutoff <- 0.05 # cox的p阈值 # p-threshold for cox
@@ -153,8 +155,7 @@ head(Coxoutput.OS)
 write.csv(Coxoutput.OS,"univariate cox regression for gene filtering.csv",row.names = F,quote = F)
 ```
 
-## 随机森林进一步降维
-## Random forests are further dimensionally reduced
+## 随机森林进一步降维 Random forests are further dimensionally reduced
 
 ```{r}
 # 取出cox显著的基因做随机生存森林
@@ -173,8 +174,7 @@ surv.rf <- rfsrc(Surv(OS.time, OS) ~ .,
                  seed = 12345678)
 ```
 
-## 排列组合确定最优签名及log-rank检验
-## Permutations and combinations determine the optimal signature and log-rank test
+## 排列组合确定最优签名及log-rank检验 Permutations and combinations determine the optimal signature and log-rank test
 
 ```{r}
 num.imp <- 10
@@ -223,8 +223,7 @@ if(n.sum == 2^num.imp-1) { # 如果总和不等则报错 # If the sum is not equ
 } else (message("Wrong combination!!!"))
 ```
 
-## 开始画图
-## Start drawing
+## 开始画图 Start drawing the graph
 
 绘制火山图 | Draw a volcano map
 

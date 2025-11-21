@@ -3,14 +3,22 @@ title: "FigureYa266panHeatmap"
 params:
   author: "Xiaofan Lu; Yasi Zhang"  
   reviewer: "Ying Ge"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
 **Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()`  
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -77,8 +85,7 @@ Additionally, we have crowdsourced several other interesting figures from this a
 - Fig.2A target relationship connection diagram, refer to FigureYa199crosslink, achieving connection freedom
 - Fig.3A survival landscape of gene sets, refer to FigureYa210survivalScape
 
-# 环境设置
-# Environment Setup
+# 环境设置 Environment Setup
 
 ```{r}
 source("install_dependencies.R")
@@ -419,7 +426,7 @@ invisible(dev.off())
 
 ![](pancancer boxplot of IGF2BP3 expression between tumor and normal samples.pdf)
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

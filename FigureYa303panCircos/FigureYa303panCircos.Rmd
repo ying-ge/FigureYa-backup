@@ -1,16 +1,24 @@
 ---
 title: "FigureYa303panCircos"
 params:
-  author: "Xiaofan Lu; Yasi Zhang"  
-  reviewer: "Ying Ge"
-output: html_document
+  author: "Xiaofan Lu"  
+  reviewer: "Ying Ge, Yasi Zhang"
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
 **Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()` 
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -29,8 +37,7 @@ Zuguang Gu. Complex Heatmap Visualization, iMeta, 2022.
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# 需求描述
-# Demand description
+## 需求描述 Requirement Description
 
 绘制下图。
 
@@ -48,8 +55,7 @@ Source: <https://academic.oup.com/bib/article/23/3/bbac118/6567704?login=true>
 Figure1. Comprehensive quantification of senescence levels in cancers and tissues.
 (C) Average CS scores in individual cancer types. Tissue types, cancer types and average CS scores are shown from the inner circle to the outer circle.
 
-# 应用场景
-# Application Scenarios
+## 应用场景 Application Scenarios
 
 在泛癌中根据组织类别、特定评分，绘制弦图。
 
@@ -67,8 +73,7 @@ Draw chord diagrams in pan-cancer based on tissue categories and specific scores
 - FigureYa 6G Sankey diagram, see FigureYa25sankey
 - FigureYa 6H Hierarchical clustering of GSEA scores, see FigureYa71ssGSEA
 
-# 环境设置
-# Environment Setup
+## 环境设置 Environment Setup
 
 ```{r}
 # 加载依赖安装脚本
@@ -89,17 +94,15 @@ Sys.setenv(LANGUAGE = "en") # 显示英文报错信息 # Show English error mess
 options(stringsAsFactors = FALSE)
 ```
 
-# 输入文件的生成
-# Generate Input Files
-
-easy_input.xlsx:
-Here, the CS.score values in the figure are randomly generated and can be replaced with any other values you are interested in.
-If you still want to draw a pancancer plot, keep all the preceding columns unchanged and only modify the values in the last column (CS.score).
-This is not limited to displaying pancancer data. Once you understand the code for plotting, you can use it flexibly.
+## 输入文件的生成 Generate Input Files
 
 easy_input.xlsx: 这里随机生成图中的得分CS.score，可替换成你自己感兴趣的其他数值。
 如果还是画pancancer图，前面各列可以保持不变，只改变最后一列CS.score里的数值。
 不限于展示pancancer数据，读懂画图部分的代码，就可以灵活运用。
+
+easy_input.xlsx: Here, the CS.score values in the figure are randomly generated and can be replaced with any other values you are interested in.
+If you still want to draw a pancancer plot, keep all the preceding columns unchanged and only modify the values in the last column (CS.score).
+This is not limited to displaying pancancer data. Once you understand the code for plotting, you can use it flexibly.
 
 ```{r eval=FALSE}
 ## 输入队列信息（队列名称、各队列样本数、需要绘制的得分）
@@ -160,8 +163,7 @@ SampleInfo <- openxlsx::read.xlsx("easy_input.xlsx")
 head(SampleInfo)
 ```
 
-# 开始画图
-# Plotting
+## 开始画图 Plotting
 
 颜色配置
 
@@ -316,14 +318,13 @@ draw(lgd, x = unit(0.9, "npc"), y = unit(0.1, "npc"))
 dev.copy2pdf(file = "pancircos.pdf", width = 10, height = 10)
 ```
 
-# 后期加工
-# Post-processing
+## 后期加工 Post-processing
 
 有些type的样本量较少，文字会重叠，可参考例文的方式调整。输出的pdf文件是矢量图，可以用Illustrator等矢量图编辑器打开，编辑文字的位置，增加指示线。
 
 For some types of samples with a small sample size, the text may overlap. You can refer to the example text for adjustment. The output PDF file is a vector graphic, which can be opened with vector graphic editors such as Adobe Illustrator. You can edit the position of the text and add guide lines.
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

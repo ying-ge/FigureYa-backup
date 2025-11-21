@@ -3,14 +3,22 @@ title: "FigureYa300pancanCor"
 params:
   author: "Xiaofan Lu; Yasi Zhang"  
   reviewer: "Ying Ge"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
 **Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()` 
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -65,8 +73,7 @@ FigureYa can be used to create multiple figures as shown in the example article,
 - Figure 4C, refer to FigureYa85timeROC: 
 - Figure 4D, refer to FigureYa33DCA: 
 
-# 环境设置
-# Environment Setup
+# 环境设置 Environment Setup
 
 ```{r}
 source("install_dependencies.R")
@@ -377,7 +384,7 @@ p <- plot_grid(p1,p2,p3, align = "v", ncol = 1)
 ggsave(filename = "combined correlation scatter plot of zscored oncogenic and NETs in pancancer.pdf", width = 15,height = 18)
 ```
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

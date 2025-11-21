@@ -3,14 +3,22 @@ title: "FigureYa170ImmuLncRNA"
 params:
   author: "Rongfang Shen"
   reviewer: "Ying Ge, Junyi Shen"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
 **Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()`  
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -57,8 +65,7 @@ Dual-axis charts are often used to compare and display trends and correlations b
 - Scatter plot + linear regression, showing the correlation between three data sets, A vs. B and A vs. C. See FigureYa62twoAxis.
 - Bar chart + line chart, like the example in this article, one showing quantity and the other showing proportion.
 
-# 环境设置
-# Environment Setup
+# 环境设置 Environment Setup
 
 ```{r}
 source("install_dependencies.R")
@@ -456,7 +463,7 @@ p
 ggsave("ImmuLncRNA.pdf", width = 5, height = 8)
 ```
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

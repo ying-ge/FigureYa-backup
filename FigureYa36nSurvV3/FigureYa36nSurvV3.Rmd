@@ -2,14 +2,22 @@
 title: "FigureYa36双因子生存分析v3"
 params:
   author: "Guoshuang Feng; Ying Ge, Yijing Chen"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
 **Date**: `r Sys.Date()`  
 
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -19,8 +27,7 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# 需求描述
-# Requirement description
+# 需求描述 Requirement Description
 
 用R画出paper里的双因子生存分析图，计算p value。
 
@@ -48,8 +55,7 @@ Additionally, a colleague used this FigureYa to publish an article for reference
 
 from<https://molecular-cancer.biomedcentral.com/articles/10.1186/s12943-020-01170-0>
 
-# 应用场景
-# Application scenario
+# 应用场景 Application Scenario
 
 对比两个因素对生存的影响。
 
@@ -59,8 +65,7 @@ Compare the effects of two factors on survival.
 
 For example, does high expression of both genes A and B result in longer survival compared to low expression of both genes A and B?
 
-# 环境设置
-# Environment setting
+# 环境设置 Environment Setting
 
 
 use the domestic mirror installation package
@@ -179,8 +184,7 @@ hr <- round(coef(summary(coxph.fit))[,2],3)
 HR <- c(1,as.vector(unlist(hr)))
 ```
 
-# 开始画图
-# Start drawing
+# 开始画图 Start Drawing
 
 右上角的图例有时会跟曲线重叠，因此，我们把图例画到图右侧。
 

@@ -3,7 +3,15 @@ title: "FigureYa242corMethExpr"
 params:
   author: "Xiaofan Lu"
   reviewer: "Ying Ge, Junyi Shen"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
@@ -179,8 +187,7 @@ ct <- cor.test(corTab$expr,corTab$meth)
 reg <- lm(expr~meth, data=corTab) # 计算回归线 / Calculate regression line
 ```
 
-## 开始画图
-## Start drawing
+## 开始画图 Start drawing
 
 ```{r}
 pdf(file = paste0("correlation between expression and methylation of ",gene,".pdf"), width = 4.5,height = 4.5)

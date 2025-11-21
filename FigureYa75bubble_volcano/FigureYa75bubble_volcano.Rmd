@@ -1,9 +1,17 @@
 ---
 title: "FigureYa75base_volcano"
 params:
-  author: "Haitao Wang, Taojun Ye"
-  reviewer: "Ying Ge"
-output: html_document
+  author: "Haitao Wang"
+  reviewer: "Ying Ge, Taojun Ye"
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
@@ -15,15 +23,13 @@ knitr::opts_chunk$set(echo = TRUE)
 # 设置knitr的全局代码块选项 / Set global chunk options for knitr
 ```
 
-## 需求描述
-## Requirement description
+## 需求描述 Requirement description
 
 用base plot画美美的火山图
 
 Create a beautiful volcano map using a base plot
 
-## 应用场景
-## Application scenarios
+## 应用场景 Application scenarios
 
 同时展示多个特征，同时展示P value、ajust P value、分组、size、score等。
 
@@ -35,9 +41,7 @@ For example, a volcano map of genes
 
 ![](example1.png)
 
-出自<https://www.nature.com/articles/s41467-018-06944-1>
-
-from<https://www.nature.com/articles/s41467-018-06944-1>
+From <https://www.nature.com/articles/s41467-018-06944-1>
 
 或展示富集分析结果
 
@@ -45,17 +49,13 @@ Or display the enrichment analysis results
 
 ![](example2.png)
 
-出自<http://dx.doi.org/10.1016/j.neuron.2017.09.008>
-
-from<http://dx.doi.org/10.1016/j.neuron.2017.09.008>
+From <http://dx.doi.org/10.1016/j.neuron.2017.09.008>
 
 想用ggplot2来画火山图，请参考FigureYa59Volcano。
 
 If you want to use ggplot2 to draw a volcanic map, please refer to Figure Ya59Volcano.
 
-## 环境设置
-
-## Environment settings
+## 环境设置 Environment settings
 
 ```{r}
 # 设置R运行环境显示英文错误信息（便于国际交流或搜索解决方案）
@@ -67,8 +67,7 @@ Sys.setenv(LANGUAGE = "en")
 options(stringsAsFactors = FALSE)
 ```
 
-## 输入文件
-## Input file
+## 输入文件 Input file
 
 第一列是gene名，后面包含列5列特征值。
 
@@ -176,8 +175,7 @@ pp <- dat$pval
 names(pp) <- rownames(dat)
 ```
 
-## 开始画图
-## Start drawing
+## 开始画图 Start drawing
 
 ```{r}
 # 创建PDF输出文件（宽度7英寸，高度6英寸）

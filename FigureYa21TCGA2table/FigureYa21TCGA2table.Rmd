@@ -2,7 +2,15 @@
 title: "FigureYa21TCGA2table"
 params:
   author: "Guangchuang Yu; Ying Ge, Yijing Chen"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
@@ -10,7 +18,7 @@ output: html_document
 
 [<img src="https://guangchuangyu.github.io/blog_images/biobabble.jpg" width="100px"/>](https://guangchuangyu.github.io/blog_images/biobabble.jpg) 
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -19,8 +27,7 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## 需求描述
-## Requirement description
+## 需求描述 Requirement description
 
 TCGA临床数据直接用R代码画出三线表。
 
@@ -28,8 +35,7 @@ Draw a three-line table directly using R code for TCGA clinical data.
 
 ![](example.png)
 
-## 使用场景
-## Usage scenario
+## 使用场景 Usage scenario
 输入数据是临床样品信息，例如TCGA提供的clinical information。
 
 根据年龄、性别、种族、病毒感染、吸烟史等特征进行分类对比，可能发现疾病、癌症发病、转移、耐药跟这些特征的关系，例如发现亚洲非吸烟女性肺癌发病率高。
@@ -42,8 +48,7 @@ Categorical comparisons based on characteristics such as age, gender, ethnicity,
 
 If you also want to add the expression data of a certain gene, and calculate the HR of one-way and multi-factor cox regression, you can refer to FigureYa47HRtable, which can also generate tables in html, word and csv formats.
 
-## 环境设置
-## Environment setting
+## 环境设置 Environment setting
 
 ```{r}
 source("install_dependencies.R")
@@ -353,7 +358,7 @@ texi2pdf("FigureYa21TCGA2table_latex.tex")
 
 Note: If you want the form page to not show the code, replace line 224 with this, “```{r eval=T, echo = F}”
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

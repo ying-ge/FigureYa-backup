@@ -1,9 +1,17 @@
 ---
 title: "FigureYa281wheel"
 params:
-  author: "Xiaofan Lu; Yasi Zhang"  
-  reviewer: "Ying Ge"
-output: html_document
+  author: "Xiaofan Lu"  
+  reviewer: "Ying Ge, Yasi Zhang"
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
@@ -19,8 +27,7 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## 需求描述
-## Requirements Description
+## 需求描述 Requirement description
 
 用R画出多角图wheel plot。比如有九个角，然后我有个dataframe是各数据点到九个角的数值，想画一个图表示。这里是用python画的<https://github.com/linnarsson-lab/ipynb-lamanno2016/blob/master/ipynb-lamanno2016-cellscoring.ipynb>，想用R画。
 
@@ -28,12 +35,7 @@ Draw the multi-angle plot using R. For instance, there are nine corners. Then I 
 
 ![](example1.png)
 
-出自：<https://linkinghub.elsevier.com/retrieve/pii/S0092867416313095>
-
-图S7. 干细胞分化方案与机器学习性能及诊断分析（关联图7）
-(J) 训练数据集轮状图展示（绘制方法同图7G）
-
-Source: <https://linkinghub.elsevier.com/retrieve/pii/S0092867416313095>
+From <https://linkinghub.elsevier.com/retrieve/pii/S0092867416313095>
 
 Figure S7 Stem Cells Differentiation Protocol and Machine Learning Performance and Diagnostics, Related to Figure 7
 (J) Training dataset plotted on wheel plot as in Figure 7G.
@@ -44,22 +46,15 @@ This type of visualization is repeatedly utilized throughout the manuscript:
 
 ![](example2.png)
 
-图S7. 干细胞分化方案与机器学习性能诊断（关联图7）
-(L) 阴性对照细胞通过随机置换训练数据集细胞的基因值获得，其轮状图展示方式与图7G一致。
-
 Figure S7 Stem Cells Differentiation Protocol and Machine Learning Performance and Diagnostics, Related to Figure 7
 (L) Negative control cells are obtained by scrambling gene values of cells of the training dataset and are plotted on wheel plot as in Figure 7G.
 
 ![](example3.png)
 
-图7. 人胚胎干细胞和诱导多能干细胞体外分化单细胞分析与原型评分
-(G) 展示hESCs和hiPSCs原型评分的轮状图。点代表单个细胞，**点与各原型的距离与该原型的相对评分成正比**。颜色表示分化时间点（红色：第0天；深蓝色：第63天）。
-
 Figure 7. Single-Cell Analysis of Differentiated In Vitro Human ESC and iPSC Cultures and Prototype-Based Scoring
 (G) Wheel plot showing the prototype scores for hESCs and hiPSCs. Dots represent individual cells and the **distance to each prototype is proportional to the relative score of that prototype**. Colors indicate time point of differentiation (red, day 0; dark blue, day 63).
 
-## 应用场景
-## Application Scenario
+## 应用场景 Application scenarios
 
 特别适合两种独立分组方式的数据：外围的角代表第一种分组，点的颜色形状代表第二种分组，点跟角的距离代表数值高低。
 
@@ -69,8 +64,7 @@ Particularly suitable for data with two independent grouping methods: the periph
 
 Additionally, you can refer to the visualization method in FigureYa235scDEG, where the first grouping is arranged from left to right in a straight line, the second grouping is plotted on the upper and lower sides (if there are more than two groups, additional features like color and shape need to be introduced to differentiate them), and the distance from points to the horizontal axis represents the magnitude of values.
 
-## 环境设置
-## Environment Setup
+## 环境设置 Environment Setup
 
 ```{r}
 source("install_dependencies.R")
@@ -86,8 +80,7 @@ Sys.setenv(LANGUAGE = "en")
 options(stringsAsFactors = FALSE) 
 ```
 
-## 输入文件
-## Input Files
+## 输入文件 Input files
 
 easy_input.txt，最后一列跟点的颜色相对应，前面各列的列名跟图中的角相对应，数值对应点到角的距离。
 
@@ -107,8 +100,7 @@ easy_input.txt: The last column corresponds to the point colors, while the colum
 raw.data <- read.table("easy_input.txt", header = T, stringsAsFactors = T)
 ```
 
-## 为画图准备数据
-## Preparing Data for Visualization
+## 为画图准备数据 Preparing data for visualization
 
 ```{r}
 # 记录末列的名称
@@ -174,8 +166,7 @@ color.palette <- lapply(color.palette, function(x){
 color.palette <- unlist(color.palette) 
 ```
 
-## 开始画图
-## Plotting
+## 开始画图 Start drawing the graph
 
 ```{r}
 # 轮状图绘制 

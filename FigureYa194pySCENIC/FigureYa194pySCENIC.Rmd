@@ -2,7 +2,15 @@
 title: "FigureYa194pySCENIC"
 params:
   author: "Jianing Gao"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
@@ -242,7 +250,7 @@ pySCENIC的`Input`为**行为gene symbols，列为cell ID的基因表达矩阵**
 
   - AI中精修Figure3A
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

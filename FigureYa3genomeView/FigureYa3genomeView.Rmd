@@ -1,15 +1,24 @@
 ---
 title: "FigureYa3genomeView"
 params:
-  author: "Dekang Lv; Ying Ge, Yijing Chen"
-output: html_document
+  author: "Dekang Lv"
+  reviewer: "Ying Ge, Yijing Chen"
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
+**Reviewer(s)**: `r params$reviewer`
 **Date**: `r Sys.Date()`  
 
-
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -18,15 +27,13 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# 需求描述
-# Requirement description
+## 需求描述 Requirement Description
 
 想展示我感兴趣的基因附近的ChIP-seq、DNase/ATAC-seq或RNA-seq的bigwig信号图，不想用IGV或UCSC genome browser那种截图，我想要矢量图。
 
 I want to display bigwig signal plots of ChIP-seq, DNase/ATAC-seq, or RNA-seq near the gene I am interested in, without using screenshots from IGV or UCSC genome browser. I want vector plots.
 
-# 使用场景
-# Usage scenario
+## 使用场景 Usage Scenario
 
 场景一：用DNase/ATAC-seq或H3K4me3、H3K4me1、H3K27ac等组蛋白修饰的ChIP-seq数据证实基因启动子、增强子的位置。
 
@@ -40,19 +47,18 @@ Scenario 2: Show ChIP-seq data to confirm which transcription factors regulate m
 
 Scenario 3: Show RNA-seq and ChIP-seq signals to confirm the effect of transcription factor binding on gene transcription.
 
-# 环境设置
+## 环境设置 Environment settings
 
 ```{r}
 source("install_dependencies.R")
 
-library(data.table)
-library(Gviz)
-library(RColorBrewer)
-library(TxDb.Hsapiens.UCSC.hg38.knownGene)
+library(data.table) #数据处理 data processing
+library(Gviz) #基因组可视化 library for genome visualization
+library(RColorBrewer) #颜色库 library for color library
+library(TxDb.Hsapiens.UCSC.hg38.knownGene) #基因组数据库 genome database
 ```
 
-# 输入数据
-# Input data
+## 输入数据 Input Data
 
 需要展示的区域loci.bed
 
@@ -66,8 +72,7 @@ bigwig files TAL1.bw, POLR2A.bw
 
 bigwig file description easy_input.txt
 
-# 开始画图
-# Start drawing
+## 开始画图 Start Drawing
 
 ```{r,message=FALSE,warning=FALSE}
 txdb_hg38 <- TxDb.Hsapiens.UCSC.hg38.knownGene
@@ -79,16 +84,18 @@ z[zz] <- gene(grt)[zz]
 gr <- ranges(grt)
 mcols(gr)$symbol <- z
 grt@range <- gr
+```
 
-# 输入数据
-# input data
-bwInfo<-read.table("easy_input.txt",header=F,row.names=1,as.is=T)
+## 输入数据 Input data
+
+```{r}
+bwInfo <- read.table("easy_input.txt",header=F,row.names=1,as.is=T)
 head(bwInfo)
-gloci<-read.table("loci.bed",header=F,as.is=T)
+gloci <- read.table("loci.bed",header=F,as.is=T)
 head(gloci)
 #可调整的参数
 #adjustable parameters
-genefold<-as.numeric("1.5")#放大、缩小展示的范围 zoom in and out of the display range
+genefold <- as.numeric("1.5")#放大、缩小展示的范围 zoom in and out of the display range
 
 # 展示的基因组范围
 # range of genomes displayed
@@ -133,8 +140,11 @@ for(index in rownames(bwInfo)){
 #写入基因结构
 #write to gene structure
 tracklist[["grt"]]<-grt
+```
 
-#画图
+## 画图 Draw the plot
+
+```{r}
 #draw the plot
 plotTracks(tracklist, from = startpoint, to = endpoint,
            chromosome=chr,background.panel = "white", background.title = "white",
@@ -153,7 +163,7 @@ plotTracks(tracklist, from = startpoint, to = endpoint,
 dev.off()
 ```
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

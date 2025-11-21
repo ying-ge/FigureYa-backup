@@ -6,13 +6,55 @@ Package already installed: dplyr
 Installing CRAN package: ggalluvial 
 Installing package into ‘/home/runner/work/_temp/Library’
 (as ‘lib’ is unspecified)
-also installing the dependencies ‘shades’, ‘alluvial’, ‘babynames’, ‘ggfittext’
+also installing the dependencies ‘litedown’, ‘markdown’, ‘jpeg’, ‘shades’, ‘gridtext’, ‘alluvial’, ‘babynames’, ‘sp’, ‘ggfittext’
 
+trying URL 'https://cloud.r-project.org/src/contrib/litedown_0.8.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/markdown_2.0.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/jpeg_0.1-11.tar.gz'
 trying URL 'https://cloud.r-project.org/src/contrib/shades_1.4.0.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/gridtext_0.1.5.tar.gz'
 trying URL 'https://cloud.r-project.org/src/contrib/alluvial_0.1-2.tar.gz'
 trying URL 'https://cloud.r-project.org/src/contrib/babynames_1.0.1.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/sp_2.2-0.tar.gz'
 trying URL 'https://cloud.r-project.org/src/contrib/ggfittext_0.10.2.tar.gz'
 trying URL 'https://cloud.r-project.org/src/contrib/ggalluvial_0.12.5.tar.gz'
+* installing *source* package ‘litedown’ ...
+** this is package ‘litedown’ version ‘0.8’
+** package ‘litedown’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (litedown)
+* installing *source* package ‘jpeg’ ...
+** this is package ‘jpeg’ version ‘0.1-11’
+** package ‘jpeg’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gcc -std=gnu2x -I"/opt/R/4.5.2/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c read.c -o read.o
+gcc -std=gnu2x -I"/opt/R/4.5.2/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c reg.c -o reg.o
+gcc -std=gnu2x -I"/opt/R/4.5.2/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c write.c -o write.o
+gcc -std=gnu2x -shared -L/opt/R/4.5.2/lib/R/lib -L/usr/local/lib -o jpeg.so read.o reg.o write.o -ljpeg -L/opt/R/4.5.2/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-jpeg/00new/jpeg/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (jpeg)
 * installing *source* package ‘shades’ ...
 ** this is package ‘shades’ version ‘1.4.0’
 ** package ‘shades’ successfully unpacked and MD5 sums checked
@@ -58,6 +100,36 @@ trying URL 'https://cloud.r-project.org/src/contrib/ggalluvial_0.12.5.tar.gz'
 ** testing if installed package can be loaded from final location
 ** testing if installed package keeps a record of temporary installation path
 * DONE (babynames)
+* installing *source* package ‘sp’ ...
+** this is package ‘sp’ version ‘2.2-0’
+** package ‘sp’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+gcc -std=gnu2x -I"/opt/R/4.5.2/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c Rcentroid.c -o Rcentroid.o
+gcc -std=gnu2x -I"/opt/R/4.5.2/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c gcdist.c -o gcdist.o
+gcc -std=gnu2x -I"/opt/R/4.5.2/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c init.c -o init.o
+gcc -std=gnu2x -I"/opt/R/4.5.2/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c pip.c -o pip.o
+gcc -std=gnu2x -I"/opt/R/4.5.2/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c pip2.c -o pip2.o
+gcc -std=gnu2x -I"/opt/R/4.5.2/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c sp_xports.c -o sp_xports.o
+gcc -std=gnu2x -I"/opt/R/4.5.2/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c surfaceArea.c -o surfaceArea.o
+gcc -std=gnu2x -I"/opt/R/4.5.2/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c zerodist.c -o zerodist.o
+gcc -std=gnu2x -shared -L/opt/R/4.5.2/lib/R/lib -L/usr/local/lib -o sp.so Rcentroid.o gcdist.o init.o pip.o pip2.o sp_xports.o surfaceArea.o zerodist.o -L/opt/R/4.5.2/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-sp/00new/sp/libs
+** R
+** data
+** demo
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (sp)
 * installing *source* package ‘ggalluvial’ ...
 ** this is package ‘ggalluvial’ version ‘0.12.5’
 ** package ‘ggalluvial’ successfully unpacked and MD5 sums checked
@@ -76,6 +148,45 @@ trying URL 'https://cloud.r-project.org/src/contrib/ggalluvial_0.12.5.tar.gz'
 ** testing if installed package can be loaded from final location
 ** testing if installed package keeps a record of temporary installation path
 * DONE (ggalluvial)
+* installing *source* package ‘markdown’ ...
+** this is package ‘markdown’ version ‘2.0’
+** package ‘markdown’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (markdown)
+* installing *source* package ‘gridtext’ ...
+** this is package ‘gridtext’ version ‘0.1.5’
+** package ‘gridtext’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+using C++11
+g++ -std=gnu++11 -I"/opt/R/4.5.2/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++11 -I"/opt/R/4.5.2/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c bl-r-bindings.cpp -o bl-r-bindings.o
+g++ -std=gnu++11 -I"/opt/R/4.5.2/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c grid-renderer.cpp -o grid-renderer.o
+g++ -std=gnu++11 -I"/opt/R/4.5.2/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2   -c grid.cpp -o grid.o
+g++ -std=gnu++11 -shared -L/opt/R/4.5.2/lib/R/lib -L/usr/local/lib -o gridtext.so RcppExports.o bl-r-bindings.o grid-renderer.o grid.o -L/opt/R/4.5.2/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-gridtext/00new/gridtext/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (gridtext)
 * installing *source* package ‘ggfittext’ ...
 ** this is package ‘ggfittext’ version ‘0.10.2’
 ** package ‘ggfittext’ successfully unpacked and MD5 sums checked
@@ -96,7 +207,7 @@ trying URL 'https://cloud.r-project.org/src/contrib/ggalluvial_0.12.5.tar.gz'
 * DONE (ggfittext)
 
 The downloaded source packages are in
-	‘/tmp/Rtmpr6E6Pc/downloaded_packages’
+	‘/tmp/Rtmpw1u2Zf/downloaded_packages’
 Successfully installed: ggalluvial 
 
 ===========================================

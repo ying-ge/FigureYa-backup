@@ -3,7 +3,15 @@ title: "FigureYa145target"
 params:
   author: "Long Zhao"
   reviewer: "Ying Ge, Junyi Shen"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
@@ -19,8 +27,7 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## 需求描述
-## Requirement description
+## 需求描述 Requirement description
 
 从形式上复现原图。
 Reproduce the original image in form.
@@ -30,7 +37,6 @@ Sometimes there is no ready-made package that can draw the same image. We can ca
 
 ![](example.png)
 
-出自<https://www.nature.com/articles/s41467-019-09222-w>
 From <https://www.nature.com/articles/s41467-019-09222-w>
 
 Fig. 2 Characteristics of glycosites identified with AI-ETD. f A glycoprotein-glycan network maps **which glycans (outer circle, 117 total) modify which proteins (inner bar, 771 total)**. Glycoproteins are **sorted by number of glycosites (scale to the right)**. Glycans are organized by classification, and **edges are colored by the glycan node from which they originate**, except for mannose-6-phosphate which has yellow edges. See Supplementary Fig. 11 and Supplementary Table 1 for glycan identifiers.
@@ -58,8 +64,7 @@ The original method description is drawn with igraph: The **protein-glycan netwo
 这里用ggplot2画图，先计算位置再画图。
 Here we use ggplot2 to draw the graph, first calculate the position and then draw the graph.
 
-## 应用场景
-## Application scenario
+## 应用场景 Application scenario
 
 展示分类、分组跟元素之间的关系。例如：glycan-数量-glycoprotein，GO-TF-targe gene、表观修饰-上下调-gene、enhancer-motif-promoter等。
 Show the relationship between classification, grouping and elements. For example: glycan-quantity-glycoprotein, GO-TF-target gene, epigenetic modification-up and down regulation-gene, enhancer-motif-promoter, etc.
@@ -67,8 +72,7 @@ Show the relationship between classification, grouping and elements. For example
 以TF-GO-target gene互作为例，转录组找出几个GO 途径的基因可以放在外围的点，颜色代表不同GO term，点的大小代表基因表达水平或fold change。里面的矩形是我们共公共数据库找到的能够结合这些外围基因的转录因子。结果哪些转录因子激活基因，哪些抑制，就一目了然了。如果有HiC或ChIA-pet数据，hub 位点和靶基因的互作也是同理。
 Taking the TF-GO-target gene interaction as an example, the transcriptome finds several genes in the GO pathway and can be placed on the outer points. The color represents different GO terms, and the size of the point represents the gene expression level or fold change. The rectangle inside is the transcription factor that can bind to these peripheral genes found in our public database. As a result, it is clear at a glance which transcription factors activate genes and which inhibit them. If there is HiC or ChIA-pet data, the interaction between hub sites and target genes is the same.
 
-## 环境设置
-## Environment settings
+## 环境设置 Environment settings
 
 ```{r}
 source("install_dependencies.R")
@@ -79,8 +83,7 @@ Sys.setenv(LANGUAGE = "en") #显示英文报错信息 #Display English error mes
 options(stringsAsFactors = FALSE) #禁止chr转成factor #Prohibit chr from being converted to factor
 ```
 
-## 输入文件
-## Input file
+## 输入文件 Input file
 
 easy_input_node.txt和easy_input_group.txt。从例文41467_2019_9222_MOESM5_ESM.xlsx文件整理而来。
 
@@ -102,11 +105,9 @@ head(protein)
 dim(protein)
 ```
 
-## 计算图中各元素位置
-## Calculate the position of each element in the graph
+## 计算图中各元素位置 Calculate the position of each element in the graph
 
-### 计算点（Glycan）的坐标
-### Calculate the coordinates of the point (Glycan)
+### 计算点（Glycan）的坐标 Calculate the coordinates of the point (Glycan)
 
 一共有117个点，右侧（第一、四象限）59个，左侧（二、三象限）58个。
 There are 117 points in total, 59 on the right (first and fourth quadrants) and 58 on the left (second and third quadrants).
@@ -130,8 +131,7 @@ Glycan$G.y <- sin(Glycan$angle*pi/180.0)*(nrow(protein)/2)
 head(Glycan)
 ```
 
-### 计算最外围的弧线
-### Calculate the outermost arc
+### 计算最外围的弧线 Calculate the outermost arc
 
 外围的弧线内侧是圆半径的1.1倍，外侧是1.15倍
 The inner side of the outer arc is 1.1 times the radius of the circle, and the outer side is 1.15 times
@@ -154,8 +154,7 @@ curve <- curve[-c(9:10, #9是第一类Paucimannose的数量，以此类推
 head(curve)
 ```
 
-### 中央矩形
-### Central rectangle
+### 中央矩形 Central rectangle
 
 根据glycosites数量分成5类，其中4和5一组，>5一组，与右侧图例对应。
 According to the number of glycosites, they are divided into 5 categories, with 4 and 5 in one group and >5 in another group, corresponding to the legend on the right.
@@ -172,8 +171,7 @@ protein.pos$cluster <- ifelse(protein.pos$Count < 4, protein.pos$Count, ifelse(p
 head(protein.pos)
 ``` 
 
-### 连接线，即Glycan-protein
-### Connecting line, Glycan-protein
+### 连接线，即Glycan-protein Connecting line, Glycan-protein
 
 ```{r}
 connect <- protein[,c(1,3)]
@@ -194,8 +192,7 @@ all1$seg.clu <- ifelse(all1$Glycan=="HexNAc(2)Hex(6)Phospho(1)","zz",all1$Gly.cl
 head(all1)
 ```
 
-## 开始画图
-## Start drawing
+## 开始画图 Start drawing
 
 ```{r}
 # 自定义颜色
@@ -259,8 +256,7 @@ pdf(file="target.pdf", height=5, width=5.5)
 dev.off()
 ```
 
-## 后期处理
-## Post-processing
+## 后期处理 Post-processing
 
 输出的PDF文件是矢量图，可以用PS或AI等矢量图编辑器打开，编辑图形和文字。
 The output PDF file is a vector image, which can be opened with vector image editors such as PS or AI to edit graphics and text.

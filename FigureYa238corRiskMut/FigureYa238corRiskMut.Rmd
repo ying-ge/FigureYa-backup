@@ -2,14 +2,22 @@
 title: "FigureYa238corRiskMut"
 params:
   author: "Xiaofan Lu"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 reviewers: Ying Ge,Hui Huang
 ---
 
 **Author(s)**: `r params$author`  
 **Date**: `r Sys.Date()`  
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -431,7 +439,7 @@ write.table(as.data.frame(res),file = "mutual exclusivity test regarding non-syn
 
 ![](mutual exclusivity plot.pdf)
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

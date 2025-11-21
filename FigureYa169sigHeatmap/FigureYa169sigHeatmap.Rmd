@@ -3,7 +3,15 @@ title: "FigureYa169sigHeatmap"
 params:
   author: "Xiaofan Lu"
   reviewer: "Ying Ge, Junyi Shen"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
@@ -11,7 +19,7 @@ output: html_document
 **Date**: `r Sys.Date()`  
 
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -33,14 +41,12 @@ Figure 2: A) Unsupervised clustering of lncRNAs identified 4 clusters: cluster I
 出自<https://www.ncbi.nlm.nih.gov/pubmed/25296969>
 Source: <https://www.ncbi.nlm.nih.gov/pubmed/25296969>
 
-# 应用场景
-# Application Scenario
+# 应用场景 Application Scenario
 
 在大于等于3组亚型的基础上，得到配对差异表达基因后，计算每个亚型特异性上/下调的基因集，并绘制特异性基因表达热图。
 After obtaining paired differentially expressed genes for at least three subtypes, we calculated the set of upregulated/downregulated genes for each subtype and plotted a heatmap of specific gene expression.
 
-# 环境设置
-# Environment Setup
+# 环境设置 Environment Setup
 
 ```{r}
 source("install_dependencies.R")
@@ -440,7 +446,7 @@ sigheat(featdata = log2(FPKM + 1), # 数据已标准化 # Data normalized
 
 ![](skcm_sigheatmap_downexpressed.pdf)
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

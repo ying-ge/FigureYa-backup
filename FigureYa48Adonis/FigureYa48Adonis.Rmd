@@ -2,14 +2,22 @@
 title: "FigureYa48 Adonis"
 params:
   author: "yeoli; Ying Ge, Yijing Chen"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
 **Date**: `r Sys.Date()`  
 
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -19,8 +27,7 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## 需求描述
-## Requirement description
+## 需求描述 Requirement description
 
 进行置换多元方差分析（PERMANOVA，Adonis），画出图b
 
@@ -38,15 +45,13 @@ b, Bar plot illustrating the top 30 host factors found to be significantly assoc
 
 from<https://www.nature.com/articles/s41591-018-0164-x>
 
-## 应用场景
-## Application scenario
+## 应用场景 Application scenario
 
 分析不同分组或环境因子对样品差异的解释度，例如例文中宿主的临床表型对肠道微生物的影响。
 
 Analyze the explanatory power of different groups or environmental factors on sample differences, such as the impact of the host's clinical phenotype on gut microbiota in the example text.
 
-## 输入数据
-## Input data
+## 输入数据 Input data
 
 三个输入文件：
 
@@ -110,8 +115,7 @@ if(fdr == T){
 write.csv(choose, "output_Adonis.csv", quote = F)
 ```
 
-## 开始画图
-## Start drawing
+## 开始画图 Start drawing
 
 ```{r, fig.width=6, fig.height=1.5}
 library(ggplot2)

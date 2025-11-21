@@ -3,14 +3,22 @@ title: "FigureYa317RoeDot"
 params:
   author: "Xiaofan Lu; Yasi Zhang"  
   reviewer: "Ying Ge"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
 **Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()` 
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -38,8 +46,7 @@ Source: <https://bmcbiol.biomedcentral.com/articles/10.1186/s12915-023-01540-2>
 Fig. 1 Dissection of the immune landscape in atherosclerosis with scRNA-seq.
 e Line chart showing tissue prevalence for each cell type estimated by Ro/e score
 
-# 应用场景
-# Application Scenario
+# 应用场景 Application Scenario
 
 根据单细胞数据，计算细胞比例分布特异度（Ro/e），并绘制折线图
 
@@ -57,8 +64,7 @@ Output: Line graph (Proportion.pdf) and Ro/e table
 
 Plot the Ro/e values of multiple groups as a heatmap, refer to FigureYa312CellPreference for guidance.
 
-# 环境设置
-# Environment Setup
+# 环境设置 Environment Setup
 
 ```{r}
 source("install_dependencies.R")
@@ -230,7 +236,7 @@ ggplot(plot.data, aes(x = Celltype, y = Ratio, group = Group, color = Group))+
 ggsave("Roedot.pdf", width = 5, height = 4)
 ```
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

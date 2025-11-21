@@ -2,7 +2,15 @@
 title: "FigureYa61GSVA"
 params:
   author: "Yu Sun, Taojun Ye"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 reviser: Ying Ge
 ---
 
@@ -10,7 +18,7 @@ reviser: Ying Ge
 **Date**: `r Sys.Date()`  
 
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -257,7 +265,7 @@ ggplot(sortdf, aes(ID, score, fill = group)) + geom_bar(stat = 'identity') +
 ggsave("gsva.pdf", width = 6, height = 8)
 ```
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

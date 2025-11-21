@@ -2,14 +2,22 @@
 title: "FigureYa22FPKM2TPM"
 params:
   author: "Ying Ge; Yijing Chen"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
 **Date**: `r Sys.Date()`  
 
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -18,15 +26,13 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## 需求描述
-## Requirement description
+## 需求描述 Requirement description
 
 把RNA-seq的FPKM转换成TPM。
 
 Convert FPKM from RNA-seq to TPM
 
-## 应用场景
-## Application scenario
+## 应用场景 Application scenario
 
 RNA-seq基因表达量是FPKM，想转变成TPM。不仅限于TCGA数据。
 
@@ -40,8 +46,7 @@ Both FPKM and TPM calculations consider gene length, making the conversion from 
 
 If you need to convert from read count to TPM, please purchase FigureYa23count2TPM; to convert from read count to FPKM, please purchase FigureYa34count2FPKM.
 
-# 环境设置
-# Environment Setup
+# 环境设置 Environment Setup
 
 ```{r}
 source("install_dependencies.R")
@@ -80,8 +85,7 @@ expMatrix <- TCGAanalyze_Preprocessing(expquery2)
 write.table(expMatrix[,1:4], "easy_input.txt", sep="\t", quote=F, row.names=T)
 ```
 
-## 输入数据
-## Input data
+## 输入数据 Input data
 
 第一列是基因ID，第一行是sample ID。
 
@@ -142,7 +146,7 @@ colSums(tpms)
 write.table(tpms,"TCGA_FPKM2TPM.genes.txt",quote = F)
 ```
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()

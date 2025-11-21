@@ -3,14 +3,22 @@ title: "FigureYa287L2logV2"
 params:
   author: "Xiaofan Lu; Yasi Zhang"  
   reviewer: "Ying Ge"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
 ---
 
 **Author(s)**: `r params$author`  
 **Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()` 
 
-# Academic Citation
+## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
@@ -48,8 +56,7 @@ b, ROC curves and statistical comparison of DSP protein on-treatment + pre-treat
 
 c, ROC curves and statistical comparison of the on-treatment + pre-treatment DSP protein L2-regularized classifier to a model trained using estrogen receptor and PAM50 status. These two models were compared to a model that incorporates on-treatment + pre-treatment DSP protein data, estrogen receptor and PAM50 status. 
 
-# 应用场景
-# Application Scenario
+# 应用场景 Application Scenario
 
 实现nested cross-validation, holm-bonferroni correction for multiple hypotheses, 以及L2-regularized classifiers
 
@@ -59,8 +66,7 @@ Implements nested cross-validation, Holm-Bonferroni correction, and L2-regulariz
 
 > Important: Please read README.txt first to understand function usage, parameters and notes.
 
-# 环境设置
-# Environment Setup
+# 环境设置 Environment Setup
 
 ```{r}
 source("install_dependencies.R")
@@ -809,7 +815,7 @@ write.table(as.matrix(model$coef_lambda.min),
             file = "L2-regularized classifiers using lambda.min.txt",sep = "\t", row.names = T, col.names = NA, quote = F)
 ```
 
-# Session Info
+## Session Info
 
 ```{r}
 sessionInfo()
