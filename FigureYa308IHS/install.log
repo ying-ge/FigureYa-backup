@@ -46,7 +46,7 @@ trying URL 'https://cloud.r-project.org/src/contrib/optparse_1.7.5.tar.gz'
 * DONE (optparse)
 
 The downloaded source packages are in
-	‘/tmp/RtmpaEU0Bg/downloaded_packages’
+	‘/tmp/RtmpSDh8QZ/downloaded_packages’
 Successfully installed: optparse 
 Package already installed: spatstat.explore 
 Package already installed: kernlab 
@@ -81,7 +81,7 @@ downloaded 505 KB
 * DONE (viper)
 
 The downloaded source packages are in
-	‘/tmp/RtmpaEU0Bg/downloaded_packages’
+	‘/tmp/RtmpSDh8QZ/downloaded_packages’
 Successfully installed: viper 
 
 ===========================================

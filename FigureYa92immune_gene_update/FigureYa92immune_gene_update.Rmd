@@ -72,6 +72,14 @@ Not limited to the relationship between genes and immune infiltration, the immun
 ```{r}
 source("install_dependencies.R")
 
+# 检查并安装缺失的包
+# Check and install missing packages
+if (!requireNamespace("ggstatsplot", quietly = TRUE)) {
+  cat("ggstatsplot 包未安装，正在自动安装...\n")
+  cat("ggstatsplot package not installed, installing automatically...\n")
+  install.packages("ggstatsplot", repos = "https://cloud.r-project.org/", dependencies = TRUE)
+}
+
 library(data.table)   # 高性能数据处理 High-performance data processing  
 library(dplyr)        # 数据操作工具 Data operation tool  
 library(tidyr)        # 数据整理工具 Data tidying and reshaping  

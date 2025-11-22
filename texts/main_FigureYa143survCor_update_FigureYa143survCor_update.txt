@@ -1,0 +1,2615 @@
+FigureYa143survCor_update
+Code
+Show All Code
+Hide All Code
+FigureYa143survCor_update
+Author(s)
+: Xiaofan Lu
+Reviewer(s)
+: Ying Ge, Junyi Shen
+Date
+: 2025-11-21
+1
+Academic Citation
+If you use this code in your work or research, we kindly request that
+you cite our publication:
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization
+Framework for Enhancing Biomedical Data Interpretation and Research
+Efficiency. iMetaMed.
+https://doi.org/10.1002/imm3.70005
+2
+需求描述 Requirement
+description
+绘制较复杂的相关性图，包括计算每个表达值下的logrank
+score；以肠癌MSS和MSI样本为例。 Draw a more complex correlation graph,
+including calculating the logrank score for each expression value; take
+colorectal cancer MSS and MSI samples as an example.
+From
+https://www.jci.org/articles/view/127046
+Figure 1. Comparison of TME stratification based on CD8A and CD274
+gene expression between TCGA melanoma and CRC. Scatter plots of
+log2-transformed CD8A and CD274
+gene expression
+values
+are shown (A and C) for melanoma (n = 459) and CRC (n = 599),
+respectively. A linear regression line is plotted with the
+gray
+shaded region showing the 95% confidence interval
+. Pearson’s
+correlation coefficient r and P values are given at the bottom.
+MSI (black triangles) and MSS (gray circles) statuses
+are labeled for CRC samples.
+Median values of CD8A and CD274
+expression are indicated with dashed gray lines
+. log-rank
+statistics were applied to identify the optimal cut-off for transforming
+the continuous variable of gene expression into categorical high- and
+low-expression groups in a survfit model. The test score at each
+candidate cut-off across the log-transformed gene expression values was
+plotted.
+The highest test score (indicated with a blue arrow)
+was applied for best separating patients into 4 different risk groups
+(using solid blue lines; named groups I to IV)
+. To compare risk
+groups between melanoma and CRC, we also applied a secondary peak of
+test scores (red arrow with an asterisk, which revealed a reverse
+pattern of survival in CRC as shown in Supplemental Figure 2) for CD274
+stratification (indicated with a solid red line instead of a blue line;
+named groups I, II, III* and IV*). Each stratified risk group is labeled
+with its population fraction in percentages.
+Statistics
+. CD8A and PD-L1 gene expression were
+chosen for investigation from the 20 correlated genes (Bedognetti et
+al.; ref. 12). We used
+log-rank statistics
+to identify
+the
+optimal expression cut-off
+for each gene with
+regard to the associated hazard of death or relapse events in a survfit
+model (63), using the cutp function of the
+R package
+survMisc
+(version 0.5.5;
+https://CRAN.R-project.org/package=survMisc
+). The
+cut-off with the
+highest log-rank test score was selected for
+best separating patients into high- and low-expression groups with
+different risks
+. Upon observing a bimodal distribution of
+marginal log-rank statistics for CRC, but not melanoma, CD274 expression
+value at a secondary mode was used to identify a second set of high-risk
+subjects.
+图的解读：
+A和C图展示了CD8A（杀伤性T细胞）和CD274（PD-L1）在黑色素瘤和结直肠癌中的表达水平。用一张图同时展示：
+基因表达相关性（线性回归线和置信区间）：展示 CD274 (PD-L1) 和 CD8A
+的表达相关性（Pearson 相关系数 r 和 P 值）。
+Log-rank 统计：找到基于生存的最佳表达 cut-off
+风险分组及样本占比：基于 cut-off （由蓝色线划分）的四象限分组（I,
+II, III, IV），每个象限标注样本百分比
+MSI/MSS 状态分布
+Figure interpretation:
+A and C figures show the
+expression levels of CD8A(killer T cell) and CD274(PD-L1) in melanoma
+and CRC.
+Gene expression correlation (linear regression line and confidence
+interval): show the expression correlation of CD274 (PD-L1) and CD8A
+(Pearson correlation coefficient r and P value)
+Log-rank statistics: find the optimal expression cut-off
+Risk grouping: four quadrants based on cut-off (divided by blue
+lines); I, II, III, IV), each quadrant labeled with sample
+percentage
+MSI/MSS status distribution
+免疫微环境特征与预后分析：
+通过 CD274 (PD-L1) 和
+CD8A 基因表达的联合分析，评估肿瘤免疫微环境的特征，包括：
+象限 I（左下）
+：低 PD-L1、低 CD8+ T 细胞 -
+免疫冷肿瘤，通常预后较差
+象限 II（右下）
+：高 PD-L1、低 CD8+ T 细胞 -
+原发性免疫抑制，预后通常较差
+象限 III（左上）
+：低 PD-L1、高 CD8+ T 细胞 -
+免疫活跃型，通常预后较好
+象限 IV（右上）
+：高 PD-L1、高 CD8+ T 细胞 -
+适应性免疫抵抗，可能对免疫治疗敏感
+Immuno-environmental features and prognosis
+analysis:
+Through the combined analysis of CD274 (PD-L1) and
+CD8A gene expression, the features of the tumor immune microenvironment
+are evaluated, including:
+Quadrant I (lower left)
+: low PD-L1, low CD8+ T cell
+- immunologically cold tumor, usually poor prognosis
+Quadrant II (lower right)
+: high PD-L1, low CD8+ T
+cell - primary immunosuppression, usually poor prognosis
+Quadrant III (upper left)
+: low PD-L1, high CD8+ T
+cell - immunologically active, usually good prognosis
+Quadrant IV (upper right)
+: high PD-L1, high CD8+ T
+cell - adaptive immune resistance, possibly sensitive to immunotherapy
+## 应用场景 Application scenarios
+基于生存信息，通过log-rank statistics找到最佳分组cut-off。
+用复杂相关性图同时展示基因表达相关性、MSI/MSS状态、最佳cut-off、分组等信息。
+如果只想计算并展示相关性，画出类似的图，可参考FigureYa92immune_gene。
+Use log-rank statistics based on survival information to find the
+best grouping cut-off.
+Use complex correlation graphs to simultaneously display gene
+expression correlation, MSI/MSS status, best cut-off, grouping and other
+information.
+If you only want to calculate and display the correlation and draw a
+similar graph, refer to FigureYa92immune_gene.
+3
+环境设置 Environment
+settings
+source
+(
+"install_dependencies.R"
+)
+library
+(survival)
+# 计算生存分析 Calculate survival analysis
+library
+(survMisc)
+# 计算最佳分组cut-off Calculate best grouping cut-off
+library
+(shape)
+# 画一个更漂亮的箭头 Draw a more beautiful arrow
+Sys.setenv
+(
+LANGUAGE =
+"en"
+)
+# Display English error message
+options
+(
+stringsAsFactors =
+FALSE
+)
+# Disable conversion of chr to factor
+4
+输入文件 Input
+file
+For Figure 1A of the reference paper, we need to download the data
+from the UCSC Xena browser.
+Download TCGA Melanoma (SKCM) (17 datasets) data from UCSC Xena
+browser (
+https://xenabrowser.net/datapages/
+)
+gene expression RNAseq, IlluminaHiSeq (n=474) TCGA Hub,
+TCGA.SKCM.sampleMap_HiSeqV2.gz
+phenotype, Phenotypes (n=481) TCGA Hub,
+TCGA.SKCM.sampleMap_SKCM_clinicalMatrix
+phenotype, Curated survival data (n=479) TCGA Hub,
+survival_SKCM_survival.txt
+For Figure 1C of the reference paper, we need to download the data
+from the UCSC Xena browser.
+Download TCGA Colorectal Cancer (COADREAD) (16 datasets) data from
+UCSC Xena browser (
+https://xenabrowser.net/datapages/
+)
+gene expression RNAseq, IlluminaHiSeq (n=599) TCGA Hub,
+TCGA.COADREAD.sampleMap_HiSeqV2.gz
+phenotype, Phenotypes (n=599) TCGA Hub,
+TCGA.COADREAD.sampleMap_COADREAD_clinicalMatrix
+phenotype, Curated survival data (n=599) TCGA Hub,
+survival_COADREAD_survival.txt
+#cancer_type <- "SKCM" # Figure 1A
+cancer_type
+<-
+"COADREAD"
+# Figure 1C
+# 从Xena下载的HiSeqV2表达数据中提取CD274和CD8A的表达值
+# Extract CD274 and CD8A expression values from HiSeqV2 expression data downloaded from Xena
+hiseq_file
+<-
+paste0
+(
+"TCGA."
+, cancer_type,
+".sampleMap_HiSeqV2_PANCAN.gz"
+)
+# 读取HiSeqV2表达数据（基因行为行，样本为列）
+# Read HiSeqV2 expression data (genes as rows, samples as columns)
+hiseq_data
+<-
+read.delim
+(hiseq_file,
+sep =
+"
+\t
+"
+,
+header =
+TRUE
+,
+row.names =
+1
+,
+stringsAsFactors =
+FALSE
+,
+check.names =
+FALSE
+)
+# 提取CD274和CD8A的表达值
+# Extract expression values for CD274 and CD8A
+cd274_expr
+<-
+hiseq_data[
+"CD274"
+, , drop
+=
+FALSE
+]
+cd8a_expr
+<-
+hiseq_data[
+"CD8A"
+, , drop
+=
+FALSE
+]
+# 转置并合并为表达矩阵（样本为行，基因为列）
+# Transpose and combine into expression matrix (samples as rows, genes as columns)
+expr
+<-
+data.frame
+(
+CD274 =
+as.numeric
+(cd274_expr[
+1
+, ]),
+CD8A =
+as.numeric
+(cd8a_expr[
+1
+, ]),
+row.names =
+colnames
+(hiseq_data),
+stringsAsFactors =
+FALSE
+)
+cat
+(
+"表达矩阵维度 / Expression matrix dimensions:"
+,
+dim
+(expr),
+"
+\n
+"
+)
+head
+(expr)
+# 从Xena下载的生存数据中读取生存信息
+# Read survival information from survival data downloaded from Xena
+survival_file
+<-
+paste0
+(
+"survival_"
+, cancer_type,
+"_survival.txt"
+)
+surv
+<-
+read.delim
+(survival_file,
+sep =
+"
+\t
+"
+,
+header =
+TRUE
+,
+stringsAsFactors =
+FALSE
+,
+check.names =
+FALSE
+)
+# 设置行名为样本ID
+# Set row names to sample ID
+rownames
+(surv)
+<-
+surv
+$
+sample
+# 只保留OS和OS.time列
+# Keep only OS and OS.time columns
+surv
+<-
+surv[,
+c
+(
+"OS"
+,
+"OS.time"
+), drop
+=
+FALSE
+]
+cat
+(
+"生存数据维度 / Survival data dimensions:"
+,
+dim
+(surv),
+"
+\n
+"
+)
+head
+(surv)
+# 从Xena下载的临床数据中提取MSI信息（如果存在）
+# Extract MSI information from clinical data downloaded from Xena (if available)
+# 注意：SKCM（黑色素瘤）可能没有MSI信息，MSI主要是结直肠癌的特征
+# Note: SKCM (melanoma) may not have MSI information, as MSI is mainly a feature of colorectal cancer
+clinical_file
+<-
+paste0
+(
+"TCGA."
+, cancer_type,
+".sampleMap_"
+, cancer_type,
+"_clinicalMatrix"
+)
+# 读取临床数据文件（TSV格式）
+# Read clinical data file (TSV format)
+clinical_data
+<-
+read.delim
+(clinical_file,
+sep =
+"
+\t
+"
+,
+header =
+TRUE
+,
+stringsAsFactors =
+FALSE
+,
+check.names =
+FALSE
+)
+# 第一列是样本ID
+# First column is sample ID
+sample_col
+<-
+colnames
+(clinical_data)[
+1
+]
+# 查找MSI相关的列（优先使用MSI_updated_Oct62011）
+# Find MSI-related columns (prefer MSI_updated_Oct62011)
+# 注意：某些癌症类型（如黑色素瘤SKCM）可能没有MSI信息，这是正常的
+# Note: Some cancer types (e.g., melanoma SKCM) may not have MSI information, which is normal
+msi_cols
+<-
+grep
+(
+"MSI|msi|microsatellite|instability"
+,
+colnames
+(clinical_data),
+ignore.case =
+TRUE
+,
+value =
+TRUE
+)
+if
+(
+length
+(msi_cols)
+==
+0
+) {
+cat
+(
+"未找到MSI相关的列。某些癌症类型（如黑色素瘤）可能没有MSI信息，将跳过MSI分析。
+\n
+"
+)
+cat
+(
+"No MSI-related columns found. Some cancer types (e.g., melanoma) may not have MSI information, will skip MSI analysis.
+\n
+"
+)
+has_msi
+<-
+FALSE
+}
+else
+{
+has_msi
+<-
+TRUE
+}
+if
+(has_msi) {
+# 合并多个MSI列以获取更完整的数据
+# Merge multiple MSI columns to get more complete data
+# 优先使用MSI_updated_Oct62011（包含MSS/MSI-L/MSI-H），如果为空则使用microsatellite_instability（YES/NO）
+# Prefer MSI_updated_Oct62011 (contains MSS/MSI-L/MSI-H), if empty use microsatellite_instability (YES/NO)
+msi_col1
+<-
+NULL
+msi_col2
+<-
+NULL
+if
+(
+"MSI_updated_Oct62011"
+%in%
+msi_cols) {
+msi_col1
+<-
+"MSI_updated_Oct62011"
+}
+if
+(
+"microsatellite_instability"
+%in%
+msi_cols) {
+msi_col2
+<-
+"microsatellite_instability"
+}
+if
+(
+is.null
+(msi_col1)
+&&
+is.null
+(msi_col2)) {
+cat
+(
+"未能找到可用的MSI列，将跳过MSI分析。
+\n
+"
+)
+cat
+(
+"No usable MSI columns found, will skip MSI analysis.
+\n
+"
+)
+has_msi
+<-
+FALSE
+}
+else
+{
+# 合并MSI数据
+# Merge MSI data
+combined_msi
+<-
+rep
+(
+NA_character_
+,
+nrow
+(clinical_data))
+if
+(
+!
+is.null
+(msi_col1)) {
+msi1_values
+<-
+clinical_data[[msi_col1]]
+combined_msi
+<-
+msi1_values
+cat
+(
+"使用MSI列1 / Using MSI column 1:"
+, msi_col1,
+"
+\n
+"
+)
+}
+if
+(
+!
+is.null
+(msi_col2)) {
+msi2_values
+<-
+clinical_data[[msi_col2]]
+# 如果MSI列1为空，使用MSI列2的值
+# If MSI column 1 is empty, use MSI column 2 values
+empty_idx
+<-
+is.na
+(combined_msi)
+|
+combined_msi
+==
+""
+combined_msi[empty_idx]
+<-
+msi2_values[empty_idx]
+# 将YES/NO转换为MSI-H/MSS
+# Convert YES/NO to MSI-H/MSS
+combined_msi[combined_msi
+==
+"YES"
+]
+<-
+"MSI-H"
+combined_msi[combined_msi
+==
+"NO"
+]
+<-
+"MSS"
+if
+(
+any
+(empty_idx)) {
+cat
+(
+"使用MSI列2补充缺失值 / Using MSI column 2 to fill missing values:"
+, msi_col2,
+"
+\n
+"
+)
+}
+}
+# 创建MSI结果数据框
+# Create MSI results data frame
+msi_results
+<-
+data.frame
+(
+sample =
+clinical_data[[sample_col]],
+MSI =
+combined_msi,
+stringsAsFactors =
+FALSE
+)
+# 设置行名为样本ID
+# Set row names to sample IDs
+rownames
+(msi_results)
+<-
+msi_results
+$
+sample
+# 检查MSI值的分布
+# Check MSI value distribution
+cat
+(
+"MSI值分布 / MSI value distribution:
+\n
+"
+)
+print
+(
+table
+(msi_results
+$
+MSI,
+useNA =
+"always"
+))
+# 存储MSI信息（可选，用于重复使用）
+# Store MSI information (optional, for reuse)
+save
+(msi_results,
+file =
+paste0
+(
+"msi_results_"
+, cancer_type,
+".rda"
+))
+cat
+(
+"MSI信息已保存到 / MSI information saved to: msi_results.rda
+\n
+"
+)
+}
+}
+else
+{
+# 没有MSI信息，创建空的msi_results数据框
+# No MSI information, create empty msi_results data frame
+msi_results
+<-
+data.frame
+(
+sample =
+clinical_data[[sample_col]],
+MSI =
+rep
+(
+NA_character_
+,
+nrow
+(clinical_data)),
+stringsAsFactors =
+FALSE
+)
+rownames
+(msi_results)
+<-
+msi_results
+$
+sample
+cat
+(
+"未找到MSI信息，将不进行MSI相关分析。
+\n
+"
+)
+cat
+(
+"No MSI information found, will not perform MSI-related analysis.
+\n
+"
+)
+}
+挑选表达矩阵、生存信息和MSI信息的共有样本： Select common samples
+from expression matrix, survival information, and MSI information:
+# 先匹配expr和surv（使用所有共同样本，不限制于有MSI信息的样本）
+# First match expr and surv (use all common samples, not limited to those with MSI information)
+expr_surv_common
+<-
+intersect
+(
+rownames
+(expr),
+rownames
+(surv))
+com_sam
+<-
+expr_surv_common
+if
+(
+length
+(com_sam)
+==
+0
+) {
+stop
+(
+"无法找到共同样本。请检查样本ID格式或数据文件。
+\n
+Unable to find common samples. Please check sample ID formats or data files."
+)
+}
+cat
+(
+"expr和surv共同样本数 / Common samples between expr and surv:"
+,
+length
+(com_sam),
+"
+\n
+"
+)
+# 重新排序数据以匹配com_sam的顺序
+# Reorder data to match com_sam order
+expr
+<-
+expr[com_sam,, drop
+=
+FALSE
+]
+surv
+<-
+surv[com_sam,, drop
+=
+FALSE
+]
+# 匹配MSI数据（所有数据都使用TCGA-XX-XXXX-XX格式，直接匹配）
+# Match MSI data (all data uses TCGA-XX-XXXX-XX format, match directly)
+# 为所有共同样本创建MSI数据框（如果样本不在msi_results中，MSI值为NA）
+# Create MSI data frame for all common samples (if sample is not in msi_results, MSI value is NA)
+msi_results_matched
+<-
+data.frame
+(
+sample =
+com_sam,
+MSI =
+msi_results[com_sam,
+"MSI"
+],
+stringsAsFactors =
+FALSE
+,
+row.names =
+com_sam
+)
+# 将NA转换为空字符串以便后续处理
+# Convert NA to empty string for subsequent processing
+msi_results_matched
+$
+MSI[
+is.na
+(msi_results_matched
+$
+MSI)]
+<-
+""
+cat
+(
+"匹配到MSI信息的样本数 / Samples with MSI information:"
+,
+nrow
+(msi_results_matched),
+"
+\n
+"
+)
+cat
+(
+"有MSI值的样本数 / Samples with MSI values:"
+,
+sum
+(msi_results_matched
+$
+MSI
+!=
+""
+,
+na.rm =
+TRUE
+),
+"
+\n
+"
+)
+# 查找MSS/MSI-L样本（微卫星稳定）
+# Find MSS/MSI-L samples (microsatellite stable)
+# 注意：数据中空字符串可能表示缺失MSI信息，通常默认为MSS/MSI-L
+# Note: Empty strings in data may indicate missing MSI info, usually default to MSS/MSI-L
+# 我们将空字符串、NA、以及明确标记为"MSS"/"MSI-L"/"NO"的都视为MSS/MSI-L
+# We treat empty strings, NA, and explicitly marked "MSS"/"MSI-L"/"NO" as MSS/MSI-L
+msi_msi_values_matched
+<-
+as.character
+(msi_results_matched
+$
+MSI)
+msi_msi_values_matched[
+is.na
+(msi_msi_values_matched)
+|
+msi_msi_values_matched
+==
+""
+]
+<-
+"NO"
+mss.sam
+<-
+rownames
+(msi_results_matched[
+which
+(msi_msi_values_matched
+%in%
+c
+(
+"MSS"
+,
+"MSI-L"
+,
+"NO"
+)),])
+# 查找MSI-H样本（微卫星高度不稳定）
+# Find MSI-H samples (microsatellite instability-high)
+msi.sam
+<-
+rownames
+(msi_results_matched[
+which
+(msi_msi_values_matched
+%in%
+c
+(
+"MSI-H"
+,
+"YES"
+)),])
+cat
+(
+"MSS样本数 / MSS sample count:"
+,
+length
+(mss.sam),
+"
+\n
+"
+)
+cat
+(
+"MSI-H样本数 / MSI-H sample count:"
+,
+length
+(msi.sam),
+"
+\n
+"
+)
+# 对数转化表达谱（在检查缺失值之前）
+# Log transform expression (before checking missing values)
+# 注意：Xena HiSeqV2数据已经是log2(RSEM+1)格式，不需要再次转换
+# Note: Xena HiSeqV2 data is already in log2(RSEM+1) format, no need to transform again
+# 如果数据是原始计数或TPM值（数值范围较大，如>100），则需要log2转换
+# If data is raw counts or TPM values (large value range, e.g., >100), log2 transformation is needed
+if
+(
+max
+(expr,
+na.rm =
+TRUE
+)
+>
+100
+) {
+# 数据是原始计数或TPM值，需要log2转换
+# Data is raw counts or TPM values, log2 transformation needed
+expr
+<-
+round
+(
+log2
+(expr
++
+1
+),
+2
+)
+cat
+(
+"已对表达谱进行log2转换 / Applied log2 transformation to expression profile
+\n
+"
+)
+}
+else
+{
+# 数据已经是log2转换后的值，直接使用
+# Data is already log2 transformed, use directly
+expr
+<-
+round
+(expr,
+2
+)
+cat
+(
+"表达谱已经是log2转换后的值，未进行额外转换 / Expression profile is already log2 transformed, no additional transformation
+\n
+"
+)
+}
+# 删除缺失值
+# Remove missing values
+valid_samples
+<-
+rownames
+(surv)[
+!
+is.na
+(surv
+$
+OS.time)
+&
+!
+is.na
+(surv
+$
+OS)
+&
+!
+is.na
+(expr
+$
+CD274)
+&
+!
+is.na
+(expr
+$
+CD8A)]
+if
+(
+length
+(valid_samples)
+==
+0
+) {
+stop
+(
+"没有有效样本（所有样本都包含缺失值）。请检查数据质量。
+\n
+No valid samples (all samples contain missing values). Please check data quality."
+)
+}
+expr
+<-
+expr[valid_samples,]
+surv
+<-
+surv[valid_samples,]
+# 更新mss.sam和msi.sam以仅包含有效样本（如果存在MSI信息）
+# Update mss.sam and msi.sam to only include valid samples (if MSI information exists)
+if
+(
+exists
+(
+"has_msi"
+)
+&&
+has_msi
+&&
+sum
+(msi_results_matched
+$
+MSI
+!=
+""
+,
+na.rm =
+TRUE
+)
+>
+0
+) {
+mss.sam
+<-
+intersect
+(mss.sam, valid_samples)
+msi.sam
+<-
+intersect
+(msi.sam, valid_samples)
+}
+else
+{
+# 没有MSI信息，设置为空
+# No MSI information, set to empty
+mss.sam
+<-
+character
+(
+0
+)
+msi.sam
+<-
+character
+(
+0
+)
+has_msi
+<-
+FALSE
+}
+5
+计算logrank
+score和相关性 Calculate logrank score and correlation
+#-------------------#
+# 计算logrank score #
+# Calculate logrank score #
+#-------------------#
+exprsurv
+<-
+cbind.data.frame
+(surv,expr)
+# 新建包含表达和生存的数据框 # Create a new data frame containing expression and survival
+exprsurv
+$
+sampleID
+<-
+rownames
+(exprsurv)
+# 生成样名 # Generate sample names
+# CD274
+cox.CD274
+<-
+coxph
+(
+Surv
+(OS.time, OS)
+~
+CD274,
+data=
+exprsurv)
+# cox回归 # cox regression
+logrank.CD274
+<-
+as.data.frame
+(
+print
+(
+cutp
+(cox.CD274)))
+# cut连续变量产生logrank score # Cut continuous variables to generate
+colnames
+(logrank.CD274)[
+1
+]
+<-
+"CD274"
+logrank.CD274
+<-
+logrank.CD274[
+order
+(logrank.CD274
+$
+CD274),]
+peak.CD274
+<-
+logrank.CD274[
+which.min
+(logrank.CD274
+$
+CD274.p),
+1
+]
+# 得到p值最小(logrank score 峰值)下对应的表达值 # Get the expression value corresponding to the minimum p value
+peak.CD274.score
+<-
+logrank.CD274[
+which.min
+(logrank.CD274
+$
+CD274.p),
+2
+]
+# 找到logrank score 峰值 # Find the logrank score peak value
+# CD8A
+cox.CD8A
+<-
+coxph
+(
+Surv
+(OS.time, OS)
+~
+CD8A,
+data=
+exprsurv)
+logrank.CD8A
+<-
+as.data.frame
+(
+print
+(
+cutp
+(cox.CD8A)))
+colnames
+(logrank.CD8A)[
+1
+]
+<-
+"CD8A"
+logrank.CD8A
+<-
+logrank.CD8A[
+order
+(logrank.CD8A
+$
+CD8A),]
+peak.CD8A
+<-
+logrank.CD8A[
+which.min
+(logrank.CD8A
+$
+CD8A.p),
+1
+]
+peak.CD8A.score
+<-
+logrank.CD8A[
+which.min
+(logrank.CD8A
+$
+CD8A.p),
+2
+]
+# 计算各区域的样本 (注意边际上的样本重复问题)
+# Calculate the samples in each region (note the problem of sample duplication on the margin)
+lefttop
+<-
+expr[
+which
+(expr
+$
+CD274
+<
+peak.CD274
+&
+expr
+$
+CD8A
+>
+peak.CD8A),]
+leftbottom
+<-
+expr[
+which
+(expr
+$
+CD274
+<=
+peak.CD274
+&
+expr
+$
+CD8A
+<=
+peak.CD8A),]
+righttop
+<-
+expr[
+which
+(expr
+$
+CD274
+>=
+peak.CD274
+&
+expr
+$
+CD8A
+>=
+peak.CD8A),]
+rightbottom
+<-
+expr[
+which
+(expr
+$
+CD274
+>
+peak.CD274
+&
+expr
+$
+CD8A
+<
+peak.CD8A),]
+lefttop.pct
+<-
+paste0
+(
+"III ("
+,
+round
+(
+nrow
+(lefttop)
+/
+nrow
+(expr),
+2
+)
+*
+100
+,
+"%)"
+)
+leftbottom.pct
+<-
+paste0
+(
+"I ("
+,
+round
+(
+nrow
+(leftbottom)
+/
+nrow
+(expr),
+2
+)
+*
+100
+,
+"%)"
+)
+righttop.pct
+<-
+paste0
+(
+"IV ("
+,
+round
+(
+nrow
+(righttop)
+/
+nrow
+(expr),
+2
+)
+*
+100
+,
+"%)"
+)
+rightbottom.pct
+<-
+paste0
+(
+"II ("
+,
+round
+(
+nrow
+(rightbottom)
+/
+nrow
+(expr),
+2
+)
+*
+100
+,
+"%)"
+)
+#------------#
+# 计算相关性 #
+# Calculate correlation #
+#----------------#
+cor
+<-
+cor.test
+(expr
+$
+CD274,expr
+$
+CD8A,
+method =
+"pearson"
+)
+# 皮尔森相关性检验
+r
+<-
+round
+(cor
+$
+estimate,
+2
+)
+p
+<-
+ifelse
+(cor
+$
+p.value
+<
+0.001
+,
+" < 0.001"
+,
+paste0
+(
+" = "
+,
+round
+(cor
+$
+p.value)))
+# p值显示为文本
+#------------------------#
+# 计算线性回归以及置信域 #
+# Calculate linear regression and confidence region #
+#------------------------#
+reg
+<-
+lm
+(CD8A
+~
+CD274,
+data=
+expr[
+order
+(expr
+$
+CD274),])
+# 注意要按照x轴排序  # Note that the order should be sorted according to the x-axis
+ci
+<-
+as.data.frame
+(
+predict
+(reg,
+newdata =
+expr[
+order
+(expr
+$
+CD274),],
+interval =
+'confidence'
+))
+# 计算置信域 # Calculate confidence region
+6
+开始画图 Start
+drawing
+# 设置颜色
+# Set color
+blue
+<-
+"#4F81BD"
+red
+<-
+"#E53435"
+lblue
+<-
+"#5bc0eb"
+dblue
+<-
+"#1d00ff"
+pink
+<-
+"#FF7FBF"
+# 计算边界
+# Calculate the boundary
+ylim
+<-
+range
+(expr
+$
+CD8A)
+# 计算y轴边界 # Calculate the y-axis boundary
+xlim
+<-
+range
+(expr
+$
+CD274)
+# 计算x轴边界 # Calculate the x-axis boundary
+# 生成包含癌症类型的PDF文件名
+# Generate PDF filename with cancer type
+pdf_filename
+<-
+paste0
+(
+"complex correlation with logrank score_"
+, cancer_type,
+".pdf"
+)
+# 保存pdf图像 # Save pdf image
+pdf
+(pdf_filename,
+width =
+6
+,
+height =
+6
+)
+# 设置画面布局，相同数字代表同一区块，数字越多代表该区块所占面积越大
+# Set the screen layout, the same number represents the same block, the more numbers represent the larger area of the block
+layout
+(
+matrix
+(
+c
+(
+1
+,
+1
+,
+1
+,
+1
+,
+2
+,
+3
+,
+3
+,
+3
+,
+3
+,
+4
+,
+3
+,
+3
+,
+3
+,
+3
+,
+4
+,
+3
+,
+3
+,
+3
+,
+3
+,
+4
+,
+3
+,
+3
+,
+3
+,
+3
+,
+4
+),
+byrow =
+T,
+nrow =
+5
+))
+#--------------------------------------------#
+# 画布区域1：添加x轴相关的logrank test score #
+# Canvas area 1: Add x-axis related logrank test score #
+#--------------------------------------------#
+par
+(
+bty=
+"n"
+,
+mgp =
+c
+(
+2
+,
+0.5
+,
+0
+),
+mar =
+c
+(
+0.6
+,
+4.1
+,
+2.1
+,
+0
+),
+tcl=
+-
+.
+25
+,
+xpd =
+T)
+# 注意mar参数要和其他区域匹配，分别显示图像为下，左，上，右预留的位置；xpd允许箭头超出图像范围
+# Note that the mar parameter must match other regions, and the image is displayed as the reserved position for the bottom, left, top, and right respectively; xpd allows the arrow to exceed the image range
+plot
+(
+NULL
+,
+NULL
+,
+xlim =
+xlim,
+ylim =
+c
+(
+0
+,
+max
+(logrank.CD274
+$
+CD274.U)
++
+5
+),
+# y轴额外空余一些距离放箭头
+xaxt =
+"n"
+,
+yaxt =
+"n"
+,
+ann=
+FALSE
+)
+# 不显示坐标轴
+# 这里不能使用barplot原因在于x轴的间隔并不固定，其实barplot本身本身是rect函数的一种wrapper，所以这里用rect函数绘制条形图
+# The reason why barplot cannot be used here is that the interval of the x-axis is not fixed. In fact, barplot itself is a wrapper of the rect function, so the rect function is used here to draw a bar chart
+rect
+(
+xleft=
+logrank.CD274[
+order
+(logrank.CD274
+$
+CD274),
+"CD274"
+]
+-
+0.01
+,
+ybottom=
+0
+,
+xright=
+logrank.CD274[
+order
+(logrank.CD274
+$
+CD274),
+"CD274"
+]
++
+0.01
+,
+ytop=
+logrank.CD274[
+order
+(logrank.CD274
+$
+CD274),
+"CD274.U"
+],
+col =
+"black"
+)
+# 在peak处添加箭头
+# Add arrows at peak
+Arrows
+(peak.CD274,peak.CD274.score
++
+5
+,
+peak.CD274,peak.CD274.score
++
+3
+,
+arr.length =
+0.2
+,
+lwd =
+2
+,
+col =
+blue,
+arr.type =
+"triangle"
+)
+#------------------------#
+# 画布区域2：填充空白画布#
+# Canvas area 2: Fill the blank canvas#
+#------------------------#
+par
+(
+bty=
+"n"
+,
+mgp =
+c
+(
+2
+,
+0.5
+,
+0
+),
+mar =
+c
+(
+4.1
+,
+4.1
+,
+0
+,
+0
+),
+tcl=
+-
+.
+25
+)
+plot
+(
+0
+,
+0
+,
+col =
+"white"
+,
+xaxt =
+"n"
+,
+yaxt =
+"n"
+,
+xlab =
+""
+,
+ylab =
+""
+)
+#----------------------#
+# 画布区域3：相关性主图#
+# Canvas area 3: Correlation main graph#
+#----------------------#
+par
+(
+bty=
+"o"
+,
+mgp =
+c
+(
+2
+,
+0.5
+,
+0
+),
+mar =
+c
+(
+4.1
+,
+4.1
+,
+0
+,
+0
+),
+tcl =
+-
+.
+25
+,
+font.axis =
+2
+,
+las =
+1
+)
+# 注意坐标轴刻度均水平 # Note that the axis scale is horizontal
+par
+(
+xpd=
+F)
+# 绘制所有样本
+# Draw all samples
+all_samples
+<-
+rownames
+(expr)
+# 检查是否有MSI信息
+# Check if MSI information exists
+if
+(
+exists
+(
+"has_msi"
+)
+&&
+has_msi
+&&
+length
+(msi.sam)
+>
+0
+) {
+# 有MSI信息，按MSI状态绘制
+# Has MSI information, draw by MSI status
+samples_without_msi
+<-
+setdiff
+(all_samples,
+c
+(mss.sam, msi.sam))
+# 如果没有MSI信息的样本存在，先绘制它们
+# If samples without MSI information exist, draw them first
+if
+(
+length
+(samples_without_msi)
+>
+0
+) {
+plot
+(expr[samples_without_msi,
+"CD274"
+], expr[samples_without_msi,
+"CD8A"
+],
+ylim =
+ylim,
+xlim =
+xlim,
+xlab =
+expression
+(
+italic
+(CD274)
+~
+"(PD-L1) Gene Expression"
+),
+# 注意斜体 # Note the italics
+ylab =
+expression
+(
+italic
+(CD8A)
+~
+" Gene Expression"
+),
+main =
+""
+,
+# 注意斜体 # Note the italics
+cex.lab =
+1.8
+,
+# 坐标轴文字大小 # Axis text size
+cex.axis =
+1.4
+,
+# 坐标轴刻度大小 # Axis scale size
+col=
+"grey80"
+,
+cex =
+0.8
+,
+type =
+"p"
+,
+pch =
+19
+)
+# 然后添加MSS样本（覆盖在上面）
+# Then add MSS samples (on top)
+if
+(
+length
+(mss.sam)
+>
+0
+) {
+points
+(expr[mss.sam,
+"CD274"
+], expr[mss.sam,
+"CD8A"
+],
+col=
+"grey40"
+,
+cex =
+1.2
+,
+pch =
+19
+)
+# 圆形为MSS # Circle is MSS
+}
+}
+else
+{
+# 如果所有样本都有MSI信息，直接绘制MSS样本
+# If all samples have MSI information, directly draw MSS samples
+if
+(
+length
+(mss.sam)
+>
+0
+) {
+plot
+(expr[mss.sam,
+"CD274"
+], expr[mss.sam,
+"CD8A"
+],
+ylim =
+ylim,
+xlim =
+xlim,
+xlab =
+expression
+(
+italic
+(CD274)
+~
+"(PD-L1) Gene Expression"
+),
+# 注意斜体 # Note the italics
+ylab =
+expression
+(
+italic
+(CD8A)
+~
+" Gene Expression"
+),
+main =
+""
+,
+# 注意斜体 # Note the italics
+cex.lab =
+1.8
+,
+# 坐标轴文字大小 # Axis text size
+cex.axis =
+1.4
+,
+# 坐标轴刻度大小 # Axis scale size
+col=
+"grey40"
+,
+cex =
+1.2
+,
+type =
+"p"
+,
+pch =
+19
+)
+# 圆形为MSS # Circle is MSS
+}
+}
+# 添加MSI样本 # Add MSI samples
+if
+(
+length
+(msi.sam)
+>
+0
+) {
+points
+(expr[msi.sam,
+"CD274"
+], expr[msi.sam,
+"CD8A"
+],
+col=
+"black"
+,
+cex =
+2
+,
+# 三角形稍大 # The triangle is slightly larger
+pch =
+17
+)
+# 三角形为MSI # The triangle is MSI
+}
+}
+else
+{
+# 没有MSI信息，绘制所有样本为灰色点
+# No MSI information, draw all samples as gray points
+plot
+(expr[all_samples,
+"CD274"
+], expr[all_samples,
+"CD8A"
+],
+ylim =
+ylim,
+xlim =
+xlim,
+xlab =
+expression
+(
+italic
+(CD274)
+~
+"(PD-L1) Gene Expression"
+),
+# 注意斜体 # Note the italics
+ylab =
+expression
+(
+italic
+(CD8A)
+~
+" Gene Expression"
+),
+main =
+""
+,
+# 注意斜体 # Note the italics
+cex.lab =
+1.8
+,
+# 坐标轴文字大小 # Axis text size
+cex.axis =
+1.4
+,
+# 坐标轴刻度大小 # Axis scale size
+col=
+"grey40"
+,
+cex =
+1.2
+,
+type =
+"p"
+,
+pch =
+19
+)
+}
+# 添加中位数 # Add median
+abline
+(
+h =
+median
+(expr
+$
+CD8A),
+lty =
+2
+,
+col =
+"grey60"
+,
+lwd =
+2
+)
+abline
+(
+v =
+median
+(expr
+$
+CD274),
+lty =
+2
+,
+col =
+"grey60"
+,
+lwd =
+2
+)
+# 添加logrank peak对应的表达值
+# Add the expression value
+abline
+(
+v =
+peak.CD274,
+lty =
+2
+,
+col =
+blue,
+lwd =
+2
+)
+abline
+(
+h =
+peak.CD8A,
+lty =
+2
+,
+col =
+blue,
+lwd =
+2
+)
+# 添加相关性
+# 添加回归线 (由于例文并未布满整个画布，所以这里不使用abline)
+# Add correlation
+# Add regression line (since the example does not fill the entire canvas, abline is not used here)
+lines
+(
+x =
+xlim,
+y =
+xlim
+*
+reg
+$
+coefficients[
+2
+]
++
+reg
+$
+coefficients[
+1
+],
+lwd =
+2
+)
+# 添加置信带
+# Add confidence band
+polygon
+(
+round
+(
+c
+(
+sort
+(expr
+$
+CD274),
+rev
+(
+sort
+(expr
+$
+CD274))),
+2
+),
+round
+(
+c
+(ci
+$
+lwr,
+rev
+(ci
+$
+upr)),
+2
+),
+col=
+ggplot2
+::
+alpha
+(
+"grey70"
+,
+0.6
+),
+border=
+NA
+)
+# 添加相关性文本
+# Add correlation text
+text
+(
+2
+,
+0
+,
+adj =
+0
+,
+bquote
+(
+~
+italic
+(r)
+~
+" = "
+~
+.(r)
+~
+", "
+~
+italic
+(P)
+~
+.(p)),
+cex =
+1.6
+)
+# 注意斜体
+# 添加样本百分比（基于实际数据范围动态计算位置）
+# Add sample percentage (calculate position dynamically based on actual data range)
+# 计算每个象限的中心位置
+# Calculate the center position of each quadrant
+xmin
+<-
+par
+(
+"usr"
+)[
+1
+]
+xmax
+<-
+par
+(
+"usr"
+)[
+2
+]
+ymin
+<-
+par
+(
+"usr"
+)[
+3
+]
+ymax
+<-
+par
+(
+"usr"
+)[
+4
+]
+# 象限I (leftbottom): 左下 - CD274 < peak, CD8A < peak
+# Quadrant I (leftbottom): bottom left - CD274 < peak, CD8A < peak
+text
+(xmin
++
+(peak.CD274
+-
+xmin)
+/
+2
+, ymin
++
+(peak.CD8A
+-
+ymin)
+/
+2
+,
+bquote
+(
+bold
+(.(leftbottom.pct))),
+cex =
+1.6
+,
+col =
+lblue)
+# 象限II (rightbottom): 右下 - CD274 >= peak, CD8A < peak
+# Quadrant II (rightbottom): bottom right - CD274 >= peak, CD8A < peak
+text
+(peak.CD274
++
+(xmax
+-
+peak.CD274)
+/
+2
+, ymin
++
+(peak.CD8A
+-
+ymin)
+/
+2
+,
+bquote
+(
+bold
+(.(rightbottom.pct))),
+cex =
+1.6
+,
+col =
+pink)
+# 象限III (lefttop): 左上 - CD274 < peak, CD8A >= peak
+# Quadrant III (lefttop): top left - CD274 < peak, CD8A >= peak
+text
+(xmin
++
+(peak.CD274
+-
+xmin)
+/
+2
+, peak.CD8A
++
+(ymax
+-
+peak.CD8A)
+/
+2
+,
+bquote
+(
+bold
+(.(lefttop.pct))),
+cex =
+1.6
+,
+col =
+dblue)
+# 象限IV (righttop): 右上 - CD274 >= peak, CD8A >= peak
+# Quadrant IV (righttop): top right - CD274 >= peak, CD8A >= peak
+text
+(peak.CD274
++
+(xmax
+-
+peak.CD274)
+/
+2
+, peak.CD8A
++
+(ymax
+-
+peak.CD8A)
+/
+2
+,
+bquote
+(
+bold
+(.(righttop.pct))),
+cex =
+1.6
+,
+col =
+red)
+# 添加图例
+# 确定图片边界（如果之前没有定义，在这里定义）
+# Add legend
+# Determine the image boundary (if not already defined, define here)
+if
+(
+!
+exists
+(
+"xmin"
+)
+||
+!
+exists
+(
+"xmax"
+)
+||
+!
+exists
+(
+"ymin"
+)
+||
+!
+exists
+(
+"ymax"
+)) {
+xmin
+<-
+par
+(
+"usr"
+)[
+1
+]
+xmax
+<-
+par
+(
+"usr"
+)[
+2
+]
+ymin
+<-
+par
+(
+"usr"
+)[
+3
+]
+ymax
+<-
+par
+(
+"usr"
+)[
+4
+]
+}
+# 如果有MSI信息，添加图例
+# If MSI information exists, add legend
+if
+(
+exists
+(
+"has_msi"
+)
+&&
+has_msi
+&&
+length
+(msi.sam)
+>
+0
+) {
+# 确定图例大小
+# Determine the legend size
+lgd
+<-
+legend
+(
+x =
+mean
+(
+c
+(xmin,xmax)),
+y =
+mean
+(
+c
+(ymin,ymax)),
+legend =
+c
+(
+"MSI"
+,
+"MSS"
+),
+col =
+c
+(
+"black"
+,
+"grey40"
+),
+pch =
+c
+(
+17
+,
+19
+),
+cex =
+1.5
+,
+border =
+NA
+,
+title =
+expression
+(
+bold
+(
+"MSI Status"
+)),
+y.intersp =
+1
+,
+x.intersp =
+0.8
+,
+bty =
+"o"
+,
+plot =
+F)
+# 定位图例悬浮在右下角（不同于bottomright）
+# Position the legend to float in the lower right corner (different from bottomright)
+legend
+(
+x =
+xmax
+-
+lgd
+$
+rect
+$
+w
+-
+0.1
+,
+y =
+ymin
++
+lgd
+$
+rect
+$
+h
++
+0.1
+,
+legend =
+c
+(
+"MSI"
+,
+"MSS"
+),
+col =
+c
+(
+"black"
+,
+"grey40"
+),
+pch =
+c
+(
+17
+,
+19
+),
+cex =
+1.5
+,
+border =
+NA
+,
+title =
+expression
+(
+bold
+(
+"MSI Status"
+)),
+y.intersp =
+1
+,
+x.intersp =
+0.8
+,
+bty =
+"o"
+,
+plot =
+T)
+}
+#--------------------------------------------#
+# 画布区域4：添加y轴相关的logrank test score #
+# Canvas area 4: Add y-axis related logrank test score #
+#--------------------------------------------#
+par
+(
+bty=
+"n"
+,
+mgp =
+c
+(
+2
+,
+0.5
+,
+0
+),
+mar =
+c
+(
+4.1
+,
+0.6
+,
+0
+,
+2.1
+),
+tcl=
+-
+.
+25
+,
+xpd =
+T)
+plot
+(
+NULL
+,
+NULL
+,
+xlim =
+c
+(
+0
+,
+max
+(logrank.CD8A
+$
+CD8A.U)
++
+5
+),
+ylim =
+ylim,
+xaxt =
+"n"
+,
+yaxt =
+"n"
+,
+ann=
+FALSE
+)
+rect
+(
+xleft=
+0
+,
+ybottom=
+logrank.CD8A[
+order
+(logrank.CD8A
+$
+CD8A),
+"CD8A"
+]
+-
+0.01
+,
+xright=
+logrank.CD8A[
+order
+(logrank.CD8A
+$
+CD8A),
+"CD8A.U"
+],
+ytop=
+logrank.CD8A[
+order
+(logrank.CD8A
+$
+CD8A),
+"CD8A"
+]
++
+0.01
+,
+col =
+"black"
+)
+Arrows
+(peak.CD8A.score
++
+5
+,peak.CD8A,
+peak.CD8A.score
++
+3
+,peak.CD8A,
+arr.length =
+0.2
+,
+lwd =
+2
+,
+col =
+blue,
+arr.type =
+"triangle"
+)
+# 关闭图形句柄
+#Close graphics handle
+invisible
+(
+dev.off
+())
+Complex correlation with logrank score
+7
+Session Info
+sessionInfo
+()

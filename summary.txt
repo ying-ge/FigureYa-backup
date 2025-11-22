@@ -7,6 +7,7 @@ RMD Render Summary
 [SKIPPED] - ./FigureYa260CNV/FigureYa260CNV.Rmd (Not listed in auto_Knit_online.txt)
 [SKIPPED] - ./FigureYa194pySCENIC/FigureYa194pySCENIC.Rmd (Not listed in auto_Knit_online.txt)
 [SUCCESS] - ./FigureYa321volcanoSE/FigureYa321volcanoSE.Rmd
+[SKIPPED] - ./FigureYa143survCor_update/FigureYa143survCor_update.Rmd (Not listed in auto_Knit_online.txt)
 [SKIPPED] - ./FigureYa177RNAvelocity/scripts/s2_runCCA.Rmd (Not listed in auto_Knit_online.txt)
 [SKIPPED] - ./FigureYa177RNAvelocity/scripts/s5_DEG.Rmd (Not listed in auto_Knit_online.txt)
 [SKIPPED] - ./FigureYa177RNAvelocity/scripts/s1_prepare.Rmd (Not listed in auto_Knit_online.txt)
@@ -61,7 +62,6 @@ RMD Render Summary
 [SKIPPED] - ./FigureYa113MutSigCV/FigureYa113MutSigCV.Rmd (Not listed in auto_Knit_online.txt)
 [SKIPPED] - ./FigureYa7PSM/FigureYa7PSM.Rmd (Not listed in auto_Knit_online.txt)
 [SKIPPED] - ./FigureYa164PCA3D/FigureYa164PCA3D.Rmd (Not listed in auto_Knit_online.txt)
-[SKIPPED] - ./FigureYa143survCor/FigureYa143survCor.Rmd (Not listed in auto_Knit_online.txt)
 [SKIPPED] - ./FigureYa206scHeatmap/FigureYa206scHeatmap.Rmd (Not listed in auto_Knit_online.txt)
 [SKIPPED] - ./FigureYa253panGSEA/FigureYa253panGSEA.Rmd (Not listed in auto_Knit_online.txt)
 [SKIPPED] - ./FigureYa167TumorIndex/FigureYa167TumorIndex.Rmd (Not listed in auto_Knit_online.txt)
@@ -99,13 +99,25 @@ RMD Render Summary
 [SKIPPED] - ./FigureYa44profile/FigureYa44profile.Rmd (Not listed in auto_Knit_online.txt)
 [FAILED] - ./FigureYa92immune_gene_update/FigureYa92immune_gene_update.Rmd
 --- Error Log for ./FigureYa92immune_gene_update/FigureYa92immune_gene_update.Rmd ---
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (metaBMA)
+
+The downloaded source packages are in
+	'/tmp/RtmpiaUWjy/downloaded_packages'
 Error in `library()`:
 ! there is no package called 'ggstatsplot'
 Backtrace:
     ▆
  1. └─base::library(ggstatsplot)
 
-Quitting from FigureYa92immune_gene_update.Rmd:72-82 [unnamed-chunk-1]
+Quitting from FigureYa92immune_gene_update.Rmd:72-90 [unnamed-chunk-1]
 Execution halted
 -----------------------------------
 [SKIPPED] - ./FigureYa87fish/FigureYa87fish.Rmd (Not listed in auto_Knit_online.txt)
@@ -200,7 +212,7 @@ Error:
   Bad credentials
 Backtrace:
     ▆
- 1. └─remotes::install_github("zzwch/crosslink", build_vignettes = TRUE)
+ 1. └─remotes::install_github("zzwch/crosslink", build_vignettes = FALSE)
  2.   └─remotes:::install_remotes(...)
  3.     └─base::tryCatch(...)
  4.       └─base (local) tryCatchList(expr, classes, parentenv, handlers)
@@ -228,20 +240,7 @@ Execution halted
 [SKIPPED] - ./FigureYa278heatmapPoints/FigureYa278heatmapPoints.Rmd (Not listed in auto_Knit_online.txt)
 [SKIPPED] - ./FigureYa285scRNA_monocle/FigureYa285scRNA_monocle.Rmd (Not listed in auto_Knit_online.txt)
 [SKIPPED] - ./FigureYa80GOclustering/FigureYa80GOclustering.Rmd (Not listed in auto_Knit_online.txt)
-[FAILED] - ./FigureYa259circLink/FigureYa259circLink.Rmd
---- Error Log for ./FigureYa259circLink/FigureYa259circLink.Rmd ---
-Error in `source()`:
-! install_dependencies.R:7:51: unexpected ')'
-6: options("repos" = c(CRAN = "https://cloud.r-project.org/"))
-7: options(BioC_mirror = "https://bioconductor.org/"))
-                                                     ^
-Backtrace:
-    ▆
- 1. └─base::source("install_dependencies.R")
-
-Quitting from FigureYa259circLink.Rmd:68-88 [unnamed-chunk-1]
-Execution halted
------------------------------------
+[SUCCESS] - ./FigureYa259circLink/FigureYa259circLink.Rmd
 [SKIPPED] - ./FigureYa35batch_bestSeparationV3_update/FigureYa35batch_bestSeparationV3_update.Rmd (Not listed in auto_Knit_online.txt)
 [SUCCESS] - ./FigureYa62twoAxis/FigureYa62twoAxis.Rmd
 [SKIPPED] - ./FigureYa209batchEnrich/FigureYa209batchEnrich.Rmd (Not listed in auto_Knit_online.txt)

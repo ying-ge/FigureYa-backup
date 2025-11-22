@@ -1,11 +1,15 @@
 FigureYa256panelLink
+Code
+Show All Code
+Hide All Code
 FigureYa256panelLink
 Author(s)
 : Zongcheng Li
 Reviewer(s)
 : Ying Ge
 Date
-: 2025-10-21
+: 2025-11-21
+1
 Academic Citation
 If you use this code in your work or research, we kindly request that
 you cite our publication:
@@ -13,8 +17,10 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization
 Framework for Enhancing Biomedical Data Interpretation and Research
 Efficiency. iMetaMed.
 https://doi.org/10.1002/imm3.70005
-需求描述 | Requirement Description
-这个图有机会能实现吗？感觉很强大 | Is it possible to create such a
+2
+需求描述 Requirement
+Description
+这个图有机会能实现吗？感觉很强大 Is it possible to create such a
 powerful figure?
 From
 https://doi.org/10.1038/s42255-019-0045-8
@@ -31,7 +37,9 @@ type. Bar plots in right panel indicate the number of cancer types with
 positive correlation (drug-sensitive, magenta) and negative correlation
 (drug-resistant, green) between hypoxia score and drug response
 (Spearman’s correlation).
-应用场景 | Application Scenario
+3
+应用场景 Application
+Scenario
 跟FigureYa174squareCross和FigureYa199crosslink出自同一篇文章，这篇文章以连线著称。后面我们还会实现Figure
 3c。
 该图的优势是将左右两个panel连起来，同时展示多种特征，具体让哪个形状、颜色代表哪些特征，自己可灵活运用。
@@ -47,48 +55,223 @@ choose which shapes and colors represent which features.
 To create this figure, we improved the crosslink package, which will
 continue to add more interesting linking features. If you’re interested,
 you can check out the latest version and features at <
-环境设置 | Environment Setup
-source("install_dependencies.R") # 安装所需R包 | Install required R packages
-library(magrittr) # For %>%
-library(tidyverse) # For data manipulation
-library(ggplot2) # For plotting
-source("new-scale.R") # From R package ggnewscale
-library(rlang) # For %$%
-library(patchwork) # For combining ggplots
-library(crosslink) # For crosslink plotting
-source("crosslink.R") # From R package crosslink
-
-Sys.setenv(LANGUAGE = "en") # 显示英文报错信息 | Show error messages in English
-options(stringsAsFactors = FALSE) # 禁止chr转成factor | Disable automatic conversion of chr to factor
-自定义函数 | Custom Functions
-revLevels <- function(x, levels = NULL){
-  if(is.null(levels)) levels <- rev(sort(unique(x)))
-  return(factor(x, levels = levels))
+4
+环境设置 Environment
+Setup
+source
+(
+"install_dependencies.R"
+)
+# 安装所需R包 Install required R packages
+library
+(magrittr)
+# For %>%
+library
+(tidyverse)
+# For data manipulation
+library
+(ggplot2)
+# For plotting
+source
+(
+"new-scale.R"
+)
+# From R package ggnewscale
+library
+(rlang)
+# For %$%
+library
+(patchwork)
+# For combining ggplots
+library
+(crosslink)
+# For crosslink plotting
+source
+(
+"crosslink.R"
+)
+# From R package crosslink
+Sys.setenv
+(
+LANGUAGE =
+"en"
+)
+# 显示英文报错信息 Show error messages in English
+options
+(
+stringsAsFactors =
+FALSE
+)
+# 禁止chr转成factor Disable automatic conversion of chr to factor
+自定义函数 Custom Functions
+revLevels
+<-
+function
+(x,
+levels =
+NULL
+){
+if
+(
+is.null
+(levels)) levels
+<-
+rev
+(
+sort
+(
+unique
+(x)))
+return
+(
+factor
+(x,
+levels =
+levels))
 }
-输入文件 | Input Files
-# 加载左侧散点图的数据 | Load data for left scatter plot
-hypoxia <- read.csv("easy_input_hypoxia.csv") # 
-# 按自己的想法排序 | Sort as desired
-hypoxia$direction <- factor(hypoxia$direction, levels = c("high", "low"))
-hypoxia$omics <- factor(hypoxia$omics, levels = c("mRNA", "Protein", "Methylation", "Mutation", "CNV"))
-# 背景填充颜色的格子 | Grid for background fill
-practice <- read.csv("easy_input_practice.csv") 
-
-# 加载右侧柱状图的数据 | Load data for right bar plot
-drugAnn <- read.csv("easy_input_drugAnn.csv") #
-drugs <- drugAnn$drug
-
-# 加载左侧和右侧之间的连线数据 | Load data for links between left and right
-geneAnn <- read.csv("easy_input_geneAnn.csv") #
-genes <- unique(geneAnn$gene)
-
-# 设置右侧区域背景/文字/方括号的颜色 | Set colors for background/text/brackets in right area
-color_num <- length(unique(drugAnn$therapy))
-# 这里提供了充足的备选颜色 | Here are plenty of alternative colors
-mycolor <- c("red", "dodgerblue3", "darkorchid1", "darkorange",
-             "#223D6C","#D20A13","#088247","#FFD121","#11AA4D","#58CDD9","#7A142C","#5D90BA","#431A3D","#91612D","#6E568C","#E0367A","#D8D155","#64495D","#7CC767")[1:color_num]
-开始画图 | Start Plotting
-1. prepare left panel
+5
+输入文件 Input
+Files
+# 加载左侧散点图的数据 Load data for left scatter plot
+hypoxia
+<-
+read.csv
+(
+"easy_input_hypoxia.csv"
+)
+#
+# 按自己的想法排序 Sort as desired
+hypoxia
+$
+direction
+<-
+factor
+(hypoxia
+$
+direction,
+levels =
+c
+(
+"high"
+,
+"low"
+))
+hypoxia
+$
+omics
+<-
+factor
+(hypoxia
+$
+omics,
+levels =
+c
+(
+"mRNA"
+,
+"Protein"
+,
+"Methylation"
+,
+"Mutation"
+,
+"CNV"
+))
+# 背景填充颜色的格子 Grid for background fill
+practice
+<-
+read.csv
+(
+"easy_input_practice.csv"
+)
+# 加载右侧柱状图的数据 Load data for right bar plot
+drugAnn
+<-
+read.csv
+(
+"easy_input_drugAnn.csv"
+)
+#
+drugs
+<-
+drugAnn
+$
+drug
+# 加载左侧和右侧之间的连线数据 Load data for links between left and right
+geneAnn
+<-
+read.csv
+(
+"easy_input_geneAnn.csv"
+)
+#
+genes
+<-
+unique
+(geneAnn
+$
+gene)
+# 设置右侧区域背景/文字/方括号的颜色 Set colors for background/text/brackets in right area
+color_num
+<-
+length
+(
+unique
+(drugAnn
+$
+therapy))
+# 这里提供了充足的备选颜色 Here are plenty of alternative colors
+mycolor
+<-
+c
+(
+"red"
+,
+"dodgerblue3"
+,
+"darkorchid1"
+,
+"darkorange"
+,
+"#223D6C"
+,
+"#D20A13"
+,
+"#088247"
+,
+"#FFD121"
+,
+"#11AA4D"
+,
+"#58CDD9"
+,
+"#7A142C"
+,
+"#5D90BA"
+,
+"#431A3D"
+,
+"#91612D"
+,
+"#6E568C"
+,
+"#E0367A"
+,
+"#D8D155"
+,
+"#64495D"
+,
+"#7CC767"
+)[
+1
+:
+color_num]
+6
+开始画图 Start
+Plotting
+6.1
+1. prepare left
+panel
 “alterations of these genes at mRNA, protein, DNA methylation,
 mutation and SCNA levels based on hypoxia score-high
 (
@@ -103,179 +286,939 @@ molecular signatures.
 Filled cells
 indicate that the gene is a therapeutic
 target of clinical practice in the corresponding cancer type.
-ggplot() +
-  # grid tile 
-  geom_tile(
-    mapping = aes(cancer, gene %>% revLevels()),
-    data = expand_grid(cancer = hypoxia$cancer %>% unique(), 
-                       gene = hypoxia$gene %>% unique()),
-    fill = NA, color = "grey" # 画灰色格子 | draw grey grid
-    ) +
-  # fill tile 
-  geom_tile(
-    mapping = aes(cancer, gene, fill = direction),
-    data = hypoxia %>% filter(paste0(gene, "-", cancer) %in% practice$x),
-    alpha = 0.3 # 个别格子填充半透明的背景 | fill some grids with semi-transparent background
-    ) + 
-  geom_point(
-    mapping = aes(cancer, gene, color = direction, shape = omics),
-    data = hypoxia,
-    size = 3) + # 形状的大小 | size of shapes
-  scale_shape_manual(values = c(15:19)) + # 根据自己的喜好选择形状，这里用实心形状 | Choose shapes according to preference, here using solid shapes
-  scale_color_manual(values = c(low = "blue", high = "red")) +
-  scale_fill_manual(values = c(low = "blue", high = "red")) +
-  theme_void() +
-  theme(axis.text.x = element_text(angle = 90),
-        axis.text.y = element_text()) -> p_left
+ggplot
+()
++
+# grid tile
+geom_tile
+(
+mapping =
+aes
+(cancer, gene
+%>%
+revLevels
+()),
+data =
+expand_grid
+(
+cancer =
+hypoxia
+$
+cancer
+%>%
+unique
+(),
+gene =
+hypoxia
+$
+gene
+%>%
+unique
+()),
+fill =
+NA
+,
+color =
+"grey"
+# 画灰色格子 draw grey grid
+)
++
+# fill tile
+geom_tile
+(
+mapping =
+aes
+(cancer, gene,
+fill =
+direction),
+data =
+hypoxia
+%>%
+filter
+(
+paste0
+(gene,
+"-"
+, cancer)
+%in%
+practice
+$
+x),
+alpha =
+0.3
+# 个别格子填充半透明的背景 fill some grids with semi-transparent background
+)
++
+geom_point
+(
+mapping =
+aes
+(cancer, gene,
+color =
+direction,
+shape =
+omics),
+data =
+hypoxia,
+size =
+3
+)
++
+# 形状的大小 size of shapes
+scale_shape_manual
+(
+values =
+c
+(
+15
+:
+19
+))
++
+# 根据自己的喜好选择形状，这里用实心形状 Choose shapes according to preference, here using solid shapes
+scale_color_manual
+(
+values =
+c
+(
+low =
+"blue"
+,
+high =
+"red"
+))
++
+scale_fill_manual
+(
+values =
+c
+(
+low =
+"blue"
+,
+high =
+"red"
+))
++
+theme_void
+()
++
+theme
+(
+axis.text.x =
+element_text
+(
+angle =
+90
+),
+axis.text.y =
+element_text
+())
+->
 p_left
-2. prepare right panel
-bracketData <- drugAnn %>%
-  select(drug, therapy, signaling) %>%
-  unique() %>%
-  arrange(desc(drug), signaling) %$%
-  data.frame(min = duplicated(signaling) %>% not %>% which,
-             max = c((duplicated(signaling) %>% not %>% which)[-1] -1, length(signaling)),
-             signaling = signaling[duplicated(signaling) %>% not],
-             therapy = therapy[duplicated(signaling) %>% not]
-             )
-rectData <- drugAnn %>%
-  select(drug, therapy) %>%
-  unique() %>%
-  arrange(desc(drug)) %$%
-  data.frame(min = duplicated(therapy) %>% not %>% which,
-             max = c((duplicated(therapy) %>% not %>% which)[-1] -1, length(therapy)),
-             therapy = therapy[duplicated(therapy) %>% not]
-             )
-
-ggplot(
-  mapping = aes(value, drug),
-    data = drugAnn %>%
-     select(drug, n_sensitive, n_resistant) %>%
-     mutate(drug = drug %>% revLevels()) %>%
-     gather(key = "cat", value = "value", -drug)
-) +
-  ggnewscale::new_scale_fill() +
-  geom_rect(
-    mapping = aes(xmin = -2, xmax = 12, ymin = min-0.5, ymax= max+0.5, fill = therapy),
-    data = rectData,
-    alpha = 0.2, inherit.aes = F
-  ) +
-  scale_color_manual(values = mycolor) +
-  scale_fill_manual(values = mycolor) +
-  
-  ggnewscale::new_scale_fill() +
-  geom_bar(
-    mapping = aes(fill = cat),
-    stat = "identity"
-  ) +
-  scale_fill_manual(values = c("magenta", "green")) + # bar的颜色 | colors of bars
-  
-  # 画方括号 | draw brackets
-  geom_segment(
-    mapping = aes(x = 9, xend = 9, y = min, yend = max, color = therapy),
-    data = bracketData, inherit.aes = F
-  ) +
-  geom_segment(
-    mapping = aes(x = 9-0.1, xend = 9, y = min, yend = min, color = therapy),
-    data = bracketData, inherit.aes = F
-  ) +
-  geom_segment(
-    mapping = aes(x = 9-0.1, xend = 9, y = max, yend = max, color = therapy),
-    data = bracketData, inherit.aes = F
-  ) +
-  
-  # 写右侧文字 | write text on the right side
-  geom_text(
-    mapping = aes(x = 9, y = (max+min)/2, label = signaling
-                  #, color = therapy # pathway的文字颜色 | color of pathway text
-                  ),
-    data = bracketData,
-    hjust = -0.1, inherit.aes = F
-  ) +
-  
-  # 写左侧文字 | write text on the left side
-  geom_text(
-    mapping = aes(x = -1, drug %>% revLevels(), label = drug, color = therapy),
-    data = drugAnn, inherit.aes = F
-  ) +
-  
-  #xlim(-2, 12) + 
-  theme_void() + 
-  theme(axis.text.x = element_text(),
-        axis.ticks.x = element_line(), 
-        axis.title.x = element_text(),
-        axis.line.x = element_line()) +
-  labs(x = "# Cancers") -> p_right
+p_left
+6.2
+2. prepare right
+panel
+bracketData
+<-
+drugAnn
+%>%
+select
+(drug, therapy, signaling)
+%>%
+unique
+()
+%>%
+arrange
+(
+desc
+(drug), signaling)
+%$%
+data.frame
+(
+min =
+duplicated
+(signaling)
+%>%
+not
+%>%
+which,
+max =
+c
+((
+duplicated
+(signaling)
+%>%
+not
+%>%
+which)[
+-
+1
+]
+-
+1
+,
+length
+(signaling)),
+signaling =
+signaling[
+duplicated
+(signaling)
+%>%
+not],
+therapy =
+therapy[
+duplicated
+(signaling)
+%>%
+not]
+)
+rectData
+<-
+drugAnn
+%>%
+select
+(drug, therapy)
+%>%
+unique
+()
+%>%
+arrange
+(
+desc
+(drug))
+%$%
+data.frame
+(
+min =
+duplicated
+(therapy)
+%>%
+not
+%>%
+which,
+max =
+c
+((
+duplicated
+(therapy)
+%>%
+not
+%>%
+which)[
+-
+1
+]
+-
+1
+,
+length
+(therapy)),
+therapy =
+therapy[
+duplicated
+(therapy)
+%>%
+not]
+)
+ggplot
+(
+mapping =
+aes
+(value, drug),
+data =
+drugAnn
+%>%
+select
+(drug, n_sensitive, n_resistant)
+%>%
+mutate
+(
+drug =
+drug
+%>%
+revLevels
+())
+%>%
+gather
+(
+key =
+"cat"
+,
+value =
+"value"
+,
+-
+drug)
+)
++
+ggnewscale
+::
+new_scale_fill
+()
++
+geom_rect
+(
+mapping =
+aes
+(
+xmin =
+-
+2
+,
+xmax =
+12
+,
+ymin =
+min
+-0.5
+,
+ymax=
+max
++0.5
+,
+fill =
+therapy),
+data =
+rectData,
+alpha =
+0.2
+,
+inherit.aes =
+F
+)
++
+scale_color_manual
+(
+values =
+mycolor)
++
+scale_fill_manual
+(
+values =
+mycolor)
++
+ggnewscale
+::
+new_scale_fill
+()
++
+geom_bar
+(
+mapping =
+aes
+(
+fill =
+cat),
+stat =
+"identity"
+)
++
+scale_fill_manual
+(
+values =
+c
+(
+"magenta"
+,
+"green"
+))
++
+# bar的颜色 colors of bars
+# 画方括号 draw brackets
+geom_segment
+(
+mapping =
+aes
+(
+x =
+9
+,
+xend =
+9
+,
+y =
+min,
+yend =
+max,
+color =
+therapy),
+data =
+bracketData,
+inherit.aes =
+F
+)
++
+geom_segment
+(
+mapping =
+aes
+(
+x =
+9
+-0.1
+,
+xend =
+9
+,
+y =
+min,
+yend =
+min,
+color =
+therapy),
+data =
+bracketData,
+inherit.aes =
+F
+)
++
+geom_segment
+(
+mapping =
+aes
+(
+x =
+9
+-0.1
+,
+xend =
+9
+,
+y =
+max,
+yend =
+max,
+color =
+therapy),
+data =
+bracketData,
+inherit.aes =
+F
+)
++
+# 写右侧文字 write text on the right side
+geom_text
+(
+mapping =
+aes
+(
+x =
+9
+,
+y =
+(max
++
+min)
+/
+2
+,
+label =
+signaling
+#, color = therapy # pathway的文字颜色 color of pathway text
+),
+data =
+bracketData,
+hjust =
+-
+0.1
+,
+inherit.aes =
+F
+)
++
+# 写左侧文字 write text on the left side
+geom_text
+(
+mapping =
+aes
+(
+x =
+-
+1
+, drug
+%>%
+revLevels
+(),
+label =
+drug,
+color =
+therapy),
+data =
+drugAnn,
+inherit.aes =
+F
+)
++
+#xlim(-2, 12) +
+theme_void
+()
++
+theme
+(
+axis.text.x =
+element_text
+(),
+axis.ticks.x =
+element_line
+(),
+axis.title.x =
+element_text
+(),
+axis.line.x =
+element_line
+())
++
+labs
+(
+x =
+"# Cancers"
+)
+->
 p_right
-3. crosslink combining left and right panels
-# 先创建crosslink对象并进行变换 | First create crosslink object and perform transformations
-cl_obj <- crosslink(
-  data.frame(
-    key = c(genes, drugAnn$drug),
-    therapy = c(rep(NA, length(genes)), drugAnn$therapy),
-    by = c(rep("Gene", length(genes)),
-           rep("Drug", length(drugAnn$drug)))
-    ), 
-  geneAnn %>% mutate(therapy = drugAnn$therapy[match(drug ,drugAnn$drug)]), 
-  cross.by = "by",
-  key.by = "key",
-  src.by = "gene",
-  tar.by = "drug") %>% 
-    tf_flip("y") %>%  # 先翻转 | First flip
-    tf_scale(scale.x = 1, scale.y = 1.4, x = 0.5, y = 0.5, relative = TRUE, crosses = "Drug")  # 然后缩放右侧
- 
-# 再进行绘图 | Then plot
-cl_plot(
-  cl_obj,  # 使用变换后的对象 | Use the transformed object
-  link = list(mapping = aes(color = therapy),
-              scale = list(color = scale_color_manual(values = mycolor))),
-  cross = NA,
-  label = NA,
-  add = theme_void(),
-  annotation = cl_annotation(
-    left = p_left, left.by = "Gene", left.width = 2,
-    right = p_right, right.by = "Drug", right.width = 4
-  ))
-ggsave("panelLink.pdf", width = 10, height = 10)
-附：示例数据生成过程 | Example Data Generation Process
+p_right
+6.3
+3. crosslink
+combining left and right panels
+# 先创建crosslink对象并进行变换 First create crosslink object and perform transformations
+cl_obj
+<-
+crosslink
+(
+data.frame
+(
+key =
+c
+(genes, drugAnn
+$
+drug),
+therapy =
+c
+(
+rep
+(
+NA
+,
+length
+(genes)), drugAnn
+$
+therapy),
+by =
+c
+(
+rep
+(
+"Gene"
+,
+length
+(genes)),
+rep
+(
+"Drug"
+,
+length
+(drugAnn
+$
+drug)))
+),
+geneAnn
+%>%
+mutate
+(
+therapy =
+drugAnn
+$
+therapy[
+match
+(drug ,drugAnn
+$
+drug)]),
+cross.by =
+"by"
+,
+key.by =
+"key"
+,
+src.by =
+"gene"
+,
+tar.by =
+"drug"
+)
+%>%
+tf_flip
+(
+"y"
+)
+%>%
+# 先翻转 First flip
+tf_scale
+(
+scale.x =
+1
+,
+scale.y =
+1.4
+,
+x =
+0.5
+,
+y =
+0.5
+,
+relative =
+TRUE
+,
+crosses =
+"Drug"
+)
+# 然后缩放右侧
+# 再进行绘图 Then plot
+cl_plot
+(
+cl_obj,
+# 使用变换后的对象 Use the transformed object
+link =
+list
+(
+mapping =
+aes
+(
+color =
+therapy),
+scale =
+list
+(
+color =
+scale_color_manual
+(
+values =
+mycolor))),
+cross =
+NA
+,
+label =
+NA
+,
+add =
+theme_void
+(),
+annotation =
+cl_annotation
+(
+left =
+p_left,
+left.by =
+"Gene"
+,
+left.width =
+2
+,
+right =
+p_right,
+right.by =
+"Drug"
+,
+right.width =
+4
+))
+ggsave
+(
+"panelLink.pdf"
+,
+width =
+10
+,
+height =
+10
+)
+7
+附：示例数据生成过程
+Example Data Generation Process
 # Drug1-Drug20
 # Gene1-Gene30
 # Cancer1-Cancer10
-
-drugs <- paste0("Drug", 1:20 %>% format)
-genes <- paste0("Gene", 1:30 %>% format)
-cancers <- paste0("Cancer", 1:10 %>% format)
-
-set.seed(666)
-
-drugAnn <- data.frame(
-  drug = drugs,
-  therapy = rep(c("Immunotherapy", "Chemotherapy", "Hormone therapy", "Targeted therapy"), each = 5),
-  n_sensitive = sample(c(NA, 1:4), 20, replace = T),
-  n_resistant = sample(c(NA, 1:4), 20, replace = T),
-  signaling = paste0("Signaling", c(1, 2, 3, 3, 4, 5, 5, 6, 6,6, 7, 7, 7, 7, 7, 8, 9,9, 10, 10) %>% format))
-write.csv(drugAnn, "easy_input_drugAnn.csv", quote = F, row.names = F)
-
-geneAnn <- data.frame(
-  gene = c(genes, sample(genes, 10, replace = T)) %>% sort(),
-  drug = c(drugs, sample(drugs, 20, replace = T)) %>% sort()
-) %>% unique()
-write.csv(geneAnn, "easy_input_geneAnn.csv", quote = F, row.names = F)
-
-n_pairs <- 200
-hypoxia <- data.frame(
-  cancer = sample(cancers, n_pairs, replace = T),
-  gene = sample(genes, n_pairs, replace = T)
-) %>% unique()
-
-hypoxia %<>% 
-  mutate(
-    direction = sample(c("high", "low"), nrow(hypoxia), replace = T),
-    omics = sample(c("mRNA", "Protein", "Methylation", "Mutation", "CNV"), nrow(hypoxia), replace = T)
-    )
-write.csv(hypoxia, "easy_input_hypoxia.csv", quote = F, row.names = F)
-
-practice <- sample(paste0(hypoxia$gene, "-", hypoxia$cancer), 10, replace = T) %>% unique()
-write.csv(practice, "easy_input_practice.csv", quote = F, row.names = F)
+drugs
+<-
+paste0
+(
+"Drug"
+,
+1
+:
+20
+%>%
+format)
+genes
+<-
+paste0
+(
+"Gene"
+,
+1
+:
+30
+%>%
+format)
+cancers
+<-
+paste0
+(
+"Cancer"
+,
+1
+:
+10
+%>%
+format)
+set.seed
+(
+666
+)
+drugAnn
+<-
+data.frame
+(
+drug =
+drugs,
+therapy =
+rep
+(
+c
+(
+"Immunotherapy"
+,
+"Chemotherapy"
+,
+"Hormone therapy"
+,
+"Targeted therapy"
+),
+each =
+5
+),
+n_sensitive =
+sample
+(
+c
+(
+NA
+,
+1
+:
+4
+),
+20
+,
+replace =
+T),
+n_resistant =
+sample
+(
+c
+(
+NA
+,
+1
+:
+4
+),
+20
+,
+replace =
+T),
+signaling =
+paste0
+(
+"Signaling"
+,
+c
+(
+1
+,
+2
+,
+3
+,
+3
+,
+4
+,
+5
+,
+5
+,
+6
+,
+6
+,
+6
+,
+7
+,
+7
+,
+7
+,
+7
+,
+7
+,
+8
+,
+9
+,
+9
+,
+10
+,
+10
+)
+%>%
+format))
+write.csv
+(drugAnn,
+"easy_input_drugAnn.csv"
+,
+quote =
+F,
+row.names =
+F)
+geneAnn
+<-
+data.frame
+(
+gene =
+c
+(genes,
+sample
+(genes,
+10
+,
+replace =
+T))
+%>%
+sort
+(),
+drug =
+c
+(drugs,
+sample
+(drugs,
+20
+,
+replace =
+T))
+%>%
+sort
+()
+)
+%>%
+unique
+()
+write.csv
+(geneAnn,
+"easy_input_geneAnn.csv"
+,
+quote =
+F,
+row.names =
+F)
+n_pairs
+<-
+200
+hypoxia
+<-
+data.frame
+(
+cancer =
+sample
+(cancers, n_pairs,
+replace =
+T),
+gene =
+sample
+(genes, n_pairs,
+replace =
+T)
+)
+%>%
+unique
+()
+hypoxia
+%<>%
+mutate
+(
+direction =
+sample
+(
+c
+(
+"high"
+,
+"low"
+),
+nrow
+(hypoxia),
+replace =
+T),
+omics =
+sample
+(
+c
+(
+"mRNA"
+,
+"Protein"
+,
+"Methylation"
+,
+"Mutation"
+,
+"CNV"
+),
+nrow
+(hypoxia),
+replace =
+T)
+)
+write.csv
+(hypoxia,
+"easy_input_hypoxia.csv"
+,
+quote =
+F,
+row.names =
+F)
+practice
+<-
+sample
+(
+paste0
+(hypoxia
+$
+gene,
+"-"
+, hypoxia
+$
+cancer),
+10
+,
+replace =
+T)
+%>%
+unique
+()
+write.csv
+(practice,
+"easy_input_practice.csv"
+,
+quote =
+F,
+row.names =
+F)
+8
 Session Info
-sessionInfo()
+sessionInfo
+()

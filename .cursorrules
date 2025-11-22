@@ -141,7 +141,26 @@ If needed, you can further use the `web_scraper.py` file to scrape the web page 
 [X] 更新 `FigureYa321volcanoSE.Rmd` 绘图代码中的调色方案和几何图层配置
 [X] 提醒用户重新渲染核对效果
 
-## Current Task: 优化 GitHub Actions workflow 磁盘空间使用
+## Current Task: 修复 FigureYa143survCor.Rmd 的样本匹配和 Cox 回归问题
+
+任务描述：修复 `FigureYa143survCor.Rmd` 中的样本ID匹配问题（表达矩阵、生存数据和MSI数据的样本ID格式不一致）和 Cox 回归分析中的错误。
+
+计划步骤：
+[X] 修复 MSI 值的匹配逻辑（实际数据是 "NO"/"YES"，代码查找的是 "MSS"/"MSI-L"/"MSI-H"）
+[X] 实现样本ID后缀匹配（提取后9个字符 "-XXXX-01A" 进行匹配）
+[X] 修复数据合并逻辑，确保 expr、surv 和 msi_results 的样本顺序一致
+[X] 修复 Cox 回归分析中的缺失值处理
+[X] 测试完整渲染流程，确认所有步骤正常
+[X] 验证输出 HTML 文件生成成功
+
+修复总结：
+- MSI 值匹配：将代码改为同时匹配 "NO"/"YES" 和 "MSS"/"MSI-L"/"MSI-H"
+- 样本ID匹配：实现了后缀匹配逻辑，提取后9个字符进行跨数据集匹配
+- 数据对齐：统一使用表达矩阵的样本ID作为标准，更新生存数据和MSI数据的行名
+- 缺失值处理：添加了缺失值检查和过滤逻辑，确保 Cox 回归前数据完整
+- 结果：成功匹配115个共同样本，Cox回归和 cutp 函数正常工作，HTML文件成功生成（1.6MB）
+
+## Previous Task: 优化 GitHub Actions workflow 磁盘空间使用
 
 任务描述：解决 GitHub Actions workflow 运行时的磁盘空间不足问题（"No space left on device"）。
 

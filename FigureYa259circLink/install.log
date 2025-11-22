@@ -1,2 +1,13 @@
-Error: unexpected ')' in "options(BioC_mirror = "https://bioconductor.org/"))"
-Execution halted
+Starting R package installation...
+===========================================
+
+Installing CRAN packages...
+Package already installed: ggplot2 
+Package already installed: magrittr 
+Package already installed: tidyverse 
+Package already installed: rlang 
+Package already installed: patchwork 
+
+===========================================
+Package installation completed!
+You can now run your R scripts in this directory.

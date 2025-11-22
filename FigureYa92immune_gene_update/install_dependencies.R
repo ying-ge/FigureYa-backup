@@ -51,7 +51,7 @@ for (pkg in core_packages) {
 
 # Verify installations
 cat("\n3. Verifying installations...\n")
-required_packages <- c("data.table", "dplyr", "tidyr", "ggplot2")
+required_packages <- c("data.table", "dplyr", "tidyr", "ggstatsplot", "ggplot2")
 
 all_installed <- TRUE
 for (pkg in required_packages) {
@@ -60,6 +60,10 @@ for (pkg in required_packages) {
   } else {
     cat("✗", pkg, "is NOT installed\n")
     all_installed = FALSE
+    # 如果未安装，尝试再次安装
+    # If not installed, try to install again
+    cat("  Attempting to reinstall", pkg, "...\n")
+    safe_install(pkg)
   }
 }
 

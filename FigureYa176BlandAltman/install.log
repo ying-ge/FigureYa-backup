@@ -72,7 +72,7 @@ trying URL 'https://cloud.r-project.org/src/contrib/BlandAltmanLeh_0.3.1.tar.gz'
 * DONE (ggExtra)
 
 The downloaded source packages are in
-	‘/tmp/RtmpH4CFbr/downloaded_packages’
+	‘/tmp/Rtmpr22KOe/downloaded_packages’
 Successfully installed: BlandAltmanLeh 
 Installing CRAN package: MethComp 
 Installing package into ‘/home/runner/work/_temp/Library’
@@ -110,7 +110,7 @@ ERROR: configuration failed for package ‘rjags’
 * DONE (MethComp)
 
 The downloaded source packages are in
-	‘/tmp/RtmpH4CFbr/downloaded_packages’
+	‘/tmp/Rtmpr22KOe/downloaded_packages’
 Successfully installed: MethComp 
 Installing CRAN package: smatr 
 Installing package into ‘/home/runner/work/_temp/Library’
@@ -137,7 +137,7 @@ downloaded 52 KB
 * DONE (smatr)
 
 The downloaded source packages are in
-	‘/tmp/RtmpH4CFbr/downloaded_packages’
+	‘/tmp/Rtmpr22KOe/downloaded_packages’
 Successfully installed: smatr 
 Warning message:
 In install.packages(package_name, dependencies = TRUE) :

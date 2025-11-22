@@ -1080,12 +1080,12 @@
     "thumb": "gallery_compress/FigureYa142circosBar.webp"
   },
   {
-    "id": "main_FigureYa143survCor_FigureYa143survCor",
-    "title": "FigureYa143survCor/FigureYa143survCor.html",
-    "html": "FigureYa143survCor/FigureYa143survCor.html",
-    "text": "texts/main_FigureYa143survCor_FigureYa143survCor.txt",
-    "folder": "FigureYa143survCor",
-    "thumb": "gallery_compress/FigureYa143survCor.webp"
+    "id": "main_FigureYa143survCor_update_FigureYa143survCor_update",
+    "title": "FigureYa143survCor_update/FigureYa143survCor_update.html",
+    "html": "FigureYa143survCor_update/FigureYa143survCor_update.html",
+    "text": "texts/main_FigureYa143survCor_update_FigureYa143survCor_update.txt",
+    "folder": "FigureYa143survCor_update",
+    "thumb": "gallery_compress/FigureYa143survCor_update.webp"
   },
   {
     "id": "main_FigureYa144DiagHeatmap_FigureYa144DiagHeatmap",

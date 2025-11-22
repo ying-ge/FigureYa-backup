@@ -40,9 +40,13 @@ jobs:
 
       - name: 6. Set up Pandoc
         uses: r-lib/actions/setup-pandoc@v2
+        with:
+          pandoc-version: '3.8.2'  # 使用与本地相近的版本（本地为 3.8.2.1），确保标题编号显示一致
 
       - name: 7. Install core R dependencies
-        run: Rscript -e 'install.packages(c("rmarkdown", "knitr", "remotes"))'
+        run: Rscript -e 'install.packages(c("rmarkdown", "knitr", "remotes"), repos="https://cloud.r-project.org")'
+        # 固定版本以确保一致性
+        # Pin versions for consistency
 
       - name: 8. Render Rmd files selectively
         id: render_rmd

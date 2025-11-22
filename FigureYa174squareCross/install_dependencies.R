@@ -43,7 +43,7 @@ for (pkg in packages_to_install) {
 
 cat("\n===========================================\n")
 
-remotes::install_github("zzwch/crosslink", build_vignettes = TRUE)
+remotes::install_github("zzwch/crosslink", build_vignettes = FALSE)
 
 # 验证安装结果 / Verify installation results
 cat("验证安装结果:\n")
@@ -59,20 +59,3 @@ for (pkg in packages_to_install) {
     all_installed <- FALSE
   }
 }
-
-if (all_installed) {
-  cat("\n所有包已成功安装！\n")
-  cat("\nAll packages installed successfully!\n")
-  cat("您现在可以使用以下代码加载这些包：\n")
-  cat("You can now load these packages with the following code:\n")
-  cat("library(ggplot2)\n")
-  cat("library(aplot)\n") 
-  cat("library(dplyr)\n")
-  cat("library(scales)  # 包含rescale函数 / Contains rescale function\n")
-} else {
-  cat("\n部分包安装失败，请检查网络连接或手动安装。\n")
-  cat("\nSome packages failed to install, please check your network connection or install manually.\n")
-}
-
-cat("安装完成！\n")
-cat("Installation completed!\n")

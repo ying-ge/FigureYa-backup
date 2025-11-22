@@ -130,7 +130,7 @@ tar_dn_col <- "blue"
 
 ## 开始画图 Plotting
 
-### 1. 快速预览 Take a glance of the data
+### 快速预览 Take a glance of the data
 
 > 重要提示！节点和边数据中不能包含列名 'node'、'cross'、'node.type'、'x'、'y'、'degree'！
 
@@ -152,7 +152,7 @@ toy <- crosslink(
 cl_plot(toy)
 ```
 
-### 2. 按通路将靶点转换为圆形分布 Transform the targets into circle by pathways
+### 按通路将靶点转换为圆形分布 Transform the targets into circle by pathways
 
 ```{r}
 # 自定义函数
@@ -184,7 +184,7 @@ toy_circle <- toy %>% tf_fun(
 toy_circle %>% cl_plot(label = NA)
 ```
 
-### 3. 后处理 Post-processing
+### 后处理 Post-processing
 
 ```{r}
 ## 对圆形布局进行几何变换
@@ -200,7 +200,7 @@ toy_final <- toy_circle %>%
 toy_final %>% cl_plot(label = NA) %>% cl_void()
 ```
 
-### 4. 微调 Fine tuning
+### 微调 Fine tuning
 
 ```{r}
 # 显示可用图形属性
@@ -294,7 +294,7 @@ p <- p + geom_point(
   )
 ```
 
-### 5. 添加注释图 Add annotation plots
+### 添加注释图 Add annotation plots
 
 把source的'signif'标注在source名字的下方
 

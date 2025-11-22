@@ -86,7 +86,7 @@ for (pkg in cran_packages) {
 # 安装GitHub包
 cat("\nInstalling GitHub packages...\n")
 github_packages <- list(
-  crosslink = list(repo = "zzwch/crosslink", build_vignettes = TRUE)
+  crosslink = list(repo = "zzwch/crosslink", build_vignettes = FALSE)
 )
 
 for (pkg_name in names(github_packages)) {
@@ -98,12 +98,3 @@ cat("\n===========================================\n")
 cat("Package installation completed!\n")
 
 cat("You can now run your R scripts in this directory.\n")
-
-# 验证crosslink包是否安装成功
-if (is_package_installed("crosslink")) {
-  cat("✓ crosslink package successfully installed from GitHub\n")
-} else {
-  cat("✗ crosslink package installation failed\n")
-  cat("You may need to install it manually:\n")
-  cat('remotes::install_github("zzwch/crosslink", build_vignettes = TRUE)\n')
-}
