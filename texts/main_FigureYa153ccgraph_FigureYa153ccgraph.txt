@@ -8,17 +8,16 @@ Author(s)
 Reviewer(s)
 : Ying Ge, Junyi Shen
 Date
-: 2025-11-20
-0.1
-Academic
-Citation
+: 2025-11-21
+1
+Academic Citation
 If you use this code in your work or research, we kindly request that
 you cite our publication:
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization
 Framework for Enhancing Biomedical Data Interpretation and Research
 Efficiency. iMetaMed.
 https://doi.org/10.1002/imm3.70005
-0.2
+2
 需求描述 Requirement
 description
 用R从形式上复现原图。 Use R to reproduce the original figure in a
@@ -91,7 +90,7 @@ ggraph
 package and wrote a lengthy article:
 Understanding
 ggraph in One Article
-0.3
+3
 应用场景 Application
 Scenarios
 展示层级结构。例如： Displaying hierarchical structures. For
@@ -114,7 +113,7 @@ absolute values; it cannot display positive or negative
 differences;
 Not limited to two-level relationships; more levels are
 supported.
-0.4
+4
 环境设置 Environment
 Setup
 source
@@ -166,7 +165,7 @@ stringsAsFactors =
 FALSE
 )
 # 禁止字符型数据自动转换为因子型 # Prevent automatic conversion of character data to factors```
-0.5
+5
 输入文件的获得
 Obtaining the input file
 如果你的数据已经整理成
@@ -381,7 +380,7 @@ quote =
 F,
 row.names =
 F)
-0.6
+6
 输入文件预处理 Input
 file preprocessing
 very_easy_input.csv，这里以上面的富集分析结果为例，展示通路和通路里的基因变化倍数FC。三列依次是通路-基因-倍数，可以自由替换成“应用场景”里其他需要展示的信息。
@@ -582,11 +581,12 @@ graph
 <-
 tbl_graph
 (nodes, edges)
-0.7
-开始画图 Start
-drawing the graph
-0.7.1
-自定义配色，直接出图 Customize the color scheme and plot directly
+7
+开始画图 Start drawing
+the graph
+7.1
+自定义配色，直接出图
+Customize the color scheme and plot directly
 # 用 `ggraph` 出图 # Plot the graph using `ggraph`
 gc
 <-
@@ -820,7 +820,7 @@ color
 in
 geom_edge_diagonal()
 .
-0.7.2
+7.2
 按例文配色，然后后期加背景色 Follow the example color scheme, then add a
 background color later
 保留中心点和连向中心点的线 ｜ keep the center node and the links to
@@ -1004,7 +1004,7 @@ c
 ))
 #扩大坐标系 # Expand the coordinate system
 gc1
-0.8
+8
 后期处理
 Post-processing
 保存到pdf文件，是矢量图，可以用Illustrator等软件编辑图形、文字和背景
@@ -1020,7 +1020,7 @@ width =
 height =
 14
 )
-0.9
+9
 多层嵌套 Multi-layer
 nesting
 这套代码不仅可以画两层的图，理论上支持更多层（要不然怎么叫“圆环套圆环”呢？）。
@@ -1352,11 +1352,11 @@ width =
 height =
 14
 )
-0.10
+10
 参考资料
 References
 https://mp.weixin.qq.com/s/JNIncz3W-59yjGk2ibJWUw
-0.11
+11
 Session
 Information
 sessionInfo

@@ -8,17 +8,16 @@ Author(s)
 Reviewer(s)
 : Ying Ge, Yasi Zhang
 Date
-: 2025-11-20
-0.1
-Academic
-Citation
+: 2025-11-21
+1
+Academic Citation
 If you use this code in your work or research, we kindly request that
 you cite our publication:
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization
 Framework for Enhancing Biomedical Data Interpretation and Research
 Efficiency. iMetaMed.
 https://doi.org/10.1002/imm3.70005
-0.2
+2
 需求描述 Requirement
 description
 用R画出多角图wheel
@@ -52,7 +51,7 @@ distance to each prototype is proportional to the
 relative score of that prototype
 . Colors indicate time point of
 differentiation (red, day 0; dark blue, day 63).
-0.3
+3
 应用场景 Application
 scenarios
 特别适合两种独立分组方式的数据：外围的角代表第一种分组，点的颜色形状代表第二种分组，点跟角的距离代表数值高低。
@@ -68,7 +67,7 @@ and lower sides (if there are more than two groups, additional features
 like color and shape need to be introduced to differentiate them), and
 the distance from points to the horizontal axis represents the magnitude
 of values.
-0.4
+4
 环境设置 Environment
 Setup
 source
@@ -91,7 +90,7 @@ options
 stringsAsFactors =
 FALSE
 )
-0.5
+5
 输入文件 Input
 files
 easy_input.txt，最后一列跟点的颜色相对应，前面各列的列名跟图中的角相对应，数值对应点到角的距离。
@@ -117,7 +116,7 @@ header =
 T,
 stringsAsFactors =
 T)
-0.6
+6
 为画图准备数据
 Preparing data for visualization
 # 记录末列的名称
@@ -591,9 +590,9 @@ color.palette
 <-
 unlist
 (color.palette)
-0.7
-开始画图 Start
-drawing the graph
+7
+开始画图 Start drawing
+the graph
 # 轮状图绘制
 # Wheel Plot Visualization
 ggplot
@@ -834,7 +833,7 @@ width =
 height =
 6
 )
-0.8
+8
 Session Info
 sessionInfo
 ()

@@ -8,17 +8,16 @@ Author(s)
 Reviewer(s)
 : Ying Ge, Hui Huang
 Date
-: 2025-11-20
-0.1
-Academic
-Citation
+: 2025-11-21
+1
+Academic Citation
 If you use this code in your work or research, we kindly request that
 you cite our publication:
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization
 Framework for Enhancing Biomedical Data Interpretation and Research
 Efficiency. iMetaMed.
 https://doi.org/10.1002/imm3.70005
-0.2
+2
 需求描述 Requirement
 Description
 单细胞测序分不同的cluster，然后在每个cluster上做DEGs的点图，最好是log2FC为负的标蓝。然后自定义显示想要的点。
@@ -34,7 +33,7 @@ Developmental Stages (H) Differential gene expression analysis showing
 up- and down-regulated genes across all ten clusters. An adjusted p
 value < 0.01 is indicated in red, while an adjusted p value R 0.01 is
 indicated in black.
-0.3
+3
 应用场景 Application
 Scenarios
 分类展示各cluster的marker gene表达趋势变化的分布情况。
@@ -43,7 +42,7 @@ The distribution of marker gene expression trends in each cluster is
 displayed by category.
 Gene names that are significantly up- or down-regulated, or gene
 names involved in a pathway, can be labeled as in the original text.
-0.4
+4
 环境设置 Environment
 settings
 source
@@ -86,7 +85,7 @@ stringsAsFactors =
 FALSE
 )
 #禁止chr转成factor # chr is not allowed to be converted to factor
-0.5
+5
 输入文件 Input
 files
 这部分与“FigureYa224scMarker”相同
@@ -139,7 +138,7 @@ min.features =
 200
 )
 pbmc
-0.6
+6
 预处理
 Preprocessing
 # 进行QC
@@ -338,7 +337,7 @@ width =
 height =
 6
 )
-0.7
+7
 Find cluster
 biomarkers
 # Finding differentially expressed features (cluster biomarkers)
@@ -390,7 +389,7 @@ gene)
 +
 NoLegend
 ()
-0.8
+8
 鉴定细胞类型 Identify
 cell types
 如果只是为了复现文章中的图，可以不鉴定细胞类型，以下部分可不run，根据结合每个cluster的marker基因和生物学知识确定细胞类型。
@@ -603,7 +602,7 @@ meta.data
 $
 celltype, celltype)
 #saveRDS(pbmc, "pbmc_test_final.rds")
-0.9
+9
 设置cutoff，定义显著/非显著的上/下调marker gene
 Set cutoff to define significant/non-significant up/down marker
 gene
@@ -711,7 +710,7 @@ write.csv
 ,
 quote =
 F)
-0.10
+10
 自定义显示想要展示的基因名 Customize the display of the gene name you
 want to display
 这里挑选log2FC为top5的基因进行展示
@@ -791,7 +790,7 @@ c
 You can also manually pick out the genes you want to name based on
 output_pbmc.markers.csv files, such as genes involved in a pathway, and
 then name the file easy_input_label.csv
-0.11
+11
 开始画图 Start
 drawing
 # 读取修改后的要标注的基因名文件
@@ -1185,7 +1184,7 @@ width =
 height =
 6
 )
-0.12
+12
 Session Info
 sessionInfo
 ()

@@ -8,17 +8,16 @@ Author(s)
 Reviewer(s)
 : Ying Ge, Junyi Shen
 Date
-: 2025-11-20
-0.1
-Academic
-Citation
+: 2025-11-21
+1
+Academic Citation
 If you use this code in your work or research, we kindly request that
 you cite our publication:
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization
 Framework for Enhancing Biomedical Data Interpretation and Research
 Efficiency. iMetaMed.
 https://doi.org/10.1002/imm3.70005
-0.2
+2
 需求描述 Requirement
 description
 从形式上复现原图。 Reproduce the original image in form.
@@ -96,7 +95,7 @@ igraph
 library70, and the arcplot were created with arcdiagram library.
 这里用ggplot2画图，先计算位置再画图。 Here we use ggplot2 to draw the
 graph, first calculate the position and then draw the graph.
-0.3
+3
 应用场景 Application
 scenario
 展示分类、分组跟元素之间的关系。例如：glycan-数量-glycoprotein，GO-TF-targe
@@ -118,7 +117,7 @@ bind to these peripheral genes found in our public database. As a
 result, it is clear at a glance which transcription factors activate
 genes and which inhibit them. If there is HiC or ChIA-pet data, the
 interaction between hub sites and target genes is the same.
-0.4
+4
 环境设置 Environment
 settings
 source
@@ -143,7 +142,7 @@ stringsAsFactors =
 FALSE
 )
 #禁止chr转成factor #Prohibit chr from being converted to factor
-0.5
+5
 输入文件 Input
 file
 easy_input_node.txt和easy_input_group.txt。从例文41467_2019_9222_MOESM5_ESM.xlsx文件整理而来。
@@ -188,10 +187,10 @@ head
 (protein)
 dim
 (protein)
-0.6
+6
 计算图中各元素位置
 Calculate the position of each element in the graph
-0.6.1
+6.1
 计算点（Glycan）的坐标 Calculate the coordinates of the point
 (Glycan)
 一共有117个点，右侧（第一、四象限）59个，左侧（二、三象限）58个。
@@ -291,7 +290,7 @@ nrow
 )
 head
 (Glycan)
-0.6.2
+6.2
 计算最外围的弧线
 Calculate the outermost arc
 外围的弧线内侧是圆半径的1.1倍，外侧是1.15倍 The inner side of the
@@ -370,7 +369,7 @@ c
 ),]
 head
 (curve)
-0.6.3
+6.3
 中央矩形 Central
 rectangle
 根据glycosites数量分成5类，其中4和5一组，>5一组，与右侧图例对应。
@@ -440,7 +439,7 @@ Count
 ))
 head
 (protein.pos)
-0.6.4
+6.4
 连接线，即Glycan-protein Connecting line, Glycan-protein
 connect
 <-
@@ -478,7 +477,7 @@ Protein,connect.count),
 Glycan=
 unlist
 (Gly.name))
-0.6.5
+6.5
 Merge
 seg.clu主要是为了画最后一个Glycan那一点点黄色 seg.clu is mainly used
 to draw the last little bit of yellow of Glycan
@@ -513,7 +512,7 @@ $
 Gly.clu)
 head
 (all1)
-0.7
+7
 开始画图 Start
 drawing
 # 自定义颜色
@@ -724,7 +723,7 @@ width=
 p5
 dev.off
 ()
-0.8
+8
 后期处理
 Post-processing
 输出的PDF文件是矢量图，可以用PS或AI等矢量图编辑器打开，编辑图形和文字。
@@ -748,7 +747,7 @@ understand the meaning of each number, and the overall idea, and then
 draw inferences from one example. This involves some mathematical
 trigonometric function calculations and angle calculations, and you
 still need to understand the meaning of each number.
-0.9
+9
 Session Info
 sessionInfo
 ()

@@ -8,13 +8,13 @@ Author(s)
 Reviewer(s)
 : Ying Ge, Taojun Ye
 Date
-: 2025-11-20
-0.1
+: 2025-11-21
+1
 需求描述 Requirement
 description
 用base plot画美美的火山图
 Create a beautiful volcano map using a base plot
-0.2
+2
 应用场景 Application
 scenarios
 同时展示多个特征，同时展示P value、ajust P
@@ -32,7 +32,7 @@ http://dx.doi.org/10.1016/j.neuron.2017.09.008
 想用ggplot2来画火山图，请参考FigureYa59Volcano。
 If you want to use ggplot2 to draw a volcanic map, please refer to
 Figure Ya59Volcano.
-0.3
+3
 环境设置 Environment
 settings
 # 设置R运行环境显示英文错误信息（便于国际交流或搜索解决方案）
@@ -49,7 +49,7 @@ options
 stringsAsFactors =
 FALSE
 )
-0.4
+4
 输入文件 Input
 file
 第一列是gene名，后面包含列5列特征值。
@@ -90,7 +90,7 @@ dim
 把各列数据整理成画图所需的格式
 Organize the columns of data into the format needed to draw the
 graphs
-0.5
+5
 开始画图 Start
 drawing
 # 创建PDF输出文件（宽度7英寸，高度6英寸）
@@ -454,7 +454,7 @@ bty=
 # Close graphic device
 dev.off
 ()
-0.6
+6
 Session Info
 sessionInfo
 ()

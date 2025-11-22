@@ -8,10 +8,9 @@ Author(s)
 Reviewer(s)
 : Ying Ge, Yasi Zhang
 Date
-: 2025-11-20
-0.1
-Academic
-Citation
+: 2025-11-21
+1
+Academic Citation
 If you use this code in your work or research, we kindly request that
 you cite our publication:
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization
@@ -22,7 +21,7 @@ To use the method please cite:
 Chen Yang, et al. (2022). A survey of optimal strategy for
 signature-based drug repositioning and an application to liver cancer.
 eLife 11:e71880.
-0.2
+2
 需求描述 Requirement
 description
 有篇最近的文章可以替代一下FigureYa131cMAP，好像能用类似cmap的方法来进行药物预测，但这篇没有没有提供代码，。
@@ -43,7 +42,7 @@ and G6). After determining the candidate compounds, experimental and
 clinical validation are required to translate computational findings to
 clinical applications. LINCS, Library of Integrated Network-based
 Cellular Signatures.
-0.3
+3
 应用场景 Application
 scenarios
 CMap分析主要涉及三个部分：
@@ -93,7 +92,7 @@ use the familiar CMap data, and all analyses can be completed entirely
 in R without relying on any web-based tools.
 If you use the methods described in the following demonstration,
 please cite the referenced paper (PMID: 35191375).
-0.4
+4
 环境设置 Environment
 settings
 source
@@ -147,7 +146,7 @@ options
 stringsAsFactors =
 FALSE
 )
-0.5
+5
 CMap数据下载及预处理
 Downloading and Preprocessing CMap Data
 CMAP_gene_signatures.RData，处理好的CMap数据，下载地址
@@ -239,7 +238,7 @@ saveRDS
 (camp_sig,
 "camp_sig.rds"
 )
-0.6
+6
 疾病分子特征预处理
 Preprocessing Disease Molecular Signatures
 以下演示将以肝癌数据为例，通过癌与癌旁的差异分析得到疾病分子特征。
@@ -392,7 +391,7 @@ T)
 # The dis_sig file can be used in subsequent analyses as long as it follows this format
 head
 (dis_sig)
-0.7
+7
 计算CMap score
 Calculating CMap Score
 # 读入drug signature
@@ -538,7 +537,7 @@ theoretically more likely to have therapeutic potential for that
 disease. The results from this demonstration dataset suggest that
 X4.5-dianilinophthalimide is the most promising candidate drug for
 treating liver cancer.
-0.8
+8
 结果可视化
 Visualization of Results
 xsum
@@ -639,7 +638,7 @@ width =
 height =
 7
 )
-0.9
+9
 Session Info
 sessionInfo
 ()

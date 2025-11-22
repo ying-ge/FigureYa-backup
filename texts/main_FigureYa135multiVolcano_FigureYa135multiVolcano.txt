@@ -8,17 +8,16 @@ Author(s)
 Reviewer(s)
 : Ying Ge, Junyi Shen
 Date
-: 2025-11-20
-0.1
-Academic
-Citation
+: 2025-11-21
+1
+Academic Citation
 If you use this code in your work or research, we kindly request that
 you cite our publication:
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization
 Framework for Enhancing Biomedical Data Interpretation and Research
 Efficiency. iMetaMed.
 https://doi.org/10.1002/imm3.70005
-0.2
+2
 需求描述 Requirement
 description
 从形式上复现文章里的这个复杂火山图。 Reproduce the complex volcano
@@ -44,7 +43,7 @@ region, calculated based on the feature
 The top is another layer of classification information for the site,
 the percentage of hypo and hyper, calculated based on the horizontal
 axis beta-value of the scatter plot
-0.3
+3
 应用场景 Application
 scenarios
 同时展示多层信息，不仅限于例文中的甲基化位点。 Show multiple layers
@@ -54,7 +53,7 @@ the example text.
 You can also change to differentially expressed genes, replace the
 horizontal axis deltabeta with foldchange, and replace feature with gene
 classification.
-0.4
+4
 环境设置 Environment
 settings
 source
@@ -88,7 +87,7 @@ stringsAsFactors =
 FALSE
 )
 #禁止chr转成factor #Disable chr conversion to factor
-0.5
+5
 输入文件 Input
 files
 easy_input.csv，包含四列：
@@ -139,13 +138,13 @@ colnames
 "Geneid"
 head
 (data)
-0.6
+6
 开始画图 | Start
 drawing the graph
 下面分别绘制散点图、顶部比例和右侧bar plot，最后组图。 The following
 are the scatter plots, top ratios and right bar plots, and finally the
 group diagrams.
-0.6.1
+6.1
 散点图
 p1
 的绘制
@@ -339,12 +338,13 @@ c
 100
 ))
 p1
-0.6.2
+6.2
 散点图右侧面的柱子图
 p2
 的绘制 Draw the column chart
 p2
-on the right side of the scatter plot
+on the
+right side of the scatter plot
 # 获得 Percent 中计数列的 n 的最大值
 # Get the maximum value of n in the count column in Percent
 n_max
@@ -355,7 +355,7 @@ $
 n)
 n_max
 p2
-0.6.3
+6.3
 顶部百分比图
 p3
 的绘制 Drawing of the top percentage graph
@@ -504,7 +504,7 @@ round
 "%"
 )))
 df1
-0.6.4
+6.4
 组图 Group
 pictures
 combined_plot
@@ -592,7 +592,7 @@ ggsave
 (
 "multiVolcano.pdf"
 )
-0.7
+7
 Session Info
 sessionInfo
 ()

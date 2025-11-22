@@ -8,30 +8,29 @@ Author(s)
 Reviewer(s)
 : Ying Ge, Yijing Chen
 Date
-: 2025-11-20
-0.1
-Academic
-Citation
+: 2025-11-21
+1
+Academic Citation
 If you use this code in your work or research, we kindly request that
 you cite our publication:
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization
 Framework for Enhancing Biomedical Data Interpretation and Research
 Efficiency. iMetaMed.
 https://doi.org/10.1002/imm3.70005
-0.2
+2
 需求描述 Requirement
 description
 画出像paper里这样美的火山图。
 Draw a beautiful volcano plot like this one in the paper.
 From
 https://www.nature.com/articles/s41467-018-06944-1
-0.3
+3
 应用场景 Application
 scenario
 展示两组之间总体的基因表达变化趋势。
 Demonstrate overall gene expression trends between the two
 groups.
-0.4
+4
 环境设置 Environment
 setting
 source
@@ -63,7 +62,7 @@ stringsAsFactors =
 FALSE
 )
 #禁止chr转成factor | prohibit the conversion of chr to factor
-0.5
+5
 输入文件 Input
 file
 easy_input_limma.csv，此处用limma结果，还可以用EdgeR、DESeq2等工具获得的差异分析结果作为输入。
@@ -127,7 +126,7 @@ by =
 )
 head
 (selectgenes)
-0.6
+6
 参数设置 Parameter
 setting
 点的颜色和虚线的位置都由下面的阈值决定，
@@ -262,7 +261,7 @@ c
 ,
 "#7CC767"
 )
-0.7
+7
 开始画图 Start
 drawing
 此处纵坐标用P.value，根据需要，可以把P.Value换成adj.P.Val
@@ -959,7 +958,7 @@ stop
 "Unsupport mode"
 )
 }
-0.8
+8
 Session Info
 sessionInfo
 ()

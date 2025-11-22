@@ -8,17 +8,16 @@ Author(s)
 Reviewer(s)
 : Ying Ge, Hui Huang
 Date
-: 2025-11-20
-0.1
-Academic
-Citation
+: 2025-11-21
+1
+Academic Citation
 If you use this code in your work or research, we kindly request that
 you cite our publication:
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization
 Framework for Enhancing Biomedical Data Interpretation and Research
 Efficiency. iMetaMed.
 https://doi.org/10.1002/imm3.70005
-0.2
+2
 需求描述 Requirement
 Description
 我想实现下文章Figure
@@ -42,7 +41,7 @@ the p value of KM. And the signature included five genes that were
 screened out, for it had a relative big −log10 p value and a small
 number of genes. KM: Kaplan–Meier; lncRNA: long noncoding RNA; PCG:
 protein‐coding gene
-0.3
+3
 应用场景 Application
 scenarios
 根据随机生存森林分析筛选变量，通过基因组合后利用log-rank检验取p值显著且基因个数较少的组合，定义为预后签名。
@@ -58,7 +57,7 @@ The disadvantage is that if the number of genes exceeds 15-20, the
 amount of calculation becomes unrealistic.
 It is suitable for use on small-scale gene sets that have already
 been preliminarily screened by other methods.
-0.4
+4
 环境设置 Environment
 settings
 source
@@ -121,7 +120,7 @@ sep=
 ))
 }
 }
-0.5
+5
 输入文件 Input
 file
 brca.mRNA.expr.txt和brca.lncRNA.expr.txt，基因表达矩阵。
@@ -251,7 +250,7 @@ log2
 )))),
 3
 ))
-0.6
+6
 cox回归筛选与OS有关的基因 Cox regression to screen genes related to
 OS
 cox.pcutoff
@@ -372,7 +371,7 @@ row.names =
 F,
 quote =
 F)
-0.7
+7
 随机森林进一步降维
 Random forests are further dimensionally reduced
 # 取出cox显著的基因做随机生存森林
@@ -436,7 +435,7 @@ TRUE
 seed =
 12345678
 )
-0.8
+8
 排列组合确定最优签名及log-rank检验 Permutations and combinations
 determine the optimal signature and log-rank test
 num.imp
@@ -694,9 +693,9 @@ message
 (
 "Wrong combination!!!"
 ))
-0.9
-开始画图 Start
-drawing the graph
+9
+开始画图 Start drawing
+the graph
 绘制火山图 | Draw a volcano map
 sigpoints
 <-
@@ -1090,7 +1089,7 @@ invisible
 (
 dev.off
 ())
-0.10
+10
 Session Info
 sessionInfo
 ()

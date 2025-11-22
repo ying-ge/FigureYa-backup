@@ -8,17 +8,16 @@ Author(s)
 Reviewer(s)
 : Ying Ge, Yijing Chen
 Date
-: 2025-11-20
-0.1
-Academic
-Citation
+: 2025-11-21
+1
+Academic Citation
 If you use this code in your work or research, we kindly request that
 you cite our publication:
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization
 Framework for Enhancing Biomedical Data Interpretation and Research
 Efficiency. iMetaMed.
 https://doi.org/10.1002/imm3.70005
-0.2
+2
 需求描述 Requirement
 description
 复现文中的线性回归，画出双坐标轴的图
@@ -26,7 +25,7 @@ Reproduce the linear regression in the text and draw a dual-axis
 graph.
 From
 https://onlinelibrary.wiley.com/doi/full/10.1111/cas.13744
-0.3
+3
 应用场景 Application
 scenario
 同时计算和展示3组数据的相关性，A vs. B 和 A vs. C。
@@ -41,7 +40,7 @@ B7-H3 expression with mir-29a, as well as with methylation. From this,
 it can be seen: In IDH‐wild grade II gliomas, B7‐H3 expression seemed to
 be downregulated by both methylation on cg10586317 and microRNA‐29a,
 rationalizing the paradox in grade II gliomas with wild‐type IDH.
-0.4
+4
 环境设置 Environment
 setting
 source
@@ -69,10 +68,10 @@ stringsAsFactors =
 FALSE
 )
 #禁止chr转成factor prohibit the conversion of chr to factor
-0.5
+5
 参数设置 Parameter
 setting
-0.6
+6
 输入文件 Input
 file
 包含三列：对应X轴和两个Y轴
@@ -144,9 +143,9 @@ $
 Y1)))
 /
 AspectRatio)
-0.7
-计算相关系数
-Calculate the correlation coefficient
+7
+计算相关系数 Calculate
+the correlation coefficient
 #写一个计算相关系数的函数，同时写成图中的格式
 #write a function that calculates the correlation coefficient while writing it in the format shown in the figure
 correlation
@@ -216,7 +215,7 @@ $
 X,inputData
 $
 Y2))
-0.8
+8
 开始画图 Start
 drawing
 此处提供两种方法画图：
@@ -229,9 +228,8 @@ original.
 Method 2, advantage: completely reproduce the original diagram;
 disadvantage: use gtable and grid, which may be unfamiliar to some
 colleagues.
-0.8.1
-方法一 Method
-1
+8.1
+方法一 Method 1
 p
 <-
 ggplot
@@ -512,13 +510,12 @@ height =
 The title head of the right y-axis faces right, and the original head
 faces left. We use method 2 to achieve an exact reproduction of the
 original text.
-0.8.2
-方法二 Method
-2
+8.2
+方法二 Method 2
 先用ggplot2拿到两套坐标的plot object，修改之后重新画图。
 First use ggplot2 to get the plot object for the two sets of
 coordinates, modify it and redraw it.
-0.8.2.1
+8.2.1
 用ggplot拿到两套坐标的plot object Use ggplot to get the plot object for
 two sets of coordinates
 #X和Y1的散点、拟合线、相关系数文字
@@ -767,9 +764,9 @@ head
 (g2
 $
 layout)
-0.8.2.2
-重新画图 Redraw
-the picture
+8.2.2
+重新画图 Redraw the
+picture
 提示：
 选择从grid.newpage()到任意一个grid.draw(g)之间的部分一起运行，就会看到这部分代码的画图效果。
 Hint:
@@ -1069,7 +1066,7 @@ grid.draw
 (g)
 dev.off
 ()
-0.9
+9
 Session Info
 sessionInfo
 ()

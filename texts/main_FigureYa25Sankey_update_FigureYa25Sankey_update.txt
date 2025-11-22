@@ -9,24 +9,23 @@ Reviewer(s)
 : Yijing Chen
 Date
 :
-2025-11-20
-0.1
-Academic
-Citation
+2025-11-21
+1
+Academic Citation
 If you use this code in your work or research, we kindly request that
 you cite our publication:
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization
 Framework for Enhancing Biomedical Data Interpretation and Research
 Efficiency. iMetaMed.
 https://doi.org/10.1002/imm3.70005
-0.2
+2
 需求描述 Requirement
 description
 用R代码画出paper里的图。
 Use R code to draw the plot in paper.
 From
 https://www.nature.com/articles/nature22973
-0.3
+3
 应用场景 Application
 scenario
 一套数据集可能有多重属性，每层属性之间有交叉，就可以用这种图来展示。另外，以第一变量为参照，往后的多层变量均参考与第一变量的关系，从而展示第一变量的流向。
@@ -59,7 +58,7 @@ https://onlinelibrary.wiley.com/doi/full/10.1002/jcp.28522
 Scenario 3: The population is grouped by gender, age, family
 history and other characteristics, to show the pattern of cancer in
 different groups.
-0.4
+4
 环境设置 Environment
 setting
 source
@@ -84,7 +83,7 @@ stringsAsFactors =
 FALSE
 )
 #禁止chr转成factor prohibit the conversion of chr to factor
-0.5
+5
 输入数据 Input
 data
 easy_input.txt，至少要有两列，想画出几列就提供几列数据。此处第一列是基因，第二列是突变，第三列是癌症亚型；想画更多层次关系就继续向后添加列。
@@ -156,7 +155,7 @@ c
 ),
 2
 )
-0.6
+6
 开始画图 Start
 drawing
 两种方式展示前后关系：
@@ -166,7 +165,7 @@ Two ways to show the before and after relationships:
 The latter layer inherits the relationship of the former layer;
 Multiple layers behind inherit the relationship of the first
 layer.
-0.6.1
+6.1
 后一层继承前一层的关系 The latter layer inherits the relationship of the
 former layer
 #格式转换
@@ -474,7 +473,7 @@ ggsave
 (
 "sankey_stratum_2.pdf"
 )
-0.6.2
+6.2
 后面多层继承第一层的关系（作者：Xiaofan Lu） Multiple layers behind
 inherit the relationship of the first layer
 用到参数：stat = “alluvium”，即传说中的“冲击图”
@@ -671,7 +670,7 @@ ggsave
 (
 "sankey_alluvium.pdf"
 )
-0.7
+7
 Sessioninfo
 sessionInfo
 ()

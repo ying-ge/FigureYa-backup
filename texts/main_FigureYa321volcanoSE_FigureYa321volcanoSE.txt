@@ -8,10 +8,9 @@ Author(s)
 Reviewer(s)
 : Ying Ge, Yasi Zhang
 Date
-: 2025-11-20
-0.1
-Academic
-Citation
+: 2025-11-21
+1
+Academic Citation
 If you use this code in your work or research, we kindly request that
 you cite our publication:
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization
@@ -27,7 +26,7 @@ Goldman, M.J., Craft, B., Hastie, M. et al. Visualizing and
 interpreting cancer genomics data via the Xena platform. Nat Biotechnol
 (2020).
 https://doi.org/10.1038/s41587-020-0546-8
-0.2
+2
 需求描述 Requirement
 description`
 在癌症中高低分数组中的APA分析，用火山图展示 (图5B)。
@@ -40,7 +39,7 @@ related to WM_Score. (B)
 The differences in the PDUI
 of
 each gene between WM_Score_high and WM_Score_low groups.
-0.3
+3
 应用场景 Application
 scenarios
 TC3A (The Cancer 3′ UTR Atlas) 专门分析了TCGA
@@ -60,7 +59,7 @@ Alternatively, more complex volcano plots created by other authors
 (e.g., FigureYa) can also be utilized.
 One group: FigureYa59volcano ，FigureYa75baseVolcano
 Multiple group: FigureYa135multiVolcano
-0.4
+4
 环境设置 Environment
 Setup
 source
@@ -93,7 +92,7 @@ options
 stringsAsFactors =
 FALSE
 )
-0.5
+5
 输入文件 Input
 Files
 TCGA_PAAD_Combined_PDUIs.txt，从synapse网站中下载的TC3A_PDUI（Percentage
@@ -237,7 +236,7 @@ c
 ,
 "DEAD"
 ))
-0.6
+6
 进行差异分析
 Differential Analysis
 # 创建设计矩阵
@@ -377,9 +376,9 @@ write.xlsx
 (DEGs,
 "output_DEGs.xlsx"
 )
-0.7
-开始画图 Start
-drawing the graph
+7
+开始画图 Start drawing
+the graph
 # 准备绘图数据
 # Prepare plotting data
 plot.data
@@ -672,7 +671,7 @@ width =
 height =
 4
 )
-0.8
+8
 Session Info
 sessionInfo
 ()

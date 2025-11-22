@@ -8,17 +8,16 @@ Author(s)
 Reviewer(s)
 : Ying Ge, Taojun Ye
 Date
-: 2025-11-20
-0.1
-Academic
-Citation
+: 2025-11-21
+1
+Academic Citation
 If you use this code in your work or research, we kindly request that
 you cite our publication:
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization
 Framework for Enhancing Biomedical Data Interpretation and Research
 Efficiency. iMetaMed.
 https://doi.org/10.1002/imm3.70005
-0.2
+2
 需求描述 Requirement
 Description
 FigureYa92immune_gene只是1个基因跟免疫浸润的关系。我想要展示两个基因表达跟免疫浸润高/低的关系。
@@ -36,7 +35,7 @@ https://www.nature.com/articles/s41467-018-06648-6
 Fig 1. HNF4α is heterogeneously expressed in HCC. f mRNA expression
 of HNF4a in human HCC tumors and surrounding normal liver tissue (R2:
 genomics analysis and visualization platform).
-0.3
+3
 应用场景 Application
 Scenarios
 评价基因对免疫浸润的影响；
@@ -46,7 +45,7 @@ Evaluate the effect of genes on immune infiltration;
 Batch screening of candidate genes affecting immune infiltration;
 It is also applicable to show the relationship between transcription
 factors and target gene expression regulation.
-0.4
+4
 环境设置 Environment
 settings
 source
@@ -77,9 +76,9 @@ stringsAsFactors =
 FALSE
 )
 # Disable automatic conversion of strings to factors to avoid unexpected data type conversion
-0.5
-输入文件的获得
-Getting the input file
+5
+输入文件的获得 Getting
+the input file
 如果你的数据已经整理成very_easy_input.csv的格式，就可以跳过这步，直接进入“开始画图”。
 这里基于免疫细胞矩阵把样品分为两类，并把分类信息加到基因表达矩阵里。要求两个文件的样本名一致：
 ssGSEA_output.csv，免疫细胞矩阵，列是免疫细胞，行是样本，由FigureYa71ssGSEA产生。目的是给样品分类，可以换成其他临床信息、突变信息等等。
@@ -172,7 +171,7 @@ head
 :
 4
 ]
-0.5.1
+5.1
 通过画热图聚类确定高、低免疫浸润的分组 Subgroups of high and low immune
 infiltration were identified by drawing heat map clusters
 从热图上看出，至少样本能分为两大类，接下来就是确定样本分类。
@@ -250,7 +249,7 @@ k =
 # the number of samples in each cluster
 table
 (grp)
-0.5.2
+5.2
 把分组信息加入到表达矩阵里 Add grouping information to the expression
 matrix
 用表达量的样本来重新排列样本顺序，构建一个数据框。行是样本，列是基因，再加一类样本分类的数据，这就足够画图了。
@@ -316,7 +315,7 @@ FALSE
 row.names =
 FALSE
 )
-0.6
+6
 输入文件 Input
 file
 带有样品分组信息的基因表达矩阵。
@@ -338,9 +337,9 @@ data[
 :
 6
 ]
-0.7
-开始画图 Start
-drawing a graph
+7
+开始画图 Start drawing
+a graph
 用ggplot2画图，基本的逻辑如下：
 横坐标是样本，按照第一个基因的表达量来排序
 纵坐标两个基因的表达量，分别用两个坐标轴来表示
@@ -361,7 +360,7 @@ fixed at the lower 1/8 of the vertical coordinate.
 To realize the relative position of the text is fixed, you need to
 draw a part of the map, save it as a ggplot object, and then select it
 in the object.
-0.7.1
+7.1
 直接画图 Direct
 drawing
 # 创建基因表达散点图，按SRGN基因表达量排序样本
@@ -604,7 +603,7 @@ col =
 size =
 5
 )
-0.7.2
+7.2
 或者写成一个作图函数，方便调用 Or write it as a graphing function that
 is easy to call.
 # 定义基因表达对比可视化函数
@@ -946,7 +945,7 @@ dgplot
 ,
 "ISG15"
 )
-0.8
+8
 批量筛选高度正/负相关的基因 Batch screen highly positive/negative
 correlated genes
 上面用三对基因画出的三个图，分别展示了两个基因之间正相关、负相关和不相关的规律，同时还能看出基因表达量跟免疫浸润之间的关系。
@@ -970,7 +969,7 @@ To draw a plot that is simultaneously related to immunization and
 both genes are related, two calculations are required:
 pick the gene that is related to immune infiltration
 select the highly correlated genes for a given gene
-0.8.1
+8.1
 选出跟免疫浸润相关的基因 Selected genes related to immune
 infiltration.
 目前跟免疫直接相关的数据，我们拥有的是每个样本中的免疫细胞数据。要获得基因的数据，需要批量计算跟免疫细胞相关的基因。
@@ -1052,7 +1051,7 @@ my_cor
 (
 "SRGN"
 , y)
-0.8.2
+8.2
 1.
 批量计算基因与特定免疫细胞的相关性 Batch calculation of correlation
 between genes and specific immune cells
@@ -1145,7 +1144,7 @@ head
 下面就用排名第一的SRGN作为第一个基因，寻找跟它表达量高度相关的第二个基因。
 Here we use the top ranked SRGN as the first gene and look for the
 second gene that is highly correlated with its expression.
-0.8.3
+8.3
 2.
 批量计算SRGN与其他基因的相关性 Batch calculation of correlation between
 SRGN and other genes
@@ -1242,7 +1241,7 @@ The first AP1M2 gene is the one in the negative correlation
 example.
 Once you have selected the gene, you can go back to “Start Drawing”
 and draw a beautiful picture.
-0.9
+9
 Session Info
 sessionInfo
 ()

@@ -8,10 +8,9 @@ Author(s)
 Reviewer(s)
 : Ying Ge, Yasi Zhang
 Date
-: 2025-11-20
-0.1
-Academic
-Citation
+: 2025-11-21
+1
+Academic Citation
 If you use this code in your work or research, we kindly request that
 you cite our publication:
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization
@@ -23,7 +22,7 @@ Yang, C., Zhang, S., Cheng, Z. et al. Multi-region sequencing with
 spatial information enables accurate heterogeneity estimation and risk
 stratification in liver cancer. Genome Med 14, 142 (2022).
 https://doi.org/10.1186/s13073-022-01143-6
-0.2
+2
 需求描述 Requirement
 description
 我想实现一下这篇文章里Figure5D，作者写了一个计算基因异质性的方法，然后用VIPER推断检查点蛋白活性以后计算了检查点蛋白的异质性，我想这个方法应该也可以用来计算其他种类蛋白的异质性，应该挺实用的。
@@ -44,7 +43,7 @@ https://genomemedicine.biomedcentral.com/articles/10.1186/s13073-022-01143-6
 Fig. 5 Immune heterogeneity in HCC. D, IHS of protein activity of 9
 co-inhibitory immune checkpoint genes. Dotted lines indicate the median
 IHS value across 5099 proteins
-0.3
+3
 应用场景 Application
 scenarios
 通过weighted viper推断检查点蛋白活性并计算异质性。
@@ -110,7 +109,7 @@ FigureYa216MetaREM:
 Meta-analysis
 heterogeneity
 test, providing Q and p-value.
-0.4
+4
 环境设置 Environment
 settings
 source
@@ -342,7 +341,7 @@ length
 }
 )
 }
-0.5
+5
 输入文件 Input
 files
 Renji_cohort_MR_exp.matrix，样本表达矩阵。每行一个基因，每列一个样本。第一行是样本名，第一列是基因名。下载自
@@ -430,7 +429,7 @@ read.csv
 ,
 header =
 T)
-0.6
+6
 计算蛋白活性 Protein
 activity calculation
 由于需要进行200次bootstrap，耗时较长大概在2天左右，请耐心等待。
@@ -507,7 +506,7 @@ file.path
 (res.path,
 "vip.mat.rds"
 ))
-0.7
+7
 计算IHS Calculating
 IHS
 患者内肿瘤异质性越强，integrated heterogeneity score (IHS)
@@ -604,9 +603,9 @@ sep =
 ,
 quote =
 F)
-0.8
-开始画图 Start
-drawing the graph
+8
+开始画图 Start drawing
+the graph
 # 自定义要在图中标注基因名的点
 # Define genes to highlight in plot
 to.plot
@@ -866,7 +865,7 @@ width =
 height =
 4
 )
-0.9
+9
 Session Info
 sessionInfo
 ()

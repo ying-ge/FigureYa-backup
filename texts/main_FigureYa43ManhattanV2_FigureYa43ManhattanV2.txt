@@ -8,17 +8,16 @@ Author(s)
 Reviewer(s)
 : Ying Ge, Yijing Chen
 Date
-: 2025-11-20
-0.1
-Academic
-Citation
+: 2025-11-21
+1
+Academic Citation
 If you use this code in your work or research, we kindly request that
 you cite our publication:
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization
 Framework for Enhancing Biomedical Data Interpretation and Research
 Efficiency. iMetaMed.
 https://doi.org/10.1002/imm3.70005
-0.2
+2
 需求描述 Requirement
 description
 画出paper里的曼哈顿图，文字标签好看些。
@@ -28,13 +27,13 @@ Fig. 1: Manhattan plot for associations between genetic variants and
 ESCC risk.
 From
 https://www.nature.com/articles/s41588-018-0045-8
-0.3
+3
 应用场景 Application
 scenario
 展示每条染色体上的SNP分布，通常作为外显子组测序文章里的第一个图。
 Show the distribution of SNP on each chromosome, usually presented as
 the first figure in an exon sequencing article.
-0.4
+4
 环境设置 Environment
 setting
 source
@@ -68,7 +67,7 @@ stringsAsFactors =
 FALSE
 )
 #禁止chr转成factor | prohibit the conversion of chr to factor
-0.5
+5
 输入文件 Input
 file
 easy_input.csv，包括染色体名字、SNP编号、在染色体上的位置（第几个碱基）、pvalue、类型type、基因名gene。
@@ -211,7 +210,7 @@ c
 "Y"
 ))
 #给染色体排序 order chromosomes
-0.6
+6
 计算每个SNP的坐标
 Calculate the coordinates of each SNP
 #计算每条染色体在x轴上的坐标
@@ -246,9 +245,9 @@ log10
 (gwas
 $
 P_value)
-0.7
-用阈值分类 Classify
-by threshold
+7
+用阈值分类 Classify by
+threshold
 #设置阈值
 #set threshold
 logPcutoff
@@ -323,10 +322,10 @@ tail
 (gwas)
 str
 (gwas)
-0.8
+8
 开始画图 Start
 drawing
-0.8.1
+8.1
 先画点 Draw dots
 first
 #不喜欢默认的配色，自定义足够多的颜色
@@ -659,7 +658,7 @@ chr)),
 values =
 mycol)
 p2
-0.8.2
+8.2
 再加箭头和标签 Add
 more arrows and labels
 p2
@@ -804,7 +803,7 @@ TRUE
 http://rstudio-pubs-static.s3.amazonaws.com/155546_17c0cb7ee350417e902dfb9031b81f48.html
 References:
 http://rstudio-pubs-static.s3.amazonaws.com/155546_17c0cb7ee350417e902dfb9031b81f48.html
-0.9
+9
 Session Info
 sessionInfo
 ()

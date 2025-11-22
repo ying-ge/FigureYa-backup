@@ -8,17 +8,16 @@ Author(s)
 Reviewer(s)
 : Ying Ge, Junyi Shen
 Date
-: 2025-11-20
-0.1
-Academic
-Citation
+: 2025-11-21
+1
+Academic Citation
 If you use this code in your work or research, we kindly request that
 you cite our publication:
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization
 Framework for Enhancing Biomedical Data Interpretation and Research
 Efficiency. iMetaMed.
 https://doi.org/10.1002/imm3.70005
-0.2
+2
 需求描述 Requirement
 description
 画出文章中这种九宫格的散点图，在图中标出想突出显示的基因名。 Draw a
@@ -37,7 +36,7 @@ genes with the adjusted P value < 0.05 (DESeq2; ref. 43; n = 3 per
 group for ribosome profiling; n =2 for RNA-seq).
 From
 https://science.sciencemag.org/content/362/6413/eaav1898
-0.3
+3
 应用场景 Application
 Scenarios
 同时展示两种特征，尤其适合多组学关联的展示。
@@ -61,7 +60,7 @@ FigureYa163TwoVarCor simultaneously presents the correlation between
 two sets of data;
 FigureYa143survCor shows the correlation while providing the
 proportion of each regional point.
-0.4
+4
 环境设置 Environment
 Setup
 source
@@ -92,7 +91,7 @@ stringsAsFactors =
 FALSE
 )
 #禁止chr转成factor # prohibit chr from being converted to factor
-0.5
+5
 输入文件 Input
 File
 easy_input.txt，每行一个点，第一列为点的ID，第二列x作为横坐标，第三列y作为纵坐标。
@@ -119,7 +118,7 @@ head
 (data)
 tail
 (data)
-0.6
+6
 开始画图 Start
 Drawing
 genes_to_showname
@@ -784,7 +783,7 @@ print
 (p_final)
 dev.off
 ()
-0.7
+7
 Session Info
 sessionInfo
 ()

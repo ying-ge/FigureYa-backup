@@ -8,17 +8,16 @@ Author(s)
 Reviewer(s)
 : Ying Ge, Junyi Shen
 Date
-: 2025-11-20
-0.1
-Academic
-Citation
+: 2025-11-21
+1
+Academic Citation
 If you use this code in your work or research, we kindly request that
 you cite our publication:
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization
 Framework for Enhancing Biomedical Data Interpretation and Research
 Efficiency. iMetaMed.
 https://doi.org/10.1002/imm3.70005
-0.2
+2
 需求描述
 Requirement
 作者用Bland-Altman的方法比较了自己建立的模型和传统的模型的一致性。网上找了下，好像没有可以重复这个的代码。
@@ -38,7 +37,7 @@ provided for testing a constant difference based on a null
 hypothesis—the slope equals to 0. Critical difference is ‘two’ times
 standard deviation of differences, equals half the difference of lower
 and upper limit.
-0.3
+3
 应用场景 Application
 Scenarios
 Bland-Altman
@@ -67,7 +66,7 @@ is obvious in the Bland-Altman graph.
 If the systematic bias between AI and classical methods exceeds the
 clinically acceptable range, AI cannot be directly replaced even if its
 accuracy is very high.
-0.4
+4
 环境设置 Environment
 Setup
 source
@@ -667,7 +666,7 @@ invisible
 dev.off
 ())
 }
-0.5
+5
 输入文件 Input
 File
 easy_input.csv，第一列error，第二列为分组信息，这里是测试结果和金标准结果。
@@ -700,9 +699,9 @@ table
 (dat
 $
 dataset)
-0.6
-分析并画图 Analyze
-and Draw Diagrams
+6
+分析并画图 Analyze and
+Draw Diagrams
 调用前面的自定义函数，检验和画图一步到位。
 By calling the previous custom function, verification and drawing can
 be accomplished in one step.
@@ -772,7 +771,7 @@ fig.label =
 "example"
 )
 # 输出文件名  # Output file name
-0.7
+7
 Session Info
 sessionInfo
 ()
