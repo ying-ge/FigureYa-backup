@@ -27,57 +27,51 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# 需求描述
+## 需求描述 Requirement Description
 
-# Requirement
+- 求出来的p值做一个fdr矫正得到q值；
+- 希望把所有的group能像这张图一样合在一张图做出来，并且又不同的颜色。
 
-1. 求出来的p值做一个fdr矫正得到q值；
-   The calculated p value is corrected by fdr to obtain the q value.
-
-2. 希望把所有的group能像这张图一样合在一张图做出来，并且又不同的颜色。
-    I hope all the groups can be combined into one picture like this one, and in different colors.
+- The calculated p value is corrected by fdr to obtain the q value.
+- I hope all the groups can be combined into one picture like this one, and in different colors.
 
 ![](example.png)
 
-出自<https://www.nature.com/articles/s41586-019-1236-x>
-fromhttps://www.nature.com/articles/s41586-019-1236-x
+From <https://www.nature.com/articles/s41586-019-1236-x>
 
 Fig. 5 | Correlational networks capture multi-omics association structures that differ between insulin-resistant and insulin-sensitive groups. 
 
 b, Examples of microbial-cytokines correlations (by CLR+rmcorr) that are significant in insulin-sensitive but not insulin-resistant participants. Longitudinal measurements and the correlation trend line are coloured per individual and q values are indicated at the top right of each comparison.
 
-# 应用场景
-
-# Application Scenarios
+## 应用场景 Application Scenarios
 
 有时我们需要展示多组数据的两个变量之间的相关性，绘制散点图和趋势线。
-Sometimes we need to show the correlation between two variables of multiple sets of data, and draw scatter plots and trend lines.
 
 - 大部分文章会批量绘制，像FigureYa73batchCorrelation那样，每组数据单独一个小图，所有组数据放在一起组成一个figure panel。
-  most of the articles will map in bulk, like FigureYa73batchCorrelation, each group of data a picture alone, all the data together to form a figure of a panel.
 - 如果每组内的观察值较少，就可以像本文这样，把多组数据画到同一个图上，更方便地平行对比多组数据的斜率。
-  If the number of observations within each group is small, it is possible to plot multiple sets of data on the same graph as in this article, making it more convenient to compare the slopes of multiple sets of data in parallel.
 - 另外，如果要展示A跟B、A跟C的相关性，就可以绘制成双坐标轴的散点图，可参考FigureYa62twoAxis的画法。
-  In addition, if you want to show the correlation between A and B, or between A and C, you can draw a scatter plot with two coordinate axes. You can refer to the drawing method of Figure YA62 two-axis.
 
-# 环境设置
+Sometimes we need to show the correlation between two variables of multiple sets of data, and draw scatter plots and trend lines.
 
-# Environment Setup
+- Most of the articles will map in bulk, like FigureYa73batchCorrelation, each group of data a picture alone, all the data together to form a figure of a panel.
+- If the number of observations within each group is small, it is possible to plot multiple sets of data on the same graph as in this article, making it more convenient to compare the slopes of multiple sets of data in parallel.
+- In addition, if you want to show the correlation between A and B, or between A and C, you can draw a scatter plot with two coordinate axes. You can refer to the drawing method of Figure YA62 two-axis.
+
+## 环境设置 Environment Setup
 
 ```{r}
 source("install_dependencies.R")
 
-library(tidyverse)
-library(ggplot2)
+library(tidyverse) # 数据整理 | Data processing
+library(ggplot2) # 绘图 Plotting
 Sys.setenv(LANGUAGE = "en") #显示英文报错信息  # Display an English error message
 options(stringsAsFactors = FALSE) #禁止chr转成factor  # prohibit chr from being converted to factor
 ```
 
-# 输入文件
-
-# Input File
+## 输入文件 Input File
 
 easy_input*.csv，每行为一组，每列一个观察值。将计算easy_input1.txt跟easy_input2.txt里面同一group之间的相关性。
+
 easy_input*.csv, each row is a group, and each column is an observation value. The correlation between the same group in easy_input1.txt and easy_input2.txt will be calculated.
 
 ```{r}
@@ -87,9 +81,7 @@ input2 <- read.table("easy_input2.txt",head=T)
 input2[1:3, 1:3]
 ```
 
-# 计算相关系数、pvalue、fdr（q）
-
-# Calculate the correlation coefficient, p-value, and fdr (q)
+## 计算相关系数、pvalue、fdr（q）Calculate the correlation coefficient, p-value, and fdr (q)
 
 ```{r}
 cor.value <- rep(1, nrow(input1))
@@ -122,12 +114,10 @@ head(cor_result)
 write.csv(cor_result, "cor_output.csv", quote = F, row.names = F)
 ```
 
-# 开始画图
-
-# Start drawing
+## 开始画图 Start drawing
 
 ```{r}
-# 行变列
+# 行变列 Row to Column
 # Row to Column
 input1_long <- input1 %>% pivot_longer(-"group",names_to="Time",values_to="input1")
 input2_long <- input2 %>% pivot_longer(-"group",names_to="Time",values_to="input2")

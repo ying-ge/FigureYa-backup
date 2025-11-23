@@ -8,7 +8,7 @@ Author(s)
 Reviewer(s)
 : Ying Ge, Junyi Shen
 Date
-: 2025-11-21
+: 2025-11-22
 1
 Academic Citation
 If you use this code in your work or research, we kindly request that
@@ -193,11 +193,11 @@ Download TCGA Colorectal Cancer (COADREAD) (16 datasets) data from
 UCSC Xena browser (
 https://xenabrowser.net/datapages/
 )
-gene expression RNAseq, IlluminaHiSeq (n=599) TCGA Hub,
-TCGA.COADREAD.sampleMap_HiSeqV2.gz
-phenotype, Phenotypes (n=599) TCGA Hub,
+gene expression RNAseq, ployA+ IlluminaHiSeq pancan normalized
+(n=434) TCGA Hub, TCGA.COADREAD.sampleMap_HiSeqV2.gz
+phenotype, Phenotypes (n=736) TCGA Hub,
 TCGA.COADREAD.sampleMap_COADREAD_clinicalMatrix
-phenotype, Curated survival data (n=599) TCGA Hub,
+phenotype, Curated survival data (n=728) TCGA Hub,
 survival_COADREAD_survival.txt
 #cancer_type <- "SKCM" # Figure 1A
 cancer_type

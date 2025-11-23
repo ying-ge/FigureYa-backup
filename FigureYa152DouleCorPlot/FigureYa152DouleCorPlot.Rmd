@@ -29,15 +29,14 @@ Zuguang Gu, et al., Complex heatmaps reveal patterns and correlations in multidi
 
 Zuguang Gu. Complex Heatmap Visualization, iMeta, 2022.
 
-## 需求描述
-## Requirement
+## 需求描述 Requirement
 
 复现原文这种两组画一起的相关性图。
+
 Reproduce the correlation graph of two groups shown in the original article.
 
 ![](example.png)
 
-出自<https://www.sciencedirect.com/science/article/abs/pii/S0168827819301898>
 From <https://www.sciencedirect.com/science/article/abs/pii/S0168827819301898>
 
 Fig. 3. Microenvironmental immune cell profiling of HCC-IS and C-HCC. (A) Estimated absolute scores for each immune cell type by CIBERSORT and PD1-TIL, PDL1-TIL, and PDL1-Tumor immunostaining in C-HCC and HCC-IS. 
@@ -46,92 +45,65 @@ Fig. 3. Microenvironmental immune cell profiling of HCC-IS and C-HCC. (A) Estima
 **Graph Interpretation**
 
 右上角展示C-HCC里各种免疫细胞之间的相关性，左下角展示HCC-IS里各种免疫细胞之间的相关性。
-The upper right corner shows the correlation between various immune cells in C-HCC, and the lower left corner shows the correlation between various immune cells in HCC-IS.
 
 Figure legend没写清楚，按图推测：
-The figure legend is unclear, so I'm guessing based on the image:
 
 - 泡泡大小代表相关系数r
 - 泡泡颜色代表相关系数r
 - p value > 0.05时不画泡泡
+
+The upper right corner shows the correlation between various immune cells in C-HCC, and the lower left corner shows the correlation between various immune cells in HCC-IS.
+
+The figure legend is unclear, so I'm guessing based on the image:
+
 - Bubble size represents the correlation coefficient r
 - Bubble color represents the correlation coefficient r
 - Bubble not drawn if p-value > 0.05
 
-## 应用场景
-## Application Scenarios
+## 应用场景 Application Scenarios
 
-在做相关多个基因（或免疫细胞，或样本）之间相关分析时，如果有两个不同来源的数据，通常需要各画一个图，其实可以画在一个图上。
-When performing correlation analysis between multiple genes (or immune cells, or samples), if data is collected from two different sources, separate graphs are usually required. However, they can be drawn on a single graph.
+多个变量（基因、免疫细胞、样本）之间相关分析，如果有两个不同来源的数据，通常需要各画一个图，其实可以像例文这样画在一个图上。
 
-适用于**横纵坐标一致**的相关性结果展示，因为这种相关性矩阵可以画成三角形（左下跟右上是一样的）。如果**横纵坐标不一致**，需要画成矩形，计算和画法可参考FigureYa97correlation。如果要同时展示两组，可参考FigureYa144DiagHeatmap的画法。
-This is suitable for displaying correlation results with consistent horizontal and vertical coordinates, as such correlation matrices can be drawn as triangles (the lower left and upper right are the same). If the horizontal and vertical coordinates are inconsistent, a rectangle should be drawn. For calculation and drawing methods, refer to Figure Ya97correlation. If you need to display two groups simultaneously, refer to Figure Ya144DiagHeatmap.
+适用于**横纵坐标一致**的相关性结果展示，因为这种相关性矩阵可以画成三角形（左下跟右上是一样的）。
 
-## 环境设置
-## Environment Setup
+如果**横纵坐标不一致**，需要画成矩形，计算和画法可参考FigureYa97correlation。
+
+When performing correlation analysis between multiple variables (genes, immune cells, samples), if data is collected from two different sources, separate graphs are usually required. However, they can be drawn on a single graph.
+
+This is suitable for displaying correlation results with consistent horizontal and vertical coordinates, as such correlation matrices can be drawn as triangles (the lower left and upper right are the same). 
+
+If the horizontal and vertical coordinates are inconsistent, a rectangle should be drawn. For calculation and drawing methods, refer to Figure Ya97correlation. 
+
+## 环境设置 Environment Setup
 
 ```{r}
 source("install_dependencies.R")
-library(ComplexHeatmap)
+library(ComplexHeatmap) # 画相关性矩阵 Draw correlation matrix
 Sys.setenv(LANGUAGE = "en") #显示英文报错信息 #Display English error messages
 options(stringsAsFactors = FALSE) #禁止chr转成factor #Disable conversion of chr to factor
 ```
 
-## 输入文件的获得
-## Obtaining the Input File
+## 输入文件 Input File
 
-如果你的数据已经整理成easy_input\*P.csv和easy_input\*R.csv的格式，就可以跳过这步，直接进入“输入文件”
-If your data has already been organized into easy_input\*P.csv and easy_input\*R.csv formats, you can skip this step and proceed directly to "Input Files."
+输入文件分别是两个分组的相关系数`easy_input*_R.csv`和P值`easy_input*_P.csv`。
+用"附：计算相关性系数和p value"的方法把数据整理成这个格式。
 
-### 相关性分析
-### Correlation Analysis
+由于要对两个数据集一起作图，需要把两个数据集合并。因这两个数据集都是相关性分析算法的结果，变量顺序应一致，因此此处不检查顺序。如果是自己新计算的数据，建议用`identical`检查列名和行名顺序是否完全一致。
 
-这里借用FigureYa71ssGSEA输出的ssGSEA_output.csv，用来展示相关系数和p value的计算方法，生成所需的easy_input\*P.csv和easy_input\*R.csv。
-Here, we use the ssGSEA_output.csv file (Figure Ya71) to demonstrate how to calculate the correlation coefficient and p-value, and to generate the required easy_input\*P.csv and easy_input\*R.csv files.
+这里我们直接用TCGA当中**KICH**及**KIRC**肿瘤样本的免疫细胞相关分析结果作展示：
 
-- ssGSEA_output.csv，免疫细胞矩阵，列是免疫细胞，行是样本。可以换成其他类型的数据，例如基因表达矩阵。
-- ssGSEA_output.csv is an immune cell matrix, with immune cells as columns and samples as rows. This can be replaced with other data types, such as a gene expression matrix.
+- 右上三角展示**KICH**的相关系数，
+- 左下三角展示**KIRC**的相关系数。
 
-```{r}
-tcga_gsva <- read.csv("ssGSEA_output.csv", row.names = 1, check.names = F)
-tcga_gsva[1:3,1:3]
-#这里将计算每列之间的相关性
-# This will calculate the correlation between each column.
-#如果要计算行之间的相关性就运行下面这行转置（把行变成列，列变成行）
-# To calculate the correlation between rows, run the following transposition line (convert rows to columns and columns to rows).
-# tcga_gsva <- t(tcga_gsva)
+The input files are the correlation coefficients (`easy_input*_R.csv`) and p-values (`easy_input*_P.csv`) for two groups, respectively.
+You can use the approach in the Appendix ("Calculate correlation coefficients and p values") to organize your data into this format.
 
-# 计算相关系数
-# Calculate the correlation coefficient
-cor_r <- cor(tcga_gsva)
-cor_r[1:3,1:3]
-write.csv(cor_r, "easy_input_R.csv", quote = F)
+To visualize both datasets on a single plot, the two datasets should be merged. Since both are results from correlation analysis, the variable order should be the same; thus, we do not check the order here. However, if you are using your own data, it is recommended that you use `identical` to verify that the row and column names are in the same order.
 
-# 计算p value
-# Calculate the p value
-cor_p <- matrix(0, nrow = ncol(tcga_gsva), ncol = ncol(tcga_gsva))
-rownames(cor_p) <- colnames(tcga_gsva)
-colnames(cor_p) <- colnames(tcga_gsva)
-for (i in 1:ncol(tcga_gsva)){
-  for (j in 1:ncol(tcga_gsva)){
-      p <- cor.test(tcga_gsva[,i],tcga_gsva[,j])
-      cor_p[i,j] <- p$p.value
-  }
-}
-write.csv(cor_p, "easy_input_P.csv", quote = F)
-```
+Here, we demonstrate using TCGA data: the immune cell correlations of **KICH** and **KIRC** tumor samples:
 
-两组数据都按照这个方式运行，分别算出两组相关系数和pvalue，作为输入文件。
-Both sets of data are run in this manner, and two sets of correlation coefficients and pvalues are calculated as input files.
-
-### 输入文件
-### Input File
-
-这里我们直接用TCGA当中**KICH**以及**KIRC**内的免疫细胞之间相关分析的结果来进行绘图展示。
-Here, we directly use the results of the correlation analysis between immune cells in **KICH** and **KIRC** from TCGA to plot and display.
-
-输入文件分别是两个癌症的相关系数`easy_input*_R.csv`和P值`easy_input*_P.csv`。
-The input files are `easy_input*_R.csv` and `easy_input*_P.csv`, respectively, for the correlation coefficients of the two cancer types.
+- The upper right triangle shows the correlation coefficients for **KICH**
+- The lower left triangle shows the coefficients for **KIRC**
 
 ```{r}
 KICHR <- read.csv("easy_input1_R.csv", row.names = 1)
@@ -140,18 +112,7 @@ KICHP <- read.csv("easy_input1_P.csv", row.names = 1)
 KICHP[1:3,1:3]
 KIRCR <- read.csv("easy_input2_R.csv", row.names = 1)
 KIRCP <- read.csv("easy_input2_P.csv", row.names = 1)
-```
 
-## 合并数据
-## Merging Data
-
-由于要做对两个数据集进行一起做图，所以需要把两个数据集整合到一起。由于两个数据集都是经过相关算法计算的结果，所以变量顺序也一样，所以我们就不检查其顺序是否一样。如果是自己的数据记得使用`identical`检查一下列名和行名的顺序是否一样。
-Since we want to plot two datasets together, we need to merge them. Since both datasets are calculated using the correlation algorithm, the variable order is the same, so we won't check whether the order is the same. If you're using your own data, remember to use `identical` to check that the order of the column and row names is the same.
-
-这里在相关图里面的右上半部分来展示**KICH**的相关系数，左下半部分来展示**KIRC**的相关系数。
-The top right half of the correlation plot shows the **KICH** correlation coefficient, and the bottom left half shows the **KIRC** correlation coefficient.
-
-```{r}
 ## 合并相关系数的数据
 ## Merge correlation coefficient data
 datR <- KICHR
@@ -172,8 +133,7 @@ datP[1:3,1:3]
 datR[datP > 0.05] <- NA
 ```
 
-## 开始画图
-## Start plotting
+## 开始画图 Start plotting
 
 用`ComplexHeatmap`画图
 Plot using `ComplexHeatmap`
@@ -234,7 +194,49 @@ dev.off()
 
 ![](DouleCorPlot.pdf)
 
-# sessionInfo
+## 附：计算相关性系数和p value Appendix: Calculating correlation coefficients and p values
+两组数据都按照这个方式运行，分别算出两组相关系数和pvalue，作为输入文件。
+
+这里借用FigureYa71ssGSEA输出的ssGSEA_output.csv，用来展示相关系数和p value的计算方法，生成所需的easy_input\*P.csv和easy_input\*R.csv。
+
+- ssGSEA_output.csv，免疫细胞矩阵，列是免疫细胞，行是样本。可以换成其他类型的数据，例如基因表达矩阵。
+
+Both sets of data are run in this manner, and two sets of correlation coefficients and pvalues are calculated as input files.
+
+Here, we use the ssGSEA_output.csv file (Figure Ya71) to demonstrate how to calculate the correlation coefficient and p-value, and to generate the required easy_input\*P.csv and easy_input\*R.csv files.
+
+- ssGSEA_output.csv is an immune cell matrix, with immune cells as columns and samples as rows. This can be replaced with other data types, such as a gene expression matrix.
+
+```{r}
+tcga_gsva <- read.csv("ssGSEA_output.csv", row.names = 1, check.names = F)
+tcga_gsva[1:3,1:3]
+#这里将计算每列之间的相关性
+# This will calculate the correlation between each column.
+#如果要计算行之间的相关性就运行下面这行转置（把行变成列，列变成行）
+# To calculate the correlation between rows, run the following transposition line (convert rows to columns and columns to rows).
+# tcga_gsva <- t(tcga_gsva)
+
+# 计算相关系数
+# Calculate the correlation coefficient
+cor_r <- cor(tcga_gsva)
+cor_r[1:3,1:3]
+write.csv(cor_r, "easy_input_R.csv", quote = F)
+
+# 计算p value
+# Calculate the p value
+cor_p <- matrix(0, nrow = ncol(tcga_gsva), ncol = ncol(tcga_gsva))
+rownames(cor_p) <- colnames(tcga_gsva)
+colnames(cor_p) <- colnames(tcga_gsva)
+for (i in 1:ncol(tcga_gsva)){
+  for (j in 1:ncol(tcga_gsva)){
+      p <- cor.test(tcga_gsva[,i],tcga_gsva[,j])
+      cor_p[i,j] <- p$p.value
+  }
+}
+write.csv(cor_p, "easy_input_P.csv", quote = F)
+```
+
+## sessionInfo
 
 ```{r}
 sessionInfo()

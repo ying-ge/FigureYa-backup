@@ -1,7 +1,8 @@
 ---
 title: "FigureYa76corrgram"
 params:
-  author: "Ying Ge, TaojunYe"
+  author: "Ying Ge"
+  reviewer: "Taojun Ye"
 output: 
   html_document:
     toc: true
@@ -14,59 +15,60 @@ output:
 ---
 
 **Author(s)**: `r params$author`  
+**Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()`  
-
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 # 设置knitr代码块的全局选项 / Set global options for knitr code chunks
 ```
 
-## 需求描述
+## 需求描述 Requirement description
 
 用R复现原图的形式。
-
-## Requirement description
 
 Reproduce the original image in R format.
 
 ![](example.png)
 
-出自<https://www.cell.com/cell/fulltext/S0092-8674(17)30815-2?_returnURL=https%3A%2F%2Flinkinghub.elsevier.com%2Fretrieve%2Fpii%2FS0092867417308152%3Fshowall%3Dtrue>
+Figure 7 The Levels of F.nucleatum, miR-18a∗, miR-4802, and Autophagy Components Correlate and Are Relevant in CRC Patients
+(D) Correlations among F. nucleatum, miR-18a∗, miR-4802, ULK1, and ATG7 levels in human colorectal cancer tissues (Cohort 2).
 
-from<https://www.cell.com/cell/fulltext/S0092-8674(17)30815-2?_returnURL=https%3A%2F%2Flinkinghub.elsevier.com%2Fretrieve%2Fpii%2FS0092867417308152%3Fshowall%3Dtrue>
+From <https://www.cell.com/cell/fulltext/S0092-8674(17)30815-2?_returnURL=https%3A%2F%2Flinkinghub.elsevier.com%2Fretrieve%2Fpii%2FS0092867417308152%3Fshowall%3Dtrue>
 
-## 应用场景
+## 应用场景 Application scenarios
 
-同时展示相关系数和原始数据分布。
+同时展示每两个变量之间的相关关系和原始数据分布：
 
-相关系数参考资料：<https://uc-r.github.io/correlations>。里面提到两个展示相关性的好用的画图工具：corrplot和corrgram。corrplot的用法可参考FigureYa70mutationEvents；corrgram基于pairs，包装进了几个现成的函数，这里借鉴了其中的panel.fill函数，corrgram的更多用法举例：<https://rawgit.com/kwstat/corrgram/master/vignettes/corrgram_examples.html>，<https://rstudio-pubs-static.s3.amazonaws.com/6382_886fbab74fd5499ba455f11360f78de7.html>，<http://www.datavis.ca/papers/corrgram.pdf>
+- 下三角：原始数据散点图 + 拟合线
+- 上三角：相关系数热图
+- 对角线：变量名称
 
-## Application scenarios
+每两个变量之间的相关关系，还可以画成圆形，可参考FigureYa37correlationV2_update和FigureYa81immune_network
+
+Simultaneously display both the pairwise correlation relationships and the raw data distribution for every two variables:
+
+- Lower triangle: Scatter plots of raw data with fitted (regression) lines
+- Upper triangle: Correlation coefficient heatmap
+- Diagonal: Variable names
+
+For each pair of variables, the correlation relationship can also be visualized in a circular form. See examples in FigureYa37correlationV2_update and FigureYa81immune_network.
+
+相关系数参考资料：<https://uc-r.github.io/correlations>，里面提到两个展示相关性的好用的画图工具：corrplot和corrgram。
+
+- corrplot的用法可参考FigureYa70mutationEvents；
+- corrgram基于pairs，包装进了几个现成的函数，这里借鉴了其中的panel.fill函数
 
 Simultaneously display the correlation coefficient and the distribution of raw data.
 
-Reference materials for correlation coefficient:< https://uc-r.github.io/correlations >It mentions two useful drawing tools for displaying correlations: corrplot and corrgram. The usage of corrplot can refer to FigureYa70mutationEvents; Corrgram is based on pairs and includes several ready-made functions. Here, we draw inspiration from the panel.fill function. For more examples of Corrgram usage:< https://rawgit.com/kwstat/corrgram/master/vignettes/corrgram_examples.html >，< https://rstudio-pubs-static.s3.amazonaws.com/6382_886fbab74fd5499ba455f11360f78de7.html >，< http://www.datavis.ca/papers/corrgram.pdf >
+Reference materials for correlation coefficient:<https://uc-r.github.io/correlations>. It mentions two useful drawing tools for displaying correlations: corrplot and corrgram. 
 
-## 环境设置
+- The usage of corrplot can refer to FigureYa70mutationEvents; 
+- Corrgram is based on pairs and includes several ready-made functions. Here, we draw inspiration from the panel.fill function. 
 
-## Environment settings
-
-```{r}
-# 中文注释: 设置R运行环境为英文(显示英文报错信息)
-# English Comment: Set R environment to English (display error messages in English)
-Sys.setenv(LANGUAGE = "en") 
-
-# 中文注释: 设置全局选项，防止字符串自动转换为因子
-# English Comment: Set global option to prevent automatic conversion of strings to factors
-options(stringsAsFactors = FALSE)
-```
-
-## 输入文件
+## 输入文件 Input file
 
 easy_input.csv，将计算并展示每两列之间的相关性。每列一个特征，每行一个sample。
-
-## Input file
 
 easy_input.csv， Calculate and display the correlation between every two columns. One feature per column, one sample per row.
 
@@ -80,13 +82,11 @@ df <- read.csv("easy_input.csv", row.names = 1)
 head(df)
 ```
 
-## 开始画图
+## 开始画图 Start drawing
 
-这个包的关键是写好画小图的函数，然后用pairs组合成最终的效果。
+关键是写好画小图的函数，然后用pairs组合成最终的效果。
 
-## Start drawing
-
-The key to this package is to write a function for drawing small images and then combine them into the final effect using pairs.
+The keypoint is to write a function for drawing small images and then combine them into the final effect using pairs.
 
 ```{r, fig.width=6, fig.height=6}
 # 设置绘图背景颜色为浅灰色（接近白色）
@@ -155,6 +155,8 @@ dev.off() # 关闭PDF设备 / Close PDF device
 ```
 
 ![](corrgram.pdf)
+
+## Session Info
 
 ```{r}
 sessionInfo()

@@ -1,8 +1,8 @@
 ---
 title: "FigureYa73batchCorrelation"
 params:
-  author: "Dekang Lv, Taojun Ye"
-  reviewer: "Ying Ge"
+  author: "Dekang Lv"
+  reviewer: "Ying Ge, Taojun Ye"
 output: 
   html_document:
     toc: true
@@ -18,7 +18,6 @@ output:
 **Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()`  
 
-
 ## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
@@ -29,21 +28,17 @@ knitr::opts_chunk$set(echo = TRUE)
 # 设置knitr的全局代码块选项 / Set global chunk options for knitr
 ```
 
-## 需求描述
+## 需求描述 Requirement Description
 
 输入TCGA的表达矩阵，按文章中的方法计算bin(或者不取bin)、批量计算一个基因跟多个基因的相关系数、pvalue，画出文章里的图
-
-## Requirement Description
 
 Input TCGA expression matrix, calculate bin (or not take bin), batch calculate correlation coefficient and pvalue of one gene with multiple genes according to the method in the article, and draw the graph in the article.
 
 ![](example.png) 
 
-出自<https://www.nature.com/articles/nature13473>
+From <https://www.nature.com/articles/nature13473>
 
-from<https://www.nature.com/articles/nature13473>
-
-## 应用场景
+## 应用场景 Application Scenarios
 
 批量筛选哪些基因跟你感兴趣的基因呈正/负相关。
 
@@ -51,26 +46,21 @@ from<https://www.nature.com/articles/nature13473>
 
 在画ChIP-seq、ATAC-seq或DNA甲基化等动辄成千上万个位点时，可以尝试这种取bin的方式画图。
 
-## Application Scenarios
-
 Batch screen which genes are positively/negatively correlated with your gene of interest.
 
 Not only for gene expression correlation analysis, but also for correlation analysis of transcription factor binding (ChIP) and target gene fold change (RNA-seq) as in the example. Simply replace the gene information in the example with locus information.
 
 When plotting thousands of loci such as ChIP-seq, ATAC-seq, or DNA methylation, you can try this binning approach.
 
-## 环境设置
-
-## Environment settings
+## 环境设置 Environment settings
 
 ```{r}
 source("install_dependencies.R")
 
-# 加载必要的R包 / Load required packages
-library(reshape2)   # 数据重塑工具（如宽表转长表） / Data reshaping tools (e.g., wide to long format)
-library(ggplot2)    # 高级数据可视化 / Advanced data visualization
-library(cowplot)    # 提供图形排版功能 / Enhanced plot arrangement tools
-library(plyr)       # 数据分割-应用-合并工具 / Tools for splitting-applying-combining data
+library(reshape2)   # 数据重塑工具（如宽表转长表） Data reshaping tools (e.g., wide to long format)
+library(ggplot2)    # 高级数据可视化 Advanced data visualization
+library(cowplot)    # 提供图形排版功能 Enhanced plot arrangement tools
+library(plyr)       # 数据分割-应用-合并工具 Tools for splitting-applying-combining data
 
 # 设置环境语言为英文（显示英文错误信息） / Set system language to English (for English error messages)
 Sys.setenv(LANGUAGE = "en") 
@@ -79,9 +69,7 @@ Sys.setenv(LANGUAGE = "en")
 options(stringsAsFactors = FALSE)  
 ```
 
-## 参数设置
-
-## Parameter setting
+## 参数设置 Parameter setting
 
 ```{r}
 # 设置目标基因 / Set target gene symbol
@@ -99,18 +87,15 @@ pointnumber = 20  # 设置每个区间包含20个点 / Set 20 points per bin
 # pointnumber = NULL  # 取消分组区间设置 / Disable binning
 ```
 
-## 输入文件
+## 输入文件 Input file
 
 easy_input.csv，基因表达矩阵，第一列是gene symbol，后面是表达矩阵。
 
 示例数据取自FigureYa71ssGSEA的not_easy_input_expr.txt文件，把表达矩阵的第一列gene_id换成gene symbol，可参考FigureYa71ssGSEA或FigureYa56immune_inflitration的处理方式。为方便传输，取了表达量最高的1000个基因。
 
-## Input file
-
 easy_input.csv, gene expression matrix, the first column is gene symbol, followed by expression matrix.
 
 The example data is taken from the file not_easy_input_expr.txt of FigureYa71ssGSEA, replace the first column of gene_id of the expression matrix with the gene symbol, refer to the handling of FigureYa71ssGSEA or FigureYa56immune_inflitration The way. For the convenience of transmission, the 1000 genes with the highest expression were taken.
-
 
 ```{r}
 # 读取TCGA表达数据 / Read TCGA expression data
@@ -122,11 +107,9 @@ tcga_expr <- read.csv("easy_input.csv", row.names = 1)
 tcga_expr[1:3, 1:3]
 ```
 
-## 计算相关系数
+## 计算相关系数 Calculate the correlation coefficient
 
 此处采用两种方法计算相关系数：pearson和spearman
-
-## Calculate the correlation coefficient
 
 Two methods are used here to calculate the correlation coefficient: pearson and spearman
 
@@ -221,15 +204,11 @@ mddf$r <- topcor[mddf$variable, ]$r_pearson
 mddf$P <- topcor[mddf$variable, ]$pval_pearson
 ```
 
-## 开始画图
+## 开始画图 Start drawing
 
-### 一次画一个基因
+### 一次画一个基因 One gene at a time
 
 以EIF3I为例
-
-## Start drawing ##
-
-### One gene at a time ###
 
 Take EIF3I for example.
 
@@ -264,9 +243,7 @@ ggplot(df, aes_string(x = symbol, y = "value")) +
 ggsave(paste0(symbol, "_", friend, ".pdf"))  # 输出PDF文件 / Output PDF file
 ```
 
-### 批量画图
-
-### Batch drawing
+### 批量画图 Batch drawing
 
 ```{r, fig.width=10, fig.height=12}
 # 使用dlply按基因拆分数据并创建多个ggplot对象

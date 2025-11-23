@@ -113,9 +113,9 @@ For Figure 1C of the reference paper, we need to download the data from the UCSC
 
 Download TCGA Colorectal Cancer (COADREAD) (16 datasets) data from UCSC Xena browser (https://xenabrowser.net/datapages/)
 
-- gene expression RNAseq, IlluminaHiSeq (n=599) TCGA Hub, TCGA.COADREAD.sampleMap_HiSeqV2.gz
-- phenotype, Phenotypes (n=599) TCGA Hub, TCGA.COADREAD.sampleMap_COADREAD_clinicalMatrix
-- phenotype, Curated survival data (n=599) TCGA Hub, survival_COADREAD_survival.txt
+- gene expression RNAseq, ployA+ IlluminaHiSeq pancan normalized (n=434) TCGA Hub, TCGA.COADREAD.sampleMap_HiSeqV2.gz
+- phenotype, Phenotypes (n=736) TCGA Hub, TCGA.COADREAD.sampleMap_COADREAD_clinicalMatrix
+- phenotype, Curated survival data (n=728) TCGA Hub, survival_COADREAD_survival.txt
 
 ```{r}
 #cancer_type <- "SKCM" # Figure 1A
