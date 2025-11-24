@@ -101,6 +101,17 @@ If needed, you can further use the `web_scraper.py` file to scrape the web page 
 - Test file operations should use Path objects for cross-platform compatibility
 - Mock external API calls and file operations to make tests reliable and fast
 
+## R Package Compatibility Lessons
+
+- **ggtern and ggplot2 version compatibility**: ggtern 3.5.0+ requires ggplot2 >= 3.5.0, but has compatibility issues with newer ggplot2 versions (error: `@lineend must be <character> or <NULL>, not S3<arrow>`). Solution: Use compatible version combination - **ggplot2 3.4.4 + ggtern 3.4.2**. Use `remotes::install_version()` to install specific versions:
+  ```r
+  install.packages("remotes")
+  remotes::install_version("ggplot2", version = "3.4.4", repos = "https://cloud.r-project.org/")
+  remotes::install_version("ggtern", version = "3.4.2", repos = "https://cloud.r-project.org/")
+  ```
+- When encountering package version conflicts, check package DESCRIPTION file for version requirements, then find compatible version combinations
+- Use `remotes::install_version()` for precise version control when automatic dependency resolution fails
+
 ## GitHub Actions and CI/CD Lessons
 
 - For GitHub Actions workflows with disk space issues, optimize by:

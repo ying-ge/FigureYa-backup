@@ -27,32 +27,25 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# 需求描述
+## 需求描述 Requirement description
 
 我想实现Figure 1B，两个数据集里面看预后判断力都很好的基因。
-
-# Requirement Description
 
 I want to draw Figure 1B, and look at the genes with good prognostic judgment in both datasets.
 
 ![](example.png)
 
-出自<https://aasldpubs.onlinelibrary.wiley.com/doi/abs/10.1002/hep.30930>
-From<https://aasldpubs.onlinelibrary.wiley.com/doi/abs/10.1002/hep.30930>
+From <https://aasldpubs.onlinelibrary.wiley.com/doi/abs/10.1002/hep.30930>
 
 FIg. 1. PDLIM1 is down-regulated in human metastatic HCC tissues. (A) Heat map showing 402 genes differentially expressed in HCC tissues with or without metastasis based on data set **GSE364**. (B) area under the curve evaluation of the prognostic value of candidate genes involved in metastasis-related events based on data sets **TCGA and GSE10816**. Those genes with no detectable protein expression in liver cancer were excluded and are colored in **gray**.
 
-# 应用场景
+## 应用场景 Application scenarios
 
 训练集定义候选基因，后在两个测试集里寻找预后判断力都好的基因集合。
 
-# Application Scenarios
-
 The training set defines the candidate genes, and then looks for the set of genes with good prognostic judgment in both test sets.
 
-# 环境设置
-
-# Environment settings
+## 环境设置 Environment settings
 
 ```{r}
 source("install_dependencies.R")
@@ -91,7 +84,7 @@ standarize.fun <- function(indata=NULL, halfwidth=NULL, centerFlag=T, scaleFlag=
 }
 ```
 
-# 输入文件
+## 输入文件 Input files
 
 需要多套带预后信息的表达数据，分别作为训练集和测试集。
 
@@ -107,7 +100,6 @@ standarize.fun <- function(indata=NULL, halfwidth=NULL, centerFlag=T, scaleFlag=
 - GSE10186.expr.txt
 - GSE10186.sinfo.txt
 
-# Input Files
 Multiple sets of expression data with prognostic information are required, serving as the training set and test set, respectively.
 
 Training Set:
@@ -122,8 +114,7 @@ Test Set:
 - GSE10186.expr.txt
 - GSE10186.sinfo.txt
 
-## 加载训练集数据 —— GSE364
-## Load the training set data - GSE364
+### 加载训练集数据 —— GSE364 Load the training set data - GSE364
 
 ```{r}
 gse364.expr <- read.table("GSE364.expr.txt",sep = "\t",row.names = 1,check.names = F,stringsAsFactors = F,header = T)
@@ -137,8 +128,7 @@ gse364.expr <- gse364.expr[,c(meta.sam,local.sam)] %>% as.matrix() %>% impute.kn
 gse364.expr <- log2(gse364.expr$data + 1) %>% as.data.frame()
 ```
 
-## 加载测试集
-## Load the test set
+### 加载测试集 Load the test set
 
 ```{r}
 # TCGA
@@ -160,8 +150,7 @@ gse10186.sinfo <- gse10186.sinfo[comsam,,drop = F]
 lihc.sinfo$fustat <- ifelse(lihc.sinfo$OS == 1 | lihc.sinfo$PFI == 1, 1, 0) # death or progression
 ```
 
-# 用训练集定义候选基因集
-# Define the candidate gene set with the training set
+## 用训练集定义候选基因集 Define the candidate gene set with the training set 
 
 用limma分析差异表达，定义候选基因集，顺便画出图A
 
@@ -216,8 +205,7 @@ dev.copy2pdf(file = "heatmap.pdf", width = 5,height = 5)
 write.table(annRow,"differential expressed gene.txt",sep = "\t",row.names = T,col.names = NA,quote = F)
 ```
 
-# 在两个测试集里寻找预后判断力都好的基因集合
-# Look for a set of genes with good prognostic judgment in both test sets
+## 在两个测试集里寻找预后判断力都好的基因集合 Look for a set of genes with good prognostic judgment in both test sets
 
 ```{r}
 # 计算auc
@@ -256,8 +244,7 @@ avgauc <- c(auc1[finalgene] + auc2[finalgene])/2
 pickgene <- "B4GALNT1" # 因为和原文结果不同所以随便选的 # As it is different from the original result, I choose it willingly
 ```
 
-# 开始画图
-# Start plot
+## 开始画图 Start plot
 
 用base plot画图，从plot开始整段运行。
 

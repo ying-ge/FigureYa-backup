@@ -193,11 +193,9 @@ theme_ggtern <- function(base_size = 11, base_family = ""){
   #Create Instance of the base theme
   base = baseTheme(base_size = base_size, base_family = base_family)
   
-  #Start with the base theme 
-  base %+replace%
-  
-  #Start with additional elements
-  theme(
+  #Start with the base theme and add additional elements
+  #Start with the base theme and add additional elements
+  base %+replace% theme(
     
     ##TERNARY PANEL
     tern.panel.background          = element_rect(),  #Panel is the triangular region
@@ -231,7 +229,14 @@ theme_ggtern <- function(base_size = 11, base_family = ""){
     tern.axis.text.show            = getOption("tern.text.show"),
     
     #Arrow
-    tern.axis.arrow                = element_line(lineend = getOption('tern.arrow')),
+    tern.axis.arrow                = element_line(lineend = {
+      arrow_val <- getOption('tern.arrow')
+      if (is.null(arrow_val) || is.character(arrow_val)) {
+        arrow_val
+      } else {
+        NULL
+      }
+    }),
     tern.axis.arrow.T              = element_line(),
     tern.axis.arrow.L              = element_line(),
     tern.axis.arrow.R              = element_line(),
@@ -250,8 +255,26 @@ theme_ggtern <- function(base_size = 11, base_family = ""){
     tern.axis.ticks.major.T        = element_line(),
     tern.axis.ticks.major.L        = element_line(),
     tern.axis.ticks.major.R        = element_line(),
-    tern.axis.ticks.length.major   = 1.0*base$axis.ticks.length,
-    tern.axis.ticks.length.minor   = 0.5*base$axis.ticks.length,
+    tern.axis.ticks.length.major   = (function() {
+      ticks_len <- base$axis.ticks.length
+      if(is.null(ticks_len)) {
+        return(unit(0.5, "cm"))  # 默认值 Default value
+      } else if(inherits(ticks_len, "unit")) {
+        return(1.0 * ticks_len)
+      } else {
+        return(unit(1.0 * as.numeric(ticks_len), attr(ticks_len, "unit") %||% "cm"))
+      }
+    })(),
+    tern.axis.ticks.length.minor   = (function() {
+      ticks_len <- base$axis.ticks.length
+      if(is.null(ticks_len)) {
+        return(unit(0.25, "cm"))  # 默认值 Default value
+      } else if(inherits(ticks_len, "unit")) {
+        return(0.5 * ticks_len)
+      } else {
+        return(unit(0.5 * as.numeric(ticks_len), attr(ticks_len, "unit") %||% "cm"))
+      }
+    })(),
     tern.axis.ticks.outside        = getOption("tern.ticks.outside"),
     tern.axis.ticks.primary.show   = getOption("tern.ticks.primary.show"),
     tern.axis.ticks.secondary.show = getOption("tern.ticks.secondary.show"),
@@ -288,7 +311,14 @@ theme_gray  <- function(base_size = 11, base_family = ""){
     tern.plot.background  = element_rect(size=NA,color=NA),
     tern.axis.arrow       = element_line(
       color               = calc_element('axis.text',base)$colour,
-      lineend             = getOption('tern.arrow')
+      lineend             = {
+        arrow_val <- getOption('tern.arrow')
+        if (is.null(arrow_val) || is.character(arrow_val)) {
+          arrow_val
+        } else {
+          NULL
+        }
+      }
     ),
     tern.axis.line.T    = element_blank(),
     tern.axis.line.L    = element_blank(),
@@ -308,7 +338,14 @@ theme_bw <- function(base_size = 12, base_family = "") {
     tern.axis.line        = element_line(color  = base$panel.border$colour),
     tern.axis.arrow       = element_line(
       color               = base$panel.border$colour,
-      lineend             = getOption('tern.arrow')
+      lineend             = {
+        arrow_val <- getOption('tern.arrow')
+        if (is.null(arrow_val) || is.character(arrow_val)) {
+          arrow_val
+        } else {
+          NULL
+        }
+      }
     )
   )
 }
@@ -325,7 +362,14 @@ theme_linedraw <- function(base_size = 12, base_family = "") {
       tern.axis.ticks.minor = element_blank(),
       tern.axis.arrow       = element_line(
         color               = base$panel.border$colour,
-        lineend             = getOption('tern.arrow')
+        lineend             = {
+          arrow_val <- getOption('tern.arrow')
+          if (is.null(arrow_val) || is.character(arrow_val)) {
+            arrow_val
+          } else {
+            NULL
+          }
+        }
       )
     )
 }
@@ -346,7 +390,14 @@ theme_light <- function(base_size = 12, base_family = "") {
       tern.axis.arrow       = element_line(
         color               = baseline$colour,
         size                = baseline$size,
-        lineend             = getOption('tern.arrow')
+        lineend             = {
+          arrow_val <- getOption('tern.arrow')
+          if (is.null(arrow_val) || is.character(arrow_val)) {
+            arrow_val
+          } else {
+            NULL
+          }
+        }
       )
     )
 }

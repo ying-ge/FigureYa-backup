@@ -1,8 +1,8 @@
 ---
 title: "FigureYa77baseZoom"
 params:
-  author: "Haitao Wang, Taojun Ye"
-  reviewer: "Ying Ge"
+  author: "Haitao Wang"
+  reviewer: "Ying Ge, Taojun Ye"
 output: 
   html_document:
     toc: true
@@ -28,29 +28,23 @@ knitr::opts_chunk$set(echo = TRUE)
 # 设置knitr代码块的全局选项 / Set global options for knitr code chunks
 ```
 
-## 需求描述
+## 需求描述 Requirement description
 
 用base plot画出C图这种zoom in效果的图。
-
-## Requirement description
 
 Use a base plot to draw a C chart with zoom in effect.
 
 ![](example.png)
 
-出自<https://www.sciencedirect.com/science/article/pii/S0092867415011952>
-
 From<https://www.sciencedirect.com/science/article/pii/S0092867415011952>
 
-## 应用场景
+## 应用场景 Application scenarios
 
 有时会遇到这样的问题：点的分布很不均匀，堆在一起的点很难标label。
 
 解决办法：画整体的同时画局部，就能看清堆在一起的点了，写label也很清晰。
 
 示例图用于展示多个基因在两组中各变异类型所占的百分比，用颜色表示变异类型，泡泡大小表示pvalue，泡泡所在的位置偏左上说明在IDC中占比高于ILC，反之亦然。该图不仅限于基因。
-
-## Application scenarios
 
 Sometimes we encounter such problems: the distribution of points is very uneven, and it is difficult to label the points stacked together.
 
@@ -88,8 +82,7 @@ dat2 <- read.csv("easy_input.csv")
 head(dat2)
 ```
 
-## 把各列数据整理成画图所需的格式
-## Organize the data in each column into the format required for drawing
+## 把各列数据整理成画图所需的格式 Organize the data in each column into the format required for drawing
 
 ```{r}
 ### 用3-6列计算百分比 ###
@@ -134,8 +127,7 @@ Zoom in的效果，也就是画一个整体，再画一个局部。
 
 The effect of Zoom in is to draw a whole and then a part.
 
-### 画局部
-### Draw a partial picture
+### 画局部 Draw a partial picture
 
 ```{r, fig.width=10, fig.height=5.5}
 # 设置图形布局，一行两列，并调整边距为底部留出图例空间

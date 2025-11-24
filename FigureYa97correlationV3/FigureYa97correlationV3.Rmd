@@ -1,8 +1,8 @@
 ---
 title: "FigureYa97correlationV3"
 params:
-  author: "Shipeng Guo, Taojun Ye"
-  reviewer: "Ying Ge"
+  author: "Shipeng Guo"
+  reviewer: "Ying Ge, Taojun Ye"
 output: 
   html_document:
     toc: true
@@ -18,7 +18,6 @@ output:
 **Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()`  
 
-
 ## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
@@ -29,21 +28,17 @@ knitr::opts_chunk$set(echo = TRUE)
 # 设置knitr的全局代码块选项 / Set global chunk options for knitr
 ```
 
-## 需求描述
+## 需求描述 Requirement description
 
 计算多个基因和免疫浸润的相关性，画出类似于文章中这种热图，用颜色展示相关系数，用**标出显著的。
-
-## Requirement description
 
 Calculate the correlation between multiple genes and immune infiltration, draw a heatmap similar to the one in the article, display the correlation coefficients with colors, and mark the significant ones with * *.
 
 ![](example.png)
 
-出自<https://www.nature.com/articles/s41586-019-1032-7>
+From<https://www.nature.com/articles/s41586-019-1032-7>
 
-from<https://www.nature.com/articles/s41586-019-1032-7>
-
-## 应用场景
+## 应用场景 Application scenarios
 
 评价基因对免疫浸润的影响，甚至可以批量筛选出影响免疫浸润的候选基因。
 
@@ -51,27 +46,18 @@ from<https://www.nature.com/articles/s41586-019-1032-7>
 
 如果要同时展示两个基因之间的相关性，及其与免疫浸润之间的关系，请参考“FigureYa96R2”。
 
-## Application scenarios
-
 Evaluate the impact of genes on immune infiltration, and even screen candidate genes that affect immune infiltration in batches.
 
 Its essence is to calculate the correlation between two features, where immune infiltration can be replaced with other variables such as clinical phenotype, etc.
 
 If you want to simultaneously demonstrate the correlation between two genes and their relationship with immune infiltration, please refer to "FigureYa96R2".
 
-## 环境设置
-
-## Environment settings
+## 环境设置 Environment settings
 
 ```{r}
 source("install_dependencies.R")
-# 加载ggplot2包，用于数据可视化
-# Load the ggplot2 package for data visualization
-library(ggplot2)
-
-# 加载dplyr包，用于数据处理和转换
-# Load the dplyr package for data manipulation and transformation
-library(dplyr)
+library(ggplot2) # 数据可视化 Data visualization
+library(dplyr) # 数据处理和转换 Data manipulation and transformation
 
 # 设置环境变量，使R显示英文错误信息（便于搜索解决方案）
 # Set environment variable to display error messages in English (easier for searching solutions)
@@ -82,15 +68,13 @@ Sys.setenv(LANGUAGE = "en")
 options(stringsAsFactors = FALSE)
 ```
 
-## 输入文件
+## 输入文件 Input file
 
 要求前两个文件的样本名一致
 
 - ssGSEA_output.csv，免疫细胞矩阵，列是免疫细胞，行是样本，由FigureYa71ssGSEA产生。如果对免疫浸润不感兴趣，就把ssGSEA_output.csv换成其他类型的数据，例如临床指标什么的，只要保证样品名跟easy_input_expr.csv一致就好了。
 - easy_input_expr.csv，基因表达矩阵，列是样本，行是基因。行也可以是转录本，甚至是临床信息。
 - genelist.txt，基因名，将要计算这些基因跟免疫浸润的相关性。要求跟easy_input_expr.csv里的基因名一致。
-
-## Input file
 
 Require the sample names of the first two files to be consistent
 
@@ -138,19 +122,13 @@ genelist <- read.table("genelist.txt")
 genelist <- genelist$V1
 ```
 
-## 批量计算相关性
+## 批量计算相关性 Batch calculation of correlation
 
-先写一个函数
-
-输入一个基因，即可返回跟免疫基因的相关性、p值
+先写一个函数，输入一个基因，即可返回跟免疫基因的相关性、p值
 
 其中method可以改为"pearson"或"kendall"
 
-## Batch calculation of correlation
-
-Write a function first
-
-Enter a gene to return the correlation and p-value with immune genes
+Write a function first, enter a gene to return the correlation and p-value with immune genes
 
 The method can be changed to "Pearson" or "Kendall"
 
@@ -186,9 +164,7 @@ immuscore <- function(gene){
 immuscore("FOXP3")
 ```
 
-### 批量计算genelist跟免疫浸润相关性的结果
-
-### Batch calculation of the correlation between genelist and immune infiltration results
+### 批量计算genelist跟免疫浸润相关性的结果 Batch calculation of the correlation between genelist and immune infiltration results
 
 ```{r, warning=FALSE}
 # 对基因列表中的每个基因应用免疫评分函数，并将结果合并为一个数据框
@@ -208,13 +184,11 @@ write.csv(data, "correlation.csv",
           # Do not save row names
 ```
 
-### 增加一列，区分p值的大小
+### 增加一列，区分p值的大小 Add a column to distinguish the size of p-values
 
-使用两个ifelse实现三分类
+使用两个ifelse实现三分类，区分p值的大小
 
-### Add a column to distinguish the size of p-values
-
-Implement three classification using two ifelses
+Implement three classification using two ifelses, distinguish the size of p-values
 
 ```{r}
 # 根据p值添加显著性标记：p<0.05标记为*，p<0.01标记为**，否则为空
@@ -230,7 +204,7 @@ data$pstar <- ifelse(data$p.value < 0.05,
 data$pstar[1:20]
 ```
 
-## 开始画图
+## 开始画图 Start drawing
 
 使用ggplot2画图，主要用到的是geom_tile函数：
 
@@ -238,13 +212,11 @@ data$pstar[1:20]
 
 - 有差异的把*号打印在热图上
 
-## Start drawing
-
 When using ggplot2 for drawing, the main function used is the geom_tile function:
 
--Correlation is represented by different colors, and the magnitude of correlation is reflected by the depth of color;
+- Correlation is represented by different colors, and the magnitude of correlation is reflected by the depth of color;
 
--Print the * symbol on the heat map if there are differences
+- Print the * symbol on the heat map if there are differences
 
 ```{r,fig.width=8, fig.height=4}
 # 你可能想要改变横轴细胞的顺序，那就把细胞按照你想要的顺序写入levels = c()的括号里。

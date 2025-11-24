@@ -27,11 +27,19 @@ install_cran_package <- function(package_name) {
 
 cat("Starting R package installation for ternary plots...\n")
 cat("===========================================\n")
+cat("NOTE: This script uses ggtern source code from GitHub, NOT the installed package.\n")
+cat("This avoids compatibility issues with ggplot2 versions.\n")
+cat("\n")
 
 # 安装所有CRAN包
 cat("\nInstalling CRAN packages...\n")
+cat("Note: ggtern package is NOT installed - using local source code instead\n")
+cat("注意：不安装 ggtern 包，直接使用本地源码，避免版本兼容性问题\n")
+
+# 注意：不使用 ggtern 包，使用本地源码（load_ggtern_local.R）
+# Note: Do not use ggtern package, use local source code instead (load_ggtern_local.R)
 cran_packages <- c(
-  "directlabels", "ggplot2", "proto", "scales", "tidyverse", 
+  "directlabels", "proto", "scales", "tidyverse", 
   "dplyr", "grid", "gtable", "plyr", "MASS", "compositions"
 )
 
@@ -43,7 +51,9 @@ for (pkg in cran_packages) {
 cat("\n===========================================\n")
 cat("Verifying installation...\n")
 
-required_packages <- c("ggplot2", "directlabels", "scales", "tidyverse")
+# 注意：ggtern 不在验证列表中，因为我们使用本地源码
+# Note: ggtern is not in the verification list because we use local source code
+required_packages <- c("ggplot2", "directlabels", "scales", "tidyverse", "plyr", "proto", "grid")
 success_count <- 0
 
 for (pkg in required_packages) {

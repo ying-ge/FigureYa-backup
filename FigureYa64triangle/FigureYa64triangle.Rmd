@@ -1,7 +1,8 @@
 ---
 title: "FigureYa64triangle"
 params:
-  author: "Yin Li; Ying Ge, Yijing Chen"
+  author: "Yin Li"
+  reviewer: "Ying Ge, Yijing Chen"
 output: 
   html_document:
     toc: true
@@ -14,8 +15,8 @@ output:
 ---
 
 **Author(s)**: `r params$author`  
+**Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()`  
-
 
 ## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
@@ -30,7 +31,7 @@ Hamilton NE and Ferry M (2018). ggtern: Ternary Diagrams Using ggplot2. Journal 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# 需求描述 Requirement Description
+## 需求描述 Requirement Description
 
 用R画出paper里的Triangle plot
 
@@ -38,15 +39,13 @@ Use R to draw the Triangle plot in the paper
 
 ![](example.png)
 
-出自<https://www.cell.com/cell/fulltext/S0092-8674(18)31250-9?_returnURL=https%3A%2F%2Flinkinghub.elsevier.com%2Fretrieve%2Fpii%2FS0092867418312509%3Fshowall%3Dtrue>
-
 原文解析：
 
 - 点的坐标代表其突变频率，越靠近三角形的一个角，代表在这个类型突变越多；
 - 点的大小代表在glioma这个病中，总共的突变频率；
 - 颜色代表相对突变频率
 
-from<https://www.cell.com/cell/fulltext/S0092-8674(18)31250-9?_returnURL=https%3A%2F%2Flinkinghub.elsevier.com%2Fretrieve%2Fpii%2FS0092867418312509%3Fshowall%3Dtrue>
+From <https://www.cell.com/cell/fulltext/S0092-8674(18)31250-9?_returnURL=https%3A%2F%2Flinkinghub.elsevier.com%2Fretrieve%2Fpii%2FS0092867418312509%3Fshowall%3Dtrue>
 
 Original analysis:
 
@@ -54,7 +53,7 @@ Original analysis:
 - The size of the dots represents the total frequency of mutations in glioma;
 - The color represents the relative mutation frequency
 
-# 应用场景 Application Scenario
+## 应用场景 Application Scenario
 
 展示3种不同疾病或者3组之间某个指标的相关性，一目了然。
 
@@ -64,24 +63,25 @@ Display the correlation of a certain indicator among 3 different diseases or 3 g
 
 Use your imagination to develop more application scenarios.
 
-# 环境设置 Environment Setting
+## 环境设置 Environment Setting
 
 ```{r,message=FALSE}
 source("install_dependencies.R")
-source("ggtern-constructor.R") # from ggtern package, https://github.com/nicholasehamilton/ggtern
-source("theme-defaults.R") # from ggtern package, https://github.com/nicholasehamilton/ggtern
 
-library(tidyverse)
-library(scales)
-library(ggplot2)
-library(directlabels)
+library(tidyverse) # 数据处理和转换 Data manipulation and transformation
+library(scales) # 数据缩放 Data scaling
+library(ggplot2) # 数据可视化 Data visualization
+library(directlabels) # 直接标签 Direct labels
+
+# 加载 ggtern 本地源码（不依赖安装的包，兼容所有 ggplot2 版本）
+# Load ggtern source code locally (without depending on installed package, compatible with all ggplot2 versions)
+source("load_ggtern_local.R") # 从 GitHub 源码中提取的核心函数 Core functions extracted from GitHub source code
 
 Sys.setenv(LANGUAGE = "en") #显示英文报错信息 display English error messages
 options(stringsAsFactors = FALSE) #禁止chr转成factor prohibit the conversion of chr to factor
 ```
 
-# 输入数据预处理
-# Preprocessing of input data
+## 输入数据预处理 Preprocessing of input data
 
 如果你的数据已经整理成“easy_input.csv”的格式，就可以跳过这步，直接进入“输入文件”。
 
@@ -91,25 +91,27 @@ If your data has been organized into “easy_input.csv” format, you can skip t
 
 Download the original supplementary material Table2.pdf and organize it as “not_easy_input.csv”.
 
-
-## 直接用原文数据画图
-## Draw a graph directly using the original data
+## 直接用原文数据画图 Draw a graph directly using the original data
 
 ```{r}
 df <- read.csv("not_easy_input.csv")
 head(df)
-ggtern(data=df, aes(x=df$Frequency.in.pGBM,
-                    y=df$Frequency.in.LGG,
-                    z=df$Frequency.in.sGBM)) +  
-   geom_point(size = df$Alteration.Frequency.in.glioma)  
+# 将 size 添加到数据中，并使用 scale_size 来确保 size 被正确处理
+# Add size to data and use scale_size to ensure size is handled correctly
+df$size <- df$Alteration.Frequency.in.glioma
+ggtern(data=df, aes(x=Frequency.in.pGBM,
+                    y=Frequency.in.LGG,
+                    z=Frequency.in.sGBM,
+                    size=size)) +  
+   geom_point() +
+   scale_size_continuous(range = c(1, 10))  # 确保 size 被正确处理 Ensure size is handled correctly
 ```
 
 可以看到，点的大小和原文有较大出入，说明原文对数据进行了一定的优化。
 
 As you can see, the dot sizes are quite different from the original article, indicating that the original article has optimized the data in some way.
 
-## 把size扩大50倍
-## Increase the size by 50 times
+## 把size扩大50倍 Increase the size by 50 times
 
 ```{r}
 ggtern(data=df,aes(x=df$Frequency.in.pGBM,y=df$Frequency.in.LGG,z=df$Frequency.in.sGBM)) +  
@@ -120,8 +122,7 @@ ggtern(data=df,aes(x=df$Frequency.in.pGBM,y=df$Frequency.in.LGG,z=df$Frequency.i
 
 As you can see, except for a few larger dots, the size of other dots is very similar to the original text, and it is assumed that the author handled the extremely large values differently
 
-## 分段处理
-## Segmented processing
+## 分段处理 Segmented processing
 
 ```{r}
 #先查看分布
@@ -146,8 +147,7 @@ write.csv(df[,c(1,4,8,11,13)],"easy_input.csv", quote = F, row.names = F)
 
 Next, use this method to preprocess the input data, adjust the details, and beautify the graphics.
 
-# 输入文件
-# Input file
+## 输入文件 Input file
 
 easy_input.csv：包含5列。
 
@@ -178,7 +178,7 @@ df <- read.csv('easy_input.csv')
 head(df)
 ```
 
-# 开始画图 Start Drawing
+## 开始画图 Start drawing
 
 ```{r}
 p <- ggtern(data=df, aes(x=df$Frequency.in.pGBM, y=df$Frequency.in.LGG, z=df$Frequency.in.sGBM)) +
@@ -242,8 +242,7 @@ p <- ggtern(data=df, aes(x=df$Frequency.in.pGBM, y=df$Frequency.in.LGG, z=df$Fre
 p
 ```
 
-## 给点加颜色
-## Add color to dots
+## 给点加颜色 Add color to dots
 
 在原文中，颜色代表相对的表达频率，那么有3个类型，要上3种颜色，怎么办？
 
@@ -279,15 +278,13 @@ p1
 ggsave("triangle.pdf")
 ```
 
-## 标基因名
-## Label gene names
+## 标基因名 Label gene names
 
 为了避免基因名的重叠，我们通常会使用ggrepel，可惜ggrepel不支持ggtern。另外，geom_text的check_overlap也对ggtern无效。提供以下两种方案来解决字的重叠问题：
 
 To avoid overlapping of gene names, we usually use ggrepel, but unfortunately ggrepel does not support ggtern. Additionally, check_overlap of geom_text does not work for ggtern. The following two plans are provided to solve the word overlap problem:
 
-## 方案一：geom_text + AI
-## Plan 1: geom_text + AI
+### 方案一：geom_text + AI Plan 1: geom_text + AI
 
 ```{r}
 p1 + geom_text(aes(label=Gene)) 
@@ -302,8 +299,7 @@ Advantage: label all gene names
 
 Disadvantage: need to open the pdf file with Illustrator and then drag the gene names with the mouse to fine-tune.
 
-## 方案二：用directlabels包
-## Plan 2: use directlabels package
+### 方案二：用directlabels包 Plan 2: Use the directlabels package
 
 参考这篇：<https://mp.weixin.qq.com/s/6MMVsO22n9oKZNC7qC7g5A>
 

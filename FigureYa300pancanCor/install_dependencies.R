@@ -50,7 +50,7 @@ cat("===========================================\n")
 
 # Installing CRAN packages
 cat("\nInstalling CRAN packages...\n")
-cran_packages <- c("SimDesign", "cowplot", "data.table", "ggplot2", "ggpubr", "tidyr")
+cran_packages <- c("SimDesign", "cowplot", "data.table", "ggplot2", "rstatix", "ggpubr", "tidyr")
 
 
 # Installing Bioconductor packages
