@@ -171,6 +171,22 @@ If needed, you can further use the `web_scraper.py` file to scrape the web page 
 - 缺失值处理：添加了缺失值检查和过滤逻辑，确保 Cox 回归前数据完整
 - 结果：成功匹配115个共同样本，Cox回归和 cutp 函数正常工作，HTML文件成功生成（1.6MB）
 
+## Current Task: 修改 FigureYa286ExprCorORR 使用 FigureYa143survCor_update 的方法获取 MSI 信息
+
+任务描述：将 `FigureYa286ExprCorORR.Rmd` 中从 `msi_results.rda` 加载 MSI 信息的方法改为使用 `FigureYa143survCor_update` 的方法，即使用 TCGAbiolinks 从 TCGA 下载 MSI 信息。
+
+计划步骤：
+[X] 更新 `install_dependencies.R` 添加 TCGAbiolinks 依赖
+[X] 替换从 `msi_results.rda` 加载的代码，改为使用 TCGAbiolinks 下载 MSI 信息
+[X] 适配样本ID匹配逻辑，使用4位数字（index）进行匹配
+[X] 确保代码逻辑正确，检查语法错误
+
+修改总结：
+- 依赖更新：在 `install_dependencies.R` 中添加了 TCGAbiolinks 的安装
+- MSI 信息获取：改为使用 TCGAbiolinks 的 `GDCquery` 和 `GDCprepare_clinic` 从 TCGA 下载 COAD 和 READ 的 MSI 信息
+- 样本ID匹配：使用4位数字（index）进行匹配，从 `simple_barcode` 的位置9-12提取，从 `sample` 的位置6-9提取
+- 文件缓存：如果 `msi_results.rda` 已存在，则直接加载，避免重复下载
+
 ## Previous Task: 优化 GitHub Actions workflow 磁盘空间使用
 
 任务描述：解决 GitHub Actions workflow 运行时的磁盘空间不足问题（"No space left on device"）。

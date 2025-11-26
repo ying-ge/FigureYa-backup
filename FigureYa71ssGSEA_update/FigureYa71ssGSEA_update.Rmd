@@ -1,8 +1,8 @@
 ---
 title: "FigureYa71ssGSEA_update"
 params:
-  author: "Rongfang Shen, Taojun Ye"
-  reviewer: "Ying Ge"
+  author: "Rongfang Shen"
+  reviewer: "Ying Ge, Taojun Ye"
 output: 
   html_document:
     toc: true
@@ -46,11 +46,9 @@ Input TCGA data and compute it using the method of the original text, reproduced
 
 ![](example.png)
 
-出自<https://doi.org/10.3389/fimmu.2018.01578>
+From <https://doi.org/10.3389/fimmu.2018.01578>
 
-from<https://doi.org/10.3389/fimmu.2018.01578>
-
-## 应用场景
+## 应用场景 Application Scenarios
 关于量化浸润免疫细胞，2018年发表在Cancer Immunol Immunother中的一篇综述概况了目前所用的几种方法：[Quantifying tumor-infiltrating immune cells from transcriptomics data](https://link.springer.com/article/10.1007%2Fs00262-018-2150-z)。
 
 ssGSEA量化免疫细胞浸润最大的一个优点就是自己可以定制量化免疫浸润细胞种类。像MCPcounter只能量化10种免疫细胞，cibersort量化22种细胞，但是目前平台只限于用在芯片数据，虽然很多RNA-seq数据也直接用了。
@@ -61,7 +59,6 @@ ssGSEA只要你有marker genes就可以量化。**注意：**量化出来的结�
 
 例文提取了27种免疫细胞，联系原作者能获得27种免疫细胞表面marker genes。输入原作者提供的这些marker genes来跑这套代码，结果基本同原文一致，可以很好的分为3类。
 
-## Application Scenarios
 With regard to quantifying infiltrating immune cells, a 2018 review published in Cancer Immunol Immunother provides an overview of several methods currently used:[Quantifying tumor-infiltrating immune cells from transcriptomics data]( https://link.springer.com/article/10.1007%2Fs00262-018-2150-z).
 
 One of the biggest advantages of ssGSEA for quantifying immune cell infiltration is that one can customize the quantification of immune infiltrating cell types. Like MCPcounter can only quantify 10 types of immune cells, cibersort quantifies 22 types of cells, but currently the platform is limited to microarray data, although many RNA-seq data are also used directly.
@@ -74,15 +71,13 @@ The example paper extracted 27 kinds of immune cells, contacting the original au
 
 ![](Immunother.png)
 
-## 环境设置
-
-## Environment settings
+## 环境设置 Environment settings
 
 ```{r}
 source("install_dependencies.R")
 # 加载生物信息学分析所需的R包 / Load R packages for bioinformatics analysis
 library(GSVA)          # 基因集变异分析 / Gene Set Variation Analysis
-library(org.Hs.eg.db)
+library(org.Hs.eg.db) # Human annotation database
 library(TCGAbiolinks)   # TCGA数据下载与处理 / TCGA data download and processing
 library(ComplexHeatmap) # 复杂热图绘制 / Complex heatmap visualization
 library(dplyr)         # 数据操作与转换 / Data manipulation and transformation
@@ -102,7 +97,7 @@ Sys.setenv(LANGUAGE = "en")  # 强制显示英文报错信息 / Force English er
 options(stringsAsFactors = FALSE)  # 防止字符自动转为因子 / Prevent automatic conversion of strings to factors
 ```
 
-## 输入数据预处理
+## 输入数据预处理 Input data preprocessing
 
 用ssGSEA量化免疫浸润，需要两个输入数据：
 
@@ -114,8 +109,6 @@ options(stringsAsFactors = FALSE)  # 防止字符自动转为因子 / Prevent au
 
 下面带你获得这两个输入文件：
 
-## Input data preprocessing
-
 Quantifying immune infiltration with ssGSEA requires two input data:
 
 - easy_input_immunity.rdata, ENTREZ IDs of 24 immune cell marker genes, saved as a list. source:[Table S1 of the 2013 Immunity article](https://www.cell.com/cms/10.1016/j. immuni.2013.10.003/attachment/8dc04d32-6aff-4eda-99f5-6401bcae9751/mmc1.pdf), manually organized into csv format, and used GPL96 (HG-U133A Affymetrix platform) to get the gene symbol, the article has mentioned that this batch of data was obtained from this chip platform.
@@ -126,11 +119,9 @@ Quantifying immune infiltration with ssGSEA requires two input data:
 
 The following takes you to the two input files:
 
-### 免疫细胞marker genes
+### 免疫细胞marker genes Immune cell marker genes
 
 这步获得的easy_input_immunity.rdata里面是各种免疫细胞marker genes list，可重复使用。
-
-### Immune cell marker genes
 
 The easy_input_immunity.rdata obtained in this step contains a list of various immune cell marker genes that can be reused.
 
@@ -161,7 +152,7 @@ immunity <- lapply(immunity, unique)  # 对每个细胞类型的基因列表去�
 save(immunity, file = "easy_input_immunity.rdata")  # 输出文件名包含"easy_input"提示简化后的数据 / Output filename contains "easy_input" indicating simplified data
 ```
 
-### 表达矩阵
+### 表达矩阵 Expression matrix
 
 TCGA表达数据的获取方式：
 
@@ -173,8 +164,6 @@ TCGA表达数据的获取方式：
 
 如果你已经生成过gtf_v22.csv文件，就可以跳过下面这段。
 
-### Expression matrix
-
 TCGA expression data acquisition method:
 
 - Use TGCAbiolinks to download the expression data read count, and then converted to TPM, the method of data download and conversion can be found in FigureYa23count2TPM; the first column is ENTREZ ID, and each subsequent column is one sample. need to replace gene_id with gene symbol or ENTREZ ID. The TCGA data from the GDC source used version v22, go in from GENCODE <https://www.gencodegenes.org/> and click to download the v22 gtf file: <ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_ human/release_22/gencode.v22.annotation.gtf.gz>
@@ -185,7 +174,7 @@ Here we use TGCAbiolinks to download the gene expression matrix of “TCGA-COAD�
 
 If you have already generated the gtf_v22.csv file, you can skip the following paragraph.
 
-```r
+```{r}
 # 先获得protein_coding gene的gene_id跟gene symbol的对应关系
 gtf_v22 <- rtracklayer::import("gencode.v22.annotation.gtf")
 gtf_v22 <- as.data.frame(gtf_v22)
@@ -202,6 +191,7 @@ gtf_v22 <- bitr(gtf_v22$gene_name, fromType = "SYMBOL", toType = "ENTREZID", Org
 # 这步获得gtf_v22.csv文件，包含v22版本protein_coding gene的gene_id、gene symbol和ENTREZ ID的对应关系，可重复使用。
 write.csv(gtf_v22, "gtf_v22.csv", quote = F, row.names = F)
 ```
+
 ```{r}
 # 读取基因表达数据矩阵，行名为基因ID，列名为样本ID
 # 参数说明:
@@ -249,9 +239,7 @@ write.csv(round(tcga_expr,1), "easy_input_expr.csv", quote = F)
 
 ```
 
-## 用ssGSEA来量化浸润水平
-
-## Quantifying infiltration levels with ssGSEA
+## 用ssGSEA来量化浸润水平 Quantifying infiltration levels with ssGSEA
 
 ```{r}
 # 读取TCGA基因表达矩阵 / Load TCGA gene expression matrix
@@ -306,19 +294,15 @@ If you just want to calculate the immune infiltration, then that's the end of it
 
 If you want to look at the immune infiltration in conjunction with the mutation and clinical information and reproduce the original graph of the example text, you need to run the following section:
 
-## 原图复现
+## 原图复现 Original image reproduction
 
 下面用TCGAbiolink从GDC下载数据，需要找个网络好点的地方。
 
-## Original image reproduction
-
 Here's how to download the data from GDC using TCGAbiolink, you need to find a place with a good network.
 
-### 下载突变信息
+### 下载突变信息 Download mutation information
 
 变异类型归为WT和Mutant，参考 <https://bioconductor.org/packages/devel/bioc/vignettes/ELMER/inst/doc/pipe.html> 
-
-### Download mutation information
 
 Mutation types are categorized as WT and Mutant, refer to <https://bioconductor.org/packages/devel/bioc/vignettes/ELMER/inst/doc/pipe.html> 
 
@@ -397,9 +381,7 @@ EGFRmutSample <- unique(crc_mut_gene[crc_mut_gene$Hugo_Symbol == "EGFR", "sample
 EGFRwildSample <- setdiff(all_mutSample, EGFRmutSample)
 ```
 
-### 下载msi临床信息
-
-### Download msi clinical information
+### 下载msi临床信息 Download msi clinical information
 
 ```{r}
 # # 获取TCGA-COAD项目的MSI数据 / Retrieve MSI data for TCGA-COAD project
@@ -450,9 +432,7 @@ msi_results <- data.frame(
 #   setNames(c("sample", "MSI"))  # 重命名列 / Rename columns
 ```
 
-### 下载其他临床信息
-
-### Download additional clinical information
+### 下载其他临床信息 Download other clinical information
 
 ```{r}
 # # 获取TCGA-COAD临床数据 / Retrieve TCGA-COAD clinical data
@@ -495,10 +475,7 @@ msi_results <- data.frame(
 # clinical <- rbind(coadclinical, readclinical)  # 行合并 / Row binding
 ```
 
-### 组合所需要的临床信息
-
-### Clinical information required for the portfolio
-
+### 组合所需要的临床信息 Combine the required clinical information
 ```{r}
 # 选择关键临床变量 / Select key clinical variables
 targetAnno <- clinical_data[, c(
@@ -555,9 +532,7 @@ targetAnno[targetAnno$bcr_patient_barcode %in% EGFRwildSample, "EGFRmut"] <- "wi
 summary(targetAnno)
 ```
 
-### 融合ssGSEA和临床表达数据
-
-### Fusing ssGSEA and clinical expression data
+### 融合ssGSEA和临床表达数据 Fuse ssGSEA and clinical expression data
 
 ```{r}
 # 读取ssGSEA免疫浸润分析结果 / Load ssGSEA immune infiltration results
@@ -592,11 +567,9 @@ summary(heatmapinput)  # 显示各变量摘要 / Show variable summaries
 write.csv(heatmapinput, "heatmapinput.csv")  # CSV格式便于检查 / CSV format for inspection
 ```
 
-### 开始画图
+### 开始画图 Start drawing the map
 
 用complexheatmap画图。complexheatmap的参数众多，有兴趣了解的详情<https://bioconductor.org/packages/release/bioc/html/ComplexHeatmap.html>
-
-### Start drawing the map
 
 Drawing with complexheatmap. complexheatmap has numerous parameters, interested in knowing more details <https://bioconductor.org/packages/release/bioc/html/ComplexHeatmap.html>
 

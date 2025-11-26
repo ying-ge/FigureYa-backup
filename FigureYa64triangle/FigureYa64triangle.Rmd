@@ -72,10 +72,11 @@ library(tidyverse) # 数据处理和转换 Data manipulation and transformation
 library(scales) # 数据缩放 Data scaling
 library(ggplot2) # 数据可视化 Data visualization
 library(directlabels) # 直接标签 Direct labels
+library(ggtern) # 三角图 Triangle plot
 
-# 加载 ggtern 本地源码（不依赖安装的包，兼容所有 ggplot2 版本）
-# Load ggtern source code locally (without depending on installed package, compatible with all ggplot2 versions)
-source("load_ggtern_local.R") # 从 GitHub 源码中提取的核心函数 Core functions extracted from GitHub source code
+# 如果需要使用本地源码版本（用于调试或特定版本需求），可以取消下面的注释
+# If you need to use local source code version (for debugging or specific version requirements), uncomment the following
+# source("load_ggtern_local.R") # 从 GitHub 源码中提取的核心函数 Core functions extracted from GitHub source code
 
 Sys.setenv(LANGUAGE = "en") #显示英文报错信息 display English error messages
 options(stringsAsFactors = FALSE) #禁止chr转成factor prohibit the conversion of chr to factor
@@ -96,15 +97,12 @@ Download the original supplementary material Table2.pdf and organize it as “no
 ```{r}
 df <- read.csv("not_easy_input.csv")
 head(df)
-# 将 size 添加到数据中，并使用 scale_size 来确保 size 被正确处理
-# Add size to data and use scale_size to ensure size is handled correctly
-df$size <- df$Alteration.Frequency.in.glioma
+# 使用安装的 ggtern 包时，size 应该作为 geom_point() 的参数，而不是在 aes() 中
+# When using installed ggtern package, size should be a parameter of geom_point(), not in aes()
 ggtern(data=df, aes(x=Frequency.in.pGBM,
                     y=Frequency.in.LGG,
-                    z=Frequency.in.sGBM,
-                    size=size)) +  
-   geom_point() +
-   scale_size_continuous(range = c(1, 10))  # 确保 size 被正确处理 Ensure size is handled correctly
+                    z=Frequency.in.sGBM)) +  
+   geom_point(size = df$Alteration.Frequency.in.glioma)
 ```
 
 可以看到，点的大小和原文有较大出入，说明原文对数据进行了一定的优化。
