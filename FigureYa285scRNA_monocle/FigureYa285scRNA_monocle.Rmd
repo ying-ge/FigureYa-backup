@@ -1,8 +1,8 @@
 ---
 title: "FigureYa285scRNA_monocle"
 params:
-  author: "Xiao Gu; Yasi Zhang"  
-  reviewer: "Ying Ge"
+  author: "Xiao Gu"  
+  reviewer: "Ying Ge, Yasi Zhang"
 output: 
   html_document:
     toc: true
@@ -27,8 +27,7 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# 需求描述
-# Demand description
+## 需求描述 Requirement description
 
 画出右图J，拟时间轨迹。
 
@@ -36,29 +35,26 @@ Plot Figure J on the right, showing pseudotime trajectory.
 
 ![](example.png)
 
-出自<https://jitc.bmj.com/content/10/2/e003534>
+From <https://jitc.bmj.com/content/10/2/e003534>
 
-Source: <https://jitc.bmj.com/content/10/2/e003534>
-
-# 应用场景
-# Application scenarios
+## 应用场景 Application scenarios
 
 展示如何在单细胞数据中使用monocle2包预测细胞发育轨迹。
 
 Show how to use the monocle2 package in single-cell data to predict cell developmental trajectories.
 
-# 环境设置 Environment Setup
+## 环境设置 Environment Setup
 
 ```{r}
 source("install_dependencies.R")
 
-library(Seurat)
-library(SeuratData)
-library(ggplot2)
-library(RColorBrewer)
-library(dplyr)
-library(magrittr)
-library(monocle)
+library(Seurat) # 单细胞测序数据分析包 single-cell RNA-seq data analysis package
+library(SeuratData) # 单细胞测序数据集 single-cell RNA-seq data set
+library(ggplot2) # 绘图包 plotting package
+library(RColorBrewer) # 颜色包 color package
+library(dplyr) # 数据处理包 data processing package
+library(magrittr) # 数据处理包 data processing package
+library(monocle) # 发育轨迹分析包 developmental trajectory analysis package
 
 # 显示英文报错信息
 # Show English error messages
@@ -69,11 +65,7 @@ Sys.setenv(LANGUAGE = "en")
 options(stringsAsFactors = FALSE) 
 ```
 
-# 输入文件及预处理
-# Input Files and Preprocessing
-
-## 输入文件
-## Input Files
+## 输入文件及预处理 Input Files and Preprocessing
 
 使用最常用的SeuratData中的pbmc3k进行演示，如果自己的数据不是在seurat中分析的，只要有表达矩阵和细胞注释信息也可分析，可跳过下面seurat常规分析，直接运行“构建monocle对象”。
 
@@ -88,22 +80,12 @@ Since the PBMC dataset is not ideal for studying developmental trajectories, thi
 For your own data, it is recommended to predict developmental trajectories only for **cell populations with potential developmental relationships**.
 
 ```{r}
-# devtools::install_github("satijalab/seurat-data")
-
 # InstallData("pbmc3k") 
-# Or download and install manually，http://seurat.nygenome.org/src/contrib/pbmc3k.SeuratData_3.1.4.tar.gz
-# install.packages("pbmc3k.SeuratData_3.1.4.tar.gz", repos = NULL, type = "source")
-
 # 加载数据集
 # load dataset
 LoadData("pbmc3k")
 pbmc <- UpdateSeuratObject(pbmc3k)
-```
 
-## 预处理
-## Preprocessing
-
-```{r}
 # 进行质量控制（QC）
 # 计算mitochondria基因比例
 # Quality control (QC)  
@@ -127,11 +109,10 @@ pbmc <- RunUMAP(pbmc, dims = 1:10)
 umap.plot <- DimPlot(pbmc, reduction = "umap", label=T, group.by = "seurat_annotations") + NoLegend()
 ggsave("UMAP_cluster.pdf", plot = umap.plot, width = 6, height = 6)
 
-saveRDS(pbmc, file = "pbmc3k.seurat.object.rds") 
+#saveRDS(pbmc, file = "pbmc3k.seurat.object.rds") 
 ```
 
-# 构建monocle对象
-# Constructing the monocle object
+## 构建monocle对象 Constructing the monocle object
 
 ```{r}
 # 构建monocle对象需要三个文件：表达矩阵、基因信息和meta信息
@@ -167,8 +148,7 @@ select_gene <- subset(fData(cds.object),num_cells_expressed>=ceiling(nrow(pData(
 cds.object <- cds.object[select_gene,]
 ```
 
-# 确定用于轨迹排序的基因
-# Determining Genes for Trajectory Ordering
+## 确定用于轨迹排序的基因 Determining Genes for Trajectory Ordering
 
 用于轨迹排序的基因的本质细胞类型特异的特征性基因，可用两种方法来获得：
 
@@ -207,6 +187,65 @@ deg.order.seurat <- deg.celltype$gene
 # Dimension reduction, clustering and cell ordering
 cds.object <- setOrderingFilter(cds.object, ordering_genes = deg.order.monocle)
 cds.object <- reduceDimension(cds.object, method = "DDRTree")
+
+# 修复 monocle 与新版 igraph 的兼容性问题
+# Fix compatibility issue between monocle and new igraph version
+# 临时替换 igraph::dfs 函数以支持新版 API（graph.dfs 内部调用 dfs）
+# Temporarily replace igraph::dfs function to support new API (graph.dfs calls dfs internally)
+if (packageVersion("igraph") >= "1.3.0") {
+  # 保存原始的 dfs 函数
+  # Save original dfs function
+  original_dfs <- igraph::dfs
+  
+  # 创建兼容的 dfs 函数，将 neimode 参数转换为 mode
+  # Create compatible dfs function, convert neimode parameter to mode
+  compatible_dfs <- function(graph, root, ..., neimode = NULL) {
+    # 如果提供了 neimode 参数，转换为 mode
+    # If neimode is provided, convert to mode
+    if (!is.null(neimode)) {
+      # 调用新版本的 dfs，使用 mode 参数替代 neimode
+      # Call new version dfs with mode parameter instead of neimode
+      return(original_dfs(graph = graph, root = root, mode = neimode, ...))
+    } else {
+      # 如果没有提供 neimode，使用默认值
+      # If neimode not provided, use default
+      return(original_dfs(graph = graph, root = root, ...))
+    }
+  }
+  
+  # 临时替换 igraph 命名空间中的 dfs 函数
+  # Temporarily replace dfs function in igraph namespace
+  tryCatch({
+    # 获取 igraph 命名空间
+    # Get igraph namespace
+    igraph_ns <- as.environment("package:igraph")
+    
+    # 解锁并替换 dfs 函数
+    # Unlock and replace dfs function
+    if (bindingIsLocked("dfs", igraph_ns)) {
+      unlockBinding("dfs", igraph_ns)
+    }
+    assign("dfs", compatible_dfs, igraph_ns)
+    lockBinding("dfs", igraph_ns)
+    
+    cat("Applied compatibility patch for igraph dfs function\n")
+  }, error = function(e) {
+    cat("Warning: Could not patch igraph dfs function. Error:", e$message, "\n")
+    cat("Trying alternative method...\n")
+    # 尝试使用 assignInNamespace
+    # Try using assignInNamespace
+    tryCatch({
+      assignInNamespace("dfs", compatible_dfs, ns = "igraph")
+      cat("Applied compatibility patch using assignInNamespace\n")
+    }, error = function(e2) {
+      cat("Warning: Alternative method also failed. Error:", e2$message, "\n")
+      cat("The code may fail with newer igraph versions.\n")
+    })
+  })
+}
+
+# 对细胞进行排序
+# Order cells
 cds.object <- orderCells(cds.object)
 
 # 可视化
@@ -255,8 +294,7 @@ ggsave("trajectory_celltype.pdf", plot = p, width = 7, height = 5)
 saveRDS(cds.object, "monocle.cds.object.rds")
 ```
 
-# 开始画图
-# Plotting
+## 开始画图 Plotting
 
 ```{r}
 # 鉴定分支点依赖的基因，BEAM函数
@@ -321,8 +359,7 @@ write.csv(cluster_df,"branch_pseudotime_gene_list.csv", row.names = F)
 
 Subsequently, use these genes for enrichment analysis and annotate the terms to the corresponding cluster positions on the heatmap.
 
-# 确定热图中Cell fate 1和2对应的轨迹
-# Determining the Trajectories Corresponding to Cell Fate 1 and 2 in the Heatmap
+## 确定热图中Cell fate 1和2对应的轨迹 Determining the Trajectories Corresponding to Cell Fate 1 and 2 in the Heatmap
 
 即BEAM试图从分支点上的细胞一直向后遍历到根细胞(伪时间为0的细胞)，并将所有这些细胞作为前分支
 
