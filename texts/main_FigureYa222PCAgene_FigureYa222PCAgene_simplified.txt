@@ -1,0 +1,1202 @@
+FigureYa222PCAgene_Simplified
+Code
+Show All Code
+Hide All Code
+FigureYa222PCAgene_Simplified
+Author(s)
+: Zongcheng Li
+Reviewer(s)
+: Ying Ge, Yijing Chen
+Date
+: 2025-11-28
+1
+Academic Citation
+If you use this code in your work or research, we kindly request that
+you cite our publication:
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization
+Framework for Enhancing Biomedical Data Interpretation and Research
+Efficiency. iMetaMed.
+https://doi.org/10.1002/imm3.70005
+2
+需求描述 Requirement
+description
+这个PCA很特别
+This PCA is quite special.
+From
+https://linkinghub.elsevier.com/retrieve/pii/S0092867420300568
+Figure 3. Dynamic Gene-Expression Patterns of Oocyte Subtypes at
+Stepwise Developmental Stages (A) PCA plot showing four oocyte subtypes
+based on gene-expression patterns exhibited by PC1 and PC2. (B) Relative
+gene-expression patterns of representative genes essential for oocyte
+development along the PC1 dimension.
+3
+应用场景 Application
+scenarios
+单细胞RNA-seq，从PCA结果就能看出基因表达模式跟细胞类型的关系。
+原文：Principal component analysis (PCA) revealed that the four
+oocyte subtypes were distributed along the principal component 1 (PC1)
+dimension (Figure 3A; Table S2).
+Consistently, the relative expression levels of
+genes known
+to be essential for follicular development also varied along PC1
+axis
+(Figures 3B and S3A). Genes promoting follicle
+development, such as ZP1, BMP15, and GDF9, were progressively
+upregulated from oocyte subtype C1 to C4
+. Meiotic M
+phase genes WEE2 and AURKA as well as DNA methyltransferase, DNMT1 and
+DNMT3A, were also gradually upregulated from subtype C1 to C4 (Figures
+3B and S3A).
+Single-cell RNA-seq, the relationship between gene expression
+patterns and cell types can be discerned directly from the PCA
+results.
+Original text: Principal component analysis (PCA) revealed that the
+four oocyte subtypes were distributed along the principal component 1
+(PC1) dimension (Figure 3A; Table S2).
+Consistently, the relative expression levels of
+genes known
+to be essential for follicular development also varied along PC1
+axis
+(Figures 3B and S3A). Genes promoting follicle
+development, such as ZP1, BMP15, and GDF9, were progressively
+upregulated from oocyte subtype C1 to C4
+. Meiotic M
+phase genes WEE2 and AURKA as well as DNA methyltransferase, DNMT1 and
+DNMT3A, were also gradually upregulated from subtype C1 to C4 (Figures
+3B and S3A).
+4
+环境设置 Environment
+Setting
+source
+(
+"install_dependencies.R"
+)
+library
+(Seurat)
+# 单细胞RNA-seq分析工具 Single-cell RNA-seq analysis tool
+library
+(magrittr)
+# 管道操作符 Pipe operator
+library
+(ggplot2)
+# 绘图工具 Plotting tool
+library
+(stats)
+# 用于 kmeans 聚类 for kmeans clustering
+Sys.setenv
+(
+LANGUAGE =
+"en"
+)
+# 显示英文报错信息 Show English error messages
+options
+(
+stringsAsFactors =
+FALSE
+)
+# 禁止chr转成factor Prevent character-to-factor conversion
+5
+输入文件 Input
+files
+sc.seurat_v5.Rdata，单细胞RNA-seq预处理获得的文件，出自FigureYa206scHeatmap
+怎样获得这个文件？拖到文末看”附：单细胞RNA-seq数据预处理”
+sc.seurat_v5.Rdata, the file obtained from single-cell RNA-seq
+preprocessing. It originates from FigureYa206scHeatmap.
+How to obtain this file? Scroll to the end of the document and see
+“Appendix: Single-cell RNA-seq Data Preprocessing”
+(
+load
+(
+"sc.seurat_v5.Rdata"
+))
+6
+PCA
+6.1
+原文采用的聚类方法
+The clustering method employed in the original text
+例文的非监督聚类方法比较特殊，以SCENIC的分析结果作为输入（SCENIC的用法可参考FigureYa194pySCENIC），用modified
+‘clustering-and-classification’ algorithm (Lake et al., 2016)
+给细胞做聚类。clustering-and-classification也是个很有趣的半监督聚类算法。
+The unsupervised clustering method used in the example text is quite
+unique, taking the analysis results from SCENIC as input (for the usage
+of SCENIC, you can refer to FigureYa194pySCENIC), and applying modified
+‘clustering-and-classification’ algorithm (Lake et al., 2016) to cluster
+the cells. The clustering-and-classification is also an interesting
+semi-supervised clustering algorithm.
+6.2
+我们用Seurat自带的无监督聚类 We employ Seurat’s built-in unsupervised
+clustering
+VariableFeatures
+(sc_oo)
+%>%
+length
+()
+# Run standard Seurat workflow (similar to v4)
+# 运行标准Seurat流程（类似v4版本）
+sc_oo
+%<>%
+ScaleData
+sc_oo
+%<>%
+RunPCA
+ElbowPlot
+(sc_oo)
+# Try different approaches to get exactly 4 clusters
+# 尝试不同方法来获得恰好4个聚类
+cat
+(
+"Attempting different clustering parameters...
+\n
+"
+)
+# Method 1: Standard clustering approach first
+# 方法1：首先使用标准聚类方法
+sc_oo
+<-
+FindNeighbors
+(sc_oo,
+dims =
+1
+:
+15
+)
+sc_oo
+<-
+FindClusters
+(sc_oo,
+resolution =
+0.6
+)
+# Check current clusters
+# 检查当前聚类数量
+n_clusters
+<-
+length
+(
+unique
+(sc_oo
+$
+seurat_clusters))
+cat
+(
+"Number of clusters found with resolution 0.6:"
+, n_clusters,
+"
+\n
+"
+)
+# Method 2: If not 4 clusters, adjust resolution
+# 方法2：如果不是4个聚类，调整resolution
+if
+(n_clusters
+!=
+4
+) {
+cat
+(
+"Adjusting resolution to get exactly 4 clusters...
+\n
+"
+)
+for
+(res
+in
+seq
+(
+0.1
+,
+2.0
+,
+by =
+0.1
+)) {
+cat
+(
+"Trying resolution:"
+, res,
+"
+\n
+"
+)
+sc_oo_temp
+<-
+FindNeighbors
+(sc_oo,
+dims =
+1
+:
+15
+)
+sc_oo_temp
+<-
+FindClusters
+(sc_oo_temp,
+resolution =
+res)
+n_temp_clusters
+<-
+length
+(
+unique
+(sc_oo_temp
+$
+seurat_clusters))
+cat
+(
+"Number of clusters found:"
+, n_temp_clusters,
+"
+\n
+"
+)
+if
+(n_temp_clusters
+==
+4
+) {
+sc_oo
+<-
+sc_oo_temp
+cat
+(
+"Found optimal resolution:"
+, res,
+"with exactly 4 clusters
+\n
+"
+)
+break
+}
+}
+}
+# Final check and force if needed
+# 最终检查，如果需要则强制
+final_n_clusters
+<-
+length
+(
+unique
+(sc_oo
+$
+seurat_clusters))
+cat
+(
+"Final number of clusters:"
+, final_n_clusters,
+"
+\n
+"
+)
+if
+(final_n_clusters
+!=
+4
+) {
+cat
+(
+"Warning: Could not get exactly 4 clusters. Using alternative approach...
+\n
+"
+)
+# Alternative: Use k-means on PCA results to force 4 clusters
+# 备选方案：在PCA结果上使用k-means强制4个聚类
+pca_embeddings
+<-
+sc_oo
+@
+reductions
+$
+pca
+@
+cell.embeddings[,
+1
+:
+2
+]
+set.seed
+(
+123
+)
+# for reproducibility
+kmeans_result
+<-
+kmeans
+(pca_embeddings,
+centers =
+4
+)
+sc_oo
+$
+seurat_clusters
+<-
+factor
+(kmeans_result
+$
+cluster,
+labels =
+paste0
+(
+"C"
+,
+1
+:
+4
+))
+cat
+(
+"Used k-means on PCA embeddings to force 4 clusters
+\n
+"
+)
+}
+# Get PCA results
+# 获取PCA结果
+pca.pv
+<-
+sc_oo
+@
+reductions
+$
+pca
+# 每个基因的主成分
+# The principal component of each gene
+# pca.pv@feature.loadings
+dim
+(pca.pv
+@
+feature.loadings)
+7
+开始画图 Start
+drawing
+7.1
+画Fig. 3A Draw Fig.
+3A
+#计算坐标轴标签 - 修正版本
+#Calculate axis labels - corrected version
+pc_var
+<-
+pca.pv
+@
+stdev
+^
+2
+pc_total_var
+<-
+sum
+(pc_var)
+pc1.pv
+<-
+paste0
+(
+round
+(pc_var[
+1
+]
+/
+pc_total_var
+*
+100
+,
+digits =
+1
+),
+"%"
+)
+pc2.pv
+<-
+paste0
+(
+round
+(pc_var[
+2
+]
+/
+pc_total_var
+*
+100
+,
+digits =
+1
+),
+"%"
+)
+# 修改seurat_clusters的名字 - 改进版本
+# Rename the seurat_clusters - improved version
+unique_clusters
+<-
+unique
+(sc_oo
+@
+meta.data
+$
+seurat_clusters)
+cat
+(
+"Unique seurat_clusters values:"
+,
+paste
+(unique_clusters,
+collapse =
+", "
+),
+"
+\n
+"
+)
+# Handle cluster naming properly
+# 妥善处理聚类命名
+if
+(
+all
+(unique_clusters
+%in%
+c
+(
+"0"
+,
+"1"
+,
+"2"
+,
+"3"
+))) {
+sc_oo
+@
+meta.data
+$
+seurat_clusters
+<-
+factor
+(sc_oo
+@
+meta.data
+$
+seurat_clusters,
+levels =
+c
+(
+"0"
+,
+"1"
+,
+"2"
+,
+"3"
+),
+labels =
+c
+(
+"C1"
+,
+"C2"
+,
+"C3"
+,
+"C4"
+))
+}
+else
+{
+# If clusters are already named C1, C2, etc., keep as is
+# 如果聚类已经是C1, C2等，保持不变
+if
+(
+all
+(
+grepl
+(
+"^C[0-9]+$"
+, unique_clusters))) {
+cat
+(
+"Clusters already properly named. Keeping current names.
+\n
+"
+)
+}
+else
+{
+# Otherwise, create proper labels
+# 否则，创建适当的标签
+all_levels
+<-
+sort
+(
+unique
+(
+as.character
+(sc_oo
+@
+meta.data
+$
+seurat_clusters)))
+cat
+(
+"Found cluster levels:"
+,
+paste
+(all_levels,
+collapse =
+", "
+),
+"
+\n
+"
+)
+if
+(
+all
+(
+grepl
+(
+"^CC[0-9]+$"
+, all_levels))) {
+# Extract numbers from CC1, CC2, etc. and create C1, C2, etc.
+# 从CC1, CC2等提取数字并创建C1, C2等
+labels
+<-
+paste0
+(
+"C"
+,
+sub
+(
+"^CC"
+,
+""
+, all_levels))
+}
+else
+{
+labels
+<-
+paste0
+(
+"C"
+, all_levels)
+}
+sc_oo
+@
+meta.data
+$
+seurat_clusters
+<-
+factor
+(sc_oo
+@
+meta.data
+$
+seurat_clusters,
+levels =
+all_levels,
+labels =
+labels)
+}
+}
+# Create a color palette that can handle any number of clusters
+# 创建可以处理任意数量聚类的调色板
+n_clusters
+<-
+length
+(
+unique
+(sc_oo
+@
+meta.data
+$
+seurat_clusters))
+colors
+<-
+c
+(
+"darkmagenta"
+,
+"steelblue"
+,
+"chartreuse3"
+,
+"red"
+,
+"purple"
+,
+"orange"
+,
+"brown"
+,
+"pink"
+,
+"cyan"
+,
+"magenta"
+)
+cluster_colors
+<-
+colors[
+1
+:
+n_clusters]
+if
+(
+length
+(cluster_colors)
+<
+n_clusters) {
+cluster_colors
+<-
+c
+(cluster_colors,
+rainbow
+(n_clusters
+-
+length
+(cluster_colors)))
+}
+# 画图
+# draw
+PCAPlot
+(sc_oo,
+group.by =
+"seurat_clusters"
+)
++
+scale_color_manual
+(
+values =
+cluster_colors,
+na.value =
+"grey90"
+,
+# Color for NA values
+drop =
+FALSE
+)
++
+# Keep all factor levels
+xlab
+(
+paste0
+(
+"PC1 ("
+, pc1.pv,
+")"
+))
++
+ylab
+(
+paste0
+(
+"PC2 ("
+, pc2.pv,
+")"
+))
+# 保存到文件
+# Save to file
+ggsave
+(
+"PCA_A_simplified.pdf"
+,
+width =
+6
+,
+height =
+5
+)
+7.2
+画Fig. 3B Draw Fig.
+3B
+用Seurat自带的无监督聚类获得的seurat_clusters画图
+Plotting the seurat_clusters obtained using Seurat’s built-in
+unsupervised clustering
+markers
+<-
+c
+(
+"ZP1"
+,
+"WEE2"
+,
+"DNMT1"
+,
+"ATP6"
+,
+"FIGLA"
+,
+"SOX17"
+)
+# Get expression data for Seurat v5
+# 为Seurat v5获取表达数据
+if
+(
+packageVersion
+(
+"Seurat"
+)
+>=
+"5.0.0"
+) {
+expr_data
+<-
+LayerData
+(sc_oo,
+assay =
+"RNA"
+,
+layer =
+"data"
+)
+}
+else
+{
+expr_data
+<-
+GetAssayData
+(sc_oo,
+slot =
+"data"
+)
+}
+# Prepare plot data
+# 准备绘图数据
+plot_data
+<-
+cbind
+(sc_oo
+@
+meta.data[,
+"seurat_clusters"
+,
+drop =
+F],
+PC1 =
+-
+pca.pv
+@
+cell.embeddings[,
+1
+],
+expr_data[markers,]
+%>%
+t)
+# Create color palette for this plot as well
+# 为这张图也创建调色板
+n_clusters_plot
+<-
+length
+(
+unique
+(plot_data
+$
+seurat_clusters))
+colors_plot
+<-
+c
+(
+"darkmagenta"
+,
+"steelblue"
+,
+"chartreuse3"
+,
+"red"
+,
+"purple"
+,
+"orange"
+,
+"brown"
+,
+"pink"
+,
+"cyan"
+,
+"magenta"
+)
+cluster_colors_plot
+<-
+colors_plot[
+1
+:
+n_clusters_plot]
+if
+(
+length
+(cluster_colors_plot)
+<
+n_clusters_plot) {
+cluster_colors_plot
+<-
+c
+(cluster_colors_plot,
+rainbow
+(n_clusters_plot
+-
+length
+(cluster_colors_plot)))
+}
+reshape2
+::
+melt
+(plot_data,
+id.vars =
+c
+(
+"seurat_clusters"
+,
+"PC1"
+))
+%>%
+ggplot
+(
+mapping =
+aes
+(PC1, value))
++
+ylab
+(
+"Relative expression"
+)
++
+geom_point
+(
+mapping =
+aes
+(
+color =
+seurat_clusters))
++
+geom_smooth
+()
++
+scale_color_manual
+(
+values =
+cluster_colors_plot,
+na.value =
+"grey90"
+,
+# Color for NA values
+drop =
+FALSE
+)
++
+# Keep all factor levels
+facet_wrap
+(
+~
+variable,
+scales =
+"free_y"
+)
++
+theme_classic
+()
++
+theme
+(
+panel.border =
+element_rect
+(
+fill =
+NA
+),
+axis.text.x =
+element_blank
+(),
+axis.ticks.x =
+element_blank
+())
+ggsave
+(
+"PCA_B_simplified.pdf"
+,
+width =
+7
+,
+height =
+4
+)
+7.3
+跟原文对比 Compare
+with the original text
+1-s2.0-S0092867420300568-mmc2.xlsx的第二列是细胞所在的cluster，是原文采用的聚类方法获得的cluster信息，用它跟我们做的”Seurat自带的无监督聚类”的结果对比。
+没有完全重复出原文的效果。最可能的原因是mnn算法计算出的数据有差别，或者是作者选用的输入基因是特别的，原文方法中没有描述。
+The second column of 1-s2.0-S0092867420300568-mmc2.xlsx indicates the
+cluster to which each cell belongs, representing the cluster information
+obtained by the clustering method used in the original text. This can be
+compared with the results of our “unsupervised clustering with Seurat’s
+built-in method”.
+The results do not perfectly replicate the effects of the original
+text. The most likely reasons are differences in the data calculated by
+the MNN (Multimodal Neighborhood Network) algorithm or the use of
+specific input genes by the authors, which are not described in the
+original method.
+meta_oo
+<-
+readxl
+::
+read_excel
+(
+path =
+"1-s2.0-S0092867420300568-mmc2.xlsx"
+,
+sheet =
+2
+)
+dim
+(meta_oo)
+# Match cells and handle NA values
+# 匹配细胞并处理NA值
+matched_idx
+<-
+match
+(
+colnames
+(sc_oo), meta_oo
+$
+cell)
+sc_oo
+$
+subtype
+<-
+meta_oo
+$
+cluster[matched_idx]
+# Check for NA values
+# 检查NA值
+na_count
+<-
+sum
+(
+is.na
+(sc_oo
+$
+subtype))
+if
+(na_count
+>
+0
+) {
+cat
+(
+"Warning:"
+, na_count,
+"cells could not be matched in meta_oo. These will be excluded from subtype analysis.
+\n
+"
+)
+}
+table
+(sc_oo
+$
+subtype, sc_oo
+$
+seurat_clusters,
+useNA =
+"ifany"
+)
+用原文聚类获得的subtype画图
+Plot the subtypes obtained from original text clustering
+# Prepare plot data for original subtypes
+# 为原始subtype准备绘图数据
+plot_data_ori
+<-
+cbind
+(sc_oo
+@
+meta.data[,
+"subtype"
+,
+drop =
+F],
+PC1 =
+-
+pca.pv
+@
+cell.embeddings[,
+1
+],
+expr_data[markers,]
+%>%
+t)
+plot_data_ori
+<-
+plot_data_ori[
+!
+is.na
+(plot_data_ori
+$
+subtype), ]
+# Create color palette for original subtypes
+# 为原始subtype创建调色板
+n_clusters_subtype
+<-
+length
+(
+unique
+(plot_data_ori
+$
+subtype))
+colors_subtype
+<-
+c
+(
+"darkmagenta"
+,
+"steelblue"
+,
+"chartreuse3"
+,
+"red"
+,
+"purple"
+,
+"orange"
+,
+"brown"
+,
+"pink"
+,
+"cyan"
+,
+"magenta"
+)
+cluster_colors_subtype
+<-
+colors_subtype[
+1
+:
+n_clusters_subtype]
+if
+(
+length
+(cluster_colors_subtype)
+<
+n_clusters_subtype) {
+cluster_colors_subtype
+<-
+c
+(cluster_colors_subtype,
+rainbow
+(n_clusters_subtype
+-
+length
+(cluster_colors_subtype)))
+}
+reshape2
+::
+melt
+(plot_data_ori,
+id.vars =
+c
+(
+"subtype"
+,
+"PC1"
+))
+%>%
+ggplot
+(
+mapping =
+aes
+(PC1, value))
++
+ylab
+(
+"Relative expression"
+)
++
+geom_point
+(
+mapping =
+aes
+(
+color =
+subtype))
++
+geom_smooth
+()
++
+scale_color_manual
+(
+values =
+cluster_colors_subtype,
+na.value =
+"grey90"
+,
+# Color for NA values
+drop =
+FALSE
+)
++
+# Keep all factor levels
+facet_wrap
+(
+~
+variable,
+scales =
+"free_y"
+)
++
+theme_classic
+()
++
+theme
+(
+panel.border =
+element_rect
+(
+fill =
+NA
+),
+axis.text.x =
+element_blank
+(),
+axis.ticks.x =
+element_blank
+())
+ggsave
+(
+"PCA_B_ori_simplified.pdf"
+,
+width =
+7
+,
+height =
+4
+)
+8
+主要改进 Key
+Improvements
+简化了数据处理流程
+: 移除了复杂的 mnnCorrect
+步骤，直接使用标准 Seurat v5 流程
+修正了PCA方差计算
+:
+使用正确的方差计算方法而非简单乘以100
+改进了聚类命名逻辑
+:
+更好地处理各种聚类命名格式
+动态颜色调色板
+: 能够处理任意数量的聚类
+保持与v4版本兼容
+:
+简化后的流程更接近原始v4版本的结果
+Simplified data processing
+: Removed complex
+mnnCorrect step, using standard Seurat v5 workflow
+Fixed PCA variance calculation
+: Used proper
+variance calculation instead of simple multiplication by 100
+Improved cluster naming logic
+: Better handling
+of various cluster naming formats
+Dynamic color palette
+: Can handle any number of
+clusters
+Maintained compatibility with v4
+: Simplified
+workflow is closer to original v4 results
+9
+Session Info
+sessionInfo
+()

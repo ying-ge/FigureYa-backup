@@ -1,8 +1,8 @@
 ---
 title: "FigureYa101PCA"
 params:
-  author: "Xiaofan Lu, Taojun Ye"
-  reviewer: "Ying Ge"
+  author: "Xiaofan Lu"
+  reviewer: "Ying Ge, Taojun Ye"
 output: 
   html_document:
     toc: true
@@ -18,33 +18,27 @@ output:
 **Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()`  
 
-
 ## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
-
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 # 设置knitr代码块的全局选项 / Set global options for knitr code chunks
 ```
 
-## 需求描述
+## 需求描述 Requirement description
 
 RNA-seq的PCA图，同一组用相同颜色，多次重复（批次）用不同形状。我的分组很多，3次重复，不需要像FigureYa38PCA那样画圈画箭头。
-
-## Requirement description
 
 PCA plot of RNA seq, with the same color for the same group and different shapes for multiple repetitions (batches). I have many groups and repeat them three times, so I don't need to draw circles or arrows like in FigureYa38PCA.
 
 ![](example.png)
 
-出自<http://genesdev.cshlp.org/content/32/2/96>
+From <http://genesdev.cshlp.org/content/32/2/96>
 
-from<http://genesdev.cshlp.org/content/32/2/96>
-
-## 应用场景
+## 应用场景 Application scenarios
 
 场景一：每个分组内的样品较多，是不同批次获得的。如果能用各种形状来区分批次的话，就能一眼看出哪个批次远离其他批次，有助于判断批次效应的影响。
 
@@ -54,8 +48,6 @@ from<http://genesdev.cshlp.org/content/32/2/96>
 
 不仅限于RNA-seq，同样适用于其他类型的数据。
 
-## Application scenarios
-
 Scenario 1: Each group has a large number of samples obtained from different batches. If various shapes can be used to distinguish batches, it can be seen at a glance which batch is far away from other batches, which helps to determine the impact of batch effects.
 
 Scenario 2: The samples within each group are obtained from 2 to n biological replicates. If various shapes can be used to distinguish different repetitions, it can be seen at a glance which repetition is far away from other repetitions, which helps to determine which outlier sample to remove.
@@ -64,9 +56,7 @@ If you want to draw circles and arrows, or cannot provide information on duplica
 
 Not limited to RNA seq, it also applies to other types of data.
 
-## 环境设置
-
-## Environment settings
+## 环境设置 Environment settings
 
 ```{r}
 source("install_dependencies.R")
@@ -83,7 +73,7 @@ Sys.setenv(LANGUAGE = "en")
 options(stringsAsFactors = FALSE) 
 ```
 
-## 自定义函数
+## 自定义函数 Custom functions
 
 包括PCA分析过程以及出图，参数设置：
 
@@ -97,8 +87,6 @@ options(stringsAsFactors = FALSE)
 - 其他参数可保持默认
 - 函数细节可根据需要自己修改，比如batch的形状（pch参数）
  
-## Custom functions
-
 Including PCA analysis process and plotting, parameter settings:
 
 -Indata is a matrix with columns as samples and behavioral observations
@@ -285,19 +273,15 @@ pca2batch <- function(indata, batch, batchvar = colnames(batch), fig.dir, PCA.fi
 
 Below are two columns based on the scene for easy imitation by friends.
 
-## 场景一，多个批次
+## 场景一，多个批次 Scenario 1, Multiple Batches
 
-### 输入文件
+### 输入文件 Input file
 
 需要两个输入文件：
 
 - easy_input_expr.csv，表达矩阵，包含多个基因在多个样本中的表达量。
 
 - easy_input_batch.csv，样品信息，第一列样品名，跟表达矩阵一致；后面两列是分组（batch1）和批次（batch2）。
-
-## Scenario 1, Multiple Batches
-
-### Input file
 
 Two input files are required:
 
@@ -330,9 +314,7 @@ indata <- as.data.frame(t(scale(t(df),center = T,scale = T)))
 indata[1:3,1:3]
 ```
 
-### 调用函数画图
-
-### Call function drawing
+### 调用函数画图 Call function drawing
 
 ```{r}
 # 自定义颜色
@@ -379,17 +361,13 @@ pca2batch(
 
 ![](PCA.2batches.withgrid.pdf)
 
-## 场景二，多次生物学重复
+## 场景二，多次生物学重复 Scenario 2, Multiple biological repetitions
 
-### 输入文件
+### 输入文件 Input file
 
 - GSE125184_CCAB_RPKM_ExpMatrix.csv，基因表达矩阵，行为基因，列为sample。下载自<https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE125184>，解压缩，跟FigureYa98STEMheatmap是同一套输入数据。
 
 - easy_input_meta.csv，样品信息，包括分组condition和重复的批次（batch）。
-
-## Scenario 2: Multiple biological repetitions
-
-### Input file
 
 - GSE125184_CCAB_RPKM_ExpMatrix.csv， Gene expression matrix, behavioral genes, listed as samples. Download from< https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE125184 >Decompress, it is the same set of input data as FigureYa98STEMheatmap.
 
@@ -401,7 +379,7 @@ pca2batch(
 # check.names=F表示不检查列名的有效性，row.names=1表示第一列作为行名
 # Read the expression matrix data from "GSE125184_CCAB_RPKM_ExpMatrix.csv"
 # check.names=F means do not check the validity of column names, row.names=1 means use the first column as row names
-expr <- read.csv("GSE125184_CCAB_RPKM_ExpMatrix.csv.gz", check.names = F, row.names = 1)
+expr <- read.csv("GSE125184_CCAB_RPKM_ExpMatrix.csv", check.names = F, row.names = 1)
 # 查看表达矩阵前3行3列的数据
 # View the first 3 rows and 3 columns of the expression matrix
 expr[1:3,1:3]
@@ -428,9 +406,7 @@ head(metadata)
 metadata$condition <- factor(metadata$condition, levels = c("VM", "H", "P1", "P2", "YFB-S", "YFB-C", "YFB-L", "FB-S", "FB-CL"))
 ```
 
-### 调用函数画图
-
-### Call function drawing
+### 调用函数画图 Call function drawing
 
 ```{r}
 # 定义足够多的颜色，用于展示分组
@@ -458,6 +434,8 @@ pca2batch(
 ```
 
 ![](PCA.replicates.withoutgrid.pdf)
+
+## Session Info
 
 ```{r}
 sessionInfo()

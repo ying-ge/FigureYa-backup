@@ -48,9 +48,17 @@ cat("Starting R package installation...\n")
 cat("===========================================\n")
 
 
-# Installing CRAN packages
+# Installing Bioconductor packages
+cat("\nInstalling Bioconductor packages...\n")
+bioc_packages <- c("batchelor")
+
+for (pkg in bioc_packages) {
+  install_bioc_package(pkg)
+}
+
+# Installing CRAN packages (only those required by the Rmd)
 cat("\nInstalling CRAN packages...\n")
-cran_packages <- c("Seurat", "ggbeeswarm", "ggplot2", "leiden", "magrittr", "spatstat", "uwot")
+cran_packages <- c("Seurat", "ggplot2", "magrittr")
 
 for (pkg in cran_packages) {
   install_cran_package(pkg)

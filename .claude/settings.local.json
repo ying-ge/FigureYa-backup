@@ -10,7 +10,9 @@
       "WebFetch(domain:pubmed.ncbi.nlm.nih.gov)",
       "WebFetch(domain:www.sciencedirect.com)",
       "WebFetch(domain:www.nature.com)",
-      "WebFetch(domain:doi.org)"
+      "WebFetch(domain:doi.org)",
+      "Bash(R:*)",
+      "Bash(Rscript:*)"
     ],
     "deny": [],
     "ask": []

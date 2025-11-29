@@ -1,8 +1,8 @@
 ---
 title: "FigureYa203ComBat"
 params:
-  author: "Xiaofan Lu; Yasi Zhang"  
-  reviewer: "Ying Ge"
+  author: "Xiaofan Lu"  
+  reviewer: "Ying Ge, Yasi Zhang"
 output: 
   html_document:
     toc: true
@@ -27,8 +27,7 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# 需求描述
-# Demand description
+## 需求描述 Requirement description
 
 想实现这篇文章里的数据处理方法，TCGA的RNA-seq数据和不同平台的microarray数据合并及标准化，希望能够得到相对统一的处理方式。
 
@@ -40,8 +39,7 @@ We would like to process the data as the methods described in this article, spec
 
 This is from the same article as FigureYa201ClusterCorrelation, originally published in: <https://www.cell.com/molecular-therapy-family/nucleic-acids/fulltext/S2162-2531(20)30259-6>
 
-# 应用场景
-# Application scenarios
+## 应用场景 Application scenarios
 
 不同平台的表达谱去除批次效应，绘制PCA图查看效果。
 
@@ -55,39 +53,24 @@ Here, the ComBat method from the sva R package was used.
 
 Additionally, some studies employ non-classical batch effect removal approaches, such as FigureYa117multilinearDE.
 
-# 环境设置 Environment Setup
+## 环境设置 Environment settings
 
 ```{r}
 source("install_dependencies.R")
 
-library(TCGAbiolinks)
-library(sva)
-library(cluster)
-library(oompaBase)
-library(SummarizedExperiment) 
-library(edgeR)     
+library(TCGAbiolinks) # TCGA数据下载工具 TCGA data download tool
+library(sva) # 批次效应校正工具 Batch effect correction tool
+library(cluster) # 聚类分析工具 Clustering analysis tool
+library(oompaBase) # 绘图工具 Plotting tool
+library(SummarizedExperiment) # 数据结构工具 Data structure tool
+library(edgeR) # 差异表达分析工具 Differential expression analysis tool
+source("batchPCA.R") # 加载绘制PCA图的自定义函数 Load custom function for PCA plotting
 
-# 显示英文报错信息
-# Show English error messages
-Sys.setenv(LANGUAGE = "en") 
-
-# 禁止chr转成factor
-# Prevent character-to-factor conversion
-options(stringsAsFactors = FALSE) 
+Sys.setenv(LANGUAGE = "en") # 显示英文报错信息 Show English error messages
+options(stringsAsFactors = FALSE) # 禁止chr转成factor Prevent character-to-factor conversion
 ```
 
-自定义函数
-
-Custom Function
-
-```{r}
-# 加载绘制PCA图的自定义函数
-# Load custom function for PCA plotting
-source("batchPCA.R")
-```
-
-# 输入文件
-# Input Files
+## 输入文件 Input files
 
 这里以一种TCGA肿瘤和两套GEO芯片数据为例，处理更多数据集的方式也是一样的。
 
@@ -97,15 +80,9 @@ Here, we use one TCGA tumor dataset and two GEO microarray datasets as examples,
 
 If your expression matrices have already been formatted as easy_input_TCGA.csv and easy_input_GSE\*.csv, you can skip this step and proceed directly to "Checking Data Magnitude.
 
-## TCGA数据下载及预处理
-## Downloading and Preprocessing TCGA Data
-
 ```{r}
-# --- TCGA数据下载及预处理 ---
-# --- TCGA Data Download and Preprocessing ---
-
-# 查询TCGA头颈鳞癌RNA-seq数据(STAR比对原始计数)
-# Query TCGA HNSC RNA-seq data (STAR-aligned raw counts)
+## TCGA数据下载及预处理 TCGA data download and preprocessing
+# 查询TCGA头颈鳞癌RNA-seq数据(STAR比对原始计数) Query TCGA HNSC RNA-seq data (STAR-aligned raw counts)
 expquery <- GDCquery(project = "TCGA-HNSC",
                      data.category = "Transcriptome Profiling",
                      data.type = "Gene Expression Quantification",
@@ -151,20 +128,13 @@ tpms.hugo$Gene <- NULL
 write.csv(tpms.hugo, "easy_input_TCGA.csv", quote = FALSE)
 
 unlink("GDCdata", recursive = TRUE)
-```
 
 ## GEO芯片数据下载及预处理
 ## Downloading and Preprocessing GEO Microarray Data
-
-这里用sangerbox下载GEO表达谱数据及预处理，方法见`GEO_sangerbox.docx`文件。生成`gse41613.expr.txt`以及`gse65858.expr.txt`后进行如下处理。
-
-（还可以用`FigureYa59Plus_GEO2DEG`下载GEO芯片数据并预处理，获得表达矩阵easy_input_expr.csv文件）
-
-Here, we use SangerBox to download and preprocess GEO expression data, as detailed in the `GEO_sangerbox.docx` file. After generating `gse41613.expr.txt` and `gse65858.expr.txt`, proceed with the following steps.
-
-(Alternatively, you can use `FigureYa59Plus_GEO2DEG` to download and preprocess GEO microarray data, obtaining the expression matrix file easy_input_expr.csv)
-
-```{r}
+## 这里用sangerbox下载GEO表达谱数据及预处理，方法见`GEO_sangerbox.docx`文件。生成`gse41613.expr.txt`以及`gse65858.expr.txt`后进行如下处理。
+##（还可以用`FigureYa59Plus_GEO2DEG`下载GEO芯片数据并预处理，获得表达矩阵easy_input_expr.csv文件）
+## Here, we use SangerBox to download and preprocess GEO expression data, as detailed in the `GEO_sangerbox.docx` file. After generating `gse41613.expr.txt` and `gse65858.expr.txt`, proceed with the following steps.
+## (Alternatively, you can use `FigureYa59Plus_GEO2DEG` to download and preprocess GEO microarray data, obtaining the expression matrix file easy_input_expr.csv)
 # GSE41613数据集处理
 # GSE41613 Dataset Processing
 gse41613.expr <- read.delim("gse41613.expr.txt",sep = "\t",row.names = 1,check.names = F,stringsAsFactors = F,header = T)
@@ -198,8 +168,7 @@ gse65858.expr <- as.data.frame(round(gse65858.expr,2))
 write.csv(gse65858.expr, "easy_input_GSE65858.csv", quote = F)
 ```
 
-# 检查两类数据的量级
-# Checking Data Magnitude
+## 检查两类数据的量级 Checking data magnitude
 
 通过取对数，让两类数据的数量级达到同一范围。
 
@@ -228,8 +197,7 @@ range(gse41613.expr)
 range(gse65858.expr) 
 ```
 
-# 合并数据集、检查批次效应
-# Merging Datasets and Checking Batch Effects
+## 合并数据集、检查批次效应 Merging datasets and checking batch effects
 
 ```{r}
 # 设置颜色方案
@@ -268,9 +236,7 @@ range(combined.expr)
 
 ![](Raw PCA for combined expression profile.pdf)
 
-# ComBat去除批次效应
-# Batch Effect Correction using ComBat
-
+## ComBat去除批次效应 Batch effect correction using ComBat
 ```{r}
 # 使用ComBat去除批次效应
 # Batch Effect Correction using ComBat

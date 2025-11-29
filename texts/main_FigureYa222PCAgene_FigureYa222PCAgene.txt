@@ -1,157 +1,128 @@
-FigureYa222PCAgene_副本.Rmd
 FigureYa222PCAgene
-Zongcheng Li; Ying Ge, Yijing Chen
-2025-5-20
-需求描述
-requirement description
+Code
+Show All Code
+Hide All Code
+FigureYa222PCAgene
+Author(s)
+: Zongcheng Li
+Reviewer(s)
+: Ying Ge, Yijing Chen
+Date
+: 2025-11-28
+1
+Academic Citation
+If you use this code in your work or research, we kindly request that
+you cite our publication:
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization
+Framework for Enhancing Biomedical Data Interpretation and Research
+Efficiency. iMetaMed.
+https://doi.org/10.1002/imm3.70005
+2
+需求描述 Requirement
+description
 这个PCA很特别
 This PCA is quite special.
-出自
+From
 https://linkinghub.elsevier.com/retrieve/pii/S0092867420300568
-图3. 卵母细胞亚型在逐步发育阶段的动态基因表达模式
-(A) 基于主成分1（PC1）和主成分2（PC2）所呈现的基因表达模式，PCA图显示四种卵母细胞亚型。
-(B) 沿PC1维度，对卵母细胞发育至关重要的代表性基因的相对基因表达模式。
-from
-https://linkinghub.elsevier.com/retrieve/pii/S0092867420300568
-Figure 3. Dynamic Gene-Expression Patterns of Oocyte Subtypes at Stepwise Developmental Stages
-(A) PCA plot showing four oocyte subtypes based on gene-expression patterns exhibited by PC1 and PC2.
-(B) Relative gene-expression patterns of representative genes essential for oocyte development along the PC1 dimension.
-应用场景
-application scenario
+Figure 3. Dynamic Gene-Expression Patterns of Oocyte Subtypes at
+Stepwise Developmental Stages (A) PCA plot showing four oocyte subtypes
+based on gene-expression patterns exhibited by PC1 and PC2. (B) Relative
+gene-expression patterns of representative genes essential for oocyte
+development along the PC1 dimension.
+3
+应用场景 Application
+scenarios
 单细胞RNA-seq，从PCA结果就能看出基因表达模式跟细胞类型的关系。
-原文：Principal component analysis (PCA) revealed that the four oocyte subtypes were distributed along the principal component 1 (PC1) dimension (Figure 3A; Table S2).
+原文：Principal component analysis (PCA) revealed that the four
+oocyte subtypes were distributed along the principal component 1 (PC1)
+dimension (Figure 3A; Table S2).
 Consistently, the relative expression levels of
-genes known to be essential for follicular development also varied along PC1 axis
-(Figures 3B and S3A). Genes promoting follicle development, such as ZP1, BMP15, and GDF9, were progressively
+genes known
+to be essential for follicular development also varied along PC1
+axis
+(Figures 3B and S3A). Genes promoting follicle
+development, such as ZP1, BMP15, and GDF9, were progressively
 upregulated from oocyte subtype C1 to C4
-. Meiotic M phase genes WEE2 and AURKA as well as DNA methyltransferase, DNMT1 and DNMT3A, were also gradually upregulated from subtype C1 to C4 (Figures 3B and S3A).
-Single-cell RNA-seq, the relationship between gene expression patterns and cell types can be discerned directly from the PCA results.
-Original text: Principal component analysis (PCA) revealed that the four oocyte subtypes were distributed along the principal component 1 (PC1) dimension (Figure 3A; Table S2).
+. Meiotic M
+phase genes WEE2 and AURKA as well as DNA methyltransferase, DNMT1 and
+DNMT3A, were also gradually upregulated from subtype C1 to C4 (Figures
+3B and S3A).
+Single-cell RNA-seq, the relationship between gene expression
+patterns and cell types can be discerned directly from the PCA
+results.
+Original text: Principal component analysis (PCA) revealed that the
+four oocyte subtypes were distributed along the principal component 1
+(PC1) dimension (Figure 3A; Table S2).
 Consistently, the relative expression levels of
-genes known to be essential for follicular development also varied along PC1 axis
-(Figures 3B and S3A). Genes promoting follicle development, such as ZP1, BMP15, and GDF9, were progressively
+genes known
+to be essential for follicular development also varied along PC1
+axis
+(Figures 3B and S3A). Genes promoting follicle
+development, such as ZP1, BMP15, and GDF9, were progressively
 upregulated from oocyte subtype C1 to C4
-. Meiotic M phase genes WEE2 and AURKA as well as DNA methyltransferase, DNMT1 and DNMT3A, were also gradually upregulated from subtype C1 to C4 (Figures 3B and S3A).
-环境设置
-environment setting
-使用国内镜像安装包
-use the domestic mirror installation package
-xxxxxxxxxx
-options
+. Meiotic M
+phase genes WEE2 and AURKA as well as DNA methyltransferase, DNMT1 and
+DNMT3A, were also gradually upregulated from subtype C1 to C4 (Figures
+3B and S3A).
+4
+环境设置 Environment
+Setting
+source
 (
-"repos"
-=
-c
-(
-CRAN
-=
-"https://mirrors.tuna.tsinghua.edu.cn/CRAN/"
-))
-options
-(
-BioC_mirror
-=
-"http://mirrors.tuna.tsinghua.edu.cn/bioconductor/"
-)
-install.packages
-(
-"leiden"
-)
-install.packages
-(
-"spatstat"
-)
-install.packages
-(
-"uwot"
-)
-install.packages
-(
-"ggbeeswarm"
-)
-加载包
-load package
-xxxxxxxxxx
-library
-(
-Seurat
+"install_dependencies.R"
 )
 library
-(
-magrittr
-)
+(Seurat)
+# 单细胞RNA-seq分析工具 Single-cell RNA-seq analysis tool
 library
-(
-ggplot2
-)
+(magrittr)
+# 管道操作符 Pipe operator
+library
+(ggplot2)
+# 绘图工具 Plotting tool
 Sys.setenv
 (
-LANGUAGE
-=
+LANGUAGE =
 "en"
 )
-#显示英文报错信息 display English error messages
+# 显示英文报错信息 Show English error messages
 options
 (
-stringsAsFactors
-=
+stringsAsFactors =
 FALSE
 )
-#禁止chr转成factor prohibit the conversion of chr to factor
-输入文件
-Input file
-sc.seurat.Rdata，单细胞RNA-seq预处理获得的文件。出自FigureYa206scHeatmap，文件较大，已上传至微云
-https://share.weiyun.com/vZiSM9pB
+# 禁止chr转成factor Prevent character-to-factor conversion
+5
+输入文件 Input
+files
+sc.seurat.Rdata，单细胞RNA-seq预处理获得的文件，出自FigureYa206scHeatmap
 怎样获得这个文件？拖到文末看“附：单细胞RNA-seq数据预处理”
-sc.seurat.Rdata, the file obtained from single-cell RNA-seq preprocessing. It originates from FigureYa206scHeatmap. The file is relatively large and has been uploaded to Weiyun
-https://share.weiyun.com/vZiSM9pB
-How to obtain this file? Scroll to the end of the document and see "Appendix: Single-cell RNA-seq Data Preprocessing"
-xxxxxxxxxx
+sc.seurat.Rdata, the file obtained from single-cell RNA-seq
+preprocessing. It originates from FigureYa206scHeatmap.
+How to obtain this file? Scroll to the end of the document and see
+“Appendix: Single-cell RNA-seq Data Preprocessing”
 (
 load
 (
-"sc.seurat.Rdata"
+"sc.seurat_v5.Rdata"
 ))
+6
 PCA
+6.1
 原文采用的聚类方法
 The clustering method employed in the original text
-例文的非监督聚类方法比较特殊，以SCENIC的分析结果作为输入（SCENIC的用法可参考FigureYa194pySCENIC），用modified ‘clustering-and-classification’ algorithm (Lake et al., 2016) 给细胞做聚类。clustering-and-classification也是个很有趣的半监督聚类算法，如果有需要，我们后面再众筹。
-The unsupervised clustering method used in the example text is quite unique, taking the analysis results from SCENIC as input (for the usage of SCENIC, you can refer to FigureYa194pySCENIC), and applying modified 'clustering-and-classification' algorithm (Lake et al., 2016) to cluster the cells. The clustering-and-classification is also an interesting semi-supervised clustering algorithm, and if needed, we can consider crowdfunding it later on.
-我们用Seurat自带的无监督聚类
-We employ Seurat's built-in unsupervised clustering
-x
-## 提取oocytes subtype的细胞的数据
-# 从文章附件获得oocytes subtype的细胞ID（191 young oocytes, 227 old oocytes）
-# 这里用到第一列cell ID，用于提取oocytes subtype的细胞
-## Extract data for oocyte subtype cells
-# Obtain cell IDs for oocyte subtypes from article attachments (191 young oocytes, 227 old oocytes)
-# Utilise the first column cell ID to extract cells for oocyte subtypes
-meta_oo
-<-
-readxl
-::
-read_excel
-(
-path
-=
-"1-s2.0-S0092867420300568-mmc2.xlsx"
-,
-sheet
-=
-2
-)
-sc_oo
-<-
-sc
-[,
-meta_oo
-$
-cell
-]
-# only 414 (not 418?! ) cells in the metadata
-## 自己的数据，就不涉及取子集，直接用sc就好，用下面这行代替上面两行：
-## For your own data, there's no need to take a subset; you can directly use sc, replace the two lines above with the following:
-# sc_oo <- sc
+例文的非监督聚类方法比较特殊，以SCENIC的分析结果作为输入（SCENIC的用法可参考FigureYa194pySCENIC），用modified
+‘clustering-and-classification’ algorithm (Lake et al., 2016)
+给细胞做聚类。clustering-and-classification也是个很有趣的半监督聚类算法。
+The unsupervised clustering method used in the example text is quite
+unique, taking the analysis results from SCENIC as input (for the usage
+of SCENIC, you can refer to FigureYa194pySCENIC), and applying modified
+‘clustering-and-classification’ algorithm (Lake et al., 2016) to cluster
+the cells. The clustering-and-classification is also an interesting
+semi-supervised clustering algorithm.
+6.2
+我们用Seurat自带的无监督聚类 We employ Seurat’s built-in unsupervised
+clustering
 sc_oo_mnn
 <-
 batchelor
@@ -160,33 +131,20 @@ mnnCorrect
 (
 # mmnCorrect is no longer in scran mmnCorrect不再包含在scran中
 as.SingleCellExperiment
-(
-sc_oo
-),
-batch
-=
-sc_oo
-$
-individual
-,
-k
-=
+(sc_oo),
+batch =
+batch_col,
+k =
 4
 ,
-sigma
-=
+sigma =
 0.1
 ,
-cos.norm.in
-=
-T
-,
-cos.norm.out
-=
-T
-,
-var.adj
-=
+cos.norm.in =
+T,
+cos.norm.out =
+T,
+var.adj =
 T
 )
 prData
@@ -194,8 +152,39 @@ prData
 SummarizedExperiment
 ::
 assay
+(sc_oo_mnn)
+# Check cell number consistency after mnnCorrect
+# mnnCorrect may filter some cells, so we need to subset sc_oo to match prData
+# 检查 mnnCorrect 后的细胞数量一致性
+# mnnCorrect 可能会过滤一些细胞，需要将 sc_oo 子集化以匹配 prData
+cells_after_mnn
+<-
+colnames
+(prData)
+sc_oo
+<-
+sc_oo[, cells_after_mnn]
+# Verify cell number consistency
+# 验证细胞数量一致性
+cat
 (
-sc_oo_mnn
+"Cells in sc_oo after subsetting:"
+,
+ncol
+(sc_oo),
+"
+\n
+"
+)
+cat
+(
+"Cells in prData:"
+,
+ncol
+(prData),
+"
+\n
+"
 )
 # HVGs
 #sc_oo %<>% FindVariableFeatures(selection.method = "mvp", mean.cutoff = c(1,8))
@@ -203,14 +192,11 @@ sc_oo
 %<>%
 FindVariableFeatures
 (
-selection.method
-=
+selection.method =
 "vst"
 )
 VariableFeatures
-(
-sc_oo
-)
+(sc_oo)
 %>%
 length
 ()
@@ -218,26 +204,111 @@ length
 prres
 <-
 prcomp
-(
-prData
-[
+(prData[
 VariableFeatures
-(
-sc_oo
-), ]
+(sc_oo), ]
 %>%
-t
-,
-scale.
-=
-F
-)
+t,
+scale. =
+F)
 #prres <- prcomp(prData %>% t, scale. = F)
 #prres$x <- sc_oo@reductions$pca@cell.embeddings
 # unsupervised clustering based on mnn matrix
+# Ensure prData and sc_oo have matching cells and genes
+# 确保 prData 和 sc_oo 有匹配的细胞和基因
+# Check Seurat version and use appropriate API
+# 检查 Seurat 版本并使用适当的 API
+if
+(
+packageVersion
+(
+"Seurat"
+)
+>=
+"5.0.0"
+) {
+# Seurat v5: use LayerData to access data
+# Seurat v5: 使用 LayerData 访问数据
+sc_oo_data
+<-
+LayerData
+(sc_oo,
+assay =
+"RNA"
+,
+layer =
+"data"
+)
+}
+else
+{
+# Seurat v4: use @assays$RNA@data
+# Seurat v4: 使用 @assays$RNA@data
+sc_oo_data
+<-
 sc_oo
-%<>%
-ScaleData
+@
+assays
+$
+RNA
+@
+data
+}
+common_genes
+<-
+intersect
+(
+rownames
+(prData),
+rownames
+(sc_oo_data))
+common_cells
+<-
+intersect
+(
+colnames
+(prData),
+colnames
+(sc_oo))
+# Subset sc_oo to common cells first
+# 先将 sc_oo 子集化为共同细胞
+sc_oo
+<-
+sc_oo[, common_cells]
+# For Seurat v5, we need to set the scale.data layer
+# 对于 Seurat v5，我们需要设置 scale.data 层
+# In v5, ScaleData creates a "scale.data" layer
+# 在 v5 中，ScaleData 创建一个 "scale.data" 层
+if
+(
+packageVersion
+(
+"Seurat"
+)
+>=
+"5.0.0"
+) {
+# Set scale.data layer directly from prData (mnn-corrected data)
+# 直接从 prData（mnn 校正后的数据）设置 scale.data 层
+# Use SetAssayData for Seurat v5
+# 对于 Seurat v5 使用 SetAssayData
+sc_oo
+<-
+SetAssayData
+(sc_oo,
+assay =
+"RNA"
+,
+layer =
+"scale.data"
+,
+new.data =
+prData[common_genes, common_cells])
+}
+else
+{
+# Seurat v4: use @assays$RNA@scale.data
+# Seurat v4: 使用 @assays$RNA@scale.data
 sc_oo
 @
 assays
@@ -246,42 +317,103 @@ RNA
 @
 scale.data
 <-
-prData
-[
-rownames
-(
+prData[common_genes, common_cells]
+}
+# Now run ScaleData
+# 现在运行 ScaleData
 sc_oo
+%<>%
+ScaleData
+# Verify consistency before PCA
+# 在 PCA 之前验证一致性
+cat
+(
+"Cells in sc_oo before RunPCA:"
+,
+ncol
+(sc_oo),
+"
+\n
+"
+)
+if
+(
+packageVersion
+(
+"Seurat"
+)
+>=
+"5.0.0"
+) {
+if
+(
+"scale.data"
+%in%
+Layers
+(sc_oo,
+assay =
+"RNA"
+)) {
+scale_data
+<-
+LayerData
+(sc_oo,
+assay =
+"RNA"
+,
+layer =
+"scale.data"
+)
+cat
+(
+"Cells in scale.data:"
+,
+ncol
+(scale_data),
+"
+\n
+"
+)
+}
+else
+{
+cat
+(
+"scale.data layer not found
+\n
+"
+)
+}
+}
+else
+{
+cat
+(
+"Cells in scale.data:"
+,
+ncol
+(sc_oo
 @
 assays
 $
 RNA
 @
-scale.data
-),
-colnames
-(
-sc_oo
-@
-assays
-$
-RNA
-@
-scale.data
-)]
+scale.data),
+"
+\n
+"
+)
+}
 sc_oo
 %<>%
 RunPCA
 ElbowPlot
-(
-sc_oo
-)
-xxxxxxxxxx
+(sc_oo)
 sc_oo
 %<>%
 FindNeighbors
 (
-dims
-=
+dims =
 1
 :
 15
@@ -289,9 +421,48 @@ dims
 %>%
 FindClusters
 (
-resolution
-=
+resolution =
 0.6
+)
+# Verify consistency after clustering
+# 聚类后验证一致性
+cat
+(
+"Cells in sc_oo after clustering:"
+,
+ncol
+(sc_oo),
+"
+\n
+"
+)
+cat
+(
+"Cells in PCA embeddings:"
+,
+nrow
+(sc_oo
+@
+reductions
+$
+pca
+@
+cell.embeddings),
+"
+\n
+"
+)
+cat
+(
+"Rows in meta.data:"
+,
+nrow
+(sc_oo
+@
+meta.data),
+"
+\n
+"
 )
 pca.pv
 <-
@@ -304,37 +475,44 @@ pca
 # The principal component of each gene
 # pca.pv@feature.loadings
 dim
-(
-pca.pv
+(pca.pv
 @
-feature.loadings
-)
-开始画图
-Start drawing
-画Fig. 3A
-Draw Fig. 3A
-x
+feature.loadings)
+7
+开始画图 Start
+drawing
+7.1
+画Fig. 3A Draw Fig.
+3A
 #计算坐标轴标签
 #Calculate axis labels
+pc_var
+<-
+pca.pv
+@
+stdev
+^
+2
+pc_total_var
+<-
+sum
+(pc_var)
 pc1.pv
 <-
 paste0
 (
 round
-(
-pca.pv
-@
-stdev
-[
+(pc_var[
 1
-],
-digits
-=
-3
-)
+]
+/
+pc_total_var
 *
 100
 ,
+digits =
+1
+),
 "%"
 )
 pc2.pv
@@ -342,24 +520,61 @@ pc2.pv
 paste0
 (
 round
-(
-pca.pv
-@
-stdev
-[
+(pc_var[
 2
-],
-digits
-=
-3
-)
+]
+/
+pc_total_var
 *
 100
 ,
+digits =
+1
+),
 "%"
 )
 # 修改seurat_clusters的名字
 # Rename the seurat_clusters
+# First check what cluster values exist
+# 首先检查存在哪些聚类值
+unique_clusters
+<-
+unique
+(sc_oo
+@
+meta.data
+$
+seurat_clusters)
+cat
+(
+"Unique seurat_clusters values:"
+,
+paste
+(unique_clusters,
+collapse =
+", "
+),
+"
+\n
+"
+)
+# Only rename clusters that exist, keep others as is
+# 只重命名存在的聚类，其他保持不变
+if
+(
+all
+(unique_clusters
+%in%
+c
+(
+"0"
+,
+"1"
+,
+"2"
+,
+"3"
+))) {
 sc_oo
 @
 meta.data
@@ -367,15 +582,12 @@ $
 seurat_clusters
 <-
 factor
-(
-sc_oo
+(sc_oo
 @
 meta.data
 $
-seurat_clusters
-,
-levels
-=
+seurat_clusters,
+levels =
 c
 (
 "0"
@@ -386,8 +598,7 @@ c
 ,
 "3"
 ),
-labels
-=
+labels =
 c
 (
 "C1"
@@ -398,21 +609,158 @@ c
 ,
 "C4"
 ))
+}
+else
+{
+# If there are other clusters, include them in the factor
+# 如果存在其他聚类，将它们包含在因子中
+all_levels
+<-
+sort
+(
+unique
+(
+as.character
+(sc_oo
+@
+meta.data
+$
+seurat_clusters)))
+cat
+(
+"Found cluster levels:"
+,
+paste
+(all_levels,
+collapse =
+", "
+),
+"
+\n
+"
+)
+# Create proper labels - if they look like "CC1", extract the number part
+# 创建适当的标签 - 如果它们看起来像 "CC1"，提取数字部分
+if
+(
+all
+(
+grepl
+(
+"^CC[0-9]+$"
+, all_levels))) {
+# Extract numbers from CC1, CC2, etc. and create C1, C2, etc.
+# 从 CC1, CC2 等提取数字并创建 C1, C2 等
+labels
+<-
+paste0
+(
+"C"
+,
+sub
+(
+"^CC"
+,
+""
+, all_levels))
+}
+else
+{
+# Otherwise use standard naming
+# 否则使用标准命名
+labels
+<-
+ifelse
+(all_levels
+%in%
+c
+(
+"0"
+,
+"1"
+,
+"2"
+,
+"3"
+),
+c
+(
+"C1"
+,
+"C2"
+,
+"C3"
+,
+"C4"
+)[
+match
+(all_levels,
+c
+(
+"0"
+,
+"1"
+,
+"2"
+,
+"3"
+))],
+paste0
+(
+"C"
+, all_levels))
+}
+sc_oo
+@
+meta.data
+$
+seurat_clusters
+<-
+factor
+(sc_oo
+@
+meta.data
+$
+seurat_clusters,
+levels =
+all_levels,
+labels =
+labels)
+cat
+(
+"Warning: Found additional clusters beyond 0-3. All clusters included.
+\n
+"
+)
+}
 # 画图
 # draw
-PCAPlot
+# Filter out NA values before plotting
+# 绘图前过滤掉 NA 值
+sc_oo_plot
+<-
+sc_oo[,
+!
+is.na
+(sc_oo
+@
+meta.data
+$
+seurat_clusters)]
+# Create a color palette that can handle any number of clusters
+# 创建可以处理任意数量聚类的调色板
+n_clusters
+<-
+length
 (
-sc_oo
-,
-group.by
-=
-"seurat_clusters"
-)
-+
-scale_color_manual
-(
-values
-=
+unique
+(sc_oo_plot
+@
+meta.data
+$
+seurat_clusters))
+colors
+<-
 c
 (
 "darkmagenta"
@@ -422,16 +770,68 @@ c
 "chartreuse3"
 ,
 "red"
-))
+,
+"purple"
+,
+"orange"
+,
+"brown"
+,
+"pink"
+,
+"cyan"
+,
+"magenta"
+)
+cluster_colors
+<-
+colors[
+1
+:
+n_clusters]
+if
+(
+length
+(cluster_colors)
+<
+n_clusters) {
+# If we need more colors, generate them using RColorBrewer or rainbow
+# 如果需要更多颜色，使用 RColorBrewer 或 rainbow 生成
+cluster_colors
+<-
+c
+(cluster_colors,
+rainbow
+(n_clusters
+-
+length
+(cluster_colors)))
+}
+PCAPlot
+(sc_oo_plot,
+group.by =
+"seurat_clusters"
+)
 +
+scale_color_manual
+(
+values =
+cluster_colors,
+na.value =
+"grey90"
+,
+# Color for NA values
+drop =
+FALSE
+)
++
+# Keep all factor levels
 xlab
 (
 paste0
 (
 "PC1 ("
-,
-pc1.pv
-,
+, pc1.pv,
 ")"
 ))
 +
@@ -440,31 +840,27 @@ ylab
 paste0
 (
 "PC2 ("
-,
-pc2.pv
-,
+, pc2.pv,
 ")"
 ))
-xxxxxxxxxx
 # 保存到文件
 # Save to file
 ggsave
 (
 "PCA_A.pdf"
 ,
-width
-=
+width =
 6
 ,
-height
-=
+height =
 5
 )
-画Fig. 3B
-Draw Fig. 3B
+7.2
+画Fig. 3B Draw Fig.
+3B
 用Seurat自带的无监督聚类获得的seurat_clusters画图
-Plotting the seurat_clusters obtained using Seurat's built-in unsupervised clustering
-x
+Plotting the seurat_clusters obtained using Seurat’s built-in
+unsupervised clustering
 #ggplot() + geom_point(mapping = aes(prres$x[,1],  prres$x[,2], color = sc_oo$seurat_clusters))
 markers
 <-
@@ -482,84 +878,77 @@ c
 ,
 "SOX17"
 )
-reshape2
-::
-melt
+# Get expression data using appropriate API for Seurat version
+# 使用适合 Seurat 版本的 API 获取表达数据
+if
 (
+packageVersion
+(
+"Seurat"
+)
+>=
+"5.0.0"
+) {
+expr_data
+<-
+LayerData
+(sc_oo,
+assay =
+"RNA"
+,
+layer =
+"data"
+)
+}
+else
+{
+expr_data
+<-
+GetAssayData
+(sc_oo)
+}
+# Filter out NA values before plotting
+# 绘图前过滤掉 NA 值
+plot_data
+<-
 cbind
-(
-sc_oo
+(sc_oo
 @
-meta.data
-[,
+meta.data[,
 "seurat_clusters"
 ,
-drop
-=
-F
-],
-PC1
-=
+drop =
+F],
+PC1 =
 -
 prres
 $
-x
-[,
+x[,
 1
 ],
-GetAssayData
-(
-sc_oo
-)[
-markers
-,]
+expr_data[markers,]
 %>%
-t
-#SummarizedExperiment::assay(sc_oo_mnn)[markers,] %>% t
-),
-id.vars
-=
-c
+t)
+plot_data
+<-
+plot_data[
+!
+is.na
+(plot_data
+$
+seurat_clusters), ]
+# Create color palette for the expression plot as well
+# 为表达图也创建调色板
+n_clusters_expr
+<-
+length
 (
-"seurat_clusters"
-,
-"PC1"
-))
-%>%
-ggplot
-(
-mapping
-=
-aes
-(
-PC1
-,
-value
-))
-+
-ylab
-(
-"Relative expression"
-)
-+
-geom_point
-(
-mapping
-=
-aes
-(
-color
-=
-seurat_clusters
-))
-+
-geom_smooth
-()
-+
-scale_color_manual
-(
-values
-=
+unique
+(plot_data
+$
+seurat_clusters))
+colors_expr
+<-
 c
 (
 "darkmagenta"
@@ -569,15 +958,93 @@ c
 "chartreuse3"
 ,
 "red"
+,
+"purple"
+,
+"orange"
+,
+"brown"
+,
+"pink"
+,
+"cyan"
+,
+"magenta"
+)
+cluster_colors_expr
+<-
+colors_expr[
+1
+:
+n_clusters_expr]
+if
+(
+length
+(cluster_colors_expr)
+<
+n_clusters_expr) {
+cluster_colors_expr
+<-
+c
+(cluster_colors_expr,
+rainbow
+(n_clusters_expr
+-
+length
+(cluster_colors_expr)))
+}
+reshape2
+::
+melt
+(plot_data,
+id.vars =
+c
+(
+"seurat_clusters"
+,
+"PC1"
 ))
+%>%
+ggplot
+(
+mapping =
+aes
+(PC1, value))
 +
+ylab
+(
+"Relative expression"
+)
++
+geom_point
+(
+mapping =
+aes
+(
+color =
+seurat_clusters))
++
+geom_smooth
+()
++
+scale_color_manual
+(
+values =
+cluster_colors_expr,
+na.value =
+"grey90"
+,
+# Color for NA values
+drop =
+FALSE
+)
++
+# Keep all factor levels
 facet_wrap
 (
 ~
-variable
-,
-scales
-=
+variable,
+scales =
 "free_y"
 )
 +
@@ -586,116 +1053,130 @@ theme_classic
 +
 theme
 (
-panel.border
-=
+panel.border =
 element_rect
 (
-fill
-=
+fill =
 NA
 ),
-axis.text.x
-=
+axis.text.x =
 element_blank
 (),
-axis.ticks.x
-=
+axis.ticks.x =
 element_blank
 ())
-xxxxxxxxxx
 ggsave
 (
 "PCA_B.pdf"
 ,
-width
-=
+width =
 7
 ,
-height
-=
+height =
 4
 )
-跟原文对比
-Compare with the original text
+7.3
+跟原文对比 Compare
+with the original text
 1-s2.0-S0092867420300568-mmc2.xlsx的第二列是细胞所在的cluster，是原文采用的聚类方法获得的cluster信息，用它跟我们做的“Seurat自带的无监督聚类”的结果对比。
 没有完全重复出原文的效果。最可能的原因是mnn算法计算出的数据有差别，或者是作者选用的输入基因是特别的，原文方法中没有描述。
-The second column of 1-s2.0-S0092867420300568-mmc2.xlsx indicates the cluster to which each cell belongs, representing the cluster information obtained by the clustering method used in the original text. This can be compared with the results of our "unsupervised clustering with Seurat's built-in method".
-The results do not perfectly replicate the effects of the original text. The most likely reasons are differences in the data calculated by the MNN (Multimodal Neighborhood Network) algorithm or the use of specific input genes by the authors, which are not described in the original method.
-xxxxxxxxxx
+The second column of 1-s2.0-S0092867420300568-mmc2.xlsx indicates the
+cluster to which each cell belongs, representing the cluster information
+obtained by the clustering method used in the original text. This can be
+compared with the results of our “unsupervised clustering with Seurat’s
+built-in method”.
+The results do not perfectly replicate the effects of the original
+text. The most likely reasons are differences in the data calculated by
+the MNN (Multimodal Neighborhood Network) algorithm or the use of
+specific input genes by the authors, which are not described in the
+original method.
 meta_oo
 <-
 readxl
 ::
 read_excel
 (
-path
-=
+path =
 "1-s2.0-S0092867420300568-mmc2.xlsx"
 ,
-sheet
-=
+sheet =
 2
 )
 dim
+(meta_oo)
+# Match cells and handle NA values
+# 匹配细胞并处理 NA 值
+matched_idx
+<-
+match
 (
-meta_oo
-)
+colnames
+(sc_oo), meta_oo
+$
+cell)
 sc_oo
 $
 subtype
 <-
 meta_oo
 $
-cluster
-[
-match
+cluster[matched_idx]
+# Check for NA values
+# 检查 NA 值
+na_count
+<-
+sum
 (
-colnames
-(
-sc_oo
-),
-meta_oo
+is.na
+(sc_oo
 $
-cell
-)]
+subtype))
+if
+(na_count
+>
+0
+) {
+cat
+(
+"Warning:"
+, na_count,
+"cells could not be matched in meta_oo. These will be excluded from subtype analysis.
+\n
+"
+)
+# Optionally remove NA values or keep them
+# 可以选择移除 NA 值或保留它们
+# sc_oo <- sc_oo[, !is.na(sc_oo$subtype)]
+}
 table
-(
-sc_oo
+(sc_oo
 $
-subtype
-,
-sc_oo
+subtype, sc_oo
 $
-seurat_clusters
+seurat_clusters,
+useNA =
+"ifany"
 )
 用原文聚类获得的subtype画图
 Plot the subtypes obtained from original text clustering
-x
 #ggplot() +
 geom_point
 (
-mapping
-=
+mapping =
 aes
-(
-prres
+(prres
 $
-x
-[,
+x[,
 1
-],
-prres
+],  prres
 $
-x
-[,
+x[,
 2
 ],
-color
-=
+color =
 sc_oo
 $
-subtype
-))
+subtype))
 markers
 <-
 c
@@ -712,84 +1193,77 @@ c
 ,
 "SOX17"
 )
-reshape2
-::
-melt
+# Get expression data using appropriate API for Seurat version
+# 使用适合 Seurat 版本的 API 获取表达数据
+if
 (
+packageVersion
+(
+"Seurat"
+)
+>=
+"5.0.0"
+) {
+expr_data
+<-
+LayerData
+(sc_oo,
+assay =
+"RNA"
+,
+layer =
+"data"
+)
+}
+else
+{
+expr_data
+<-
+GetAssayData
+(sc_oo)
+}
+# Filter out NA values before plotting
+# 绘图前过滤掉 NA 值
+plot_data
+<-
 cbind
-(
-sc_oo
+(sc_oo
 @
-meta.data
-[,
+meta.data[,
 "subtype"
 ,
-drop
-=
-F
-],
-PC1
-=
+drop =
+F],
+PC1 =
 -
 prres
 $
-x
-[,
+x[,
 1
 ],
-GetAssayData
-(
-sc_oo
-)[
-markers
-,]
+expr_data[markers,]
 %>%
-t
-#SummarizedExperiment::assay(sc_oo_mnn)[markers,] %>% t
-),
-id.vars
-=
-c
+t)
+plot_data
+<-
+plot_data[
+!
+is.na
+(plot_data
+$
+subtype), ]
+# Create color palette for the third plot as well
+# 为第三张图也创建调色板
+n_clusters_subtype
+<-
+length
 (
-"subtype"
-,
-"PC1"
-))
-%>%
-ggplot
-(
-mapping
-=
-aes
-(
-PC1
-,
-value
-))
-+
-ylab
-(
-"Relative expression"
-)
-+
-geom_point
-(
-mapping
-=
-aes
-(
-color
-=
-subtype
-))
-+
-geom_smooth
-()
-+
-scale_color_manual
-(
-values
-=
+unique
+(plot_data
+$
+subtype))
+colors_subtype
+<-
 c
 (
 "darkmagenta"
@@ -799,15 +1273,93 @@ c
 "chartreuse3"
 ,
 "red"
+,
+"purple"
+,
+"orange"
+,
+"brown"
+,
+"pink"
+,
+"cyan"
+,
+"magenta"
+)
+cluster_colors_subtype
+<-
+colors_subtype[
+1
+:
+n_clusters_subtype]
+if
+(
+length
+(cluster_colors_subtype)
+<
+n_clusters_subtype) {
+cluster_colors_subtype
+<-
+c
+(cluster_colors_subtype,
+rainbow
+(n_clusters_subtype
+-
+length
+(cluster_colors_subtype)))
+}
+reshape2
+::
+melt
+(plot_data,
+id.vars =
+c
+(
+"subtype"
+,
+"PC1"
 ))
+%>%
+ggplot
+(
+mapping =
+aes
+(PC1, value))
 +
+ylab
+(
+"Relative expression"
+)
++
+geom_point
+(
+mapping =
+aes
+(
+color =
+subtype))
++
+geom_smooth
+()
++
+scale_color_manual
+(
+values =
+cluster_colors_subtype,
+na.value =
+"grey90"
+,
+# Color for NA values
+drop =
+FALSE
+)
++
+# Keep all factor levels
 facet_wrap
 (
 ~
-variable
-,
-scales
-=
+variable,
+scales =
 "free_y"
 )
 +
@@ -816,37 +1368,31 @@ theme_classic
 +
 theme
 (
-panel.border
-=
+panel.border =
 element_rect
 (
-fill
-=
+fill =
 NA
 ),
-axis.text.x
-=
+axis.text.x =
 element_blank
 (),
-axis.ticks.x
-=
+axis.ticks.x =
 element_blank
 ())
-xxxxxxxxxx
 ggsave
 (
 "PCA_B_ori.pdf"
 ,
-width
-=
+width =
 7
 ,
-height
-=
+height =
 4
 )
-附：单细胞RNA-seq数据预处理
-Appendix: Single-cell RNA-seq Data Preprocessing
+8
+附：单细胞RNA-seq数据预处理 Appendix: Single-cell RNA-seq Data
+Preprocessing
 以下代码出自
 FigureYa206scHeatmap
 ，会输出
@@ -854,112 +1400,617 @@ sc.seurat.Rdata
 ，可作为以上代码的输入文件。
 The following code is from
 FigureYa206scHeatmap
-and will output
+and will
+output
 sc.seurat.Rdata
-, which can serve as the input file for the above code.
+, which can serve as the input file
+for the above code.
+8.1
 下载单细胞RNA-seq数据
 Download single-cell RNA-seq data
-1.UMI count，从NCBI
+UMI count，从NCBI
 GSE130664
 下载：
 GSE130664_merge_UMI_count.txt.gz
 文件。
-1.UMI count, download from NCBI
+UMI count, download from NCBI
 GSE130664
 :
 GSE130664_merge_UMI_count.txt.gz
 file.
-xxxxxxxxxx
 download.file
 (
 "https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE130664&format=file&file=GSE130664%5Fmerge%5FUMI%5Fcount%2Etxt%2Egz"
 ,
-destfile
-=
+destfile =
 "GSE130664_merge_UMI_count.txt.gz"
 )
-2.metadata，从
+metadata，从
 例文的
-Supplementary Tables获得：
-1-s2.0-S0092867420300568-mmc1.xlsx
-2.Metadata, obtained from the Supplementary Tables of
+Supplementary
+Tables获得：
+mmc2.xlsx
+Metadata, obtained from the Supplementary Tables of
 the example paper
 :
-1-s2.0-S0092867420300568-mmc1.xlsx
-读取数据
-Read data
-xxxxxxxxxx
+mmc2.xlsx
+8.2
+读取数据 Read
+data
 umi
 <-
 read.table
 (
-file
-=
+file =
 gzfile
 (
 "GSE130664_merge_UMI_count.txt.gz"
 ),
-header
-=
-T
-,
-row.names
-=
+header =
+T,
+row.names =
 1
 ,
-sep
-=
+sep =
 "
 \t
 "
 )
+# Check all sheets in the Excel file
+# 检查 Excel 文件中的所有工作表
+excel_sheets
+<-
+readxl
+::
+excel_sheets
+(
+"mmc2.xlsx"
+)
+cat
+(
+"Available sheets in mmc2.xlsx:"
+,
+paste
+(excel_sheets,
+collapse =
+", "
+),
+"
+\n
+"
+)
+# Try to find QC data (sheet with Mapping rate, Gene number, UMI columns)
+# 尝试找到质量控制数据（包含 Mapping rate、Gene number、UMI 列的工作表）
 qc
+<-
+NULL
+for
+(sheet_name
+in
+excel_sheets) {
+temp_data
 <-
 readxl
 ::
 read_excel
 (
-"1-s2.0-S0092867420300568-mmc1.xlsx"
+"mmc2.xlsx"
 ,
-sheet
-=
-2
+sheet =
+sheet_name)
+cat
+(
+"Sheet '"
+, sheet_name,
+"' columns: "
+,
+paste
+(
+colnames
+(temp_data),
+collapse =
+", "
+),
+"
+\n
+"
+,
+sep =
+""
 )
+# Check if this sheet contains QC metrics
+# 检查此工作表是否包含质量控制指标
+if
+(
+any
+(
+grepl
+(
+"Mapping|Gene|UMI|Rename"
+,
+colnames
+(temp_data),
+ignore.case =
+TRUE
+))) {
+qc
+<-
+temp_data
+cat
+(
+"Found QC data in sheet:"
+, sheet_name,
+"
+\n
+"
+)
+break
+}
+}
+# If QC data not found, calculate from UMI matrix
+# 如果未找到质量控制数据，从 UMI 矩阵计算
+if
+(
+is.null
+(qc)
+||
+!
+any
+(
+c
+(
+"Mapping rate"
+,
+"Mapping_rate"
+,
+"MappingRate"
+)
+%in%
+colnames
+(qc))) {
+cat
+(
+"QC data not found in Excel. Calculating from UMI matrix...
+\n
+"
+)
+# Calculate QC metrics from UMI matrix
+# 从 UMI 矩阵计算质量控制指标
+qc
+<-
+data.frame
+(
+cell =
+colnames
+(umi),
+UMI =
+colSums
+(umi),
+`
+Gene number
+`
+=
+colSums
+(umi
+>
+0
+),
+`
+Mapping rate
+`
+=
+1
+,
+# Assume 100% mapping if not available
+Rename =
+colnames
+(umi),
+check.names =
+FALSE
+)
+}
+# Read metadata (try sheet 3, or find sheet with cell and cluster columns)
+# 读取元数据（尝试工作表 3，或查找包含 cell 和 cluster 列的工作表）
+meta
+<-
+NULL
+for
+(sheet_name
+in
+excel_sheets) {
+temp_data
+<-
+readxl
+::
+read_excel
+(
+"mmc2.xlsx"
+,
+sheet =
+sheet_name)
+if
+(
+"cell"
+%in%
+colnames
+(temp_data)
+&&
+"cluster"
+%in%
+colnames
+(temp_data)) {
+meta
+<-
+temp_data
+cat
+(
+"Found metadata in sheet:"
+, sheet_name,
+"
+\n
+"
+)
+break
+}
+}
+# If not found, try sheet 3
+# 如果未找到，尝试工作表 3
+if
+(
+is.null
+(meta)
+&&
+length
+(excel_sheets)
+>=
+3
+) {
 meta
 <-
 readxl
 ::
 read_excel
 (
-"1-s2.0-S0092867420300568-mmc1.xlsx"
+"mmc2.xlsx"
 ,
 3
 )
-%>%
-column_to_rownames
+}
+# Check column names and use the first column as rownames
+# 检查列名并使用第一列作为行名
+cat
+(
+"Column names in meta:"
+,
+paste
+(
+colnames
+(meta),
+collapse =
+", "
+),
+"
+\n
+"
+)
+# Use first column as rownames (assuming it contains cell IDs)
+# 使用第一列作为行名（假设它包含细胞ID）
+if
 (
 "cell"
-)
-数据预处理
-Data preprocessing
-参见方法部分：
-定量和统计分析 -> 单细胞RNA-Seq数据处理。
+%in%
+colnames
+(meta)) {
+rownames
+(meta)
+<-
+meta
+$
+cell
+meta
+$
+cell
+<-
+NULL
+}
+else
+{
+# If "cell" column doesn't exist, use the first column
+# 如果 "cell" 列不存在，使用第一列
+rownames
+(meta)
+<-
+meta[[
+1
+]]
+meta
+<-
+meta[,
+-
+1
+, drop
+=
+FALSE
+]
+}
+8.3
+数据预处理 Data
+preprocessing
+参见方法部分： 定量和统计分析 -> 单细胞RNA-Seq数据处理。
 See Methods:
-QUANTIFICATION AND STATISTICAL ANALYSIS -> Single-Cell RNA-Seq Data Processing
-xxxxxxxxxx
+QUANTIFICATION AND STATISTICAL ANALYSIS -> Single-Cell RNA-Seq Data
+Processing
 # 细胞质量控制
 # QC of Cells
+# Check column names first
+# 先检查列名
+cat
+(
+"Column names in qc:"
+,
+paste
+(
+colnames
+(qc),
+collapse =
+", "
+),
+"
+\n
+"
+)
+# Load required packages if not already loaded
+# 如果尚未加载，则加载必需的包
+if
+(
+!
+require
+(dplyr,
+quietly =
+TRUE
+)) {
+library
+(dplyr)
+}
+if
+(
+!
+require
+(plyr,
+quietly =
+TRUE
+)) {
+library
+(plyr)
+}
+if
+(
+!
+require
+(RColorBrewer,
+quietly =
+TRUE
+)) {
+library
+(RColorBrewer)
+}
+# Check if QC data has the required columns, if not, calculate from UMI matrix
+# 检查质量控制数据是否有必需的列，如果没有，从 UMI 矩阵计算
+has_qc_metrics
+<-
+any
+(
+c
+(
+"Mapping rate"
+,
+"Mapping_rate"
+,
+"MappingRate"
+)
+%in%
+colnames
+(qc))
+&&
+any
+(
+c
+(
+"Gene number"
+,
+"Gene_number"
+,
+"GeneNumber"
+)
+%in%
+colnames
+(qc))
+&&
+"UMI"
+%in%
+colnames
+(qc)
+&&
+"Rename"
+%in%
+colnames
+(qc)
+if
+(
+!
+has_qc_metrics) {
+cat
+(
+"QC metrics not found in qc data. Calculating from UMI matrix...
+\n
+"
+)
+# Calculate QC metrics from UMI matrix
+# 从 UMI 矩阵计算质量控制指标
+qc
+<-
+data.frame
+(
+cell =
+colnames
+(umi),
+UMI =
+colSums
+(umi),
+`
+Gene number
+`
+=
+colSums
+(umi
+>
+0
+),
+`
+Mapping rate
+`
+=
+1
+,
+# Assume 100% mapping if not available
+Rename =
+colnames
+(umi),
+check.names =
+FALSE
+,
+stringsAsFactors =
+FALSE
+)
+cat
+(
+"Calculated QC metrics. Column names:"
+,
+paste
+(
+colnames
+(qc),
+collapse =
+", "
+),
+"
+\n
+"
+)
+}
+# Filter cells based on QC criteria
+# 根据质量控制标准筛选细胞
+# Try different possible column name formats
+# 尝试不同的列名格式
+if
+(
+"Mapping rate"
+%in%
+colnames
+(qc)) {
+mapping_col
+<-
+"Mapping rate"
+}
+else
+if
+(
+"Mapping_rate"
+%in%
+colnames
+(qc)) {
+mapping_col
+<-
+"Mapping_rate"
+}
+else
+if
+(
+"MappingRate"
+%in%
+colnames
+(qc)) {
+mapping_col
+<-
+"MappingRate"
+}
+else
+{
+mapping_col
+<-
+NULL
+}
+if
+(
+"Gene number"
+%in%
+colnames
+(qc)) {
+gene_col
+<-
+"Gene number"
+}
+else
+if
+(
+"Gene_number"
+%in%
+colnames
+(qc)) {
+gene_col
+<-
+"Gene_number"
+}
+else
+if
+(
+"GeneNumber"
+%in%
+colnames
+(qc)) {
+gene_col
+<-
+"GeneNumber"
+}
+else
+{
+gene_col
+<-
+NULL
+}
+# Filter cells if QC columns are available
+# 如果质量控制列可用，则筛选细胞
+if
+(
+!
+is.null
+(mapping_col)
+&&
+!
+is.null
+(gene_col)
+&&
+"UMI"
+%in%
+colnames
+(qc)
+&&
+"Rename"
+%in%
+colnames
+(qc)) {
+# Use .data pronoun for column names with spaces
+# 对包含空格的列名使用 .data 代词
 cells
 <-
 qc
 %>%
 filter
-(
-`Mapping rate`
+(.data[[mapping_col]]
 >=
 0.2
 &
-`Gene number`
+.data[[gene_col]]
 >=
 700
 &
@@ -969,51 +2020,125 @@ UMI
 )
 %>%
 pull
+(Rename)
+cat
 (
-Rename
+"Filtered"
+,
+length
+(cells),
+"cells based on QC criteria.
+\n
+"
 )
+}
+else
+{
+# If QC columns not available, use all cells
+# 如果质量控制列不可用，使用所有细胞
+if
+(
+"Rename"
+%in%
+colnames
+(qc)) {
+cells
+<-
+qc
+$
+Rename
+}
+else
+if
+(
+"cell"
+%in%
+colnames
+(qc)) {
+cells
+<-
+qc
+$
+cell
+}
+else
+{
+cells
+<-
+colnames
+(umi)
+}
+cat
+(
+"Using all"
+,
+length
+(cells),
+"cells (QC filtering skipped).
+\n
+"
+)
+}
 # seurat 对象
 # seurat object
+# Ensure meta.data has matching cell names
+# 确保元数据有匹配的细胞名称
+if
+(
+!
+is.null
+(meta)) {
+# Filter meta to only include cells that passed QC
+# 将元数据过滤为仅包含通过质量控制的细胞
+meta
+<-
+meta[
+rownames
+(meta)
+%in%
+cells, , drop
+=
+FALSE
+]
+# Reorder meta to match cells order
+# 重新排序元数据以匹配细胞顺序
+meta
+<-
+meta[cells, , drop
+=
+FALSE
+]
+}
 sc
 <-
 CreateSeuratObject
 (
-counts
-=
-umi
-[,
-cells
-],
-meta.data
-=
-meta
-)
+counts =
+umi[,cells],
+meta.data =
+meta)
 # 表达量转换
 # expression transformation
-sc
-@
-assays
-$
-RNA
-@
-data
+# Seurat v5 uses LayerData and SetAssayData
+# Seurat v5 使用 LayerData 和 SetAssayData
+counts_matrix
 <-
-sc
-@
-assays
-$
-RNA
-@
-counts
-%>%
+LayerData
+(sc,
+assay =
+"RNA"
+,
+layer =
+"counts"
+)
+normalized_data
+<-
 apply
-(
+(counts_matrix,
 2
 ,
 function
-(
-x
-){
+(x){
 log2
 (
 10
@@ -1023,27 +2148,48 @@ log2
 x
 /
 sum
-(
-x
-)
+(x)
 +
 1
 )
 })
-# 去除其他细胞
-# remove other cells
 sc
 <-
+SetAssayData
+(sc,
+assay =
+"RNA"
+,
+layer =
+"data"
+,
+new.data =
+normalized_data)
+# 去除其他细胞
+# remove other cells
+if
+(
+"cluster"
+%in%
+colnames
+(sc[[]])) {
 sc
-[,
-sc
+<-
+sc[, sc
 $
 cluster
 !=
 "other"
 ]
+}
 # 给cluster改名
 # rename the clusters
+if
+(
+"cluster"
+%in%
+colnames
+(sc[[]])) {
 sc
 $
 cluster_short
@@ -1053,11 +2199,9 @@ factor
 plyr
 ::
 mapvalues
-(
-sc
+(sc
 $
-cluster
-,
+cluster,
 c
 (
 "Oocyte"
@@ -1090,8 +2234,7 @@ c
 ,
 "SC"
 )),
-levels
-=
+levels =
 c
 (
 "OO"
@@ -1121,27 +2264,29 @@ brewer.pal
 "Set1"
 ),
 levels
-(
-sc
+(sc
 $
-cluster_short
-))
+cluster_short))
+}
+else
+{
+cluster_colors
+<-
+NULL
+}
 # 保存一下，便于停下来接着跑
 # save the progress so that you can stop and resume later
 save
-(
-sc
-,
-cluster_colors
-,
-file
-=
-"sc.seurat.Rdata"
+(sc, cluster_colors,
+file =
+"sc.seurat_v5.Rdata"
 )
 # 还可以把表达矩阵输出到文件
 # you can also output the expression matrix to a file
-#write.csv(sc@assays$RNA@data, "easy_input_expr.csv", quote = F)
+# For Seurat v5, use LayerData to access data
+# 对于 Seurat v5，使用 LayerData 访问数据
+#write.csv(LayerData(sc, assay = "RNA", layer = "data"), "easy_input_expr.csv", quote = F)
+9
 Session Info
-会话信息
 sessionInfo
 ()

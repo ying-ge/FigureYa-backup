@@ -1728,6 +1728,22 @@
     "thumb": "gallery_compress/FigureYa222PCAgene.webp"
   },
   {
+    "id": "main_FigureYa222PCAgene_FigureYa222PCAgene_Simplified_Final",
+    "title": "FigureYa222PCAgene/FigureYa222PCAgene_Simplified_Final.html",
+    "html": "FigureYa222PCAgene/FigureYa222PCAgene_Simplified_Final.html",
+    "text": "texts/main_FigureYa222PCAgene_FigureYa222PCAgene_Simplified_Final.txt",
+    "folder": "FigureYa222PCAgene",
+    "thumb": "gallery_compress/FigureYa222PCAgene.webp"
+  },
+  {
+    "id": "main_FigureYa222PCAgene_FigureYa222PCAgene_simplified",
+    "title": "FigureYa222PCAgene/FigureYa222PCAgene_simplified.html",
+    "html": "FigureYa222PCAgene/FigureYa222PCAgene_simplified.html",
+    "text": "texts/main_FigureYa222PCAgene_FigureYa222PCAgene_simplified.txt",
+    "folder": "FigureYa222PCAgene",
+    "thumb": "gallery_compress/FigureYa222PCAgene.webp"
+  },
+  {
     "id": "main_FigureYa223scNMF_FigureYa223scNMF",
     "title": "FigureYa223scNMF/FigureYa223scNMF.html",
     "html": "FigureYa223scNMF/FigureYa223scNMF.html",

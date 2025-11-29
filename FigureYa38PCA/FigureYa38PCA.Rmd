@@ -1,7 +1,8 @@
 ---
 title: "FigureYa38PCA"
 params:
-  author: "Zhougeng Xu; Ying Ge, Yijing Chen"
+  author: "Zhougeng Xu"
+  reviewer: "Ying Ge, Yijing Chen"
 output: 
   html_document:
     toc: true
@@ -14,8 +15,8 @@ output:
 ---
 
 **Author(s)**: `r params$author`  
+**Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()`  
-
 
 ## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
@@ -40,15 +41,11 @@ For example, this graph in [draw a small circle](https://mp.weixin.qq.com/s/8kqT
 
 ![](example1.png)
 
-出自<http://www.haematologica.org/content/102/7/e245>
-
-from<http://www.haematologica.org/content/102/7/e245>
+From <http://www.haematologica.org/content/102/7/e245>
 
 ![](example2.png)
 
-出自<http://clincancerres.aacrjournals.org/content/23/8/2105.figures-only>
-
-from<http://clincancerres.aacrjournals.org/content/23/8/2105.figures-only>
+From <http://clincancerres.aacrjournals.org/content/23/8/2105.figures-only>
 
 ## 应用场景 Application scenario
 
@@ -72,18 +69,15 @@ Scenario 1: Multiple subgroups, three biological replicates per group. Do PCA an
 
 Scenario 2: Multiple subgroups, sent for sequencing in three batches. Do PCA, don't see a pattern in the grouping, but see samples in the same batch closer to each other, batch effect?
 
-## 环境设置
-## Environment Setup
+## 环境设置 Environment Setup
 
 ```{r}
 source("install_dependencies.R")
 source("ggord.R") # from ggord packge, https://github.com/fawda123/ggord
 source("geom_ord_ellipse.R") # from gglayer package, https://github.com/GuangchuangYu/gglayer
-library(ggplot2)
-library(plyr)
-library(ggplot2)
-library(dplyr)
-library(plyr)
+library(ggplot2) # 强大的数据可视化工具 The powerful data visualization tool
+library(plyr) # 数据处理 The data processing
+library(dplyr) # 数据处理 The data processing
 ```
 
 ## 输入数据 Input data
@@ -119,8 +113,7 @@ expr_df[1:3,1:4]
 head(meta_df, n=3)
 ```
 
-## 做PCA
-## Do PCA
+## PCA Analysis
 
 ```{r,fig.width=6,fig.height=6}
 #用`prcomp`进行PCA分析
@@ -146,8 +139,7 @@ Two methods are provided here:
 
 - Method 2: Extract the PCA analysis results and draw the graph manually.
 
-### 方法一：自动画图
-### Method 1: Automatic drawing
+### 方法一：自动画图 Automatic drawing
 
 用到做PCA的R包`ggord`，优点是能用背景色展示置信区间，缺点是没有画圈功能。
 
@@ -157,8 +149,7 @@ The R package `ggord` used for PCA has the advantage of displaying confidence in
 
 Guangchuang Yu enhanced ggord and put it in the R package `gglayer`, see this article for details: <https://mp.weixin.qq.com/s/iA0IuyRx_Ojk639sxenmvg>. `geom_ord_ellipse` which can draw multiple circles to show different confidence intervals, and can be stacked over and over again to draw as many circles as you want.
 
-#### 经典版
-#### Classic version
+#### 经典版 Classic version
 
 ```{r}
 #用ggord画基本PCA图
@@ -184,8 +175,7 @@ ggord(pca.results, grp_in = meta_df$group, repel=TRUE,
 ggsave("PCA_classic.pdf", width = 6, height = 6)
 ```
 
-#### 箭头版
-#### Arrowhead version
+#### 箭头版 Arrowhead version
 
 ```{r}
 #用ggord画基本PCA图和置信区间背景色
@@ -221,11 +211,9 @@ ggord(pca.results, grp_in = meta_df$group, repel=TRUE,
 ggsave("PCA_arrow.pdf", width = 6, height = 6)
 ```
 
-### 方法二：提取PCA分析结果，手动画图
-### Method 2: Extract the PCA analysis results and draw the graph manually
+### 方法二：提取PCA分析结果，手动画图 Extract the PCA analysis results and draw the graph manually
 
-#### 从PCA结果到画图所需的输入数据整理
-#### Organize the input data needed from PCA results to drawing graph
+#### 从PCA结果到画图所需的输入数据整理 Organize the input data needed from PCA results to drawing graph
 
 用`prcomp`进行PCA分析后，获取降维后每个样本对应的主成分值和每个主成分的解释的变异。
 
@@ -258,8 +246,7 @@ low_dim_df[1:3,]
 
 The following is a graph using "low\_dim\_df" obtained from PCA analysis as input
 
-#### 画置信区间圆圈的函数
-#### Function to draw confidence interval circle
+#### 画置信区间圆圈的函数 Function to draw confidence interval circle
 
 先运行函数`add_ellipase`，用来增加置信区间椭圆线。
 
@@ -317,8 +304,7 @@ add_ellipase <- function(p, x="PC1", y="PC2", group="group",
 }
 ```
 
-#### 开始画图
-#### Start drawing
+#### 开始画图 Start drawing
 
 ```{r}
 #计算坐标轴标签
@@ -379,21 +365,6 @@ p2
 #save as PDF file
 ggsave('PCA_DIY2.pdf',width = 5.5,height = 4)
 ```
-
-## 附录
-## Appendix
-
-之前提到三个癌症的全称
-
-- BRCA： 乳腺浸润癌
-- OV： 卵巢浆液性囊腺癌 
-- LUSC： 肺鳞状细胞癌 
-
-Full names of the three previously mentioned cancers
-
-- BRCA: Breast invasive carcinoma
-- OV: Ovarian serous cystadenocarcinoma
-- LUSC: Lung squamous cell carcinoma
 
 ## Session Info
 
