@@ -8,7 +8,7 @@ Author(s)
 Reviewer(s)
 : Ying Ge, Taojun Ye
 Date
-: 2025-11-27
+: 2025-11-29
 1
 Academic Citation
 If you use this code in your work or research, we kindly request that
@@ -90,25 +90,30 @@ withoutgrid
 其他参数可保持默认
 函数细节可根据需要自己修改，比如batch的形状（pch参数）
 Including PCA analysis process and plotting, parameter settings:
--Indata is a matrix with columns as samples and behavioral
-observations -Batch is a data box, and batch information must be
-provided. Otherwise, please use FigureYa38PCA -Batchvar is the variable
-name of the batch, which defaults to the column name of the batch
--Position is the position of the legend when the final image is
+Indata is a matrix with columns as samples and behavioral
+observations
+Batch is a data box, and batch information must be provided.
+Otherwise, please use FigureYa38PCA
+Batchvar is the variable name of the batch, which defaults to the
+column name of the batch
+Position is the position of the legend when the final image is
 generated. Choose from the following positions: “bottomright”, “bottom”,
 “bottomleft”, “left”, “topleft”, “top”, “topright”, “right”, and
-“center” -PCH. Original is used to map replica shapes. By default, it
-starts from the solid origin at PCH=16 and ends at PCH=25. There are a
-total of 10 solid patterns available for mapping, or you can choose your
-own starting point for the PCH shape. Please refer to:
+“center”
+PCH. Original is used to map replica shapes. By default, it starts
+from the solid origin at PCH=16 and ends at PCH=25. There are a total of
+10 solid patterns available for mapping, or you can choose your own
+starting point for the PCH shape. Please refer to:
 http://www.sthda.com/english/wiki/r-plot-pch-symbols-the-different-point-shapes-available-in-r
--Withoutgrid is a logical variable that indicates whether to draw a
+Withoutgrid is a logical variable that indicates whether to draw a
 background grid (the example image has a grid, which I personally do not
-recommend) -If you want to output the sample ID, you can set showID to
-TRUE, but it is not recommended when the sample size is large, as the
-image may not be clear -Other parameters can remain default -The details
-of the function can be modified as needed, such as the shape of the
-batch (pch parameter)
+recommend)
+If you want to output the sample ID, you can set showID to TRUE, but
+it is not recommended when the sample size is large, as the image may
+not be clear
+Other parameters can remain default
+The details of the function can be modified as needed, such as the
+shape of the batch (pch parameter)
 # 功能：基于主成分分析(PCA)绘制批次效应图
 # Function: Draw batch effect plot based on Principal Component Analysis (PCA)
 # 参数：

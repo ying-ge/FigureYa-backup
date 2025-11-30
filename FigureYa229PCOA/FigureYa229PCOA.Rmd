@@ -2,6 +2,7 @@
 title: "FigureYa229PCOA"
 params:
   author: "Xiaofan Lu"
+  reviewers: "Ying Ge,Hui Huang"
 output: 
   html_document:
     toc: true
@@ -11,10 +12,10 @@ output:
     theme: flatly
     highlight: tango
     code_folding: show
-reviewers: Ying Ge,Hui Huang
 ---
 
 **Author(s)**: `r params$author`  
+**Reviewers**: `r params$reviewers`  
 **Date**: `r Sys.Date()`  
 
 ## Academic Citation
@@ -26,26 +27,22 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# 需求描述
+## 需求描述 Requirement Description
 
 把PCOA的散点图变成这样的：
-
-# Requirement Description
 
 Turn the scatter plot of PCOA like this:
 
 ![](example.png)
 
-出自<https://www.cell.com/cell-metabolism/fulltext/S1550-4131(20)30312-0?_returnURL=https%3A%2F%2Flinkinghub.elsevier.com%2Fretrieve%2Fpii%2FS1550413120303120%3Fshowall%3Dtrue>
-
-from<https://www.cell.com/cell-metabolism/fulltext/S1550-4131(20)30312-0?_returnURL=https%3A%2F%2Flinkinghub.elsevier.com%2Fretrieve%2Fpii%2FS1550413120303120%3Fshowall%3Dtrue>
+From <https://www.cell.com/cell-metabolism/fulltext/S1550-4131(20)30312-0?_returnURL=https%3A%2F%2Flinkinghub.elsevier.com%2Fretrieve%2Fpii%2FS1550413120303120%3Fshowall%3Dtrue>
 
 Figure 1. Shifts in the Gut Microbiota Composition in Parallel with Impaired Glycemic Status
 (A) The **principle coordinate analysis** of Bray-Curtis dissimilarities obtained for the metagenomic species profiles in the discovery (closed circles) and validation (open circles) cohorts. **The circles and error bars indicate the mean and standard errors of the mean**. p values for the comparison of gut microbiota composition in the high-risk NGT (hrNGT), IFG, IGT, CGI, and T2D groups versus the low-risk NGT (lrNGT) group in the discovery cohort are 0.086, 0.069, 0.00070, 0.00010, and 0.00030, respectively, and in the IGT, CGI, and T2D groups versus the NGT group in the validation cohort are 0.009, 0.015, and 0.0001, respectively (PERMANOVA test with 10,000 permutations).
 
 Principal coordinate analysis of the gut microbiota profiles in the discovery cohort showed that **significant shifts separated** the gut microbiota composition of the IGT, CGI, and T2D groups from that of the low-risk NGT group (p = 0.0007, 0.00010, and 0.00030, respectively; PERMANOVA test with 10,000 permutations), but no significant changes in composition were observed between the high- and low-risk NGT groups (p = 0.086), between the IFG and low-risk NGT group (p = 0.069), or between the CGI and T2D groups (p = 0.14; Figure 1A) ... A **similar pattern** was observed for the shifts in microbial composition **in the validation cohort** (Figures 1A and S3A).
 
-# 应用场景
+## 应用场景 Application Scenarios
 
 转录组的表达矩阵都有成千上万个基因，这类高维度数据很难直接进行可视化展示。
 
@@ -58,8 +55,6 @@ Principal coordinate analysis of the gut microbiota profiles in the discovery co
 - 想看多次生物学重复的重复效果，需要用不同形状和颜色同时展示分组和重复，可参考FigureYa101PCA；
 - 当分组（亚型）较多且每组样本量较大时，画散点图相互覆盖很难看清，就可以像例文这样计算相同组的均值以及标准误后画图。这样能够看出各亚型距离较远，两个队列的结果相近。这种眼睛看出来的差异有统计学意义吗？作者用PERMANOVA test来做组间差异显著性分析，做法见“附：PERMANOVA test (2-way adonis)”。
 
-# Application Scenarios
-
 The transcriptome expression matrix has thousands of genes, and such high-dimensional data is difficult to visualize directly.
 
 In order to be able to display it on a two-dimensional plane, it is necessary to reduce the dimensionality, and PCA analysis is the most commonly used dimensionality reduction tool at present.
@@ -71,9 +66,7 @@ In practice, if you want to highlight the features you want to show, you need to
 - If you want to see the repetition effect of multiple biological replicates, you need to display the grouping and repetition with different shapes and colors at the same time, please refer to FigureYa101PCA;
 - When there are many groups (subtypes) and the sample size of each group is large, and it is difficult to see that the scatter plots cover each other, you can calculate the mean of the same group and the standard error after plotting as in the example. This allows for the distantness of the subtypes and the similar results of the two cohorts. Is there a statistically significant difference in what the eye sees? The authors used the PERMANOVA test to analyze the significance of differences between groups, as described in "Appendix: PERMANOVA test (2-way adonis)".
 
-# 环境设置
-
-# Environment settings
+## 环境设置 Environment settings
 
 ```{r}
 source("install_dependencies.R")
@@ -87,13 +80,11 @@ Sys.setenv(LANGUAGE = "en") #显示英文报错信息 # error messages are displ
 options(stringsAsFactors = FALSE) #禁止chr转成factor # chr is not allowed to be converted to factor
 ```
 
-# 输入文件
+## 输入文件 Input files
 
 easy_input_expr.txt，表达矩阵。
 
 easy_input_sinfo.txt，样本信息，第一列是sample ID，跟表达矩阵一致，第二列是第一种分组方式（这里是亚型），第三列是二种分组方式（这里是队列），这里对比两个队列。
-
-# Input files
 
 easy_input_expr.txt, the expression matrix.
 
@@ -115,7 +106,7 @@ table(sinfo$PAM50) # 这里有5个亚型
 table(sinfo$Cohort) # 2个队列
 ```
 
-# PCA
+## PCA
 
 ```{r}
 # 计算距离矩阵（非相似性矩阵）
@@ -136,11 +127,9 @@ xlab.text = paste("PCoA1 [", pct1, "%]", sep = "") # 生成x轴标签 # Generate
 ylab.text = paste("PCoA2 [", pct2, "%]", sep = "") # 生成y轴标签 # Generate y-axis labels
 ```
 
-# 开始画图
+## 开始画图 Start drawing
 
 先产生基本图看一下效果
-
-# Start drawing
 
 Let's start by generating a base diagram and see the effect
 
@@ -328,15 +317,13 @@ invisible(dev.off())
 
 ![](PoCA.pdf)
 
-# 附：PERMANOVA test (2-way adonis)
+## PERMANOVA test (2-way adonis)
 
 各组之间的差异有统计学意义吗？作者用了PERMANOVA test。
 
 这是生态学中常用的统计方法，样品组间差异显著性分析。非参数检验，不需要满足正态分布。
 
 这里分别以两个队列（TCGA和Yau）的各亚组之间比较为例，展示其用法。具体到自己的数据，自己决定谁跟谁比。
-
-# Attached: PERMANOVA test (2-way adonis)
 
 Was there a statistically significant difference between the groups? the authors used the PERMANOVA test.
 

@@ -1,9 +1,15 @@
 FigureYa229PCOA
+Code
+Show All Code
+Hide All Code
 FigureYa229PCOA
 Author(s)
 : Xiaofan Lu
+Reviewers
+: Ying Ge,Hui Huang
 Date
-: 2025-09-22
+: 2025-11-29
+1
 Academic Citation
 If you use this code in your work or research, we kindly request that
 you cite our publication:
@@ -11,13 +17,12 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization
 Framework for Enhancing Biomedical Data Interpretation and Research
 Efficiency. iMetaMed.
 https://doi.org/10.1002/imm3.70005
-需求描述
+2
+需求描述 Requirement
+Description
 把PCOA的散点图变成这样的：
-Requirement Description
 Turn the scatter plot of PCOA like this:
-出自
-https://www.cell.com/cell-metabolism/fulltext/S1550-4131(20)30312-0?_returnURL=https%3A%2F%2Flinkinghub.elsevier.com%2Fretrieve%2Fpii%2FS1550413120303120%3Fshowall%3Dtrue
-from
+From
 https://www.cell.com/cell-metabolism/fulltext/S1550-4131(20)30312-0?_returnURL=https%3A%2F%2Flinkinghub.elsevier.com%2Fretrieve%2Fpii%2FS1550413120303120%3Fshowall%3Dtrue
 Figure 1. Shifts in the Gut Microbiota Composition in Parallel with
 Impaired Glycemic Status (A) The
@@ -51,7 +56,9 @@ microbial composition
 in the validation cohort
 (Figures
 1A and S3A).
-应用场景
+3
+应用场景 Application
+Scenarios
 转录组的表达矩阵都有成千上万个基因，这类高维度数据很难直接进行可视化展示。
 为了能够在二维平面上展示，就需要对其进行降维，PCA分析是目前最常用的降维工具。
 实际应用时，想突出强调自己想要展示的特征，就需要变换展示方式：
@@ -62,7 +69,6 @@ PCA展示三个主成分，可参考FigureYa164PCA3D；
 当分组（亚型）较多且每组样本量较大时，画散点图相互覆盖很难看清，就可以像例文这样计算相同组的均值以及标准误后画图。这样能够看出各亚型距离较远，两个队列的结果相近。这种眼睛看出来的差异有统计学意义吗？作者用PERMANOVA
 test来做组间差异显著性分析，做法见“附：PERMANOVA test (2-way
 adonis)”。
-Application Scenarios
 The transcriptome expression matrix has thousands of genes, and such
 high-dimensional data is difficult to visualize directly.
 In order to be able to display it on a two-dimensional plane, it is
@@ -90,21 +96,43 @@ Is there a statistically significant difference in what the eye sees?
 The authors used the PERMANOVA test to analyze the significance of
 differences between groups, as described in “Appendix: PERMANOVA test
 (2-way adonis)”.
-环境设置
-Environment settings
-source("install_dependencies.R")
-library(vegan)        #用于计算距离矩阵 # Used to calculate the distance matrix
-library(ape)          #做PCoA # Do PCoA
-library(RColorBrewer) #配色 # Color matching
-library(usedist)      #PERMANOVA test时处理距离矩阵 # Handle distance matrices when doing PERMANOVA test
-
-Sys.setenv(LANGUAGE = "en") #显示英文报错信息 # error messages are displayed in English
-options(stringsAsFactors = FALSE) #禁止chr转成factor # chr is not allowed to be converted to factor
-输入文件
+4
+环境设置 Environment
+settings
+source
+(
+"install_dependencies.R"
+)
+library
+(vegan)
+#用于计算距离矩阵 # Used to calculate the distance matrix
+library
+(ape)
+#做PCoA # Do PCoA
+library
+(RColorBrewer)
+#配色 # Color matching
+library
+(usedist)
+#PERMANOVA test时处理距离矩阵 # Handle distance matrices when doing PERMANOVA test
+Sys.setenv
+(
+LANGUAGE =
+"en"
+)
+#显示英文报错信息 # error messages are displayed in English
+options
+(
+stringsAsFactors =
+FALSE
+)
+#禁止chr转成factor # chr is not allowed to be converted to factor
+5
+输入文件 Input
+files
 easy_input_expr.txt，表达矩阵。
 easy_input_sinfo.txt，样本信息，第一列是sample
 ID，跟表达矩阵一致，第二列是第一种分组方式（这里是亚型），第三列是二种分组方式（这里是队列），这里对比两个队列。
-Input files
 easy_input_expr.txt, the expression matrix.
 easy_input_sinfo.txt, the sample information, the first column is the
 sample ID, which is consistent with the expression matrix, the second
@@ -113,77 +141,340 @@ column is the two grouping methods (here the cohort), and here the two
 cohorts are compared.
 # 读取表达矩阵
 # Read the expression matrix
-expr <- read.table("easy_input_expr.txt",sep = "\t",row.names = 1,check.names = F,stringsAsFactors = F,header = T)
-
+expr
+<-
+read.table
+(
+"easy_input_expr.txt"
+,
+sep =
+"
+\t
+"
+,
+row.names =
+1
+,
+check.names =
+F,
+stringsAsFactors =
+F,
+header =
+T)
 # 读取样本信息
 # Read the sample information
-sinfo <- read.table("easy_input_sinfo.txt",sep = "\t",row.names = 1,check.names = F,stringsAsFactors = F,header = T)
+sinfo
+<-
+read.table
+(
+"easy_input_sinfo.txt"
+,
+sep =
+"
+\t
+"
+,
+row.names =
+1
+,
+check.names =
+F,
+stringsAsFactors =
+F,
+header =
+T)
 # 查看亚型
 # View subtypes
-table(sinfo$PAM50) # 这里有5个亚型
+table
+(sinfo
+$
+PAM50)
+# 这里有5个亚型
 # 查看队列
 # View the queue
-table(sinfo$Cohort) # 2个队列
+table
+(sinfo
+$
+Cohort)
+# 2个队列
+6
 PCA
 # 计算距离矩阵（非相似性矩阵）
 # Calculating Distance Matrix (Non-Similarity Matrix)
-brca.dist <- vegdist(t(expr), # 注意行为观测（样本），列为特征（基因）# Attention rows are Observations (Sample),columns as Trait (Gene)
-                     method = "euclidean") # 原文使用Bray-Curtis dissimilarity matrix针对非负矩阵(method = "bray")，这里表达谱有负值，所以采用普通的欧氏距离 # The original text uses the Bray-Curtis dissimilarity matrix for the non-negative matrix (method = "bray"), where the expression spectrum has a negative value, so the ordinary Euclidean distance is used
-
+brca.dist
+<-
+vegdist
+(
+t
+(expr),
+# 注意行为观测（样本），列为特征（基因）# Attention rows are Observations (Sample),columns as Trait (Gene)
+method =
+"euclidean"
+)
+# 原文使用Bray-Curtis dissimilarity matrix针对非负矩阵(method = "bray")，这里表达谱有负值，所以采用普通的欧氏距离 # The original text uses the Bray-Curtis dissimilarity matrix for the non-negative matrix (method = "bray"), where the expression spectrum has a negative value, so the ordinary Euclidean distance is used
 # 计算principal coordinates
 # Calculate principal coordinates
-pc <- cmdscale(brca.dist, eig = FALSE)
-
+pc
+<-
+cmdscale
+(brca.dist,
+eig =
+FALSE
+)
 # 计算percentage of variance explained
 # Calculate the percentage of variance explained
-eig <- pcoa(brca.dist)
-pct1 <- round(eig$values$Relative_eig[1]/sum(eig$values$Relative_eig), digits=3)*100
-pct2 <- round(eig$values$Relative_eig[2]/sum(eig$values$Relative_eig), digits=3)*100
-xlab.text = paste("PCoA1 [", pct1, "%]", sep = "") # 生成x轴标签 # Generate x-axis labels
-ylab.text = paste("PCoA2 [", pct2, "%]", sep = "") # 生成y轴标签 # Generate y-axis labels
-开始画图
+eig
+<-
+pcoa
+(brca.dist)
+pct1
+<-
+round
+(eig
+$
+values
+$
+Relative_eig[
+1
+]
+/
+sum
+(eig
+$
+values
+$
+Relative_eig),
+digits=
+3
+)
+*
+100
+pct2
+<-
+round
+(eig
+$
+values
+$
+Relative_eig[
+2
+]
+/
+sum
+(eig
+$
+values
+$
+Relative_eig),
+digits=
+3
+)
+*
+100
+xlab.text
+=
+paste
+(
+"PCoA1 ["
+, pct1,
+"%]"
+,
+sep =
+""
+)
+# 生成x轴标签 # Generate x-axis labels
+ylab.text
+=
+paste
+(
+"PCoA2 ["
+, pct2,
+"%]"
+,
+sep =
+""
+)
+# 生成y轴标签 # Generate y-axis labels
+7
+开始画图 Start
+drawing
 先产生基本图看一下效果
-Start drawing
 Let’s start by generating a base diagram and see the effect
 # 创建绘图信息
 # Create drawing information
-plotinfo <- cbind.data.frame(x = pc[,1],
-                             y = pc[,2],
-                             PAM50 = sinfo[rownames(pc),"PAM50"],
-                             Cohort = sinfo[rownames(pc),"Cohort"],
-                             Class = paste(sinfo[rownames(pc),"PAM50"], # 根据class信息确定颜色 # Determine the color based on the class information
-                                           sinfo[rownames(pc),"Cohort"],
-                                           sep = "_"))
-
+plotinfo
+<-
+cbind.data.frame
+(
+x =
+pc[,
+1
+],
+y =
+pc[,
+2
+],
+PAM50 =
+sinfo[
+rownames
+(pc),
+"PAM50"
+],
+Cohort =
+sinfo[
+rownames
+(pc),
+"Cohort"
+],
+Class =
+paste
+(sinfo[
+rownames
+(pc),
+"PAM50"
+],
+# 根据class信息确定颜色 # Determine the color based on the class information
+sinfo[
+rownames
+(pc),
+"Cohort"
+],
+sep =
+"_"
+))
 # 为了使来自两个队列相同亚型的颜色相近，像这样修改因子，使得配对颜色可以对应上
 # In order to make the colors from the same subtype of the two cohorts similar, modify the factor like this so that the paired colors can correspond
-plotinfo$Class <- factor(plotinfo$Class, 
-                         levels = c("Basal_TCGA","Basal_Yau",
-                                    "Her2_TCGA","Her2_Yau",
-                                    "LumA_TCGA","LumA_Yau",
-                                    "LumB_TCGA","LumB_Yau",
-                                    "Normal_TCGA","Normal_Yau"))
-
+plotinfo
+$
+Class
+<-
+factor
+(plotinfo
+$
+Class,
+levels =
+c
+(
+"Basal_TCGA"
+,
+"Basal_Yau"
+,
+"Her2_TCGA"
+,
+"Her2_Yau"
+,
+"LumA_TCGA"
+,
+"LumA_Yau"
+,
+"LumB_TCGA"
+,
+"LumB_Yau"
+,
+"Normal_TCGA"
+,
+"Normal_Yau"
+))
 # 10个组（5个亚型*2个队列），定义10种颜色，采用配对颜色分别表示TCGA和Yau对应亚型
 # 10 groups (5 subtypes * 2 cohorts), 10 colors are defined, and paired colors are used to represent the corresponding subtypes of TCGA and Yau
-mycol <- brewer.pal(n = 10, name = "Paired") # Paired最多可设置12组颜色 # Paired can be set up to 12 groups of colors
-plotinfo$color <- mycol[plotinfo$Class] # 匹配颜色 # Match the color
-
+mycol
+<-
+brewer.pal
+(
+n =
+10
+,
+name =
+"Paired"
+)
+# Paired最多可设置12组颜色 # Paired can be set up to 12 groups of colors
+plotinfo
+$
+color
+<-
+mycol[plotinfo
+$
+Class]
+# 匹配颜色 # Match the color
 # 保存到文件
 # Save to file
-write.csv(plotinfo, "output_PCA1_PCA2.csv", quote = F)
-
+write.csv
+(plotinfo,
+"output_PCA1_PCA2.csv"
+,
+quote =
+F)
 # 产生基本图看一下效果，可以看到不同的亚型还是可以分开的
 # Generate a basic diagram and look at the effect, you can see that the different subtypes can be separated
-pdf("basic scatter plot.pdf", width = 5,height = 5)
-par(bty="o", mgp = c(1.9,.33,0), mar=c(3.1,3.1,2.1,2.1)+.1, las=1, tcl=-.25)
-plot(plotinfo$x,
-     plotinfo$y,
-     pch = 19,
-     col = plotinfo$color,
-     xlab = xlab.text,
-     ylab = ylab.text)
-invisible(dev.off())
+pdf
+(
+"basic scatter plot.pdf"
+,
+width =
+5
+,
+height =
+5
+)
+par
+(
+bty=
+"o"
+,
+mgp =
+c
+(
+1.9
+,.
+33
+,
+0
+),
+mar=
+c
+(
+3.1
+,
+3.1
+,
+2.1
+,
+2.1
+)
++
+.
+1
+,
+las=
+1
+,
+tcl=
+-
+.
+25
+)
+plot
+(plotinfo
+$
+x,
+plotinfo
+$
+y,
+pch =
+19
+,
+col =
+plotinfo
+$
+color,
+xlab =
+xlab.text,
+ylab =
+ylab.text)
+invisible
+(
+dev.off
+())
 可以看到不同的亚型还是可以分开的
 存在的问题
 ：由于样本太多，各个分组的散点叠在一起，不易辨认。
@@ -195,134 +486,583 @@ scatters of each grouping are stacked on top of each other and are not
 easy to identify.
 Example workaround: Calculate the mean for the same group and plot
 after the standard error
-plotinfo2 <- NULL
-for (i in unique(plotinfo$Class)) {
-  tmp <- plotinfo[plotinfo$Class == i,] # 取出当前亚型当前来源下的数据 # Retrieve the data from the current source of the current subtype
-  avgx <- mean(tmp$x) # 计算横坐标均值 # Calculate the mean abscissa value
-  avgy <- mean(tmp$y) # 计算纵坐标均值 # Calculate the mean ordinate of the ordinate
-  sdx <- sd(tmp$x) # 计算横坐标标准差 # Calculate the abscissa standard deviation
-  sdy <- sd(tmp$y) # 计算纵坐标标准差 # Calculate the standard deviation of the ordinate
-  
-  plotinfo2 <- rbind.data.frame(plotinfo2,
-                                data.frame(Class = i,
-                                           color = unique(tmp$color), # 添加颜色 # Add color
-                                           shape = ifelse(unique(tmp$Cohort) == "TCGA", # 如果是TCGA就实心圆 # If it is a TCGA, it is a solid circle
-                                                          "closed","opened"), # 如果是Yau就为空心圆 # If it is Yau, it is a hollow circle
-                                           label = switch(i, # 创建简易标签以显示在圆中 # Create a simple label to display in a circle
-                                                          "Her2_TCGA" = "HT",
-                                                          "Normal_TCGA" = "NT",
-                                                          "Basal_TCGA" = "BT",
-                                                          "LumA_TCGA" = "LaT",
-                                                          "LumB_TCGA" = "LbT",
-                                                          "Her2_Yau" = "HY",
-                                                          "Normal_Yau" = "NY",
-                                                          "Basal_Yau" = "BY",
-                                                          "LumA_Yau" = "LaY",
-                                                          "LumB_Yau" = "LbY"),
-                                           avgx = avgx, # 添加圆的x位置 # Add the x-position of the circle
-                                           avgy = avgy, # 添加圆的y位置 # Add the y-position of the circle
-                                           sdx = sdx, # 添加圆的水平标准差 # Add the horizontal standard deviation of the circle
-                                           sdy = sdy, # 添加圆的垂直标准差 # Add the vertical standard deviation of the circle
-                                           stringsAsFactors = F),
-                                stringsAsFactors = F)
+plotinfo2
+<-
+NULL
+for
+(i
+in
+unique
+(plotinfo
+$
+Class)) {
+tmp
+<-
+plotinfo[plotinfo
+$
+Class
+==
+i,]
+# 取出当前亚型当前来源下的数据 # Retrieve the data from the current source of the current subtype
+avgx
+<-
+mean
+(tmp
+$
+x)
+# 计算横坐标均值 # Calculate the mean abscissa value
+avgy
+<-
+mean
+(tmp
+$
+y)
+# 计算纵坐标均值 # Calculate the mean ordinate of the ordinate
+sdx
+<-
+sd
+(tmp
+$
+x)
+# 计算横坐标标准差 # Calculate the abscissa standard deviation
+sdy
+<-
+sd
+(tmp
+$
+y)
+# 计算纵坐标标准差 # Calculate the standard deviation of the ordinate
+plotinfo2
+<-
+rbind.data.frame
+(plotinfo2,
+data.frame
+(
+Class =
+i,
+color =
+unique
+(tmp
+$
+color),
+# 添加颜色 # Add color
+shape =
+ifelse
+(
+unique
+(tmp
+$
+Cohort)
+==
+"TCGA"
+,
+# 如果是TCGA就实心圆 # If it is a TCGA, it is a solid circle
+"closed"
+,
+"opened"
+),
+# 如果是Yau就为空心圆 # If it is Yau, it is a hollow circle
+label =
+switch
+(i,
+# 创建简易标签以显示在圆中 # Create a simple label to display in a circle
+"Her2_TCGA"
+=
+"HT"
+,
+"Normal_TCGA"
+=
+"NT"
+,
+"Basal_TCGA"
+=
+"BT"
+,
+"LumA_TCGA"
+=
+"LaT"
+,
+"LumB_TCGA"
+=
+"LbT"
+,
+"Her2_Yau"
+=
+"HY"
+,
+"Normal_Yau"
+=
+"NY"
+,
+"Basal_Yau"
+=
+"BY"
+,
+"LumA_Yau"
+=
+"LaY"
+,
+"LumB_Yau"
+=
+"LbY"
+),
+avgx =
+avgx,
+# 添加圆的x位置 # Add the x-position of the circle
+avgy =
+avgy,
+# 添加圆的y位置 # Add the y-position of the circle
+sdx =
+sdx,
+# 添加圆的水平标准差 # Add the horizontal standard deviation of the circle
+sdy =
+sdy,
+# 添加圆的垂直标准差 # Add the vertical standard deviation of the circle
+stringsAsFactors =
+F),
+stringsAsFactors =
+F)
 }
-
 # 保存到文件
 # Save to file
-write.csv(plotinfo2, "output_av_sd.csv", quote = F)
-
+write.csv
+(plotinfo2,
+"output_av_sd.csv"
+,
+quote =
+F)
 # 绘图
 # Drawing
-pdf("PoCA.pdf", width = 5,height = 5)
-par(bty="o", mgp = c(1.9,.33,0), mar=c(3.1,3.1,2.1,2.1)+.1, las=1, tcl=-.25)
+pdf
+(
+"PoCA.pdf"
+,
+width =
+5
+,
+height =
+5
+)
+par
+(
+bty=
+"o"
+,
+mgp =
+c
+(
+1.9
+,.
+33
+,
+0
+),
+mar=
+c
+(
+3.1
+,
+3.1
+,
+2.1
+,
+2.1
+)
++
+.
+1
+,
+las=
+1
+,
+tcl=
+-
+.
+25
+)
 # 根据上面的基础图像，调整横轴纵轴的宽度，生成一张空白图像
 # Based on the base image above, adjust the width of the horizontal and vertical axes to generate a blank image
-plot(NULL,NULL,
-     xlab = xlab.text,
-     ylab = ylab.text,
-     xlim = c(-25,25),
-     ylim = c(-20,20))
-
+plot
+(
+NULL
+,
+NULL
+,
+xlab =
+xlab.text,
+ylab =
+ylab.text,
+xlim =
+c
+(
+-
+25
+,
+25
+),
+ylim =
+c
+(
+-
+20
+,
+20
+))
 # 先产生误差线，这样可以被后面的圆挡住
 # Error bars are generated first, so that they can be blocked by the circles that follow
-for (i in 1:nrow(plotinfo2)) {
-  tmp <- plotinfo2[i,]
-  
-  # 产生横向误差线
-  # Generate transverse error bars
-  lines(x = c(tmp$avgx - tmp$sdx,
-              tmp$avgx + tmp$sdx),
-        y = c(tmp$avgy, tmp$avgy),
-        lty = ifelse(tmp$shape == "closed",1,2), # 如果是closed就是实线，否则为虚线 # If it is closed, it is a solid line, otherwise it is a dotted line
-        col = tmp$color,
-        lwd = 2)
-  
-  # 产生横向误差线的封口线
-  # A sealing line that produces transverse error bars
-  lines(x = c(tmp$avgx - tmp$sdx,
-              tmp$avgx - tmp$sdx),
-        y = c(tmp$avgy - 0.5, # 宽度根据情况调整 # The width is adjusted according to the situation
-              tmp$avgy + 0.5),
-        col = tmp$color,
-        lwd = 2)
-  lines(x = c(tmp$avgx + tmp$sdx,
-              tmp$avgx + tmp$sdx),
-        y = c(tmp$avgy - 0.5,
-              tmp$avgy + 0.5),
-        col = tmp$color,
-        lwd = 2)
-  
-  # 产生纵向误差线
-  # Generate longitudinal error bars
-  lines(x = c(tmp$avgx, tmp$avgx),
-        y = c(tmp$avgy - tmp$sdy,
-              tmp$avgy + tmp$sdy),
-        lty = ifelse(tmp$shape == "closed",1,2),
-        col = tmp$color,
-        lwd = 2)
-  
-  # 产生纵向误差线的封口线
-  # # Generate longitudinal error bars and sealing lines
-  lines(x = c(tmp$avgx - 0.5,
-              tmp$avgx + 0.5),
-        y = c(tmp$avgy + tmp$sdy,
-              tmp$avgy + tmp$sdy),
-        col = tmp$color,
-        lwd = 2)
-  lines(x = c(tmp$avgx - 0.5,
-              tmp$avgx + 0.5),
-        y = c(tmp$avgy - tmp$sdy,
-              tmp$avgy - tmp$sdy),
-        col = tmp$color,
-        lwd = 2)
+for
+(i
+in
+1
+:
+nrow
+(plotinfo2)) {
+tmp
+<-
+plotinfo2[i,]
+# 产生横向误差线
+# Generate transverse error bars
+lines
+(
+x =
+c
+(tmp
+$
+avgx
+-
+tmp
+$
+sdx,
+tmp
+$
+avgx
++
+tmp
+$
+sdx),
+y =
+c
+(tmp
+$
+avgy, tmp
+$
+avgy),
+lty =
+ifelse
+(tmp
+$
+shape
+==
+"closed"
+,
+1
+,
+2
+),
+# 如果是closed就是实线，否则为虚线 # If it is closed, it is a solid line, otherwise it is a dotted line
+col =
+tmp
+$
+color,
+lwd =
+2
+)
+# 产生横向误差线的封口线
+# A sealing line that produces transverse error bars
+lines
+(
+x =
+c
+(tmp
+$
+avgx
+-
+tmp
+$
+sdx,
+tmp
+$
+avgx
+-
+tmp
+$
+sdx),
+y =
+c
+(tmp
+$
+avgy
+-
+0.5
+,
+# 宽度根据情况调整 # The width is adjusted according to the situation
+tmp
+$
+avgy
++
+0.5
+),
+col =
+tmp
+$
+color,
+lwd =
+2
+)
+lines
+(
+x =
+c
+(tmp
+$
+avgx
++
+tmp
+$
+sdx,
+tmp
+$
+avgx
++
+tmp
+$
+sdx),
+y =
+c
+(tmp
+$
+avgy
+-
+0.5
+,
+tmp
+$
+avgy
++
+0.5
+),
+col =
+tmp
+$
+color,
+lwd =
+2
+)
+# 产生纵向误差线
+# Generate longitudinal error bars
+lines
+(
+x =
+c
+(tmp
+$
+avgx, tmp
+$
+avgx),
+y =
+c
+(tmp
+$
+avgy
+-
+tmp
+$
+sdy,
+tmp
+$
+avgy
++
+tmp
+$
+sdy),
+lty =
+ifelse
+(tmp
+$
+shape
+==
+"closed"
+,
+1
+,
+2
+),
+col =
+tmp
+$
+color,
+lwd =
+2
+)
+# 产生纵向误差线的封口线
+# # Generate longitudinal error bars and sealing lines
+lines
+(
+x =
+c
+(tmp
+$
+avgx
+-
+0.5
+,
+tmp
+$
+avgx
++
+0.5
+),
+y =
+c
+(tmp
+$
+avgy
++
+tmp
+$
+sdy,
+tmp
+$
+avgy
++
+tmp
+$
+sdy),
+col =
+tmp
+$
+color,
+lwd =
+2
+)
+lines
+(
+x =
+c
+(tmp
+$
+avgx
+-
+0.5
+,
+tmp
+$
+avgx
++
+0.5
+),
+y =
+c
+(tmp
+$
+avgy
+-
+tmp
+$
+sdy,
+tmp
+$
+avgy
+-
+tmp
+$
+sdy),
+col =
+tmp
+$
+color,
+lwd =
+2
+)
 }
-
 # 后添加圆，以挡住误差线
 # Add a circle to block the error bars
-points(plotinfo2$avgx,
-       plotinfo2$avgy,
-       pch = ifelse(plotinfo2$shape == "closed",19,21), # 如果为closed就是实心圆，否则为空心圆 # If it is closed, it is a solid circle, otherwise it is a hollow circle
-       bg = ifelse(plotinfo2$shape == "closed",plotinfo2$color,"white"), # 填充背景色，如果为closed就是为该颜色，否则为白色 # Fill the background color, if it is closed, it is this color, otherwise it is white
-       col = plotinfo2$color, # 填充边框颜色 # Fill the border color
-       lwd = 2, # 边框粗细 # Border thickness
-       cex = 5) # 圆的大小 # The size of the circle
-
+points
+(plotinfo2
+$
+avgx,
+plotinfo2
+$
+avgy,
+pch =
+ifelse
+(plotinfo2
+$
+shape
+==
+"closed"
+,
+19
+,
+21
+),
+# 如果为closed就是实心圆，否则为空心圆 # If it is closed, it is a solid circle, otherwise it is a hollow circle
+bg =
+ifelse
+(plotinfo2
+$
+shape
+==
+"closed"
+,plotinfo2
+$
+color,
+"white"
+),
+# 填充背景色，如果为closed就是为该颜色，否则为白色 # Fill the background color, if it is closed, it is this color, otherwise it is white
+col =
+plotinfo2
+$
+color,
+# 填充边框颜色 # Fill the border color
+lwd =
+2
+,
+# 边框粗细 # Border thickness
+cex =
+5
+)
+# 圆的大小 # The size of the circle
 # 添加文本
 # Add text
-text(plotinfo2$avgx,
-     plotinfo2$avgy,
-     plotinfo2$label,
-     col = ifelse(plotinfo2$shape == "closed","white",plotinfo2$color), # 如果是实心圆文字为白色，否则为对应颜色 # If it is a solid circle, the text is white, otherwise it is the corresponding color
-     cex = 1.1)
-
+text
+(plotinfo2
+$
+avgx,
+plotinfo2
+$
+avgy,
+plotinfo2
+$
+label,
+col =
+ifelse
+(plotinfo2
+$
+shape
+==
+"closed"
+,
+"white"
+,plotinfo2
+$
+color),
+# 如果是实心圆文字为白色，否则为对应颜色 # If it is a solid circle, the text is white, otherwise it is the corresponding color
+cex =
+1.1
+)
 # 关闭图像句柄
 # Close the image handle
-invisible(dev.off())
-附：PERMANOVA test (2-way adonis)
+invisible
+(
+dev.off
+())
+8
+PERMANOVA test (2-way
+adonis)
 各组之间的差异有统计学意义吗？作者用了PERMANOVA test。
 这是生态学中常用的统计方法，样品组间差异显著性分析。非参数检验，不需要满足正态分布。
 这里分别以两个队列（TCGA和Yau）的各亚组之间比较为例，展示其用法。具体到自己的数据，自己决定谁跟谁比。
-Attached: PERMANOVA test (2-way adonis)
 Was there a statistically significant difference between the groups?
 the authors used the PERMANOVA test.
 This is a commonly used statistical method in ecology to analyze the
@@ -335,6 +1075,12 @@ own data and decide who compares to whom.
 # 提取P value
 # The results show that there is indeed a large difference in the PAM50 (subtype, the first grouping) of the TCGA samples
 # Extract P value
-brca.TCGA$`Pr(>F)`
+brca.TCGA
+$
+`
+Pr(>F)
+`
+9
 Session Info
-sessionInfo()
+sessionInfo
+()

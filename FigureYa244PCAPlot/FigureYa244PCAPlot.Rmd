@@ -2,6 +2,7 @@
 title: "FigureYa244PCAPlot"
 params:
   author: "Jianing Gao"
+  reviewers: "Ying Ge,Hui Huang"
 output: 
   html_document:
     toc: true
@@ -11,10 +12,10 @@ output:
     theme: flatly
     highlight: tango
     code_folding: show
-reviewers: Ying Ge,Hui Huang
 ---
 
-**Author(s)**: `r params$author`  
+**Author(s)**: `r params$author` 
+**Reviewer(s)**: `r params$reviewers`   
 **Date**: `r Sys.Date()`  
 
 ## Academic Citation
@@ -26,48 +27,39 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# 需求描述
+## 需求描述 Requirement Description
 
 基因聚类，然后在图上标注出来。不用说要跟原文一个数据吧，只要输入数据得出类似的图就行。
-
-# Requirement Description
 
 Genes are clustered and then annotated on the graph. Needless to say, you need to have the same data as the original text, as long as you enter the data to get a similar graph.
 
 ![](example.png)
 
-出自<https://www.sciencedirect.com/science/article/pii/S2352396421003340?via%3Dihub>
-from <https://www.sciencedirect.com/science/article/pii/S2352396421003340?via%3Dihub>
+From <https://www.sciencedirect.com/science/article/pii/S2352396421003340?via%3Dihub>
 
 Fig. 1. Prognostic stratification of PDAC through their GT gene expression profile (a, b) and clinical features of patients with their PDAC molecular profiles (c, d). 
 (a) Biplot of the HCPC analysis result based on RNA-seq data of 74 PDAC and 169 GT genes.
 
-# 应用场景
+## 应用场景 Application Scenarios
 
 看这里<https://mp.weixin.qq.com/s/kNHM5teMRtL2dSZXzm4m8w>，带你看透文章里的PCA图的小心机。
 
-# Application Scenarios
-
 Take a look at the <https://mp.weixin.qq.com/s/kNHM5teMRtL2dSZXzm4m8w> here to take you to understand the PCA diagram in the article
 
-# 环境设置
-
-# Environment settings
+## 环境设置 Environment settings
 
 ```{r}
 source("install_dependencies.R")
 source("geom_convexhull.R") # from ggConvexHull package
-library(tidyverse)
-library(factoextra)
+library(tidyverse) # data manipulation
+library(factoextra) # PCA visualization
 Sys.setenv(LANGUAGE = "en") #显示英文报错信息 # error messages are displayed in English
 options(stringsAsFactors = FALSE) #禁止chr转成factor # chr is not allowed to be converted to factor
 ```
 
-# 输入文件
+## 输入文件 Input files
 
 easy_input.csv，表达矩阵，每行一个基因，每列一个sample。
-
-# Input files
 
 easy_input.csv, the expression matrix, one gene per row, one sample per column.
 
@@ -87,13 +79,9 @@ k2 <- kmeans(
 pca <- prcomp(t(data2))
 ```
 
-# 开始画图
+## 开始画图 Start drawing
 
-## 方法一: 调用factoextra包
-
-# Start drawing
-
-## Method 1: Call the factoextra package
+## 方法一: 调用factoextra包 Method 1: Call the factoextra package
 
 ```{r, fig.width=5, fig.height=5}
 p <- fviz_pca_ind(
@@ -122,13 +110,7 @@ p + theme(
 ggsave("PCA_factoextra.pdf")
 ```
 
-## 方法二: ggplot
-
-准备数据
-
-## Method 2: ggplot
-
-Prepare the data
+### 方法二: ggplot Method 2: ggplot
 
 ```{r}
 data.use <- as.data.frame(pca$x[, c("PC1", "PC2")])

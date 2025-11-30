@@ -12,7 +12,8 @@
       "WebFetch(domain:www.nature.com)",
       "WebFetch(domain:doi.org)",
       "Bash(R:*)",
-      "Bash(Rscript:*)"
+      "Bash(Rscript:*)",
+      "Bash(mkdir:*)"
     ],
     "deny": [],
     "ask": []

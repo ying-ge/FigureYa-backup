@@ -2,6 +2,7 @@
 title: "FigureYa219GMM"
 params:
   author: "Xiaofan Lu"
+  reviewers: "Ying Ge,Hui Huang"
 output: 
   html_document:
     toc: true
@@ -11,10 +12,10 @@ output:
     theme: flatly
     highlight: tango
     code_folding: show
-reviewers: Ying Ge,Hui Huang
 ---
 
 **Author(s)**: `r params$author`  
+**Reviewers**: `r params$reviewers`  
 **Date**: `r Sys.Date()`  
 
 ## Academic Citation
@@ -26,42 +27,35 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# 需求描述
+## 需求描述 Requirement Description
 
 这篇文章里用了高斯混合模型，从10个候选miRNA筛出了8个，并且获得了每个miRNA的系数，计算riskscore。
-
-# Requirement Description
 
 In this paper, a Gaussian mixture model was used to screen out 8 of the 10 candidate miRNAs, and the coefficients for each miRNA were obtained to calculate the riskscore.
 
 ![](example.png)
 
-出自<https://www.thno.org/v10p8771.pdf>
-from<https://www.thno.org/v10p8771.pdf>
+From <https://www.thno.org/v10p8771.pdf>
 
 Figure 4. The pattern of AUC and 1023 logistic regression models were based on Gaussian finite mixture models.
 (A) The pattern of the logistic regression model correlated with the AUC scores and was identified by a Gaussian mixture. There are eight clusters of 1023 combinations. 
 
-# 应用场景
+## 应用场景 Application Scenarios
 
 通过排列组合构建所有可能的逻辑回归并计算每个模型下的AUC，通过高斯混合模型聚类确定最优模型簇，并根据最高AUC得到最终预测模型。
 
-# Application Scenarios
-
 All possible logistic regressions were constructed through permutations and combinations, and the AUC under each model was calculated, the optimal model cluster was determined by Gaussian mixture model clustering, and the final prediction model was obtained according to the highest AUC.
 
-# 环境设置
-
-# Environment settings
+## 环境设置 Environment settings
 
 ```{r}
 source("install_dependencies.R")
 
-library(mclust)
-library(miRBaseVersions.db)
-library(miRBaseConverter)
-library(pROC)
-library(SimDesign)
+library(mclust) # 高斯混合模型 # Gaussian mixture model
+library(miRBaseVersions.db) # miRNA版本转换 # miRNA version conversion
+library(miRBaseConverter)   # miRNA版本转换 # miRNA version conversion
+library(pROC) # AUC计算 # AUC calculation
+library(SimDesign) # 静默运行函数 # silent running function
 source("twoclasslimma.R") #差异表达分析 # Differential expression analysis
 Sys.setenv(LANGUAGE = "en") #显示英文报错信息 # error messages are displayed in English
 options(stringsAsFactors = FALSE) #禁止chr转成factor # chr is not allowed to be converted to factor
@@ -79,7 +73,7 @@ display.progress = function (index, totalN, breakN=20) {
 }
 ```
 
-# 输入文件
+## 输入文件 Input files
 
 分别从TCGA和来自GEO的数据集提取三阴性乳腺癌和**癌旁样本**。提取二者共有的miRNA，用于后续分析。
 
@@ -89,8 +83,6 @@ display.progress = function (index, totalN, breakN=20) {
 - 来自GEO的miRNA芯片数据
   - gse40525.expr.txt，GSE40525表达矩阵。
   - gse40525.sinfo.txt，GSE40525样本信息。
-
-# Input files
 
 Triple-negative breast cancer and **paracancerous samples** were extracted from TCGA and datasets from GEO, respectively. miRNAs common to both were extracted for subsequent analysis.
 
@@ -164,13 +156,11 @@ rownames(tcga.mirna) <- gsub("-","_",rownames(tcga.mirna))
 rownames(gse.mirna) <- gsub("-","_",rownames(gse.mirna))
 ```
 
-# 正常与癌旁的差异表达
+## 正常与癌旁的差异表达 Differential expression of normal and adjacent cancer
 
 TCGA和GEO来源的miRNA数据分别做差异表达分析，然后取交集。
 
 这步会生成差异表达分析结果文件：gse_tnbc_limma_test_result.tumor_vs_normal.txt和tcga_tnbc_limma_test_result.tumor_vs_normal.txt
-
-# Differential expression of normal and adjacent cancer
 
 The miRNA data derived from TCGA and GEO were analyzed for differential expression and then intersected.
 
@@ -214,8 +204,7 @@ deg2 <- res2[which(res2$padj < 0.05 & abs(res1$log2fc > 1)),] # Extract differen
 deg <- intersect(rownames(deg1),rownames(deg2)) # 提取交集的miRNA # Extract intersecting miRNAs
 ```
 
-# 逻辑回归模型
-# Logistic regression model
+## 逻辑回归模型 Logistic regression model
 
 ```{r}
 # 排列组合构建可能的逻辑回归模型
@@ -278,8 +267,7 @@ for (i in 1:n.model) {
 }
 ```
 
-# 运行高斯混合模型，并画图
-# Run the Gaussian mixture model and draw it
+## 运行高斯混合模型，并画图 Run the Gaussian mixture model and draw it
 
 ```{r}
 mod <- Mclust(aucDF[,1:2])

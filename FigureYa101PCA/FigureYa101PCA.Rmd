@@ -89,15 +89,15 @@ options(stringsAsFactors = FALSE)
  
 Including PCA analysis process and plotting, parameter settings:
 
--Indata is a matrix with columns as samples and behavioral observations
--Batch is a data box, and batch information must be provided. Otherwise, please use FigureYa38PCA
--Batchvar is the variable name of the batch, which defaults to the column name of the batch
--Position is the position of the legend when the final image is generated. Choose from the following positions: "bottomright", "bottom", "bottomleft", "left", "topleft", "top", "topright", "right", and "center"
--PCH. Original is used to map replica shapes. By default, it starts from the solid origin at PCH=16 and ends at PCH=25. There are a total of 10 solid patterns available for mapping, or you can choose your own starting point for the PCH shape. Please refer to: http://www.sthda.com/english/wiki/r-plot-pch-symbols-the-different-point-shapes-available-in-r
--Withoutgrid is a logical variable that indicates whether to draw a background grid (the example image has a grid, which I personally do not recommend)
--If you want to output the sample ID, you can set showID to TRUE, but it is not recommended when the sample size is large, as the image may not be clear
--Other parameters can remain default
--The details of the function can be modified as needed, such as the shape of the batch (pch parameter)
+- Indata is a matrix with columns as samples and behavioral observations
+- Batch is a data box, and batch information must be provided. Otherwise, please use FigureYa38PCA
+- Batchvar is the variable name of the batch, which defaults to the column name of the batch
+- Position is the position of the legend when the final image is generated. Choose from the following positions: "bottomright", "bottom", "bottomleft", "left", "topleft", "top", "topright", "right", and "center"
+- PCH. Original is used to map replica shapes. By default, it starts from the solid origin at PCH=16 and ends at PCH=25. There are a total of 10 solid patterns available for mapping, or you can choose your own starting point for the PCH shape. Please refer to: http://www.sthda.com/english/wiki/r-plot-pch-symbols-the-different-point-shapes-available-in-r
+- Withoutgrid is a logical variable that indicates whether to draw a background grid (the example image has a grid, which I personally do not recommend)
+- If you want to output the sample ID, you can set showID to TRUE, but it is not recommended when the sample size is large, as the image may not be clear
+- Other parameters can remain default
+- The details of the function can be modified as needed, such as the shape of the batch (pch parameter)
 
 ```{r}
 # 功能：基于主成分分析(PCA)绘制批次效应图
