@@ -8,7 +8,7 @@ Author(s)
 Reviewer(s)
 : Ying Ge, Yijing Chen
 Date
-: 2025-11-29
+: 2025-11-30
 1
 Academic Citation
 If you use this code in your work or research, we kindly request that
@@ -1105,12 +1105,6 @@ handling
 现代Seurat API
 : 采用Seurat
 v5推荐的现代工作流程
-Seurat v5兼容
-: 完全兼容Seurat
-v5的新数据结构和API
-向前兼容
-: 保持对Seurat
-v4的支持，确保向后兼容性
 Cluster result correction
 : Added logic to force
 exactly 4 clusters, ensuring C1-C4 clustering consistent with the
@@ -1137,12 +1131,6 @@ batchelor::mnnCorrect (deprecated in new Seurat versions)
 Modern Seurat API
 : Adopted Seurat v5 recommended
 modern workflow
-Seurat v5 compatibility
-: Fully compatible with
-Seurat v5 new data structure and API
-Forward compatibility
-: Maintained support for
-Seurat v4, ensuring backward compatibility
 9
 Session Info
 sessionInfo

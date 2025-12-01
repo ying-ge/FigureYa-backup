@@ -6,10 +6,9 @@ FigureYa244PCAPlot
 Author(s)
 : Jianing Gao
 Reviewer(s)
-:
-Ying Ge,Hui Huang
+: Ying Ge, Hui Huang
 Date
-: 2025-11-29
+: 2025-11-30
 1
 Academic Citation
 If you use this code in your work or research, we kindly request that
@@ -34,13 +33,35 @@ based on RNA-seq data of 74 PDAC and 169 GT genes.
 3
 应用场景 Application
 Scenarios
-看这里
-https://mp.weixin.qq.com/s/kNHM5teMRtL2dSZXzm4m8w
-，带你看透文章里的PCA图的小心机。
-Take a look at the
-https://mp.weixin.qq.com/s/kNHM5teMRtL2dSZXzm4m8w
-here
-to take you to understand the PCA diagram in the article
+先聚类，再用 PCA 可视化聚类结果。聚类算法（如
+k-means）在高维空间中计算距离，人类无法直观理解。借用 PCA
+将高维空间投影到 2D，让我们看到聚类的空间分布。
+用多边形框出每个聚类的边界，视觉上更清晰地展示聚类效果。
+如果聚类是合理的，在 PCA 图上应该能看到明显分离；
+如果 PCA 图上混在一起，说明聚类可能过度拟合；
+用geom_text_repel标注样本名，便于追溯哪个样本不靠谱。
+PCA 可以画个小圈圈展示理论分布（置信区间），可参考FigureYa38PCA。
+也可以像FigureYa244PCAPlot这样画多边形展示实际分布。灵活运用这样的图来展示正常
+PCA/UMAP 结果也完全没问题，直接跳到方法二: ggplot，即可套用。
+First cluster, and then use PCA to visualize the clustering results.
+Clustering algorithms (such as k-means) calculate distances in
+high-dimensional space, which humans cannot intuitively understand.
+Using PCA to project high-dimensional space to 2D allows us to see the
+spatial distribution of clusters.
+Use polygons to outline the boundaries of each cluster, providing a
+clearer visual representation of the clustering effect.
+If clustering is reasonable, you should see clear separation on the
+PCA plot;
+If samples are mixed together on the PCA plot, it suggests that
+clustering may be overfitted;
+Use geom_text_repel to label sample names for tracing unreliable
+samples.
+PCA can draw small circles to show theoretical distributions
+(confidence intervals), refer to FigureYa38PCA.
+Alternatively, you can draw polygons like FigureYa244PCAPlot to show
+actual distributions. This approach can be flexibly applied to display
+normal PCA/UMAP results as well, simply skip to Method 2: ggplot and
+apply the template.
 4
 环境设置 Environment
 settings
@@ -55,7 +76,7 @@ source
 # from ggConvexHull package
 library
 (tidyverse)
-# data manipulation
+# Data manipulation
 library
 (factoextra)
 # PCA visualization
@@ -96,7 +117,7 @@ data2[
 6
 开始画图 Start
 drawing
-7
+6.1
 方法一:
 调用factoextra包 Method 1: Call the factoextra package
 p
@@ -198,7 +219,7 @@ ggsave
 (
 "PCA_factoextra.pdf"
 )
-7.1
+6.2
 方法二: ggplot Method
 2: ggplot
 data.use
@@ -294,6 +315,11 @@ c
 ,
 "blue"
 )
+data.use[
+1
+:
+2
+,]
 画图 Drawing
 ggplot
 (data.use,
@@ -380,7 +406,7 @@ ggsave
 (
 "PCA_ggplot2.pdf"
 )
-8
+7
 Session Info
 sessionInfo
 ()

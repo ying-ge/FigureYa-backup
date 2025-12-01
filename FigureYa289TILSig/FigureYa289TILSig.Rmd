@@ -1,8 +1,8 @@
 ---
 title: "FigureYa289TILSig"
 params:
-  author: "Guoqi Li, Taojun Ye"
-  reviewer: "Ying Ge"
+  author: "Guoqi Li"
+  reviewer: "Ying Ge, Taojun Ye"
 output: 
   html_document:
     toc: true
@@ -18,7 +18,6 @@ output:
 **Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()`  
 
-
 ## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
@@ -28,35 +27,27 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# 需求描述
+## 需求描述 Requirement description
 
 利用纯化细胞系计算免疫相关指数的计算方法，想学习框里的这个复现方法
-
-# Requirement description
 
 I want to learn the replication method in the box for calculating immune related indices using purified cell lines
 
 ![](example.png)
 
-出自<https://jitc.bmj.com/content/8/1/e000110.long>
-
-from<https://jitc.bmj.com/content/8/1/e000110.long>
+From <https://jitc.bmj.com/content/8/1/e000110.long>
 
 Figure 1 Strategy for identifying tumor-infiltrating immune-related lncRNA signature (TILSig) in this study. Top 5% expressed long non-coding RNAs (lncRNAs) were obtained as candidate immune-related lncRNAs for each immune cell line. The specificity of expression of a candidate immune-related lncRNA with respect to different immune cell types was calculated using tissue specificity index (TSI). Those housekeeping lncRNAs (hklncRNAs) which are upregulated in immune cell lines and downregulated in non-small cell lung cancer (NSCLC) cell lines were selected as tumor-infiltrating immune-related lncRNAs.
 
 A prognostic signature by focusing tumor-infiltrating immune-related lncRNAs (TILSig) was constructed using the linear combination of the expression values of the prognostic tumor-infiltrating immune-related lncRNAs, weighted by their estimated regression coefficients in the multivariate Cox regression analysis.
 
-# 应用场景
+## 应用场景 Application scenarios
 
 从表达数据鉴定肿瘤免疫浸润相关lncRNA。
 
-# Application scenarios
-
 Identify tumor immune infiltration related lncRNAs from expression data.
 
-# 环境设置
-
-# Environment settings
+## 环境设置 Environment settings
 
 ```{r}
 source("install_dependencies.R")
@@ -66,50 +57,33 @@ source("install_dependencies.R")
 # Since the expression profile data of all immune cell lines are from the GPL570 platform ([HG-U133_Plus_2] Affymetrix Human Genome U133 Plus 2.0 Array), 
 # the DealGPL570 package is used here to process the expression profile data from the GPL570 platform.
 library(DealGPL570) 
-
-# 加载字符串处理包（Load the string processing package）
-library(stringr)
-# 加载批次效应校正包（Load the batch effect correction package）
-library(sva)
-# 加载数据框处理包（Load the data frame processing package）
-library(tibble)
-# 加载数据处理包（Load the data processing package）
-library(dplyr)
-# 加载数据科学工具集合包（Load the data science toolkit package）
-library(tidyverse)
-# 加载基因组特征处理包（Load the genomic features processing package）
-library(GenomicFeatures)
-# 加载微阵列数据分析包（Load the microarray data analysis package）
-library(limma)
-# 加载生存分析包（Load the survival analysis package）
-library(survival)
-# 加载基因组轨道数据处理包（Load the genomic track data processing package）
-library(rtracklayer)
+library(stringr) # 用于字符串处理（for string processing）
+library(sva) # 用于批次效应校正（for batch effect correction）
+library(tibble) # 用于数据框操作（for data frame manipulation）
+library(dplyr) # 用于数据操作（for data manipulation）
+library(tidyverse) # 用于数据处理和可视化（for data processing and visualization）
+library(GenomicFeatures) # 用于基因组特征处理（for genomic feature processing）
+library(limma) # 用于差异表达分析（for differential expression analysis）
+library(survival) # 用于生存分析（for survival analysis）
+library(rtracklayer) # 用于基因组数据导入导出（for genomic data import/export）
 
 # 设置环境变量，显示英文报错信息（Set environment variable to display English error messages）
 Sys.setenv(LANGUAGE = "en") 
-
 # 禁止将字符向量自动转换为因子类型（Disable automatic conversion of character vectors to factors）
 options(stringsAsFactors = FALSE) 
 ```
 
-# 输入文件
+## 输入文件 Input file
 
-## 数据收集
+### 数据收集 Data collection
 
 文章所使用的大型数据包括19种免疫细胞系表达谱数据，GENECODE注释文件，RefSeq注释文件。
 CCLE表达谱数据，TCGA胃癌表达谱数据和临床数据，count数据转换为TPM数据的参考数据集。
 
-# Input file
-
-## Data collection
-
 The large data used in the article including expression profile data of 19 immune cell lines, GENECODE annotation files, and RefSeq annotation files.
 The reference dataset for converting CCLE expression profile data, TCGA gastric cancer expression profile data, clinical data, and count data into TPM data.
 
-## 来自GEO的表达数据处理
-
-## Expression data processing from GEO
+### 来自GEO的表达数据处理 Expression data processing from GEO
 
 ```{r}
 # 使用DealGPL570处理16个表达谱数据，包含114个细胞系，19种免疫细胞类型
@@ -241,9 +215,7 @@ batchPCA(indata = t(scale(t(data_combat))),
          pos = "bottomright")
 ```
 
-## 提取lncRNA表达谱数据
-
-## Extract lncRNA expression profile data
+### 提取lncRNA表达谱数据 Extract lncRNA expression profile data
 
 ```{r}
 # 提取lncRNA表达谱数据（Extract lncRNA expression profile data）
@@ -272,9 +244,7 @@ write.table(data_combat, "expall_114line.txt", col.names = T, row.names = T, sep
 write.table(data_lncRNA, "explncRNA_114line.txt", col.names = T, row.names = T, sep = "\t", quote = F)
 ```
 
-# 对每个免疫细胞系的lncRNA进行排序
-
-# Sort the lncRNAs of each immune cell line
+## 对每个免疫细胞系的lncRNA进行排序 Sort the lncRNAs of each immune cell line
 
 ```{r}
 # 提取lncRNA表达谱数据的免疫细胞系注释信息（Extract annotation information of immune cell lines for lncRNA expression profile data）
@@ -345,13 +315,11 @@ for (m in c(seq(0.01, 1, 0.01))) {  # 按1%间隔遍历阈值（Traverse thresho
 head(top_outTab)  # 查看结果前几行（View first few rows of results）
 ```
 
-# 计算TSI，提取ihk-lnc
+## 计算TSI，提取ihk-lnc Calculate TSI and extract ihk lnc
 
 计算TSI，这里要说明一下TSI的计算思想，例如，lncRNA（命名A）在5种免疫细胞系中的表达值分别为1，2，3，4，5
 
 则原文公式中的X(A,i)值分别为(1-1)/(5-1)=0,(2-1)/(5-1)=0.25,(3-1)/(5-1)=0.5,(4-1)/(5-1)=0.75,(5-1)/(5-1)=1
-
-# Calculate TSI and extract ihk lnc
 
 To calculate TSI, we need to explain the calculation idea of TSI. For example, the expression values of lncRNA (named A) in five immune cell lines are 1, 2, 3, 4, and 5, respectively
 
@@ -399,9 +367,7 @@ tsi_0.4 <- tsi[which(tsi$TSI < 0.4 & tsi$top_index <= 0.05), ]
 ihk_lnc <- unique(tsi_0.4$gene)  # 去重得到ihk-lnc（Remove duplicates to get ihk-lnc）
 ```
 
-# 筛选TILncRNA
-
-# Screening TILncRNA
+## 筛选TILncRNA Screening TILncRNA
 
 ```{r}
 # 读取lncRNA表达谱数据（Read lncRNA expression profile data）
@@ -468,9 +434,7 @@ write.table(DEG, "output_DEG.txt",
 TILncRNA <- DEG$symbol
 ```
 
-# 构建TILSig打分 
-
-# Build TILSig scoring system
+## 构建TILSig打分 Build TILSig scoring system
 
 ```{r}
 # 读取TCGA表达谱数据（包含226个癌症样本和22个正常样本，预后分析仅用癌症样本）

@@ -2,7 +2,7 @@
 title: "FigureYa244PCAPlot"
 params:
   author: "Jianing Gao"
-  reviewers: "Ying Ge,Hui Huang"
+  reviewers: "Ying Ge, Hui Huang"
 output: 
   html_document:
     toc: true
@@ -14,7 +14,7 @@ output:
     code_folding: show
 ---
 
-**Author(s)**: `r params$author` 
+**Author(s)**: `r params$author`  
 **Reviewer(s)**: `r params$reviewers`   
 **Date**: `r Sys.Date()`  
 
@@ -42,16 +42,36 @@ Fig. 1. Prognostic stratification of PDAC through their GT gene expression profi
 
 ## 应用场景 Application Scenarios
 
-看这里<https://mp.weixin.qq.com/s/kNHM5teMRtL2dSZXzm4m8w>，带你看透文章里的PCA图的小心机。
+先聚类，再用 PCA 可视化聚类结果。聚类算法（如 k-means）在高维空间中计算距离，人类无法直观理解。借用 PCA 将高维空间投影到 2D，让我们看到聚类的空间分布。
 
-Take a look at the <https://mp.weixin.qq.com/s/kNHM5teMRtL2dSZXzm4m8w> here to take you to understand the PCA diagram in the article
+用多边形框出每个聚类的边界，视觉上更清晰地展示聚类效果。
+
+- 如果聚类是合理的，在 PCA 图上应该能看到明显分离；
+- 如果 PCA 图上混在一起，说明聚类可能过度拟合；
+- 用geom_text_repel标注样本名，便于追溯哪个样本不靠谱。
+
+PCA 可以画个小圈圈展示理论分布（置信区间），可参考FigureYa38PCA。
+
+也可以像FigureYa244PCAPlot这样画多边形展示实际分布。灵活运用这样的图来展示正常 PCA/UMAP 结果也完全没问题，直接跳到方法二: ggplot，即可套用。
+
+First cluster, and then use PCA to visualize the clustering results. Clustering algorithms (such as k-means) calculate distances in high-dimensional space, which humans cannot intuitively understand. Using PCA to project high-dimensional space to 2D allows us to see the spatial distribution of clusters.
+
+Use polygons to outline the boundaries of each cluster, providing a clearer visual representation of the clustering effect.
+
+- If clustering is reasonable, you should see clear separation on the PCA plot;
+- If samples are mixed together on the PCA plot, it suggests that clustering may be overfitted;
+- Use geom_text_repel to label sample names for tracing unreliable samples.
+
+PCA can draw small circles to show theoretical distributions (confidence intervals), refer to FigureYa38PCA.
+
+Alternatively, you can draw polygons like FigureYa244PCAPlot to show actual distributions. This approach can be flexibly applied to display normal PCA/UMAP results as well, simply skip to Method 2: ggplot and apply the template.
 
 ## 环境设置 Environment settings
 
 ```{r}
 source("install_dependencies.R")
 source("geom_convexhull.R") # from ggConvexHull package
-library(tidyverse) # data manipulation
+library(tidyverse) # Data manipulation
 library(factoextra) # PCA visualization
 Sys.setenv(LANGUAGE = "en") #显示英文报错信息 # error messages are displayed in English
 options(stringsAsFactors = FALSE) #禁止chr转成factor # chr is not allowed to be converted to factor
@@ -81,7 +101,7 @@ pca <- prcomp(t(data2))
 
 ## 开始画图 Start drawing
 
-## 方法一: 调用factoextra包 Method 1: Call the factoextra package
+### 方法一: 调用factoextra包 Method 1: Call the factoextra package
 
 ```{r, fig.width=5, fig.height=5}
 p <- fviz_pca_ind(
@@ -122,6 +142,8 @@ dims <- c(1,2) # 选择PC1和PC2进行可视化 # Select PC1 and PC2 for visuali
 xlab <- paste0("Dim1 (", round(vars.percent[dims[1]]*100, 1), "%)")
 ylab <- paste0("Dim2 (", round(vars.percent[dims[2]]*100, 1), "%)")
 colors.use <- c("red", "blue")
+
+data.use[1:2,]
 ```
 
 画图

@@ -39,30 +39,3 @@ for (pkg in cran_packages) {
 
 cat("\n===========================================\n")
 cat("Package installation completed!\n")
-
-# Verify installation
-cat("\nVerifying package installation...\n")
-required_packages <- c("tidyverse", "factoextra")
-
-all_installed <- TRUE
-for (pkg in required_packages) {
-  if (is_package_installed(pkg)) {
-    cat("✓", pkg, "is installed\n")
-  } else {
-    cat("✗", pkg, "is NOT installed\n")
-    all_installed <- FALSE
-  }
-}
-
-if (all_installed) {
-  cat("\n✅ All required packages are installed successfully!\n")
-  cat("You can now use the following code in your R script:\n")
-  cat("library(tidyverse)\n")
-  cat("library(factoextra)\n")
-} else {
-  cat("\n⚠ Some packages failed to install.\n")
-  cat("You may need to install them manually:\n")
-  cat("install.packages(c('tidyverse', 'factoextra'))\n")
-}
-
-cat("\nYou can now run your R scripts in this directory.\n")
