@@ -55,36 +55,80 @@ install_local_tar_gz <- function(package_path) {
   })
 }
 
+# Function to add gunzip workaround to GEOquery
+add_gunzip_workaround <- function() {
+  cat("Adding gunzip workaround to GEOquery...\n")
+  tryCatch({
+    # Create a gunzip function that uses R's internal gzip utilities
+    gunzip <- function(gzfile, destfile = NULL, remove = TRUE) {
+      if (is.null(destfile)) {
+        destfile <- sub("\\.gz$", "", gzfile)
+      }
+      # Use R's built-in gunzip functionality
+      utils::gunzip(gzfile, destfile, remove = remove)
+      return(destfile)
+    }
+    
+    # Add the function to GEOquery namespace
+    environment(GEOquery)$gunzip <- gunzip
+    cat("Successfully added gunzip workaround\n")
+  }, error = function(e) {
+    cat("Failed to add gunzip workaround:", e$message, "\n")
+  })
+}
+
 cat("Starting R package installation...\n")
 cat("===========================================\n")
-
-# First install DealGPL570 from local tar.gz file
-cat("\nInstalling DealGPL570 from local file...\n")
-deal_gpl570_file <- "DealGPL570_0.0.1.tar.gz"
-
-if (file.exists(deal_gpl570_file)) {
-  install_local_tar_gz(deal_gpl570_file)
-} else {
-  cat("❌ Local file not found:", deal_gpl570_file, "\n")
-  cat("Please make sure DealGPL570_0.0.1.tar.gz is in the current directory\n")
-}
 
 # Install BiocManager if not present
 if (!is_package_installed("BiocManager")) {
   install.packages("BiocManager")
 }
 
+# Installing essential Bioconductor packages first (required for DealGPL570)
+cat("\nInstalling essential Bioconductor packages...\n")
+essential_bioc_packages <- c("GEOquery", "affy")
+
+for (pkg in essential_bioc_packages) {
+  install_bioc_package(pkg)
+}
+
+# Add gunzip workaround before installing DealGPL570
+add_gunzip_workaround()
+
+# Install hgu133plus2cdf from local file if available, otherwise from Bioconductor
+cat("\nInstalling hgu133plus2cdf package...\n")
+hgu133plus2cdf_file <- "hgu133plus2cdf_2.18.0.tar.gz"
+if (file.exists(hgu133plus2cdf_file)) {
+  cat("Installing hgu133plus2cdf from local file:", hgu133plus2cdf_file, "\n")
+  install_local_tar_gz(hgu133plus2cdf_file)
+} else {
+  cat("Local hgu133plus2cdf file not found, installing from Bioconductor...\n")
+  install_bioc_package("hgu133plus2cdf")
+}
+
+# First install DealGPL570 from local tar.gz file after dependencies are ready
+cat("\nInstalling DealGPL570 from local file...\n")
+deal_gpl570_file <- "DealGPL570_0.0.1.tar.gz"
+
+if (file.exists(deal_gpl570_file)) {
+  install_local_tar_gz(deal_gpl570_file)
+} else {
+  cat("ERROR: Local file not found:", deal_gpl570_file, "\n")
+  cat("Please make sure DealGPL570_0.0.1.tar.gz is in the current directory\n")
+}
+
 # Installing CRAN packages
 cat("\nInstalling CRAN packages...\n")
-cran_packages <- c("dplyr", "stringr", "survival", "tibble", "tidyverse")
+cran_packages <- c("stringr", "survival", "tibble", "dplyr", "tidyverse")
 
 for (pkg in cran_packages) {
   install_cran_package(pkg)
 }
 
-# Installing Bioconductor packages
-cat("\nInstalling Bioconductor packages...\n")
-bioc_packages <- c("GEOquery", "limma", "sva", "affy")
+# Installing remaining Bioconductor packages
+cat("\nInstalling remaining Bioconductor packages...\n")
+bioc_packages <- c("limma", "sva", "GenomicFeatures", "rtracklayer")
 
 for (pkg in bioc_packages) {
   install_bioc_package(pkg)
@@ -95,12 +139,12 @@ cat("Package installation completed!\n")
 
 # Final verification
 cat("\nVerifying installation...\n")
-required_packages <- c("DealGPL570", "GEOquery", "limma", "sva")
+required_packages <- c("DealGPL570", "stringr", "survival", "tibble", "dplyr", "tidyverse", "GEOquery", "limma", "sva", "GenomicFeatures", "rtracklayer", "affy", "hgu133plus2cdf")
 for (pkg in required_packages) {
   if (is_package_installed(pkg)) {
-    cat("✅", pkg, "installed successfully\n")
+    cat("[OK]", pkg, "installed successfully\n")
   } else {
-    cat("❌", pkg, "installation failed\n")
+    cat("[FAIL]", pkg, "installation failed\n")
   }
 }
 

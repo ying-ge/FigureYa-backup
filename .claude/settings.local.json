@@ -13,7 +13,9 @@
       "WebFetch(domain:doi.org)",
       "Bash(R:*)",
       "Bash(Rscript:*)",
-      "Bash(mkdir:*)"
+      "Bash(mkdir:*)",
+      "Bash(pkill:*)",
+      "Bash(tar:*)"
     ],
     "deny": [],
     "ask": []

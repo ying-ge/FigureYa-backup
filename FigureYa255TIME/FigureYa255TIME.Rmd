@@ -1,8 +1,8 @@
 ---
 title: "FigureYa255TIME_update"
 params:
-  author: "Xiaofan Lu, Ying Ge"
-  reviewer: "Junyi Shen"
+  author: "Xiaofan Lu"
+  reviewer: "Ying Ge, Junyi Shen"
 output: 
   html_document:
     toc: true
@@ -37,23 +37,21 @@ Zuguang Gu. Complex Heatmap Visualization, iMeta, 2022.
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# 需求描述# Requirement Description
+## 需求描述 Requirement Description
 
 Figure3a的免疫landscape，包括免疫检查点的表达，免疫signature的富集，免疫/基质得分的估计还有甲基化淋巴细胞的定量（Xiaofan Lu老师真是热图高手！）这里主要就是这个DNA甲基化淋巴细胞的定量计算，不知道是怎么来的，所有TCGA数据都可以计算吗？
 The immune landscape of Figure 3a includes immune checkpoint expression, immune signature enrichment, immune/stromal score estimation, and methylated lymphocyte quantification (Xiaofan Lu is truly a heatmap expert!). The main goal here is to calculate the quantification of DNA methylated lymphocytes. I'm not sure where this came from, but can this be performed on all TCGA data?
 
 ![](example.png)
 
-出自<https://www.biorxiv.org/content/10.1101/2021.05.30.446369v1>
-Source: <https://www.biorxiv.org/content/10.1101/2021.05.30.446369v1>
+From <https://www.biorxiv.org/content/10.1101/2021.05.30.446369v1>
 
 该文已被Clinical and Translational Medicine接收<https://doi.org/10.1002/ctm2.601>
 This article has been accepted by Clinical and Translational Medicine <https://doi.org/10.1002/ctm2.601>
 
 FIGURE 3 Differential immune profile across MIBC subtypes and its association with genomic alteration and immunotherapeutic response. (A) Heatmap showing the immune profile in the MIBC-TCGA cohort, with the top panel showing the **expression of genes involved in immune checkpoint targets** and the bottom panel showing the **enrichment level of 24 microenvironment cell types**. The immune enrichment score, stromal enrichment score and DNA methylation of tumour-infiltrating lymphocytes (MeTILs) were annotated at the top of the heatmap.
 
-# 应用场景
-# Application Scenarios
+## 应用场景 Application Scenarios
 
 Xiaofan Lu写了一个神奇的R包——[MOVICS](https://academic.oup.com/bioinformatics/article/36/22-23/5539/6033582)，用自己的数据跑一遍，文章里的key figure就出来了。怎么把这些图组织到一起讲故事呢？这篇文章是个很好的应用MOVICS的例子。
 Xiaofan Lu wrote an amazing R package called [MOVICS](https://academic.oup.com/bioinformatics/article/36/22-23/5539/6033582). Run it with your own data, and you'll instantly see the key figures from your article. How can you organize these figures to tell a story? This article provides a great example of MOVICS.
@@ -74,6 +72,7 @@ Many of the figures in the example article:
 - Figure 5b可参考FigureYa12box，f可参考FigureYa162boxViolin
 - Figure 6可参考FigureYa35batch_bestSeparation，FigureYa144DiagHeatmap或<https://mp.weixin.qq.com/s/34WRZRBVPHUNRLlzNH2nzw>
 - Figure S4a可参考FigureYa251NPHSurv
+
 - For the plotting method of Figure 1b, refer to FigureYa196PanPie
 - For the algorithm of Figure 2a, refer to FigureYa249Regulon; for the plotting method of Figure 2b, refer to FigureYa248MutLandscape
 - For Figure 3d, refer to FigureYa25Sankey and FigureYa125Fishertest
@@ -82,19 +81,19 @@ Many of the figures in the example article:
 - For Figure 6, refer to FigureYa35batch_bestSeparation, FigureYa144DiagHeatmap, or <https://mp.weixin.qq.com/s/34WRZRBVPHUNRLlzNH2nzw>
 - For Figure S4a, refer to FigureYa251NPHSurv
 
-# 环境设置 Environment Setup
+## 环境设置 Environment Setup
 
 ```{r}
 source("install_dependencies.R")
-library(utils)
-library(GSVA)
+library(utils) # 
+library(GSVA) # 用到GSVA包计算免疫signature的富集分数 # Used to calculate the enrichment scores of immune signatures
 library(ComplexHeatmap) # 用到里面的pheatmap画图然后拼图，需安装2.8以上版本的ComplexHeatmap # Use the pheatmap function to plot and then assemble the image. You must have ComplexHeatmap version 2.8 or later installed.
 source("pheatmap_translate.R") # 如果不想放弃较老版本的R及其对应的老ComplexHeatmap，可以只加载新版ComplexHeatmap里的这个函数，该脚本出自2.9.4版ComplexHeatmap # If you don't want to abandon an older version of R and its corresponding ComplexHeatmap, you can just load this function from the newer ComplexHeatmap version. This script is from ComplexHeatmap version 2.9.4.
-library(circlize)
-library(viridis)
-library(gplots)
-library(data.table)
-library(tidyestimate)
+library(circlize) # 
+library(viridis) # 
+library(gplots) # 
+library(data.table) # 
+library(tidyestimate) # 
 source("annTrackScale.R") # 加载函数，对数值进行标准化并对极端值做截断 # Load the function to normalize and truncate extreme values.
 Sys.setenv(LANGUAGE = "en") #显示英文报错信息 # Display English error messages.
 options(stringsAsFactors = FALSE) #禁止chr转成factor # Disable conversion of chr values ​​to factors.
@@ -112,7 +111,7 @@ standarize.fun <- function(indata=NULL, halfwidth=NULL, centerFlag=T, scaleFlag=
 }
 ```
 
-# 利用PCA计算MeTIL得分 # Calculate MeTIL score using PCA
+## 利用PCA计算MeTIL得分 Calculate MeTIL score using PCA
 
 参考文献：Jeschke J, Bizet M, Desmedt C et al. [DNA methylation-based immune response signature improves patient diagnosis in multiple cancers](https://www.jci.org/articles/view/91095), Journal of Clinical Investigation 2017;127:3090-3102.
 
@@ -144,7 +143,7 @@ MeTIL <- pca.MeTIL$rotation[,1]
 annCol.tcga$MeTIL <- MeTIL
 ```
 
-# 计算免疫微环境 Computational immune microenvironment
+## 计算免疫微环境 Computational immune microenvironment
 
 使用curated免疫签名，包括22个CIBERSORT签名以及2个MCPcounter签名
 Using curated immune signatures, including 22 CIBERSORT signatures and 2 MCPcounter signatures
@@ -216,7 +215,7 @@ tcga.immune.gsva <- gsva(as.matrix(log2(tpm + 1)),
                          method = "gsva")
 ```
 
-# 开始画图 # Start plotting
+## 开始画图 Start plotting
 
 用complexheatmap里的pheatmap分别画三个热图，然后拼在一起
 Use pheatmap in complexheatmap to plot three heatmaps separately, then combine them.
@@ -306,7 +305,7 @@ draw(hm1 %v% hm2 %v% hm3,
 invisible(dev.off())
 ```
 
-# 后期处理 # Post-processing
+## 后期处理 Post-processing
 
 输出的pdf文件是矢量图，可以用illustrator等软件打开，编辑图形和文字。
 The output PDF file is a vector image and can be opened in software such as Illustrator to edit graphics and text.

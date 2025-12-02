@@ -1,7 +1,8 @@
 ---
 title: "FigureYa224scMarker"
 params:
-  author: "Yangding Zheng"
+  author: "Xiao Gu"
+  reviewers: "Ying Ge,Hui Huang"
 output: 
   html_document:
     toc: true
@@ -11,10 +12,10 @@ output:
     theme: flatly
     highlight: tango
     code_folding: show
-reviewers: Ying Ge,Hui Huang
 ---
 
 **Author(s)**: `r params$author`  
+**Reviewers**: `r params$reviewers`  
 **Date**: `r Sys.Date()`  
 
 ## Academic Citation
@@ -26,18 +27,15 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# 需求描述
+## 需求描述 Requirement Description
 
 这篇NC单细胞展示比例和marker基因的图很好看啊
-
-# Requirement Description
 
 This diagram of NC single-cell display ratio and marker gene is very good.
 
 ![](example.png)
 
-出自<https://www.nature.com/articles/s41467-020-16164-1>
-from<https://www.nature.com/articles/s41467-020-16164-1>
+From <https://www.nature.com/articles/s41467-020-16164-1>
 
 Fig. 3 Tumor endothelial cells and myofibroblasts promoting angiogenesis and tissue remodeling. 
 a tSNE plot of endothelial cells, color-coded by clusters and cell subsets as indicated. EPCs: endothelial progenitor cells. 
@@ -48,17 +46,13 @@ Bottom: Relative expression map of known marker genes associated with each cell 
 Mean expression values are scaled by mean-centering, and transformed to a scale from -2 to 2. 
 c **Average cell number and relative proportion** of EC subsets from tissues of each origin. nLung, n = 11 samples; tLung, n = 11 samples; tL/B, n = 3 samples; mLN, n = 2 samples; mBrain, n = 9 samples. 
 
-# 应用场景
+## 应用场景 Application Scenarios
 
 单细胞数据展示细胞比例和marker基因。
 
-# Application Scenarios
-
 Single-cell data showing cell ratios and marker genes.
 
-# 环境设置
-
-# Environment settings
+## 环境设置 Environment settings
 
 ```{r}
 source("install_dependencies.R")
@@ -79,15 +73,13 @@ Sys.setenv(LANGUAGE = "en") #显示英文报错信息 # error messages are displ
 options(stringsAsFactors = FALSE) #禁止chr转成factor # chr is not allowed to be converted to factor
 ```
 
-# 输入文件及预处理
+## 输入文件及预处理 Input files and preprocessing
 
 以Seurat官网PBMC数据为例，跟FigureYa111markerGene和FigureYa160scGSVA用的是同一套数据，出自不同作者之手，可相互参考。
 
 下载<https://cf.10xgenomics.com/samples/cell/pbmc3k/pbmc3k_filtered_gene_bc_matrices.tar.gz>，解压到当前文件夹。
 
 预处理过程参考<https://satijalab.org/seurat/v3.2/pbmc3k_tutorial.html>
-
-# Input files and preprocessing
 
 Taking the PBMC data on the official website of Seurat as an example, it uses the same set of data as FigureYa111markerGene and FigureYa160scGSVA, which are from different authors and can be cross-referenced.
 
@@ -186,11 +178,9 @@ top10 <- pbmc.markers %>% group_by(cluster) %>% top_n(n = 10, wt = avg_log2FC)
 DoHeatmap(pbmc, features = top10$gene) + NoLegend()
 ```
 
-# 结合每个cluster的marker基因和生物学知识确定细胞类型，顺便画图A
+## 结合每个cluster的marker基因和生物学知识确定细胞类型，顺便画图A Determine the cell type by combining the marker gene and biological knowledge of each cluster, and draw Figure A by the way
 
 为了接近真实情况并结合示例数据，这里不将细胞类型划分得这么详细，进行以下更改：
-
-# Determine the cell type by combining the marker gene and biological knowledge of each cluster, and draw Figure A by the way
 
 In order to get close to the real situation and combine the example data, the cell types are not divided into such details here, and the following changes are made:
 
@@ -244,13 +234,11 @@ pbmc@meta.data$seurat_clusters <- factor(pbmc@meta.data$seurat_clusters,levels=c
 saveRDS(pbmc, "pbmc_test_final.rds")
 ```
 
-# 画图B - marker gene
+## B - marker gene
 
 图B主要由三部分组成，最上部的克利夫兰图（棒棒糖图），中部的bar图和下部的热图
 
 先画上部棒棒糖图，用来展示Mean expression of known lineage markers
-
-# Draw B - marker gene
 
 Figure B is mainly composed of three parts, the uppermost Cleveland diagram (lollipop diagram), the middle bar diagram, and the lower heat map
 
@@ -369,11 +357,9 @@ ggsave(paste0(plot_wd,"plotB_3_heatmap.pdf"), plot = pB3, width = 8, height = 7)
 
 后期用AI拼效果更好。输出到pdf文件都是矢量图，可以用Illustrator等矢量图软件打开，编辑文字、图形等。
 
-# 画图C - Average cell number and relative proportion
+## C - Average cell number and relative proportion
 
 In the later stage, it is better to use AI to spell the effect. The output to pdf files is all vector graphics, which can be opened with vector software such as Illustrator to edit text, graphics, etc.
-
-# Paint C - Average cell number and relative proportion
 
 ```{r}
 data_plotC <- table(pbmc@meta.data$sample, pbmc@meta.data$celltype) %>% melt()
