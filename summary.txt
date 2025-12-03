@@ -2,8 +2,6 @@ RMD Render Summary
 ===================
 
 [SKIPPED] - ./FigureYa222PCAgene/FigureYa222PCAgene.Rmd (Not listed in auto_Knit_online.txt)
-[SKIPPED] - ./FigureYa222PCAgene/FigureYa222PCAgene_simplified_final.Rmd (Not listed in auto_Knit_online.txt)
-[SKIPPED] - ./FigureYa222PCAgene/FigureYa222PCAgene_v4.Rmd (Not listed in auto_Knit_online.txt)
 [SKIPPED] - ./FigureYa8radar/FigureYa8radarChart.Rmd (Not listed in auto_Knit_online.txt)
 [SKIPPED] - ./FigureYa139TMB_titv/FigureYa139TMB_titv.Rmd (Not listed in auto_Knit_online.txt)
 [SKIPPED] - ./FigureYa260CNV/FigureYa260CNV.Rmd (Not listed in auto_Knit_online.txt)
@@ -78,7 +76,7 @@ RMD Render Summary
 [SKIPPED] - ./FigureYa322SSEA/FigureYa322SSEA.Rmd (Not listed in auto_Knit_online.txt)
 [SKIPPED] - ./FigureYa88DAVIDkappa/FigureYa88DAVIDkappa.Rmd (Not listed in auto_Knit_online.txt)
 [SKIPPED] - ./FigureYa2ggtree+pheatmap+msa/FigureYa2ggtree+pheatmap+msa.Rmd (Not listed in auto_Knit_online.txt)
-[SUCCESS] - ./FigureYa203ComBat/FigureYa203ComBat.Rmd
+[SKIPPED] - ./FigureYa203ComBat/FigureYa203ComBat.Rmd (Not listed in auto_Knit_online.txt)
 [SKIPPED] - ./FigureYa304MAGIC/FigureYa304MAGIC_lowMemory.Rmd (Not listed in auto_Knit_online.txt)
 [SKIPPED] - ./FigureYa304MAGIC/FigureYa304MAGIC.Rmd (Not listed in auto_Knit_online.txt)
 [SKIPPED] - ./FigureYa48Adonis/FigureYa48Adonis.Rmd (Not listed in auto_Knit_online.txt)
@@ -276,7 +274,19 @@ RMD Render Summary
 [SKIPPED] - ./FigureYa306slingshot/FigureYa306slingshot.Rmd (Not listed in auto_Knit_online.txt)
 [SKIPPED] - ./FigureYa112Plus_venn/FigureYa112Plus_venn.Rmd (Not listed in auto_Knit_online.txt)
 [SKIPPED] - ./FigureYa93UMAP/FigureYa93UMAP.Rmd (Not listed in auto_Knit_online.txt)
-[SKIPPED] - ./FigureYa255TIME/FigureYa255TIME.Rmd (Not listed in auto_Knit_online.txt)
+[FAILED] - ./FigureYa255TIME/FigureYa255TIME.Rmd
+--- Error Log for ./FigureYa255TIME/FigureYa255TIME.Rmd ---
+Error in `fread()`:
+! To read gz files directly, fread() requires 'R.utils' package which cannot be found. Please install 'R.utils' using 'install.packages('R.utils')'.
+Backtrace:
+    x
+ 1. \-data.table::fread(...)
+ 2.   \-data.table:::stopf(...)
+ 3.     \-data.table:::raise_condition(...)
+
+Quitting from FigureYa255TIME.Rmd:143-171 [unnamed-chunk-3]
+Execution halted
+-----------------------------------
 [SKIPPED] - ./FigureYa192breakpoint/FigureYa192breakpoint.Rmd (Not listed in auto_Knit_online.txt)
 [SKIPPED] - ./FigureYa294HCCdrug/FigureYa294HCCdrug.Rmd (Not listed in auto_Knit_online.txt)
 [SKIPPED] - ./FigureYa261circGene/FigureYa261circGene.Rmd (Not listed in auto_Knit_online.txt)

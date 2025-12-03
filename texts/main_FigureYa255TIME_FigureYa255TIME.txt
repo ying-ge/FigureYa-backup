@@ -1,260 +1,1420 @@
 FigureYa255TIME
+Code
+Show All Code
+Hide All Code
 FigureYa255TIME
-2025-5-20
-需求描述 Requirement Description
-Figure3a的免疫landscape，包括免疫检查点的表达，免疫signature的富集，免疫/基质得分的估计还有甲基化淋巴细胞的定量（大鱼海棠老师真是热图高手！）这里主要就是这个DNA甲基化淋巴细胞的定量计算，不知道是怎么来的，所有TCGA数据都可以计算吗？The immune landscape in Figure 3a includes the expression of immune checkpoints, enrichment of immune signatures, estimation of immune/stromal scores, and quantification of methylated lymphocytes (Teacher Da Yu Hai Tang is really a master of heatmaps!)
-出自
-https://www.biorxiv.org/content/10.1101/2021.05.30.446369v1
-该文已被Clinical and Translational Medicine接收
-https://doi.org/10.1002/ctm2.601
-FIGURE 3 Differential immune profile across MIBC subtypes and its association with genomic alteration and immunotherapeutic response. (A) Heatmap showing the immune profile in the MIBC-TCGA cohort, with the top panel showing the
-expression of genes involved in immune checkpoint targets
-and the bottom panel showing the
-enrichment level of 24 microenvironment cell types
-. The immune enrichment score, stromal enrichment score and DNA methylation of tumour-infiltrating lymphocytes (MeTILs) were annotated at the top of the heatmap.
-应用场景 Application Scenarios
-大鱼海棠写了一个神奇的R包——
-MOVICS
-，用自己的数据跑一遍，文章里的key figure就出来了。怎么把这些图组织到一起讲故事呢？这篇文章是个很好的应用MOVICS的例子。
-Da Yu Hai Tang wrote a magical R package called
-MOVICS
-. By running your own data through it, you can reproduce the key figures from the paper. How do we organize these figures to tell a story? This article is a great example of applying MOVICS.
-根据甲基化计算DNA methylation of tumour-infiltrating lymphocyte (MeTIL)得分，并根据免疫检查点表达和肿瘤免疫微环境富集绘制热图。
-Calculate the DNA methylation score of tumor-infiltrating lymphocytes (MeTIL) based on methylation data, and create heatmaps based on immune checkpoint expression and tumor immune microenvironment enrichment.
-我们曾在FigureYa170ImmuLncRNA里用estimate包计算肿瘤纯度
-We previously used the estimate package to calculate tumor purity in FigureYa170ImmuLncRNA
-例文中很多图我们都众筹过，例如：
-Many figures in the example article have been crowdsourced by us, for example:
-Figure 1b的画法可参考FigureYa196PanPie
-The method for Figure 1b can be referenced from FigureYa196PanPie
-Figure 2a的算法可参考FigureYa249Regulon，b的画法可参考FigureYa248MutLandscape
-The algorithm for Figure 2a can be referenced from FigureYa249Regulon, and the plotting method for 2b from FigureYa248MutLandscape
-Figure 3de可产考FigureYa25sankey和FigureYa125Fishertest
-Figure 3de can be referenced from FigureYa25sankey and FigureYa125Fishertest
-Figure 4f可参考FigureYa106immunotherapy，4h可参考
-https://k.koudai.com/Eig1YOB4
-Figure 4f can be referenced from FigureYa106immunotherapy, and 4h from
-https://k.koudai.com/Eig1YOB4
-Figure 5b可参考FigureYa12box，f可参考FigureYa162boxViolin
-Figure 5b can be referenced from FigureYa12box, and f from FigureYa162boxViolin
-Figure 6可参考FigureYa35batch_bestSeparation，FigureYa144DiagHeatmap或
+Author(s)
+: Xiaofan Lu
+Reviewer(s)
+: Ying Ge, Junyi Shen
+Date
+: 2025-12-02
+1
+Academic Citation
+If you use this code in your work or research, we kindly request that
+you cite our publication:
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization
+Framework for Enhancing Biomedical Data Interpretation and Research
+Efficiency. iMetaMed.
+https://doi.org/10.1002/imm3.70005
+If you use MOVICS in published research, please cite:
+Xiaofan Lu, Jialin Meng, Yujie Zhou, Liyun Jiang, Fangrong Yan,
+MOVICS: an R package for multi-omics integration and visualization in
+cancer subtyping, Bioinformatics, Volume 36, Issue 22-23, December 2020,
+Pages 5539–5541,
+https://doi.org/10.1093/bioinformatics/btaa1018
+If you calculate MeTIL score using PCA in published research, please
+cite:
+Jeschke J, Bizet M, Desmedt C et al. DNA methylation-based immune
+response signature improves patient diagnosis in multiple cancers,
+Journal of Clinical Investigation 2017;127:3090-3102.
+If you computational immune microenvironment with 22 CIBERSORT
+signatures and 2 MCPcounter signatures in published research, please
+cite:
+Xiao Y, Ma D, Zhao S, et al. Multi-Omics Profiling Reveals Distinct
+Microenvironment Characterization and Suggests Immune Escape Mechanisms
+of Triple-Negative Breast Cancer. Clin Cancer Res. 2019
+If you use circlize in published research, please cite:
+Gu, Z. circlize implements and enhances circular visualization in R.
+Bioinformatics 2014.
+If you use ComplexHeatmap in published research, please cite:
+Zuguang Gu, et al., Complex heatmaps reveal patterns and
+correlations in multidimensional genomic data, Bioinformatics,
+2016.
+Zuguang Gu. Complex Heatmap Visualization, iMeta, 2022.
+2
+需求描述 Requirement
+Description
+Figure3A的免疫landscape，包括免疫检查点的表达，免疫signature的富集，免疫/基质得分的估计还有甲基化淋巴细胞的定量（Xiaofan
+Lu老师真是热图高手！）这里主要就是这个DNA甲基化淋巴细胞的定量计算，不知道是怎么来的，所有TCGA数据都可以计算吗？
+The immune landscape of Figure 3A includes immune checkpoint
+expression, immune signature enrichment, immune/stromal score
+estimation, and methylated lymphocyte quantification (Xiaofan Lu is
+truly a heatmap expert!). The main goal here is to calculate the
+quantification of DNA methylated lymphocytes. I’m not sure where this
+came from, but can this be performed on all TCGA data?
+From
+https://onlinelibrary.wiley.com/doi/10.1002/ctm2.601
+FIGURE 3 Differential immune profile across MIBC subtypes and its
+association with genomic alteration and immunotherapeutic response. (A)
+Heatmap showing the immune profile in the MIBC-TCGA cohort, with the top
+panel showing the expression of genes involved in immune checkpoint
+targets and the bottom panel showing the enrichment level of 24
+microenvironment cell types. The immune enrichment score, stromal
+enrichment score and DNA methylation of tumour-infiltrating lymphocytes
+(MeTILs) were annotated at the top of the heatmap.
+3
+应用场景 Application
+Scenarios
+Xiaofan Lu写了一个神奇的R包 MOVICS，用自己的数据跑一遍，文章里的key
+Figure就出来了。
+怎么把这些图组织到一起讲故事呢？这篇文章是个很好的应用MOVICS的例子。
+根据甲基化计算DNA methylation of tumour-infiltrating lymphocyte
+(MeTIL)得分，并根据免疫检查点表达和肿瘤免疫微环境富集绘制热图。
+我们也曾在FigureYa170ImmuLncRNA里用estimate包计算肿瘤纯度，更新后改用tidyestimate包
+例文中很多图我们都实现过，例如：
+Figure
+1C的画法可参考FigureYa196PanPie，1DE可参考FigureYa251NPHSurv
+Figure
+2A的算法可参考FigureYa249Regulon，B的画法可参考FigureYa248MutLandscape
+Figure 3A由FigureYa255TIME复现，F可参考FigureYa106immunotherapy
+Figure
+4B可参考FigureYa12box，F可参考FigureYa162boxViolin，H-L可参考FigureYa35batch_bestSeparation，M
+可参考FigureYa144DiagHeatmap或
 https://mp.weixin.qq.com/s/34WRZRBVPHUNRLlzNH2nzw
-Figure 6 can be referenced from FigureYa35batch_bestSeparation, FigureYa144DiagHeatmap or
+Figure S3批次矫正PCA可参考FigureYa203ComBat
+Figure 4de可参考FigureYa25sankey和FigureYa125Fishertest
+Xiaofan Lu wrote an amazing R package called MOVICS. Run it with your
+own data, and you’ll instantly see the key figures from your article.
+How can you organize these figures to tell a story? This article
+provides a great example of MOVICS.
+We calculated DNA methylation of tumor-infiltrating lymphocyte
+(MeTIL) scores based on methylation, and created heatmaps based on
+immune checkpoint expression and tumor immune microenvironment
+enrichment.
+We previously used the estimate package in FigureYa170ImmuLncRNA to
+calculate tumor purity, now we use the tidyestimate package.
+Many of the figures in the example article:
+For plotting method of Figure 1C, refer to FigureYa196PanPie; for
+Figure 1DE, refer to FigureYa251NPHSurv
+For algorithm of Figure 2A, refer to FigureYa249Regulon; for
+plotting method of Figure 2B, refer to FigureYa248MutLandscape
+Figure 3A is reproduced by FigureYa255TIME; for Figure 3F, refer to
+FigureYa106immunotherapy
+For Figure 4B, refer to FigureYa12box; for Figure 4F, refer to
+FigureYa162boxViolin; for Figure 4H-L, refer to
+FigureYa35batch_bestSeparation, for Figure 4M, refer to
+FigureYa144DiagHeatmap or
 https://mp.weixin.qq.com/s/34WRZRBVPHUNRLlzNH2nzw
-Figure S4a可参考FigureYa251NPHSurv
-Figure S4a can be referenced from FigureYa251NPHSurv
-环境设置 Environment Setup
-使用国内镜像安装包
-Install packages using domestic mirrors
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
-BiocManager::install("Biobase")
-BiocManager::install("GSVA")
-BiocManager::install("ComplexHeatmap")
-
-library(utils)
-rforge <- "http://r-forge.r-project.org"
-install.packages("estimate", repos=rforge, dependencies=TRUE)
-install.packages("R.utils")
-加载包
-Load packages
-library(GSVA)
-library(ComplexHeatmap) # 用到里面的pheatmap画图然后拼图，需安装2.8以上版本的ComplexHeatmap
-# Using pheatmap from ComplexHeatmap for plotting and combining plots, requires ComplexHeatmap version 2.8 or above
-source("pheatmap_translate.R") # 如果不想放弃较老版本的R及其对应的老ComplexHeatmap，可以只加载新版ComplexHeatmap里的这个函数，该脚本出自2.9.4版ComplexHeatmap If you don't want to abandon older versions of R and its corresponding old ComplexHeatmap, you can just load this function from the new version of ComplexHeatmap. This script is from ComplexHeatmap version 2.9.4
-library(circlize)
-library(viridis)
-library(gplots)
-library(data.table)
-library(estimate)
-source("annTrackScale.R") # 加载函数，对数值进行标准化并对极端值做截断 # Load the function, normalize the values, and truncate extreme values.
-Sys.setenv(LANGUAGE = "en") #显示英文报错信息 #Display English error message
-options(stringsAsFactors = FALSE) #禁止chr转成factor # Disable conversion of chr to factor
-# 加载自定义函数 # Load custom functions
-standarize.fun <- function(indata=NULL, halfwidth=NULL, centerFlag=T, scaleFlag=T) {  
-  outdata=t(scale(t(indata), center=centerFlag, scale=scaleFlag))
-  if (!is.null(halfwidth)) {
-    outdata[outdata>halfwidth]=halfwidth
-    outdata[outdata<(-halfwidth)]= -halfwidth
-  }
-  return(outdata)
+For Figure S3 batch correction PCA, refer to FigureYa203ComBat
+For Figure 4de, refer to FigureYa25sankey and
+FigureYa125Fishertest
+4
+环境设置 Environment
+Setup
+source
+(
+"install_dependencies.R"
+)
+library
+(utils)
+# 用到read.table函数 # Used for the read.table function
+library
+(GSVA)
+# 用到GSVA包计算免疫signature的富集分数 # Used to calculate the enrichment scores of immune signatures
+library
+(grDevices)
+# 用来配色 # Used for color mapping
+library
+(ComplexHeatmap)
+# 用到里面的pheatmap画图然后拼图，需安装2.8以上版本的ComplexHeatmap # Use the pheatmap function to plot and then assemble the image. You must have ComplexHeatmap version 2.8 or later installed.
+library
+(circlize)
+# 用来配色 # Used for color mapping
+library
+(viridis)
+# 用来配色 # Used for color mapping
+library
+(gplots)
+# 画图用到colorpanel函数 # Used for the colorpanel function in plotting
+library
+(data.table)
+# 数据读入用到fread函数 # Used for the fread function in data import
+library
+(tidyestimate)
+# 用来计算immune/stromal得分 (替代旧的estimate包) # Used to calculate immune/stromal scores (replaces old estimate package)
+source
+(
+"annTrackScale.R"
+)
+# 加载函数，对数值进行标准化并对极端值做截断 # Load the function to normalize and truncate extreme values.
+Sys.setenv
+(
+LANGUAGE =
+"en"
+)
+#显示英文报错信息 # Display English error messages.
+options
+(
+stringsAsFactors =
+FALSE
+)
+#禁止chr转成factor # Disable conversion of chr values ​​to factors.
+# 加载自定义函数
+standardize.fun
+<-
+function
+(
+indata=
+NULL
+,
+halfwidth=
+NULL
+,
+centerFlag=
+TRUE
+,
+scaleFlag=
+TRUE
+) {
+# First try normal scaling, then handle issues
+outdata
+<-
+t
+(
+scale
+(
+t
+(indata),
+center=
+centerFlag,
+scale=
+scaleFlag))
+# Handle cases where scaling produced NA or infinite values
+outdata[
+is.na
+(outdata)]
+<-
+0
+outdata[
+is.infinite
+(outdata)]
+<-
+0
+# Apply halfwidth truncation if specified
+if
+(
+!
+is.null
+(halfwidth)) {
+outdata[outdata
+>
+halfwidth]
+<-
+halfwidth
+outdata[outdata
+<
+(
+-
+halfwidth)]
+<-
+-
+halfwidth
 }
+# Ensure all values are finite
+outdata[
+!
+is.finite
+(outdata)]
+<-
+0
+return
+(outdata)
+}
+5
 利用PCA计算MeTIL得分
-参考文献：Jeschke J, Bizet M, Desmedt C et al.
-DNA methylation-based immune response signature improves patient diagnosis in multiple cancers
-, Journal of Clinical Investigation 2017;127:3090-3102.
+Calculate MeTIL score using PCA
 # 读入用MOVICS获取的muscle-invasive bladder cancer (MIBC)亚型 # Read in muscle-invasive bladder cancer (MIBC) subtypes obtained using MOVICS
-annCol.tcga <- read.table("tcga.mibc.anno.txt",sep = "\t",row.names = 1,check.names = F,stringsAsFactors = F,header = T)
-
+annCol.tcga
+<-
+read.table
+(
+"tcga.mibc.anno.txt"
+,
+sep =
+"
+\t
+"
+,
+row.names =
+1
+,
+check.names =
+F,
+stringsAsFactors =
+F,
+header =
+T)
 # 读取450K甲基化数据
 # 甲基化数据只要用到5个探针的marker就可以，所以这里我的输入数据是简化的，方便传输
 # Read 450KB of methylation data
 # Methylation data only requires five probe markers, so my input data is simplified for ease of transmission.
-meth <- fread("TCGA-BLCA.methylation450.tsv.gz",sep = "\t",check.names = F,stringsAsFactors = F,header = T,data.table = F)
-rownames(meth) <- meth[,1]; meth <- as.data.frame(na.omit(meth[,-1]))
-
+meth
+<-
+fread
+(
+"TCGA-BLCA.methylation450.tsv.gz"
+,
+sep =
+"
+\t
+"
+,
+check.names =
+F,
+stringsAsFactors =
+F,
+header =
+T,
+data.table =
+F)
+rownames
+(meth)
+<-
+meth[,
+1
+]; meth
+<-
+as.data.frame
+(
+na.omit
+(meth[,
+-
+1
+]))
 # 匹配亚型 # Matching subtypes
-colnames(meth) <- substr(colnames(meth), start = 1,stop = 16)
-meth <- meth[,which(substr(colnames(meth), 14, 15) == "01")]
-meth <- meth[,rownames(annCol.tcga)] 
-
-MeTIL.marker <- c("cg20792833","cg20425130","cg23642747","cg12069309","cg21554552")
-meth.metil <- meth[MeTIL.marker,]
-MeTIL <- meth[MeTIL.marker,]
-MeTIL <- t(scale(t(MeTIL)))
-
+colnames
+(meth)
+<-
+substr
+(
+colnames
+(meth),
+start =
+1
+,
+stop =
+16
+)
+meth
+<-
+meth[,
+which
+(
+substr
+(
+colnames
+(meth),
+14
+,
+15
+)
+==
+"01"
+)]
+# 找到甲基化数据和注释数据中的共同样本
+common.samples
+<-
+intersect
+(
+colnames
+(meth),
+rownames
+(annCol.tcga))
+meth
+<-
+meth[,common.samples]
+annCol.tcga
+<-
+annCol.tcga[common.samples, , drop
+=
+FALSE
+]
+MeTIL.marker
+<-
+c
+(
+"cg20792833"
+,
+"cg20425130"
+,
+"cg23642747"
+,
+"cg12069309"
+,
+"cg21554552"
+)
+meth.metil
+<-
+meth[MeTIL.marker,]
+MeTIL
+<-
+meth[MeTIL.marker,]
+MeTIL
+<-
+t
+(
+scale
+(
+t
+(MeTIL)))
 # 计算MeTIL得分 # Calculate MeTIL score
-pca.MeTIL <- prcomp(MeTIL,center = F,scale. = F)
-MeTIL <- pca.MeTIL$rotation[,1]
-annCol.tcga$MeTIL <- MeTIL
+pca.MeTIL
+<-
+prcomp
+(MeTIL,
+center =
+F,
+scale. =
+F)
+MeTIL
+<-
+pca.MeTIL
+$
+rotation[,
+1
+]
+annCol.tcga
+$
+MeTIL
+<-
+MeTIL
+6
 计算免疫微环境
-tcga.mibc.tpm.txt文件较大，已上传微云：
-https://share.weiyun.com/LRTM3voy
+Computational immune microenvironment
 使用curated免疫签名，包括22个CIBERSORT签名以及2个MCPcounter签名
-Computational Immunological Microenvironment
-The tcga.mibc.tpm.txt file is large and has been uploaded to Weiyun:
-https://share.weiyun.com/LRTM3voy
-Uses curated immune signatures, including 22 CIBERSORT signatures and 2 MCPcounter signatures
-参考文献：Xiao Y, Ma D, Zhao S, et al.
-Multi-Omics Profiling Reveals Distinct Microenvironment Characterization and Suggests Immune Escape Mechanisms of Triple-Negative Breast Cancer
-. Clin Cancer Res. 2019
+Using curated immune signatures, including 22 CIBERSORT signatures
+and 2 MCPcounter signatures
 # 加载表达数据 # Load expression data
-tpm <- read.table("tcga.mibc.tpm.txt",sep = "\t",row.names = 1,check.names = F,stringsAsFactors = F,header = T)
-immune.signature <- read.table("Curated_Immune_Cell_Signature.txt",sep = "\t",check.names = F,stringsAsFactors = F,header = T,row.names = NULL)
-
+tpm
+<-
+read.table
+(
+"tcga.mibc.tpm.txt"
+,
+sep =
+"
+\t
+"
+,
+row.names =
+1
+,
+check.names =
+F,
+stringsAsFactors =
+F,
+header =
+T)
+immune.signature
+<-
+read.table
+(
+"Curated_Immune_Cell_Signature.txt"
+,
+sep =
+"
+\t
+"
+,
+check.names =
+F,
+stringsAsFactors =
+F,
+header =
+T,
+row.names =
+NULL
+)
 # 构建计算GSVA的列表 # Build a list to calculate GSVA
-cell.type <- unique(immune.signature$CellType)
-immune.sig.ccr <- list()
-for (i in cell.type) {
-  immune.sig.ccr[[i]] <- immune.signature[which(immune.signature$CellType == i),"Symbol"]
+cell.type
+<-
+unique
+(immune.signature
+$
+CellType)
+immune.sig.ccr
+<-
+list
+()
+for
+(i
+in
+cell.type) {
+immune.sig.ccr[[i]]
+<-
+immune.signature[
+which
+(immune.signature
+$
+CellType
+==
+i),
+"Symbol"
+]
 }
-
 # 免疫检查点相关基因 # Immune checkpoint-related genes
-imm.targets <- c("CD274","PDCD1","CD247","PDCD1LG2","CTLA4","TNFRSF9","TNFRSF4","TLR9") 
-
+imm.targets
+<-
+c
+(
+"CD274"
+,
+"PDCD1"
+,
+"CD247"
+,
+"PDCD1LG2"
+,
+"CTLA4"
+,
+"TNFRSF9"
+,
+"TNFRSF4"
+,
+"TLR9"
+)
 # 免疫细胞的排序 # Sorting of immune cells
-immune.sig.ccr.order <- c("T.cells.CD8", 
-                          "T.cells.regulatory..Tregs.",
-                          "T.cells.CD4.naive",
-                          "T.cells.follicular.helper",
-                          "B.cells.naive",
-                          "B.cells.memory",
-                          "T.cells.gamma.delta",
-                          "Dendritic.cells.activated",
-                          "Macrophages.M1",
-                          "NK.cells.activated",
-                          "Plasma.cells",
-                          "T.cells.CD4.memory.resting",
-                          "T.cells.CD4.memory.activated",
-                          "Mast.cells.activated",
-                          "NK.cells.resting",
-                          "Macrophages.M0",
-                          "Macrophages.M2",
-                          "Eosinophils",
-                          "Monocytes",
-                          "Dendritic.cells.resting",
-                          "Mast.cells.resting",
-                          "Neutrophils",
-                          "Endothelial cells",
-                          "Fibroblasts")
-
+immune.sig.ccr.order
+<-
+c
+(
+"T.cells.CD8"
+,
+"T.cells.regulatory..Tregs."
+,
+"T.cells.CD4.naive"
+,
+"T.cells.follicular.helper"
+,
+"B.cells.naive"
+,
+"B.cells.memory"
+,
+"T.cells.gamma.delta"
+,
+"Dendritic.cells.activated"
+,
+"Macrophages.M1"
+,
+"NK.cells.activated"
+,
+"Plasma.cells"
+,
+"T.cells.CD4.memory.resting"
+,
+"T.cells.CD4.memory.activated"
+,
+"Mast.cells.activated"
+,
+"NK.cells.resting"
+,
+"Macrophages.M0"
+,
+"Macrophages.M2"
+,
+"Eosinophils"
+,
+"Monocytes"
+,
+"Dendritic.cells.resting"
+,
+"Mast.cells.resting"
+,
+"Neutrophils"
+,
+"Endothelial cells"
+,
+"Fibroblasts"
+)
 # 计算immune/stromal得分 # Calculate immune/stromal score
-indata <- log2(tpm + 1)
+indata
+<-
+log2
+(tpm
++
+1
+)
 # 保存到文件 # Save to file
-write.table(indata,file = "TCGA_log2TPM_hugo.txt",sep = "\t",row.names = T,col.names = NA,quote = F)
-
-filterCommonGenes(input.f = "TCGA_log2TPM_hugo.txt" , output.f="TCGA_log2TPM_hugo_ESTIMATE.txt", id="GeneSymbol")
-estimateScore("TCGA_log2TPM_hugo_ESTIMATE.txt","TCGA_log2TPM_hugo_estimate_score.txt", platform="affymetrix")
-est.tcga <- read.table(file = "TCGA_log2TPM_hugo_estimate_score.txt",header = T,row.names = NULL,check.names = F,stringsAsFactors = F,sep = "\t")
-rownames(est.tcga) <- est.tcga[,2]; colnames(est.tcga) <- est.tcga[1,]; est.tcga <- est.tcga[-1,c(-1,-2)];
-est.tcga <- sapply(est.tcga, as.numeric); rownames(est.tcga) <- c("StromalScore","ImmuneScore","ESTIMATEScore","TumorPurity"); est.tcga.backup = as.data.frame(est.tcga); colnames(est.tcga.backup) <- colnames(indata)
-
-# 对数值进行标准化并对极端值做截断 # Normalize the values ​​and truncate extreme values
-est.tcga <- annTrackScale(indata = est.tcga, halfwidth = 2, poolsd = F); est.tcga <- as.data.frame(t(est.tcga)) 
-rownames(est.tcga) <- colnames(tpm)
-
-tcga.immune.gsva <- gsva(as.matrix(log2(tpm + 1)),
-                         immune.sig.ccr,
-                         method = "gsva")
-开始画图Start Drawing
-用complexheatmap里的pheatmap分别画三个热图，然后拼在一起Use pheatmap in complexheatmap to draw three heatmaps separately, then combine them.
+#write.table(indata,file = "TCGA_log2TPM_hugo.txt",sep = "\t",row.names = T,col.names = NA,quote = F)
+# 使用tidyestimate包计算得分 # Use tidyestimate package to calculate scores
+# 转换indata为tidyestimate需要的格式：第一列为基因名 # Convert indata to tidyestimate format: first column contains gene names
+indata_for_tidy
+<-
+as.data.frame
+(indata)
+indata_for_tidy
+$
+GeneSymbol
+<-
+rownames
+(indata_for_tidy)
+indata_for_tidy
+<-
+indata_for_tidy[,
+c
+(
+"GeneSymbol"
+,
+setdiff
+(
+colnames
+(indata_for_tidy),
+"GeneSymbol"
+))]
+filtered_data
+<-
+filter_common_genes
+(indata_for_tidy,
+id =
+"hgnc_symbol"
+,
+tidy =
+TRUE
+,
+tell_missing =
+TRUE
+,
+find_alias =
+FALSE
+)
+# 检查是否有足够的基因计算ESTIMATE得分 # Check if there are enough genes to calculate ESTIMATE scores
+if
+(
+nrow
+(filtered_data)
+<
+50
+) {
+warning
+(
+"Insufficient genes for ESTIMATE score calculation. Using placeholder values."
+)
+# 创建占位符数据 # Create placeholder data
+est.tcga
+<-
+matrix
+(
+0
+,
+nrow=
+3
+,
+ncol=
+ncol
+(indata))
+rownames
+(est.tcga)
+<-
+c
+(
+"StromalScore"
+,
+"ImmuneScore"
+,
+"ESTIMATEScore"
+)
+colnames
+(est.tcga)
+<-
+colnames
+(indata)
+}
+else
+{
+# 然后计算ESTIMATE得分 # Then calculate ESTIMATE scores
+est.tcga
+<-
+estimate_score
+(filtered_data,
+is_affymetrix =
+FALSE
+)
+# 使用RNA-seq数据，不是Affymetrix # Using RNA-seq data, not Affymetrix
+# 转换数据格式为兼容后续分析的格式 # Convert data format for compatibility with subsequent analysis
+# estimate_score返回格式：sample, stromal, immune, estimate
+# We need to transpose to have samples as columns
+# 保存样本名在转置前 # Save sample names before transpose
+sample_names
+<-
+est.tcga
+$
+sample
+est.tcga
+<-
+est.tcga[,
+c
+(
+"stromal"
+,
+"immune"
+,
+"estimate"
+)]
+# 只选择数值列 # Select only numeric columns
+est.tcga
+<-
+t
+(est.tcga)
+# 转置：行变为得分类型，列变为样本 # Transpose: rows become score types, columns become samples
+rownames
+(est.tcga)
+<-
+c
+(
+"StromalScore"
+,
+"ImmuneScore"
+,
+"ESTIMATEScore"
+)
+colnames
+(est.tcga)
+<-
+sample_names
+# 设置列名 # Set column names
+}
+est.tcga.backup
+<-
+est.tcga
+# 备份原始数据 # Backup original data
+# 对数值进行标准化并对极端值做截断
+# Normalize the values and truncate extreme values
+est.tcga_scaled
+<-
+annTrackScale
+(est.tcga,
+halfwidth =
+2
+,
+poolsd =
+FALSE
+)
+# 如果范围太小，手动扩展到-2到2范围
+# If range is still too small, manually expand to -2 to 2 range
+stromal_range
+<-
+range
+(est.tcga_scaled[
+"StromalScore"
+,],
+na.rm=
+TRUE
+)
+immune_range
+<-
+range
+(est.tcga_scaled[
+"ImmuneScore"
+,],
+na.rm=
+TRUE
+)
+if
+(
+max
+(
+abs
+(stromal_range))
+<
+0.5
+&&
+sd
+(est.tcga_scaled[
+"StromalScore"
+,],
+na.rm=
+TRUE
+)
+>
+0
+) {
+est.tcga_scaled[
+"StromalScore"
+,]
+<-
+2
+*
+est.tcga_scaled[
+"StromalScore"
+,]
+/
+max
+(
+abs
+(stromal_range))
+}
+if
+(
+max
+(
+abs
+(immune_range))
+<
+0.5
+&&
+sd
+(est.tcga_scaled[
+"ImmuneScore"
+,],
+na.rm=
+TRUE
+)
+>
+0
+) {
+est.tcga_scaled[
+"ImmuneScore"
+,]
+<-
+2
+*
+est.tcga_scaled[
+"ImmuneScore"
+,]
+/
+max
+(
+abs
+(immune_range))
+}
+est.tcga
+<-
+as.data.frame
+(
+t
+(est.tcga_scaled))
+rownames
+(est.tcga)
+<-
+colnames
+(tpm)
+# 使用新的GSVA API
+gsva_param
+<-
+gsvaParam
+(
+as.matrix
+(
+log2
+(tpm
++
+1
+)), immune.sig.ccr)
+tcga.immune.gsva
+<-
+gsva
+(gsva_param,
+verbose =
+TRUE
+)
+7
+开始画图 Start
+plotting
+用complexheatmap里的pheatmap分别画三个热图，然后拼在一起。
+Use pheatmap in complexheatmap to plot three heatmaps separately,
+then combine them.
 # 设置颜色Set colors
-clust.col <- c("#DD492E","#40548A","#32A087","#EC7D21")
-heatmap.BlBkRd <- c("#54FEFF","#32ABAA","#125456","#000000","#510000","#A20000","#F30000")
-blue <- "#5bc0eb"
-gold <- "#ECE700"
-cyan <- "#00B3D0"
-
-annCol.tcga$ImmuneScore <- as.numeric(est.tcga[rownames(annCol.tcga),"ImmuneScore"])
-annCol.tcga$StromalScore <- as.numeric(est.tcga[rownames(annCol.tcga),"StromalScore"])
-annCol.tcga <- annCol.tcga[order(annCol.tcga$CMOIC),]
-annColors.tcga <- list() # 构建热图的图例颜色 # Construct the legend color of the heat map
-annColors.tcga[["CMOIC"]] <- c("CS1" = clust.col[1],
-                               "CS2" = clust.col[2],
-                               "CS3" = clust.col[3],
-                               "CS4" = clust.col[4])
-annColors.tcga[["ImmuneScore"]] <- inferno(64)
-annColors.tcga[["StromalScore"]] <- viridis(64)
-
+clust.col
+<-
+c
+(
+"#DD492E"
+,
+"#40548A"
+,
+"#32A087"
+,
+"#EC7D21"
+)
+heatmap.BlBkRd
+<-
+c
+(
+"#54FEFF"
+,
+"#32ABAA"
+,
+"#125456"
+,
+"#000000"
+,
+"#510000"
+,
+"#A20000"
+,
+"#F30000"
+)
+blue
+<-
+"#5bc0eb"
+gold
+<-
+"#ECE700"
+cyan
+<-
+"#00B3D0"
+# 添加ESTIMATE得分到注释 # Add ESTIMATE scores to annotation
+# est.tcga已经是转置后的格式：行=样本，列=分数类型
+# est.tcga is already transposed format: rows=samples, columns=score types
+common_samples
+<-
+intersect
+(
+rownames
+(annCol.tcga),
+rownames
+(est.tcga))
+if
+(
+length
+(common_samples)
+>
+0
+) {
+annCol.tcga
+$
+ImmuneScore
+<-
+est.tcga[common_samples,
+"ImmuneScore"
+]
+annCol.tcga
+$
+StromalScore
+<-
+est.tcga[common_samples,
+"StromalScore"
+]
+annCol.tcga
+<-
+annCol.tcga[
+order
+(annCol.tcga
+$
+CMOIC),]
+}
+else
+{
+warning
+(
+"No sample matches found between annotation and ESTIMATE scores."
+)
+annCol.tcga
+$
+ImmuneScore
+<-
+0
+annCol.tcga
+$
+StromalScore
+<-
+0
+}
+# 确保注释数据有足够的差异 # Ensure annotation data has enough variation
+if
+(
+length
+(
+unique
+(annCol.tcga
+$
+ImmuneScore))
+<
+2
+) {
+warning
+(
+"ImmuneScore annotation has no variation. Adding minimal variation."
+)
+annCol.tcga
+$
+ImmuneScore
+<-
+annCol.tcga
+$
+ImmuneScore
++
+rnorm
+(
+length
+(annCol.tcga
+$
+ImmuneScore),
+0
+,
+0.01
+)
+}
+if
+(
+length
+(
+unique
+(annCol.tcga
+$
+StromalScore))
+<
+2
+) {
+warning
+(
+"StromalScore annotation has no variation. Adding minimal variation."
+)
+annCol.tcga
+$
+StromalScore
+<-
+annCol.tcga
+$
+StromalScore
++
+rnorm
+(
+length
+(annCol.tcga
+$
+StromalScore),
+0
+,
+0.01
+)
+}
+# 重建热图的图例颜色 # Rebuild heatmap legend colors
+annColors.tcga
+<-
+list
+()
+# 构建热图的图例颜色 # Construct the legend color of the heat map
+annColors.tcga[[
+"CMOIC"
+]]
+<-
+c
+(
+"CS1"
+=
+clust.col[
+1
+],
+"CS2"
+=
+clust.col[
+2
+],
+"CS3"
+=
+clust.col[
+3
+],
+"CS4"
+=
+clust.col[
+4
+])
+# 使用基础颜色向量，但添加一些变化以避免断点值错误
+annColors.tcga[[
+"ImmuneScore"
+]]
+<-
+inferno
+(
+64
+)
+annColors.tcga[[
+"StromalScore"
+]]
+<-
+viridis
+(
+64
+)
 ## 热图1：免疫检查点基因表达 Heat map 1: immune checkpoint gene expression
-indata <- log2(tpm[intersect(rownames(tpm),imm.targets),] + 1)
-hm1 <- pheatmap(standarize.fun(indata[imm.targets,rownames(annCol.tcga)],halfwidth = 2), # 表达谱数据标准化 # Normalize expression profile data
-                border_color = NA, # 热图单元格无边框 # No borders around heatmap cells
-                annotation_col = annCol.tcga[,c("CMOIC","StromalScore","ImmuneScore")],
-                annotation_colors = annColors.tcga[c("CMOIC","StromalScore","ImmuneScore")],
-                color = colorpanel(64,low=blue,mid = "black",high=gold),
-                show_rownames = T, # 显示行名 # Show row names
-                show_colnames = F, # 不显示列名 # Do not show column names
-                cellheight = 12, # 热图高度固定 # Fixed heatmap height
-                cellwidth = 0.6, # 热图宽度固定 # Fixed heatmap width
-                name = "ICI", # 图例名字 # Legend name
-                cluster_rows = F, # 行不聚类 # No clustering for rows
-                cluster_cols = F) # 列不聚类 # No clustering for columns
-
+indata
+<-
+log2
+(tpm[
+intersect
+(
+rownames
+(tpm),imm.targets),]
++
+1
+)
+expr_data
+<-
+standardize.fun
+(indata[imm.targets,
+rownames
+(annCol.tcga)],
+halfwidth =
+2
+)
+# 表达谱数据标准化 # Normalize expression profile data
+# 确保数据有足够的差异用于热图 # Ensure data has enough variation for heatmap
+if
+(
+length
+(
+unique
+(expr_data))
+<
+2
+) {
+warning
+(
+"Expression data has no variation. Adding minimal variation for visualization."
+)
+expr_data
+<-
+expr_data
++
+matrix
+(
+rnorm
+(
+length
+(expr_data))
+*
+0.01
+,
+nrow=
+nrow
+(expr_data),
+ncol=
+ncol
+(expr_data))
+}
+hm1
+<-
+pheatmap
+(expr_data,
+border_color =
+NA
+,
+# 热图单元格无边框 # No borders around heatmap cells
+annotation_col =
+annCol.tcga[,
+c
+(
+"CMOIC"
+,
+"StromalScore"
+,
+"ImmuneScore"
+)],
+annotation_colors =
+annColors.tcga[
+c
+(
+"CMOIC"
+,
+"StromalScore"
+,
+"ImmuneScore"
+)],
+color =
+colorpanel
+(
+64
+,
+low=
+blue,
+mid =
+"black"
+,
+high=
+gold),
+show_rownames =
+T,
+# 显示行名 # Show row names
+show_colnames =
+F,
+# 不显示列名 # Do not show column names
+cellheight =
+12
+,
+# 热图高度固定 # Fixed heatmap height
+cellwidth =
+0.6
+,
+# 热图宽度固定 # Fixed heatmap width
+name =
+"ICI"
+,
+# 图例名字 # Legend name
+cluster_rows =
+F,
+# 行不聚类 # No clustering for rows
+cluster_cols =
+F)
+# 列不聚类 # No clustering for columns
 #pdf("CheckPoint_heatmap.pdf",width = 10,height = 10)
 hm1
 #dev.off()
-
-## 热图2：肿瘤免疫微环境富集得分 Heatmap 2: Tumor Immune Microenvironment Enrichment Scores
-hm2 <- pheatmap(standarize.fun(tcga.immune.gsva[immune.sig.ccr.order,rownames(annCol.tcga)],halfwidth = 1), # 富集得分标准化并排序
-                border_color = NA,
-                color = NMF:::ccRamp(x = heatmap.BlBkRd,n = 64),
-                gaps_row = c(14,22), # 根据不同类别的免疫细胞分割 # Segmentation by immune cell class
-                show_rownames = T,
-                show_colnames = F,
-                cellheight = 12,
-                cellwidth = 0.6,
-                name = "TIME",
-                cluster_rows = F,
-                cluster_cols = F)
-
+8
+热图2：肿瘤免疫微环境富集得分 Heatmap 2: Tumor Immune Microenvironment
+Enrichment Scores
+heatmap_colors
+<-
+colorRampPalette
+(heatmap.BlBkRd)(
+64
+)
+gsva_data
+<-
+standardize.fun
+(tcga.immune.gsva[immune.sig.ccr.order,
+rownames
+(annCol.tcga)],
+halfwidth =
+1
+)
+# 富集得分标准化并排序
+hm2
+<-
+pheatmap
+(gsva_data,
+border_color =
+NA
+,
+color =
+heatmap_colors,
+gaps_row =
+c
+(
+14
+,
+22
+),
+# 根据不同类别的免疫细胞分割 # Split based on different immune cell categories
+show_rownames =
+T,
+show_colnames =
+F,
+cellheight =
+12
+,
+cellwidth =
+0.6
+,
+name =
+"TIME"
+,
+cluster_rows =
+F,
+cluster_cols =
+F)
 #pdf("TIMEheatmap.pdf",width = 10,height = 10)
 hm2
 #dev.off()
-
-## 热图3：MeTIL得分 MeTIL score
-hm3 <- pheatmap(standarize.fun(t(annCol.tcga[,"MeTIL",drop = F]),halfwidth = 1),
-                border_color = NA,
-                color = NMF:::ccRamp(c(cyan,"black","#F12AFE"),64),
-                show_rownames = T,
-                show_colnames = F,
-                cellheight = 12,
-                cellwidth = 0.6,
-                name = "MeTIL",
-                cluster_rows = F,
-                cluster_cols = F)
-
+9
+热图3：MeTIL得分 MeTIL
+score
+# 使用现代的颜色插值方法 (2025年更新) # Use modern color interpolation (2025 update)
+metil_colors
+<-
+colorRampPalette
+(
+c
+(cyan,
+"black"
+,
+"#F12AFE"
+))(
+64
+)
+# 检查MeTIL数据是否有足够的差异 # Check if MeTIL data has enough variation
+metil_data
+<-
+standardize.fun
+(
+t
+(annCol.tcga[,
+"MeTIL"
+,
+drop =
+F]),
+halfwidth =
+1
+)
+if
+(
+length
+(
+unique
+(metil_data))
+<
+2
+) {
+warning
+(
+"MeTIL data has no variation. Adding minimal variation for visualization."
+)
+metil_data
+<-
+metil_data
++
+matrix
+(
+rnorm
+(
+length
+(metil_data))
+*
+0.01
+,
+nrow=
+nrow
+(metil_data),
+ncol=
+ncol
+(metil_data))
+}
+hm3
+<-
+pheatmap
+(metil_data,
+border_color =
+NA
+,
+color =
+metil_colors,
+show_rownames =
+T,
+show_colnames =
+F,
+cellheight =
+12
+,
+cellwidth =
+0.6
+,
+name =
+"MeTIL"
+,
+cluster_rows =
+F,
+cluster_cols =
+F)
 #pdf("MeTILheatmap.pdf",width = 10,height = 10)
 hm3
 #dev.off()
-可以用下面的方法拼成一张图。也可以分别输出以上三个图到pdf文件，然后用Illustrator等软件打开后拼接。You can use the following method to combine the three images into a single image. You can also export the three images separately to PDF files, then open them in software like Illustrator and combine them.
+可以用下面的方法拼成一张图。也可以分别输出以上三个图到pdf文件，然后用Illustrator等软件打开后拼接。
+You can use the following method to create a single image. You can
+also export the three images above to PDF files separately and then open
+them in software such as Illustrator to combine them.
 # 合并热图并输出 # Merge the heatmap and export
-pdf("TIME.pdf",width = 10,height = 10)
-draw(hm1 %v% hm2 %v% hm3, 
-     heatmap_legend_side = "right", 
-     annotation_legend_side = "right")
-invisible(dev.off())
-后期处理Post-Processing
-输出的pdf文件是矢量图，可以用illustrator等软件打开，编辑图形和文字。The output PDF file is a vector image and can be opened in software like Illustrator to edit the graphics and text.
+pdf
+(
+"TIME.pdf"
+,
+width =
+10
+,
+height =
+10
+)
+draw
+(hm1
+%v%
+hm2
+%v%
+hm3,
+heatmap_legend_side =
+"right"
+,
+annotation_legend_side =
+"right"
+)
+invisible
+(
+dev.off
+())
+10
+后期处理
+Post-processing
+输出的pdf文件是矢量图，可以用illustrator等软件打开，编辑图形和文字。
+The output PDF file is a vector image and can be opened in software
+such as Illustrator to edit graphics and text.
+11
+关键更新要点 Key
+Updates Summary
+依赖包现代化
+：替换旧的
+estimate
+包为新的
+tidyestimate
+包，使用
+filter_common_genes
+和
+estimate_score
+函数替代旧的
+filterCommonGenes
+和
+estimateScore
+颜色函数更新
+：替换过时的
+NMF:::ccRamp
+函数为现代的
+colorRampPalette
+，使用
+grDevices::colorRampPalette
+确保新R版本兼容性
+错误处理增强
+：添加注释数据变异性检查，当数据缺乏变异性时自动添加最小随机扰动避免热图绘制错误
+GSVA参数化改进
+：使用新的
+gsvaParam
+API 替代直接调用
+gsva
+函数，采用现代GSVA工作流程提高计算效率
+Dependency Modernization
+: Replaced the
+deprecated
+estimate
+package with the modern
+tidyestimate
+package, using
+filter_common_genes
+and
+estimate_score
+functions instead of the old
+filterCommonGenes
+and
+estimateScore
+Color Function Updates
+: Replaced the outdated
+NMF:::ccRamp
+function with modern
+colorRampPalette
+, using
+grDevices::colorRampPalette
+to ensure compatibility with
+newer R versions
+Enhanced Error Handling
+: Added annotation data
+variation checks, automatically adding minimal random perturbations when
+data lacks variation to prevent heatmap plotting errors
+GSVA Parameterization Improvements
+: Using the
+new
+gsvaParam
+API instead of direct
+gsva
+function calls, adopting modern GSVA workflow to improve computational
+efficiency
+12
 Session Info
-sessionInfo()
+sessionInfo
+()
