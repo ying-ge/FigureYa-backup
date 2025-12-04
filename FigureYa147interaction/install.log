@@ -14,15 +14,15 @@ Installing Bioconductor package: org.Hs.eg.db
 'help("repositories", package = "BiocManager")' for details.
 Replacement repositories:
     CRAN: https://cloud.r-project.org/
-Bioconductor version 3.21 (BiocManager 1.30.26), R 4.5.1 (2025-06-13)
+Bioconductor version 3.22 (BiocManager 1.30.27), R 4.5.2 (2025-10-31)
 Installing package(s) 'org.Hs.eg.db'
-trying URL 'https://bioconductor.org//packages/3.21/data/annotation/src/contrib/org.Hs.eg.db_3.21.0.tar.gz'
-Content type 'application/x-gzip' length 98265790 bytes (93.7 MB)
+trying URL 'https://bioconductor.org//packages/3.22/data/annotation/src/contrib/org.Hs.eg.db_3.22.0.tar.gz'
+Content type 'application/x-gzip' length 104968958 bytes (100.1 MB)
 ==================================================
-downloaded 93.7 MB
+downloaded 100.1 MB
 
 * installing *source* package ‘org.Hs.eg.db’ ...
-** this is package ‘org.Hs.eg.db’ version ‘3.21.0’
+** this is package ‘org.Hs.eg.db’ version ‘3.22.0’
 ** using staged installation
 ** R
 ** inst
@@ -36,7 +36,7 @@ downloaded 93.7 MB
 * DONE (org.Hs.eg.db)
 
 The downloaded source packages are in
-	‘/tmp/RtmpN1B7Pn/downloaded_packages’
+	‘/tmp/RtmpKPK37z/downloaded_packages’
 Successfully installed: org.Hs.eg.db 
 
 ===========================================

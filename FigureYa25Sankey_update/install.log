@@ -6,7 +6,7 @@ Package already installed: dplyr
 Installing CRAN package: ggalluvial 
 Installing package into ‘/home/runner/work/_temp/Library’
 (as ‘lib’ is unspecified)
-also installing the dependencies ‘litedown’, ‘markdown’, ‘jpeg’, ‘shades’, ‘gridtext’, ‘alluvial’, ‘babynames’, ‘sp’, ‘ggfittext’
+also installing the dependencies ‘litedown’, ‘markdown’, ‘jpeg’, ‘shades’, ‘gridtext’, ‘alluvial’, ‘babynames’, ‘sessioninfo’, ‘ggfittext’, ‘vdiffr’
 
 trying URL 'https://cloud.r-project.org/src/contrib/litedown_0.8.tar.gz'
 trying URL 'https://cloud.r-project.org/src/contrib/markdown_2.0.tar.gz'
@@ -15,8 +15,9 @@ trying URL 'https://cloud.r-project.org/src/contrib/shades_1.4.0.tar.gz'
 trying URL 'https://cloud.r-project.org/src/contrib/gridtext_0.1.5.tar.gz'
 trying URL 'https://cloud.r-project.org/src/contrib/alluvial_0.1-2.tar.gz'
 trying URL 'https://cloud.r-project.org/src/contrib/babynames_1.0.1.tar.gz'
-trying URL 'https://cloud.r-project.org/src/contrib/sp_2.2-0.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/sessioninfo_1.2.3.tar.gz'
 trying URL 'https://cloud.r-project.org/src/contrib/ggfittext_0.10.2.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/vdiffr_1.0.8.tar.gz'
 trying URL 'https://cloud.r-project.org/src/contrib/ggalluvial_0.12.5.tar.gz'
 * installing *source* package ‘litedown’ ...
 ** this is package ‘litedown’ version ‘0.8’
@@ -100,36 +101,45 @@ installing to /home/runner/work/_temp/Library/00LOCK-jpeg/00new/jpeg/libs
 ** testing if installed package can be loaded from final location
 ** testing if installed package keeps a record of temporary installation path
 * DONE (babynames)
-* installing *source* package ‘sp’ ...
-** this is package ‘sp’ version ‘2.2-0’
-** package ‘sp’ successfully unpacked and MD5 sums checked
+* installing *source* package ‘sessioninfo’ ...
+** this is package ‘sessioninfo’ version ‘1.2.3’
+** package ‘sessioninfo’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (sessioninfo)
+* installing *source* package ‘vdiffr’ ...
+** this is package ‘vdiffr’ version ‘1.0.8’
+** package ‘vdiffr’ successfully unpacked and MD5 sums checked
 ** using staged installation
 ** libs
-using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
-gcc -std=gnu2x -I"/opt/R/4.5.2/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c Rcentroid.c -o Rcentroid.o
-gcc -std=gnu2x -I"/opt/R/4.5.2/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c gcdist.c -o gcdist.o
-gcc -std=gnu2x -I"/opt/R/4.5.2/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c init.c -o init.o
-gcc -std=gnu2x -I"/opt/R/4.5.2/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c pip.c -o pip.o
-gcc -std=gnu2x -I"/opt/R/4.5.2/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c pip2.c -o pip2.o
-gcc -std=gnu2x -I"/opt/R/4.5.2/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c sp_xports.c -o sp_xports.o
-gcc -std=gnu2x -I"/opt/R/4.5.2/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c surfaceArea.c -o surfaceArea.o
-gcc -std=gnu2x -I"/opt/R/4.5.2/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2  -c zerodist.c -o zerodist.o
-gcc -std=gnu2x -shared -L/opt/R/4.5.2/lib/R/lib -L/usr/local/lib -o sp.so Rcentroid.o gcdist.o init.o pip.o pip2.o sp_xports.o surfaceArea.o zerodist.o -L/opt/R/4.5.2/lib/R/lib -lR
-installing to /home/runner/work/_temp/Library/00LOCK-sp/00new/sp/libs
+using C++ compiler: ‘g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+using C++11
+g++ -std=gnu++11 -I"/opt/R/4.5.2/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include    -fpic  -g -O2   -c compare.cpp -o compare.o
+g++ -std=gnu++11 -I"/opt/R/4.5.2/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include    -fpic  -g -O2   -c cpp11.cpp -o cpp11.o
+g++ -std=gnu++11 -I"/opt/R/4.5.2/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include    -fpic  -g -O2   -c devSVG.cpp -o devSVG.o
+g++ -std=gnu++11 -I"/opt/R/4.5.2/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include    -fpic  -g -O2   -c engine_version.cpp -o engine_version.o
+g++ -std=gnu++11 -shared -L/opt/R/4.5.2/lib/R/lib -L/usr/local/lib -o vdiffr.so compare.o cpp11.o devSVG.o engine_version.o -lpng -lz -L/opt/R/4.5.2/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-vdiffr/00new/vdiffr/libs
 ** R
-** data
-** demo
 ** inst
 ** byte-compile and prepare package for lazy loading
 ** help
 *** installing help indices
+*** copying figures
 ** building package indices
-** installing vignettes
 ** testing if installed package can be loaded from temporary location
 ** checking absolute paths in shared objects and dynamic libraries
 ** testing if installed package can be loaded from final location
 ** testing if installed package keeps a record of temporary installation path
-* DONE (sp)
+* DONE (vdiffr)
 * installing *source* package ‘ggalluvial’ ...
 ** this is package ‘ggalluvial’ version ‘0.12.5’
 ** package ‘ggalluvial’ successfully unpacked and MD5 sums checked
@@ -207,7 +217,7 @@ installing to /home/runner/work/_temp/Library/00LOCK-gridtext/00new/gridtext/lib
 * DONE (ggfittext)
 
 The downloaded source packages are in
-	‘/tmp/RtmphW9F7T/downloaded_packages’
+	‘/tmp/RtmpUDpQaB/downloaded_packages’
 Successfully installed: ggalluvial 
 
 ===========================================

@@ -1,10 +1,1 @@
-Error in `fread()`:
-! To read gz files directly, fread() requires 'R.utils' package which cannot be found. Please install 'R.utils' using 'install.packages('R.utils')'.
-Backtrace:
-    x
- 1. \-data.table::fread(...)
- 2.   \-data.table:::stopf(...)
- 3.     \-data.table:::raise_condition(...)
-
-Quitting from FigureYa255TIME.Rmd:143-171 [unnamed-chunk-3]
-Execution halted
+[WARNING] Deprecated: --highlight-style. Use --syntax-highlighting instead.

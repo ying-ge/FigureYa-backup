@@ -5,10 +5,153 @@ Installing CRAN packages...
 Installing CRAN package: rsvg 
 Installing package into ‘/home/runner/work/_temp/Library’
 (as ‘lib’ is unspecified)
-also installing the dependency ‘webp’
+also installing the dependencies ‘xml2’, ‘hunspell’, ‘magick’, ‘spelling’, ‘svglite’, ‘webp’
 
+trying URL 'https://cloud.r-project.org/src/contrib/xml2_1.5.1.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/hunspell_3.0.6.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/magick_2.9.0.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/spelling_2.3.2.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/svglite_2.2.2.tar.gz'
 trying URL 'https://cloud.r-project.org/src/contrib/webp_1.3.0.tar.gz'
 trying URL 'https://cloud.r-project.org/src/contrib/rsvg_2.7.0.tar.gz'
+* installing *source* package ‘xml2’ ...
+** this is package ‘xml2’ version ‘1.5.1’
+** package ‘xml2’ successfully unpacked and MD5 sums checked
+** using staged installation
+Found pkg-config cflags and libs!
+Using PKG_CFLAGS=-I/usr/include/libxml2
+Using PKG_LIBS=-lxml2
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+using C++ compiler: ‘g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+g++ -std=gnu++17 -I"/opt/R/4.5.2/lib/R/include" -DNDEBUG -I../inst/include -I/usr/include/libxml2 -DUCHAR_TYPE=wchar_t -DU_SHOW_CPLUSPLUS_API=0 -DSTRICT_R_HEADERS -DR_NO_REMAP  -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2   -c connection.cpp -o connection.o
+gcc -std=gnu2x -I"/opt/R/4.5.2/lib/R/include" -DNDEBUG -I../inst/include -I/usr/include/libxml2 -DUCHAR_TYPE=wchar_t -DU_SHOW_CPLUSPLUS_API=0 -DSTRICT_R_HEADERS -DR_NO_REMAP  -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2  -c init.c -o init.o
+g++ -std=gnu++17 -I"/opt/R/4.5.2/lib/R/include" -DNDEBUG -I../inst/include -I/usr/include/libxml2 -DUCHAR_TYPE=wchar_t -DU_SHOW_CPLUSPLUS_API=0 -DSTRICT_R_HEADERS -DR_NO_REMAP  -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2   -c xml2_doc.cpp -o xml2_doc.o
+gcc -std=gnu2x -I"/opt/R/4.5.2/lib/R/include" -DNDEBUG -I../inst/include -I/usr/include/libxml2 -DUCHAR_TYPE=wchar_t -DU_SHOW_CPLUSPLUS_API=0 -DSTRICT_R_HEADERS -DR_NO_REMAP  -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2  -c xml2_init.c -o xml2_init.o
+g++ -std=gnu++17 -I"/opt/R/4.5.2/lib/R/include" -DNDEBUG -I../inst/include -I/usr/include/libxml2 -DUCHAR_TYPE=wchar_t -DU_SHOW_CPLUSPLUS_API=0 -DSTRICT_R_HEADERS -DR_NO_REMAP  -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2   -c xml2_namespace.cpp -o xml2_namespace.o
+g++ -std=gnu++17 -I"/opt/R/4.5.2/lib/R/include" -DNDEBUG -I../inst/include -I/usr/include/libxml2 -DUCHAR_TYPE=wchar_t -DU_SHOW_CPLUSPLUS_API=0 -DSTRICT_R_HEADERS -DR_NO_REMAP  -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2   -c xml2_node.cpp -o xml2_node.o
+g++ -std=gnu++17 -I"/opt/R/4.5.2/lib/R/include" -DNDEBUG -I../inst/include -I/usr/include/libxml2 -DUCHAR_TYPE=wchar_t -DU_SHOW_CPLUSPLUS_API=0 -DSTRICT_R_HEADERS -DR_NO_REMAP  -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2   -c xml2_output.cpp -o xml2_output.o
+g++ -std=gnu++17 -I"/opt/R/4.5.2/lib/R/include" -DNDEBUG -I../inst/include -I/usr/include/libxml2 -DUCHAR_TYPE=wchar_t -DU_SHOW_CPLUSPLUS_API=0 -DSTRICT_R_HEADERS -DR_NO_REMAP  -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2   -c xml2_schema.cpp -o xml2_schema.o
+g++ -std=gnu++17 -I"/opt/R/4.5.2/lib/R/include" -DNDEBUG -I../inst/include -I/usr/include/libxml2 -DUCHAR_TYPE=wchar_t -DU_SHOW_CPLUSPLUS_API=0 -DSTRICT_R_HEADERS -DR_NO_REMAP  -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2   -c xml2_url.cpp -o xml2_url.o
+g++ -std=gnu++17 -I"/opt/R/4.5.2/lib/R/include" -DNDEBUG -I../inst/include -I/usr/include/libxml2 -DUCHAR_TYPE=wchar_t -DU_SHOW_CPLUSPLUS_API=0 -DSTRICT_R_HEADERS -DR_NO_REMAP  -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2   -c xml2_xpath.cpp -o xml2_xpath.o
+g++ -std=gnu++17 -shared -L/opt/R/4.5.2/lib/R/lib -L/usr/local/lib -o xml2.so connection.o init.o xml2_doc.o xml2_init.o xml2_namespace.o xml2_node.o xml2_output.o xml2_schema.o xml2_url.o xml2_xpath.o -lxml2 -L/opt/R/4.5.2/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-xml2/00new/xml2/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (xml2)
+* installing *source* package ‘hunspell’ ...
+** this is package ‘hunspell’ version ‘3.0.6’
+** package ‘hunspell’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+g++ -std=gnu++17 -I"/opt/R/4.5.2/lib/R/include" -DNDEBUG -I. -Ihunspell -DBUILDING_LIBHUNSPELL -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2   -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++17 -I"/opt/R/4.5.2/lib/R/include" -DNDEBUG -I. -Ihunspell -DBUILDING_LIBHUNSPELL -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2   -c dictionary.cpp -o dictionary.o
+g++ -std=gnu++17 -I"/opt/R/4.5.2/lib/R/include" -DNDEBUG -I. -Ihunspell -DBUILDING_LIBHUNSPELL -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2   -c parser.cpp -o parser.o
+g++ -std=gnu++17 -I"/opt/R/4.5.2/lib/R/include" -DNDEBUG -I. -Ihunspell -DBUILDING_LIBHUNSPELL -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2   -c parsers/textparser.cc -o parsers/textparser.o
+g++ -std=gnu++17 -I"/opt/R/4.5.2/lib/R/include" -DNDEBUG -I. -Ihunspell -DBUILDING_LIBHUNSPELL -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2   -c parsers/latexparser.cc -o parsers/latexparser.o
+g++ -std=gnu++17 -I"/opt/R/4.5.2/lib/R/include" -DNDEBUG -I. -Ihunspell -DBUILDING_LIBHUNSPELL -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2   -c parsers/manparser.cc -o parsers/manparser.o
+g++ -std=gnu++17 -I"/opt/R/4.5.2/lib/R/include" -DNDEBUG -I. -Ihunspell -DBUILDING_LIBHUNSPELL -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2   -c parsers/xmlparser.cc -o parsers/xmlparser.o
+g++ -std=gnu++17 -I"/opt/R/4.5.2/lib/R/include" -DNDEBUG -I. -Ihunspell -DBUILDING_LIBHUNSPELL -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2   -c parsers/htmlparser.cc -o parsers/htmlparser.o
+g++ -std=gnu++17 -I"/opt/R/4.5.2/lib/R/include" -DNDEBUG -I. -Ihunspell -DBUILDING_LIBHUNSPELL -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2   -c hunspell/affentry.cc -o hunspell/affentry.o
+g++ -std=gnu++17 -I"/opt/R/4.5.2/lib/R/include" -DNDEBUG -I. -Ihunspell -DBUILDING_LIBHUNSPELL -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2   -c hunspell/affixmgr.cc -o hunspell/affixmgr.o
+g++ -std=gnu++17 -I"/opt/R/4.5.2/lib/R/include" -DNDEBUG -I. -Ihunspell -DBUILDING_LIBHUNSPELL -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2   -c hunspell/filemgr.cc -o hunspell/filemgr.o
+g++ -std=gnu++17 -I"/opt/R/4.5.2/lib/R/include" -DNDEBUG -I. -Ihunspell -DBUILDING_LIBHUNSPELL -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2   -c hunspell/hashmgr.cc -o hunspell/hashmgr.o
+g++ -std=gnu++17 -I"/opt/R/4.5.2/lib/R/include" -DNDEBUG -I. -Ihunspell -DBUILDING_LIBHUNSPELL -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2   -c hunspell/hunspell.cc -o hunspell/hunspell.o
+g++ -std=gnu++17 -I"/opt/R/4.5.2/lib/R/include" -DNDEBUG -I. -Ihunspell -DBUILDING_LIBHUNSPELL -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2   -c hunspell/hunzip.cc -o hunspell/hunzip.o
+g++ -std=gnu++17 -I"/opt/R/4.5.2/lib/R/include" -DNDEBUG -I. -Ihunspell -DBUILDING_LIBHUNSPELL -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2   -c hunspell/phonet.cc -o hunspell/phonet.o
+g++ -std=gnu++17 -I"/opt/R/4.5.2/lib/R/include" -DNDEBUG -I. -Ihunspell -DBUILDING_LIBHUNSPELL -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2   -c hunspell/replist.cc -o hunspell/replist.o
+g++ -std=gnu++17 -I"/opt/R/4.5.2/lib/R/include" -DNDEBUG -I. -Ihunspell -DBUILDING_LIBHUNSPELL -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2   -c hunspell/suggestmgr.cc -o hunspell/suggestmgr.o
+g++ -std=gnu++17 -I"/opt/R/4.5.2/lib/R/include" -DNDEBUG -I. -Ihunspell -DBUILDING_LIBHUNSPELL -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2   -c hunspell/csutil.cc -o hunspell/csutil.o
+ar rcs hunspell/libstathunspell.a parsers/textparser.o parsers/latexparser.o parsers/manparser.o parsers/xmlparser.o parsers/htmlparser.o hunspell/affentry.o hunspell/affixmgr.o hunspell/filemgr.o hunspell/hashmgr.o hunspell/hunspell.o hunspell/hunzip.o hunspell/phonet.o hunspell/replist.o hunspell/suggestmgr.o hunspell/csutil.o
+g++ -std=gnu++17 -shared -L/opt/R/4.5.2/lib/R/lib -L/usr/local/lib -o hunspell.so RcppExports.o dictionary.o parser.o -Lhunspell -lstathunspell -L/opt/R/4.5.2/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-hunspell/00new/hunspell/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (hunspell)
+* installing *source* package ‘magick’ ...
+** this is package ‘magick’ version ‘2.9.0’
+** package ‘magick’ successfully unpacked and MD5 sums checked
+** using staged installation
+Found pkg-config cflags and libs!
+Using PKG_CFLAGS=-I/usr/include/x86_64-linux-gnu/ImageMagick-6 -I/usr/include/ImageMagick-6 -fopenmp -DMAGICKCORE_HDRI_ENABLE=0 -DMAGICKCORE_QUANTUM_DEPTH=16 
+Using PKG_LIBS=-lMagick++-6.Q16 -lMagickWand-6.Q16 -lMagickCore-6.Q16 
+** libs
+using C++ compiler: ‘g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+g++ -std=gnu++17 -I"/opt/R/4.5.2/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu/ImageMagick-6 -I/usr/include/ImageMagick-6 -fopenmp -DMAGICKCORE_HDRI_ENABLE=0 -DMAGICKCORE_QUANTUM_DEPTH=16  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2   -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++17 -I"/opt/R/4.5.2/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu/ImageMagick-6 -I/usr/include/ImageMagick-6 -fopenmp -DMAGICKCORE_HDRI_ENABLE=0 -DMAGICKCORE_QUANTUM_DEPTH=16  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2   -c animation.cpp -o animation.o
+g++ -std=gnu++17 -I"/opt/R/4.5.2/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu/ImageMagick-6 -I/usr/include/ImageMagick-6 -fopenmp -DMAGICKCORE_HDRI_ENABLE=0 -DMAGICKCORE_QUANTUM_DEPTH=16  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2   -c attributes.cpp -o attributes.o
+g++ -std=gnu++17 -I"/opt/R/4.5.2/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu/ImageMagick-6 -I/usr/include/ImageMagick-6 -fopenmp -DMAGICKCORE_HDRI_ENABLE=0 -DMAGICKCORE_QUANTUM_DEPTH=16  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2   -c base.cpp -o base.o
+g++ -std=gnu++17 -I"/opt/R/4.5.2/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu/ImageMagick-6 -I/usr/include/ImageMagick-6 -fopenmp -DMAGICKCORE_HDRI_ENABLE=0 -DMAGICKCORE_QUANTUM_DEPTH=16  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2   -c color.cpp -o color.o
+g++ -std=gnu++17 -I"/opt/R/4.5.2/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu/ImageMagick-6 -I/usr/include/ImageMagick-6 -fopenmp -DMAGICKCORE_HDRI_ENABLE=0 -DMAGICKCORE_QUANTUM_DEPTH=16  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2   -c composite.cpp -o composite.o
+g++ -std=gnu++17 -I"/opt/R/4.5.2/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu/ImageMagick-6 -I/usr/include/ImageMagick-6 -fopenmp -DMAGICKCORE_HDRI_ENABLE=0 -DMAGICKCORE_QUANTUM_DEPTH=16  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2   -c config.cc -o config.o
+g++ -std=gnu++17 -I"/opt/R/4.5.2/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu/ImageMagick-6 -I/usr/include/ImageMagick-6 -fopenmp -DMAGICKCORE_HDRI_ENABLE=0 -DMAGICKCORE_QUANTUM_DEPTH=16  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2   -c convolve.cpp -o convolve.o
+g++ -std=gnu++17 -I"/opt/R/4.5.2/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu/ImageMagick-6 -I/usr/include/ImageMagick-6 -fopenmp -DMAGICKCORE_HDRI_ENABLE=0 -DMAGICKCORE_QUANTUM_DEPTH=16  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2   -c device.cpp -o device.o
+g++ -std=gnu++17 -I"/opt/R/4.5.2/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu/ImageMagick-6 -I/usr/include/ImageMagick-6 -fopenmp -DMAGICKCORE_HDRI_ENABLE=0 -DMAGICKCORE_QUANTUM_DEPTH=16  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2   -c edges.cpp -o edges.o
+g++ -std=gnu++17 -I"/opt/R/4.5.2/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu/ImageMagick-6 -I/usr/include/ImageMagick-6 -fopenmp -DMAGICKCORE_HDRI_ENABLE=0 -DMAGICKCORE_QUANTUM_DEPTH=16  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2   -c edit.cpp -o edit.o
+g++ -std=gnu++17 -I"/opt/R/4.5.2/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu/ImageMagick-6 -I/usr/include/ImageMagick-6 -fopenmp -DMAGICKCORE_HDRI_ENABLE=0 -DMAGICKCORE_QUANTUM_DEPTH=16  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2   -c fonts.cpp -o fonts.o
+g++ -std=gnu++17 -I"/opt/R/4.5.2/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu/ImageMagick-6 -I/usr/include/ImageMagick-6 -fopenmp -DMAGICKCORE_HDRI_ENABLE=0 -DMAGICKCORE_QUANTUM_DEPTH=16  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2   -c options.cpp -o options.o
+g++ -std=gnu++17 -I"/opt/R/4.5.2/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu/ImageMagick-6 -I/usr/include/ImageMagick-6 -fopenmp -DMAGICKCORE_HDRI_ENABLE=0 -DMAGICKCORE_QUANTUM_DEPTH=16  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2   -c properties.cpp -o properties.o
+g++ -std=gnu++17 -I"/opt/R/4.5.2/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu/ImageMagick-6 -I/usr/include/ImageMagick-6 -fopenmp -DMAGICKCORE_HDRI_ENABLE=0 -DMAGICKCORE_QUANTUM_DEPTH=16  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2   -c resize.cpp -o resize.o
+g++ -std=gnu++17 -I"/opt/R/4.5.2/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu/ImageMagick-6 -I/usr/include/ImageMagick-6 -fopenmp -DMAGICKCORE_HDRI_ENABLE=0 -DMAGICKCORE_QUANTUM_DEPTH=16  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2   -c segment.cpp -o segment.o
+g++ -std=gnu++17 -I"/opt/R/4.5.2/lib/R/include" -DNDEBUG -I/usr/include/x86_64-linux-gnu/ImageMagick-6 -I/usr/include/ImageMagick-6 -fopenmp -DMAGICKCORE_HDRI_ENABLE=0 -DMAGICKCORE_QUANTUM_DEPTH=16  -I'/home/runner/work/_temp/Library/Rcpp/include' -I/usr/local/include   -fvisibility=hidden -fpic  -g -O2   -c transformations.cpp -o transformations.o
+g++ -std=gnu++17 -shared -L/opt/R/4.5.2/lib/R/lib -L/usr/local/lib -o magick.so RcppExports.o animation.o attributes.o base.o color.o composite.o config.o convolve.o device.o edges.o edit.o fonts.o options.o properties.o resize.o segment.o transformations.o -lMagick++-6.Q16 -lMagickWand-6.Q16 -lMagickCore-6.Q16 -L/opt/R/4.5.2/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-magick/00new/magick/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (magick)
+* installing *source* package ‘svglite’ ...
+** this is package ‘svglite’ version ‘2.2.2’
+** package ‘svglite’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+g++ -std=gnu++17 -I"/opt/R/4.5.2/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I'/home/runner/work/_temp/Library/systemfonts/include' -I'/home/runner/work/_temp/Library/textshaping/include' -I/usr/local/include    -fpic  -g -O2   -c SvgStream.cpp -o SvgStream.o
+g++ -std=gnu++17 -I"/opt/R/4.5.2/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I'/home/runner/work/_temp/Library/systemfonts/include' -I'/home/runner/work/_temp/Library/textshaping/include' -I/usr/local/include    -fpic  -g -O2   -c cpp11.cpp -o cpp11.o
+g++ -std=gnu++17 -I"/opt/R/4.5.2/lib/R/include" -DNDEBUG  -I'/home/runner/work/_temp/Library/cpp11/include' -I'/home/runner/work/_temp/Library/systemfonts/include' -I'/home/runner/work/_temp/Library/textshaping/include' -I/usr/local/include    -fpic  -g -O2   -c devSVG.cpp -o devSVG.o
+g++ -std=gnu++17 -shared -L/opt/R/4.5.2/lib/R/lib -L/usr/local/lib -o svglite.so SvgStream.o cpp11.o devSVG.o -lpng -lz -L/opt/R/4.5.2/lib/R/lib -lR
+installing to /home/runner/work/_temp/Library/00LOCK-svglite/00new/svglite/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (svglite)
 * installing *source* package ‘webp’ ...
 ** this is package ‘webp’ version ‘1.3.0’
 ** package ‘webp’ successfully unpacked and MD5 sums checked
@@ -18,9 +161,9 @@ Using PKG_CFLAGS=-I/usr/include/webp
 Using PKG_LIBS=-lwebp 
 ** libs
 using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
-gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/webp   -I/usr/local/include    -fpic  -g -O2  -c register.c -o register.o
-gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/webp   -I/usr/local/include    -fpic  -g -O2  -c webp.c -o webp.o
-gcc -std=gnu2x -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o webp.so register.o webp.o -lwebp -L/opt/R/4.5.1/lib/R/lib -lR
+gcc -std=gnu2x -I"/opt/R/4.5.2/lib/R/include" -DNDEBUG -I/usr/include/webp   -I/usr/local/include    -fpic  -g -O2  -c register.c -o register.o
+gcc -std=gnu2x -I"/opt/R/4.5.2/lib/R/include" -DNDEBUG -I/usr/include/webp   -I/usr/local/include    -fpic  -g -O2  -c webp.c -o webp.o
+gcc -std=gnu2x -shared -L/opt/R/4.5.2/lib/R/lib -L/usr/local/lib -o webp.so register.o webp.o -lwebp -L/opt/R/4.5.2/lib/R/lib -lR
 installing to /home/runner/work/_temp/Library/00LOCK-webp/00new/webp/libs
 ** R
 ** byte-compile and prepare package for lazy loading
@@ -43,9 +186,9 @@ Using PKG_LIBS=-lrsvg-2 -lm -lgio-2.0 -lgdk_pixbuf-2.0 -lgobject-2.0 -lglib-2.0 
 ** libs
 using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
 using C++ compiler: ‘g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
-g++ -std=gnu++17 -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/librsvg-2.0 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/libmount -I/usr/include/blkid -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/libpng16 -I/usr/include/x86_64-linux-gnu -I/usr/include/webp -pthread -I/usr/include/cairo -I/usr/include/freetype2 -I/usr/include/pixman-1  -DSTRICT_R_HEADERS -DR_NO_REMAP  -I/usr/local/include    -fpic  -g -O2   -c dummy.cc -o dummy.o
-gcc -std=gnu2x -I"/opt/R/4.5.1/lib/R/include" -DNDEBUG -I/usr/include/librsvg-2.0 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/libmount -I/usr/include/blkid -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/libpng16 -I/usr/include/x86_64-linux-gnu -I/usr/include/webp -pthread -I/usr/include/cairo -I/usr/include/freetype2 -I/usr/include/pixman-1  -DSTRICT_R_HEADERS -DR_NO_REMAP  -I/usr/local/include    -fpic  -g -O2  -c rsvg.c -o rsvg.o
-g++ -std=gnu++17 -shared -L/opt/R/4.5.1/lib/R/lib -L/usr/local/lib -o rsvg.so dummy.o rsvg.o -lrsvg-2 -lm -lgio-2.0 -lgdk_pixbuf-2.0 -lgobject-2.0 -lglib-2.0 -lcairo -L/opt/R/4.5.1/lib/R/lib -lR
+g++ -std=gnu++17 -I"/opt/R/4.5.2/lib/R/include" -DNDEBUG -I/usr/include/librsvg-2.0 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/libmount -I/usr/include/blkid -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/libpng16 -I/usr/include/x86_64-linux-gnu -I/usr/include/webp -pthread -I/usr/include/cairo -I/usr/include/freetype2 -I/usr/include/pixman-1  -DSTRICT_R_HEADERS -DR_NO_REMAP  -I/usr/local/include    -fpic  -g -O2   -c dummy.cc -o dummy.o
+gcc -std=gnu2x -I"/opt/R/4.5.2/lib/R/include" -DNDEBUG -I/usr/include/librsvg-2.0 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/libmount -I/usr/include/blkid -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/libpng16 -I/usr/include/x86_64-linux-gnu -I/usr/include/webp -pthread -I/usr/include/cairo -I/usr/include/freetype2 -I/usr/include/pixman-1  -DSTRICT_R_HEADERS -DR_NO_REMAP  -I/usr/local/include    -fpic  -g -O2  -c rsvg.c -o rsvg.o
+g++ -std=gnu++17 -shared -L/opt/R/4.5.2/lib/R/lib -L/usr/local/lib -o rsvg.so dummy.o rsvg.o -lrsvg-2 -lm -lgio-2.0 -lgdk_pixbuf-2.0 -lgobject-2.0 -lglib-2.0 -lcairo -L/opt/R/4.5.2/lib/R/lib -lR
 installing to /home/runner/work/_temp/Library/00LOCK-rsvg/00new/rsvg/libs
 ** R
 ** inst
@@ -60,9 +203,23 @@ installing to /home/runner/work/_temp/Library/00LOCK-rsvg/00new/rsvg/libs
 ** testing if installed package can be loaded from final location
 ** testing if installed package keeps a record of temporary installation path
 * DONE (rsvg)
+* installing *source* package ‘spelling’ ...
+** this is package ‘spelling’ version ‘2.3.2’
+** package ‘spelling’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (spelling)
 
 The downloaded source packages are in
-	‘/tmp/Rtmp4c4G7b/downloaded_packages’
+	‘/tmp/RtmpJPoFAV/downloaded_packages’
 Successfully installed: rsvg 
 
 ===========================================

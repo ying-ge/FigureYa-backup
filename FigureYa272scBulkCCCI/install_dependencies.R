@@ -69,7 +69,7 @@ cat("===========================================\n")
 
 cat("\nInstalling CRAN packages...\n")
 cran_packages <- c("pheatmap", "RColorBrewer", "ggplot2", "ggthemes", "plyr", 
-                   "dplyr", "stringr", "tibble", "tidyr", "devtools")
+                   "dplyr", "stringr", "tibble", "tidyr", "devtools", "networkD3")
 
 for (pkg in cran_packages) {
   install_cran_package(pkg)

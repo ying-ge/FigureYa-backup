@@ -57,8 +57,11 @@ install_local_tar_gz <- function(package_path) {
 
 # Function to add gunzip workaround to GEOquery
 add_gunzip_workaround <- function() {
-  cat("Adding gunzip workaround to GEOquery...\n")
+  cat("Adding gunzip workaround for GEOquery...\n")
   tryCatch({
+    # Load GEOquery package
+    library(GEOquery, quietly = TRUE)
+
     # Create a gunzip function that uses R's internal gzip utilities
     gunzip <- function(gzfile, destfile = NULL, remove = TRUE) {
       if (is.null(destfile)) {
@@ -68,10 +71,10 @@ add_gunzip_workaround <- function() {
       utils::gunzip(gzfile, destfile, remove = remove)
       return(destfile)
     }
-    
-    # Add the function to GEOquery namespace
-    environment(GEOquery)$gunzip <- gunzip
-    cat("Successfully added gunzip workaround\n")
+
+    # Make gunzip available in the global environment
+    assign("gunzip", gunzip, envir = .GlobalEnv)
+    cat("Successfully added gunzip workaround to global environment\n")
   }, error = function(e) {
     cat("Failed to add gunzip workaround:", e$message, "\n")
   })
@@ -107,16 +110,13 @@ if (file.exists(hgu133plus2cdf_file)) {
   install_bioc_package("hgu133plus2cdf")
 }
 
-# First install DealGPL570 from local tar.gz file after dependencies are ready
+# Add gunzip workaround before installing DealGPL570
+add_gunzip_workaround()
+
+# Install DealGPL570 from local tar.gz file
 cat("\nInstalling DealGPL570 from local file...\n")
 deal_gpl570_file <- "DealGPL570_0.0.1.tar.gz"
-
-if (file.exists(deal_gpl570_file)) {
-  install_local_tar_gz(deal_gpl570_file)
-} else {
-  cat("ERROR: Local file not found:", deal_gpl570_file, "\n")
-  cat("Please make sure DealGPL570_0.0.1.tar.gz is in the current directory\n")
-}
+install_local_tar_gz(deal_gpl570_file)
 
 # Installing CRAN packages
 cat("\nInstalling CRAN packages...\n")
@@ -139,7 +139,11 @@ cat("Package installation completed!\n")
 
 # Final verification
 cat("\nVerifying installation...\n")
-required_packages <- c("DealGPL570", "stringr", "survival", "tibble", "dplyr", "tidyverse", "GEOquery", "limma", "sva", "GenomicFeatures", "rtracklayer", "affy", "hgu133plus2cdf")
+required_packages <- c(
+  "DealGPL570", "stringr", "survival", "tibble", "dplyr",
+  "tidyverse", "GEOquery", "limma", "sva", "GenomicFeatures",
+  "rtracklayer", "affy", "hgu133plus2cdf"
+)
 for (pkg in required_packages) {
   if (is_package_installed(pkg)) {
     cat("[OK]", pkg, "installed successfully\n")

@@ -8,7 +8,7 @@ Author(s)
 Reviewer(s)
 : Taojun Ye
 Date
-: 2025-11-22
+: 2025-12-03
 1
 需求描述 Requirement
 description
@@ -23,27 +23,35 @@ https://www.cell.com/cell/fulltext/S0092-8674(17)30815-2?_returnURL=https%3A%2F%
 2
 应用场景 Application
 scenarios
-同时展示相关系数和原始数据分布。
+同时展示每两个变量之间的相关关系和原始数据分布：
+下三角：原始数据散点图 + 拟合线
+上三角：相关系数热图
+对角线：变量名称
+每两个变量之间的相关关系，还可以画成圆形，可参考FigureYa37correlationV2_update和FigureYa81immune_network
+Simultaneously display both the pairwise correlation relationships
+and the raw data distribution for every two variables:
+Lower triangle: Scatter plots of raw data with fitted (regression)
+lines
+Upper triangle: Correlation coefficient heatmap
+Diagonal: Variable names
+For each pair of variables, the correlation relationship can also be
+visualized in a circular form. See examples in
+FigureYa37correlationV2_update and FigureYa81immune_network.
 相关系数参考资料：
 https://uc-r.github.io/correlations
 ，里面提到两个展示相关性的好用的画图工具：corrplot和corrgram。
-corrplot的用法可参考FigureYa70mutationEvents；corrgram基于pairs，包装进了几个现成的函数，这里借鉴了其中的panel.fill函数，corrgram的更多用法举例：
-https://rstudio-pubs-static.s3.amazonaws.com/6382_886fbab74fd5499ba455f11360f78de7.html
-，
-http://www.datavis.ca/papers/corrgram.pdf
+corrplot的用法可参考FigureYa70mutationEvents；
+corrgram基于pairs，包装进了几个现成的函数，这里借鉴了其中的panel.fill函数
 Simultaneously display the correlation coefficient and the
 distribution of raw data.
 Reference materials for correlation coefficient:
 https://uc-r.github.io/correlations
 . It mentions two
-useful drawing tools for displaying correlations: corrplot and corrgram.
-The usage of corrplot can refer to FigureYa70mutationEvents; Corrgram is
-based on pairs and includes several ready-made functions. Here, we draw
-inspiration from the panel.fill function. For more examples of Corrgram
-usage:
-https://rstudio-pubs-static.s3.amazonaws.com/6382_886fbab74fd5499ba455f11360f78de7.html
-,
-http://www.datavis.ca/papers/corrgram.pdf
+useful drawing tools for displaying correlations: corrplot and
+corrgram.
+The usage of corrplot can refer to FigureYa70mutationEvents;
+Corrgram is based on pairs and includes several ready-made
+functions. Here, we draw inspiration from the panel.fill function.
 3
 输入文件 Input
 file
@@ -68,9 +76,9 @@ head
 4
 开始画图 Start
 drawing
-这个包的关键是写好画小图的函数，然后用pairs组合成最终的效果。
-The key to this package is to write a function for drawing small
-images and then combine them into the final effect using pairs.
+关键是写好画小图的函数，然后用pairs组合成最终的效果。
+The keypoint is to write a function for drawing small images and then
+combine them into the final effect using pairs.
 # 设置绘图背景颜色为浅灰色（接近白色）
 # Set the plotting background color to a light gray (near white)
 par

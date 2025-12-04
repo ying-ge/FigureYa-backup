@@ -46,7 +46,7 @@ trying URL 'https://cloud.r-project.org/src/contrib/janitor_2.2.1.tar.gz'
 * DONE (janitor)
 
 The downloaded source packages are in
-	‘/tmp/RtmpwFnu6H/downloaded_packages’
+	‘/tmp/RtmpjOpj6W/downloaded_packages’
 Successfully installed: janitor 
 Package already installed: magrittr 
 

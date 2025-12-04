@@ -70,6 +70,7 @@ FigureYa102multipanelROC
 FigureYa103coAbundant
 FigureYa106immunotherapy
 FigureYa109SubtypeGSEA_update
+FigureYa101PCA
 FigureYa112venn
 FigureYa112Plus_venn
 FigureYa114ternaryCluster
@@ -99,6 +100,7 @@ FigureYa144DiagHeatmap
 FigureYa145target
 FigureYa146TMEbox
 FigureYa147interaction
+FigureYa147Plus_STRING
 FigureYa148SimpleDendrogram
 FigureYa149rankHeatmap
 FigureYa151pathifier
@@ -118,7 +120,6 @@ FigureYa170ImmuLncRNA
 FigureYa171subgroupSurv
 FigureYa172ggplot2Gviz
 FigureYa173fancybar
-FigureYa174squareCross
 FigureYa175quadrant
 FigureYa176BlandAltman
 FigureYa178receptorLigand
@@ -151,6 +152,7 @@ FigureYa214KEGG_hierarchyV2
 FigureYa218Elasticnet
 FigureYa219GMM
 FigureYa220repeatedLasso
+FigureYa222PCAgene
 FigureYa225GiViTl
 FigureYa227boxdensity
 FigureYa228linkCor
@@ -158,16 +160,17 @@ FigureYa229PCOA
 FigureYa230immunelandscape
 FigureYa231scScore
 FigureYa233genepair
+FigureYa235scDEG
 FigureYa236circGroup
 FigureYa237circVenn
 FigureYa244PCAPlot
-FigureYa245VarDecompose
+FigureYa245VarDecompose_update
 FigureYa247oncoPredict
 FigureYa248MutLandscape
 FigureYa249Regulon
 FigureYa250ImmGenePair
 FigureYa251NPHSurv
-FigureYa256panelLink
+FigureYa255TIME
 FigureYa257armCNV
 FigureYa258SNF
 FigureYa259circLink
@@ -188,6 +191,7 @@ FigureYa298ecdfPvalue
 FigureYa303panCircos
 FigureYa306slingshot
 FigureYa307CNVHeatmap
+FigureYa308IHS
 FigureYa311PAM50Heatmap
 FigureYa312CellPreference
 FigureYa313CircularPlot

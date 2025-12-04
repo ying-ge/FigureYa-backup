@@ -16,10 +16,10 @@ Installing package into ‘/home/runner/work/_temp/Library’
 (as ‘lib’ is unspecified)
 also installing the dependency ‘gridSVG’
 
-trying URL 'https://cloud.r-project.org/src/contrib/gridSVG_1.7-6.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/gridSVG_1.7-7.tar.gz'
 trying URL 'https://cloud.r-project.org/src/contrib/grImport2_0.3-3.tar.gz'
 * installing *source* package ‘gridSVG’ ...
-** this is package ‘gridSVG’ version ‘1.7-6’
+** this is package ‘gridSVG’ version ‘1.7-7’
 ** package ‘gridSVG’ successfully unpacked and MD5 sums checked
 ** using staged installation
 ** R
@@ -49,8 +49,10 @@ trying URL 'https://cloud.r-project.org/src/contrib/grImport2_0.3-3.tar.gz'
 * DONE (grImport2)
 
 The downloaded source packages are in
-	‘/tmp/RtmpgcwUvd/downloaded_packages’
+	‘/tmp/RtmpMfSBRZ/downloaded_packages’
 Successfully installed: grImport2 
+Package already installed: gridSVG 
+Package already installed: dplyr 
 
 Installing CRAN packages...
 Installing CRAN package: RIdeogram 
@@ -80,9 +82,12 @@ downloaded 4.8 MB
 * DONE (RIdeogram)
 
 The downloaded source packages are in
-	‘/tmp/RtmpgcwUvd/downloaded_packages’
+	‘/tmp/RtmpMfSBRZ/downloaded_packages’
 Successfully installed: RIdeogram 
 Package already installed: knitr 
+
+Installing Bioconductor packages...
+Package already installed: rtracklayer 
 
 ===========================================
 Package installation completed!

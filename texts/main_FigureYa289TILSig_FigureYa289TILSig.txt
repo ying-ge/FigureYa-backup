@@ -8,7 +8,7 @@ Author(s)
 Reviewer(s)
 : Ying Ge, Taojun Ye
 Date
-: 2025-11-30
+: 2025-12-03
 1
 Academic Citation
 If you use this code in your work or research, we kindly request that
@@ -1711,6 +1711,48 @@ sep =
 "
 \t
 "
+)
+# GEO+CCLE整合数据的主成分分析（Principal component analysis for GEO+CCLE integrated data）
+batchPCA
+(
+indata =
+t
+(
+scale
+(
+t
+(geo_ccle_combat))),
+batch =
+rep
+(
+c
+(
+"Immune cell lines"
+,
+"STOMACH cancer cell lines"
+),
+times =
+c
+(
+114
+,
+37
+)),
+fig.dir =
+"."
+,
+PCA.fig.title =
+"Combat PCA for GEO+CCLE Integration"
+,
+showID =
+F,
+cex =
+1.2
+,
+showLegend =
+T,
+pos =
+"topright"
 )
 # 在免疫细胞系和癌症细胞系间做差异分析（Perform differential expression analysis between immune and cancer cell lines）
 group

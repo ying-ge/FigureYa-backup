@@ -5,15 +5,14 @@ Installing CRAN packages...
 Installing CRAN package: BlandAltmanLeh 
 Installing package into ‘/home/runner/work/_temp/Library’
 (as ‘lib’ is unspecified)
-also installing the dependencies ‘colourpicker’, ‘shinyjs’, ‘ggExtra’
+also installing the dependencies ‘colourpicker’, ‘ggExtra’
 
 trying URL 'https://cloud.r-project.org/src/contrib/colourpicker_1.3.0.tar.gz'
-trying URL 'https://cloud.r-project.org/src/contrib/shinyjs_2.1.0.tar.gz'
 trying URL 'https://cloud.r-project.org/src/contrib/ggExtra_0.11.0.tar.gz'
 trying URL 'https://cloud.r-project.org/src/contrib/BlandAltmanLeh_0.3.1.tar.gz'
-* installing *source* package ‘shinyjs’ ...
-** this is package ‘shinyjs’ version ‘2.1.0’
-** package ‘shinyjs’ successfully unpacked and MD5 sums checked
+* installing *source* package ‘colourpicker’ ...
+** this is package ‘colourpicker’ version ‘1.3.0’
+** package ‘colourpicker’ successfully unpacked and MD5 sums checked
 ** using staged installation
 ** R
 ** inst
@@ -21,11 +20,10 @@ trying URL 'https://cloud.r-project.org/src/contrib/BlandAltmanLeh_0.3.1.tar.gz'
 ** help
 *** installing help indices
 ** building package indices
-** installing vignettes
 ** testing if installed package can be loaded from temporary location
 ** testing if installed package can be loaded from final location
 ** testing if installed package keeps a record of temporary installation path
-* DONE (shinyjs)
+* DONE (colourpicker)
 * installing *source* package ‘BlandAltmanLeh’ ...
 ** this is package ‘BlandAltmanLeh’ version ‘0.3.1’
 ** package ‘BlandAltmanLeh’ successfully unpacked and MD5 sums checked
@@ -41,20 +39,6 @@ trying URL 'https://cloud.r-project.org/src/contrib/BlandAltmanLeh_0.3.1.tar.gz'
 ** testing if installed package can be loaded from final location
 ** testing if installed package keeps a record of temporary installation path
 * DONE (BlandAltmanLeh)
-* installing *source* package ‘colourpicker’ ...
-** this is package ‘colourpicker’ version ‘1.3.0’
-** package ‘colourpicker’ successfully unpacked and MD5 sums checked
-** using staged installation
-** R
-** inst
-** byte-compile and prepare package for lazy loading
-** help
-*** installing help indices
-** building package indices
-** testing if installed package can be loaded from temporary location
-** testing if installed package can be loaded from final location
-** testing if installed package keeps a record of temporary installation path
-* DONE (colourpicker)
 * installing *source* package ‘ggExtra’ ...
 ** this is package ‘ggExtra’ version ‘0.11.0’
 ** package ‘ggExtra’ successfully unpacked and MD5 sums checked
@@ -72,7 +56,7 @@ trying URL 'https://cloud.r-project.org/src/contrib/BlandAltmanLeh_0.3.1.tar.gz'
 * DONE (ggExtra)
 
 The downloaded source packages are in
-	‘/tmp/Rtmpr22KOe/downloaded_packages’
+	‘/tmp/RtmpLOwcNO/downloaded_packages’
 Successfully installed: BlandAltmanLeh 
 Installing CRAN package: MethComp 
 Installing package into ‘/home/runner/work/_temp/Library’
@@ -110,7 +94,7 @@ ERROR: configuration failed for package ‘rjags’
 * DONE (MethComp)
 
 The downloaded source packages are in
-	‘/tmp/Rtmpr22KOe/downloaded_packages’
+	‘/tmp/RtmpLOwcNO/downloaded_packages’
 Successfully installed: MethComp 
 Installing CRAN package: smatr 
 Installing package into ‘/home/runner/work/_temp/Library’
@@ -137,7 +121,7 @@ downloaded 52 KB
 * DONE (smatr)
 
 The downloaded source packages are in
-	‘/tmp/Rtmpr22KOe/downloaded_packages’
+	‘/tmp/RtmpLOwcNO/downloaded_packages’
 Successfully installed: smatr 
 Warning message:
 In install.packages(package_name, dependencies = TRUE) :

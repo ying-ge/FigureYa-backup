@@ -7,15 +7,16 @@ Installing Bioconductor package: OmicCircos
 'help("repositories", package = "BiocManager")' for details.
 Replacement repositories:
     CRAN: https://cloud.r-project.org/
-Bioconductor version 3.21 (BiocManager 1.30.26), R 4.5.1 (2025-06-13)
+Bioconductor version 3.22 (BiocManager 1.30.27), R 4.5.2 (2025-10-31)
 Installing package(s) 'OmicCircos'
-trying URL 'https://bioconductor.org//packages/3.21/bioc/src/contrib/OmicCircos_1.46.0.tar.gz'
-Content type 'application/x-gzip' length 2944317 bytes (2.8 MB)
+trying URL 'https://bioconductor.org//packages/3.22/bioc/src/contrib/OmicCircos_1.48.0.tar.gz'
+Content type 'application/x-gzip' length 2946226 bytes (2.8 MB)
 ==================================================
 downloaded 2.8 MB
 
 * installing *source* package ‘OmicCircos’ ...
-** this is package ‘OmicCircos’ version ‘1.46.0’
+** this is package ‘OmicCircos’ version ‘1.48.0’
+** package ‘OmicCircos’ successfully unpacked and MD5 sums checked
 ** using staged installation
 ** R
 ** data
@@ -32,7 +33,7 @@ downloaded 2.8 MB
 * DONE (OmicCircos)
 
 The downloaded source packages are in
-	‘/tmp/Rtmpzk5ttJ/downloaded_packages’
+	‘/tmp/RtmpRuKdgn/downloaded_packages’
 Successfully installed: OmicCircos 
 Package already installed: S4Vectors 
 

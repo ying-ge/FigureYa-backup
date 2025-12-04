@@ -5,31 +5,7 @@ Installing CRAN packages...
 Package already installed: dplyr 
 Package already installed: future.apply 
 Package already installed: ggplot2 
-Installing CRAN package: pheatmap 
-Installing package into ‘/home/runner/work/_temp/Library’
-(as ‘lib’ is unspecified)
-trying URL 'https://cloud.r-project.org/src/contrib/pheatmap_1.0.13.tar.gz'
-Content type 'application/x-gzip' length 15162 bytes (14 KB)
-==================================================
-downloaded 14 KB
-
-* installing *source* package ‘pheatmap’ ...
-** this is package ‘pheatmap’ version ‘1.0.13’
-** package ‘pheatmap’ successfully unpacked and MD5 sums checked
-** using staged installation
-** R
-** byte-compile and prepare package for lazy loading
-** help
-*** installing help indices
-** building package indices
-** testing if installed package can be loaded from temporary location
-** testing if installed package can be loaded from final location
-** testing if installed package keeps a record of temporary installation path
-* DONE (pheatmap)
-
-The downloaded source packages are in
-	‘/tmp/Rtmp7sTQi4/downloaded_packages’
-Successfully installed: pheatmap 
+Package already installed: pheatmap 
 
 ===========================================
 Package installation completed!

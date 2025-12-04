@@ -1671,7 +1671,7 @@ border-radius: 0px;
 
 <p><strong>Author(s)</strong>: Xiaofan Lu<br />
 <strong>Reviewer(s)</strong>: Ying Ge, Hui Huang<br />
-<strong>Date</strong>: 2025-11-20</p>
+<strong>Date</strong>: 2025-12-03</p>
 <div id="academic-citation" class="section level2" number="1">
 <h2><span class="header-section-number">1</span> Academic Citation</h2>
 <p>If you use this code in your work or research, we kindly request that
@@ -1764,60 +1764,53 @@ settings</h2>
 ## You can now run your R scripts in this directory.</code></pre>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)       <span class="co"># 数据可视化包，用于绘制图形 # Data visualization package for creating plots</span></span>
 <span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="fu">library</span>(grid)          <span class="co"># 网格图形系统，用于布局和图形排列 # Grid graphics system for layout and graphical arrangement</span></span>
-<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="fu">library</span>(gridExtra)     <span class="co"># 提供额外的网格布局功能，用于组合多个图形 # Provides additional grid layout functionality for combining multiple plots</span></span></code></pre></div>
-<pre><code>## 
-## Attaching package: &#39;gridExtra&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:dplyr&#39;:
-## 
-##     combine</code></pre>
-<pre><code>## The following object is masked from &#39;package:BiocGenerics&#39;:
-## 
-##     combine</code></pre>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">Sys.setenv</span>(<span class="at">LANGUAGE =</span> <span class="st">&quot;en&quot;</span>) <span class="co">#显示英文报错信息 # error messages are displayed in English</span></span>
-<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="fu">options</span>(<span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>) <span class="co">#禁止chr转成factor # It is forbidden to convert chr into factor</span></span></code></pre></div>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="fu">library</span>(gridExtra)     <span class="co"># 提供额外的网格布局功能，用于组合多个图形 # Provides additional grid layout functionality for combining multiple plots</span></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="fu">Sys.setenv</span>(<span class="at">LANGUAGE =</span> <span class="st">&quot;en&quot;</span>) <span class="co">#显示英文报错信息 # error messages are displayed in English</span></span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a><span class="fu">options</span>(<span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>) <span class="co">#禁止chr转成factor # It is forbidden to convert chr into factor</span></span></code></pre></div>
 <p>自定义函数，用于计算 Immunophenoscore(IPS) Custom functions to
 calculate Immunophenoscore(IPS)</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>ipsmap <span class="ot">&lt;-</span> <span class="cf">function</span> (x) {</span>
-<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>  <span class="cf">if</span> (x<span class="sc">&lt;=</span><span class="dv">0</span>) {</span>
-<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>    ips<span class="ot">&lt;-</span><span class="dv">0</span></span>
-<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a>    <span class="cf">if</span> (x<span class="sc">&gt;=</span><span class="dv">3</span>) {</span>
-<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a>      ips<span class="ot">&lt;-</span><span class="dv">10</span></span>
-<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
-<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a>      ips<span class="ot">&lt;-</span><span class="fu">round</span>(x<span class="sc">*</span><span class="dv">10</span><span class="sc">/</span><span class="dv">3</span>, <span class="at">digits=</span><span class="dv">0</span>)</span>
-<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a>    }</span>
-<span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a>  }</span>
-<span id="cb8-11"><a href="#cb8-11" tabindex="-1"></a>  <span class="fu">return</span>(ips)</span>
-<span id="cb8-12"><a href="#cb8-12" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>ipsmap <span class="ot">&lt;-</span> <span class="cf">function</span> (x) {</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>  <span class="cf">if</span> (x<span class="sc">&lt;=</span><span class="dv">0</span>) {</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>    ips<span class="ot">&lt;-</span><span class="dv">0</span></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>    <span class="cf">if</span> (x<span class="sc">&gt;=</span><span class="dv">3</span>) {</span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>      ips<span class="ot">&lt;-</span><span class="dv">10</span></span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a>      ips<span class="ot">&lt;-</span><span class="fu">round</span>(x<span class="sc">*</span><span class="dv">10</span><span class="sc">/</span><span class="dv">3</span>, <span class="at">digits=</span><span class="dv">0</span>)</span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a>    }</span>
+<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a>  }</span>
+<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a>  <span class="fu">return</span>(ips)</span>
+<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a>}</span></code></pre></div>
 <p>分配颜色 Assign colors</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>my_palette <span class="ot">&lt;-</span> <span class="fu">colorRampPalette</span>(<span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;white&quot;</span>, <span class="st">&quot;red&quot;</span>))(<span class="at">n =</span> <span class="dv">1000</span>)</span>
-<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>mapcolors<span class="ot">&lt;-</span><span class="cf">function</span> (x) {</span>
-<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>  za<span class="ot">&lt;-</span><span class="cn">NULL</span></span>
-<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a>  <span class="cf">if</span> (x<span class="sc">&gt;=</span><span class="dv">3</span>) {</span>
-<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a>    za<span class="ot">=</span><span class="dv">1000</span></span>
-<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a>    <span class="cf">if</span> (x<span class="sc">&lt;=-</span><span class="dv">3</span>) {</span>
-<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a>      za<span class="ot">=</span><span class="dv">1</span></span>
-<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
-<span id="cb9-10"><a href="#cb9-10" tabindex="-1"></a>      za<span class="ot">=</span><span class="fu">round</span>(<span class="fl">166.5</span><span class="sc">*</span>x<span class="fl">+500.5</span>,<span class="at">digits=</span><span class="dv">0</span>)</span>
-<span id="cb9-11"><a href="#cb9-11" tabindex="-1"></a>    }</span>
-<span id="cb9-12"><a href="#cb9-12" tabindex="-1"></a>  }</span>
-<span id="cb9-13"><a href="#cb9-13" tabindex="-1"></a>  <span class="fu">return</span>(my_palette[za])</span>
-<span id="cb9-14"><a href="#cb9-14" tabindex="-1"></a>}</span>
-<span id="cb9-15"><a href="#cb9-15" tabindex="-1"></a>my_palette2 <span class="ot">&lt;-</span> <span class="fu">colorRampPalette</span>(<span class="fu">c</span>(<span class="st">&quot;black&quot;</span>, <span class="st">&quot;white&quot;</span>))(<span class="at">n =</span> <span class="dv">1000</span>)</span>
-<span id="cb9-16"><a href="#cb9-16" tabindex="-1"></a>mapbw<span class="ot">&lt;-</span><span class="cf">function</span> (x) {</span>
-<span id="cb9-17"><a href="#cb9-17" tabindex="-1"></a>  za2<span class="ot">&lt;-</span><span class="cn">NULL</span></span>
-<span id="cb9-18"><a href="#cb9-18" tabindex="-1"></a>  <span class="cf">if</span> (x<span class="sc">&gt;=</span><span class="dv">2</span>) {</span>
-<span id="cb9-19"><a href="#cb9-19" tabindex="-1"></a>    za2<span class="ot">=</span><span class="dv">1000</span></span>
-<span id="cb9-20"><a href="#cb9-20" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb9-21"><a href="#cb9-21" tabindex="-1"></a>    <span class="cf">if</span> (x<span class="sc">&lt;=-</span><span class="dv">2</span>) {</span>
-<span id="cb9-22"><a href="#cb9-22" tabindex="-1"></a>      za2<span class="ot">=</span><span class="dv">1</span></span>
-<span id="cb9-23"><a href="#cb9-23" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
-<span id="cb9-24"><a href="#cb9-24" tabindex="-1"></a>      za2<span class="ot">=</span><span class="fu">round</span>(<span class="fl">249.75</span><span class="sc">*</span>x<span class="fl">+500.5</span>,<span class="at">digits=</span><span class="dv">0</span>)</span>
-<span id="cb9-25"><a href="#cb9-25" tabindex="-1"></a>    }</span>
-<span id="cb9-26"><a href="#cb9-26" tabindex="-1"></a>  }</span>
-<span id="cb9-27"><a href="#cb9-27" tabindex="-1"></a>  <span class="fu">return</span>(my_palette2[za2])</span>
-<span id="cb9-28"><a href="#cb9-28" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>my_palette <span class="ot">&lt;-</span> <span class="fu">colorRampPalette</span>(<span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;white&quot;</span>, <span class="st">&quot;red&quot;</span>))(<span class="at">n =</span> <span class="dv">1000</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>mapcolors<span class="ot">&lt;-</span><span class="cf">function</span> (x) {</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>  za<span class="ot">&lt;-</span><span class="cn">NULL</span></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>  <span class="cf">if</span> (x<span class="sc">&gt;=</span><span class="dv">3</span>) {</span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>    za<span class="ot">=</span><span class="dv">1000</span></span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a>    <span class="cf">if</span> (x<span class="sc">&lt;=-</span><span class="dv">3</span>) {</span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a>      za<span class="ot">=</span><span class="dv">1</span></span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a>      za<span class="ot">=</span><span class="fu">round</span>(<span class="fl">166.5</span><span class="sc">*</span>x<span class="fl">+500.5</span>,<span class="at">digits=</span><span class="dv">0</span>)</span>
+<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a>    }</span>
+<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a>  }</span>
+<span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a>  <span class="fu">return</span>(my_palette[za])</span>
+<span id="cb5-14"><a href="#cb5-14" tabindex="-1"></a>}</span>
+<span id="cb5-15"><a href="#cb5-15" tabindex="-1"></a>my_palette2 <span class="ot">&lt;-</span> <span class="fu">colorRampPalette</span>(<span class="fu">c</span>(<span class="st">&quot;black&quot;</span>, <span class="st">&quot;white&quot;</span>))(<span class="at">n =</span> <span class="dv">1000</span>)</span>
+<span id="cb5-16"><a href="#cb5-16" tabindex="-1"></a>mapbw<span class="ot">&lt;-</span><span class="cf">function</span> (x) {</span>
+<span id="cb5-17"><a href="#cb5-17" tabindex="-1"></a>  za2<span class="ot">&lt;-</span><span class="cn">NULL</span></span>
+<span id="cb5-18"><a href="#cb5-18" tabindex="-1"></a>  <span class="cf">if</span> (x<span class="sc">&gt;=</span><span class="dv">2</span>) {</span>
+<span id="cb5-19"><a href="#cb5-19" tabindex="-1"></a>    za2<span class="ot">=</span><span class="dv">1000</span></span>
+<span id="cb5-20"><a href="#cb5-20" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb5-21"><a href="#cb5-21" tabindex="-1"></a>    <span class="cf">if</span> (x<span class="sc">&lt;=-</span><span class="dv">2</span>) {</span>
+<span id="cb5-22"><a href="#cb5-22" tabindex="-1"></a>      za2<span class="ot">=</span><span class="dv">1</span></span>
+<span id="cb5-23"><a href="#cb5-23" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb5-24"><a href="#cb5-24" tabindex="-1"></a>      za2<span class="ot">=</span><span class="fu">round</span>(<span class="fl">249.75</span><span class="sc">*</span>x<span class="fl">+500.5</span>,<span class="at">digits=</span><span class="dv">0</span>)</span>
+<span id="cb5-25"><a href="#cb5-25" tabindex="-1"></a>    }</span>
+<span id="cb5-26"><a href="#cb5-26" tabindex="-1"></a>  }</span>
+<span id="cb5-27"><a href="#cb5-27" tabindex="-1"></a>  <span class="fu">return</span>(my_palette2[za2])</span>
+<span id="cb5-28"><a href="#cb5-28" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 <div id="输入文件-input-files" class="section level2" number="5">
 <h2><span class="header-section-number">5</span> 输入文件 Input
@@ -1828,10 +1821,10 @@ files</h2>
 1), one gene per row, one sample per column.</p>
 <p>easy_input_IPS_genes.txt, IPS gene weight file. IPS-related genes,
 taxonomy and their weights.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="do">## 读取表达谱文件</span></span>
-<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a><span class="do">## Read the expression profile file</span></span>
-<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a>expr <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;easy_input_expr.txt&quot;</span>,<span class="at">row.names=</span><span class="dv">1</span>,<span class="at">header=</span><span class="cn">TRUE</span>, <span class="at">sep=</span><span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>,<span class="at">check.names=</span><span class="cn">FALSE</span>,<span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a>expr[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="do">## 读取表达谱文件</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="do">## Read the expression profile file</span></span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>expr <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;easy_input_expr.txt&quot;</span>,<span class="at">row.names=</span><span class="dv">1</span>,<span class="at">header=</span><span class="cn">TRUE</span>, <span class="at">sep=</span><span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>,<span class="at">check.names=</span><span class="cn">FALSE</span>,<span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>expr[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span></code></pre></div>
 <pre><code>##           COAD-A6-2671-01A-01R-1410-07 COAD-CM-5863-01A-21R-1839-07
 ## 5_8S_RRNA                            0                            0
 ## 5S_RRNA                              0                            0
@@ -1840,34 +1833,34 @@ taxonomy and their weights.</p>
 ## 5_8S_RRNA                            0
 ## 5S_RRNA                              0
 ## 7SK                                  0</code></pre>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="do">## 取出肿瘤样本</span></span>
-<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a><span class="do">## pick up a sample of the tumor</span></span>
-<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a>tumsam <span class="ot">&lt;-</span> <span class="fu">colnames</span>(expr)[<span class="fu">substr</span>(<span class="fu">colnames</span>(expr),<span class="dv">14</span>,<span class="dv">15</span>) <span class="sc">==</span> <span class="st">&quot;01&quot;</span>] <span class="co"># 取出肿瘤样本 # pick up a sample of the tumor</span></span>
-<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a>gene_expression <span class="ot">&lt;-</span> <span class="fu">log2</span>(expr[,tumsam] <span class="sc">+</span> <span class="dv">1</span>) <span class="co"># 对TPM值做对数转化 # Logarithmic conversion of TPM values</span></span>
-<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a>sample_names <span class="ot">&lt;-</span> tumsam</span>
-<span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a></span>
-<span id="cb12-7"><a href="#cb12-7" tabindex="-1"></a><span class="do">## 修改几个基因名</span></span>
-<span id="cb12-8"><a href="#cb12-8" tabindex="-1"></a><span class="do">## IPS基因权重文件中的基因名跟常用的gene symbol不同，我们把表达矩阵里的gene symbol修改成跟IPS基因列表一致的基因名。</span></span>
-<span id="cb12-9"><a href="#cb12-9" tabindex="-1"></a></span>
-<span id="cb12-10"><a href="#cb12-10" tabindex="-1"></a><span class="do">## Modify several gene names</span></span>
-<span id="cb12-11"><a href="#cb12-11" tabindex="-1"></a><span class="do">## The gene name in the IPS gene weight file is different from the commonly used gene symbol, we change the gene symbol in the expression matrix to the gene name that is consistent with the IPS gene list.</span></span>
-<span id="cb12-12"><a href="#cb12-12" tabindex="-1"></a></span>
-<span id="cb12-13"><a href="#cb12-13" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">is.element</span>(<span class="st">&quot;CAVIN2&quot;</span>,<span class="fu">rownames</span>(gene_expression))) {</span>
-<span id="cb12-14"><a href="#cb12-14" tabindex="-1"></a>  <span class="fu">rownames</span>(gene_expression) <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;CAVIN2&quot;</span>,<span class="st">&quot;SDPR&quot;</span>,<span class="fu">rownames</span>(gene_expression)) <span class="co"># 根据https://www.genecards.org上的相关信息进行同名转换</span></span>
-<span id="cb12-15"><a href="#cb12-15" tabindex="-1"></a>  <span class="co"># Convert the same name according to the relevant information on the https://www.genecards.org</span></span>
-<span id="cb12-16"><a href="#cb12-16" tabindex="-1"></a>}</span>
-<span id="cb12-17"><a href="#cb12-17" tabindex="-1"></a><span class="co"># 另外注意示例数据的里的CCL3L3的注释源自GENCODE27，GeneCards显示CCL3L1的ENSEMBL为ENSG00000276085，该编码在GENCODE27里注释为CCL3L3，因此修改</span></span>
-<span id="cb12-18"><a href="#cb12-18" tabindex="-1"></a></span>
-<span id="cb12-19"><a href="#cb12-19" tabindex="-1"></a><span class="co"># Also note that the annotation of CCL3L3 in the example data is derived from GENCODE27, GeneCards shows that the ENSEMBL of CCL3L1 is ENSG00000276085, and the encoding is annotated as CCL3L3 in the GENCODE27, so it is modified</span></span>
-<span id="cb12-20"><a href="#cb12-20" tabindex="-1"></a></span>
-<span id="cb12-21"><a href="#cb12-21" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">is.element</span>(<span class="st">&quot;CCL3L3&quot;</span>,<span class="fu">rownames</span>(gene_expression))) {</span>
-<span id="cb12-22"><a href="#cb12-22" tabindex="-1"></a>  <span class="fu">rownames</span>(gene_expression) <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;CCL3L3&quot;</span>,<span class="st">&quot;CCL3L1&quot;</span>,<span class="fu">rownames</span>(gene_expression))</span>
-<span id="cb12-23"><a href="#cb12-23" tabindex="-1"></a>}</span>
-<span id="cb12-24"><a href="#cb12-24" tabindex="-1"></a></span>
-<span id="cb12-25"><a href="#cb12-25" tabindex="-1"></a><span class="do">## 读取IPS相关基因以及其权重</span></span>
-<span id="cb12-26"><a href="#cb12-26" tabindex="-1"></a><span class="do">## Read IPS-related genes and their weights</span></span>
-<span id="cb12-27"><a href="#cb12-27" tabindex="-1"></a>IPSG <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;easy_input_IPS_genes.txt&quot;</span>,<span class="at">header=</span><span class="cn">TRUE</span>, <span class="at">sep=</span><span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>,<span class="at">check.names=</span><span class="cn">FALSE</span>,<span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>,<span class="at">row.names =</span> <span class="cn">NULL</span>)</span>
-<span id="cb12-28"><a href="#cb12-28" tabindex="-1"></a><span class="fu">head</span>(IPSG)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="do">## 取出肿瘤样本</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="do">## pick up a sample of the tumor</span></span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>tumsam <span class="ot">&lt;-</span> <span class="fu">colnames</span>(expr)[<span class="fu">substr</span>(<span class="fu">colnames</span>(expr),<span class="dv">14</span>,<span class="dv">15</span>) <span class="sc">==</span> <span class="st">&quot;01&quot;</span>] <span class="co"># 取出肿瘤样本 # pick up a sample of the tumor</span></span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>gene_expression <span class="ot">&lt;-</span> <span class="fu">log2</span>(expr[,tumsam] <span class="sc">+</span> <span class="dv">1</span>) <span class="co"># 对TPM值做对数转化 # Logarithmic conversion of TPM values</span></span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a>sample_names <span class="ot">&lt;-</span> tumsam</span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a><span class="do">## 修改几个基因名</span></span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a><span class="do">## IPS基因权重文件中的基因名跟常用的gene symbol不同，我们把表达矩阵里的gene symbol修改成跟IPS基因列表一致的基因名。</span></span>
+<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a><span class="do">## Modify several gene names</span></span>
+<span id="cb8-11"><a href="#cb8-11" tabindex="-1"></a><span class="do">## The gene name in the IPS gene weight file is different from the commonly used gene symbol, we change the gene symbol in the expression matrix to the gene name that is consistent with the IPS gene list.</span></span>
+<span id="cb8-12"><a href="#cb8-12" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="#cb8-13" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">is.element</span>(<span class="st">&quot;CAVIN2&quot;</span>,<span class="fu">rownames</span>(gene_expression))) {</span>
+<span id="cb8-14"><a href="#cb8-14" tabindex="-1"></a>  <span class="fu">rownames</span>(gene_expression) <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;CAVIN2&quot;</span>,<span class="st">&quot;SDPR&quot;</span>,<span class="fu">rownames</span>(gene_expression)) <span class="co"># 根据https://www.genecards.org上的相关信息进行同名转换</span></span>
+<span id="cb8-15"><a href="#cb8-15" tabindex="-1"></a>  <span class="co"># Convert the same name according to the relevant information on the https://www.genecards.org</span></span>
+<span id="cb8-16"><a href="#cb8-16" tabindex="-1"></a>}</span>
+<span id="cb8-17"><a href="#cb8-17" tabindex="-1"></a><span class="co"># 另外注意示例数据的里的CCL3L3的注释源自GENCODE27，GeneCards显示CCL3L1的ENSEMBL为ENSG00000276085，该编码在GENCODE27里注释为CCL3L3，因此修改</span></span>
+<span id="cb8-18"><a href="#cb8-18" tabindex="-1"></a></span>
+<span id="cb8-19"><a href="#cb8-19" tabindex="-1"></a><span class="co"># Also note that the annotation of CCL3L3 in the example data is derived from GENCODE27, GeneCards shows that the ENSEMBL of CCL3L1 is ENSG00000276085, and the encoding is annotated as CCL3L3 in the GENCODE27, so it is modified</span></span>
+<span id="cb8-20"><a href="#cb8-20" tabindex="-1"></a></span>
+<span id="cb8-21"><a href="#cb8-21" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">is.element</span>(<span class="st">&quot;CCL3L3&quot;</span>,<span class="fu">rownames</span>(gene_expression))) {</span>
+<span id="cb8-22"><a href="#cb8-22" tabindex="-1"></a>  <span class="fu">rownames</span>(gene_expression) <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;CCL3L3&quot;</span>,<span class="st">&quot;CCL3L1&quot;</span>,<span class="fu">rownames</span>(gene_expression))</span>
+<span id="cb8-23"><a href="#cb8-23" tabindex="-1"></a>}</span>
+<span id="cb8-24"><a href="#cb8-24" tabindex="-1"></a></span>
+<span id="cb8-25"><a href="#cb8-25" tabindex="-1"></a><span class="do">## 读取IPS相关基因以及其权重</span></span>
+<span id="cb8-26"><a href="#cb8-26" tabindex="-1"></a><span class="do">## Read IPS-related genes and their weights</span></span>
+<span id="cb8-27"><a href="#cb8-27" tabindex="-1"></a>IPSG <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;easy_input_IPS_genes.txt&quot;</span>,<span class="at">header=</span><span class="cn">TRUE</span>, <span class="at">sep=</span><span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>,<span class="at">check.names=</span><span class="cn">FALSE</span>,<span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>,<span class="at">row.names =</span> <span class="cn">NULL</span>)</span>
+<span id="cb8-28"><a href="#cb8-28" tabindex="-1"></a><span class="fu">head</span>(IPSG)</span></code></pre></div>
 <pre><code>##    GENE  NAME CLASS WEIGHT
 ## 1   B2M   B2M   MHC      1
 ## 2  TAP1  TAP1   MHC      1
@@ -1875,198 +1868,201 @@ taxonomy and their weights.</p>
 ## 4 HLA-A HLA-A   MHC      1
 ## 5 HLA-B HLA-B   MHC      1
 ## 6 HLA-C HLA-C   MHC      1</code></pre>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a>unique_ips_genes <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(<span class="fu">unique</span>(IPSG<span class="sc">$</span>NAME))</span>
-<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a></span>
-<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a><span class="do">## 初始化数据</span></span>
-<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a><span class="do">## Initialize the data</span></span>
-<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a>IPS <span class="ot">&lt;-</span> MHC <span class="ot">&lt;-</span> CP <span class="ot">&lt;-</span> EC <span class="ot">&lt;-</span> SC <span class="ot">&lt;-</span> AZ <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
-<span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a></span>
-<span id="cb14-7"><a href="#cb14-7" tabindex="-1"></a><span class="co"># 获取表达谱里的基因名</span></span>
-<span id="cb14-8"><a href="#cb14-8" tabindex="-1"></a><span class="co"># Get the gene name in the expression spectrum</span></span>
-<span id="cb14-9"><a href="#cb14-9" tabindex="-1"></a>GVEC <span class="ot">&lt;-</span> <span class="fu">row.names</span>(gene_expression)</span>
-<span id="cb14-10"><a href="#cb14-10" tabindex="-1"></a></span>
-<span id="cb14-11"><a href="#cb14-11" tabindex="-1"></a><span class="co"># 获取IPS基因文件里的基因名</span></span>
-<span id="cb14-12"><a href="#cb14-12" tabindex="-1"></a><span class="co"># Obtain the gene name in the IPS gene file</span></span>
-<span id="cb14-13"><a href="#cb14-13" tabindex="-1"></a>VEC <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(IPSG<span class="sc">$</span>GENE)</span>
-<span id="cb14-14"><a href="#cb14-14" tabindex="-1"></a></span>
-<span id="cb14-15"><a href="#cb14-15" tabindex="-1"></a><span class="co"># 匹配基因并找到缺失基因</span></span>
-<span id="cb14-16"><a href="#cb14-16" tabindex="-1"></a><span class="co"># Match genes and find the missing genes</span></span>
-<span id="cb14-17"><a href="#cb14-17" tabindex="-1"></a>ind <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">is.na</span>(<span class="fu">match</span>(VEC,GVEC)))</span>
-<span id="cb14-18"><a href="#cb14-18" tabindex="-1"></a>MISSING_GENES <span class="ot">&lt;-</span> VEC[ind]</span>
-<span id="cb14-19"><a href="#cb14-19" tabindex="-1"></a></span>
-<span id="cb14-20"><a href="#cb14-20" tabindex="-1"></a>dat <span class="ot">&lt;-</span> IPSG[ind,]</span>
-<span id="cb14-21"><a href="#cb14-21" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">length</span>(MISSING_GENES) <span class="sc">&gt;</span> <span class="dv">0</span>) { <span class="co"># 若存在缺失基因报出（如果上面两个基因不修改，这里是要报缺失的，会导致最终结果错误）</span></span>
-<span id="cb14-22"><a href="#cb14-22" tabindex="-1"></a>  <span class="co"># If there is a deletion gene reported (if the above two genes are not modified, the deletion will be reported here, which will lead to an error in the final result.)</span></span>
-<span id="cb14-23"><a href="#cb14-23" tabindex="-1"></a>  <span class="fu">message</span>(<span class="fu">paste0</span>(<span class="st">&quot;--differently named or missing genes: &quot;</span>,<span class="fu">paste</span>(MISSING_GENES,<span class="at">collapse =</span> <span class="st">&quot;, &quot;</span>)))</span>
-<span id="cb14-24"><a href="#cb14-24" tabindex="-1"></a>  <span class="fu">print</span>(IPSG[ind,])</span>
-<span id="cb14-25"><a href="#cb14-25" tabindex="-1"></a>  <span class="fu">message</span>(<span class="st">&quot;please check data and make sure all genes matches!&quot;</span>)</span>
-<span id="cb14-26"><a href="#cb14-26" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb14-27"><a href="#cb14-27" tabindex="-1"></a>  <span class="fu">message</span>(<span class="st">&quot;--all genes matched!&quot;</span>) <span class="co"># 请确保所有基因都匹配!!! # Please make sure all genes match!!</span></span>
-<span id="cb14-28"><a href="#cb14-28" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a>unique_ips_genes <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(<span class="fu">unique</span>(IPSG<span class="sc">$</span>NAME))</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a><span class="do">## 初始化数据</span></span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a><span class="do">## Initialize the data</span></span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a>IPS <span class="ot">&lt;-</span> MHC <span class="ot">&lt;-</span> CP <span class="ot">&lt;-</span> EC <span class="ot">&lt;-</span> SC <span class="ot">&lt;-</span> AZ <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a><span class="co"># 获取表达谱里的基因名</span></span>
+<span id="cb10-8"><a href="#cb10-8" tabindex="-1"></a><span class="co"># Get the gene name in the expression spectrum</span></span>
+<span id="cb10-9"><a href="#cb10-9" tabindex="-1"></a>GVEC <span class="ot">&lt;-</span> <span class="fu">row.names</span>(gene_expression)</span>
+<span id="cb10-10"><a href="#cb10-10" tabindex="-1"></a></span>
+<span id="cb10-11"><a href="#cb10-11" tabindex="-1"></a><span class="co"># 获取IPS基因文件里的基因名</span></span>
+<span id="cb10-12"><a href="#cb10-12" tabindex="-1"></a><span class="co"># Obtain the gene name in the IPS gene file</span></span>
+<span id="cb10-13"><a href="#cb10-13" tabindex="-1"></a>VEC <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(IPSG<span class="sc">$</span>GENE)</span>
+<span id="cb10-14"><a href="#cb10-14" tabindex="-1"></a></span>
+<span id="cb10-15"><a href="#cb10-15" tabindex="-1"></a><span class="co"># 匹配基因并找到缺失基因</span></span>
+<span id="cb10-16"><a href="#cb10-16" tabindex="-1"></a><span class="co"># Match genes and find the missing genes</span></span>
+<span id="cb10-17"><a href="#cb10-17" tabindex="-1"></a>ind <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">is.na</span>(<span class="fu">match</span>(VEC,GVEC)))</span>
+<span id="cb10-18"><a href="#cb10-18" tabindex="-1"></a>MISSING_GENES <span class="ot">&lt;-</span> VEC[ind]</span>
+<span id="cb10-19"><a href="#cb10-19" tabindex="-1"></a></span>
+<span id="cb10-20"><a href="#cb10-20" tabindex="-1"></a>dat <span class="ot">&lt;-</span> IPSG[ind,]</span>
+<span id="cb10-21"><a href="#cb10-21" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">length</span>(MISSING_GENES) <span class="sc">&gt;</span> <span class="dv">0</span>) { <span class="co"># 若存在缺失基因报出（如果上面两个基因不修改，这里是要报缺失的，会导致最终结果错误）</span></span>
+<span id="cb10-22"><a href="#cb10-22" tabindex="-1"></a>  <span class="co"># If there is a deletion gene reported (if the above two genes are not modified, the deletion will be reported here, which will lead to an error in the final result.)</span></span>
+<span id="cb10-23"><a href="#cb10-23" tabindex="-1"></a>  <span class="fu">message</span>(<span class="fu">paste0</span>(<span class="st">&quot;--differently named or missing genes: &quot;</span>,<span class="fu">paste</span>(MISSING_GENES,<span class="at">collapse =</span> <span class="st">&quot;, &quot;</span>)))</span>
+<span id="cb10-24"><a href="#cb10-24" tabindex="-1"></a>  <span class="fu">print</span>(IPSG[ind,])</span>
+<span id="cb10-25"><a href="#cb10-25" tabindex="-1"></a>  <span class="fu">message</span>(<span class="st">&quot;please check data and make sure all genes matches!&quot;</span>)</span>
+<span id="cb10-26"><a href="#cb10-26" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb10-27"><a href="#cb10-27" tabindex="-1"></a>  <span class="fu">message</span>(<span class="st">&quot;--all genes matched!&quot;</span>) <span class="co"># 请确保所有基因都匹配!!! # Please make sure all genes match!!</span></span>
+<span id="cb10-28"><a href="#cb10-28" tabindex="-1"></a>}</span></code></pre></div>
 <pre><code>## --all genes matched!</code></pre>
 </div>
 <div id="计算并画图-calculate-and-draw" class="section level2" number="6">
 <h2><span class="header-section-number">6</span> 计算并画图 Calculate
 and draw</h2>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="do">## 循环每个样本</span></span>
-<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a><span class="do">## Cycle through each sample</span></span>
-<span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a>outTab <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
-<span id="cb16-4"><a href="#cb16-4" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(sample_names)) { </span>
-<span id="cb16-5"><a href="#cb16-5" tabindex="-1"></a>  GE <span class="ot">&lt;-</span> gene_expression[[i]]</span>
-<span id="cb16-6"><a href="#cb16-6" tabindex="-1"></a>  mGE <span class="ot">&lt;-</span> <span class="fu">mean</span>(GE)</span>
-<span id="cb16-7"><a href="#cb16-7" tabindex="-1"></a>  sGE <span class="ot">&lt;-</span> <span class="fu">sd</span>(GE)</span>
-<span id="cb16-8"><a href="#cb16-8" tabindex="-1"></a>  Z1 <span class="ot">&lt;-</span> (gene_expression[<span class="fu">as.vector</span>(IPSG<span class="sc">$</span>GENE),i]<span class="sc">-</span>mGE)<span class="sc">/</span>sGE</span>
-<span id="cb16-9"><a href="#cb16-9" tabindex="-1"></a>  W1 <span class="ot">&lt;-</span> IPSG<span class="sc">$</span>WEIGHT</span>
-<span id="cb16-10"><a href="#cb16-10" tabindex="-1"></a>  WEIGHT <span class="ot">&lt;-</span> MIG <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
-<span id="cb16-11"><a href="#cb16-11" tabindex="-1"></a>  k <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb16-12"><a href="#cb16-12" tabindex="-1"></a>  <span class="cf">for</span> (gen <span class="cf">in</span> unique_ips_genes) {</span>
-<span id="cb16-13"><a href="#cb16-13" tabindex="-1"></a>    MIG[k] <span class="ot">&lt;-</span> <span class="fu">mean</span>(Z1[<span class="fu">which</span> (<span class="fu">as.vector</span>(IPSG<span class="sc">$</span>NAME)<span class="sc">==</span>gen)],<span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
-<span id="cb16-14"><a href="#cb16-14" tabindex="-1"></a>    WEIGHT[k] <span class="ot">&lt;-</span> <span class="fu">mean</span>(W1[<span class="fu">which</span> (<span class="fu">as.vector</span>(IPSG<span class="sc">$</span>NAME)<span class="sc">==</span>gen)])</span>
-<span id="cb16-15"><a href="#cb16-15" tabindex="-1"></a>    k <span class="ot">&lt;-</span> k <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb16-16"><a href="#cb16-16" tabindex="-1"></a>  }</span>
-<span id="cb16-17"><a href="#cb16-17" tabindex="-1"></a>  WG <span class="ot">&lt;-</span> MIG <span class="sc">*</span> WEIGHT</span>
-<span id="cb16-18"><a href="#cb16-18" tabindex="-1"></a>  MHC[i] <span class="ot">&lt;-</span> <span class="fu">mean</span>(WG[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>])</span>
-<span id="cb16-19"><a href="#cb16-19" tabindex="-1"></a>  CP[i] <span class="ot">&lt;-</span> <span class="fu">mean</span>(WG[<span class="dv">11</span><span class="sc">:</span><span class="dv">20</span>])</span>
-<span id="cb16-20"><a href="#cb16-20" tabindex="-1"></a>  EC[i] <span class="ot">&lt;-</span> <span class="fu">mean</span>(WG[<span class="dv">21</span><span class="sc">:</span><span class="dv">24</span>])</span>
-<span id="cb16-21"><a href="#cb16-21" tabindex="-1"></a>  SC[i] <span class="ot">&lt;-</span> <span class="fu">mean</span>(WG[<span class="dv">25</span><span class="sc">:</span><span class="dv">26</span>])</span>
-<span id="cb16-22"><a href="#cb16-22" tabindex="-1"></a>  AZ[i] <span class="ot">&lt;-</span> <span class="fu">sum</span>(MHC[i],CP[i],EC[i],SC[i])</span>
-<span id="cb16-23"><a href="#cb16-23" tabindex="-1"></a>  IPS[i] <span class="ot">&lt;-</span> <span class="fu">ipsmap</span>(AZ[i])</span>
-<span id="cb16-24"><a href="#cb16-24" tabindex="-1"></a>  </span>
-<span id="cb16-25"><a href="#cb16-25" tabindex="-1"></a>  tmp <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">t</span>(<span class="fu">data.frame</span>(WG))); <span class="fu">colnames</span>(tmp) <span class="ot">&lt;-</span> unique_ips_genes; <span class="fu">rownames</span>(tmp) <span class="ot">&lt;-</span> sample_names[i]</span>
-<span id="cb16-26"><a href="#cb16-26" tabindex="-1"></a>  outTab <span class="ot">&lt;-</span> <span class="fu">rbind.data.frame</span>(outTab,tmp)</span>
-<span id="cb16-27"><a href="#cb16-27" tabindex="-1"></a>  </span>
-<span id="cb16-28"><a href="#cb16-28" tabindex="-1"></a>  <span class="co"># 绘制Immunophenogram</span></span>
-<span id="cb16-29"><a href="#cb16-29" tabindex="-1"></a>  <span class="co"># Draw the Immunophenogram</span></span>
-<span id="cb16-30"><a href="#cb16-30" tabindex="-1"></a>  data_a <span class="ot">&lt;-</span> <span class="fu">data.frame</span> (<span class="at">start =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">2.5</span>,<span class="dv">5</span>,<span class="fl">7.5</span>,<span class="dv">10</span>,<span class="dv">15</span>,<span class="fu">seq</span>(<span class="dv">20</span>,<span class="dv">39</span>),<span class="dv">0</span>,<span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">30</span>), <span class="at">end =</span> <span class="fu">c</span>(<span class="fl">2.5</span>,<span class="dv">5</span>,<span class="fl">7.5</span>,<span class="dv">10</span>,<span class="dv">15</span>,<span class="fu">seq</span>(<span class="dv">20</span>,<span class="dv">40</span>),<span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">30</span>,<span class="dv">40</span>), <span class="at">y1=</span><span class="fu">c</span>(<span class="fu">rep</span>(<span class="fl">2.6</span>,<span class="dv">26</span>),<span class="fu">rep</span>(<span class="fl">0.4</span>,<span class="dv">4</span>)),<span class="at">y2=</span><span class="fu">c</span>(<span class="fu">rep</span>(<span class="fl">5.6</span>,<span class="dv">26</span>),<span class="fu">rep</span>(<span class="fl">2.2</span>,<span class="dv">4</span>)),<span class="at">z=</span><span class="fu">c</span>(MIG[<span class="fu">c</span>(<span class="dv">21</span><span class="sc">:</span><span class="dv">26</span>,<span class="dv">11</span><span class="sc">:</span><span class="dv">20</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)],EC[i],SC[i],CP[i],MHC[i]),<span class="at">vcol=</span><span class="fu">c</span>(<span class="fu">unlist</span>(<span class="fu">lapply</span>(MIG[<span class="fu">c</span>(<span class="dv">21</span><span class="sc">:</span><span class="dv">26</span>,<span class="dv">11</span><span class="sc">:</span><span class="dv">20</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)],mapcolors)), <span class="fu">unlist</span>(<span class="fu">lapply</span>(<span class="fu">c</span>(EC[i],SC[i],CP[i],MHC[i]),mapbw))), <span class="at">label =</span> <span class="fu">c</span>(unique_ips_genes[<span class="fu">c</span>(<span class="dv">21</span><span class="sc">:</span><span class="dv">26</span>,<span class="dv">11</span><span class="sc">:</span><span class="dv">20</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)],<span class="st">&quot;EC&quot;</span>,<span class="st">&quot;SC&quot;</span>,<span class="st">&quot;CP&quot;</span>,<span class="st">&quot;MHC&quot;</span>))</span>
-<span id="cb16-31"><a href="#cb16-31" tabindex="-1"></a>  data_a<span class="sc">$</span>label <span class="ot">&lt;-</span> <span class="fu">factor</span>(data_a<span class="sc">$</span>label, <span class="at">levels=</span><span class="fu">unique</span>(data_a<span class="sc">$</span>label))</span>
-<span id="cb16-32"><a href="#cb16-32" tabindex="-1"></a>  plot_a1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb16-33"><a href="#cb16-33" tabindex="-1"></a>    <span class="fu">geom_rect</span>(<span class="at">data=</span>data_a, <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">xmin=</span>start, <span class="at">xmax=</span>end, <span class="at">ymin=</span>y1, <span class="at">ymax=</span>y2, <span class="at">fill=</span>label), <span class="at">size=</span><span class="fl">0.5</span>,<span class="at">color=</span><span class="st">&quot;black&quot;</span>, <span class="at">alpha=</span><span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb16-34"><a href="#cb16-34" tabindex="-1"></a>    <span class="fu">coord_polar</span>()  <span class="sc">+</span> </span>
-<span id="cb16-35"><a href="#cb16-35" tabindex="-1"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">6</span>)) <span class="sc">+</span></span>
-<span id="cb16-36"><a href="#cb16-36" tabindex="-1"></a>    <span class="fu">scale_fill_manual</span>(<span class="at">values =</span><span class="fu">as.vector</span>(data_a<span class="sc">$</span>vcol),<span class="at">guide=</span><span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb16-37"><a href="#cb16-37" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
-<span id="cb16-38"><a href="#cb16-38" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">panel.spacing =</span> <span class="fu">unit</span>(<span class="dv">0</span>, <span class="st">&#39;mm&#39;</span>), </span>
-<span id="cb16-39"><a href="#cb16-39" tabindex="-1"></a>          <span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb16-40"><a href="#cb16-40" tabindex="-1"></a>          <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb16-41"><a href="#cb16-41" tabindex="-1"></a>          <span class="at">panel.border =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb16-42"><a href="#cb16-42" tabindex="-1"></a>          <span class="at">panel.background =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb16-43"><a href="#cb16-43" tabindex="-1"></a>          <span class="at">axis.line =</span> <span class="fu">element_line</span>(<span class="at">colour =</span> <span class="st">&quot;white&quot;</span>),</span>
-<span id="cb16-44"><a href="#cb16-44" tabindex="-1"></a>          <span class="at">axis.text=</span><span class="fu">element_blank</span>(), </span>
-<span id="cb16-45"><a href="#cb16-45" tabindex="-1"></a>          <span class="at">axis.ticks=</span> <span class="fu">element_blank</span>()) <span class="sc">+</span> </span>
-<span id="cb16-46"><a href="#cb16-46" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="dv">5</span>, <span class="at">y=</span><span class="fl">1.3</span>, <span class="at">label=</span><span class="st">&quot;EC&quot;</span>), <span class="at">size=</span><span class="dv">4</span>) <span class="sc">+</span></span>
-<span id="cb16-47"><a href="#cb16-47" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="dv">15</span>, <span class="at">y=</span><span class="fl">1.3</span>, <span class="at">label=</span><span class="st">&quot;SC&quot;</span>), <span class="at">size=</span><span class="dv">4</span>) <span class="sc">+</span> </span>
-<span id="cb16-48"><a href="#cb16-48" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="dv">25</span>, <span class="at">y=</span><span class="fl">1.3</span>, <span class="at">label=</span><span class="st">&quot;CP&quot;</span>), <span class="at">size=</span><span class="dv">4</span>) <span class="sc">+</span> </span>
-<span id="cb16-49"><a href="#cb16-49" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="dv">35</span>, <span class="at">y=</span><span class="fl">1.3</span>, <span class="at">label=</span><span class="st">&quot;MHC&quot;</span>), <span class="at">size=</span><span class="dv">4</span>)</span>
-<span id="cb16-50"><a href="#cb16-50" tabindex="-1"></a>  plot_a2 <span class="ot">&lt;-</span> plot_a1 <span class="sc">+</span></span>
-<span id="cb16-51"><a href="#cb16-51" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fl">1.25</span>, <span class="at">y=</span><span class="fl">4.1</span>, <span class="at">label=</span><span class="st">&quot;+ Act CD4&quot;</span>), <span class="at">angle=</span><span class="fl">78.75</span>, <span class="at">size=</span><span class="dv">4</span>) <span class="sc">+</span></span>
-<span id="cb16-52"><a href="#cb16-52" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fl">3.75</span>, <span class="at">y=</span><span class="fl">4.1</span>, <span class="at">label=</span><span class="st">&quot;+ Act CD8&quot;</span>),<span class="at">angle=</span><span class="fl">56.25</span>, <span class="at">size=</span><span class="dv">4</span>) <span class="sc">+</span></span>
-<span id="cb16-53"><a href="#cb16-53" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fl">6.25</span>, <span class="at">y=</span><span class="fl">4.1</span>, <span class="at">label=</span><span class="st">&quot;+ Tem CD4&quot;</span>), <span class="at">angle=</span><span class="fl">33.75</span>,<span class="at">size=</span><span class="dv">4</span>) <span class="sc">+</span></span>
-<span id="cb16-54"><a href="#cb16-54" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fl">8.75</span>, <span class="at">y=</span><span class="fl">4.1</span>, <span class="at">label=</span><span class="st">&quot;+ Tem CD8&quot;</span>), <span class="at">angle=</span><span class="fl">11.25</span>,<span class="at">size=</span><span class="dv">4</span>) <span class="sc">+</span></span>
-<span id="cb16-55"><a href="#cb16-55" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fl">17.5</span>, <span class="at">y=</span><span class="fl">4.1</span>, <span class="at">label=</span><span class="st">&quot;- MDSC&quot;</span>), <span class="at">angle=</span><span class="sc">-</span><span class="fl">67.5</span>,<span class="at">size=</span><span class="dv">4</span>) <span class="sc">+</span></span>
-<span id="cb16-56"><a href="#cb16-56" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fl">12.5</span>, <span class="at">y=</span><span class="fl">4.1</span>, <span class="at">label=</span><span class="st">&quot;- Treg&quot;</span>), <span class="at">angle=</span><span class="sc">-</span><span class="fl">22.5</span>,<span class="at">size=</span><span class="dv">4</span>)</span>
-<span id="cb16-57"><a href="#cb16-57" tabindex="-1"></a>  plot_a3 <span class="ot">&lt;-</span> plot_a2 <span class="sc">+</span></span>
-<span id="cb16-58"><a href="#cb16-58" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fl">20.5</span>, <span class="at">y=</span><span class="fl">4.1</span>, <span class="at">label=</span><span class="st">&quot;PD-1 -&quot;</span>), <span class="at">angle=</span><span class="fl">85.5</span>, <span class="at">size=</span><span class="dv">4</span>) <span class="sc">+</span></span>
-<span id="cb16-59"><a href="#cb16-59" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fl">21.5</span>, <span class="at">y=</span><span class="fl">4.1</span>, <span class="at">label=</span><span class="st">&quot;CTLA4 -&quot;</span>), <span class="at">angle=</span><span class="fl">76.5</span>, <span class="at">size=</span><span class="dv">4</span>) <span class="sc">+</span></span>
-<span id="cb16-60"><a href="#cb16-60" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fl">22.5</span>, <span class="at">y=</span><span class="fl">4.1</span>, <span class="at">label=</span><span class="st">&quot;LAG3 -&quot;</span>), <span class="at">angle=</span><span class="fl">67.5</span>, <span class="at">size=</span><span class="dv">4</span>) <span class="sc">+</span></span>
-<span id="cb16-61"><a href="#cb16-61" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fl">23.5</span>, <span class="at">y=</span><span class="fl">4.1</span>, <span class="at">label=</span><span class="st">&quot;TIGIT -&quot;</span>), <span class="at">angle=</span><span class="fl">58.5</span>, <span class="at">size=</span><span class="dv">4</span>) <span class="sc">+</span></span>
-<span id="cb16-62"><a href="#cb16-62" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fl">24.5</span>, <span class="at">y=</span><span class="fl">4.1</span>, <span class="at">label=</span><span class="st">&quot;TIM3 -&quot;</span>), <span class="at">angle=</span><span class="fl">49.5</span>, <span class="at">size=</span><span class="dv">4</span>) <span class="sc">+</span></span>
-<span id="cb16-63"><a href="#cb16-63" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fl">25.5</span>, <span class="at">y=</span><span class="fl">4.1</span>, <span class="at">label=</span><span class="st">&quot;PD-L1 -&quot;</span>), <span class="at">angle=</span><span class="fl">40.5</span>, <span class="at">size=</span><span class="dv">4</span>) <span class="sc">+</span></span>
-<span id="cb16-64"><a href="#cb16-64" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fl">26.5</span>, <span class="at">y=</span><span class="fl">4.1</span>, <span class="at">label=</span><span class="st">&quot;PD-L2 -&quot;</span>), <span class="at">angle=</span><span class="fl">31.5</span>, <span class="at">size=</span><span class="dv">4</span>) <span class="sc">+</span></span>
-<span id="cb16-65"><a href="#cb16-65" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fl">27.5</span>, <span class="at">y=</span><span class="fl">4.1</span>, <span class="at">label=</span><span class="st">&quot;CD27 +&quot;</span>), <span class="at">angle=</span><span class="fl">22.5</span>, <span class="at">size=</span><span class="dv">4</span>) <span class="sc">+</span></span>
-<span id="cb16-66"><a href="#cb16-66" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fl">28.5</span>, <span class="at">y=</span><span class="fl">4.1</span>, <span class="at">label=</span><span class="st">&quot;ICOS +&quot;</span>), <span class="at">angle=</span><span class="fl">13.5</span>, <span class="at">size=</span><span class="dv">4</span>) <span class="sc">+</span></span>
-<span id="cb16-67"><a href="#cb16-67" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fl">29.5</span>, <span class="at">y=</span><span class="fl">4.1</span>, <span class="at">label=</span><span class="st">&quot;IDO1 -&quot;</span>), <span class="at">angle=</span><span class="fl">4.5</span>, <span class="at">size=</span><span class="dv">4</span>)</span>
-<span id="cb16-68"><a href="#cb16-68" tabindex="-1"></a>  plot_a4 <span class="ot">&lt;-</span> plot_a3 <span class="sc">+</span></span>
-<span id="cb16-69"><a href="#cb16-69" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fl">30.5</span>, <span class="at">y=</span><span class="fl">4.1</span>, <span class="at">label=</span><span class="st">&quot;B2M +&quot;</span>), <span class="at">angle=</span><span class="sc">-</span><span class="fl">4.5</span>, <span class="at">size=</span><span class="dv">4</span>) <span class="sc">+</span></span>
-<span id="cb16-70"><a href="#cb16-70" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fl">31.5</span>, <span class="at">y=</span><span class="fl">4.1</span>, <span class="at">label=</span><span class="st">&quot;TAP1 +&quot;</span>), <span class="at">angle=</span><span class="sc">-</span><span class="fl">13.5</span>, <span class="at">size=</span><span class="dv">4</span>) <span class="sc">+</span></span>
-<span id="cb16-71"><a href="#cb16-71" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fl">32.5</span>, <span class="at">y=</span><span class="fl">4.1</span>, <span class="at">label=</span><span class="st">&quot;TAP2 +&quot;</span>), <span class="at">angle=</span><span class="sc">-</span><span class="fl">22.5</span>, <span class="at">size=</span><span class="dv">4</span>) <span class="sc">+</span></span>
-<span id="cb16-72"><a href="#cb16-72" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fl">33.5</span>, <span class="at">y=</span><span class="fl">4.1</span>, <span class="at">label=</span><span class="st">&quot;HLA-A +&quot;</span>), <span class="at">angle=</span><span class="sc">-</span><span class="fl">31.5</span>, <span class="at">size=</span><span class="dv">4</span>) <span class="sc">+</span></span>
-<span id="cb16-73"><a href="#cb16-73" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fl">34.5</span>, <span class="at">y=</span><span class="fl">4.1</span>, <span class="at">label=</span><span class="st">&quot;HLA-B +&quot;</span>), <span class="at">angle=</span><span class="sc">-</span><span class="fl">40.5</span>, <span class="at">size=</span><span class="dv">4</span>) <span class="sc">+</span></span>
-<span id="cb16-74"><a href="#cb16-74" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fl">35.5</span>, <span class="at">y=</span><span class="fl">4.1</span>, <span class="at">label=</span><span class="st">&quot;HLA-C +&quot;</span>), <span class="at">angle=</span><span class="sc">-</span><span class="fl">49.5</span>, <span class="at">size=</span><span class="dv">4</span>) <span class="sc">+</span></span>
-<span id="cb16-75"><a href="#cb16-75" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fl">36.5</span>, <span class="at">y=</span><span class="fl">4.1</span>, <span class="at">label=</span><span class="st">&quot;HLA-DPA1 +&quot;</span>), <span class="at">angle=</span><span class="sc">-</span><span class="fl">58.5</span>, <span class="at">size=</span><span class="dv">4</span>) <span class="sc">+</span></span>
-<span id="cb16-76"><a href="#cb16-76" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fl">37.5</span>, <span class="at">y=</span><span class="fl">4.1</span>, <span class="at">label=</span><span class="st">&quot;HLA-DPB1 +&quot;</span>), <span class="at">angle=</span><span class="sc">-</span><span class="fl">67.5</span>, <span class="at">size=</span><span class="dv">4</span>) <span class="sc">+</span></span>
-<span id="cb16-77"><a href="#cb16-77" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fl">38.5</span>, <span class="at">y=</span><span class="fl">4.1</span>, <span class="at">label=</span><span class="st">&quot;HLA-E +&quot;</span>), <span class="at">angle=</span><span class="sc">-</span><span class="fl">76.5</span>, <span class="at">size=</span><span class="dv">4</span>) <span class="sc">+</span></span>
-<span id="cb16-78"><a href="#cb16-78" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fl">39.5</span>, <span class="at">y=</span><span class="fl">4.1</span>, <span class="at">label=</span><span class="st">&quot;HLA-F +&quot;</span>), <span class="at">angle=</span><span class="sc">-</span><span class="fl">85.5</span>, <span class="at">size=</span><span class="dv">4</span>)</span>
-<span id="cb16-79"><a href="#cb16-79" tabindex="-1"></a>  plot_a5 <span class="ot">&lt;-</span> plot_a4 <span class="sc">+</span></span>
-<span id="cb16-80"><a href="#cb16-80" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="dv">0</span>, <span class="at">y=</span><span class="dv">6</span>, <span class="at">label=</span><span class="fu">paste</span>(<span class="st">&quot;Immunophenoscore: &quot;</span>,IPS[i],<span class="at">sep=</span><span class="st">&quot;&quot;</span>)), <span class="at">angle=</span><span class="dv">0</span>,<span class="at">size=</span><span class="dv">6</span>,<span class="at">vjust=</span><span class="sc">-</span><span class="fl">0.5</span>) <span class="sc">+</span> </span>
-<span id="cb16-81"><a href="#cb16-81" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.title=</span><span class="fu">element_blank</span>())</span>
-<span id="cb16-82"><a href="#cb16-82" tabindex="-1"></a>  plot_a <span class="ot">&lt;-</span> plot_a5 <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">plot.margin=</span><span class="fu">unit</span>(<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>),<span class="st">&quot;mm&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb16-83"><a href="#cb16-83" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="at">vjust=</span><span class="fl">1.15</span>,<span class="at">hjust=</span><span class="dv">0</span>,<span class="fu">aes</span>(<span class="at">x=</span><span class="fl">25.5</span>, <span class="at">y=</span><span class="dv">6</span>,<span class="at">label=</span><span class="st">&quot;</span><span class="sc">\n\n\n\n</span><span class="st">   MHC: Antigen Processing                                 EC: Effector Cells</span><span class="sc">\n</span><span class="st">   CP: Checkpoints | Immunomodulators              SC: Suppressor Cells</span><span class="sc">\n\n</span><span class="st">&quot;</span>, <span class="at">hjust =</span> <span class="dv">0</span>), <span class="at">size=</span><span class="dv">4</span>)</span>
-<span id="cb16-84"><a href="#cb16-84" tabindex="-1"></a>  </span>
-<span id="cb16-85"><a href="#cb16-85" tabindex="-1"></a>  <span class="do">## 绘制图例 sample-wise (averaged) z-scores</span></span>
-<span id="cb16-86"><a href="#cb16-86" tabindex="-1"></a>  <span class="do">## Plot the legend sample-wise (averaged) z-scores</span></span>
-<span id="cb16-87"><a href="#cb16-87" tabindex="-1"></a>  data_b <span class="ot">&lt;-</span> <span class="fu">data.frame</span> (<span class="at">start =</span> <span class="fu">rep</span>(<span class="dv">0</span>,<span class="dv">23</span>), </span>
-<span id="cb16-88"><a href="#cb16-88" tabindex="-1"></a>                        <span class="at">end =</span> <span class="fu">rep</span>(<span class="fl">0.7</span>,<span class="dv">23</span>), </span>
-<span id="cb16-89"><a href="#cb16-89" tabindex="-1"></a>                        <span class="at">y1=</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">22</span>,<span class="at">by=</span><span class="dv">1</span>), </span>
-<span id="cb16-90"><a href="#cb16-90" tabindex="-1"></a>                        <span class="at">y2=</span><span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">23</span>,<span class="at">by=</span><span class="dv">1</span>),</span>
-<span id="cb16-91"><a href="#cb16-91" tabindex="-1"></a>                        <span class="at">z=</span><span class="fu">seq</span>(<span class="sc">-</span><span class="dv">3</span>,<span class="dv">3</span>,<span class="at">by=</span><span class="dv">6</span><span class="sc">/</span><span class="dv">22</span>),</span>
-<span id="cb16-92"><a href="#cb16-92" tabindex="-1"></a>                        <span class="at">vcol=</span><span class="fu">c</span>(<span class="fu">unlist</span>(<span class="fu">lapply</span>(<span class="fu">seq</span>(<span class="sc">-</span><span class="dv">3</span>,<span class="dv">3</span>,<span class="at">by=</span><span class="dv">6</span><span class="sc">/</span><span class="dv">22</span>),mapcolors))), </span>
-<span id="cb16-93"><a href="#cb16-93" tabindex="-1"></a>                        <span class="at">label =</span> LETTERS[<span class="dv">1</span><span class="sc">:</span><span class="dv">23</span>])</span>
-<span id="cb16-94"><a href="#cb16-94" tabindex="-1"></a>  data_b_ticks <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">rep</span>(<span class="fl">1.2</span>, <span class="dv">7</span>), </span>
-<span id="cb16-95"><a href="#cb16-95" tabindex="-1"></a>                             <span class="at">value =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">3</span>,<span class="dv">3</span>, <span class="at">by=</span><span class="dv">1</span>), </span>
-<span id="cb16-96"><a href="#cb16-96" tabindex="-1"></a>                             <span class="at">y =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">6</span>, <span class="at">by=</span><span class="dv">1</span>)<span class="sc">*</span>(<span class="dv">22</span><span class="sc">/</span><span class="dv">6</span>) <span class="sc">+</span><span class="fl">0.5</span>)</span>
-<span id="cb16-97"><a href="#cb16-97" tabindex="-1"></a>  legendtheme <span class="ot">&lt;-</span> <span class="fu">theme</span>(<span class="at">plot.margin =</span> <span class="fu">unit</span>(<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">0</span>),<span class="st">&quot;inch&quot;</span>), </span>
-<span id="cb16-98"><a href="#cb16-98" tabindex="-1"></a>                       <span class="at">panel.spacing =</span> <span class="fu">unit</span>(<span class="dv">0</span>,<span class="st">&quot;null&quot;</span>), </span>
-<span id="cb16-99"><a href="#cb16-99" tabindex="-1"></a>                       <span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb16-100"><a href="#cb16-100" tabindex="-1"></a>                       <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb16-101"><a href="#cb16-101" tabindex="-1"></a>                       <span class="at">panel.border =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb16-102"><a href="#cb16-102" tabindex="-1"></a>                       <span class="at">panel.background =</span> <span class="fu">element_blank</span>(), </span>
-<span id="cb16-103"><a href="#cb16-103" tabindex="-1"></a>                       <span class="at">axis.line =</span> <span class="fu">element_line</span>(<span class="at">colour =</span> <span class="st">&quot;white&quot;</span>), </span>
-<span id="cb16-104"><a href="#cb16-104" tabindex="-1"></a>                       <span class="at">axis.text=</span><span class="fu">element_blank</span>(), </span>
-<span id="cb16-105"><a href="#cb16-105" tabindex="-1"></a>                       <span class="at">axis.ticks=</span> <span class="fu">element_blank</span>(), </span>
-<span id="cb16-106"><a href="#cb16-106" tabindex="-1"></a>                       <span class="at">axis.title.x=</span><span class="fu">element_blank</span>())</span>
-<span id="cb16-107"><a href="#cb16-107" tabindex="-1"></a>  plot_b <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">hjust=</span><span class="dv">0</span>) <span class="sc">+</span> </span>
-<span id="cb16-108"><a href="#cb16-108" tabindex="-1"></a>    <span class="fu">geom_rect</span>(<span class="at">data=</span>data_b, </span>
-<span id="cb16-109"><a href="#cb16-109" tabindex="-1"></a>              <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">xmin=</span>start, <span class="at">xmax=</span>end, <span class="at">ymin=</span>y1, <span class="at">ymax=</span>y2, <span class="at">fill=</span>label), <span class="at">size=</span><span class="fl">0.5</span>,<span class="at">color=</span><span class="st">&quot;black&quot;</span>, <span class="at">alpha=</span><span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb16-110"><a href="#cb16-110" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">1.5</span>),<span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="sc">+</span></span>
-<span id="cb16-111"><a href="#cb16-111" tabindex="-1"></a>    <span class="fu">scale_fill_manual</span>(<span class="at">values =</span><span class="fu">as.vector</span>(data_b<span class="sc">$</span>vcol),<span class="at">guide=</span><span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb16-112"><a href="#cb16-112" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="at">data=</span>data_b_ticks, <span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>y, <span class="at">label=</span>value),<span class="at">hjust=</span><span class="st">&quot;inward&quot;</span>, <span class="at">size=</span><span class="dv">4</span>) <span class="sc">+</span></span>
-<span id="cb16-113"><a href="#cb16-113" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb16-114"><a href="#cb16-114" tabindex="-1"></a>    legendtheme <span class="sc">+</span> </span>
-<span id="cb16-115"><a href="#cb16-115" tabindex="-1"></a>    <span class="fu">ylab</span>(<span class="st">&quot;Sample-wise (averaged) z-score&quot;</span>)</span>
-<span id="cb16-116"><a href="#cb16-116" tabindex="-1"></a>  </span>
-<span id="cb16-117"><a href="#cb16-117" tabindex="-1"></a>  <span class="do">## 绘制图例 weighted z-scores</span></span>
-<span id="cb16-118"><a href="#cb16-118" tabindex="-1"></a>  <span class="do">## Draw the legend weighted z-scores</span></span>
-<span id="cb16-119"><a href="#cb16-119" tabindex="-1"></a>  data_c <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">start =</span> <span class="fu">rep</span>(<span class="dv">0</span>,<span class="dv">23</span>),</span>
-<span id="cb16-120"><a href="#cb16-120" tabindex="-1"></a>                       <span class="at">end =</span> <span class="fu">rep</span>(<span class="fl">0.7</span>,<span class="dv">23</span>),</span>
-<span id="cb16-121"><a href="#cb16-121" tabindex="-1"></a>                       <span class="at">y1=</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">22</span>,<span class="at">by=</span><span class="dv">1</span>),</span>
-<span id="cb16-122"><a href="#cb16-122" tabindex="-1"></a>                       <span class="at">y2=</span><span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">23</span>,<span class="at">by=</span><span class="dv">1</span>),</span>
-<span id="cb16-123"><a href="#cb16-123" tabindex="-1"></a>                       <span class="at">z=</span><span class="fu">seq</span>(<span class="sc">-</span><span class="dv">2</span>,<span class="dv">2</span>,<span class="at">by=</span><span class="dv">4</span><span class="sc">/</span><span class="dv">22</span>),</span>
-<span id="cb16-124"><a href="#cb16-124" tabindex="-1"></a>                       <span class="at">vcol=</span><span class="fu">c</span>(<span class="fu">unlist</span>(<span class="fu">lapply</span>(<span class="fu">seq</span>(<span class="sc">-</span><span class="dv">2</span>,<span class="dv">2</span>,<span class="at">by=</span><span class="dv">4</span><span class="sc">/</span><span class="dv">22</span>),mapbw))), </span>
-<span id="cb16-125"><a href="#cb16-125" tabindex="-1"></a>                       <span class="at">label =</span> LETTERS[<span class="dv">1</span><span class="sc">:</span><span class="dv">23</span>])</span>
-<span id="cb16-126"><a href="#cb16-126" tabindex="-1"></a>  data_c_ticks <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">rep</span>(<span class="fl">1.2</span>, <span class="dv">5</span>), </span>
-<span id="cb16-127"><a href="#cb16-127" tabindex="-1"></a>                             <span class="at">value =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">2</span>,<span class="dv">2</span>, <span class="at">by=</span><span class="dv">1</span>),</span>
-<span id="cb16-128"><a href="#cb16-128" tabindex="-1"></a>                             <span class="at">y =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">4</span>, <span class="at">by=</span><span class="dv">1</span>)<span class="sc">*</span>(<span class="dv">22</span><span class="sc">/</span><span class="dv">4</span>) <span class="sc">+</span><span class="fl">0.5</span>)</span>
-<span id="cb16-129"><a href="#cb16-129" tabindex="-1"></a>  plot_c <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb16-130"><a href="#cb16-130" tabindex="-1"></a>    <span class="fu">geom_rect</span>(<span class="at">data=</span>data_c, </span>
-<span id="cb16-131"><a href="#cb16-131" tabindex="-1"></a>              <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">xmin=</span>start, <span class="at">xmax=</span>end, <span class="at">ymin=</span>y1, <span class="at">ymax=</span>y2, <span class="at">fill=</span>label),<span class="at">size=</span><span class="fl">0.5</span>,<span class="at">color=</span><span class="st">&quot;black&quot;</span>, <span class="at">alpha=</span><span class="dv">1</span>) <span class="sc">+</span> </span>
-<span id="cb16-132"><a href="#cb16-132" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">1.5</span>),<span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="sc">+</span> </span>
-<span id="cb16-133"><a href="#cb16-133" tabindex="-1"></a>    <span class="fu">scale_fill_manual</span>(<span class="at">values =</span><span class="fu">as.vector</span>(data_c<span class="sc">$</span>vcol),<span class="at">guide=</span><span class="cn">FALSE</span>) <span class="sc">+</span> </span>
-<span id="cb16-134"><a href="#cb16-134" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="at">data=</span>data_c_ticks, <span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>y, <span class="at">label=</span>value),<span class="at">hjust=</span><span class="st">&quot;inward&quot;</span>, <span class="at">size=</span><span class="dv">4</span>) <span class="sc">+</span></span>
-<span id="cb16-135"><a href="#cb16-135" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
-<span id="cb16-136"><a href="#cb16-136" tabindex="-1"></a>    legendtheme <span class="sc">+</span> </span>
-<span id="cb16-137"><a href="#cb16-137" tabindex="-1"></a>    <span class="fu">ylab</span>(<span class="st">&quot;Weighted z-score&quot;</span>)</span>
-<span id="cb16-138"><a href="#cb16-138" tabindex="-1"></a>  </span>
-<span id="cb16-139"><a href="#cb16-139" tabindex="-1"></a>  <span class="do">## 每一个样本保存图片</span></span>
-<span id="cb16-140"><a href="#cb16-140" tabindex="-1"></a>  <span class="do">## Save images for each sample</span></span>
-<span id="cb16-141"><a href="#cb16-141" tabindex="-1"></a>  file_name<span class="ot">&lt;-</span><span class="fu">paste</span>(<span class="st">&quot;IPS_&quot;</span>,sample_names[i],<span class="st">&quot;.pdf&quot;</span>,<span class="at">sep=</span><span class="st">&quot;&quot;</span>)</span>
-<span id="cb16-142"><a href="#cb16-142" tabindex="-1"></a>  <span class="fu">pdf</span>(file_name, <span class="at">width=</span><span class="dv">10</span>, <span class="at">height=</span><span class="dv">8</span>)</span>
-<span id="cb16-143"><a href="#cb16-143" tabindex="-1"></a>  <span class="fu">grid.arrange</span>(plot_a,plot_b,plot_c, <span class="at">ncol=</span><span class="dv">3</span>, <span class="at">widths=</span><span class="fu">c</span>(<span class="fl">0.8</span>,<span class="fl">0.1</span>,<span class="fl">0.1</span>))</span>
-<span id="cb16-144"><a href="#cb16-144" tabindex="-1"></a>  <span class="fu">invisible</span>(<span class="fu">dev.off</span>())</span>
-<span id="cb16-145"><a href="#cb16-145" tabindex="-1"></a>  </span>
-<span id="cb16-146"><a href="#cb16-146" tabindex="-1"></a>  <span class="fu">message</span>(<span class="fu">paste0</span>(<span class="st">&quot;--analysis of &quot;</span>, tumsam[i],<span class="st">&quot; done...&quot;</span>))</span>
-<span id="cb16-147"><a href="#cb16-147" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="do">## 循环每个样本</span></span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a><span class="do">## Cycle through each sample</span></span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a>outTab <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(sample_names)) { </span>
+<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a>  GE <span class="ot">&lt;-</span> gene_expression[[i]]</span>
+<span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a>  mGE <span class="ot">&lt;-</span> <span class="fu">mean</span>(GE)</span>
+<span id="cb12-7"><a href="#cb12-7" tabindex="-1"></a>  sGE <span class="ot">&lt;-</span> <span class="fu">sd</span>(GE)</span>
+<span id="cb12-8"><a href="#cb12-8" tabindex="-1"></a>  Z1 <span class="ot">&lt;-</span> (gene_expression[<span class="fu">as.vector</span>(IPSG<span class="sc">$</span>GENE),i]<span class="sc">-</span>mGE)<span class="sc">/</span>sGE</span>
+<span id="cb12-9"><a href="#cb12-9" tabindex="-1"></a>  W1 <span class="ot">&lt;-</span> IPSG<span class="sc">$</span>WEIGHT</span>
+<span id="cb12-10"><a href="#cb12-10" tabindex="-1"></a>  WEIGHT <span class="ot">&lt;-</span> MIG <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb12-11"><a href="#cb12-11" tabindex="-1"></a>  k <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb12-12"><a href="#cb12-12" tabindex="-1"></a>  <span class="cf">for</span> (gen <span class="cf">in</span> unique_ips_genes) {</span>
+<span id="cb12-13"><a href="#cb12-13" tabindex="-1"></a>    MIG[k] <span class="ot">&lt;-</span> <span class="fu">mean</span>(Z1[<span class="fu">which</span> (<span class="fu">as.vector</span>(IPSG<span class="sc">$</span>NAME)<span class="sc">==</span>gen)],<span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb12-14"><a href="#cb12-14" tabindex="-1"></a>    WEIGHT[k] <span class="ot">&lt;-</span> <span class="fu">mean</span>(W1[<span class="fu">which</span> (<span class="fu">as.vector</span>(IPSG<span class="sc">$</span>NAME)<span class="sc">==</span>gen)])</span>
+<span id="cb12-15"><a href="#cb12-15" tabindex="-1"></a>    k <span class="ot">&lt;-</span> k <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb12-16"><a href="#cb12-16" tabindex="-1"></a>  }</span>
+<span id="cb12-17"><a href="#cb12-17" tabindex="-1"></a>  WG <span class="ot">&lt;-</span> MIG <span class="sc">*</span> WEIGHT</span>
+<span id="cb12-18"><a href="#cb12-18" tabindex="-1"></a>  MHC[i] <span class="ot">&lt;-</span> <span class="fu">mean</span>(WG[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>])</span>
+<span id="cb12-19"><a href="#cb12-19" tabindex="-1"></a>  CP[i] <span class="ot">&lt;-</span> <span class="fu">mean</span>(WG[<span class="dv">11</span><span class="sc">:</span><span class="dv">20</span>])</span>
+<span id="cb12-20"><a href="#cb12-20" tabindex="-1"></a>  EC[i] <span class="ot">&lt;-</span> <span class="fu">mean</span>(WG[<span class="dv">21</span><span class="sc">:</span><span class="dv">24</span>])</span>
+<span id="cb12-21"><a href="#cb12-21" tabindex="-1"></a>  SC[i] <span class="ot">&lt;-</span> <span class="fu">mean</span>(WG[<span class="dv">25</span><span class="sc">:</span><span class="dv">26</span>])</span>
+<span id="cb12-22"><a href="#cb12-22" tabindex="-1"></a>  AZ[i] <span class="ot">&lt;-</span> <span class="fu">sum</span>(MHC[i],CP[i],EC[i],SC[i])</span>
+<span id="cb12-23"><a href="#cb12-23" tabindex="-1"></a>  IPS[i] <span class="ot">&lt;-</span> <span class="fu">ipsmap</span>(AZ[i])</span>
+<span id="cb12-24"><a href="#cb12-24" tabindex="-1"></a>  </span>
+<span id="cb12-25"><a href="#cb12-25" tabindex="-1"></a>  tmp <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">t</span>(<span class="fu">data.frame</span>(WG))); <span class="fu">colnames</span>(tmp) <span class="ot">&lt;-</span> unique_ips_genes; <span class="fu">rownames</span>(tmp) <span class="ot">&lt;-</span> sample_names[i]</span>
+<span id="cb12-26"><a href="#cb12-26" tabindex="-1"></a>  outTab <span class="ot">&lt;-</span> <span class="fu">rbind.data.frame</span>(outTab,tmp)</span>
+<span id="cb12-27"><a href="#cb12-27" tabindex="-1"></a>  </span>
+<span id="cb12-28"><a href="#cb12-28" tabindex="-1"></a>  <span class="co"># 绘制Immunophenogram</span></span>
+<span id="cb12-29"><a href="#cb12-29" tabindex="-1"></a>  <span class="co"># Draw the Immunophenogram</span></span>
+<span id="cb12-30"><a href="#cb12-30" tabindex="-1"></a>  data_a <span class="ot">&lt;-</span> <span class="fu">data.frame</span> (<span class="at">start =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">2.5</span>,<span class="dv">5</span>,<span class="fl">7.5</span>,<span class="dv">10</span>,<span class="dv">15</span>,<span class="fu">seq</span>(<span class="dv">20</span>,<span class="dv">39</span>),<span class="dv">0</span>,<span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">30</span>), <span class="at">end =</span> <span class="fu">c</span>(<span class="fl">2.5</span>,<span class="dv">5</span>,<span class="fl">7.5</span>,<span class="dv">10</span>,<span class="dv">15</span>,<span class="fu">seq</span>(<span class="dv">20</span>,<span class="dv">40</span>),<span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">30</span>,<span class="dv">40</span>), <span class="at">y1=</span><span class="fu">c</span>(<span class="fu">rep</span>(<span class="fl">2.6</span>,<span class="dv">26</span>),<span class="fu">rep</span>(<span class="fl">0.4</span>,<span class="dv">4</span>)),<span class="at">y2=</span><span class="fu">c</span>(<span class="fu">rep</span>(<span class="fl">5.6</span>,<span class="dv">26</span>),<span class="fu">rep</span>(<span class="fl">2.2</span>,<span class="dv">4</span>)),<span class="at">z=</span><span class="fu">c</span>(MIG[<span class="fu">c</span>(<span class="dv">21</span><span class="sc">:</span><span class="dv">26</span>,<span class="dv">11</span><span class="sc">:</span><span class="dv">20</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)],EC[i],SC[i],CP[i],MHC[i]),<span class="at">vcol=</span><span class="fu">c</span>(<span class="fu">unlist</span>(<span class="fu">lapply</span>(MIG[<span class="fu">c</span>(<span class="dv">21</span><span class="sc">:</span><span class="dv">26</span>,<span class="dv">11</span><span class="sc">:</span><span class="dv">20</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)],mapcolors)), <span class="fu">unlist</span>(<span class="fu">lapply</span>(<span class="fu">c</span>(EC[i],SC[i],CP[i],MHC[i]),mapbw))), <span class="at">label =</span> <span class="fu">c</span>(unique_ips_genes[<span class="fu">c</span>(<span class="dv">21</span><span class="sc">:</span><span class="dv">26</span>,<span class="dv">11</span><span class="sc">:</span><span class="dv">20</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)],<span class="st">&quot;EC&quot;</span>,<span class="st">&quot;SC&quot;</span>,<span class="st">&quot;CP&quot;</span>,<span class="st">&quot;MHC&quot;</span>))</span>
+<span id="cb12-31"><a href="#cb12-31" tabindex="-1"></a>  data_a<span class="sc">$</span>label <span class="ot">&lt;-</span> <span class="fu">factor</span>(data_a<span class="sc">$</span>label, <span class="at">levels=</span><span class="fu">unique</span>(data_a<span class="sc">$</span>label))</span>
+<span id="cb12-32"><a href="#cb12-32" tabindex="-1"></a>  plot_a1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb12-33"><a href="#cb12-33" tabindex="-1"></a>    <span class="fu">geom_rect</span>(<span class="at">data=</span>data_a, <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">xmin=</span>start, <span class="at">xmax=</span>end, <span class="at">ymin=</span>y1, <span class="at">ymax=</span>y2, <span class="at">fill=</span>label), <span class="at">size=</span><span class="fl">0.5</span>,<span class="at">color=</span><span class="st">&quot;black&quot;</span>, <span class="at">alpha=</span><span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb12-34"><a href="#cb12-34" tabindex="-1"></a>    <span class="fu">coord_polar</span>()  <span class="sc">+</span> </span>
+<span id="cb12-35"><a href="#cb12-35" tabindex="-1"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">6</span>)) <span class="sc">+</span></span>
+<span id="cb12-36"><a href="#cb12-36" tabindex="-1"></a>    <span class="fu">scale_fill_manual</span>(<span class="at">values =</span><span class="fu">as.vector</span>(data_a<span class="sc">$</span>vcol),<span class="at">guide=</span><span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb12-37"><a href="#cb12-37" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb12-38"><a href="#cb12-38" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">panel.spacing =</span> <span class="fu">unit</span>(<span class="dv">0</span>, <span class="st">&#39;mm&#39;</span>), </span>
+<span id="cb12-39"><a href="#cb12-39" tabindex="-1"></a>          <span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb12-40"><a href="#cb12-40" tabindex="-1"></a>          <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb12-41"><a href="#cb12-41" tabindex="-1"></a>          <span class="at">panel.border =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb12-42"><a href="#cb12-42" tabindex="-1"></a>          <span class="at">panel.background =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb12-43"><a href="#cb12-43" tabindex="-1"></a>          <span class="at">axis.line =</span> <span class="fu">element_line</span>(<span class="at">colour =</span> <span class="st">&quot;white&quot;</span>),</span>
+<span id="cb12-44"><a href="#cb12-44" tabindex="-1"></a>          <span class="at">axis.text=</span><span class="fu">element_blank</span>(), </span>
+<span id="cb12-45"><a href="#cb12-45" tabindex="-1"></a>          <span class="at">axis.ticks=</span> <span class="fu">element_blank</span>()) <span class="sc">+</span> </span>
+<span id="cb12-46"><a href="#cb12-46" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="dv">5</span>, <span class="at">y=</span><span class="fl">1.3</span>, <span class="at">label=</span><span class="st">&quot;EC&quot;</span>), <span class="at">size=</span><span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb12-47"><a href="#cb12-47" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="dv">15</span>, <span class="at">y=</span><span class="fl">1.3</span>, <span class="at">label=</span><span class="st">&quot;SC&quot;</span>), <span class="at">size=</span><span class="dv">4</span>) <span class="sc">+</span> </span>
+<span id="cb12-48"><a href="#cb12-48" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="dv">25</span>, <span class="at">y=</span><span class="fl">1.3</span>, <span class="at">label=</span><span class="st">&quot;CP&quot;</span>), <span class="at">size=</span><span class="dv">4</span>) <span class="sc">+</span> </span>
+<span id="cb12-49"><a href="#cb12-49" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="dv">35</span>, <span class="at">y=</span><span class="fl">1.3</span>, <span class="at">label=</span><span class="st">&quot;MHC&quot;</span>), <span class="at">size=</span><span class="dv">4</span>)</span>
+<span id="cb12-50"><a href="#cb12-50" tabindex="-1"></a>  plot_a2 <span class="ot">&lt;-</span> plot_a1 <span class="sc">+</span></span>
+<span id="cb12-51"><a href="#cb12-51" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fl">1.25</span>, <span class="at">y=</span><span class="fl">4.1</span>, <span class="at">label=</span><span class="st">&quot;+ Act CD4&quot;</span>), <span class="at">angle=</span><span class="fl">78.75</span>, <span class="at">size=</span><span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb12-52"><a href="#cb12-52" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fl">3.75</span>, <span class="at">y=</span><span class="fl">4.1</span>, <span class="at">label=</span><span class="st">&quot;+ Act CD8&quot;</span>),<span class="at">angle=</span><span class="fl">56.25</span>, <span class="at">size=</span><span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb12-53"><a href="#cb12-53" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fl">6.25</span>, <span class="at">y=</span><span class="fl">4.1</span>, <span class="at">label=</span><span class="st">&quot;+ Tem CD4&quot;</span>), <span class="at">angle=</span><span class="fl">33.75</span>,<span class="at">size=</span><span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb12-54"><a href="#cb12-54" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fl">8.75</span>, <span class="at">y=</span><span class="fl">4.1</span>, <span class="at">label=</span><span class="st">&quot;+ Tem CD8&quot;</span>), <span class="at">angle=</span><span class="fl">11.25</span>,<span class="at">size=</span><span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb12-55"><a href="#cb12-55" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fl">17.5</span>, <span class="at">y=</span><span class="fl">4.1</span>, <span class="at">label=</span><span class="st">&quot;- MDSC&quot;</span>), <span class="at">angle=</span><span class="sc">-</span><span class="fl">67.5</span>,<span class="at">size=</span><span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb12-56"><a href="#cb12-56" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fl">12.5</span>, <span class="at">y=</span><span class="fl">4.1</span>, <span class="at">label=</span><span class="st">&quot;- Treg&quot;</span>), <span class="at">angle=</span><span class="sc">-</span><span class="fl">22.5</span>,<span class="at">size=</span><span class="dv">4</span>)</span>
+<span id="cb12-57"><a href="#cb12-57" tabindex="-1"></a>  plot_a3 <span class="ot">&lt;-</span> plot_a2 <span class="sc">+</span></span>
+<span id="cb12-58"><a href="#cb12-58" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fl">20.5</span>, <span class="at">y=</span><span class="fl">4.1</span>, <span class="at">label=</span><span class="st">&quot;PD-1 -&quot;</span>), <span class="at">angle=</span><span class="fl">85.5</span>, <span class="at">size=</span><span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb12-59"><a href="#cb12-59" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fl">21.5</span>, <span class="at">y=</span><span class="fl">4.1</span>, <span class="at">label=</span><span class="st">&quot;CTLA4 -&quot;</span>), <span class="at">angle=</span><span class="fl">76.5</span>, <span class="at">size=</span><span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb12-60"><a href="#cb12-60" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fl">22.5</span>, <span class="at">y=</span><span class="fl">4.1</span>, <span class="at">label=</span><span class="st">&quot;LAG3 -&quot;</span>), <span class="at">angle=</span><span class="fl">67.5</span>, <span class="at">size=</span><span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb12-61"><a href="#cb12-61" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fl">23.5</span>, <span class="at">y=</span><span class="fl">4.1</span>, <span class="at">label=</span><span class="st">&quot;TIGIT -&quot;</span>), <span class="at">angle=</span><span class="fl">58.5</span>, <span class="at">size=</span><span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb12-62"><a href="#cb12-62" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fl">24.5</span>, <span class="at">y=</span><span class="fl">4.1</span>, <span class="at">label=</span><span class="st">&quot;TIM3 -&quot;</span>), <span class="at">angle=</span><span class="fl">49.5</span>, <span class="at">size=</span><span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb12-63"><a href="#cb12-63" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fl">25.5</span>, <span class="at">y=</span><span class="fl">4.1</span>, <span class="at">label=</span><span class="st">&quot;PD-L1 -&quot;</span>), <span class="at">angle=</span><span class="fl">40.5</span>, <span class="at">size=</span><span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb12-64"><a href="#cb12-64" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fl">26.5</span>, <span class="at">y=</span><span class="fl">4.1</span>, <span class="at">label=</span><span class="st">&quot;PD-L2 -&quot;</span>), <span class="at">angle=</span><span class="fl">31.5</span>, <span class="at">size=</span><span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb12-65"><a href="#cb12-65" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fl">27.5</span>, <span class="at">y=</span><span class="fl">4.1</span>, <span class="at">label=</span><span class="st">&quot;CD27 +&quot;</span>), <span class="at">angle=</span><span class="fl">22.5</span>, <span class="at">size=</span><span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb12-66"><a href="#cb12-66" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fl">28.5</span>, <span class="at">y=</span><span class="fl">4.1</span>, <span class="at">label=</span><span class="st">&quot;ICOS +&quot;</span>), <span class="at">angle=</span><span class="fl">13.5</span>, <span class="at">size=</span><span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb12-67"><a href="#cb12-67" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fl">29.5</span>, <span class="at">y=</span><span class="fl">4.1</span>, <span class="at">label=</span><span class="st">&quot;IDO1 -&quot;</span>), <span class="at">angle=</span><span class="fl">4.5</span>, <span class="at">size=</span><span class="dv">4</span>)</span>
+<span id="cb12-68"><a href="#cb12-68" tabindex="-1"></a>  plot_a4 <span class="ot">&lt;-</span> plot_a3 <span class="sc">+</span></span>
+<span id="cb12-69"><a href="#cb12-69" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fl">30.5</span>, <span class="at">y=</span><span class="fl">4.1</span>, <span class="at">label=</span><span class="st">&quot;B2M +&quot;</span>), <span class="at">angle=</span><span class="sc">-</span><span class="fl">4.5</span>, <span class="at">size=</span><span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb12-70"><a href="#cb12-70" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fl">31.5</span>, <span class="at">y=</span><span class="fl">4.1</span>, <span class="at">label=</span><span class="st">&quot;TAP1 +&quot;</span>), <span class="at">angle=</span><span class="sc">-</span><span class="fl">13.5</span>, <span class="at">size=</span><span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb12-71"><a href="#cb12-71" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fl">32.5</span>, <span class="at">y=</span><span class="fl">4.1</span>, <span class="at">label=</span><span class="st">&quot;TAP2 +&quot;</span>), <span class="at">angle=</span><span class="sc">-</span><span class="fl">22.5</span>, <span class="at">size=</span><span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb12-72"><a href="#cb12-72" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fl">33.5</span>, <span class="at">y=</span><span class="fl">4.1</span>, <span class="at">label=</span><span class="st">&quot;HLA-A +&quot;</span>), <span class="at">angle=</span><span class="sc">-</span><span class="fl">31.5</span>, <span class="at">size=</span><span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb12-73"><a href="#cb12-73" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fl">34.5</span>, <span class="at">y=</span><span class="fl">4.1</span>, <span class="at">label=</span><span class="st">&quot;HLA-B +&quot;</span>), <span class="at">angle=</span><span class="sc">-</span><span class="fl">40.5</span>, <span class="at">size=</span><span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb12-74"><a href="#cb12-74" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fl">35.5</span>, <span class="at">y=</span><span class="fl">4.1</span>, <span class="at">label=</span><span class="st">&quot;HLA-C +&quot;</span>), <span class="at">angle=</span><span class="sc">-</span><span class="fl">49.5</span>, <span class="at">size=</span><span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb12-75"><a href="#cb12-75" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fl">36.5</span>, <span class="at">y=</span><span class="fl">4.1</span>, <span class="at">label=</span><span class="st">&quot;HLA-DPA1 +&quot;</span>), <span class="at">angle=</span><span class="sc">-</span><span class="fl">58.5</span>, <span class="at">size=</span><span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb12-76"><a href="#cb12-76" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fl">37.5</span>, <span class="at">y=</span><span class="fl">4.1</span>, <span class="at">label=</span><span class="st">&quot;HLA-DPB1 +&quot;</span>), <span class="at">angle=</span><span class="sc">-</span><span class="fl">67.5</span>, <span class="at">size=</span><span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb12-77"><a href="#cb12-77" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fl">38.5</span>, <span class="at">y=</span><span class="fl">4.1</span>, <span class="at">label=</span><span class="st">&quot;HLA-E +&quot;</span>), <span class="at">angle=</span><span class="sc">-</span><span class="fl">76.5</span>, <span class="at">size=</span><span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb12-78"><a href="#cb12-78" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fl">39.5</span>, <span class="at">y=</span><span class="fl">4.1</span>, <span class="at">label=</span><span class="st">&quot;HLA-F +&quot;</span>), <span class="at">angle=</span><span class="sc">-</span><span class="fl">85.5</span>, <span class="at">size=</span><span class="dv">4</span>)</span>
+<span id="cb12-79"><a href="#cb12-79" tabindex="-1"></a>  plot_a5 <span class="ot">&lt;-</span> plot_a4 <span class="sc">+</span></span>
+<span id="cb12-80"><a href="#cb12-80" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="dv">0</span>, <span class="at">y=</span><span class="dv">6</span>, <span class="at">label=</span><span class="fu">paste</span>(<span class="st">&quot;Immunophenoscore: &quot;</span>,IPS[i],<span class="at">sep=</span><span class="st">&quot;&quot;</span>)), <span class="at">angle=</span><span class="dv">0</span>,<span class="at">size=</span><span class="dv">6</span>,<span class="at">vjust=</span><span class="sc">-</span><span class="fl">0.5</span>) <span class="sc">+</span> </span>
+<span id="cb12-81"><a href="#cb12-81" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.title=</span><span class="fu">element_blank</span>())</span>
+<span id="cb12-82"><a href="#cb12-82" tabindex="-1"></a>  plot_a <span class="ot">&lt;-</span> plot_a5 <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">plot.margin=</span><span class="fu">unit</span>(<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>),<span class="st">&quot;mm&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb12-83"><a href="#cb12-83" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="at">vjust=</span><span class="fl">1.15</span>,<span class="at">hjust=</span><span class="dv">0</span>,<span class="fu">aes</span>(<span class="at">x=</span><span class="fl">25.5</span>, <span class="at">y=</span><span class="dv">6</span>,<span class="at">label=</span><span class="st">&quot;</span><span class="sc">\n\n\n\n</span><span class="st">   MHC: Antigen Processing                                 EC: Effector Cells</span><span class="sc">\n</span><span class="st">   CP: Checkpoints | Immunomodulators              SC: Suppressor Cells</span><span class="sc">\n\n</span><span class="st">&quot;</span>, <span class="at">hjust =</span> <span class="dv">0</span>), <span class="at">size=</span><span class="dv">4</span>)</span>
+<span id="cb12-84"><a href="#cb12-84" tabindex="-1"></a>  </span>
+<span id="cb12-85"><a href="#cb12-85" tabindex="-1"></a>  <span class="do">## 绘制图例 sample-wise (averaged) z-scores</span></span>
+<span id="cb12-86"><a href="#cb12-86" tabindex="-1"></a>  <span class="do">## Plot the legend sample-wise (averaged) z-scores</span></span>
+<span id="cb12-87"><a href="#cb12-87" tabindex="-1"></a>  data_b <span class="ot">&lt;-</span> <span class="fu">data.frame</span> (<span class="at">start =</span> <span class="fu">rep</span>(<span class="dv">0</span>,<span class="dv">23</span>), </span>
+<span id="cb12-88"><a href="#cb12-88" tabindex="-1"></a>                        <span class="at">end =</span> <span class="fu">rep</span>(<span class="fl">0.7</span>,<span class="dv">23</span>), </span>
+<span id="cb12-89"><a href="#cb12-89" tabindex="-1"></a>                        <span class="at">y1=</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">22</span>,<span class="at">by=</span><span class="dv">1</span>), </span>
+<span id="cb12-90"><a href="#cb12-90" tabindex="-1"></a>                        <span class="at">y2=</span><span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">23</span>,<span class="at">by=</span><span class="dv">1</span>),</span>
+<span id="cb12-91"><a href="#cb12-91" tabindex="-1"></a>                        <span class="at">z=</span><span class="fu">seq</span>(<span class="sc">-</span><span class="dv">3</span>,<span class="dv">3</span>,<span class="at">by=</span><span class="dv">6</span><span class="sc">/</span><span class="dv">22</span>),</span>
+<span id="cb12-92"><a href="#cb12-92" tabindex="-1"></a>                        <span class="at">vcol=</span><span class="fu">c</span>(<span class="fu">unlist</span>(<span class="fu">lapply</span>(<span class="fu">seq</span>(<span class="sc">-</span><span class="dv">3</span>,<span class="dv">3</span>,<span class="at">by=</span><span class="dv">6</span><span class="sc">/</span><span class="dv">22</span>),mapcolors))), </span>
+<span id="cb12-93"><a href="#cb12-93" tabindex="-1"></a>                        <span class="at">label =</span> LETTERS[<span class="dv">1</span><span class="sc">:</span><span class="dv">23</span>])</span>
+<span id="cb12-94"><a href="#cb12-94" tabindex="-1"></a>  data_b_ticks <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">rep</span>(<span class="fl">1.2</span>, <span class="dv">7</span>), </span>
+<span id="cb12-95"><a href="#cb12-95" tabindex="-1"></a>                             <span class="at">value =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">3</span>,<span class="dv">3</span>, <span class="at">by=</span><span class="dv">1</span>), </span>
+<span id="cb12-96"><a href="#cb12-96" tabindex="-1"></a>                             <span class="at">y =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">6</span>, <span class="at">by=</span><span class="dv">1</span>)<span class="sc">*</span>(<span class="dv">22</span><span class="sc">/</span><span class="dv">6</span>) <span class="sc">+</span><span class="fl">0.5</span>)</span>
+<span id="cb12-97"><a href="#cb12-97" tabindex="-1"></a>  legendtheme <span class="ot">&lt;-</span> <span class="fu">theme</span>(<span class="at">plot.margin =</span> <span class="fu">unit</span>(<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">0</span>),<span class="st">&quot;inch&quot;</span>), </span>
+<span id="cb12-98"><a href="#cb12-98" tabindex="-1"></a>                       <span class="at">panel.spacing =</span> <span class="fu">unit</span>(<span class="dv">0</span>,<span class="st">&quot;null&quot;</span>), </span>
+<span id="cb12-99"><a href="#cb12-99" tabindex="-1"></a>                       <span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb12-100"><a href="#cb12-100" tabindex="-1"></a>                       <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb12-101"><a href="#cb12-101" tabindex="-1"></a>                       <span class="at">panel.border =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb12-102"><a href="#cb12-102" tabindex="-1"></a>                       <span class="at">panel.background =</span> <span class="fu">element_blank</span>(), </span>
+<span id="cb12-103"><a href="#cb12-103" tabindex="-1"></a>                       <span class="at">axis.line =</span> <span class="fu">element_line</span>(<span class="at">colour =</span> <span class="st">&quot;white&quot;</span>), </span>
+<span id="cb12-104"><a href="#cb12-104" tabindex="-1"></a>                       <span class="at">axis.text=</span><span class="fu">element_blank</span>(), </span>
+<span id="cb12-105"><a href="#cb12-105" tabindex="-1"></a>                       <span class="at">axis.ticks=</span> <span class="fu">element_blank</span>(), </span>
+<span id="cb12-106"><a href="#cb12-106" tabindex="-1"></a>                       <span class="at">axis.title.x=</span><span class="fu">element_blank</span>())</span>
+<span id="cb12-107"><a href="#cb12-107" tabindex="-1"></a>  plot_b <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">hjust=</span><span class="dv">0</span>) <span class="sc">+</span> </span>
+<span id="cb12-108"><a href="#cb12-108" tabindex="-1"></a>    <span class="fu">geom_rect</span>(<span class="at">data=</span>data_b, </span>
+<span id="cb12-109"><a href="#cb12-109" tabindex="-1"></a>              <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">xmin=</span>start, <span class="at">xmax=</span>end, <span class="at">ymin=</span>y1, <span class="at">ymax=</span>y2, <span class="at">fill=</span>label), <span class="at">size=</span><span class="fl">0.5</span>,<span class="at">color=</span><span class="st">&quot;black&quot;</span>, <span class="at">alpha=</span><span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb12-110"><a href="#cb12-110" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">1.5</span>),<span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb12-111"><a href="#cb12-111" tabindex="-1"></a>    <span class="fu">scale_fill_manual</span>(<span class="at">values =</span><span class="fu">as.vector</span>(data_b<span class="sc">$</span>vcol),<span class="at">guide=</span><span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb12-112"><a href="#cb12-112" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="at">data=</span>data_b_ticks, <span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>y, <span class="at">label=</span>value),<span class="at">hjust=</span><span class="st">&quot;inward&quot;</span>, <span class="at">size=</span><span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb12-113"><a href="#cb12-113" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb12-114"><a href="#cb12-114" tabindex="-1"></a>    legendtheme <span class="sc">+</span> </span>
+<span id="cb12-115"><a href="#cb12-115" tabindex="-1"></a>    <span class="fu">ylab</span>(<span class="st">&quot;Sample-wise (averaged) z-score&quot;</span>)</span>
+<span id="cb12-116"><a href="#cb12-116" tabindex="-1"></a>  </span>
+<span id="cb12-117"><a href="#cb12-117" tabindex="-1"></a>  <span class="do">## 绘制图例 weighted z-scores</span></span>
+<span id="cb12-118"><a href="#cb12-118" tabindex="-1"></a>  <span class="do">## Draw the legend weighted z-scores</span></span>
+<span id="cb12-119"><a href="#cb12-119" tabindex="-1"></a>  data_c <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">start =</span> <span class="fu">rep</span>(<span class="dv">0</span>,<span class="dv">23</span>),</span>
+<span id="cb12-120"><a href="#cb12-120" tabindex="-1"></a>                       <span class="at">end =</span> <span class="fu">rep</span>(<span class="fl">0.7</span>,<span class="dv">23</span>),</span>
+<span id="cb12-121"><a href="#cb12-121" tabindex="-1"></a>                       <span class="at">y1=</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">22</span>,<span class="at">by=</span><span class="dv">1</span>),</span>
+<span id="cb12-122"><a href="#cb12-122" tabindex="-1"></a>                       <span class="at">y2=</span><span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">23</span>,<span class="at">by=</span><span class="dv">1</span>),</span>
+<span id="cb12-123"><a href="#cb12-123" tabindex="-1"></a>                       <span class="at">z=</span><span class="fu">seq</span>(<span class="sc">-</span><span class="dv">2</span>,<span class="dv">2</span>,<span class="at">by=</span><span class="dv">4</span><span class="sc">/</span><span class="dv">22</span>),</span>
+<span id="cb12-124"><a href="#cb12-124" tabindex="-1"></a>                       <span class="at">vcol=</span><span class="fu">c</span>(<span class="fu">unlist</span>(<span class="fu">lapply</span>(<span class="fu">seq</span>(<span class="sc">-</span><span class="dv">2</span>,<span class="dv">2</span>,<span class="at">by=</span><span class="dv">4</span><span class="sc">/</span><span class="dv">22</span>),mapbw))), </span>
+<span id="cb12-125"><a href="#cb12-125" tabindex="-1"></a>                       <span class="at">label =</span> LETTERS[<span class="dv">1</span><span class="sc">:</span><span class="dv">23</span>])</span>
+<span id="cb12-126"><a href="#cb12-126" tabindex="-1"></a>  data_c_ticks <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">rep</span>(<span class="fl">1.2</span>, <span class="dv">5</span>), </span>
+<span id="cb12-127"><a href="#cb12-127" tabindex="-1"></a>                             <span class="at">value =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">2</span>,<span class="dv">2</span>, <span class="at">by=</span><span class="dv">1</span>),</span>
+<span id="cb12-128"><a href="#cb12-128" tabindex="-1"></a>                             <span class="at">y =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">4</span>, <span class="at">by=</span><span class="dv">1</span>)<span class="sc">*</span>(<span class="dv">22</span><span class="sc">/</span><span class="dv">4</span>) <span class="sc">+</span><span class="fl">0.5</span>)</span>
+<span id="cb12-129"><a href="#cb12-129" tabindex="-1"></a>  plot_c <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb12-130"><a href="#cb12-130" tabindex="-1"></a>    <span class="fu">geom_rect</span>(<span class="at">data=</span>data_c, </span>
+<span id="cb12-131"><a href="#cb12-131" tabindex="-1"></a>              <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">xmin=</span>start, <span class="at">xmax=</span>end, <span class="at">ymin=</span>y1, <span class="at">ymax=</span>y2, <span class="at">fill=</span>label),<span class="at">size=</span><span class="fl">0.5</span>,<span class="at">color=</span><span class="st">&quot;black&quot;</span>, <span class="at">alpha=</span><span class="dv">1</span>) <span class="sc">+</span> </span>
+<span id="cb12-132"><a href="#cb12-132" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">1.5</span>),<span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="sc">+</span> </span>
+<span id="cb12-133"><a href="#cb12-133" tabindex="-1"></a>    <span class="fu">scale_fill_manual</span>(<span class="at">values =</span><span class="fu">as.vector</span>(data_c<span class="sc">$</span>vcol),<span class="at">guide=</span><span class="cn">FALSE</span>) <span class="sc">+</span> </span>
+<span id="cb12-134"><a href="#cb12-134" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="at">data=</span>data_c_ticks, <span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>y, <span class="at">label=</span>value),<span class="at">hjust=</span><span class="st">&quot;inward&quot;</span>, <span class="at">size=</span><span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb12-135"><a href="#cb12-135" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb12-136"><a href="#cb12-136" tabindex="-1"></a>    legendtheme <span class="sc">+</span> </span>
+<span id="cb12-137"><a href="#cb12-137" tabindex="-1"></a>    <span class="fu">ylab</span>(<span class="st">&quot;Weighted z-score&quot;</span>)</span>
+<span id="cb12-138"><a href="#cb12-138" tabindex="-1"></a>  </span>
+<span id="cb12-139"><a href="#cb12-139" tabindex="-1"></a>  <span class="do">## 每一个样本保存图片</span></span>
+<span id="cb12-140"><a href="#cb12-140" tabindex="-1"></a>  <span class="do">## Save images for each sample</span></span>
+<span id="cb12-141"><a href="#cb12-141" tabindex="-1"></a>  file_name<span class="ot">&lt;-</span><span class="fu">paste</span>(<span class="st">&quot;IPS_&quot;</span>,sample_names[i],<span class="st">&quot;.pdf&quot;</span>,<span class="at">sep=</span><span class="st">&quot;&quot;</span>)</span>
+<span id="cb12-142"><a href="#cb12-142" tabindex="-1"></a>  <span class="fu">pdf</span>(file_name, <span class="at">width=</span><span class="dv">10</span>, <span class="at">height=</span><span class="dv">8</span>)</span>
+<span id="cb12-143"><a href="#cb12-143" tabindex="-1"></a>  <span class="fu">grid.arrange</span>(plot_a,plot_b,plot_c, <span class="at">ncol=</span><span class="dv">3</span>, <span class="at">widths=</span><span class="fu">c</span>(<span class="fl">0.8</span>,<span class="fl">0.1</span>,<span class="fl">0.1</span>))</span>
+<span id="cb12-144"><a href="#cb12-144" tabindex="-1"></a>  <span class="fu">invisible</span>(<span class="fu">dev.off</span>())</span>
+<span id="cb12-145"><a href="#cb12-145" tabindex="-1"></a>  </span>
+<span id="cb12-146"><a href="#cb12-146" tabindex="-1"></a>  <span class="fu">message</span>(<span class="fu">paste0</span>(<span class="st">&quot;--analysis of &quot;</span>, tumsam[i],<span class="st">&quot; done...&quot;</span>))</span>
+<span id="cb12-147"><a href="#cb12-147" tabindex="-1"></a>}</span></code></pre></div>
 <pre><code>## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
 ## ℹ Please use `linewidth` instead.
 ## This warning is displayed once every 8 hours.
-## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.</code></pre>
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.</code></pre>
 <pre><code>## Warning in fortify(data, ...): Arguments in `...` must be used.
 ## ✖ Problematic argument:
 ## • hjust = 0
 ## ℹ Did you misspell an argument name?</code></pre>
-<pre><code>## Warning: The `guide` argument in `scale_*()` cannot be `FALSE`. This was deprecated in ggplot2 3.3.4.
+<pre><code>## Warning: The `guide` argument in `scale_*()` cannot be `FALSE`. This was deprecated in
+## ggplot2 3.3.4.
 ## ℹ Please use &quot;none&quot; instead.
 ## This warning is displayed once every 8 hours.
-## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.</code></pre>
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.</code></pre>
 <pre><code>## --analysis of COAD-A6-2671-01A-01R-1410-07 done...</code></pre>
 <pre><code>## Warning in fortify(data, ...): Arguments in `...` must be used.
 ## ✖ Problematic argument:
@@ -2203,123 +2199,62 @@ and draw</h2>
 ## • hjust = 0
 ## ℹ Did you misspell an argument name?</code></pre>
 <pre><code>## --analysis of COAD-AA-A02R-01A-01R-A00A-07 done...</code></pre>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" tabindex="-1"></a><span class="co"># 构建结果，包括各项得分以及IPS</span></span>
-<span id="cb75-2"><a href="#cb75-2" tabindex="-1"></a><span class="co"># Build the results, including the scores and IPS</span></span>
-<span id="cb75-3"><a href="#cb75-3" tabindex="-1"></a>DF <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">SAMPLE=</span>sample_names,</span>
-<span id="cb75-4"><a href="#cb75-4" tabindex="-1"></a>                 <span class="at">MHC=</span>MHC,</span>
-<span id="cb75-5"><a href="#cb75-5" tabindex="-1"></a>                 <span class="at">EC=</span>EC,</span>
-<span id="cb75-6"><a href="#cb75-6" tabindex="-1"></a>                 <span class="at">SC=</span>SC,</span>
-<span id="cb75-7"><a href="#cb75-7" tabindex="-1"></a>                 <span class="at">CP=</span>CP,</span>
-<span id="cb75-8"><a href="#cb75-8" tabindex="-1"></a>                 <span class="at">AZ=</span>AZ,</span>
-<span id="cb75-9"><a href="#cb75-9" tabindex="-1"></a>                 <span class="at">IPS=</span>IPS,</span>
-<span id="cb75-10"><a href="#cb75-10" tabindex="-1"></a>                 <span class="at">stringsAsFactors =</span> F)</span>
-<span id="cb75-11"><a href="#cb75-11" tabindex="-1"></a></span>
-<span id="cb75-12"><a href="#cb75-12" tabindex="-1"></a><span class="co"># 输出z-score值到文件</span></span>
-<span id="cb75-13"><a href="#cb75-13" tabindex="-1"></a><span class="co"># Output the z-score value to a file</span></span>
-<span id="cb75-14"><a href="#cb75-14" tabindex="-1"></a><span class="fu">write.table</span>(outTab, <span class="at">file =</span> <span class="st">&quot;output_zscore.txt&quot;</span>, <span class="at">row.names =</span> <span class="cn">TRUE</span>, <span class="at">col.names =</span> <span class="cn">NA</span>, <span class="at">quote=</span><span class="cn">FALSE</span>, <span class="at">sep=</span><span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>) </span>
-<span id="cb75-15"><a href="#cb75-15" tabindex="-1"></a></span>
-<span id="cb75-16"><a href="#cb75-16" tabindex="-1"></a><span class="co"># 输出IPS到文件</span></span>
-<span id="cb75-17"><a href="#cb75-17" tabindex="-1"></a><span class="co"># Export IPS to a file</span></span>
-<span id="cb75-18"><a href="#cb75-18" tabindex="-1"></a><span class="fu">write.table</span>(DF,<span class="at">file =</span> <span class="st">&quot;output_IPS.txt&quot;</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>, <span class="at">col.names =</span> <span class="cn">TRUE</span>, <span class="at">quote=</span><span class="cn">FALSE</span>, <span class="at">sep=</span><span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" tabindex="-1"></a><span class="co"># 构建结果，包括各项得分以及IPS</span></span>
+<span id="cb71-2"><a href="#cb71-2" tabindex="-1"></a><span class="co"># Build the results, including the scores and IPS</span></span>
+<span id="cb71-3"><a href="#cb71-3" tabindex="-1"></a>DF <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">SAMPLE=</span>sample_names,</span>
+<span id="cb71-4"><a href="#cb71-4" tabindex="-1"></a>                 <span class="at">MHC=</span>MHC,</span>
+<span id="cb71-5"><a href="#cb71-5" tabindex="-1"></a>                 <span class="at">EC=</span>EC,</span>
+<span id="cb71-6"><a href="#cb71-6" tabindex="-1"></a>                 <span class="at">SC=</span>SC,</span>
+<span id="cb71-7"><a href="#cb71-7" tabindex="-1"></a>                 <span class="at">CP=</span>CP,</span>
+<span id="cb71-8"><a href="#cb71-8" tabindex="-1"></a>                 <span class="at">AZ=</span>AZ,</span>
+<span id="cb71-9"><a href="#cb71-9" tabindex="-1"></a>                 <span class="at">IPS=</span>IPS,</span>
+<span id="cb71-10"><a href="#cb71-10" tabindex="-1"></a>                 <span class="at">stringsAsFactors =</span> F)</span>
+<span id="cb71-11"><a href="#cb71-11" tabindex="-1"></a></span>
+<span id="cb71-12"><a href="#cb71-12" tabindex="-1"></a><span class="co"># 输出z-score值到文件</span></span>
+<span id="cb71-13"><a href="#cb71-13" tabindex="-1"></a><span class="co"># Output the z-score value to a file</span></span>
+<span id="cb71-14"><a href="#cb71-14" tabindex="-1"></a><span class="fu">write.table</span>(outTab, <span class="at">file =</span> <span class="st">&quot;output_zscore.txt&quot;</span>, <span class="at">row.names =</span> <span class="cn">TRUE</span>, <span class="at">col.names =</span> <span class="cn">NA</span>, <span class="at">quote=</span><span class="cn">FALSE</span>, <span class="at">sep=</span><span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>) </span>
+<span id="cb71-15"><a href="#cb71-15" tabindex="-1"></a></span>
+<span id="cb71-16"><a href="#cb71-16" tabindex="-1"></a><span class="co"># 输出IPS到文件</span></span>
+<span id="cb71-17"><a href="#cb71-17" tabindex="-1"></a><span class="co"># Export IPS to a file</span></span>
+<span id="cb71-18"><a href="#cb71-18" tabindex="-1"></a><span class="fu">write.table</span>(DF,<span class="at">file =</span> <span class="st">&quot;output_IPS.txt&quot;</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>, <span class="at">col.names =</span> <span class="cn">TRUE</span>, <span class="at">quote=</span><span class="cn">FALSE</span>, <span class="at">sep=</span><span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>) </span></code></pre></div>
 </div>
 <div id="session-info" class="section level2" number="7">
 <h2><span class="header-section-number">7</span> Session Info</h2>
-<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
-<pre><code>## R version 4.5.1 (2025-06-13)
-## Platform: x86_64-apple-darwin20
-## Running under: macOS Monterey 12.7.6
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
+<pre><code>## R version 4.5.2 (2025-10-31)
+## Platform: x86_64-pc-linux-gnu
+## Running under: Ubuntu 24.04.3 LTS
 ## 
 ## Matrix products: default
-## BLAS:   /Library/Frameworks/R.framework/Versions/4.5-x86_64/Resources/lib/libRblas.0.dylib 
-## LAPACK: /Library/Frameworks/R.framework/Versions/4.5-x86_64/Resources/lib/libRlapack.dylib;  LAPACK version 3.12.1
+## BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3 
+## LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.26.so;  LAPACK version 3.12.0
 ## 
 ## locale:
-## [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+##  [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8       
+##  [4] LC_COLLATE=C.UTF-8     LC_MONETARY=C.UTF-8    LC_MESSAGES=C.UTF-8   
+##  [7] LC_PAPER=C.UTF-8       LC_NAME=C              LC_ADDRESS=C          
+## [10] LC_TELEPHONE=C         LC_MEASUREMENT=C.UTF-8 LC_IDENTIFICATION=C   
 ## 
-## time zone: Asia/Shanghai
-## tzcode source: internal
+## time zone: UTC
+## tzcode source: system (glibc)
 ## 
 ## attached base packages:
-##  [1] grid      parallel  stats4    stats     graphics  grDevices utils    
-##  [8] datasets  methods   base     
+## [1] grid      stats     graphics  grDevices utils     datasets  methods  
+## [8] base     
 ## 
 ## other attached packages:
-##  [1] gridExtra_2.3         openxlsx_4.2.8.1      SimDesign_2.21       
-##  [4] ComplexHeatmap_2.24.1 gridBase_0.4-7        ggsci_4.1.0          
-##  [7] circlize_0.4.16       stringi_1.8.7         rtracklayer_1.68.0   
-## [10] magrittr_2.0.4        RCircos_1.2.2         OmicCircos_1.46.0    
-## [13] GenomicRanges_1.60.0  GenomeInfoDb_1.44.3   IRanges_2.42.0       
-## [16] lubridate_1.9.4       forcats_1.0.1         stringr_1.5.2        
-## [19] dplyr_1.1.4           purrr_1.2.0           readr_2.1.5          
-## [22] tidyr_1.3.1           tibble_3.3.0          ggplot2_4.0.1        
-## [25] tidyverse_2.0.0       S4Vectors_0.46.0      BiocGenerics_0.54.1  
-## [28] generics_0.1.4        rsvg_2.7.0            vegan_2.7-2          
-## [31] permute_0.9-8         ClassDiscovery_3.4.9  oompaBase_3.2.10     
-## [34] cluster_2.1.8.1       GSVA_2.2.1           
+## [1] gridExtra_2.3 ggplot2_4.0.1
 ## 
 ## loaded via a namespace (and not attached):
-##   [1] splines_4.5.1               BiocIO_1.18.0              
-##   [3] bitops_1.0-9                R.oo_1.27.1                
-##   [5] graph_1.86.0                XML_3.99-0.19              
-##   [7] lifecycle_1.0.4             doParallel_1.0.17          
-##   [9] globals_0.18.0              lattice_0.22-7             
-##  [11] MASS_7.3-65                 oompaData_3.1.5            
-##  [13] sass_0.4.10                 rmarkdown_2.30             
-##  [15] jquerylib_0.1.4             yaml_2.3.10                
-##  [17] zip_2.3.3                   sessioninfo_1.2.3          
-##  [19] pbapply_1.7-4               DBI_1.2.3                  
-##  [21] RColorBrewer_1.1-3          abind_1.4-8                
-##  [23] audio_0.1-11                R.utils_2.13.0             
-##  [25] RCurl_1.98-1.17             GenomeInfoDbData_1.2.14    
-##  [27] irlba_2.3.5.1               listenv_0.9.1              
-##  [29] testthat_3.2.3              annotate_1.86.1            
-##  [31] parallelly_1.45.1           codetools_0.2-20           
-##  [33] DelayedArray_0.34.1         tidyselect_1.2.1           
-##  [35] shape_1.4.6.1               UCSC.utils_1.4.0           
-##  [37] farver_2.1.2                ScaledMatrix_1.16.0        
-##  [39] matrixStats_1.5.0           GenomicAlignments_1.44.0   
-##  [41] jsonlite_2.0.0              GetoptLong_1.0.5           
-##  [43] progressr_0.17.0            iterators_1.0.14           
-##  [45] foreach_1.5.2               tools_4.5.1                
-##  [47] Rcpp_1.1.0                  glue_1.8.0                 
-##  [49] SparseArray_1.8.1           xfun_0.54                  
-##  [51] mgcv_1.9-3                  MatrixGenerics_1.20.0      
-##  [53] HDF5Array_1.36.0            withr_3.0.2                
-##  [55] BiocManager_1.30.26         beepr_2.0                  
-##  [57] fastmap_1.2.0               rhdf5filters_1.20.0        
-##  [59] digest_0.6.38               rsvd_1.0.5                 
-##  [61] timechange_0.3.0            R6_2.6.1                   
-##  [63] colorspace_2.1-2            dichromat_2.0-0.1          
-##  [65] RSQLite_2.4.3               R.methodsS3_1.8.2          
-##  [67] h5mread_1.0.1               utf8_1.2.6                 
-##  [69] httr_1.4.7                  S4Arrays_1.8.1             
-##  [71] pkgconfig_2.0.3             gtable_0.3.6               
-##  [73] blob_1.2.4                  S7_0.2.0                   
-##  [75] SingleCellExperiment_1.30.1 XVector_0.48.0             
-##  [77] brio_1.1.5                  htmltools_0.5.8.1          
-##  [79] GSEABase_1.70.1             clue_0.3-66                
-##  [81] scales_1.4.0                Biobase_2.68.0             
-##  [83] png_0.1-8                   SpatialExperiment_1.18.1   
-##  [85] knitr_1.50                  tzdb_0.5.0                 
-##  [87] rjson_0.2.23                nlme_3.1-168               
-##  [89] curl_7.0.0                  cachem_1.1.0               
-##  [91] rhdf5_2.52.1                GlobalOptions_0.1.2        
-##  [93] AnnotationDbi_1.70.0        restfulr_0.0.16            
-##  [95] pillar_1.11.1               vctrs_0.6.5                
-##  [97] BiocSingular_1.24.0         beachmat_2.24.0            
-##  [99] xtable_1.8-4                evaluate_1.0.5             
-## [101] magick_2.9.0                cli_3.6.5                  
-## [103] compiler_4.5.1              Rsamtools_2.24.1           
-## [105] rlang_1.1.6                 crayon_1.5.3               
-## [107] future.apply_1.20.0         labeling_0.4.3             
-## [109] mclust_6.1.2                BiocParallel_1.42.2        
-## [111] Biostrings_2.76.0           Matrix_1.7-3               
-## [113] hms_1.1.4                   sparseMatrixStats_1.20.0   
-## [115] bit64_4.6.0-1               future_1.67.0              
-## [117] Rhdf5lib_1.30.0             KEGGREST_1.48.1            
-## [119] SummarizedExperiment_1.38.1 clipr_0.8.0                
-## [121] memoise_2.0.1               bslib_0.9.0                
-## [123] bit_4.6.0</code></pre>
+##  [1] crayon_1.5.3       vctrs_0.6.5        cli_3.6.5          knitr_1.50        
+##  [5] rlang_1.1.6        xfun_0.54          generics_0.1.4     S7_0.2.1          
+##  [9] jsonlite_2.0.0     labeling_0.4.3     glue_1.8.0         htmltools_0.5.8.1 
+## [13] sass_0.4.10        scales_1.4.0       rmarkdown_2.30     tibble_3.3.0      
+## [17] evaluate_1.0.5     jquerylib_0.1.4    fastmap_1.2.0      yaml_2.3.11       
+## [21] lifecycle_1.0.4    compiler_4.5.2     dplyr_1.1.4        RColorBrewer_1.1-3
+## [25] pkgconfig_2.0.3    farver_2.1.2       digest_0.6.39      R6_2.6.1          
+## [29] tidyselect_1.2.1   pillar_1.11.1      magrittr_2.0.4     bslib_0.9.0       
+## [33] withr_3.0.2        tools_4.5.2        gtable_0.3.6       cachem_1.1.0</code></pre>
 </div>
 
 

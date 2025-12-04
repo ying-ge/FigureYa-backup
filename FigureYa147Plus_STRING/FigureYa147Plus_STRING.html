@@ -1670,7 +1670,7 @@ border-radius: 0px;
 
 
 <p><strong>Author(s)</strong>: Zongcheng Li, Ying Ge<br />
-<strong>Date</strong>: 2025-11-21</p>
+<strong>Date</strong>: 2025-12-03</p>
 <div id="academic-citation" class="section level2" number="1">
 <h2><span class="header-section-number">1</span> Academic Citation</h2>
 <p>If you use this code in your work or research, we kindly request that
@@ -1729,52 +1729,77 @@ settings</h2>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">library</span>(tidyr)                <span class="co"># 加载tidyr包｜Load tidyr package</span></span>
 <span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="fu">library</span>(scales)               <span class="co"># 加载scales包｜Load scales package</span></span>
 <span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="fu">library</span>(ggplot2)              <span class="co"># 加载绘图包｜Load plotting package</span></span>
-<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="fu">library</span>(reshape2)             <span class="co"># 加载数据重塑包｜Load data reshaping package</span></span>
-<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="fu">library</span>(igraph)               <span class="co"># 加载网络分析包｜Load network analysis package</span></span>
-<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a><span class="fu">library</span>(magrittr)             <span class="co"># 加载管道操作包｜Load pipe operator package</span></span>
-<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a></span>
-<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a><span class="fu">Sys.setenv</span>(<span class="at">LANGUAGE =</span> <span class="st">&quot;en&quot;</span>) <span class="co">#显示英文报错信息 #Display English error message</span></span>
-<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a><span class="fu">options</span>(<span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>) <span class="co">#禁止chr转成factor #Disable chr conversion to factor</span></span></code></pre></div>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="fu">library</span>(reshape2)             <span class="co"># 加载数据重塑包｜Load data reshaping package</span></span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;reshape2&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:tidyr&#39;:
+## 
+##     smiths</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="fu">library</span>(igraph)               <span class="co"># 加载网络分析包｜Load network analysis package</span></span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;igraph&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:tidyr&#39;:
+## 
+##     crossing</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     decompose, spectrum</code></pre>
+<pre><code>## The following object is masked from &#39;package:base&#39;:
+## 
+##     union</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="fu">library</span>(magrittr)             <span class="co"># 加载管道操作包｜Load pipe operator package</span></span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;magrittr&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:tidyr&#39;:
+## 
+##     extract</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="fu">Sys.setenv</span>(<span class="at">LANGUAGE =</span> <span class="st">&quot;en&quot;</span>) <span class="co">#显示英文报错信息 #Display English error message</span></span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a><span class="fu">options</span>(<span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>) <span class="co">#禁止chr转成factor #Disable chr conversion to factor</span></span></code></pre></div>
 <p>自定义画图函数 Custom drawing function</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>mycircle <span class="ot">&lt;-</span> <span class="cf">function</span>(coords, <span class="at">v=</span><span class="cn">NULL</span>, params) {</span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>  vertex.color <span class="ot">&lt;-</span> <span class="fu">params</span>(<span class="st">&quot;vertex&quot;</span>, <span class="st">&quot;color&quot;</span>)</span>
-<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">length</span>(vertex.color) <span class="sc">!=</span> <span class="dv">1</span> <span class="sc">&amp;&amp;</span> <span class="sc">!</span><span class="fu">is.null</span>(v)) {</span>
-<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>    vertex.color <span class="ot">&lt;-</span> vertex.color[v]</span>
-<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>  }</span>
-<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>  vertex.size  <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">200</span> <span class="sc">*</span> <span class="fu">params</span>(<span class="st">&quot;vertex&quot;</span>, <span class="st">&quot;size&quot;</span>)</span>
-<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">length</span>(vertex.size) <span class="sc">!=</span> <span class="dv">1</span> <span class="sc">&amp;&amp;</span> <span class="sc">!</span><span class="fu">is.null</span>(v)) {</span>
-<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a>    vertex.size <span class="ot">&lt;-</span> vertex.size[v]</span>
-<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a>  }</span>
-<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a>  vertex.frame.color <span class="ot">&lt;-</span> <span class="fu">params</span>(<span class="st">&quot;vertex&quot;</span>, <span class="st">&quot;frame.color&quot;</span>)</span>
-<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">length</span>(vertex.frame.color) <span class="sc">!=</span> <span class="dv">1</span> <span class="sc">&amp;&amp;</span> <span class="sc">!</span><span class="fu">is.null</span>(v)) {</span>
-<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a>    vertex.frame.color <span class="ot">&lt;-</span> vertex.frame.color[v]</span>
-<span id="cb4-13"><a href="#cb4-13" tabindex="-1"></a>  }</span>
-<span id="cb4-14"><a href="#cb4-14" tabindex="-1"></a>  vertex.frame.width <span class="ot">&lt;-</span> <span class="fu">params</span>(<span class="st">&quot;vertex&quot;</span>, <span class="st">&quot;frame.width&quot;</span>)</span>
-<span id="cb4-15"><a href="#cb4-15" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">length</span>(vertex.frame.width) <span class="sc">!=</span> <span class="dv">1</span> <span class="sc">&amp;&amp;</span> <span class="sc">!</span><span class="fu">is.null</span>(v)) {</span>
-<span id="cb4-16"><a href="#cb4-16" tabindex="-1"></a>    vertex.frame.width <span class="ot">&lt;-</span> vertex.frame.width[v]</span>
-<span id="cb4-17"><a href="#cb4-17" tabindex="-1"></a>  }</span>
-<span id="cb4-18"><a href="#cb4-18" tabindex="-1"></a>  </span>
-<span id="cb4-19"><a href="#cb4-19" tabindex="-1"></a>  <span class="fu">mapply</span>(coords[,<span class="dv">1</span>], coords[,<span class="dv">2</span>], vertex.color, vertex.frame.color,</span>
-<span id="cb4-20"><a href="#cb4-20" tabindex="-1"></a>         vertex.size, vertex.frame.width,</span>
-<span id="cb4-21"><a href="#cb4-21" tabindex="-1"></a>         <span class="at">FUN=</span><span class="cf">function</span>(x, y, bg, fg, size, lwd) {</span>
-<span id="cb4-22"><a href="#cb4-22" tabindex="-1"></a>           <span class="fu">symbols</span>(<span class="at">x=</span>x, <span class="at">y=</span>y, <span class="at">bg=</span>bg, <span class="at">fg=</span>fg, <span class="at">lwd=</span>lwd,</span>
-<span id="cb4-23"><a href="#cb4-23" tabindex="-1"></a>                   <span class="at">circles=</span>size, <span class="at">lheight =</span> <span class="dv">30</span>, <span class="at">add=</span><span class="cn">TRUE</span>, <span class="at">inches=</span><span class="cn">FALSE</span>)</span>
-<span id="cb4-24"><a href="#cb4-24" tabindex="-1"></a>         })</span>
-<span id="cb4-25"><a href="#cb4-25" tabindex="-1"></a>}</span>
-<span id="cb4-26"><a href="#cb4-26" tabindex="-1"></a></span>
-<span id="cb4-27"><a href="#cb4-27" tabindex="-1"></a><span class="co"># Define new vertex shape &quot;fcircle&quot; (filled circle with border)</span></span>
-<span id="cb4-28"><a href="#cb4-28" tabindex="-1"></a><span class="fu">add.vertex.shape</span>(<span class="st">&quot;fcircle&quot;</span>, <span class="at">clip=</span>igraph.shape.noclip,</span>
-<span id="cb4-29"><a href="#cb4-29" tabindex="-1"></a>         <span class="at">plot=</span>mycircle, <span class="at">parameters=</span><span class="fu">list</span>(<span class="at">vertex.frame.color=</span><span class="st">&quot;white&quot;</span>, <span class="co"># 或 &quot;black&quot;｜Or &quot;black&quot;</span></span>
-<span id="cb4-30"><a href="#cb4-30" tabindex="-1"></a>                                  <span class="at">vertex.frame.width=</span><span class="dv">2</span>)) <span class="co"># 边框宽度为2｜Border width = 2</span></span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a>mycircle <span class="ot">&lt;-</span> <span class="cf">function</span>(coords, <span class="at">v=</span><span class="cn">NULL</span>, params) {</span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a>  vertex.color <span class="ot">&lt;-</span> <span class="fu">params</span>(<span class="st">&quot;vertex&quot;</span>, <span class="st">&quot;color&quot;</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">length</span>(vertex.color) <span class="sc">!=</span> <span class="dv">1</span> <span class="sc">&amp;&amp;</span> <span class="sc">!</span><span class="fu">is.null</span>(v)) {</span>
+<span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a>    vertex.color <span class="ot">&lt;-</span> vertex.color[v]</span>
+<span id="cb15-5"><a href="#cb15-5" tabindex="-1"></a>  }</span>
+<span id="cb15-6"><a href="#cb15-6" tabindex="-1"></a>  vertex.size  <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">200</span> <span class="sc">*</span> <span class="fu">params</span>(<span class="st">&quot;vertex&quot;</span>, <span class="st">&quot;size&quot;</span>)</span>
+<span id="cb15-7"><a href="#cb15-7" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">length</span>(vertex.size) <span class="sc">!=</span> <span class="dv">1</span> <span class="sc">&amp;&amp;</span> <span class="sc">!</span><span class="fu">is.null</span>(v)) {</span>
+<span id="cb15-8"><a href="#cb15-8" tabindex="-1"></a>    vertex.size <span class="ot">&lt;-</span> vertex.size[v]</span>
+<span id="cb15-9"><a href="#cb15-9" tabindex="-1"></a>  }</span>
+<span id="cb15-10"><a href="#cb15-10" tabindex="-1"></a>  vertex.frame.color <span class="ot">&lt;-</span> <span class="fu">params</span>(<span class="st">&quot;vertex&quot;</span>, <span class="st">&quot;frame.color&quot;</span>)</span>
+<span id="cb15-11"><a href="#cb15-11" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">length</span>(vertex.frame.color) <span class="sc">!=</span> <span class="dv">1</span> <span class="sc">&amp;&amp;</span> <span class="sc">!</span><span class="fu">is.null</span>(v)) {</span>
+<span id="cb15-12"><a href="#cb15-12" tabindex="-1"></a>    vertex.frame.color <span class="ot">&lt;-</span> vertex.frame.color[v]</span>
+<span id="cb15-13"><a href="#cb15-13" tabindex="-1"></a>  }</span>
+<span id="cb15-14"><a href="#cb15-14" tabindex="-1"></a>  vertex.frame.width <span class="ot">&lt;-</span> <span class="fu">params</span>(<span class="st">&quot;vertex&quot;</span>, <span class="st">&quot;frame.width&quot;</span>)</span>
+<span id="cb15-15"><a href="#cb15-15" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">length</span>(vertex.frame.width) <span class="sc">!=</span> <span class="dv">1</span> <span class="sc">&amp;&amp;</span> <span class="sc">!</span><span class="fu">is.null</span>(v)) {</span>
+<span id="cb15-16"><a href="#cb15-16" tabindex="-1"></a>    vertex.frame.width <span class="ot">&lt;-</span> vertex.frame.width[v]</span>
+<span id="cb15-17"><a href="#cb15-17" tabindex="-1"></a>  }</span>
+<span id="cb15-18"><a href="#cb15-18" tabindex="-1"></a>  </span>
+<span id="cb15-19"><a href="#cb15-19" tabindex="-1"></a>  <span class="fu">mapply</span>(coords[,<span class="dv">1</span>], coords[,<span class="dv">2</span>], vertex.color, vertex.frame.color,</span>
+<span id="cb15-20"><a href="#cb15-20" tabindex="-1"></a>         vertex.size, vertex.frame.width,</span>
+<span id="cb15-21"><a href="#cb15-21" tabindex="-1"></a>         <span class="at">FUN=</span><span class="cf">function</span>(x, y, bg, fg, size, lwd) {</span>
+<span id="cb15-22"><a href="#cb15-22" tabindex="-1"></a>           <span class="fu">symbols</span>(<span class="at">x=</span>x, <span class="at">y=</span>y, <span class="at">bg=</span>bg, <span class="at">fg=</span>fg, <span class="at">lwd=</span>lwd,</span>
+<span id="cb15-23"><a href="#cb15-23" tabindex="-1"></a>                   <span class="at">circles=</span>size, <span class="at">lheight =</span> <span class="dv">30</span>, <span class="at">add=</span><span class="cn">TRUE</span>, <span class="at">inches=</span><span class="cn">FALSE</span>)</span>
+<span id="cb15-24"><a href="#cb15-24" tabindex="-1"></a>         })</span>
+<span id="cb15-25"><a href="#cb15-25" tabindex="-1"></a>}</span>
+<span id="cb15-26"><a href="#cb15-26" tabindex="-1"></a></span>
+<span id="cb15-27"><a href="#cb15-27" tabindex="-1"></a><span class="co"># Define new vertex shape &quot;fcircle&quot; (filled circle with border)</span></span>
+<span id="cb15-28"><a href="#cb15-28" tabindex="-1"></a><span class="fu">add.vertex.shape</span>(<span class="st">&quot;fcircle&quot;</span>, <span class="at">clip=</span>igraph.shape.noclip,</span>
+<span id="cb15-29"><a href="#cb15-29" tabindex="-1"></a>         <span class="at">plot=</span>mycircle, <span class="at">parameters=</span><span class="fu">list</span>(<span class="at">vertex.frame.color=</span><span class="st">&quot;white&quot;</span>, <span class="co"># 或 &quot;black&quot;｜Or &quot;black&quot;</span></span>
+<span id="cb15-30"><a href="#cb15-30" tabindex="-1"></a>                                  <span class="at">vertex.frame.width=</span><span class="dv">2</span>)) <span class="co"># 边框宽度为2｜Border width = 2</span></span></code></pre></div>
+<pre><code>## Warning: `add.vertex.shape()` was deprecated in igraph 2.0.0.
+## ℹ Please use `add_shape()` instead.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.</code></pre>
 </div>
 <div id="参数设置-parameter-settings" class="section level2" number="5">
 <h2><span class="header-section-number">5</span> 参数设置 Parameter
 settings</h2>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="co"># Give your focus official gene_symbol</span></span>
-<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>sourceGene <span class="ot">&lt;-</span> <span class="st">&quot;FOXP3&quot;</span></span>
-<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="co"># Given name will be shown on the plot instead.</span></span>
-<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>sourceName <span class="ot">&lt;-</span> <span class="st">&quot;FOXP3&quot;</span> </span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="co"># Give your focus official gene_symbol</span></span>
+<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a>sourceGene <span class="ot">&lt;-</span> <span class="st">&quot;FOXP3&quot;</span></span>
+<span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" tabindex="-1"></a><span class="co"># Given name will be shown on the plot instead.</span></span>
+<span id="cb17-5"><a href="#cb17-5" tabindex="-1"></a>sourceName <span class="ot">&lt;-</span> <span class="st">&quot;FOXP3&quot;</span> </span></code></pre></div>
 </div>
 <div id="输入文件-input-file" class="section level2" number="6">
 <h2><span class="header-section-number">6</span> 输入文件 Input
@@ -1795,17 +1820,17 @@ easy_input.txt.</p>
 <h2><span class="header-section-number">7</span> 开始画图 Start
 drawing</h2>
 <p>用igraph画图 Drawing with igraph</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="co"># 读取相互作用关系和score</span></span>
-<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="co"># Read the interaction relationship and score</span></span>
-<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>links <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;easy_input.txt&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>)</span>
-<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a><span class="fu">colnames</span>(links) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;source&quot;</span>, <span class="st">&quot;target&quot;</span>, <span class="st">&quot;Loc&quot;</span>, <span class="st">&quot;score&quot;</span>)</span>
-<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a><span class="co"># 把score归一化｜Rescale score</span></span>
-<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a><span class="co">#links$score &lt;- rescale(links$score, to = c(1, 10))</span></span>
-<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a></span>
-<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a><span class="co"># 拆分Loc列｜Split Loc column</span></span>
-<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a>links <span class="ot">&lt;-</span> <span class="fu">separate_rows</span>(links, Loc, <span class="at">sep =</span> <span class="st">&quot;, &quot;</span>)</span>
-<span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a><span class="fu">head</span>(links)</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="co"># 读取相互作用关系和score</span></span>
+<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a><span class="co"># Read the interaction relationship and score</span></span>
+<span id="cb18-3"><a href="#cb18-3" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" tabindex="-1"></a>links <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;easy_input.txt&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>)</span>
+<span id="cb18-5"><a href="#cb18-5" tabindex="-1"></a><span class="fu">colnames</span>(links) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;source&quot;</span>, <span class="st">&quot;target&quot;</span>, <span class="st">&quot;Loc&quot;</span>, <span class="st">&quot;score&quot;</span>)</span>
+<span id="cb18-6"><a href="#cb18-6" tabindex="-1"></a><span class="co"># 把score归一化｜Rescale score</span></span>
+<span id="cb18-7"><a href="#cb18-7" tabindex="-1"></a><span class="co">#links$score &lt;- rescale(links$score, to = c(1, 10))</span></span>
+<span id="cb18-8"><a href="#cb18-8" tabindex="-1"></a></span>
+<span id="cb18-9"><a href="#cb18-9" tabindex="-1"></a><span class="co"># 拆分Loc列｜Split Loc column</span></span>
+<span id="cb18-10"><a href="#cb18-10" tabindex="-1"></a>links <span class="ot">&lt;-</span> <span class="fu">separate_rows</span>(links, Loc, <span class="at">sep =</span> <span class="st">&quot;, &quot;</span>)</span>
+<span id="cb18-11"><a href="#cb18-11" tabindex="-1"></a><span class="fu">head</span>(links)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 4
 ##   source target Loc       score
 ##   &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;     &lt;dbl&gt;
@@ -1815,48 +1840,62 @@ drawing</h2>
 ## 4 FOXP3  NFATC2 Cytoplasm 0.995
 ## 5 FOXP3  KAT5   Nucleus   0.992
 ## 6 FOXP3  IL2    Cytoplasm 0.991</code></pre>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>net <span class="ot">&lt;-</span> <span class="fu">graph_from_data_frame</span>(links, <span class="at">directed =</span> F)</span>
-<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>n_loc <span class="ot">&lt;-</span> <span class="fu">length</span>(<span class="fu">unique</span>(links<span class="sc">$</span>Loc))</span>
-<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>pal_loc <span class="ot">&lt;-</span> <span class="fu">setNames</span>(RColorBrewer<span class="sc">::</span><span class="fu">brewer.pal</span>(n_loc, <span class="at">name =</span> <span class="st">&quot;Set1&quot;</span>), <span class="fu">sort</span>(<span class="fu">unique</span>(links<span class="sc">$</span>Loc)))</span>
-<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a></span>
-<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a><span class="co"># see plot.igraph for more settings </span></span>
-<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a>vertexes <span class="ot">&lt;-</span> <span class="fu">get.vertex.attribute</span>(net, <span class="st">&quot;name&quot;</span>)</span>
-<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a>net <span class="sc">%&lt;&gt;%</span> </span>
-<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a>  <span class="fu">set.vertex.attribute</span>(<span class="st">&quot;label&quot;</span>, </span>
-<span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a>                       <span class="at">value =</span> <span class="fu">ifelse</span>(vertexes <span class="sc">==</span> sourceGene, </span>
-<span id="cb8-11"><a href="#cb8-11" tabindex="-1"></a>                                      sourceName, vertexes)) <span class="sc">%&lt;&gt;%</span></span>
-<span id="cb8-12"><a href="#cb8-12" tabindex="-1"></a>  <span class="fu">set.edge.attribute</span>(<span class="st">&quot;color&quot;</span>, </span>
-<span id="cb8-13"><a href="#cb8-13" tabindex="-1"></a>                     <span class="at">value =</span> pal_loc[links<span class="sc">$</span>Loc]) <span class="sc">%&lt;&gt;%</span></span>
-<span id="cb8-14"><a href="#cb8-14" tabindex="-1"></a>  <span class="fu">set.edge.attribute</span>(<span class="st">&quot;weight&quot;</span>, </span>
-<span id="cb8-15"><a href="#cb8-15" tabindex="-1"></a>                     <span class="at">value =</span> links<span class="sc">$</span>score)</span>
-<span id="cb8-16"><a href="#cb8-16" tabindex="-1"></a></span>
-<span id="cb8-17"><a href="#cb8-17" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">777</span>)</span>
-<span id="cb8-18"><a href="#cb8-18" tabindex="-1"></a>lay <span class="ot">&lt;-</span> <span class="fu">layout_with_dh</span>(net) <span class="co">#weight.node.dist = unique(links[,c(&quot;target&quot;,&quot;score&quot;)])$score) # weight here may be invalid!</span></span>
-<span id="cb8-19"><a href="#cb8-19" tabindex="-1"></a></span>
-<span id="cb8-20"><a href="#cb8-20" tabindex="-1"></a><span class="co"># plot in SVG device, then you may use Adobe Illustrator </span></span>
-<span id="cb8-21"><a href="#cb8-21" tabindex="-1"></a><span class="co"># to fine tune the network map. </span></span>
-<span id="cb8-22"><a href="#cb8-22" tabindex="-1"></a><span class="co"># Such as adjust the text position to avoid overlapping.</span></span>
-<span id="cb8-23"><a href="#cb8-23" tabindex="-1"></a></span>
-<span id="cb8-24"><a href="#cb8-24" tabindex="-1"></a><span class="fu">pdf</span>(<span class="at">file =</span> <span class="st">&quot;interaction.pdf&quot;</span>, <span class="at">width =</span> <span class="dv">6</span>, <span class="at">height =</span> <span class="dv">8</span>)</span>
-<span id="cb8-25"><a href="#cb8-25" tabindex="-1"></a><span class="fu">plot</span>(net, <span class="at">layout =</span> lay, </span>
-<span id="cb8-26"><a href="#cb8-26" tabindex="-1"></a>     <span class="at">vertex.shape =</span> <span class="st">&#39;fcircle&#39;</span>,</span>
-<span id="cb8-27"><a href="#cb8-27" tabindex="-1"></a>     <span class="at">vertex.size =</span> <span class="fu">ifelse</span>(vertexes <span class="sc">==</span> sourceGene, <span class="dv">15</span>, <span class="dv">3</span>),</span>
-<span id="cb8-28"><a href="#cb8-28" tabindex="-1"></a>     <span class="at">vertex.color =</span> <span class="st">&quot;hotpink&quot;</span>,</span>
-<span id="cb8-29"><a href="#cb8-29" tabindex="-1"></a>     <span class="at">vertex.frame.color =</span> ggplot2<span class="sc">::</span><span class="fu">alpha</span>(<span class="st">&quot;white&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>),</span>
-<span id="cb8-30"><a href="#cb8-30" tabindex="-1"></a>     <span class="at">vertex.frame.width =</span> <span class="fu">ifelse</span>(vertexes <span class="sc">==</span> sourceGene, <span class="dv">30</span>, <span class="fl">0.1</span>),</span>
-<span id="cb8-31"><a href="#cb8-31" tabindex="-1"></a>     <span class="at">vertex.label.color =</span> <span class="fu">ifelse</span>(vertexes <span class="sc">==</span> sourceGene, <span class="st">&quot;black&quot;</span>, <span class="st">&quot;grey30&quot;</span>),</span>
-<span id="cb8-32"><a href="#cb8-32" tabindex="-1"></a>     <span class="at">vertex.label.family =</span> <span class="st">&quot;sans&quot;</span>,</span>
-<span id="cb8-33"><a href="#cb8-33" tabindex="-1"></a>     <span class="at">vertex.label.cex =</span> <span class="fu">ifelse</span>(vertexes <span class="sc">==</span> sourceGene, <span class="fl">0.9</span>, <span class="fl">0.6</span>),</span>
-<span id="cb8-34"><a href="#cb8-34" tabindex="-1"></a>     <span class="at">edge.curved =</span> <span class="fu">curve_multiple</span>(net, <span class="at">start =</span> <span class="fl">0.06</span>))</span>
-<span id="cb8-35"><a href="#cb8-35" tabindex="-1"></a>     <span class="co"># fine tune &quot;start&quot; to get better visual effect. To shrink multiple edges using smaller value.</span></span>
-<span id="cb8-36"><a href="#cb8-36" tabindex="-1"></a><span class="fu">legend</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="at">legend=</span> <span class="fu">names</span>(pal_loc),</span>
-<span id="cb8-37"><a href="#cb8-37" tabindex="-1"></a>       <span class="at">col=</span> pal_loc, <span class="at">lty=</span><span class="dv">1</span>, <span class="at">cex=</span><span class="fl">0.6</span>,</span>
-<span id="cb8-38"><a href="#cb8-38" tabindex="-1"></a>       <span class="at">box.lty=</span><span class="dv">1</span>, <span class="at">box.lwd=</span><span class="dv">1</span>, <span class="at">box.col=</span><span class="st">&quot;black&quot;</span>)</span>
-<span id="cb8-39"><a href="#cb8-39" tabindex="-1"></a><span class="fu">dev.off</span>() </span></code></pre></div>
-<pre><code>## quartz_off_screen 
-##                 2</code></pre>
-<p><embed role="img" src="data:application/pdf;base64,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MiAwIG9iago8PAovVHlwZSAvRXh0R1N0YXRlCi9DQSAwLjUwMiA+PgplbmRvYmoKMTMgMCBvYmoKPDwKL1R5cGUgL0V4dEdTdGF0ZQovQ0EgMS4wMDAgPj4KZW5kb2JqCjE0IDAgb2JqCjw8Ci9UeXBlIC9FeHRHU3RhdGUKL2NhIDEuMDAwCj4+CmVuZG9iagp4cmVmCjAgMTUKMDAwMDAwMDAwMCA2NTUzNSBmIAowMDAwMDAwMDIxIDAwMDAwIG4gCjAwMDAwMDAxNjMgMDAwMDAgbiAKMDAwMDAwODI3NiAwMDAwMCBuIAowMDAwMDA4MzU5IDAwMDAwIG4gCjAwMDAwMDg1MjAgMDAwMDAgbiAKMDAwMDAwODU1MyAwMDAwMCBuIAowMDAwMDAwMjEyIDAwMDAwIG4gCjAwMDAwMDAyOTIgMDAwMDAgbiAKMDAwMDAxMTI0OCAwMDAwMCBuIAowMDAwMDExNTA1IDAwMDAwIG4gCjAwMDAwMTE2MDIgMDAwMDAgbiAKMDAwMDAxMTY5OSAwMDAwMCBuIAowMDAwMDExNzQ4IDAwMDAwIG4gCjAwMDAwMTE3OTcgMDAwMDAgbiAKdHJhaWxlcgo8PCAvU2l6ZSAxNSAvSW5mbyAxIDAgUiAvUm9vdCAyIDAgUiA+PgpzdGFydHhyZWYKMTE4NDYKJSVFT0YK"></embed></p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a>net <span class="ot">&lt;-</span> <span class="fu">graph_from_data_frame</span>(links, <span class="at">directed =</span> F)</span>
+<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" tabindex="-1"></a>n_loc <span class="ot">&lt;-</span> <span class="fu">length</span>(<span class="fu">unique</span>(links<span class="sc">$</span>Loc))</span>
+<span id="cb20-4"><a href="#cb20-4" tabindex="-1"></a>pal_loc <span class="ot">&lt;-</span> <span class="fu">setNames</span>(RColorBrewer<span class="sc">::</span><span class="fu">brewer.pal</span>(n_loc, <span class="at">name =</span> <span class="st">&quot;Set1&quot;</span>), <span class="fu">sort</span>(<span class="fu">unique</span>(links<span class="sc">$</span>Loc)))</span>
+<span id="cb20-5"><a href="#cb20-5" tabindex="-1"></a></span>
+<span id="cb20-6"><a href="#cb20-6" tabindex="-1"></a><span class="co"># see plot.igraph for more settings </span></span>
+<span id="cb20-7"><a href="#cb20-7" tabindex="-1"></a>vertexes <span class="ot">&lt;-</span> <span class="fu">get.vertex.attribute</span>(net, <span class="st">&quot;name&quot;</span>)</span></code></pre></div>
+<pre><code>## Warning: `get.vertex.attribute()` was deprecated in igraph 2.0.0.
+## ℹ Please use `vertex_attr()` instead.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.</code></pre>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a>net <span class="sc">%&lt;&gt;%</span> </span>
+<span id="cb22-2"><a href="#cb22-2" tabindex="-1"></a>  <span class="fu">set.vertex.attribute</span>(<span class="st">&quot;label&quot;</span>, </span>
+<span id="cb22-3"><a href="#cb22-3" tabindex="-1"></a>                       <span class="at">value =</span> <span class="fu">ifelse</span>(vertexes <span class="sc">==</span> sourceGene, </span>
+<span id="cb22-4"><a href="#cb22-4" tabindex="-1"></a>                                      sourceName, vertexes)) <span class="sc">%&lt;&gt;%</span></span>
+<span id="cb22-5"><a href="#cb22-5" tabindex="-1"></a>  <span class="fu">set.edge.attribute</span>(<span class="st">&quot;color&quot;</span>, </span>
+<span id="cb22-6"><a href="#cb22-6" tabindex="-1"></a>                     <span class="at">value =</span> pal_loc[links<span class="sc">$</span>Loc]) <span class="sc">%&lt;&gt;%</span></span>
+<span id="cb22-7"><a href="#cb22-7" tabindex="-1"></a>  <span class="fu">set.edge.attribute</span>(<span class="st">&quot;weight&quot;</span>, </span>
+<span id="cb22-8"><a href="#cb22-8" tabindex="-1"></a>                     <span class="at">value =</span> links<span class="sc">$</span>score)</span></code></pre></div>
+<pre><code>## Warning: `set.edge.attribute()` was deprecated in igraph 2.0.0.
+## ℹ Please use `set_edge_attr()` instead.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.</code></pre>
+<pre><code>## Warning: `set.vertex.attribute()` was deprecated in igraph 2.0.0.
+## ℹ Please use `set_vertex_attr()` instead.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">777</span>)</span>
+<span id="cb25-2"><a href="#cb25-2" tabindex="-1"></a>lay <span class="ot">&lt;-</span> <span class="fu">layout_with_dh</span>(net) <span class="co">#weight.node.dist = unique(links[,c(&quot;target&quot;,&quot;score&quot;)])$score) # weight here may be invalid!</span></span>
+<span id="cb25-3"><a href="#cb25-3" tabindex="-1"></a></span>
+<span id="cb25-4"><a href="#cb25-4" tabindex="-1"></a><span class="co"># plot in SVG device, then you may use Adobe Illustrator </span></span>
+<span id="cb25-5"><a href="#cb25-5" tabindex="-1"></a><span class="co"># to fine tune the network map. </span></span>
+<span id="cb25-6"><a href="#cb25-6" tabindex="-1"></a><span class="co"># Such as adjust the text position to avoid overlapping.</span></span>
+<span id="cb25-7"><a href="#cb25-7" tabindex="-1"></a></span>
+<span id="cb25-8"><a href="#cb25-8" tabindex="-1"></a><span class="fu">pdf</span>(<span class="at">file =</span> <span class="st">&quot;interaction.pdf&quot;</span>, <span class="at">width =</span> <span class="dv">6</span>, <span class="at">height =</span> <span class="dv">8</span>)</span>
+<span id="cb25-9"><a href="#cb25-9" tabindex="-1"></a><span class="fu">plot</span>(net, <span class="at">layout =</span> lay, </span>
+<span id="cb25-10"><a href="#cb25-10" tabindex="-1"></a>     <span class="at">vertex.shape =</span> <span class="st">&#39;fcircle&#39;</span>,</span>
+<span id="cb25-11"><a href="#cb25-11" tabindex="-1"></a>     <span class="at">vertex.size =</span> <span class="fu">ifelse</span>(vertexes <span class="sc">==</span> sourceGene, <span class="dv">15</span>, <span class="dv">3</span>),</span>
+<span id="cb25-12"><a href="#cb25-12" tabindex="-1"></a>     <span class="at">vertex.color =</span> <span class="st">&quot;hotpink&quot;</span>,</span>
+<span id="cb25-13"><a href="#cb25-13" tabindex="-1"></a>     <span class="at">vertex.frame.color =</span> ggplot2<span class="sc">::</span><span class="fu">alpha</span>(<span class="st">&quot;white&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>),</span>
+<span id="cb25-14"><a href="#cb25-14" tabindex="-1"></a>     <span class="at">vertex.frame.width =</span> <span class="fu">ifelse</span>(vertexes <span class="sc">==</span> sourceGene, <span class="dv">30</span>, <span class="fl">0.1</span>),</span>
+<span id="cb25-15"><a href="#cb25-15" tabindex="-1"></a>     <span class="at">vertex.label.color =</span> <span class="fu">ifelse</span>(vertexes <span class="sc">==</span> sourceGene, <span class="st">&quot;black&quot;</span>, <span class="st">&quot;grey30&quot;</span>),</span>
+<span id="cb25-16"><a href="#cb25-16" tabindex="-1"></a>     <span class="at">vertex.label.family =</span> <span class="st">&quot;sans&quot;</span>,</span>
+<span id="cb25-17"><a href="#cb25-17" tabindex="-1"></a>     <span class="at">vertex.label.cex =</span> <span class="fu">ifelse</span>(vertexes <span class="sc">==</span> sourceGene, <span class="fl">0.9</span>, <span class="fl">0.6</span>),</span>
+<span id="cb25-18"><a href="#cb25-18" tabindex="-1"></a>     <span class="at">edge.curved =</span> <span class="fu">curve_multiple</span>(net, <span class="at">start =</span> <span class="fl">0.06</span>))</span>
+<span id="cb25-19"><a href="#cb25-19" tabindex="-1"></a>     <span class="co"># fine tune &quot;start&quot; to get better visual effect. To shrink multiple edges using smaller value.</span></span>
+<span id="cb25-20"><a href="#cb25-20" tabindex="-1"></a><span class="fu">legend</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="at">legend=</span> <span class="fu">names</span>(pal_loc),</span>
+<span id="cb25-21"><a href="#cb25-21" tabindex="-1"></a>       <span class="at">col=</span> pal_loc, <span class="at">lty=</span><span class="dv">1</span>, <span class="at">cex=</span><span class="fl">0.6</span>,</span>
+<span id="cb25-22"><a href="#cb25-22" tabindex="-1"></a>       <span class="at">box.lty=</span><span class="dv">1</span>, <span class="at">box.lwd=</span><span class="dv">1</span>, <span class="at">box.col=</span><span class="st">&quot;black&quot;</span>)</span>
+<span id="cb25-23"><a href="#cb25-23" tabindex="-1"></a><span class="fu">dev.off</span>() </span></code></pre></div>
+<pre><code>## png 
+##   2</code></pre>
+<p><embed role="img" src="data:application/pdf;base64,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MiAwIG9iago8PAovVHlwZSAvRXh0R1N0YXRlCi9DQSAwLjUwMiA+PgplbmRvYmoKMTMgMCBvYmoKPDwKL1R5cGUgL0V4dEdTdGF0ZQovQ0EgMS4wMDAgPj4KZW5kb2JqCjE0IDAgb2JqCjw8Ci9UeXBlIC9FeHRHU3RhdGUKL2NhIDEuMDAwCj4+CmVuZG9iagp4cmVmCjAgMTUKMDAwMDAwMDAwMCA2NTUzNSBmIAowMDAwMDAwMDIxIDAwMDAwIG4gCjAwMDAwMDAxNjMgMDAwMDAgbiAKMDAwMDAwODI3NiAwMDAwMCBuIAowMDAwMDA4MzU5IDAwMDAwIG4gCjAwMDAwMDg1MjAgMDAwMDAgbiAKMDAwMDAwODU1MyAwMDAwMCBuIAowMDAwMDAwMjEyIDAwMDAwIG4gCjAwMDAwMDAyOTIgMDAwMDAgbiAKMDAwMDAxMTI0OCAwMDAwMCBuIAowMDAwMDExNTA1IDAwMDAwIG4gCjAwMDAwMTE2MDIgMDAwMDAgbiAKMDAwMDAxMTY5OSAwMDAwMCBuIAowMDAwMDExNzQ4IDAwMDAwIG4gCjAwMDAwMTE3OTcgMDAwMDAgbiAKdHJhaWxlcgo8PCAvU2l6ZSAxNSAvSW5mbyAxIDAgUiAvUm9vdCAyIDAgUiA+PgpzdGFydHhyZWYKMTE4NDYKJSVFT0YK"></embed></p>
 </div>
 <div id="后期处理-post-processing" class="section level2" number="8">
 <h2><span class="header-section-number">8</span> 后期处理
@@ -1868,149 +1907,42 @@ the text position to avoid overlapping.</p>
 </div>
 <div id="session-info" class="section level2" number="9">
 <h2><span class="header-section-number">9</span> Session Info</h2>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
-<pre><code>## R version 4.5.1 (2025-06-13)
-## Platform: x86_64-apple-darwin20
-## Running under: macOS Monterey 12.7.6
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
+<pre><code>## R version 4.5.2 (2025-10-31)
+## Platform: x86_64-pc-linux-gnu
+## Running under: Ubuntu 24.04.3 LTS
 ## 
 ## Matrix products: default
-## BLAS:   /Library/Frameworks/R.framework/Versions/4.5-x86_64/Resources/lib/libRblas.0.dylib 
-## LAPACK: /Library/Frameworks/R.framework/Versions/4.5-x86_64/Resources/lib/libRlapack.dylib;  LAPACK version 3.12.1
+## BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3 
+## LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.26.so;  LAPACK version 3.12.0
 ## 
 ## locale:
-## [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+##  [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8       
+##  [4] LC_COLLATE=C.UTF-8     LC_MONETARY=C.UTF-8    LC_MESSAGES=C.UTF-8   
+##  [7] LC_PAPER=C.UTF-8       LC_NAME=C              LC_ADDRESS=C          
+## [10] LC_TELEPHONE=C         LC_MEASUREMENT=C.UTF-8 LC_IDENTIFICATION=C   
 ## 
-## time zone: Asia/Shanghai
-## tzcode source: internal
+## time zone: UTC
+## tzcode source: system (glibc)
 ## 
 ## attached base packages:
-## [1] grid      stats4    stats     graphics  grDevices utils     datasets 
-## [8] methods   base     
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-##  [1] scales_1.4.0                survMisc_0.5.6             
-##  [3] crosslink_0.1.0             patchwork_1.3.2            
-##  [5] rlang_1.1.6                 lubridate_1.9.4            
-##  [7] forcats_1.0.1               stringr_1.5.2              
-##  [9] purrr_1.2.0                 readr_2.1.5                
-## [11] tibble_3.3.0                tidyverse_2.0.0            
-## [13] ggstatsplot_0.13.3          tidyr_1.3.1                
-## [15] dplyr_1.1.4                 data.table_1.17.8          
-## [17] shape_1.4.6.1               future_1.67.0              
-## [19] survival_3.8-3              TCGAbiolinks_2.36.0        
-## [21] SeuratData_0.2.2.9002       RColorBrewer_1.1-3         
-## [23] ggrepel_0.9.6               ggraph_2.2.2               
-## [25] Seurat_5.3.1                SeuratObject_5.2.0         
-## [27] sp_2.2-0                    SingleCellExperiment_1.30.1
-## [29] SummarizedExperiment_1.38.1 GenomicRanges_1.60.0       
-## [31] GenomeInfoDb_1.44.3         MatrixGenerics_1.20.0      
-## [33] matrixStats_1.5.0           plyr_1.8.9                 
-## [35] corrplot_0.95               magrittr_2.0.4             
-## [37] igraph_2.2.0                reshape2_1.4.4             
-## [39] ggplot2_4.0.1               clusterProfiler_4.16.0     
-## [41] org.Hs.eg.db_3.21.0         AnnotationDbi_1.70.0       
-## [43] IRanges_2.42.0              S4Vectors_0.46.0           
-## [45] Biobase_2.68.0              BiocGenerics_0.54.1        
-## [47] generics_0.1.4             
+## [1] magrittr_2.0.4 igraph_2.2.1   reshape2_1.4.5 ggplot2_4.0.1  scales_1.4.0  
+## [6] tidyr_1.3.1   
 ## 
 ## loaded via a namespace (and not attached):
-##   [1] R.methodsS3_1.8.2           dichromat_2.0-0.1          
-##   [3] progress_1.2.3              goftest_1.2-3              
-##   [5] Biostrings_2.76.0           vctrs_0.6.5                
-##   [7] ggtangle_0.0.7              spatstat.random_3.4-2      
-##   [9] effectsize_1.0.1            digest_0.6.39              
-##  [11] png_0.1-8                   bayestestR_0.17.0          
-##  [13] correlation_0.8.8           deldir_2.0-4               
-##  [15] parallelly_1.45.1           MASS_7.3-65                
-##  [17] httpuv_1.6.16               qvalue_2.40.0              
-##  [19] withr_3.0.2                 xfun_0.54                  
-##  [21] ggfun_0.2.0                 ellipsis_0.3.2             
-##  [23] memoise_2.0.1               MatrixModels_0.5-4         
-##  [25] gson_0.1.0                  parameters_0.28.2          
-##  [27] systemfonts_1.3.1           ragg_1.5.0                 
-##  [29] tidytree_0.4.6              zoo_1.8-14                 
-##  [31] pbapply_1.7-4               R.oo_1.27.1                
-##  [33] prettyunits_1.2.0           datawizard_1.3.0           
-##  [35] rematch2_2.1.2              KEGGREST_1.48.1            
-##  [37] promises_1.3.3              httr_1.4.7                 
-##  [39] downloader_0.4.1            globals_0.18.0             
-##  [41] fitdistrplus_1.2-4          rstudioapi_0.17.1          
-##  [43] ps_1.9.1                    UCSC.utils_1.4.0           
-##  [45] miniUI_0.1.2                DOSE_4.2.0                 
-##  [47] processx_3.8.6              curl_7.0.0                 
-##  [49] polyclip_1.10-7             GenomeInfoDbData_1.2.14    
-##  [51] SparseArray_1.8.1           xtable_1.8-4               
-##  [53] desc_1.4.3                  evaluate_1.0.5             
-##  [55] S4Arrays_1.8.1              BiocFileCache_2.16.2       
-##  [57] hms_1.1.4                   irlba_2.3.5.1              
-##  [59] colorspace_2.1-2            filelock_1.0.3             
-##  [61] ROCR_1.0-11                 reticulate_1.43.0          
-##  [63] spatstat.data_3.1-9         lmtest_0.9-40              
-##  [65] later_1.4.4                 viridis_0.6.5              
-##  [67] ggtree_3.16.3               lattice_0.22-7             
-##  [69] spatstat.geom_3.6-0         future.apply_1.20.0        
-##  [71] scattermore_1.2             XML_3.99-0.19              
-##  [73] cowplot_1.2.0               RcppAnnoy_0.0.22           
-##  [75] pillar_1.11.1               nlme_3.1-168               
-##  [77] compiler_4.5.1              RSpectra_0.16-2            
-##  [79] stringi_1.8.7               tensor_1.5.1               
-##  [81] devtools_2.4.6              crayon_1.5.3               
-##  [83] abind_1.4-8                 gridGraphics_0.5-1         
-##  [85] graphlayouts_1.2.2          bit_4.6.0                  
-##  [87] chromote_0.5.1              fastmatch_1.1-6            
-##  [89] codetools_0.2-20            textshaping_1.0.4          
-##  [91] bslib_0.9.0                 paletteer_1.6.0            
-##  [93] plotly_4.11.0               mime_0.13                  
-##  [95] splines_4.5.1               Rcpp_1.1.0                 
-##  [97] fastDummies_1.7.5           dbplyr_2.5.1               
-##  [99] TCGAbiolinksGUI.data_1.28.0 utf8_1.2.6                 
-## [101] knitr_1.50                  blob_1.2.4                 
-## [103] fs_1.6.6                    listenv_0.9.1              
-## [105] pkgbuild_1.4.8              ggplotify_0.1.3            
-## [107] Matrix_1.7-3                callr_3.7.6                
-## [109] statmod_1.5.1               tzdb_0.5.0                 
-## [111] tweenr_2.0.3                pkgconfig_2.0.3            
-## [113] tools_4.5.1                 cachem_1.1.0               
-## [115] RSQLite_2.4.3               viridisLite_0.4.2          
-## [117] rvest_1.0.5                 DBI_1.2.3                  
-## [119] fastmap_1.2.0               rmarkdown_2.30             
-## [121] usethis_3.2.1               ica_1.0-3                  
-## [123] sass_0.4.10                 coda_0.19-4.1              
-## [125] insight_1.4.2               dotCall64_1.2              
-## [127] RANN_2.6.2                  farver_2.1.2               
-## [129] mgcv_1.9-3                  tidygraph_1.3.1            
-## [131] yaml_2.3.10                 cli_3.6.5                  
-## [133] BayesFactor_0.9.12-4.7      lifecycle_1.0.4            
-## [135] uwot_0.2.3                  mvtnorm_1.3-3              
-## [137] sessioninfo_1.2.3           BiocParallel_1.42.2        
-## [139] timechange_0.3.0            gtable_0.3.6               
-## [141] ggridges_0.5.7              progressr_0.17.0           
-## [143] parallel_4.5.1              ape_5.8-1                  
-## [145] limma_3.64.3                jsonlite_2.0.0             
-## [147] RcppHNSW_0.6.0              bit64_4.6.0-1              
-## [149] Rtsne_0.17                  yulab.utils_0.2.1          
-## [151] spatstat.utils_3.2-0        ggside_0.4.0               
-## [153] RcppParallel_5.1.11-1       jquerylib_0.1.4            
-## [155] GOSemSim_2.34.0             zeallot_0.2.0              
-## [157] spatstat.univar_3.1-4       R.utils_2.13.0             
-## [159] lazyeval_0.2.2              shiny_1.11.1               
-## [161] htmltools_0.5.8.1           enrichplot_1.28.4          
-## [163] KMsurv_0.1-6                GO.db_3.21.0               
-## [165] sctransform_0.4.2           rappdirs_0.3.3             
-## [167] glue_1.8.0                  spam_2.11-1                
-## [169] httr2_1.2.1                 XVector_0.48.0             
-## [171] treeio_1.32.0               gridExtra_2.3              
-## [173] R6_2.6.1                    km.ci_0.5-6                
-## [175] labeling_0.4.3              cluster_2.1.8.1            
-## [177] pkgload_1.4.1               aplot_0.2.9                
-## [179] rstantools_2.5.0            DelayedArray_0.34.1        
-## [181] tidyselect_1.2.1            ggforce_0.5.0              
-## [183] xml2_1.4.0                  statsExpressions_1.7.1     
-## [185] KernSmooth_2.23-26          S7_0.2.1                   
-## [187] websocket_1.4.4             htmlwidgets_1.6.4          
-## [189] fgsea_1.34.2                biomaRt_2.64.0             
-## [191] spatstat.sparse_3.1-0       spatstat.explore_3.5-3     
-## [193] remotes_2.5.0               ggnewscale_0.5.2</code></pre>
+##  [1] gtable_0.3.6       jsonlite_2.0.0     crayon_1.5.3       dplyr_1.1.4       
+##  [5] compiler_4.5.2     Rcpp_1.1.0         tidyselect_1.2.1   stringr_1.6.0     
+##  [9] jquerylib_0.1.4    yaml_2.3.11        fastmap_1.2.0      plyr_1.8.9        
+## [13] R6_2.6.1           generics_0.1.4     knitr_1.50         tibble_3.3.0      
+## [17] bslib_0.9.0        pillar_1.11.1      RColorBrewer_1.1-3 rlang_1.1.6       
+## [21] utf8_1.2.6         cachem_1.1.0       stringi_1.8.7      xfun_0.54         
+## [25] sass_0.4.10        S7_0.2.1           cli_3.6.5          withr_3.0.2       
+## [29] digest_0.6.39      grid_4.5.2         lifecycle_1.0.4    vctrs_0.6.5       
+## [33] evaluate_1.0.5     glue_1.8.0         farver_2.1.2       rmarkdown_2.30    
+## [37] purrr_1.2.0        tools_4.5.2        pkgconfig_2.0.3    htmltools_0.5.8.1</code></pre>
 </div>
 
 

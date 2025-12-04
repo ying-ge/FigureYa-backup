@@ -1671,7 +1671,7 @@ border-radius: 0px;
 
 <p><strong>Author(s)</strong>: Guoqi Li<br />
 <strong>Reviewer(s)</strong>: Ying Ge, Taojun Ye<br />
-<strong>Date</strong>: 2025-11-30</p>
+<strong>Date</strong>: 2025-12-03</p>
 <div id="academic-citation" class="section level2" number="1">
 <h2><span class="header-section-number">1</span> Academic Citation</h2>
 <p>If you use this code in your work or research, we kindly request that
@@ -1720,11 +1720,15 @@ settings</h2>
 ## Installing essential Bioconductor packages...
 ## Package already installed: GEOquery 
 ## Package already installed: affy 
+## Adding gunzip workaround to GEOquery...
+## Failed to add gunzip workaround: object &#39;GEOquery&#39; not found 
 ## 
 ## Installing hgu133plus2cdf package...
 ## Installing hgu133plus2cdf from local file: hgu133plus2cdf_2.18.0.tar.gz 
-## Installing package from local tar.gz file: hgu133plus2cdf_2.18.0.tar.gz 
-## Successfully installed package from local file
+## Installing package from local tar.gz file: hgu133plus2cdf_2.18.0.tar.gz</code></pre>
+<pre><code>## Warning in install.packages(package_path, repos = NULL, type = &quot;source&quot;):
+## installation of package &#39;hgu133plus2cdf_2.18.0.tar.gz&#39; had non-zero exit status</code></pre>
+<pre><code>## Successfully installed package from local file
 ## 
 ## Installing DealGPL570 from local file...
 ## Installing package from local tar.gz file: DealGPL570_0.0.1.tar.gz</code></pre>
@@ -1763,25 +1767,25 @@ settings</h2>
 ## [OK] affy installed successfully
 ## [OK] hgu133plus2cdf installed successfully
 ## You can now run your R scripts in this directory.</code></pre>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="co"># 加载DealGPL570包，用于处理GPL570平台的表达谱数据（Load the DealGPL570 package to process expression profile data from the GPL570 platform）</span></span>
-<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="co"># 由于所有免疫细胞系的表达谱数据均来自GPL570平台([HG-U133_Plus_2] Affymetrix Human Genome U133 Plus 2.0 Array)，因此这里使用DealGPL570包来处理GPL570平台的表达谱数据。</span></span>
-<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="co"># Since the expression profile data of all immune cell lines are from the GPL570 platform ([HG-U133_Plus_2] Affymetrix Human Genome U133 Plus 2.0 Array), </span></span>
-<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="co"># the DealGPL570 package is used here to process the expression profile data from the GPL570 platform.</span></span>
-<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a><span class="fu">library</span>(DealGPL570) </span>
-<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="fu">library</span>(stringr) <span class="co"># 用于字符串处理（for string processing）</span></span>
-<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a><span class="fu">library</span>(sva) <span class="co"># 用于批次效应校正（for batch effect correction）</span></span>
-<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a><span class="fu">library</span>(tibble) <span class="co"># 用于数据框操作（for data frame manipulation）</span></span>
-<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a><span class="fu">library</span>(dplyr) <span class="co"># 用于数据操作（for data manipulation）</span></span>
-<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># 用于数据处理和可视化（for data processing and visualization）</span></span>
-<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a><span class="fu">library</span>(GenomicFeatures) <span class="co"># 用于基因组特征处理（for genomic feature processing）</span></span>
-<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a><span class="fu">library</span>(limma) <span class="co"># 用于差异表达分析（for differential expression analysis）</span></span>
-<span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a><span class="fu">library</span>(survival) <span class="co"># 用于生存分析（for survival analysis）</span></span>
-<span id="cb5-14"><a href="#cb5-14" tabindex="-1"></a><span class="fu">library</span>(rtracklayer) <span class="co"># 用于基因组数据导入导出（for genomic data import/export）</span></span>
-<span id="cb5-15"><a href="#cb5-15" tabindex="-1"></a></span>
-<span id="cb5-16"><a href="#cb5-16" tabindex="-1"></a><span class="co"># 设置环境变量，显示英文报错信息（Set environment variable to display English error messages）</span></span>
-<span id="cb5-17"><a href="#cb5-17" tabindex="-1"></a><span class="fu">Sys.setenv</span>(<span class="at">LANGUAGE =</span> <span class="st">&quot;en&quot;</span>) </span>
-<span id="cb5-18"><a href="#cb5-18" tabindex="-1"></a><span class="co"># 禁止将字符向量自动转换为因子类型（Disable automatic conversion of character vectors to factors）</span></span>
-<span id="cb5-19"><a href="#cb5-19" tabindex="-1"></a><span class="fu">options</span>(<span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="co"># 加载DealGPL570包，用于处理GPL570平台的表达谱数据（Load the DealGPL570 package to process expression profile data from the GPL570 platform）</span></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="co"># 由于所有免疫细胞系的表达谱数据均来自GPL570平台([HG-U133_Plus_2] Affymetrix Human Genome U133 Plus 2.0 Array)，因此这里使用DealGPL570包来处理GPL570平台的表达谱数据。</span></span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="co"># Since the expression profile data of all immune cell lines are from the GPL570 platform ([HG-U133_Plus_2] Affymetrix Human Genome U133 Plus 2.0 Array), </span></span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="co"># the DealGPL570 package is used here to process the expression profile data from the GPL570 platform.</span></span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a><span class="fu">library</span>(DealGPL570) </span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a><span class="fu">library</span>(stringr) <span class="co"># 用于字符串处理（for string processing）</span></span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a><span class="fu">library</span>(sva) <span class="co"># 用于批次效应校正（for batch effect correction）</span></span>
+<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a><span class="fu">library</span>(tibble) <span class="co"># 用于数据框操作（for data frame manipulation）</span></span>
+<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a><span class="fu">library</span>(dplyr) <span class="co"># 用于数据操作（for data manipulation）</span></span>
+<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># 用于数据处理和可视化（for data processing and visualization）</span></span>
+<span id="cb7-11"><a href="#cb7-11" tabindex="-1"></a><span class="fu">library</span>(GenomicFeatures) <span class="co"># 用于基因组特征处理（for genomic feature processing）</span></span>
+<span id="cb7-12"><a href="#cb7-12" tabindex="-1"></a><span class="fu">library</span>(limma) <span class="co"># 用于差异表达分析（for differential expression analysis）</span></span>
+<span id="cb7-13"><a href="#cb7-13" tabindex="-1"></a><span class="fu">library</span>(survival) <span class="co"># 用于生存分析（for survival analysis）</span></span>
+<span id="cb7-14"><a href="#cb7-14" tabindex="-1"></a><span class="fu">library</span>(rtracklayer) <span class="co"># 用于基因组数据导入导出（for genomic data import/export）</span></span>
+<span id="cb7-15"><a href="#cb7-15" tabindex="-1"></a></span>
+<span id="cb7-16"><a href="#cb7-16" tabindex="-1"></a><span class="co"># 设置环境变量，显示英文报错信息（Set environment variable to display English error messages）</span></span>
+<span id="cb7-17"><a href="#cb7-17" tabindex="-1"></a><span class="fu">Sys.setenv</span>(<span class="at">LANGUAGE =</span> <span class="st">&quot;en&quot;</span>) </span>
+<span id="cb7-18"><a href="#cb7-18" tabindex="-1"></a><span class="co"># 禁止将字符向量自动转换为因子类型（Disable automatic conversion of character vectors to factors）</span></span>
+<span id="cb7-19"><a href="#cb7-19" tabindex="-1"></a><span class="fu">options</span>(<span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>) </span></code></pre></div>
 </div>
 <div id="输入文件-input-file" class="section level2" number="5">
 <h2><span class="header-section-number">5</span> 输入文件 Input
@@ -1800,126 +1804,121 @@ data, and count data into TPM data.</p>
 <div id="来自geo的表达数据处理-expression-data-processing-from-geo" class="section level3" number="5.2">
 <h3><span class="header-section-number">5.2</span> 来自GEO的表达数据处理
 Expression data processing from GEO</h3>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="co"># 使用DealGPL570处理16个表达谱数据，包含114个细胞系，19种免疫细胞类型</span></span>
-<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="co"># Process 16 expression profile datasets containing 114 cell lines and 19 immune cell types using DealGPL570</span></span>
-<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>GSE13906 <span class="ot">&lt;-</span> <span class="fu">DealGPL570</span>(<span class="at">file =</span> <span class="st">&quot;GSE13906_RAW.tar&quot;</span>,<span class="at">type =</span> <span class="st">&quot;geneSymbol&quot;</span>)</span></code></pre></div>
-<pre><code>## Warning: replacing previous import &#39;AnnotationDbi::tail&#39; by &#39;utils::tail&#39; when
-## loading &#39;hgu133plus2cdf&#39;</code></pre>
-<pre><code>## Warning: replacing previous import &#39;AnnotationDbi::head&#39; by &#39;utils::head&#39; when
-## loading &#39;hgu133plus2cdf&#39;</code></pre>
-<pre><code>## </code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="co"># 使用DealGPL570处理16个表达谱数据，包含114个细胞系，19种免疫细胞类型</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="co"># Process 16 expression profile datasets containing 114 cell lines and 19 immune cell types using DealGPL570</span></span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>GSE13906 <span class="ot">&lt;-</span> <span class="fu">DealGPL570</span>(<span class="at">file =</span> <span class="st">&quot;GSE13906_RAW.tar&quot;</span>,<span class="at">type =</span> <span class="st">&quot;geneSymbol&quot;</span>)</span></code></pre></div>
 <pre><code>## Background correcting
 ## Normalizing
 ## Calculating Expression</code></pre>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="co"># 将symbol列设置为行名（Set the &#39;symbol&#39; column as row names）</span></span>
-<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a>GSE13906 <span class="ot">&lt;-</span> <span class="fu">column_to_rownames</span>(GSE13906,<span class="st">&quot;symbol&quot;</span>)</span>
-<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a></span>
-<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a><span class="co"># 依次处理其余15个GSE数据集（Process the remaining 15 GSE datasets in sequence）</span></span>
-<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a>GSE23371 <span class="ot">&lt;-</span> <span class="fu">DealGPL570</span>(<span class="at">file =</span> <span class="st">&quot;GSE23371_RAW.tar&quot;</span>,<span class="at">type =</span> <span class="st">&quot;geneSymbol&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="co"># 将symbol列设置为行名（Set the &#39;symbol&#39; column as row names）</span></span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>GSE13906 <span class="ot">&lt;-</span> <span class="fu">column_to_rownames</span>(GSE13906,<span class="st">&quot;symbol&quot;</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a><span class="co"># 依次处理其余15个GSE数据集（Process the remaining 15 GSE datasets in sequence）</span></span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a>GSE23371 <span class="ot">&lt;-</span> <span class="fu">DealGPL570</span>(<span class="at">file =</span> <span class="st">&quot;GSE23371_RAW.tar&quot;</span>,<span class="at">type =</span> <span class="st">&quot;geneSymbol&quot;</span>)</span></code></pre></div>
 <pre><code>## Background correcting
 ## Normalizing
 ## Calculating Expression</code></pre>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a>GSE23371 <span class="ot">&lt;-</span> <span class="fu">column_to_rownames</span>(GSE23371,<span class="st">&quot;symbol&quot;</span>)</span>
-<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a></span>
-<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a>GSE25320 <span class="ot">&lt;-</span> <span class="fu">DealGPL570</span>(<span class="at">file =</span> <span class="st">&quot;GSE25320_RAW.tar&quot;</span>,<span class="at">type =</span> <span class="st">&quot;geneSymbol&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a>GSE23371 <span class="ot">&lt;-</span> <span class="fu">column_to_rownames</span>(GSE23371,<span class="st">&quot;symbol&quot;</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a>GSE25320 <span class="ot">&lt;-</span> <span class="fu">DealGPL570</span>(<span class="at">file =</span> <span class="st">&quot;GSE25320_RAW.tar&quot;</span>,<span class="at">type =</span> <span class="st">&quot;geneSymbol&quot;</span>)</span></code></pre></div>
 <pre><code>## Background correcting
 ## Normalizing
 ## Calculating Expression</code></pre>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a>GSE25320 <span class="ot">&lt;-</span> <span class="fu">column_to_rownames</span>(GSE25320,<span class="st">&quot;symbol&quot;</span>)</span>
-<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a></span>
-<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a>GSE27291 <span class="ot">&lt;-</span> <span class="fu">DealGPL570</span>(<span class="at">file =</span> <span class="st">&quot;GSE27291_RAW.tar&quot;</span>,<span class="at">type =</span> <span class="st">&quot;geneSymbol&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a>GSE25320 <span class="ot">&lt;-</span> <span class="fu">column_to_rownames</span>(GSE25320,<span class="st">&quot;symbol&quot;</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a>GSE27291 <span class="ot">&lt;-</span> <span class="fu">DealGPL570</span>(<span class="at">file =</span> <span class="st">&quot;GSE27291_RAW.tar&quot;</span>,<span class="at">type =</span> <span class="st">&quot;geneSymbol&quot;</span>)</span></code></pre></div>
 <pre><code>## Background correcting
 ## Normalizing
 ## Calculating Expression</code></pre>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a>GSE27291 <span class="ot">&lt;-</span> <span class="fu">column_to_rownames</span>(GSE27291,<span class="st">&quot;symbol&quot;</span>)</span>
-<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a></span>
-<span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a>GSE27838 <span class="ot">&lt;-</span> <span class="fu">DealGPL570</span>(<span class="at">file =</span> <span class="st">&quot;GSE27838_RAW.tar&quot;</span>,<span class="at">type =</span> <span class="st">&quot;geneSymbol&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a>GSE27291 <span class="ot">&lt;-</span> <span class="fu">column_to_rownames</span>(GSE27291,<span class="st">&quot;symbol&quot;</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a>GSE27838 <span class="ot">&lt;-</span> <span class="fu">DealGPL570</span>(<span class="at">file =</span> <span class="st">&quot;GSE27838_RAW.tar&quot;</span>,<span class="at">type =</span> <span class="st">&quot;geneSymbol&quot;</span>)</span></code></pre></div>
 <pre><code>## Background correcting
 ## Normalizing
 ## Calculating Expression</code></pre>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a>GSE27838 <span class="ot">&lt;-</span> <span class="fu">column_to_rownames</span>(GSE27838,<span class="st">&quot;symbol&quot;</span>)</span>
-<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a></span>
-<span id="cb19-3"><a href="#cb19-3" tabindex="-1"></a>GSE28490 <span class="ot">&lt;-</span> <span class="fu">DealGPL570</span>(<span class="at">file =</span> <span class="st">&quot;GSE28490_RAW.tar&quot;</span>,<span class="at">type =</span> <span class="st">&quot;geneSymbol&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a>GSE27838 <span class="ot">&lt;-</span> <span class="fu">column_to_rownames</span>(GSE27838,<span class="st">&quot;symbol&quot;</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" tabindex="-1"></a>GSE28490 <span class="ot">&lt;-</span> <span class="fu">DealGPL570</span>(<span class="at">file =</span> <span class="st">&quot;GSE28490_RAW.tar&quot;</span>,<span class="at">type =</span> <span class="st">&quot;geneSymbol&quot;</span>)</span></code></pre></div>
 <pre><code>## Background correcting
 ## Normalizing
 ## Calculating Expression</code></pre>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a>GSE28490 <span class="ot">&lt;-</span> <span class="fu">column_to_rownames</span>(GSE28490,<span class="st">&quot;symbol&quot;</span>)</span>
-<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a></span>
-<span id="cb21-3"><a href="#cb21-3" tabindex="-1"></a>GSE28698 <span class="ot">&lt;-</span> <span class="fu">DealGPL570</span>(<span class="at">file =</span> <span class="st">&quot;GSE28698_RAW.tar&quot;</span>,<span class="at">type =</span> <span class="st">&quot;geneSymbol&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a>GSE28490 <span class="ot">&lt;-</span> <span class="fu">column_to_rownames</span>(GSE28490,<span class="st">&quot;symbol&quot;</span>)</span>
+<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" tabindex="-1"></a>GSE28698 <span class="ot">&lt;-</span> <span class="fu">DealGPL570</span>(<span class="at">file =</span> <span class="st">&quot;GSE28698_RAW.tar&quot;</span>,<span class="at">type =</span> <span class="st">&quot;geneSymbol&quot;</span>)</span></code></pre></div>
 <pre><code>## Background correcting
 ## Normalizing
 ## Calculating Expression</code></pre>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a>GSE28698 <span class="ot">&lt;-</span> <span class="fu">column_to_rownames</span>(GSE28698,<span class="st">&quot;symbol&quot;</span>)</span>
-<span id="cb23-2"><a href="#cb23-2" tabindex="-1"></a></span>
-<span id="cb23-3"><a href="#cb23-3" tabindex="-1"></a>GSE28726 <span class="ot">&lt;-</span> <span class="fu">DealGPL570</span>(<span class="at">file =</span> <span class="st">&quot;GSE28726_RAW.tar&quot;</span>,<span class="at">type =</span> <span class="st">&quot;geneSymbol&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a>GSE28698 <span class="ot">&lt;-</span> <span class="fu">column_to_rownames</span>(GSE28698,<span class="st">&quot;symbol&quot;</span>)</span>
+<span id="cb22-2"><a href="#cb22-2" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" tabindex="-1"></a>GSE28726 <span class="ot">&lt;-</span> <span class="fu">DealGPL570</span>(<span class="at">file =</span> <span class="st">&quot;GSE28726_RAW.tar&quot;</span>,<span class="at">type =</span> <span class="st">&quot;geneSymbol&quot;</span>)</span></code></pre></div>
 <pre><code>## Background correcting
 ## Normalizing
 ## Calculating Expression</code></pre>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a>GSE28726 <span class="ot">&lt;-</span> <span class="fu">column_to_rownames</span>(GSE28726,<span class="st">&quot;symbol&quot;</span>)</span>
-<span id="cb25-2"><a href="#cb25-2" tabindex="-1"></a></span>
-<span id="cb25-3"><a href="#cb25-3" tabindex="-1"></a>GSE37750 <span class="ot">&lt;-</span> <span class="fu">DealGPL570</span>(<span class="at">file =</span> <span class="st">&quot;GSE37750_RAW.tar&quot;</span>,<span class="at">type =</span> <span class="st">&quot;geneSymbol&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a>GSE28726 <span class="ot">&lt;-</span> <span class="fu">column_to_rownames</span>(GSE28726,<span class="st">&quot;symbol&quot;</span>)</span>
+<span id="cb24-2"><a href="#cb24-2" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="#cb24-3" tabindex="-1"></a>GSE37750 <span class="ot">&lt;-</span> <span class="fu">DealGPL570</span>(<span class="at">file =</span> <span class="st">&quot;GSE37750_RAW.tar&quot;</span>,<span class="at">type =</span> <span class="st">&quot;geneSymbol&quot;</span>)</span></code></pre></div>
 <pre><code>## Background correcting
 ## Normalizing
 ## Calculating Expression</code></pre>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a>GSE37750 <span class="ot">&lt;-</span> <span class="fu">column_to_rownames</span>(GSE37750,<span class="st">&quot;symbol&quot;</span>)</span>
-<span id="cb27-2"><a href="#cb27-2" tabindex="-1"></a></span>
-<span id="cb27-3"><a href="#cb27-3" tabindex="-1"></a>GSE39889 <span class="ot">&lt;-</span> <span class="fu">DealGPL570</span>(<span class="at">file =</span> <span class="st">&quot;GSE39889_RAW.tar&quot;</span>,<span class="at">type =</span> <span class="st">&quot;geneSymbol&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a>GSE37750 <span class="ot">&lt;-</span> <span class="fu">column_to_rownames</span>(GSE37750,<span class="st">&quot;symbol&quot;</span>)</span>
+<span id="cb26-2"><a href="#cb26-2" tabindex="-1"></a></span>
+<span id="cb26-3"><a href="#cb26-3" tabindex="-1"></a>GSE39889 <span class="ot">&lt;-</span> <span class="fu">DealGPL570</span>(<span class="at">file =</span> <span class="st">&quot;GSE39889_RAW.tar&quot;</span>,<span class="at">type =</span> <span class="st">&quot;geneSymbol&quot;</span>)</span></code></pre></div>
 <pre><code>## Background correcting
 ## Normalizing
 ## Calculating Expression</code></pre>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" tabindex="-1"></a>GSE39889 <span class="ot">&lt;-</span> <span class="fu">column_to_rownames</span>(GSE39889,<span class="st">&quot;symbol&quot;</span>)</span>
-<span id="cb29-2"><a href="#cb29-2" tabindex="-1"></a></span>
-<span id="cb29-3"><a href="#cb29-3" tabindex="-1"></a>GSE42058 <span class="ot">&lt;-</span> <span class="fu">DealGPL570</span>(<span class="at">file =</span> <span class="st">&quot;GSE42058_RAW.tar&quot;</span>,<span class="at">type =</span> <span class="st">&quot;geneSymbol&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a>GSE39889 <span class="ot">&lt;-</span> <span class="fu">column_to_rownames</span>(GSE39889,<span class="st">&quot;symbol&quot;</span>)</span>
+<span id="cb28-2"><a href="#cb28-2" tabindex="-1"></a></span>
+<span id="cb28-3"><a href="#cb28-3" tabindex="-1"></a>GSE42058 <span class="ot">&lt;-</span> <span class="fu">DealGPL570</span>(<span class="at">file =</span> <span class="st">&quot;GSE42058_RAW.tar&quot;</span>,<span class="at">type =</span> <span class="st">&quot;geneSymbol&quot;</span>)</span></code></pre></div>
 <pre><code>## Background correcting
 ## Normalizing
 ## Calculating Expression</code></pre>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" tabindex="-1"></a>GSE42058 <span class="ot">&lt;-</span> <span class="fu">column_to_rownames</span>(GSE42058,<span class="st">&quot;symbol&quot;</span>)</span>
-<span id="cb31-2"><a href="#cb31-2" tabindex="-1"></a></span>
-<span id="cb31-3"><a href="#cb31-3" tabindex="-1"></a>GSE49910 <span class="ot">&lt;-</span> <span class="fu">DealGPL570</span>(<span class="at">file =</span> <span class="st">&quot;GSE49910_RAW.tar&quot;</span>,<span class="at">type =</span> <span class="st">&quot;geneSymbol&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a>GSE42058 <span class="ot">&lt;-</span> <span class="fu">column_to_rownames</span>(GSE42058,<span class="st">&quot;symbol&quot;</span>)</span>
+<span id="cb30-2"><a href="#cb30-2" tabindex="-1"></a></span>
+<span id="cb30-3"><a href="#cb30-3" tabindex="-1"></a>GSE49910 <span class="ot">&lt;-</span> <span class="fu">DealGPL570</span>(<span class="at">file =</span> <span class="st">&quot;GSE49910_RAW.tar&quot;</span>,<span class="at">type =</span> <span class="st">&quot;geneSymbol&quot;</span>)</span></code></pre></div>
 <pre><code>## Background correcting
 ## Normalizing
 ## Calculating Expression</code></pre>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" tabindex="-1"></a>GSE49910 <span class="ot">&lt;-</span> <span class="fu">column_to_rownames</span>(GSE49910,<span class="st">&quot;symbol&quot;</span>)</span>
-<span id="cb33-2"><a href="#cb33-2" tabindex="-1"></a></span>
-<span id="cb33-3"><a href="#cb33-3" tabindex="-1"></a>GSE51540 <span class="ot">&lt;-</span> <span class="fu">DealGPL570</span>(<span class="at">file =</span> <span class="st">&quot;GSE51540_RAW.tar&quot;</span>,<span class="at">type =</span> <span class="st">&quot;geneSymbol&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" tabindex="-1"></a>GSE49910 <span class="ot">&lt;-</span> <span class="fu">column_to_rownames</span>(GSE49910,<span class="st">&quot;symbol&quot;</span>)</span>
+<span id="cb32-2"><a href="#cb32-2" tabindex="-1"></a></span>
+<span id="cb32-3"><a href="#cb32-3" tabindex="-1"></a>GSE51540 <span class="ot">&lt;-</span> <span class="fu">DealGPL570</span>(<span class="at">file =</span> <span class="st">&quot;GSE51540_RAW.tar&quot;</span>,<span class="at">type =</span> <span class="st">&quot;geneSymbol&quot;</span>)</span></code></pre></div>
 <pre><code>## Background correcting
 ## Normalizing
 ## Calculating Expression</code></pre>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" tabindex="-1"></a>GSE51540 <span class="ot">&lt;-</span> <span class="fu">column_to_rownames</span>(GSE51540,<span class="st">&quot;symbol&quot;</span>)</span>
-<span id="cb35-2"><a href="#cb35-2" tabindex="-1"></a></span>
-<span id="cb35-3"><a href="#cb35-3" tabindex="-1"></a>GSE59237 <span class="ot">&lt;-</span> <span class="fu">DealGPL570</span>(<span class="at">file =</span> <span class="st">&quot;GSE59237_RAW.tar&quot;</span>,<span class="at">type =</span> <span class="st">&quot;geneSymbol&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" tabindex="-1"></a>GSE51540 <span class="ot">&lt;-</span> <span class="fu">column_to_rownames</span>(GSE51540,<span class="st">&quot;symbol&quot;</span>)</span>
+<span id="cb34-2"><a href="#cb34-2" tabindex="-1"></a></span>
+<span id="cb34-3"><a href="#cb34-3" tabindex="-1"></a>GSE59237 <span class="ot">&lt;-</span> <span class="fu">DealGPL570</span>(<span class="at">file =</span> <span class="st">&quot;GSE59237_RAW.tar&quot;</span>,<span class="at">type =</span> <span class="st">&quot;geneSymbol&quot;</span>)</span></code></pre></div>
 <pre><code>## Background correcting
 ## Normalizing
 ## Calculating Expression</code></pre>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" tabindex="-1"></a>GSE59237 <span class="ot">&lt;-</span> <span class="fu">column_to_rownames</span>(GSE59237,<span class="st">&quot;symbol&quot;</span>)</span>
-<span id="cb37-2"><a href="#cb37-2" tabindex="-1"></a></span>
-<span id="cb37-3"><a href="#cb37-3" tabindex="-1"></a>GSE6863 <span class="ot">&lt;-</span> <span class="fu">DealGPL570</span>(<span class="at">file =</span> <span class="st">&quot;GSE6863_RAW.tar&quot;</span>,<span class="at">type =</span> <span class="st">&quot;geneSymbol&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" tabindex="-1"></a>GSE59237 <span class="ot">&lt;-</span> <span class="fu">column_to_rownames</span>(GSE59237,<span class="st">&quot;symbol&quot;</span>)</span>
+<span id="cb36-2"><a href="#cb36-2" tabindex="-1"></a></span>
+<span id="cb36-3"><a href="#cb36-3" tabindex="-1"></a>GSE6863 <span class="ot">&lt;-</span> <span class="fu">DealGPL570</span>(<span class="at">file =</span> <span class="st">&quot;GSE6863_RAW.tar&quot;</span>,<span class="at">type =</span> <span class="st">&quot;geneSymbol&quot;</span>)</span></code></pre></div>
 <pre><code>## Background correcting
 ## Normalizing
 ## Calculating Expression</code></pre>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" tabindex="-1"></a>GSE6863 <span class="ot">&lt;-</span> <span class="fu">column_to_rownames</span>(GSE6863,<span class="st">&quot;symbol&quot;</span>)</span>
-<span id="cb39-2"><a href="#cb39-2" tabindex="-1"></a></span>
-<span id="cb39-3"><a href="#cb39-3" tabindex="-1"></a>GSE8059 <span class="ot">&lt;-</span> <span class="fu">DealGPL570</span>(<span class="at">file =</span> <span class="st">&quot;GSE8059_RAW.tar&quot;</span>,<span class="at">type =</span> <span class="st">&quot;geneSymbol&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" tabindex="-1"></a>GSE6863 <span class="ot">&lt;-</span> <span class="fu">column_to_rownames</span>(GSE6863,<span class="st">&quot;symbol&quot;</span>)</span>
+<span id="cb38-2"><a href="#cb38-2" tabindex="-1"></a></span>
+<span id="cb38-3"><a href="#cb38-3" tabindex="-1"></a>GSE8059 <span class="ot">&lt;-</span> <span class="fu">DealGPL570</span>(<span class="at">file =</span> <span class="st">&quot;GSE8059_RAW.tar&quot;</span>,<span class="at">type =</span> <span class="st">&quot;geneSymbol&quot;</span>)</span></code></pre></div>
 <pre><code>## Background correcting
 ## Normalizing
 ## Calculating Expression</code></pre>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" tabindex="-1"></a>GSE8059 <span class="ot">&lt;-</span> <span class="fu">column_to_rownames</span>(GSE8059,<span class="st">&quot;symbol&quot;</span>)</span>
-<span id="cb41-2"><a href="#cb41-2" tabindex="-1"></a></span>
-<span id="cb41-3"><a href="#cb41-3" tabindex="-1"></a><span class="co"># 修改列名，仅保留GSE开头的GSE样本编号，去除.CEL后缀</span></span>
-<span id="cb41-4"><a href="#cb41-4" tabindex="-1"></a><span class="co"># Modify column names to keep only GSE sample IDs starting with &quot;GSE&quot; and remove .CEL suffix</span></span>
-<span id="cb41-5"><a href="#cb41-5" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">ls</span>(<span class="at">pattern =</span> <span class="st">&quot;^GSE&quot;</span>)) {</span>
-<span id="cb41-6"><a href="#cb41-6" tabindex="-1"></a>  rt <span class="ot">&lt;-</span> <span class="fu">get</span>(i)</span>
-<span id="cb41-7"><a href="#cb41-7" tabindex="-1"></a>  <span class="fu">colnames</span>(rt) <span class="ot">&lt;-</span> <span class="fu">str_replace_all</span>(<span class="fu">colnames</span>(rt),<span class="st">&quot;.CEL&quot;</span>,<span class="st">&quot;&quot;</span>)</span>
-<span id="cb41-8"><a href="#cb41-8" tabindex="-1"></a>  <span class="fu">assign</span>(i,rt)</span>
-<span id="cb41-9"><a href="#cb41-9" tabindex="-1"></a>}</span>
-<span id="cb41-10"><a href="#cb41-10" tabindex="-1"></a></span>
-<span id="cb41-11"><a href="#cb41-11" tabindex="-1"></a><span class="co"># 从PMID: 28052254文献的补充材料中（文件名:1-s2.0-S2211124716317090-mmc3.xlsx）提取每个样本对应的细胞类型，整理后的文件命名为Immune_cell_line.txt</span></span>
-<span id="cb41-12"><a href="#cb41-12" tabindex="-1"></a><span class="co"># Extract the cell type corresponding to each sample from the supplementary materials of the literature PMID: 28052254 </span></span>
-<span id="cb41-13"><a href="#cb41-13" tabindex="-1"></a><span class="co"># (file name: 1-s2.0-S2211124716317090-mmc3.xlsx), and name the organized file Immune_cell_line.txt</span></span>
-<span id="cb41-14"><a href="#cb41-14" tabindex="-1"></a><span class="co"># 读取注释信息（Read annotation information）</span></span>
-<span id="cb41-15"><a href="#cb41-15" tabindex="-1"></a>ann <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;Immune_cell_line.txt&quot;</span>,<span class="at">header=</span>T,<span class="at">sep=</span><span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>,<span class="at">quote=</span><span class="st">&quot;&quot;</span>,<span class="at">check.name=</span>F)</span>
-<span id="cb41-16"><a href="#cb41-16" tabindex="-1"></a><span class="co"># 查看注释信息（View annotation information）</span></span>
-<span id="cb41-17"><a href="#cb41-17" tabindex="-1"></a><span class="fu">head</span>(ann)</span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" tabindex="-1"></a>GSE8059 <span class="ot">&lt;-</span> <span class="fu">column_to_rownames</span>(GSE8059,<span class="st">&quot;symbol&quot;</span>)</span>
+<span id="cb40-2"><a href="#cb40-2" tabindex="-1"></a></span>
+<span id="cb40-3"><a href="#cb40-3" tabindex="-1"></a><span class="co"># 修改列名，仅保留GSE开头的GSE样本编号，去除.CEL后缀</span></span>
+<span id="cb40-4"><a href="#cb40-4" tabindex="-1"></a><span class="co"># Modify column names to keep only GSE sample IDs starting with &quot;GSE&quot; and remove .CEL suffix</span></span>
+<span id="cb40-5"><a href="#cb40-5" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">ls</span>(<span class="at">pattern =</span> <span class="st">&quot;^GSE&quot;</span>)) {</span>
+<span id="cb40-6"><a href="#cb40-6" tabindex="-1"></a>  rt <span class="ot">&lt;-</span> <span class="fu">get</span>(i)</span>
+<span id="cb40-7"><a href="#cb40-7" tabindex="-1"></a>  <span class="fu">colnames</span>(rt) <span class="ot">&lt;-</span> <span class="fu">str_replace_all</span>(<span class="fu">colnames</span>(rt),<span class="st">&quot;.CEL&quot;</span>,<span class="st">&quot;&quot;</span>)</span>
+<span id="cb40-8"><a href="#cb40-8" tabindex="-1"></a>  <span class="fu">assign</span>(i,rt)</span>
+<span id="cb40-9"><a href="#cb40-9" tabindex="-1"></a>}</span>
+<span id="cb40-10"><a href="#cb40-10" tabindex="-1"></a></span>
+<span id="cb40-11"><a href="#cb40-11" tabindex="-1"></a><span class="co"># 从PMID: 28052254文献的补充材料中（文件名:1-s2.0-S2211124716317090-mmc3.xlsx）提取每个样本对应的细胞类型，整理后的文件命名为Immune_cell_line.txt</span></span>
+<span id="cb40-12"><a href="#cb40-12" tabindex="-1"></a><span class="co"># Extract the cell type corresponding to each sample from the supplementary materials of the literature PMID: 28052254 </span></span>
+<span id="cb40-13"><a href="#cb40-13" tabindex="-1"></a><span class="co"># (file name: 1-s2.0-S2211124716317090-mmc3.xlsx), and name the organized file Immune_cell_line.txt</span></span>
+<span id="cb40-14"><a href="#cb40-14" tabindex="-1"></a><span class="co"># 读取注释信息（Read annotation information）</span></span>
+<span id="cb40-15"><a href="#cb40-15" tabindex="-1"></a>ann <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;Immune_cell_line.txt&quot;</span>,<span class="at">header=</span>T,<span class="at">sep=</span><span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>,<span class="at">quote=</span><span class="st">&quot;&quot;</span>,<span class="at">check.name=</span>F)</span>
+<span id="cb40-16"><a href="#cb40-16" tabindex="-1"></a><span class="co"># 查看注释信息（View annotation information）</span></span>
+<span id="cb40-17"><a href="#cb40-17" tabindex="-1"></a><span class="fu">head</span>(ann)</span></code></pre></div>
 <pre><code>##              Population Data set Sample ID PubMed ID
 ## 1      B cell activated  GSE1133  GSM18881  15075390
 ## 2      B cell activated  GSE1133  GSM18882  15075390
@@ -1927,53 +1926,53 @@ Expression data processing from GEO</h3>
 ## 4 CD4 T cell activated   GSE1133  GSM18878  15075390
 ## 5 CD8 T cell activated   GSE1133  GSM18879  15075390
 ## 6 CD8 T cell activated   GSE1133  GSM18880  15075390</code></pre>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" tabindex="-1"></a><span class="co"># 提取16个数据集的注释信息（按GSE号提取，粗略提取）</span></span>
-<span id="cb43-2"><a href="#cb43-2" tabindex="-1"></a><span class="co"># Extract annotation information for 16 datasets (extracted by GSE number, rough extraction)</span></span>
-<span id="cb43-3"><a href="#cb43-3" tabindex="-1"></a>ann <span class="ot">&lt;-</span> ann[<span class="fu">which</span>(ann<span class="sc">$</span><span class="st">`</span><span class="at">Data set</span><span class="st">`</span><span class="sc">%in%</span><span class="fu">ls</span>(<span class="at">pattern =</span> <span class="st">&quot;^GSE&quot;</span>)),]</span>
-<span id="cb43-4"><a href="#cb43-4" tabindex="-1"></a><span class="co"># 查看各数据集样本数量分布（View the sample count distribution of each dataset）</span></span>
-<span id="cb43-5"><a href="#cb43-5" tabindex="-1"></a><span class="fu">table</span>(ann<span class="sc">$</span><span class="st">`</span><span class="at">Data set</span><span class="st">`</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" tabindex="-1"></a><span class="co"># 提取16个数据集的注释信息（按GSE号提取，粗略提取）</span></span>
+<span id="cb42-2"><a href="#cb42-2" tabindex="-1"></a><span class="co"># Extract annotation information for 16 datasets (extracted by GSE number, rough extraction)</span></span>
+<span id="cb42-3"><a href="#cb42-3" tabindex="-1"></a>ann <span class="ot">&lt;-</span> ann[<span class="fu">which</span>(ann<span class="sc">$</span><span class="st">`</span><span class="at">Data set</span><span class="st">`</span><span class="sc">%in%</span><span class="fu">ls</span>(<span class="at">pattern =</span> <span class="st">&quot;^GSE&quot;</span>)),]</span>
+<span id="cb42-4"><a href="#cb42-4" tabindex="-1"></a><span class="co"># 查看各数据集样本数量分布（View the sample count distribution of each dataset）</span></span>
+<span id="cb42-5"><a href="#cb42-5" tabindex="-1"></a><span class="fu">table</span>(ann<span class="sc">$</span><span class="st">`</span><span class="at">Data set</span><span class="st">`</span>)</span></code></pre></div>
 <pre><code>## 
 ## GSE13906 GSE23371 GSE25320 GSE27291 GSE27838 GSE28490 GSE28698 GSE28726 
 ##        2        3        4        8        8        5        3       14 
 ## GSE37750 GSE39889 GSE42058 GSE49910 GSE51540 GSE59237  GSE6863  GSE8059 
 ##        8        4        4       26        9       10        3        4</code></pre>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" tabindex="-1"></a><span class="co"># 提取16个数据集中仅在注释中有的免疫细胞系（按GSM号提取，详细提取）</span></span>
-<span id="cb45-2"><a href="#cb45-2" tabindex="-1"></a><span class="co"># Extract immune cell lines from 16 datasets that are only present in the annotations (extracted by GSM number, detailed extraction)</span></span>
-<span id="cb45-3"><a href="#cb45-3" tabindex="-1"></a><span class="cf">for</span> (j <span class="cf">in</span> <span class="fu">ls</span>(<span class="at">pattern =</span> <span class="st">&quot;^GSE&quot;</span>)) {</span>
-<span id="cb45-4"><a href="#cb45-4" tabindex="-1"></a>  rt <span class="ot">&lt;-</span> <span class="fu">get</span>(j)</span>
-<span id="cb45-5"><a href="#cb45-5" tabindex="-1"></a>  rt <span class="ot">&lt;-</span> rt[,<span class="fu">which</span>(<span class="fu">colnames</span>(rt)<span class="sc">%in%</span>ann[<span class="fu">which</span>(ann<span class="sc">$</span><span class="st">`</span><span class="at">Data set</span><span class="st">`</span><span class="sc">==</span>j),<span class="st">&quot;Sample ID&quot;</span>])]</span>
-<span id="cb45-6"><a href="#cb45-6" tabindex="-1"></a>  <span class="fu">assign</span>(j,rt)</span>
-<span id="cb45-7"><a href="#cb45-7" tabindex="-1"></a>}</span>
-<span id="cb45-8"><a href="#cb45-8" tabindex="-1"></a></span>
-<span id="cb45-9"><a href="#cb45-9" tabindex="-1"></a><span class="co"># 将数据合并（Merge the data）</span></span>
-<span id="cb45-10"><a href="#cb45-10" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">cbind</span>(GSE13906, GSE23371, GSE25320, GSE27291, GSE27838, GSE28490, GSE28698, </span>
-<span id="cb45-11"><a href="#cb45-11" tabindex="-1"></a>            GSE28726, GSE37750, GSE39889, GSE42058, GSE49910, GSE51540, </span>
-<span id="cb45-12"><a href="#cb45-12" tabindex="-1"></a>            GSE59237, GSE6863, GSE8059)</span>
-<span id="cb45-13"><a href="#cb45-13" tabindex="-1"></a></span>
-<span id="cb45-14"><a href="#cb45-14" tabindex="-1"></a><span class="co"># 主成分分析查看数据集间批次效应</span></span>
-<span id="cb45-15"><a href="#cb45-15" tabindex="-1"></a><span class="co"># Perform principal component analysis to check batch effects between datasets</span></span>
-<span id="cb45-16"><a href="#cb45-16" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;batchPCA.R&quot;</span>)</span>
-<span id="cb45-17"><a href="#cb45-17" tabindex="-1"></a><span class="fu">batchPCA</span>(<span class="at">indata =</span> <span class="fu">t</span>(<span class="fu">scale</span>(<span class="fu">t</span>(data))), </span>
-<span id="cb45-18"><a href="#cb45-18" tabindex="-1"></a>         <span class="at">batch =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;GSE13906&quot;</span>, <span class="st">&quot;GSE23371&quot;</span>, <span class="st">&quot;GSE25320&quot;</span>, <span class="st">&quot;GSE27291&quot;</span>, <span class="st">&quot;GSE27838&quot;</span>, <span class="st">&quot;GSE28490&quot;</span>, <span class="st">&quot;GSE28698&quot;</span>, </span>
-<span id="cb45-19"><a href="#cb45-19" tabindex="-1"></a>                       <span class="st">&quot;GSE28726&quot;</span>, <span class="st">&quot;GSE37750&quot;</span>, <span class="st">&quot;GSE39889&quot;</span>, <span class="st">&quot;GSE42058&quot;</span>, <span class="st">&quot;GSE49910&quot;</span>, <span class="st">&quot;GSE51540&quot;</span>, </span>
-<span id="cb45-20"><a href="#cb45-20" tabindex="-1"></a>                       <span class="st">&quot;GSE59237&quot;</span>, <span class="st">&quot;GSE6863&quot;</span>, <span class="st">&quot;GSE8059&quot;</span>),</span>
-<span id="cb45-21"><a href="#cb45-21" tabindex="-1"></a>                     <span class="at">times=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">8</span>,<span class="dv">8</span>,<span class="dv">5</span>,<span class="dv">2</span>,<span class="dv">14</span>,<span class="dv">8</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">26</span>,<span class="dv">9</span>,<span class="dv">10</span>,<span class="dv">3</span>,<span class="dv">4</span>)),</span>
-<span id="cb45-22"><a href="#cb45-22" tabindex="-1"></a>         <span class="at">fig.dir =</span> <span class="st">&quot;.&quot;</span>,</span>
-<span id="cb45-23"><a href="#cb45-23" tabindex="-1"></a>         <span class="at">PCA.fig.title =</span> <span class="st">&quot;Raw PCA for GEO Immune cell lines&quot;</span>,</span>
-<span id="cb45-24"><a href="#cb45-24" tabindex="-1"></a>         <span class="co">#cols =brewer.pal(6, &quot;Set1&quot;),</span></span>
-<span id="cb45-25"><a href="#cb45-25" tabindex="-1"></a>         <span class="at">showID =</span> F,</span>
-<span id="cb45-26"><a href="#cb45-26" tabindex="-1"></a>         <span class="at">cex =</span> <span class="fl">0.5</span>,</span>
-<span id="cb45-27"><a href="#cb45-27" tabindex="-1"></a>         <span class="at">showLegend =</span>T,</span>
-<span id="cb45-28"><a href="#cb45-28" tabindex="-1"></a>         <span class="at">pos =</span> <span class="st">&quot;bottomright&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" tabindex="-1"></a><span class="co"># 提取16个数据集中仅在注释中有的免疫细胞系（按GSM号提取，详细提取）</span></span>
+<span id="cb44-2"><a href="#cb44-2" tabindex="-1"></a><span class="co"># Extract immune cell lines from 16 datasets that are only present in the annotations (extracted by GSM number, detailed extraction)</span></span>
+<span id="cb44-3"><a href="#cb44-3" tabindex="-1"></a><span class="cf">for</span> (j <span class="cf">in</span> <span class="fu">ls</span>(<span class="at">pattern =</span> <span class="st">&quot;^GSE&quot;</span>)) {</span>
+<span id="cb44-4"><a href="#cb44-4" tabindex="-1"></a>  rt <span class="ot">&lt;-</span> <span class="fu">get</span>(j)</span>
+<span id="cb44-5"><a href="#cb44-5" tabindex="-1"></a>  rt <span class="ot">&lt;-</span> rt[,<span class="fu">which</span>(<span class="fu">colnames</span>(rt)<span class="sc">%in%</span>ann[<span class="fu">which</span>(ann<span class="sc">$</span><span class="st">`</span><span class="at">Data set</span><span class="st">`</span><span class="sc">==</span>j),<span class="st">&quot;Sample ID&quot;</span>])]</span>
+<span id="cb44-6"><a href="#cb44-6" tabindex="-1"></a>  <span class="fu">assign</span>(j,rt)</span>
+<span id="cb44-7"><a href="#cb44-7" tabindex="-1"></a>}</span>
+<span id="cb44-8"><a href="#cb44-8" tabindex="-1"></a></span>
+<span id="cb44-9"><a href="#cb44-9" tabindex="-1"></a><span class="co"># 将数据合并（Merge the data）</span></span>
+<span id="cb44-10"><a href="#cb44-10" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">cbind</span>(GSE13906, GSE23371, GSE25320, GSE27291, GSE27838, GSE28490, GSE28698, </span>
+<span id="cb44-11"><a href="#cb44-11" tabindex="-1"></a>            GSE28726, GSE37750, GSE39889, GSE42058, GSE49910, GSE51540, </span>
+<span id="cb44-12"><a href="#cb44-12" tabindex="-1"></a>            GSE59237, GSE6863, GSE8059)</span>
+<span id="cb44-13"><a href="#cb44-13" tabindex="-1"></a></span>
+<span id="cb44-14"><a href="#cb44-14" tabindex="-1"></a><span class="co"># 主成分分析查看数据集间批次效应</span></span>
+<span id="cb44-15"><a href="#cb44-15" tabindex="-1"></a><span class="co"># Perform principal component analysis to check batch effects between datasets</span></span>
+<span id="cb44-16"><a href="#cb44-16" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;batchPCA.R&quot;</span>)</span>
+<span id="cb44-17"><a href="#cb44-17" tabindex="-1"></a><span class="fu">batchPCA</span>(<span class="at">indata =</span> <span class="fu">t</span>(<span class="fu">scale</span>(<span class="fu">t</span>(data))), </span>
+<span id="cb44-18"><a href="#cb44-18" tabindex="-1"></a>         <span class="at">batch =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;GSE13906&quot;</span>, <span class="st">&quot;GSE23371&quot;</span>, <span class="st">&quot;GSE25320&quot;</span>, <span class="st">&quot;GSE27291&quot;</span>, <span class="st">&quot;GSE27838&quot;</span>, <span class="st">&quot;GSE28490&quot;</span>, <span class="st">&quot;GSE28698&quot;</span>, </span>
+<span id="cb44-19"><a href="#cb44-19" tabindex="-1"></a>                       <span class="st">&quot;GSE28726&quot;</span>, <span class="st">&quot;GSE37750&quot;</span>, <span class="st">&quot;GSE39889&quot;</span>, <span class="st">&quot;GSE42058&quot;</span>, <span class="st">&quot;GSE49910&quot;</span>, <span class="st">&quot;GSE51540&quot;</span>, </span>
+<span id="cb44-20"><a href="#cb44-20" tabindex="-1"></a>                       <span class="st">&quot;GSE59237&quot;</span>, <span class="st">&quot;GSE6863&quot;</span>, <span class="st">&quot;GSE8059&quot;</span>),</span>
+<span id="cb44-21"><a href="#cb44-21" tabindex="-1"></a>                     <span class="at">times=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">8</span>,<span class="dv">8</span>,<span class="dv">5</span>,<span class="dv">2</span>,<span class="dv">14</span>,<span class="dv">8</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">26</span>,<span class="dv">9</span>,<span class="dv">10</span>,<span class="dv">3</span>,<span class="dv">4</span>)),</span>
+<span id="cb44-22"><a href="#cb44-22" tabindex="-1"></a>         <span class="at">fig.dir =</span> <span class="st">&quot;.&quot;</span>,</span>
+<span id="cb44-23"><a href="#cb44-23" tabindex="-1"></a>         <span class="at">PCA.fig.title =</span> <span class="st">&quot;Raw PCA for GEO Immune cell lines&quot;</span>,</span>
+<span id="cb44-24"><a href="#cb44-24" tabindex="-1"></a>         <span class="co">#cols =brewer.pal(6, &quot;Set1&quot;),</span></span>
+<span id="cb44-25"><a href="#cb44-25" tabindex="-1"></a>         <span class="at">showID =</span> F,</span>
+<span id="cb44-26"><a href="#cb44-26" tabindex="-1"></a>         <span class="at">cex =</span> <span class="fl">0.5</span>,</span>
+<span id="cb44-27"><a href="#cb44-27" tabindex="-1"></a>         <span class="at">showLegend =</span>T,</span>
+<span id="cb44-28"><a href="#cb44-28" tabindex="-1"></a>         <span class="at">pos =</span> <span class="st">&quot;bottomright&quot;</span>)</span></code></pre></div>
 <pre><code>## Loading required package: cluster</code></pre>
 <pre><code>## Loading required package: oompaBase</code></pre>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" tabindex="-1"></a><span class="co"># 去除批次效应（Remove batch effects）</span></span>
-<span id="cb48-2"><a href="#cb48-2" tabindex="-1"></a>batch <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">batch =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;GSE13906&quot;</span>, <span class="st">&quot;GSE23371&quot;</span>, <span class="st">&quot;GSE25320&quot;</span>, <span class="st">&quot;GSE27291&quot;</span>, <span class="st">&quot;GSE27838&quot;</span>, <span class="st">&quot;GSE28490&quot;</span>, <span class="st">&quot;GSE28698&quot;</span>, </span>
-<span id="cb48-3"><a href="#cb48-3" tabindex="-1"></a>                                <span class="st">&quot;GSE28726&quot;</span>, <span class="st">&quot;GSE37750&quot;</span>, <span class="st">&quot;GSE39889&quot;</span>, <span class="st">&quot;GSE42058&quot;</span>, <span class="st">&quot;GSE49910&quot;</span>, <span class="st">&quot;GSE51540&quot;</span>, </span>
-<span id="cb48-4"><a href="#cb48-4" tabindex="-1"></a>                                <span class="st">&quot;GSE59237&quot;</span>, <span class="st">&quot;GSE6863&quot;</span>, <span class="st">&quot;GSE8059&quot;</span>),</span>
-<span id="cb48-5"><a href="#cb48-5" tabindex="-1"></a>                              <span class="at">times=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">8</span>,<span class="dv">8</span>,<span class="dv">5</span>,<span class="dv">2</span>,<span class="dv">14</span>,<span class="dv">8</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">26</span>,<span class="dv">9</span>,<span class="dv">10</span>,<span class="dv">3</span>,<span class="dv">4</span>)))</span>
-<span id="cb48-6"><a href="#cb48-6" tabindex="-1"></a>modcombat <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(<span class="sc">~</span><span class="dv">1</span>,<span class="at">data =</span> batch)</span>
-<span id="cb48-7"><a href="#cb48-7" tabindex="-1"></a>data_combat <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">ComBat</span>(<span class="at">dat=</span><span class="fu">as.matrix</span>(data),<span class="at">batch=</span>batch<span class="sc">$</span>batch,<span class="at">mod=</span>modcombat))</span></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" tabindex="-1"></a><span class="co"># 去除批次效应（Remove batch effects）</span></span>
+<span id="cb47-2"><a href="#cb47-2" tabindex="-1"></a>batch <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">batch =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;GSE13906&quot;</span>, <span class="st">&quot;GSE23371&quot;</span>, <span class="st">&quot;GSE25320&quot;</span>, <span class="st">&quot;GSE27291&quot;</span>, <span class="st">&quot;GSE27838&quot;</span>, <span class="st">&quot;GSE28490&quot;</span>, <span class="st">&quot;GSE28698&quot;</span>, </span>
+<span id="cb47-3"><a href="#cb47-3" tabindex="-1"></a>                                <span class="st">&quot;GSE28726&quot;</span>, <span class="st">&quot;GSE37750&quot;</span>, <span class="st">&quot;GSE39889&quot;</span>, <span class="st">&quot;GSE42058&quot;</span>, <span class="st">&quot;GSE49910&quot;</span>, <span class="st">&quot;GSE51540&quot;</span>, </span>
+<span id="cb47-4"><a href="#cb47-4" tabindex="-1"></a>                                <span class="st">&quot;GSE59237&quot;</span>, <span class="st">&quot;GSE6863&quot;</span>, <span class="st">&quot;GSE8059&quot;</span>),</span>
+<span id="cb47-5"><a href="#cb47-5" tabindex="-1"></a>                              <span class="at">times=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">8</span>,<span class="dv">8</span>,<span class="dv">5</span>,<span class="dv">2</span>,<span class="dv">14</span>,<span class="dv">8</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">26</span>,<span class="dv">9</span>,<span class="dv">10</span>,<span class="dv">3</span>,<span class="dv">4</span>)))</span>
+<span id="cb47-6"><a href="#cb47-6" tabindex="-1"></a>modcombat <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(<span class="sc">~</span><span class="dv">1</span>,<span class="at">data =</span> batch)</span>
+<span id="cb47-7"><a href="#cb47-7" tabindex="-1"></a>data_combat <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">ComBat</span>(<span class="at">dat=</span><span class="fu">as.matrix</span>(data),<span class="at">batch=</span>batch<span class="sc">$</span>batch,<span class="at">mod=</span>modcombat))</span></code></pre></div>
 <pre><code>## Found 52 genes with uniform expression within a single batch (all zeros); these will not be adjusted for batch.</code></pre>
 <pre><code>## Found16batches</code></pre>
 <pre><code>## Adjusting for0covariate(s) or covariate level(s)</code></pre>
@@ -1981,59 +1980,59 @@ Expression data processing from GEO</h3>
 <pre><code>## Fitting L/S model and finding priors</code></pre>
 <pre><code>## Finding parametric adjustments</code></pre>
 <pre><code>## Adjusting the Data</code></pre>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" tabindex="-1"></a><span class="co"># 将去除批次效应后的整合数据输出（Output the integrated data after batch effect removal）</span></span>
-<span id="cb56-2"><a href="#cb56-2" tabindex="-1"></a><span class="fu">write.table</span>(data_combat,<span class="st">&quot;data_combat.txt&quot;</span>,<span class="at">quote =</span> F,<span class="at">row.names =</span> T,<span class="at">col.names =</span> T,<span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>)</span>
-<span id="cb56-3"><a href="#cb56-3" tabindex="-1"></a></span>
-<span id="cb56-4"><a href="#cb56-4" tabindex="-1"></a><span class="co"># 批次效应校正后的主成分分析（Principal component analysis after batch effect correction）</span></span>
-<span id="cb56-5"><a href="#cb56-5" tabindex="-1"></a><span class="fu">batchPCA</span>(<span class="at">indata =</span> <span class="fu">t</span>(<span class="fu">scale</span>(<span class="fu">t</span>(data_combat))),</span>
-<span id="cb56-6"><a href="#cb56-6" tabindex="-1"></a>         <span class="at">batch =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;GSE13906&quot;</span>, <span class="st">&quot;GSE23371&quot;</span>, <span class="st">&quot;GSE25320&quot;</span>, <span class="st">&quot;GSE27291&quot;</span>, <span class="st">&quot;GSE27838&quot;</span>, <span class="st">&quot;GSE28490&quot;</span>, <span class="st">&quot;GSE28698&quot;</span>, </span>
-<span id="cb56-7"><a href="#cb56-7" tabindex="-1"></a>                       <span class="st">&quot;GSE28726&quot;</span>, <span class="st">&quot;GSE37750&quot;</span>, <span class="st">&quot;GSE39889&quot;</span>, <span class="st">&quot;GSE42058&quot;</span>, <span class="st">&quot;GSE49910&quot;</span>, <span class="st">&quot;GSE51540&quot;</span>, </span>
-<span id="cb56-8"><a href="#cb56-8" tabindex="-1"></a>                       <span class="st">&quot;GSE59237&quot;</span>, <span class="st">&quot;GSE6863&quot;</span>, <span class="st">&quot;GSE8059&quot;</span>),</span>
-<span id="cb56-9"><a href="#cb56-9" tabindex="-1"></a>                     <span class="at">times=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">8</span>,<span class="dv">8</span>,<span class="dv">5</span>,<span class="dv">2</span>,<span class="dv">14</span>,<span class="dv">8</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">26</span>,<span class="dv">9</span>,<span class="dv">10</span>,<span class="dv">3</span>,<span class="dv">4</span>)),</span>
-<span id="cb56-10"><a href="#cb56-10" tabindex="-1"></a>         <span class="at">fig.dir =</span> <span class="st">&quot;.&quot;</span>,</span>
-<span id="cb56-11"><a href="#cb56-11" tabindex="-1"></a>         <span class="at">PCA.fig.title =</span> <span class="st">&quot;Combat PCA for GEO&quot;</span>,</span>
-<span id="cb56-12"><a href="#cb56-12" tabindex="-1"></a>         <span class="co">#cols =brewer.pal(6, &quot;Set1&quot;),</span></span>
-<span id="cb56-13"><a href="#cb56-13" tabindex="-1"></a>         <span class="at">showID =</span> F,</span>
-<span id="cb56-14"><a href="#cb56-14" tabindex="-1"></a>         <span class="at">cex =</span> <span class="dv">1</span>,</span>
-<span id="cb56-15"><a href="#cb56-15" tabindex="-1"></a>         <span class="at">showLegend =</span> T,</span>
-<span id="cb56-16"><a href="#cb56-16" tabindex="-1"></a>         <span class="at">pos =</span> <span class="st">&quot;bottomright&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" tabindex="-1"></a><span class="co"># 将去除批次效应后的整合数据输出（Output the integrated data after batch effect removal）</span></span>
+<span id="cb55-2"><a href="#cb55-2" tabindex="-1"></a><span class="fu">write.table</span>(data_combat,<span class="st">&quot;data_combat.txt&quot;</span>,<span class="at">quote =</span> F,<span class="at">row.names =</span> T,<span class="at">col.names =</span> T,<span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>)</span>
+<span id="cb55-3"><a href="#cb55-3" tabindex="-1"></a></span>
+<span id="cb55-4"><a href="#cb55-4" tabindex="-1"></a><span class="co"># 批次效应校正后的主成分分析（Principal component analysis after batch effect correction）</span></span>
+<span id="cb55-5"><a href="#cb55-5" tabindex="-1"></a><span class="fu">batchPCA</span>(<span class="at">indata =</span> <span class="fu">t</span>(<span class="fu">scale</span>(<span class="fu">t</span>(data_combat))),</span>
+<span id="cb55-6"><a href="#cb55-6" tabindex="-1"></a>         <span class="at">batch =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;GSE13906&quot;</span>, <span class="st">&quot;GSE23371&quot;</span>, <span class="st">&quot;GSE25320&quot;</span>, <span class="st">&quot;GSE27291&quot;</span>, <span class="st">&quot;GSE27838&quot;</span>, <span class="st">&quot;GSE28490&quot;</span>, <span class="st">&quot;GSE28698&quot;</span>, </span>
+<span id="cb55-7"><a href="#cb55-7" tabindex="-1"></a>                       <span class="st">&quot;GSE28726&quot;</span>, <span class="st">&quot;GSE37750&quot;</span>, <span class="st">&quot;GSE39889&quot;</span>, <span class="st">&quot;GSE42058&quot;</span>, <span class="st">&quot;GSE49910&quot;</span>, <span class="st">&quot;GSE51540&quot;</span>, </span>
+<span id="cb55-8"><a href="#cb55-8" tabindex="-1"></a>                       <span class="st">&quot;GSE59237&quot;</span>, <span class="st">&quot;GSE6863&quot;</span>, <span class="st">&quot;GSE8059&quot;</span>),</span>
+<span id="cb55-9"><a href="#cb55-9" tabindex="-1"></a>                     <span class="at">times=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">8</span>,<span class="dv">8</span>,<span class="dv">5</span>,<span class="dv">2</span>,<span class="dv">14</span>,<span class="dv">8</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">26</span>,<span class="dv">9</span>,<span class="dv">10</span>,<span class="dv">3</span>,<span class="dv">4</span>)),</span>
+<span id="cb55-10"><a href="#cb55-10" tabindex="-1"></a>         <span class="at">fig.dir =</span> <span class="st">&quot;.&quot;</span>,</span>
+<span id="cb55-11"><a href="#cb55-11" tabindex="-1"></a>         <span class="at">PCA.fig.title =</span> <span class="st">&quot;Combat PCA for GEO&quot;</span>,</span>
+<span id="cb55-12"><a href="#cb55-12" tabindex="-1"></a>         <span class="co">#cols =brewer.pal(6, &quot;Set1&quot;),</span></span>
+<span id="cb55-13"><a href="#cb55-13" tabindex="-1"></a>         <span class="at">showID =</span> F,</span>
+<span id="cb55-14"><a href="#cb55-14" tabindex="-1"></a>         <span class="at">cex =</span> <span class="dv">1</span>,</span>
+<span id="cb55-15"><a href="#cb55-15" tabindex="-1"></a>         <span class="at">showLegend =</span> T,</span>
+<span id="cb55-16"><a href="#cb55-16" tabindex="-1"></a>         <span class="at">pos =</span> <span class="st">&quot;bottomright&quot;</span>)</span></code></pre></div>
 </div>
 <div id="提取lncrna表达谱数据-extract-lncrna-expression-profile-data" class="section level3" number="5.3">
 <h3><span class="header-section-number">5.3</span> 提取lncRNA表达谱数据
 Extract lncRNA expression profile data</h3>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" tabindex="-1"></a><span class="co"># 提取lncRNA表达谱数据（Extract lncRNA expression profile data）</span></span>
-<span id="cb57-2"><a href="#cb57-2" tabindex="-1"></a><span class="co"># 首先是通过GENCODE注释信息提取lncRNA（First, extract lncRNA through GENCODE annotation information）</span></span>
-<span id="cb57-3"><a href="#cb57-3" tabindex="-1"></a>genecode <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">&#39;gencode.v25.long_noncoding_RNAs.gtf&#39;</span>)  <span class="co"># 导入GENCODE数据库的lncRNA的gtf注释文件（Import the gtf annotation file of lncRNA from the GENCODE database）</span></span>
-<span id="cb57-4"><a href="#cb57-4" tabindex="-1"></a>genecode <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(genecode)  <span class="co"># 转换成数据框便于操作（Convert to a data frame for easy manipulation）</span></span>
-<span id="cb57-5"><a href="#cb57-5" tabindex="-1"></a>genecode_lncRNA <span class="ot">&lt;-</span> <span class="fu">unique</span>(genecode<span class="sc">$</span>gene_name)  <span class="co"># 去重（Remove duplicates）</span></span>
-<span id="cb57-6"><a href="#cb57-6" tabindex="-1"></a></span>
-<span id="cb57-7"><a href="#cb57-7" tabindex="-1"></a><span class="co"># 然后是通过RefSeq注释信息提取lncRNA（Then extract lncRNA through RefSeq annotation information）</span></span>
-<span id="cb57-8"><a href="#cb57-8" tabindex="-1"></a>refseq <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">&#39;GRCh38_latest_genomic.gff&#39;</span>)  <span class="co"># 导入RefSeq数据库的gff注释文件（Import the gff annotation file from the RefSeq database）</span></span>
-<span id="cb57-9"><a href="#cb57-9" tabindex="-1"></a>refseq <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="at">ID=</span>refseq<span class="sc">$</span>ID, <span class="at">gene=</span>refseq<span class="sc">$</span>gene, <span class="at">gene_biotype=</span>refseq<span class="sc">$</span>gene_biotype)  <span class="co"># 选择需要的三列（Select the three required columns）</span></span>
-<span id="cb57-10"><a href="#cb57-10" tabindex="-1"></a>refseq <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(refseq)  <span class="co"># 转换成数据框便于操作（Convert to a data frame for easy manipulation）</span></span>
-<span id="cb57-11"><a href="#cb57-11" tabindex="-1"></a></span>
-<span id="cb57-12"><a href="#cb57-12" tabindex="-1"></a>refseq_lncRNA1 <span class="ot">&lt;-</span> <span class="fu">unique</span>(refseq[<span class="fu">which</span>(refseq<span class="sc">$</span>gene_biotype<span class="sc">==</span><span class="st">&quot;lncRNA&quot;</span>), <span class="st">&quot;gene&quot;</span>])  <span class="co"># 提取基因类型为“lncRNA”的基因（Extract genes with gene type &quot;lncRNA&quot;）</span></span>
-<span id="cb57-13"><a href="#cb57-13" tabindex="-1"></a>refseq_lncRNA2 <span class="ot">&lt;-</span> <span class="fu">unique</span>(refseq[<span class="fu">grep</span>(<span class="st">&quot;NR_&quot;</span>, <span class="fu">as.character</span>(refseq<span class="sc">$</span>ID)), <span class="st">&quot;gene&quot;</span>])  <span class="co"># 提取Refseq ID以NR_开头的基因（Extract genes with Refseq ID starting with &quot;NR_&quot;）</span></span>
-<span id="cb57-14"><a href="#cb57-14" tabindex="-1"></a>refseq_lncRNA <span class="ot">&lt;-</span> <span class="fu">intersect</span>(refseq_lncRNA1, refseq_lncRNA2)  <span class="co"># 取二者交集（Take the intersection of the two）</span></span>
-<span id="cb57-15"><a href="#cb57-15" tabindex="-1"></a></span>
-<span id="cb57-16"><a href="#cb57-16" tabindex="-1"></a>lncRNA <span class="ot">&lt;-</span> <span class="fu">intersect</span>(genecode_lncRNA, refseq_lncRNA)  <span class="co"># 取GENCODE和RefSeq数据库lncRNA的交集（Take the intersection of lncRNA from GENCODE and RefSeq databases）</span></span>
-<span id="cb57-17"><a href="#cb57-17" tabindex="-1"></a></span>
-<span id="cb57-18"><a href="#cb57-18" tabindex="-1"></a><span class="co"># 最后得到lncRNA表达谱数据（Finally, obtain lncRNA expression profile data）</span></span>
-<span id="cb57-19"><a href="#cb57-19" tabindex="-1"></a>data_lncRNA <span class="ot">&lt;-</span> data_combat[<span class="fu">which</span>(<span class="fu">rownames</span>(data_combat) <span class="sc">%in%</span> lncRNA), ]  <span class="co"># 从合并数据中筛选出lncRNA的表达数据（Filter lncRNA expression data from the merged data）</span></span>
-<span id="cb57-20"><a href="#cb57-20" tabindex="-1"></a></span>
-<span id="cb57-21"><a href="#cb57-21" tabindex="-1"></a><span class="co"># 输出全部免疫细胞系表达谱数据（Output expression profile data of all immune cell lines）</span></span>
-<span id="cb57-22"><a href="#cb57-22" tabindex="-1"></a><span class="fu">write.table</span>(data_combat, <span class="st">&quot;expall_114line.txt&quot;</span>, <span class="at">col.names =</span> T, <span class="at">row.names =</span> T, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">quote =</span> F)</span>
-<span id="cb57-23"><a href="#cb57-23" tabindex="-1"></a><span class="co"># 输出全部免疫细胞系lncRNA表达谱数据（Output lncRNA expression profile data of all immune cell lines）</span></span>
-<span id="cb57-24"><a href="#cb57-24" tabindex="-1"></a><span class="fu">write.table</span>(data_lncRNA, <span class="st">&quot;explncRNA_114line.txt&quot;</span>, <span class="at">col.names =</span> T, <span class="at">row.names =</span> T, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">quote =</span> F)</span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" tabindex="-1"></a><span class="co"># 提取lncRNA表达谱数据（Extract lncRNA expression profile data）</span></span>
+<span id="cb56-2"><a href="#cb56-2" tabindex="-1"></a><span class="co"># 首先是通过GENCODE注释信息提取lncRNA（First, extract lncRNA through GENCODE annotation information）</span></span>
+<span id="cb56-3"><a href="#cb56-3" tabindex="-1"></a>genecode <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">&#39;gencode.v25.long_noncoding_RNAs.gtf&#39;</span>)  <span class="co"># 导入GENCODE数据库的lncRNA的gtf注释文件（Import the gtf annotation file of lncRNA from the GENCODE database）</span></span>
+<span id="cb56-4"><a href="#cb56-4" tabindex="-1"></a>genecode <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(genecode)  <span class="co"># 转换成数据框便于操作（Convert to a data frame for easy manipulation）</span></span>
+<span id="cb56-5"><a href="#cb56-5" tabindex="-1"></a>genecode_lncRNA <span class="ot">&lt;-</span> <span class="fu">unique</span>(genecode<span class="sc">$</span>gene_name)  <span class="co"># 去重（Remove duplicates）</span></span>
+<span id="cb56-6"><a href="#cb56-6" tabindex="-1"></a></span>
+<span id="cb56-7"><a href="#cb56-7" tabindex="-1"></a><span class="co"># 然后是通过RefSeq注释信息提取lncRNA（Then extract lncRNA through RefSeq annotation information）</span></span>
+<span id="cb56-8"><a href="#cb56-8" tabindex="-1"></a>refseq <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">&#39;GRCh38_latest_genomic.gff&#39;</span>)  <span class="co"># 导入RefSeq数据库的gff注释文件（Import the gff annotation file from the RefSeq database）</span></span>
+<span id="cb56-9"><a href="#cb56-9" tabindex="-1"></a>refseq <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="at">ID=</span>refseq<span class="sc">$</span>ID, <span class="at">gene=</span>refseq<span class="sc">$</span>gene, <span class="at">gene_biotype=</span>refseq<span class="sc">$</span>gene_biotype)  <span class="co"># 选择需要的三列（Select the three required columns）</span></span>
+<span id="cb56-10"><a href="#cb56-10" tabindex="-1"></a>refseq <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(refseq)  <span class="co"># 转换成数据框便于操作（Convert to a data frame for easy manipulation）</span></span>
+<span id="cb56-11"><a href="#cb56-11" tabindex="-1"></a></span>
+<span id="cb56-12"><a href="#cb56-12" tabindex="-1"></a>refseq_lncRNA1 <span class="ot">&lt;-</span> <span class="fu">unique</span>(refseq[<span class="fu">which</span>(refseq<span class="sc">$</span>gene_biotype<span class="sc">==</span><span class="st">&quot;lncRNA&quot;</span>), <span class="st">&quot;gene&quot;</span>])  <span class="co"># 提取基因类型为“lncRNA”的基因（Extract genes with gene type &quot;lncRNA&quot;）</span></span>
+<span id="cb56-13"><a href="#cb56-13" tabindex="-1"></a>refseq_lncRNA2 <span class="ot">&lt;-</span> <span class="fu">unique</span>(refseq[<span class="fu">grep</span>(<span class="st">&quot;NR_&quot;</span>, <span class="fu">as.character</span>(refseq<span class="sc">$</span>ID)), <span class="st">&quot;gene&quot;</span>])  <span class="co"># 提取Refseq ID以NR_开头的基因（Extract genes with Refseq ID starting with &quot;NR_&quot;）</span></span>
+<span id="cb56-14"><a href="#cb56-14" tabindex="-1"></a>refseq_lncRNA <span class="ot">&lt;-</span> <span class="fu">intersect</span>(refseq_lncRNA1, refseq_lncRNA2)  <span class="co"># 取二者交集（Take the intersection of the two）</span></span>
+<span id="cb56-15"><a href="#cb56-15" tabindex="-1"></a></span>
+<span id="cb56-16"><a href="#cb56-16" tabindex="-1"></a>lncRNA <span class="ot">&lt;-</span> <span class="fu">intersect</span>(genecode_lncRNA, refseq_lncRNA)  <span class="co"># 取GENCODE和RefSeq数据库lncRNA的交集（Take the intersection of lncRNA from GENCODE and RefSeq databases）</span></span>
+<span id="cb56-17"><a href="#cb56-17" tabindex="-1"></a></span>
+<span id="cb56-18"><a href="#cb56-18" tabindex="-1"></a><span class="co"># 最后得到lncRNA表达谱数据（Finally, obtain lncRNA expression profile data）</span></span>
+<span id="cb56-19"><a href="#cb56-19" tabindex="-1"></a>data_lncRNA <span class="ot">&lt;-</span> data_combat[<span class="fu">which</span>(<span class="fu">rownames</span>(data_combat) <span class="sc">%in%</span> lncRNA), ]  <span class="co"># 从合并数据中筛选出lncRNA的表达数据（Filter lncRNA expression data from the merged data）</span></span>
+<span id="cb56-20"><a href="#cb56-20" tabindex="-1"></a></span>
+<span id="cb56-21"><a href="#cb56-21" tabindex="-1"></a><span class="co"># 输出全部免疫细胞系表达谱数据（Output expression profile data of all immune cell lines）</span></span>
+<span id="cb56-22"><a href="#cb56-22" tabindex="-1"></a><span class="fu">write.table</span>(data_combat, <span class="st">&quot;expall_114line.txt&quot;</span>, <span class="at">col.names =</span> T, <span class="at">row.names =</span> T, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">quote =</span> F)</span>
+<span id="cb56-23"><a href="#cb56-23" tabindex="-1"></a><span class="co"># 输出全部免疫细胞系lncRNA表达谱数据（Output lncRNA expression profile data of all immune cell lines）</span></span>
+<span id="cb56-24"><a href="#cb56-24" tabindex="-1"></a><span class="fu">write.table</span>(data_lncRNA, <span class="st">&quot;explncRNA_114line.txt&quot;</span>, <span class="at">col.names =</span> T, <span class="at">row.names =</span> T, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">quote =</span> F)</span></code></pre></div>
 </div>
 </div>
 <div id="对每个免疫细胞系的lncrna进行排序-sort-the-lncrnas-of-each-immune-cell-line" class="section level2" number="6">
 <h2><span class="header-section-number">6</span>
 对每个免疫细胞系的lncRNA进行排序 Sort the lncRNAs of each immune cell
 line</h2>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" tabindex="-1"></a><span class="co"># 提取lncRNA表达谱数据的免疫细胞系注释信息（Extract annotation information of immune cell lines for lncRNA expression profile data）</span></span>
-<span id="cb58-2"><a href="#cb58-2" tabindex="-1"></a>ann_114 <span class="ot">&lt;-</span> ann[<span class="fu">which</span>(ann<span class="sc">$</span><span class="st">`</span><span class="at">Sample ID</span><span class="st">`</span> <span class="sc">%in%</span> <span class="fu">colnames</span>(data_lncRNA)), ]  <span class="co"># 筛选出与lncRNA表达谱样本ID匹配的注释信息（Filter annotations matching lncRNA expression profile sample IDs）</span></span>
-<span id="cb58-3"><a href="#cb58-3" tabindex="-1"></a><span class="fu">table</span>(ann_114<span class="sc">$</span>Population)  <span class="co"># 统计各免疫细胞类型的样本数量（Count sample numbers for each immune cell type）</span></span></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" tabindex="-1"></a><span class="co"># 提取lncRNA表达谱数据的免疫细胞系注释信息（Extract annotation information of immune cell lines for lncRNA expression profile data）</span></span>
+<span id="cb57-2"><a href="#cb57-2" tabindex="-1"></a>ann_114 <span class="ot">&lt;-</span> ann[<span class="fu">which</span>(ann<span class="sc">$</span><span class="st">`</span><span class="at">Sample ID</span><span class="st">`</span> <span class="sc">%in%</span> <span class="fu">colnames</span>(data_lncRNA)), ]  <span class="co"># 筛选出与lncRNA表达谱样本ID匹配的注释信息（Filter annotations matching lncRNA expression profile sample IDs）</span></span>
+<span id="cb57-3"><a href="#cb57-3" tabindex="-1"></a><span class="fu">table</span>(ann_114<span class="sc">$</span>Population)  <span class="co"># 统计各免疫细胞类型的样本数量（Count sample numbers for each immune cell type）</span></span></code></pre></div>
 <pre><code>## 
 ##             B cell activated        CD4 T cell activated  
 ##                            9                            7 
@@ -2055,17 +2054,17 @@ line</h2>
 ##                            8                           10 
 ##                  T helper 17 
 ##                            9</code></pre>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" tabindex="-1"></a><span class="co"># 调整表达谱顺序，使得注释信息和表达谱数据的样本顺序一致（Adjust expression profile order to match annotation sample order）</span></span>
-<span id="cb60-2"><a href="#cb60-2" tabindex="-1"></a>loc <span class="ot">&lt;-</span> <span class="fu">match</span>(ann_114<span class="sc">$</span><span class="st">`</span><span class="at">Sample ID</span><span class="st">`</span>, <span class="fu">colnames</span>(data_lncRNA))  <span class="co"># 获取样本ID在表达谱中的位置索引（Get position indices of sample IDs in expression profile）</span></span>
-<span id="cb60-3"><a href="#cb60-3" tabindex="-1"></a>data_lncRNA <span class="ot">&lt;-</span> data_lncRNA[, loc]  <span class="co"># 按注释顺序重排表达谱列（Rearrange expression profile columns by annotation order）</span></span>
-<span id="cb60-4"><a href="#cb60-4" tabindex="-1"></a></span>
-<span id="cb60-5"><a href="#cb60-5" tabindex="-1"></a><span class="co"># 处理一个lncRNA对应多个相同免疫细胞系的情况（Handle cases where one lncRNA corresponds to multiple same immune cell lines）</span></span>
-<span id="cb60-6"><a href="#cb60-6" tabindex="-1"></a>mean_lncRNA <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">t</span>(data_lncRNA))  <span class="co"># 转置数据，使行为细胞系、列为lncRNA（Transpose data: rows=cell lines, columns=lncRNA）</span></span>
-<span id="cb60-7"><a href="#cb60-7" tabindex="-1"></a>mean_lncRNA<span class="sc">$</span>CellType <span class="ot">&lt;-</span> ann_114<span class="sc">$</span>Population  <span class="co"># 添加细胞类型注释列（Add cell type annotation column）</span></span>
-<span id="cb60-8"><a href="#cb60-8" tabindex="-1"></a>CellType <span class="ot">&lt;-</span> ann_114<span class="sc">$</span>Population  <span class="co"># 存储细胞类型向量（Store cell type vector）</span></span>
-<span id="cb60-9"><a href="#cb60-9" tabindex="-1"></a></span>
-<span id="cb60-10"><a href="#cb60-10" tabindex="-1"></a><span class="co"># 按细胞类型聚合表达值并计算均值（Aggregate expression values by cell type and calculate mean）</span></span>
-<span id="cb60-11"><a href="#cb60-11" tabindex="-1"></a>mean_lncRNA <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(mean_lncRNA, <span class="at">by =</span> <span class="fu">list</span>(CellType), <span class="at">FUN =</span> mean)  <span class="co"># </span></span></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" tabindex="-1"></a><span class="co"># 调整表达谱顺序，使得注释信息和表达谱数据的样本顺序一致（Adjust expression profile order to match annotation sample order）</span></span>
+<span id="cb59-2"><a href="#cb59-2" tabindex="-1"></a>loc <span class="ot">&lt;-</span> <span class="fu">match</span>(ann_114<span class="sc">$</span><span class="st">`</span><span class="at">Sample ID</span><span class="st">`</span>, <span class="fu">colnames</span>(data_lncRNA))  <span class="co"># 获取样本ID在表达谱中的位置索引（Get position indices of sample IDs in expression profile）</span></span>
+<span id="cb59-3"><a href="#cb59-3" tabindex="-1"></a>data_lncRNA <span class="ot">&lt;-</span> data_lncRNA[, loc]  <span class="co"># 按注释顺序重排表达谱列（Rearrange expression profile columns by annotation order）</span></span>
+<span id="cb59-4"><a href="#cb59-4" tabindex="-1"></a></span>
+<span id="cb59-5"><a href="#cb59-5" tabindex="-1"></a><span class="co"># 处理一个lncRNA对应多个相同免疫细胞系的情况（Handle cases where one lncRNA corresponds to multiple same immune cell lines）</span></span>
+<span id="cb59-6"><a href="#cb59-6" tabindex="-1"></a>mean_lncRNA <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">t</span>(data_lncRNA))  <span class="co"># 转置数据，使行为细胞系、列为lncRNA（Transpose data: rows=cell lines, columns=lncRNA）</span></span>
+<span id="cb59-7"><a href="#cb59-7" tabindex="-1"></a>mean_lncRNA<span class="sc">$</span>CellType <span class="ot">&lt;-</span> ann_114<span class="sc">$</span>Population  <span class="co"># 添加细胞类型注释列（Add cell type annotation column）</span></span>
+<span id="cb59-8"><a href="#cb59-8" tabindex="-1"></a>CellType <span class="ot">&lt;-</span> ann_114<span class="sc">$</span>Population  <span class="co"># 存储细胞类型向量（Store cell type vector）</span></span>
+<span id="cb59-9"><a href="#cb59-9" tabindex="-1"></a></span>
+<span id="cb59-10"><a href="#cb59-10" tabindex="-1"></a><span class="co"># 按细胞类型聚合表达值并计算均值（Aggregate expression values by cell type and calculate mean）</span></span>
+<span id="cb59-11"><a href="#cb59-11" tabindex="-1"></a>mean_lncRNA <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(mean_lncRNA, <span class="at">by =</span> <span class="fu">list</span>(CellType), <span class="at">FUN =</span> mean)  <span class="co"># </span></span></code></pre></div>
 <pre><code>## Warning in mean.default(X[[i]], ...): argument is not numeric or logical:
 ## returning NA
 ## Warning in mean.default(X[[i]], ...): argument is not numeric or logical:
@@ -2104,57 +2103,57 @@ line</h2>
 ## returning NA
 ## Warning in mean.default(X[[i]], ...): argument is not numeric or logical:
 ## returning NA</code></pre>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" tabindex="-1"></a><span class="co"># by=list(CellType)：按CellType列分组（Group by CellType column）</span></span>
-<span id="cb62-2"><a href="#cb62-2" tabindex="-1"></a><span class="co"># FUN=mean：对每组计算均值（Calculate mean for each group）</span></span>
-<span id="cb62-3"><a href="#cb62-3" tabindex="-1"></a></span>
-<span id="cb62-4"><a href="#cb62-4" tabindex="-1"></a>mean_lncRNA<span class="sc">$</span>CellType <span class="ot">&lt;-</span> <span class="cn">NULL</span>  <span class="co"># 删除临时分组列（Remove temporary grouping column）</span></span>
-<span id="cb62-5"><a href="#cb62-5" tabindex="-1"></a>mean_lncRNA <span class="ot">&lt;-</span> <span class="fu">column_to_rownames</span>(mean_lncRNA, <span class="st">&quot;Group.1&quot;</span>)  <span class="co"># 将分组列设为行名（Set grouping column as row names）</span></span>
-<span id="cb62-6"><a href="#cb62-6" tabindex="-1"></a>rank_lncRNA <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">t</span>(mean_lncRNA))  <span class="co"># 再次转置，使行为lncRNA、列为细胞类型（Transpose again: rows=lncRNA, columns=cell types）</span></span>
-<span id="cb62-7"><a href="#cb62-7" tabindex="-1"></a></span>
-<span id="cb62-8"><a href="#cb62-8" tabindex="-1"></a><span class="co"># 提取19种免疫细胞系中每种细胞系的lncRNA排序结果（Extract lncRNA ranking results for each of 19 immune cell lines）</span></span>
-<span id="cb62-9"><a href="#cb62-9" tabindex="-1"></a>top_outTab <span class="ot">&lt;-</span> <span class="fu">data.frame</span>()  <span class="co"># 创建空数据框存储排序结果（Create empty data frame for ranking results）</span></span>
-<span id="cb62-10"><a href="#cb62-10" tabindex="-1"></a></span>
-<span id="cb62-11"><a href="#cb62-11" tabindex="-1"></a><span class="cf">for</span> (m <span class="cf">in</span> <span class="fu">c</span>(<span class="fu">seq</span>(<span class="fl">0.01</span>, <span class="dv">1</span>, <span class="fl">0.01</span>))) {  <span class="co"># 按1%间隔遍历阈值（Traverse thresholds at 1% intervals）</span></span>
-<span id="cb62-12"><a href="#cb62-12" tabindex="-1"></a>  outTab <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">ID =</span> <span class="dv">1</span><span class="sc">:</span>(<span class="fu">nrow</span>(rank_lncRNA) <span class="sc">*</span> m))  <span class="co"># 初始化每行阈值对应的空表（Initialize empty table for each threshold）</span></span>
-<span id="cb62-13"><a href="#cb62-13" tabindex="-1"></a>  </span>
-<span id="cb62-14"><a href="#cb62-14" tabindex="-1"></a>  <span class="co"># 对每种免疫细胞系中的lncRNA表达值进行降序排列（Descending sort of lncRNA expression values for each cell line）</span></span>
-<span id="cb62-15"><a href="#cb62-15" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(rank_lncRNA)) {</span>
-<span id="cb62-16"><a href="#cb62-16" tabindex="-1"></a>    top <span class="ot">&lt;-</span> <span class="fu">rownames</span>(rank_lncRNA[<span class="fu">order</span>(rank_lncRNA[, i], <span class="at">decreasing =</span> T), ])[<span class="dv">1</span><span class="sc">:</span>(<span class="fu">nrow</span>(rank_lncRNA) <span class="sc">*</span> m)]</span>
-<span id="cb62-17"><a href="#cb62-17" tabindex="-1"></a>    <span class="co"># order(decreasing=T)：降序排序（Sort in descending order）</span></span>
-<span id="cb62-18"><a href="#cb62-18" tabindex="-1"></a>    <span class="co"># [1:(nrow*M)]：取前M%的基因（Take top M% genes）</span></span>
-<span id="cb62-19"><a href="#cb62-19" tabindex="-1"></a>    outTab[, i] <span class="ot">&lt;-</span> top  <span class="co"># 将排序结果存入表中（Store ranking results in table）</span></span>
-<span id="cb62-20"><a href="#cb62-20" tabindex="-1"></a>  }</span>
-<span id="cb62-21"><a href="#cb62-21" tabindex="-1"></a>  <span class="fu">colnames</span>(outTab) <span class="ot">&lt;-</span> <span class="fu">colnames</span>(rank_lncRNA)  <span class="co"># 设置列名为细胞类型（Set column names as cell types）</span></span>
-<span id="cb62-22"><a href="#cb62-22" tabindex="-1"></a>  </span>
-<span id="cb62-23"><a href="#cb62-23" tabindex="-1"></a>  <span class="co"># 方法1：提取19种细胞系的共有lncRNA（交集）（Method 1: Extract common lncRNA across 19 cell lines (intersection)）</span></span>
-<span id="cb62-24"><a href="#cb62-24" tabindex="-1"></a>  inter <span class="ot">&lt;-</span> <span class="fu">Reduce</span>(intersect, <span class="fu">list</span>(</span>
-<span id="cb62-25"><a href="#cb62-25" tabindex="-1"></a>    <span class="at">v1 =</span> outTab[, <span class="dv">1</span>], <span class="at">v2 =</span> outTab[, <span class="dv">2</span>], <span class="at">v3 =</span> outTab[, <span class="dv">3</span>], <span class="at">v4 =</span> outTab[, <span class="dv">4</span>], <span class="at">v5 =</span> outTab[, <span class="dv">5</span>],</span>
-<span id="cb62-26"><a href="#cb62-26" tabindex="-1"></a>    <span class="at">v6 =</span> outTab[, <span class="dv">6</span>], <span class="at">v7 =</span> outTab[, <span class="dv">7</span>], <span class="at">v8 =</span> outTab[, <span class="dv">8</span>], <span class="at">v9 =</span> outTab[, <span class="dv">9</span>], <span class="at">v10 =</span> outTab[, <span class="dv">10</span>],</span>
-<span id="cb62-27"><a href="#cb62-27" tabindex="-1"></a>    <span class="at">v11 =</span> outTab[, <span class="dv">11</span>], <span class="at">v12 =</span> outTab[, <span class="dv">12</span>], <span class="at">v13 =</span> outTab[, <span class="dv">13</span>], <span class="at">v14 =</span> outTab[, <span class="dv">14</span>], <span class="at">v15 =</span> outTab[, <span class="dv">15</span>],</span>
-<span id="cb62-28"><a href="#cb62-28" tabindex="-1"></a>    <span class="at">v16 =</span> outTab[, <span class="dv">16</span>], <span class="at">v17 =</span> outTab[, <span class="dv">17</span>], <span class="at">v18 =</span> outTab[, <span class="dv">18</span>], <span class="at">v19 =</span> outTab[, <span class="dv">19</span>]</span>
-<span id="cb62-29"><a href="#cb62-29" tabindex="-1"></a>  ))</span>
-<span id="cb62-30"><a href="#cb62-30" tabindex="-1"></a>  <span class="co"># Reduce(intersect, list(...))：对所有细胞系的top基因取交集（Intersect top genes across all cell lines）</span></span>
-<span id="cb62-31"><a href="#cb62-31" tabindex="-1"></a>  </span>
-<span id="cb62-32"><a href="#cb62-32" tabindex="-1"></a>  <span class="co"># 方法2：提取19种细胞系的共有lncRNA（并集）（Method 2: Extract common lncRNA across 19 cell lines (union)）</span></span>
-<span id="cb62-33"><a href="#cb62-33" tabindex="-1"></a>  union <span class="ot">&lt;-</span> <span class="fu">Reduce</span>(union, <span class="fu">list</span>(</span>
-<span id="cb62-34"><a href="#cb62-34" tabindex="-1"></a>    <span class="at">v1 =</span> outTab[, <span class="dv">1</span>], <span class="at">v2 =</span> outTab[, <span class="dv">2</span>], <span class="at">v3 =</span> outTab[, <span class="dv">3</span>], <span class="at">v4 =</span> outTab[, <span class="dv">4</span>], <span class="at">v5 =</span> outTab[, <span class="dv">5</span>],</span>
-<span id="cb62-35"><a href="#cb62-35" tabindex="-1"></a>    <span class="at">v6 =</span> outTab[, <span class="dv">6</span>], <span class="at">v7 =</span> outTab[, <span class="dv">7</span>], <span class="at">v8 =</span> outTab[, <span class="dv">8</span>], <span class="at">v9 =</span> outTab[, <span class="dv">9</span>], <span class="at">v10 =</span> outTab[, <span class="dv">10</span>],</span>
-<span id="cb62-36"><a href="#cb62-36" tabindex="-1"></a>    <span class="at">v11 =</span> outTab[, <span class="dv">11</span>], <span class="at">v12 =</span> outTab[, <span class="dv">12</span>], <span class="at">v13 =</span> outTab[, <span class="dv">13</span>], <span class="at">v14 =</span> outTab[, <span class="dv">14</span>], <span class="at">v15 =</span> outTab[, <span class="dv">15</span>],</span>
-<span id="cb62-37"><a href="#cb62-37" tabindex="-1"></a>    <span class="at">v16 =</span> outTab[, <span class="dv">16</span>], <span class="at">v17 =</span> outTab[, <span class="dv">17</span>], <span class="at">v18 =</span> outTab[, <span class="dv">18</span>], <span class="at">v19 =</span> outTab[, <span class="dv">19</span>]</span>
-<span id="cb62-38"><a href="#cb62-38" tabindex="-1"></a>  ))</span>
-<span id="cb62-39"><a href="#cb62-39" tabindex="-1"></a>  <span class="co"># Reduce(union, list(...))：对所有细胞系的top基因取并集（Union top genes across all cell lines）</span></span>
-<span id="cb62-40"><a href="#cb62-40" tabindex="-1"></a>  </span>
-<span id="cb62-41"><a href="#cb62-41" tabindex="-1"></a>  <span class="co"># 合并结果（Merge results）</span></span>
-<span id="cb62-42"><a href="#cb62-42" tabindex="-1"></a>  union <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">top_index =</span> <span class="fu">rep</span>(m, <span class="fu">length</span>(union)), <span class="at">gene =</span> union)  <span class="co"># 构建并集结果表（Build union result table）</span></span>
-<span id="cb62-43"><a href="#cb62-43" tabindex="-1"></a>  top_outTab <span class="ot">&lt;-</span> <span class="fu">rbind</span>(union, top_outTab)  <span class="co"># 按行合并结果（Row-wise merge results）</span></span>
-<span id="cb62-44"><a href="#cb62-44" tabindex="-1"></a>  </span>
-<span id="cb62-45"><a href="#cb62-45" tabindex="-1"></a>  <span class="co"># （交集方法的代码已注释，如需使用请取消注释下方两行）</span></span>
-<span id="cb62-46"><a href="#cb62-46" tabindex="-1"></a>  <span class="co"># inter &lt;- data.frame(top_index = rep(m, length(inter)), gene = inter)</span></span>
-<span id="cb62-47"><a href="#cb62-47" tabindex="-1"></a>  <span class="co"># top_outTab &lt;- rbind(inter, top_outTab)</span></span>
-<span id="cb62-48"><a href="#cb62-48" tabindex="-1"></a>}</span>
-<span id="cb62-49"><a href="#cb62-49" tabindex="-1"></a></span>
-<span id="cb62-50"><a href="#cb62-50" tabindex="-1"></a><span class="co"># 结果说明：第一列为阈值（1%到100%），第二列为对应的lncRNA（Result description: 1st column=threshold (1%-100%), 2nd column=corresponding lncRNA）</span></span>
-<span id="cb62-51"><a href="#cb62-51" tabindex="-1"></a><span class="fu">head</span>(top_outTab)  <span class="co"># 查看结果前几行（View first few rows of results）</span></span></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" tabindex="-1"></a><span class="co"># by=list(CellType)：按CellType列分组（Group by CellType column）</span></span>
+<span id="cb61-2"><a href="#cb61-2" tabindex="-1"></a><span class="co"># FUN=mean：对每组计算均值（Calculate mean for each group）</span></span>
+<span id="cb61-3"><a href="#cb61-3" tabindex="-1"></a></span>
+<span id="cb61-4"><a href="#cb61-4" tabindex="-1"></a>mean_lncRNA<span class="sc">$</span>CellType <span class="ot">&lt;-</span> <span class="cn">NULL</span>  <span class="co"># 删除临时分组列（Remove temporary grouping column）</span></span>
+<span id="cb61-5"><a href="#cb61-5" tabindex="-1"></a>mean_lncRNA <span class="ot">&lt;-</span> <span class="fu">column_to_rownames</span>(mean_lncRNA, <span class="st">&quot;Group.1&quot;</span>)  <span class="co"># 将分组列设为行名（Set grouping column as row names）</span></span>
+<span id="cb61-6"><a href="#cb61-6" tabindex="-1"></a>rank_lncRNA <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">t</span>(mean_lncRNA))  <span class="co"># 再次转置，使行为lncRNA、列为细胞类型（Transpose again: rows=lncRNA, columns=cell types）</span></span>
+<span id="cb61-7"><a href="#cb61-7" tabindex="-1"></a></span>
+<span id="cb61-8"><a href="#cb61-8" tabindex="-1"></a><span class="co"># 提取19种免疫细胞系中每种细胞系的lncRNA排序结果（Extract lncRNA ranking results for each of 19 immune cell lines）</span></span>
+<span id="cb61-9"><a href="#cb61-9" tabindex="-1"></a>top_outTab <span class="ot">&lt;-</span> <span class="fu">data.frame</span>()  <span class="co"># 创建空数据框存储排序结果（Create empty data frame for ranking results）</span></span>
+<span id="cb61-10"><a href="#cb61-10" tabindex="-1"></a></span>
+<span id="cb61-11"><a href="#cb61-11" tabindex="-1"></a><span class="cf">for</span> (m <span class="cf">in</span> <span class="fu">c</span>(<span class="fu">seq</span>(<span class="fl">0.01</span>, <span class="dv">1</span>, <span class="fl">0.01</span>))) {  <span class="co"># 按1%间隔遍历阈值（Traverse thresholds at 1% intervals）</span></span>
+<span id="cb61-12"><a href="#cb61-12" tabindex="-1"></a>  outTab <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">ID =</span> <span class="dv">1</span><span class="sc">:</span>(<span class="fu">nrow</span>(rank_lncRNA) <span class="sc">*</span> m))  <span class="co"># 初始化每行阈值对应的空表（Initialize empty table for each threshold）</span></span>
+<span id="cb61-13"><a href="#cb61-13" tabindex="-1"></a>  </span>
+<span id="cb61-14"><a href="#cb61-14" tabindex="-1"></a>  <span class="co"># 对每种免疫细胞系中的lncRNA表达值进行降序排列（Descending sort of lncRNA expression values for each cell line）</span></span>
+<span id="cb61-15"><a href="#cb61-15" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(rank_lncRNA)) {</span>
+<span id="cb61-16"><a href="#cb61-16" tabindex="-1"></a>    top <span class="ot">&lt;-</span> <span class="fu">rownames</span>(rank_lncRNA[<span class="fu">order</span>(rank_lncRNA[, i], <span class="at">decreasing =</span> T), ])[<span class="dv">1</span><span class="sc">:</span>(<span class="fu">nrow</span>(rank_lncRNA) <span class="sc">*</span> m)]</span>
+<span id="cb61-17"><a href="#cb61-17" tabindex="-1"></a>    <span class="co"># order(decreasing=T)：降序排序（Sort in descending order）</span></span>
+<span id="cb61-18"><a href="#cb61-18" tabindex="-1"></a>    <span class="co"># [1:(nrow*M)]：取前M%的基因（Take top M% genes）</span></span>
+<span id="cb61-19"><a href="#cb61-19" tabindex="-1"></a>    outTab[, i] <span class="ot">&lt;-</span> top  <span class="co"># 将排序结果存入表中（Store ranking results in table）</span></span>
+<span id="cb61-20"><a href="#cb61-20" tabindex="-1"></a>  }</span>
+<span id="cb61-21"><a href="#cb61-21" tabindex="-1"></a>  <span class="fu">colnames</span>(outTab) <span class="ot">&lt;-</span> <span class="fu">colnames</span>(rank_lncRNA)  <span class="co"># 设置列名为细胞类型（Set column names as cell types）</span></span>
+<span id="cb61-22"><a href="#cb61-22" tabindex="-1"></a>  </span>
+<span id="cb61-23"><a href="#cb61-23" tabindex="-1"></a>  <span class="co"># 方法1：提取19种细胞系的共有lncRNA（交集）（Method 1: Extract common lncRNA across 19 cell lines (intersection)）</span></span>
+<span id="cb61-24"><a href="#cb61-24" tabindex="-1"></a>  inter <span class="ot">&lt;-</span> <span class="fu">Reduce</span>(intersect, <span class="fu">list</span>(</span>
+<span id="cb61-25"><a href="#cb61-25" tabindex="-1"></a>    <span class="at">v1 =</span> outTab[, <span class="dv">1</span>], <span class="at">v2 =</span> outTab[, <span class="dv">2</span>], <span class="at">v3 =</span> outTab[, <span class="dv">3</span>], <span class="at">v4 =</span> outTab[, <span class="dv">4</span>], <span class="at">v5 =</span> outTab[, <span class="dv">5</span>],</span>
+<span id="cb61-26"><a href="#cb61-26" tabindex="-1"></a>    <span class="at">v6 =</span> outTab[, <span class="dv">6</span>], <span class="at">v7 =</span> outTab[, <span class="dv">7</span>], <span class="at">v8 =</span> outTab[, <span class="dv">8</span>], <span class="at">v9 =</span> outTab[, <span class="dv">9</span>], <span class="at">v10 =</span> outTab[, <span class="dv">10</span>],</span>
+<span id="cb61-27"><a href="#cb61-27" tabindex="-1"></a>    <span class="at">v11 =</span> outTab[, <span class="dv">11</span>], <span class="at">v12 =</span> outTab[, <span class="dv">12</span>], <span class="at">v13 =</span> outTab[, <span class="dv">13</span>], <span class="at">v14 =</span> outTab[, <span class="dv">14</span>], <span class="at">v15 =</span> outTab[, <span class="dv">15</span>],</span>
+<span id="cb61-28"><a href="#cb61-28" tabindex="-1"></a>    <span class="at">v16 =</span> outTab[, <span class="dv">16</span>], <span class="at">v17 =</span> outTab[, <span class="dv">17</span>], <span class="at">v18 =</span> outTab[, <span class="dv">18</span>], <span class="at">v19 =</span> outTab[, <span class="dv">19</span>]</span>
+<span id="cb61-29"><a href="#cb61-29" tabindex="-1"></a>  ))</span>
+<span id="cb61-30"><a href="#cb61-30" tabindex="-1"></a>  <span class="co"># Reduce(intersect, list(...))：对所有细胞系的top基因取交集（Intersect top genes across all cell lines）</span></span>
+<span id="cb61-31"><a href="#cb61-31" tabindex="-1"></a>  </span>
+<span id="cb61-32"><a href="#cb61-32" tabindex="-1"></a>  <span class="co"># 方法2：提取19种细胞系的共有lncRNA（并集）（Method 2: Extract common lncRNA across 19 cell lines (union)）</span></span>
+<span id="cb61-33"><a href="#cb61-33" tabindex="-1"></a>  union <span class="ot">&lt;-</span> <span class="fu">Reduce</span>(union, <span class="fu">list</span>(</span>
+<span id="cb61-34"><a href="#cb61-34" tabindex="-1"></a>    <span class="at">v1 =</span> outTab[, <span class="dv">1</span>], <span class="at">v2 =</span> outTab[, <span class="dv">2</span>], <span class="at">v3 =</span> outTab[, <span class="dv">3</span>], <span class="at">v4 =</span> outTab[, <span class="dv">4</span>], <span class="at">v5 =</span> outTab[, <span class="dv">5</span>],</span>
+<span id="cb61-35"><a href="#cb61-35" tabindex="-1"></a>    <span class="at">v6 =</span> outTab[, <span class="dv">6</span>], <span class="at">v7 =</span> outTab[, <span class="dv">7</span>], <span class="at">v8 =</span> outTab[, <span class="dv">8</span>], <span class="at">v9 =</span> outTab[, <span class="dv">9</span>], <span class="at">v10 =</span> outTab[, <span class="dv">10</span>],</span>
+<span id="cb61-36"><a href="#cb61-36" tabindex="-1"></a>    <span class="at">v11 =</span> outTab[, <span class="dv">11</span>], <span class="at">v12 =</span> outTab[, <span class="dv">12</span>], <span class="at">v13 =</span> outTab[, <span class="dv">13</span>], <span class="at">v14 =</span> outTab[, <span class="dv">14</span>], <span class="at">v15 =</span> outTab[, <span class="dv">15</span>],</span>
+<span id="cb61-37"><a href="#cb61-37" tabindex="-1"></a>    <span class="at">v16 =</span> outTab[, <span class="dv">16</span>], <span class="at">v17 =</span> outTab[, <span class="dv">17</span>], <span class="at">v18 =</span> outTab[, <span class="dv">18</span>], <span class="at">v19 =</span> outTab[, <span class="dv">19</span>]</span>
+<span id="cb61-38"><a href="#cb61-38" tabindex="-1"></a>  ))</span>
+<span id="cb61-39"><a href="#cb61-39" tabindex="-1"></a>  <span class="co"># Reduce(union, list(...))：对所有细胞系的top基因取并集（Union top genes across all cell lines）</span></span>
+<span id="cb61-40"><a href="#cb61-40" tabindex="-1"></a>  </span>
+<span id="cb61-41"><a href="#cb61-41" tabindex="-1"></a>  <span class="co"># 合并结果（Merge results）</span></span>
+<span id="cb61-42"><a href="#cb61-42" tabindex="-1"></a>  union <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">top_index =</span> <span class="fu">rep</span>(m, <span class="fu">length</span>(union)), <span class="at">gene =</span> union)  <span class="co"># 构建并集结果表（Build union result table）</span></span>
+<span id="cb61-43"><a href="#cb61-43" tabindex="-1"></a>  top_outTab <span class="ot">&lt;-</span> <span class="fu">rbind</span>(union, top_outTab)  <span class="co"># 按行合并结果（Row-wise merge results）</span></span>
+<span id="cb61-44"><a href="#cb61-44" tabindex="-1"></a>  </span>
+<span id="cb61-45"><a href="#cb61-45" tabindex="-1"></a>  <span class="co"># （交集方法的代码已注释，如需使用请取消注释下方两行）</span></span>
+<span id="cb61-46"><a href="#cb61-46" tabindex="-1"></a>  <span class="co"># inter &lt;- data.frame(top_index = rep(m, length(inter)), gene = inter)</span></span>
+<span id="cb61-47"><a href="#cb61-47" tabindex="-1"></a>  <span class="co"># top_outTab &lt;- rbind(inter, top_outTab)</span></span>
+<span id="cb61-48"><a href="#cb61-48" tabindex="-1"></a>}</span>
+<span id="cb61-49"><a href="#cb61-49" tabindex="-1"></a></span>
+<span id="cb61-50"><a href="#cb61-50" tabindex="-1"></a><span class="co"># 结果说明：第一列为阈值（1%到100%），第二列为对应的lncRNA（Result description: 1st column=threshold (1%-100%), 2nd column=corresponding lncRNA）</span></span>
+<span id="cb61-51"><a href="#cb61-51" tabindex="-1"></a><span class="fu">head</span>(top_outTab)  <span class="co"># 查看结果前几行（View first few rows of results）</span></span></code></pre></div>
 <pre><code>##   top_index      gene
 ## 1         1     SNHG5
 ## 2         1     SNHG6
@@ -2174,36 +2173,36 @@ lines are 1, 2, 3, 4, and 5, respectively</p>
 <p>The values of X (A, i) in the original formula are (1-1)/(5-1)=0,
 (2-1)/(5-1)=0.25, (3-1)/(5-1)=0.5, (4-1)/(5-1)=0.75, and (5-1)/(5-1)=1,
 respectively</p>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" tabindex="-1"></a><span class="co"># TSI(A)计算公式示例：[(1-0)+(1-0.25)+(1-0.5)+(1-0.75)+(1-1)]/(5-1)=2.5/4=0.625</span></span>
-<span id="cb64-2"><a href="#cb64-2" tabindex="-1"></a><span class="co"># TSI(A) calculation example: [(1-0)+(1-0.25)+(1-0.5)+(1-0.75)+(1-1)]/(5-1)=2.5/4=0.625</span></span>
-<span id="cb64-3"><a href="#cb64-3" tabindex="-1"></a>top_TSI_outTab <span class="ot">&lt;-</span> <span class="fu">data.frame</span>()  <span class="co"># 初始化存储TSI结果的数据框（Initialize data frame to store TSI results）</span></span>
-<span id="cb64-4"><a href="#cb64-4" tabindex="-1"></a></span>
-<span id="cb64-5"><a href="#cb64-5" tabindex="-1"></a><span class="cf">for</span> (n <span class="cf">in</span> <span class="fu">unique</span>(top_outTab<span class="sc">$</span>top_index)) {  <span class="co"># 遍历所有唯一的阈值（Traverse all unique thresholds）</span></span>
-<span id="cb64-6"><a href="#cb64-6" tabindex="-1"></a>  <span class="co"># 对前1%到100%的lncRNA进行TSI计算（Calculate TSI for lncRNA from top 1% to 100%）</span></span>
-<span id="cb64-7"><a href="#cb64-7" tabindex="-1"></a>  TSI <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">TSI =</span> top_outTab[<span class="fu">which</span>(top_outTab<span class="sc">$</span>top_index <span class="sc">==</span> n), <span class="st">&quot;gene&quot;</span>])  <span class="co"># 提取当前阈值下的lncRNA（Extract lncRNA under current threshold）</span></span>
-<span id="cb64-8"><a href="#cb64-8" tabindex="-1"></a>  <span class="fu">rownames</span>(TSI) <span class="ot">&lt;-</span> TSI<span class="sc">$</span>TSI  <span class="co"># 设置行名为lncRNA名称（Set row names as lncRNA names）</span></span>
-<span id="cb64-9"><a href="#cb64-9" tabindex="-1"></a>  </span>
-<span id="cb64-10"><a href="#cb64-10" tabindex="-1"></a>  <span class="co"># 实现TSI计算公式（Implement TSI calculation formula）</span></span>
-<span id="cb64-11"><a href="#cb64-11" tabindex="-1"></a>  <span class="cf">for</span> (j <span class="cf">in</span> top_outTab[<span class="fu">which</span>(top_outTab<span class="sc">$</span>top_index <span class="sc">==</span> n), <span class="st">&quot;gene&quot;</span>]) {  <span class="co"># 遍历每个lncRNA（Traverse each lncRNA）</span></span>
-<span id="cb64-12"><a href="#cb64-12" tabindex="-1"></a>    y <span class="ot">&lt;-</span> <span class="dv">0</span>  <span class="co"># 初始化累加变量（Initialize accumulation variable）</span></span>
-<span id="cb64-13"><a href="#cb64-13" tabindex="-1"></a>    <span class="cf">for</span> (m <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(rank_lncRNA)) {  <span class="co"># 遍历每种免疫细胞系（Traverse each immune cell line）</span></span>
-<span id="cb64-14"><a href="#cb64-14" tabindex="-1"></a>      <span class="co"># 计算归一化的排序值（Calculate normalized rank value）</span></span>
-<span id="cb64-15"><a href="#cb64-15" tabindex="-1"></a>      x <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> (rank_lncRNA[j, m] <span class="sc">-</span> <span class="fu">min</span>(rank_lncRNA[j, ])) <span class="sc">/</span> (<span class="fu">max</span>(rank_lncRNA[j, ]) <span class="sc">-</span> <span class="fu">min</span>(rank_lncRNA[j, ]))</span>
-<span id="cb64-16"><a href="#cb64-16" tabindex="-1"></a>      <span class="co"># x = 1 - (当前排序 - 最小排序)/(最大排序 - 最小排序)</span></span>
-<span id="cb64-17"><a href="#cb64-17" tabindex="-1"></a>      y <span class="ot">&lt;-</span> <span class="fu">sum</span>(y, x)  <span class="co"># 累加归一化值（Accumulate normalized values）</span></span>
-<span id="cb64-18"><a href="#cb64-18" tabindex="-1"></a>    }</span>
-<span id="cb64-19"><a href="#cb64-19" tabindex="-1"></a>    TSI[j, <span class="dv">1</span>] <span class="ot">&lt;-</span> y <span class="sc">/</span> (<span class="fu">ncol</span>(rank_lncRNA) <span class="sc">-</span> <span class="dv">1</span>)  <span class="co"># 计算TSI值（Calculate TSI value）</span></span>
-<span id="cb64-20"><a href="#cb64-20" tabindex="-1"></a>    <span class="co"># TSI = 累加和 / (细胞类型数量 - 1)</span></span>
-<span id="cb64-21"><a href="#cb64-21" tabindex="-1"></a>  }</span>
-<span id="cb64-22"><a href="#cb64-22" tabindex="-1"></a>  </span>
-<span id="cb64-23"><a href="#cb64-23" tabindex="-1"></a>  TSI<span class="sc">$</span>gene <span class="ot">&lt;-</span> <span class="fu">rownames</span>(TSI)  <span class="co"># 添加lncRNA名称列（Add lncRNA name column）</span></span>
-<span id="cb64-24"><a href="#cb64-24" tabindex="-1"></a>  <span class="co"># 合并阈值信息和TSI结果（Merge threshold information and TSI results）</span></span>
-<span id="cb64-25"><a href="#cb64-25" tabindex="-1"></a>  TSI <span class="ot">&lt;-</span> <span class="fu">merge</span>(top_outTab[<span class="fu">which</span>(top_outTab<span class="sc">$</span>top_index <span class="sc">==</span> n), ], TSI, <span class="at">by =</span> <span class="st">&quot;gene&quot;</span>)</span>
-<span id="cb64-26"><a href="#cb64-26" tabindex="-1"></a>  top_TSI_outTab <span class="ot">&lt;-</span> <span class="fu">rbind</span>(TSI, top_TSI_outTab)  <span class="co"># 按行合并结果（Row-wise merge results）</span></span>
-<span id="cb64-27"><a href="#cb64-27" tabindex="-1"></a>}</span>
-<span id="cb64-28"><a href="#cb64-28" tabindex="-1"></a></span>
-<span id="cb64-29"><a href="#cb64-29" tabindex="-1"></a><span class="co"># 结果说明：第一列为lncRNA，第二列为排序阈值，第三列为TSI值（Result description: 1st column=lncRNA, 2nd column=rank threshold, 3rd column=TSI value）</span></span>
-<span id="cb64-30"><a href="#cb64-30" tabindex="-1"></a><span class="fu">head</span>(top_TSI_outTab)  <span class="co"># 查看结果前几行（View first few rows of results）</span></span></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" tabindex="-1"></a><span class="co"># TSI(A)计算公式示例：[(1-0)+(1-0.25)+(1-0.5)+(1-0.75)+(1-1)]/(5-1)=2.5/4=0.625</span></span>
+<span id="cb63-2"><a href="#cb63-2" tabindex="-1"></a><span class="co"># TSI(A) calculation example: [(1-0)+(1-0.25)+(1-0.5)+(1-0.75)+(1-1)]/(5-1)=2.5/4=0.625</span></span>
+<span id="cb63-3"><a href="#cb63-3" tabindex="-1"></a>top_TSI_outTab <span class="ot">&lt;-</span> <span class="fu">data.frame</span>()  <span class="co"># 初始化存储TSI结果的数据框（Initialize data frame to store TSI results）</span></span>
+<span id="cb63-4"><a href="#cb63-4" tabindex="-1"></a></span>
+<span id="cb63-5"><a href="#cb63-5" tabindex="-1"></a><span class="cf">for</span> (n <span class="cf">in</span> <span class="fu">unique</span>(top_outTab<span class="sc">$</span>top_index)) {  <span class="co"># 遍历所有唯一的阈值（Traverse all unique thresholds）</span></span>
+<span id="cb63-6"><a href="#cb63-6" tabindex="-1"></a>  <span class="co"># 对前1%到100%的lncRNA进行TSI计算（Calculate TSI for lncRNA from top 1% to 100%）</span></span>
+<span id="cb63-7"><a href="#cb63-7" tabindex="-1"></a>  TSI <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">TSI =</span> top_outTab[<span class="fu">which</span>(top_outTab<span class="sc">$</span>top_index <span class="sc">==</span> n), <span class="st">&quot;gene&quot;</span>])  <span class="co"># 提取当前阈值下的lncRNA（Extract lncRNA under current threshold）</span></span>
+<span id="cb63-8"><a href="#cb63-8" tabindex="-1"></a>  <span class="fu">rownames</span>(TSI) <span class="ot">&lt;-</span> TSI<span class="sc">$</span>TSI  <span class="co"># 设置行名为lncRNA名称（Set row names as lncRNA names）</span></span>
+<span id="cb63-9"><a href="#cb63-9" tabindex="-1"></a>  </span>
+<span id="cb63-10"><a href="#cb63-10" tabindex="-1"></a>  <span class="co"># 实现TSI计算公式（Implement TSI calculation formula）</span></span>
+<span id="cb63-11"><a href="#cb63-11" tabindex="-1"></a>  <span class="cf">for</span> (j <span class="cf">in</span> top_outTab[<span class="fu">which</span>(top_outTab<span class="sc">$</span>top_index <span class="sc">==</span> n), <span class="st">&quot;gene&quot;</span>]) {  <span class="co"># 遍历每个lncRNA（Traverse each lncRNA）</span></span>
+<span id="cb63-12"><a href="#cb63-12" tabindex="-1"></a>    y <span class="ot">&lt;-</span> <span class="dv">0</span>  <span class="co"># 初始化累加变量（Initialize accumulation variable）</span></span>
+<span id="cb63-13"><a href="#cb63-13" tabindex="-1"></a>    <span class="cf">for</span> (m <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(rank_lncRNA)) {  <span class="co"># 遍历每种免疫细胞系（Traverse each immune cell line）</span></span>
+<span id="cb63-14"><a href="#cb63-14" tabindex="-1"></a>      <span class="co"># 计算归一化的排序值（Calculate normalized rank value）</span></span>
+<span id="cb63-15"><a href="#cb63-15" tabindex="-1"></a>      x <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> (rank_lncRNA[j, m] <span class="sc">-</span> <span class="fu">min</span>(rank_lncRNA[j, ])) <span class="sc">/</span> (<span class="fu">max</span>(rank_lncRNA[j, ]) <span class="sc">-</span> <span class="fu">min</span>(rank_lncRNA[j, ]))</span>
+<span id="cb63-16"><a href="#cb63-16" tabindex="-1"></a>      <span class="co"># x = 1 - (当前排序 - 最小排序)/(最大排序 - 最小排序)</span></span>
+<span id="cb63-17"><a href="#cb63-17" tabindex="-1"></a>      y <span class="ot">&lt;-</span> <span class="fu">sum</span>(y, x)  <span class="co"># 累加归一化值（Accumulate normalized values）</span></span>
+<span id="cb63-18"><a href="#cb63-18" tabindex="-1"></a>    }</span>
+<span id="cb63-19"><a href="#cb63-19" tabindex="-1"></a>    TSI[j, <span class="dv">1</span>] <span class="ot">&lt;-</span> y <span class="sc">/</span> (<span class="fu">ncol</span>(rank_lncRNA) <span class="sc">-</span> <span class="dv">1</span>)  <span class="co"># 计算TSI值（Calculate TSI value）</span></span>
+<span id="cb63-20"><a href="#cb63-20" tabindex="-1"></a>    <span class="co"># TSI = 累加和 / (细胞类型数量 - 1)</span></span>
+<span id="cb63-21"><a href="#cb63-21" tabindex="-1"></a>  }</span>
+<span id="cb63-22"><a href="#cb63-22" tabindex="-1"></a>  </span>
+<span id="cb63-23"><a href="#cb63-23" tabindex="-1"></a>  TSI<span class="sc">$</span>gene <span class="ot">&lt;-</span> <span class="fu">rownames</span>(TSI)  <span class="co"># 添加lncRNA名称列（Add lncRNA name column）</span></span>
+<span id="cb63-24"><a href="#cb63-24" tabindex="-1"></a>  <span class="co"># 合并阈值信息和TSI结果（Merge threshold information and TSI results）</span></span>
+<span id="cb63-25"><a href="#cb63-25" tabindex="-1"></a>  TSI <span class="ot">&lt;-</span> <span class="fu">merge</span>(top_outTab[<span class="fu">which</span>(top_outTab<span class="sc">$</span>top_index <span class="sc">==</span> n), ], TSI, <span class="at">by =</span> <span class="st">&quot;gene&quot;</span>)</span>
+<span id="cb63-26"><a href="#cb63-26" tabindex="-1"></a>  top_TSI_outTab <span class="ot">&lt;-</span> <span class="fu">rbind</span>(TSI, top_TSI_outTab)  <span class="co"># 按行合并结果（Row-wise merge results）</span></span>
+<span id="cb63-27"><a href="#cb63-27" tabindex="-1"></a>}</span>
+<span id="cb63-28"><a href="#cb63-28" tabindex="-1"></a></span>
+<span id="cb63-29"><a href="#cb63-29" tabindex="-1"></a><span class="co"># 结果说明：第一列为lncRNA，第二列为排序阈值，第三列为TSI值（Result description: 1st column=lncRNA, 2nd column=rank threshold, 3rd column=TSI value）</span></span>
+<span id="cb63-30"><a href="#cb63-30" tabindex="-1"></a><span class="fu">head</span>(top_TSI_outTab)  <span class="co"># 查看结果前几行（View first few rows of results）</span></span></code></pre></div>
 <pre><code>##        gene top_index               TSI
 ## 1 ARMC2-AS1      0.01 0.451464427253322
 ## 2     DANCR      0.01 0.397966162183787
@@ -2211,150 +2210,161 @@ respectively</p>
 ## 4      HEIH      0.01 0.644605884407092
 ## 5 LINC00623      0.01 0.729967456923067
 ## 6    MALAT1      0.01 0.522419673929254</code></pre>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" tabindex="-1"></a><span class="co"># 输出TSI计算结果（Output TSI calculation results）</span></span>
-<span id="cb66-2"><a href="#cb66-2" tabindex="-1"></a><span class="fu">write.table</span>(top_TSI_outTab, <span class="st">&quot;output_TSI_all_result.txt&quot;</span>, <span class="at">col.names =</span> T, <span class="at">row.names =</span> F, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">quote =</span> F)</span>
-<span id="cb66-3"><a href="#cb66-3" tabindex="-1"></a></span>
-<span id="cb66-4"><a href="#cb66-4" tabindex="-1"></a><span class="co"># 提取设定阈值下的lncRNA（Extract lncRNA under specified thresholds）</span></span>
-<span id="cb66-5"><a href="#cb66-5" tabindex="-1"></a><span class="co"># 条件：TSI&lt;0.4且排序前5%（对应原文的ihk-lnc）</span></span>
-<span id="cb66-6"><a href="#cb66-6" tabindex="-1"></a><span class="co"># Conditions: TSI&lt;0.4 and top 5% rank (corresponding to ihk-lnc in the paper)</span></span>
-<span id="cb66-7"><a href="#cb66-7" tabindex="-1"></a>tsi <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;output_TSI_all_result.txt&quot;</span>, <span class="at">header =</span> T, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">quote =</span> <span class="st">&quot;&quot;</span>, <span class="at">check.names =</span> F)</span>
-<span id="cb66-8"><a href="#cb66-8" tabindex="-1"></a>tsi_0<span class="fl">.4</span> <span class="ot">&lt;-</span> tsi[<span class="fu">which</span>(tsi<span class="sc">$</span>TSI <span class="sc">&lt;</span> <span class="fl">0.4</span> <span class="sc">&amp;</span> tsi<span class="sc">$</span>top_index <span class="sc">&lt;=</span> <span class="fl">0.05</span>), ]</span>
-<span id="cb66-9"><a href="#cb66-9" tabindex="-1"></a>ihk_lnc <span class="ot">&lt;-</span> <span class="fu">unique</span>(tsi_0<span class="fl">.4</span><span class="sc">$</span>gene)  <span class="co"># 去重得到ihk-lnc（Remove duplicates to get ihk-lnc）</span></span></code></pre></div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" tabindex="-1"></a><span class="co"># 输出TSI计算结果（Output TSI calculation results）</span></span>
+<span id="cb65-2"><a href="#cb65-2" tabindex="-1"></a><span class="fu">write.table</span>(top_TSI_outTab, <span class="st">&quot;output_TSI_all_result.txt&quot;</span>, <span class="at">col.names =</span> T, <span class="at">row.names =</span> F, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">quote =</span> F)</span>
+<span id="cb65-3"><a href="#cb65-3" tabindex="-1"></a></span>
+<span id="cb65-4"><a href="#cb65-4" tabindex="-1"></a><span class="co"># 提取设定阈值下的lncRNA（Extract lncRNA under specified thresholds）</span></span>
+<span id="cb65-5"><a href="#cb65-5" tabindex="-1"></a><span class="co"># 条件：TSI&lt;0.4且排序前5%（对应原文的ihk-lnc）</span></span>
+<span id="cb65-6"><a href="#cb65-6" tabindex="-1"></a><span class="co"># Conditions: TSI&lt;0.4 and top 5% rank (corresponding to ihk-lnc in the paper)</span></span>
+<span id="cb65-7"><a href="#cb65-7" tabindex="-1"></a>tsi <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;output_TSI_all_result.txt&quot;</span>, <span class="at">header =</span> T, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">quote =</span> <span class="st">&quot;&quot;</span>, <span class="at">check.names =</span> F)</span>
+<span id="cb65-8"><a href="#cb65-8" tabindex="-1"></a>tsi_0<span class="fl">.4</span> <span class="ot">&lt;-</span> tsi[<span class="fu">which</span>(tsi<span class="sc">$</span>TSI <span class="sc">&lt;</span> <span class="fl">0.4</span> <span class="sc">&amp;</span> tsi<span class="sc">$</span>top_index <span class="sc">&lt;=</span> <span class="fl">0.05</span>), ]</span>
+<span id="cb65-9"><a href="#cb65-9" tabindex="-1"></a>ihk_lnc <span class="ot">&lt;-</span> <span class="fu">unique</span>(tsi_0<span class="fl">.4</span><span class="sc">$</span>gene)  <span class="co"># 去重得到ihk-lnc（Remove duplicates to get ihk-lnc）</span></span></code></pre></div>
 </div>
 <div id="筛选tilncrna-screening-tilncrna" class="section level2" number="8">
 <h2><span class="header-section-number">8</span> 筛选TILncRNA Screening
 TILncRNA</h2>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" tabindex="-1"></a><span class="co"># 读取lncRNA表达谱数据（Read lncRNA expression profile data）</span></span>
-<span id="cb67-2"><a href="#cb67-2" tabindex="-1"></a>exp <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;explncRNA_114line.txt&quot;</span>, <span class="at">header =</span> T, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">quote =</span> <span class="st">&quot;&quot;</span>, <span class="at">check.names =</span> F, <span class="at">row.names =</span> <span class="dv">1</span>)</span>
-<span id="cb67-3"><a href="#cb67-3" tabindex="-1"></a><span class="co"># 读取CCLE数据库癌症细胞系表达谱数据（Read cancer cell line expression profile data from CCLE database）</span></span>
-<span id="cb67-4"><a href="#cb67-4" tabindex="-1"></a>ccle <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;CCLE_RNAseq_genes_counts_20180929.txt&quot;</span>, <span class="at">header =</span> T, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">quote =</span> <span class="st">&quot;&quot;</span>, <span class="at">check.names =</span> F)</span>
-<span id="cb67-5"><a href="#cb67-5" tabindex="-1"></a></span>
-<span id="cb67-6"><a href="#cb67-6" tabindex="-1"></a><span class="co"># 提取胃癌的表达谱数据（若要取肺癌，将STOMACH替换为LUNG）</span></span>
-<span id="cb67-7"><a href="#cb67-7" tabindex="-1"></a><span class="co"># Extract expression profile data of gastric cancer (replace STOMACH with LUNG for lung cancer)</span></span>
-<span id="cb67-8"><a href="#cb67-8" tabindex="-1"></a>ccle <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">select</span>(ccle, <span class="fu">contains</span>(<span class="fu">c</span>(<span class="st">&quot;STOMACH&quot;</span>, <span class="st">&quot;Description&quot;</span>)))</span>
-<span id="cb67-9"><a href="#cb67-9" tabindex="-1"></a><span class="co"># 基因去重（Remove duplicate genes）</span></span>
-<span id="cb67-10"><a href="#cb67-10" tabindex="-1"></a>ccle <span class="ot">&lt;-</span> ccle[<span class="sc">!</span><span class="fu">duplicated</span>(ccle<span class="sc">$</span>Description), ]</span>
-<span id="cb67-11"><a href="#cb67-11" tabindex="-1"></a><span class="fu">rownames</span>(ccle) <span class="ot">&lt;-</span> ccle<span class="sc">$</span>Description  <span class="co"># 设置行名为基因名称（Set row names as gene names）</span></span>
-<span id="cb67-12"><a href="#cb67-12" tabindex="-1"></a>ccle<span class="sc">$</span>Description <span class="ot">&lt;-</span> <span class="cn">NULL</span>  <span class="co"># 删除描述列（Remove description column）</span></span>
-<span id="cb67-13"><a href="#cb67-13" tabindex="-1"></a></span>
-<span id="cb67-14"><a href="#cb67-14" tabindex="-1"></a><span class="co"># count数据转换为TPM数据（Convert count data to TPM data）</span></span>
-<span id="cb67-15"><a href="#cb67-15" tabindex="-1"></a>TxDb <span class="ot">&lt;-</span> <span class="fu">loadDb</span>(<span class="at">file =</span> <span class="st">&#39;txdbensemble101.sqlite&#39;</span>)  <span class="co"># 载入参考数据集（Load reference dataset）</span></span>
-<span id="cb67-16"><a href="#cb67-16" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;normalizeGeneCounts.R&quot;</span>)  <span class="co"># 载入本地脚本（Load local script）</span></span>
-<span id="cb67-17"><a href="#cb67-17" tabindex="-1"></a><span class="co"># 这种方式转换TPM值基因数不损失（This method converts TPM without gene loss）</span></span>
-<span id="cb67-18"><a href="#cb67-18" tabindex="-1"></a>ccle_TPM <span class="ot">&lt;-</span> <span class="fu">normalizeGeneCounts</span>(ccle, TxDb, <span class="at">method =</span> <span class="st">&quot;TPM&quot;</span>)</span>
-<span id="cb67-19"><a href="#cb67-19" tabindex="-1"></a><span class="co"># 对数标准化（Log2 normalization）</span></span>
-<span id="cb67-20"><a href="#cb67-20" tabindex="-1"></a>ccle_TPM <span class="ot">&lt;-</span> <span class="fu">log2</span>(ccle_TPM <span class="sc">+</span> <span class="dv">1</span>)</span>
-<span id="cb67-21"><a href="#cb67-21" tabindex="-1"></a></span>
-<span id="cb67-22"><a href="#cb67-22" tabindex="-1"></a><span class="co"># 提取特定TSI和排序指标下的lncRNA表达谱数据（Extract lncRNA expression profile data under specific TSI and ranking criteria）</span></span>
-<span id="cb67-23"><a href="#cb67-23" tabindex="-1"></a>geo <span class="ot">&lt;-</span> exp[<span class="fu">which</span>(<span class="fu">rownames</span>(exp) <span class="sc">%in%</span> ihk_lnc), ]</span>
-<span id="cb67-24"><a href="#cb67-24" tabindex="-1"></a><span class="co"># 取CCLE和GEO免疫细胞系共有的lncRNA（Get common lncRNA between CCLE and GEO immune cell lines）</span></span>
-<span id="cb67-25"><a href="#cb67-25" tabindex="-1"></a>inter <span class="ot">&lt;-</span> <span class="fu">intersect</span>(<span class="fu">rownames</span>(geo), <span class="fu">rownames</span>(ccle))</span>
-<span id="cb67-26"><a href="#cb67-26" tabindex="-1"></a><span class="co"># 合并数据：114个免疫细胞系和37个胃癌细胞系（Merge data: 114 immune cell lines and 37 gastric cancer cell lines）</span></span>
-<span id="cb67-27"><a href="#cb67-27" tabindex="-1"></a>geo_ccle <span class="ot">&lt;-</span> <span class="fu">cbind</span>(geo[inter, ], ccle_TPM[inter, ])</span>
-<span id="cb67-28"><a href="#cb67-28" tabindex="-1"></a></span>
-<span id="cb67-29"><a href="#cb67-29" tabindex="-1"></a><span class="co"># 去除批次效应（Remove batch effects）</span></span>
-<span id="cb67-30"><a href="#cb67-30" tabindex="-1"></a>batch <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">batch =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;Immune cell lines&quot;</span>, <span class="st">&quot;STOMACH cancer cell lines&quot;</span>),</span>
-<span id="cb67-31"><a href="#cb67-31" tabindex="-1"></a>                              <span class="at">times =</span> <span class="fu">c</span>(<span class="dv">114</span>, <span class="dv">37</span>)))</span>
-<span id="cb67-32"><a href="#cb67-32" tabindex="-1"></a>modcombat <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(<span class="sc">~</span><span class="dv">1</span>, <span class="at">data =</span> batch)</span>
-<span id="cb67-33"><a href="#cb67-33" tabindex="-1"></a>geo_ccle_combat <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">ComBat</span>(<span class="at">dat =</span> <span class="fu">as.matrix</span>(geo_ccle), <span class="at">batch =</span> batch<span class="sc">$</span>batch, <span class="at">mod =</span> modcombat))</span></code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" tabindex="-1"></a><span class="co"># 读取lncRNA表达谱数据（Read lncRNA expression profile data）</span></span>
+<span id="cb66-2"><a href="#cb66-2" tabindex="-1"></a>exp <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;explncRNA_114line.txt&quot;</span>, <span class="at">header =</span> T, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">quote =</span> <span class="st">&quot;&quot;</span>, <span class="at">check.names =</span> F, <span class="at">row.names =</span> <span class="dv">1</span>)</span>
+<span id="cb66-3"><a href="#cb66-3" tabindex="-1"></a><span class="co"># 读取CCLE数据库癌症细胞系表达谱数据（Read cancer cell line expression profile data from CCLE database）</span></span>
+<span id="cb66-4"><a href="#cb66-4" tabindex="-1"></a>ccle <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;CCLE_RNAseq_genes_counts_20180929.txt&quot;</span>, <span class="at">header =</span> T, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">quote =</span> <span class="st">&quot;&quot;</span>, <span class="at">check.names =</span> F)</span>
+<span id="cb66-5"><a href="#cb66-5" tabindex="-1"></a></span>
+<span id="cb66-6"><a href="#cb66-6" tabindex="-1"></a><span class="co"># 提取胃癌的表达谱数据（若要取肺癌，将STOMACH替换为LUNG）</span></span>
+<span id="cb66-7"><a href="#cb66-7" tabindex="-1"></a><span class="co"># Extract expression profile data of gastric cancer (replace STOMACH with LUNG for lung cancer)</span></span>
+<span id="cb66-8"><a href="#cb66-8" tabindex="-1"></a>ccle <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">select</span>(ccle, <span class="fu">contains</span>(<span class="fu">c</span>(<span class="st">&quot;STOMACH&quot;</span>, <span class="st">&quot;Description&quot;</span>)))</span>
+<span id="cb66-9"><a href="#cb66-9" tabindex="-1"></a><span class="co"># 基因去重（Remove duplicate genes）</span></span>
+<span id="cb66-10"><a href="#cb66-10" tabindex="-1"></a>ccle <span class="ot">&lt;-</span> ccle[<span class="sc">!</span><span class="fu">duplicated</span>(ccle<span class="sc">$</span>Description), ]</span>
+<span id="cb66-11"><a href="#cb66-11" tabindex="-1"></a><span class="fu">rownames</span>(ccle) <span class="ot">&lt;-</span> ccle<span class="sc">$</span>Description  <span class="co"># 设置行名为基因名称（Set row names as gene names）</span></span>
+<span id="cb66-12"><a href="#cb66-12" tabindex="-1"></a>ccle<span class="sc">$</span>Description <span class="ot">&lt;-</span> <span class="cn">NULL</span>  <span class="co"># 删除描述列（Remove description column）</span></span>
+<span id="cb66-13"><a href="#cb66-13" tabindex="-1"></a></span>
+<span id="cb66-14"><a href="#cb66-14" tabindex="-1"></a><span class="co"># count数据转换为TPM数据（Convert count data to TPM data）</span></span>
+<span id="cb66-15"><a href="#cb66-15" tabindex="-1"></a>TxDb <span class="ot">&lt;-</span> <span class="fu">loadDb</span>(<span class="at">file =</span> <span class="st">&#39;txdbensemble101.sqlite&#39;</span>)  <span class="co"># 载入参考数据集（Load reference dataset）</span></span>
+<span id="cb66-16"><a href="#cb66-16" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;normalizeGeneCounts.R&quot;</span>)  <span class="co"># 载入本地脚本（Load local script）</span></span>
+<span id="cb66-17"><a href="#cb66-17" tabindex="-1"></a><span class="co"># 这种方式转换TPM值基因数不损失（This method converts TPM without gene loss）</span></span>
+<span id="cb66-18"><a href="#cb66-18" tabindex="-1"></a>ccle_TPM <span class="ot">&lt;-</span> <span class="fu">normalizeGeneCounts</span>(ccle, TxDb, <span class="at">method =</span> <span class="st">&quot;TPM&quot;</span>)</span>
+<span id="cb66-19"><a href="#cb66-19" tabindex="-1"></a><span class="co"># 对数标准化（Log2 normalization）</span></span>
+<span id="cb66-20"><a href="#cb66-20" tabindex="-1"></a>ccle_TPM <span class="ot">&lt;-</span> <span class="fu">log2</span>(ccle_TPM <span class="sc">+</span> <span class="dv">1</span>)</span>
+<span id="cb66-21"><a href="#cb66-21" tabindex="-1"></a></span>
+<span id="cb66-22"><a href="#cb66-22" tabindex="-1"></a><span class="co"># 提取特定TSI和排序指标下的lncRNA表达谱数据（Extract lncRNA expression profile data under specific TSI and ranking criteria）</span></span>
+<span id="cb66-23"><a href="#cb66-23" tabindex="-1"></a>geo <span class="ot">&lt;-</span> exp[<span class="fu">which</span>(<span class="fu">rownames</span>(exp) <span class="sc">%in%</span> ihk_lnc), ]</span>
+<span id="cb66-24"><a href="#cb66-24" tabindex="-1"></a><span class="co"># 取CCLE和GEO免疫细胞系共有的lncRNA（Get common lncRNA between CCLE and GEO immune cell lines）</span></span>
+<span id="cb66-25"><a href="#cb66-25" tabindex="-1"></a>inter <span class="ot">&lt;-</span> <span class="fu">intersect</span>(<span class="fu">rownames</span>(geo), <span class="fu">rownames</span>(ccle))</span>
+<span id="cb66-26"><a href="#cb66-26" tabindex="-1"></a><span class="co"># 合并数据：114个免疫细胞系和37个胃癌细胞系（Merge data: 114 immune cell lines and 37 gastric cancer cell lines）</span></span>
+<span id="cb66-27"><a href="#cb66-27" tabindex="-1"></a>geo_ccle <span class="ot">&lt;-</span> <span class="fu">cbind</span>(geo[inter, ], ccle_TPM[inter, ])</span>
+<span id="cb66-28"><a href="#cb66-28" tabindex="-1"></a></span>
+<span id="cb66-29"><a href="#cb66-29" tabindex="-1"></a><span class="co"># 去除批次效应（Remove batch effects）</span></span>
+<span id="cb66-30"><a href="#cb66-30" tabindex="-1"></a>batch <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">batch =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;Immune cell lines&quot;</span>, <span class="st">&quot;STOMACH cancer cell lines&quot;</span>),</span>
+<span id="cb66-31"><a href="#cb66-31" tabindex="-1"></a>                              <span class="at">times =</span> <span class="fu">c</span>(<span class="dv">114</span>, <span class="dv">37</span>)))</span>
+<span id="cb66-32"><a href="#cb66-32" tabindex="-1"></a>modcombat <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(<span class="sc">~</span><span class="dv">1</span>, <span class="at">data =</span> batch)</span>
+<span id="cb66-33"><a href="#cb66-33" tabindex="-1"></a>geo_ccle_combat <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">ComBat</span>(<span class="at">dat =</span> <span class="fu">as.matrix</span>(geo_ccle), <span class="at">batch =</span> batch<span class="sc">$</span>batch, <span class="at">mod =</span> modcombat))</span></code></pre></div>
 <pre><code>## Found2batches</code></pre>
 <pre><code>## Adjusting for0covariate(s) or covariate level(s)</code></pre>
 <pre><code>## Standardizing Data across genes</code></pre>
 <pre><code>## Fitting L/S model and finding priors</code></pre>
 <pre><code>## Finding parametric adjustments</code></pre>
 <pre><code>## Adjusting the Data</code></pre>
-<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" tabindex="-1"></a><span class="co"># 输出去除批次效应后的整合数据（Output integrated data after batch effect removal）</span></span>
-<span id="cb74-2"><a href="#cb74-2" tabindex="-1"></a><span class="fu">write.table</span>(geo_ccle_combat, <span class="st">&quot;output_geo_ccle_combat.txt&quot;</span>, <span class="at">quote =</span> F, <span class="at">row.names =</span> T, <span class="at">col.names =</span> T, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>)</span>
-<span id="cb74-3"><a href="#cb74-3" tabindex="-1"></a></span>
-<span id="cb74-4"><a href="#cb74-4" tabindex="-1"></a><span class="co"># 在免疫细胞系和癌症细胞系间做差异分析（Perform differential expression analysis between immune and cancer cell lines）</span></span>
-<span id="cb74-5"><a href="#cb74-5" tabindex="-1"></a>group <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;Immune&quot;</span>, <span class="st">&quot;STOMACH&quot;</span>),</span>
-<span id="cb74-6"><a href="#cb74-6" tabindex="-1"></a>           <span class="at">times =</span> <span class="fu">c</span>(<span class="dv">114</span>, <span class="dv">37</span>))</span>
-<span id="cb74-7"><a href="#cb74-7" tabindex="-1"></a>design <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(<span class="sc">~</span><span class="dv">0</span> <span class="sc">+</span> <span class="fu">factor</span>(group))  <span class="co"># 构建设计矩阵（Build design matrix）</span></span>
-<span id="cb74-8"><a href="#cb74-8" tabindex="-1"></a><span class="fu">colnames</span>(design) <span class="ot">&lt;-</span> <span class="fu">levels</span>(<span class="fu">factor</span>(group))  <span class="co"># 设置列名为分组名称（Set column names as group names）</span></span>
-<span id="cb74-9"><a href="#cb74-9" tabindex="-1"></a><span class="fu">rownames</span>(design) <span class="ot">&lt;-</span> <span class="fu">colnames</span>(geo_ccle_combat)  <span class="co"># 设置行名为样本名称（Set row names as sample names）</span></span>
-<span id="cb74-10"><a href="#cb74-10" tabindex="-1"></a></span>
-<span id="cb74-11"><a href="#cb74-11" tabindex="-1"></a><span class="co"># 构建对比矩阵（Build contrast matrix）</span></span>
-<span id="cb74-12"><a href="#cb74-12" tabindex="-1"></a>contrast.matrix <span class="ot">&lt;-</span> <span class="fu">makeContrasts</span>(<span class="fu">paste0</span>(<span class="fu">unique</span>(group), <span class="at">collapse =</span> <span class="st">&quot;-&quot;</span>),</span>
-<span id="cb74-13"><a href="#cb74-13" tabindex="-1"></a>                               <span class="at">levels =</span> design)</span>
-<span id="cb74-14"><a href="#cb74-14" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">lmFit</span>(geo_ccle_combat, design)  <span class="co"># 拟合线性模型（Fit linear model）</span></span>
-<span id="cb74-15"><a href="#cb74-15" tabindex="-1"></a>fit2 <span class="ot">&lt;-</span> <span class="fu">contrasts.fit</span>(fit, contrast.matrix)  <span class="co"># 应用对比（Apply contrast）</span></span>
-<span id="cb74-16"><a href="#cb74-16" tabindex="-1"></a>fit2 <span class="ot">&lt;-</span> <span class="fu">eBayes</span>(fit2)  <span class="co"># 经验贝叶斯调整（Empirical Bayes adjustment）</span></span>
-<span id="cb74-17"><a href="#cb74-17" tabindex="-1"></a></span>
-<span id="cb74-18"><a href="#cb74-18" tabindex="-1"></a>temp <span class="ot">&lt;-</span> <span class="fu">topTable</span>(fit2, <span class="at">coef =</span> <span class="dv">1</span>, <span class="at">n =</span> <span class="cn">Inf</span>)  <span class="co"># 提取所有差异基因（Extract all differentially expressed genes）</span></span>
-<span id="cb74-19"><a href="#cb74-19" tabindex="-1"></a>DEG <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(temp)  <span class="co"># 去除缺失值（Remove missing values）</span></span>
-<span id="cb74-20"><a href="#cb74-20" tabindex="-1"></a>DEG<span class="sc">$</span>symbol <span class="ot">&lt;-</span> <span class="fu">rownames</span>(DEG)  <span class="co"># 添加基因符号列（Add gene symbol column）</span></span>
-<span id="cb74-21"><a href="#cb74-21" tabindex="-1"></a></span>
-<span id="cb74-22"><a href="#cb74-22" tabindex="-1"></a><span class="co"># 差异分析结果说明（Note: Differential analysis results may not be significant, adjust previous thresholds as needed）</span></span>
-<span id="cb74-23"><a href="#cb74-23" tabindex="-1"></a><span class="fu">write.table</span>(DEG, <span class="st">&quot;output_DEG.txt&quot;</span>,</span>
-<span id="cb74-24"><a href="#cb74-24" tabindex="-1"></a>            <span class="at">sep =</span> <span class="st">&#39;</span><span class="sc">\t</span><span class="st">&#39;</span>, <span class="at">quote =</span> <span class="cn">FALSE</span>, <span class="at">col.names =</span> T, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb74-25"><a href="#cb74-25" tabindex="-1"></a></span>
-<span id="cb74-26"><a href="#cb74-26" tabindex="-1"></a><span class="co"># 根据差异分析结果得到TILncRNA（Obtain TILncRNA from differential analysis results）</span></span>
-<span id="cb74-27"><a href="#cb74-27" tabindex="-1"></a><span class="co"># 实际应用中可根据需要过滤差异分析结果（In practice, filter DEG results as needed）</span></span>
-<span id="cb74-28"><a href="#cb74-28" tabindex="-1"></a>TILncRNA <span class="ot">&lt;-</span> DEG<span class="sc">$</span>symbol</span></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" tabindex="-1"></a><span class="co"># 输出去除批次效应后的整合数据（Output integrated data after batch effect removal）</span></span>
+<span id="cb73-2"><a href="#cb73-2" tabindex="-1"></a><span class="fu">write.table</span>(geo_ccle_combat, <span class="st">&quot;output_geo_ccle_combat.txt&quot;</span>, <span class="at">quote =</span> F, <span class="at">row.names =</span> T, <span class="at">col.names =</span> T, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>)</span>
+<span id="cb73-3"><a href="#cb73-3" tabindex="-1"></a></span>
+<span id="cb73-4"><a href="#cb73-4" tabindex="-1"></a><span class="co"># GEO+CCLE整合数据的主成分分析（Principal component analysis for GEO+CCLE integrated data）</span></span>
+<span id="cb73-5"><a href="#cb73-5" tabindex="-1"></a><span class="fu">batchPCA</span>(<span class="at">indata =</span> <span class="fu">t</span>(<span class="fu">scale</span>(<span class="fu">t</span>(geo_ccle_combat))),</span>
+<span id="cb73-6"><a href="#cb73-6" tabindex="-1"></a>         <span class="at">batch =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;Immune cell lines&quot;</span>, <span class="st">&quot;STOMACH cancer cell lines&quot;</span>),</span>
+<span id="cb73-7"><a href="#cb73-7" tabindex="-1"></a>                    <span class="at">times =</span> <span class="fu">c</span>(<span class="dv">114</span>, <span class="dv">37</span>)),</span>
+<span id="cb73-8"><a href="#cb73-8" tabindex="-1"></a>         <span class="at">fig.dir =</span> <span class="st">&quot;.&quot;</span>,</span>
+<span id="cb73-9"><a href="#cb73-9" tabindex="-1"></a>         <span class="at">PCA.fig.title =</span> <span class="st">&quot;Combat PCA for GEO+CCLE Integration&quot;</span>,</span>
+<span id="cb73-10"><a href="#cb73-10" tabindex="-1"></a>         <span class="at">showID =</span> F,</span>
+<span id="cb73-11"><a href="#cb73-11" tabindex="-1"></a>         <span class="at">cex =</span> <span class="fl">1.2</span>,</span>
+<span id="cb73-12"><a href="#cb73-12" tabindex="-1"></a>         <span class="at">showLegend =</span> T,</span>
+<span id="cb73-13"><a href="#cb73-13" tabindex="-1"></a>         <span class="at">pos =</span> <span class="st">&quot;topright&quot;</span>)</span>
+<span id="cb73-14"><a href="#cb73-14" tabindex="-1"></a></span>
+<span id="cb73-15"><a href="#cb73-15" tabindex="-1"></a><span class="co"># 在免疫细胞系和癌症细胞系间做差异分析（Perform differential expression analysis between immune and cancer cell lines）</span></span>
+<span id="cb73-16"><a href="#cb73-16" tabindex="-1"></a>group <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;Immune&quot;</span>, <span class="st">&quot;STOMACH&quot;</span>),</span>
+<span id="cb73-17"><a href="#cb73-17" tabindex="-1"></a>           <span class="at">times =</span> <span class="fu">c</span>(<span class="dv">114</span>, <span class="dv">37</span>))</span>
+<span id="cb73-18"><a href="#cb73-18" tabindex="-1"></a>design <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(<span class="sc">~</span><span class="dv">0</span> <span class="sc">+</span> <span class="fu">factor</span>(group))  <span class="co"># 构建设计矩阵（Build design matrix）</span></span>
+<span id="cb73-19"><a href="#cb73-19" tabindex="-1"></a><span class="fu">colnames</span>(design) <span class="ot">&lt;-</span> <span class="fu">levels</span>(<span class="fu">factor</span>(group))  <span class="co"># 设置列名为分组名称（Set column names as group names）</span></span>
+<span id="cb73-20"><a href="#cb73-20" tabindex="-1"></a><span class="fu">rownames</span>(design) <span class="ot">&lt;-</span> <span class="fu">colnames</span>(geo_ccle_combat)  <span class="co"># 设置行名为样本名称（Set row names as sample names）</span></span>
+<span id="cb73-21"><a href="#cb73-21" tabindex="-1"></a></span>
+<span id="cb73-22"><a href="#cb73-22" tabindex="-1"></a><span class="co"># 构建对比矩阵（Build contrast matrix）</span></span>
+<span id="cb73-23"><a href="#cb73-23" tabindex="-1"></a>contrast.matrix <span class="ot">&lt;-</span> <span class="fu">makeContrasts</span>(<span class="fu">paste0</span>(<span class="fu">unique</span>(group), <span class="at">collapse =</span> <span class="st">&quot;-&quot;</span>),</span>
+<span id="cb73-24"><a href="#cb73-24" tabindex="-1"></a>                               <span class="at">levels =</span> design)</span>
+<span id="cb73-25"><a href="#cb73-25" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">lmFit</span>(geo_ccle_combat, design)  <span class="co"># 拟合线性模型（Fit linear model）</span></span>
+<span id="cb73-26"><a href="#cb73-26" tabindex="-1"></a>fit2 <span class="ot">&lt;-</span> <span class="fu">contrasts.fit</span>(fit, contrast.matrix)  <span class="co"># 应用对比（Apply contrast）</span></span>
+<span id="cb73-27"><a href="#cb73-27" tabindex="-1"></a>fit2 <span class="ot">&lt;-</span> <span class="fu">eBayes</span>(fit2)  <span class="co"># 经验贝叶斯调整（Empirical Bayes adjustment）</span></span>
+<span id="cb73-28"><a href="#cb73-28" tabindex="-1"></a></span>
+<span id="cb73-29"><a href="#cb73-29" tabindex="-1"></a>temp <span class="ot">&lt;-</span> <span class="fu">topTable</span>(fit2, <span class="at">coef =</span> <span class="dv">1</span>, <span class="at">n =</span> <span class="cn">Inf</span>)  <span class="co"># 提取所有差异基因（Extract all differentially expressed genes）</span></span>
+<span id="cb73-30"><a href="#cb73-30" tabindex="-1"></a>DEG <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(temp)  <span class="co"># 去除缺失值（Remove missing values）</span></span>
+<span id="cb73-31"><a href="#cb73-31" tabindex="-1"></a>DEG<span class="sc">$</span>symbol <span class="ot">&lt;-</span> <span class="fu">rownames</span>(DEG)  <span class="co"># 添加基因符号列（Add gene symbol column）</span></span>
+<span id="cb73-32"><a href="#cb73-32" tabindex="-1"></a></span>
+<span id="cb73-33"><a href="#cb73-33" tabindex="-1"></a><span class="co"># 差异分析结果说明（Note: Differential analysis results may not be significant, adjust previous thresholds as needed）</span></span>
+<span id="cb73-34"><a href="#cb73-34" tabindex="-1"></a><span class="fu">write.table</span>(DEG, <span class="st">&quot;output_DEG.txt&quot;</span>,</span>
+<span id="cb73-35"><a href="#cb73-35" tabindex="-1"></a>            <span class="at">sep =</span> <span class="st">&#39;</span><span class="sc">\t</span><span class="st">&#39;</span>, <span class="at">quote =</span> <span class="cn">FALSE</span>, <span class="at">col.names =</span> T, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb73-36"><a href="#cb73-36" tabindex="-1"></a></span>
+<span id="cb73-37"><a href="#cb73-37" tabindex="-1"></a><span class="co"># 根据差异分析结果得到TILncRNA（Obtain TILncRNA from differential analysis results）</span></span>
+<span id="cb73-38"><a href="#cb73-38" tabindex="-1"></a><span class="co"># 实际应用中可根据需要过滤差异分析结果（In practice, filter DEG results as needed）</span></span>
+<span id="cb73-39"><a href="#cb73-39" tabindex="-1"></a>TILncRNA <span class="ot">&lt;-</span> DEG<span class="sc">$</span>symbol</span></code></pre></div>
 </div>
 <div id="构建tilsig打分-build-tilsig-scoring-system" class="section level2" number="9">
 <h2><span class="header-section-number">9</span> 构建TILSig打分 Build
 TILSig scoring system</h2>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" tabindex="-1"></a><span class="co"># 读取TCGA表达谱数据（包含226个癌症样本和22个正常样本，预后分析仅用癌症样本）</span></span>
-<span id="cb75-2"><a href="#cb75-2" tabindex="-1"></a><span class="co"># Read TCGA expression profile data (including 226 cancer samples and 22 normal samples, only cancer samples for prognosis analysis)</span></span>
-<span id="cb75-3"><a href="#cb75-3" tabindex="-1"></a>TCGA <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;TCGA_STAD_226_22_expCli.txt&quot;</span>, <span class="at">header =</span> T, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">quote =</span> <span class="st">&quot;&quot;</span>, <span class="at">check.names =</span> F)</span>
-<span id="cb75-4"><a href="#cb75-4" tabindex="-1"></a></span>
-<span id="cb75-5"><a href="#cb75-5" tabindex="-1"></a><span class="co"># count数据转换为TPM数据（该方法转换TPM时基因数不损失）</span></span>
-<span id="cb75-6"><a href="#cb75-6" tabindex="-1"></a><span class="co"># Convert count data to TPM (this method preserves all genes when converting to TPM)</span></span>
-<span id="cb75-7"><a href="#cb75-7" tabindex="-1"></a>TCGA_TPM <span class="ot">&lt;-</span> <span class="fu">normalizeGeneCounts</span>(TCGA, TxDb, <span class="at">method =</span> <span class="st">&quot;TPM&quot;</span>)</span>
-<span id="cb75-8"><a href="#cb75-8" tabindex="-1"></a><span class="co"># 对数标准化（log2(x+1)防止log(0)错误）</span></span>
-<span id="cb75-9"><a href="#cb75-9" tabindex="-1"></a><span class="co"># Log2 normalization (log2(x+1) avoids log(0) error)</span></span>
-<span id="cb75-10"><a href="#cb75-10" tabindex="-1"></a>TCGA_TPM <span class="ot">&lt;-</span> <span class="fu">log2</span>(TCGA_TPM <span class="sc">+</span> <span class="dv">1</span>)</span>
-<span id="cb75-11"><a href="#cb75-11" tabindex="-1"></a><span class="co"># 仅保留癌症样本（前226列为癌症样本，后22列为正常样本）</span></span>
-<span id="cb75-12"><a href="#cb75-12" tabindex="-1"></a><span class="co"># Keep only cancer samples (first 226 columns are cancer, last 22 are normal)</span></span>
-<span id="cb75-13"><a href="#cb75-13" tabindex="-1"></a>TCGA_TPM <span class="ot">&lt;-</span> TCGA_TPM[, <span class="dv">1</span><span class="sc">:</span><span class="dv">226</span>]</span>
-<span id="cb75-14"><a href="#cb75-14" tabindex="-1"></a></span>
-<span id="cb75-15"><a href="#cb75-15" tabindex="-1"></a><span class="co"># 提取TILncRNA表达谱数据（仅保留在TILncRNA列表中的基因）</span></span>
-<span id="cb75-16"><a href="#cb75-16" tabindex="-1"></a><span class="co"># Extract TILncRNA expression profile data (keep only genes in TILncRNA list)</span></span>
-<span id="cb75-17"><a href="#cb75-17" tabindex="-1"></a>TCGA_TPM <span class="ot">&lt;-</span> TCGA_TPM[<span class="fu">which</span>(<span class="fu">rownames</span>(TCGA_TPM) <span class="sc">%in%</span> TILncRNA), ]</span>
-<span id="cb75-18"><a href="#cb75-18" tabindex="-1"></a><span class="co"># 读取临床数据（包含生存时间和生存状态等信息）</span></span>
-<span id="cb75-19"><a href="#cb75-19" tabindex="-1"></a><span class="co"># Read clinical data (including survival time and status)</span></span>
-<span id="cb75-20"><a href="#cb75-20" tabindex="-1"></a>TCGA_cli <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;cli_STAD_226.txt&quot;</span>, <span class="at">header =</span> T, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">quote =</span> <span class="st">&quot;&quot;</span>, <span class="at">check.names =</span> F)</span>
-<span id="cb75-21"><a href="#cb75-21" tabindex="-1"></a></span>
-<span id="cb75-22"><a href="#cb75-22" tabindex="-1"></a><span class="co"># 整合临床生存数据和表达谱数据（用于单因素和多因素Cox分析）</span></span>
-<span id="cb75-23"><a href="#cb75-23" tabindex="-1"></a><span class="co"># Integrate clinical survival data and expression profile data (for univariate and multivariate Cox analysis)</span></span>
-<span id="cb75-24"><a href="#cb75-24" tabindex="-1"></a>TCGA_TPM <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">t</span>(TCGA_TPM))  <span class="co"># 转置表达矩阵，使行为样本、列为基因</span></span>
-<span id="cb75-25"><a href="#cb75-25" tabindex="-1"></a>unicox <span class="ot">&lt;-</span> <span class="fu">cbind</span>(TCGA_cli[, <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">4</span>)], TCGA_TPM)  <span class="co"># 合并临床数据(ID、OS时间、OS状态)和表达数据</span></span>
-<span id="cb75-26"><a href="#cb75-26" tabindex="-1"></a>unicox<span class="sc">$</span>id <span class="ot">&lt;-</span> <span class="cn">NULL</span>  <span class="co"># 删除冗余ID列</span></span>
-<span id="cb75-27"><a href="#cb75-27" tabindex="-1"></a></span>
-<span id="cb75-28"><a href="#cb75-28" tabindex="-1"></a></span>
-<span id="cb75-29"><a href="#cb75-29" tabindex="-1"></a><span class="do">### 单因素Cox分析（评估每个基因对生存的单独影响）</span></span>
-<span id="cb75-30"><a href="#cb75-30" tabindex="-1"></a><span class="do">### Univariate Cox analysis (evaluate individual effect of each gene on survival)</span></span>
-<span id="cb75-31"><a href="#cb75-31" tabindex="-1"></a>outTab_uni <span class="ot">&lt;-</span> <span class="fu">data.frame</span>()</span>
-<span id="cb75-32"><a href="#cb75-32" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">colnames</span>(unicox[, <span class="dv">3</span><span class="sc">:</span><span class="fu">ncol</span>(unicox)])) {  <span class="co"># 遍历所有基因列</span></span>
-<span id="cb75-33"><a href="#cb75-33" tabindex="-1"></a>  <span class="co"># 拟合Cox比例风险模型（Surv(OS时间, OS状态) ~ 基因表达）</span></span>
-<span id="cb75-34"><a href="#cb75-34" tabindex="-1"></a>  <span class="co"># Fit Cox proportional hazards model (Surv(OS time, OS status) ~ gene expression)</span></span>
-<span id="cb75-35"><a href="#cb75-35" tabindex="-1"></a>  cox <span class="ot">&lt;-</span> <span class="fu">coxph</span>(<span class="fu">Surv</span>(OStime, OSstat) <span class="sc">~</span> unicox[, i], <span class="at">data =</span> unicox)</span>
-<span id="cb75-36"><a href="#cb75-36" tabindex="-1"></a>  coxSummary <span class="ot">&lt;-</span> <span class="fu">summary</span>(cox)  <span class="co"># 获取模型汇总结果</span></span>
-<span id="cb75-37"><a href="#cb75-37" tabindex="-1"></a>  </span>
-<span id="cb75-38"><a href="#cb75-38" tabindex="-1"></a>  <span class="co"># 提取关键指标：HR、95%置信区间、p值</span></span>
-<span id="cb75-39"><a href="#cb75-39" tabindex="-1"></a>  <span class="co"># Extract key metrics: HR, 95% confidence interval, p-value</span></span>
-<span id="cb75-40"><a href="#cb75-40" tabindex="-1"></a>  coxP <span class="ot">&lt;-</span> coxSummary<span class="sc">$</span>coefficients[,<span class="st">&quot;Pr(&gt;|z|)&quot;</span>]</span>
-<span id="cb75-41"><a href="#cb75-41" tabindex="-1"></a>  outTab_uni <span class="ot">&lt;-</span> <span class="fu">rbind</span>(outTab_uni,</span>
-<span id="cb75-42"><a href="#cb75-42" tabindex="-1"></a>                <span class="fu">cbind</span>(<span class="at">id =</span> i,</span>
-<span id="cb75-43"><a href="#cb75-43" tabindex="-1"></a>                      <span class="at">HR =</span> coxSummary<span class="sc">$</span>conf.int[,<span class="st">&quot;exp(coef)&quot;</span>],       <span class="co"># 风险比（Hazard Ratio）</span></span>
-<span id="cb75-44"><a href="#cb75-44" tabindex="-1"></a>                      <span class="at">HR.95L =</span> coxSummary<span class="sc">$</span>conf.int[,<span class="st">&quot;lower .95&quot;</span>],  <span class="co"># 95%置信区间下限</span></span>
-<span id="cb75-45"><a href="#cb75-45" tabindex="-1"></a>                      <span class="at">HR.95H =</span> coxSummary<span class="sc">$</span>conf.int[,<span class="st">&quot;upper .95&quot;</span>],  <span class="co"># 95%置信区间上限</span></span>
-<span id="cb75-46"><a href="#cb75-46" tabindex="-1"></a>                      <span class="at">pvalue =</span> coxSummary<span class="sc">$</span>coefficients[,<span class="st">&quot;Pr(&gt;|z|)&quot;</span>]</span>
-<span id="cb75-47"><a href="#cb75-47" tabindex="-1"></a>                ))</span>
-<span id="cb75-48"><a href="#cb75-48" tabindex="-1"></a>}</span>
-<span id="cb75-49"><a href="#cb75-49" tabindex="-1"></a><span class="co"># 输出单因素Cox分析结果</span></span>
-<span id="cb75-50"><a href="#cb75-50" tabindex="-1"></a><span class="co"># Output univariate Cox analysis results</span></span>
-<span id="cb75-51"><a href="#cb75-51" tabindex="-1"></a><span class="fu">write.table</span>(outTab_uni, <span class="at">file =</span> <span class="st">&quot;output_uniCox.txt&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">row.names =</span> F, <span class="at">quote =</span> F)</span>
-<span id="cb75-52"><a href="#cb75-52" tabindex="-1"></a></span>
-<span id="cb75-53"><a href="#cb75-53" tabindex="-1"></a></span>
-<span id="cb75-54"><a href="#cb75-54" tabindex="-1"></a><span class="do">### 多因素Cox分析（考虑多个基因的联合影响）</span></span>
-<span id="cb75-55"><a href="#cb75-55" tabindex="-1"></a><span class="do">### Multivariate Cox analysis (consider combined effect of multiple genes)</span></span>
-<span id="cb75-56"><a href="#cb75-56" tabindex="-1"></a>mul <span class="ot">&lt;-</span> unicox  <span class="co"># 初始化多因素分析数据（实际应用中需先筛选显著基因）</span></span>
-<span id="cb75-57"><a href="#cb75-57" tabindex="-1"></a><span class="co"># 拟合Cox模型并通过逐步回归筛选变量（direction=&quot;both&quot;表示双向筛选）</span></span>
-<span id="cb75-58"><a href="#cb75-58" tabindex="-1"></a><span class="co"># Fit Cox model and perform stepwise variable selection (direction=&quot;both&quot; for forward-backward selection)</span></span>
-<span id="cb75-59"><a href="#cb75-59" tabindex="-1"></a>multiCox <span class="ot">&lt;-</span> <span class="fu">coxph</span>(<span class="fu">Surv</span>(OStime, OSstat) <span class="sc">~</span> ., <span class="at">data =</span> mul)</span>
-<span id="cb75-60"><a href="#cb75-60" tabindex="-1"></a>multiCox <span class="ot">&lt;-</span> <span class="fu">step</span>(multiCox, <span class="at">direction =</span> <span class="st">&quot;both&quot;</span>, <span class="at">steps =</span> <span class="dv">2000</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" tabindex="-1"></a><span class="co"># 读取TCGA表达谱数据（包含226个癌症样本和22个正常样本，预后分析仅用癌症样本）</span></span>
+<span id="cb74-2"><a href="#cb74-2" tabindex="-1"></a><span class="co"># Read TCGA expression profile data (including 226 cancer samples and 22 normal samples, only cancer samples for prognosis analysis)</span></span>
+<span id="cb74-3"><a href="#cb74-3" tabindex="-1"></a>TCGA <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;TCGA_STAD_226_22_expCli.txt&quot;</span>, <span class="at">header =</span> T, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">quote =</span> <span class="st">&quot;&quot;</span>, <span class="at">check.names =</span> F)</span>
+<span id="cb74-4"><a href="#cb74-4" tabindex="-1"></a></span>
+<span id="cb74-5"><a href="#cb74-5" tabindex="-1"></a><span class="co"># count数据转换为TPM数据（该方法转换TPM时基因数不损失）</span></span>
+<span id="cb74-6"><a href="#cb74-6" tabindex="-1"></a><span class="co"># Convert count data to TPM (this method preserves all genes when converting to TPM)</span></span>
+<span id="cb74-7"><a href="#cb74-7" tabindex="-1"></a>TCGA_TPM <span class="ot">&lt;-</span> <span class="fu">normalizeGeneCounts</span>(TCGA, TxDb, <span class="at">method =</span> <span class="st">&quot;TPM&quot;</span>)</span>
+<span id="cb74-8"><a href="#cb74-8" tabindex="-1"></a><span class="co"># 对数标准化（log2(x+1)防止log(0)错误）</span></span>
+<span id="cb74-9"><a href="#cb74-9" tabindex="-1"></a><span class="co"># Log2 normalization (log2(x+1) avoids log(0) error)</span></span>
+<span id="cb74-10"><a href="#cb74-10" tabindex="-1"></a>TCGA_TPM <span class="ot">&lt;-</span> <span class="fu">log2</span>(TCGA_TPM <span class="sc">+</span> <span class="dv">1</span>)</span>
+<span id="cb74-11"><a href="#cb74-11" tabindex="-1"></a><span class="co"># 仅保留癌症样本（前226列为癌症样本，后22列为正常样本）</span></span>
+<span id="cb74-12"><a href="#cb74-12" tabindex="-1"></a><span class="co"># Keep only cancer samples (first 226 columns are cancer, last 22 are normal)</span></span>
+<span id="cb74-13"><a href="#cb74-13" tabindex="-1"></a>TCGA_TPM <span class="ot">&lt;-</span> TCGA_TPM[, <span class="dv">1</span><span class="sc">:</span><span class="dv">226</span>]</span>
+<span id="cb74-14"><a href="#cb74-14" tabindex="-1"></a></span>
+<span id="cb74-15"><a href="#cb74-15" tabindex="-1"></a><span class="co"># 提取TILncRNA表达谱数据（仅保留在TILncRNA列表中的基因）</span></span>
+<span id="cb74-16"><a href="#cb74-16" tabindex="-1"></a><span class="co"># Extract TILncRNA expression profile data (keep only genes in TILncRNA list)</span></span>
+<span id="cb74-17"><a href="#cb74-17" tabindex="-1"></a>TCGA_TPM <span class="ot">&lt;-</span> TCGA_TPM[<span class="fu">which</span>(<span class="fu">rownames</span>(TCGA_TPM) <span class="sc">%in%</span> TILncRNA), ]</span>
+<span id="cb74-18"><a href="#cb74-18" tabindex="-1"></a><span class="co"># 读取临床数据（包含生存时间和生存状态等信息）</span></span>
+<span id="cb74-19"><a href="#cb74-19" tabindex="-1"></a><span class="co"># Read clinical data (including survival time and status)</span></span>
+<span id="cb74-20"><a href="#cb74-20" tabindex="-1"></a>TCGA_cli <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;cli_STAD_226.txt&quot;</span>, <span class="at">header =</span> T, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">quote =</span> <span class="st">&quot;&quot;</span>, <span class="at">check.names =</span> F)</span>
+<span id="cb74-21"><a href="#cb74-21" tabindex="-1"></a></span>
+<span id="cb74-22"><a href="#cb74-22" tabindex="-1"></a><span class="co"># 整合临床生存数据和表达谱数据（用于单因素和多因素Cox分析）</span></span>
+<span id="cb74-23"><a href="#cb74-23" tabindex="-1"></a><span class="co"># Integrate clinical survival data and expression profile data (for univariate and multivariate Cox analysis)</span></span>
+<span id="cb74-24"><a href="#cb74-24" tabindex="-1"></a>TCGA_TPM <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">t</span>(TCGA_TPM))  <span class="co"># 转置表达矩阵，使行为样本、列为基因</span></span>
+<span id="cb74-25"><a href="#cb74-25" tabindex="-1"></a>unicox <span class="ot">&lt;-</span> <span class="fu">cbind</span>(TCGA_cli[, <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">4</span>)], TCGA_TPM)  <span class="co"># 合并临床数据(ID、OS时间、OS状态)和表达数据</span></span>
+<span id="cb74-26"><a href="#cb74-26" tabindex="-1"></a>unicox<span class="sc">$</span>id <span class="ot">&lt;-</span> <span class="cn">NULL</span>  <span class="co"># 删除冗余ID列</span></span>
+<span id="cb74-27"><a href="#cb74-27" tabindex="-1"></a></span>
+<span id="cb74-28"><a href="#cb74-28" tabindex="-1"></a></span>
+<span id="cb74-29"><a href="#cb74-29" tabindex="-1"></a><span class="do">### 单因素Cox分析（评估每个基因对生存的单独影响）</span></span>
+<span id="cb74-30"><a href="#cb74-30" tabindex="-1"></a><span class="do">### Univariate Cox analysis (evaluate individual effect of each gene on survival)</span></span>
+<span id="cb74-31"><a href="#cb74-31" tabindex="-1"></a>outTab_uni <span class="ot">&lt;-</span> <span class="fu">data.frame</span>()</span>
+<span id="cb74-32"><a href="#cb74-32" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">colnames</span>(unicox[, <span class="dv">3</span><span class="sc">:</span><span class="fu">ncol</span>(unicox)])) {  <span class="co"># 遍历所有基因列</span></span>
+<span id="cb74-33"><a href="#cb74-33" tabindex="-1"></a>  <span class="co"># 拟合Cox比例风险模型（Surv(OS时间, OS状态) ~ 基因表达）</span></span>
+<span id="cb74-34"><a href="#cb74-34" tabindex="-1"></a>  <span class="co"># Fit Cox proportional hazards model (Surv(OS time, OS status) ~ gene expression)</span></span>
+<span id="cb74-35"><a href="#cb74-35" tabindex="-1"></a>  cox <span class="ot">&lt;-</span> <span class="fu">coxph</span>(<span class="fu">Surv</span>(OStime, OSstat) <span class="sc">~</span> unicox[, i], <span class="at">data =</span> unicox)</span>
+<span id="cb74-36"><a href="#cb74-36" tabindex="-1"></a>  coxSummary <span class="ot">&lt;-</span> <span class="fu">summary</span>(cox)  <span class="co"># 获取模型汇总结果</span></span>
+<span id="cb74-37"><a href="#cb74-37" tabindex="-1"></a>  </span>
+<span id="cb74-38"><a href="#cb74-38" tabindex="-1"></a>  <span class="co"># 提取关键指标：HR、95%置信区间、p值</span></span>
+<span id="cb74-39"><a href="#cb74-39" tabindex="-1"></a>  <span class="co"># Extract key metrics: HR, 95% confidence interval, p-value</span></span>
+<span id="cb74-40"><a href="#cb74-40" tabindex="-1"></a>  coxP <span class="ot">&lt;-</span> coxSummary<span class="sc">$</span>coefficients[,<span class="st">&quot;Pr(&gt;|z|)&quot;</span>]</span>
+<span id="cb74-41"><a href="#cb74-41" tabindex="-1"></a>  outTab_uni <span class="ot">&lt;-</span> <span class="fu">rbind</span>(outTab_uni,</span>
+<span id="cb74-42"><a href="#cb74-42" tabindex="-1"></a>                <span class="fu">cbind</span>(<span class="at">id =</span> i,</span>
+<span id="cb74-43"><a href="#cb74-43" tabindex="-1"></a>                      <span class="at">HR =</span> coxSummary<span class="sc">$</span>conf.int[,<span class="st">&quot;exp(coef)&quot;</span>],       <span class="co"># 风险比（Hazard Ratio）</span></span>
+<span id="cb74-44"><a href="#cb74-44" tabindex="-1"></a>                      <span class="at">HR.95L =</span> coxSummary<span class="sc">$</span>conf.int[,<span class="st">&quot;lower .95&quot;</span>],  <span class="co"># 95%置信区间下限</span></span>
+<span id="cb74-45"><a href="#cb74-45" tabindex="-1"></a>                      <span class="at">HR.95H =</span> coxSummary<span class="sc">$</span>conf.int[,<span class="st">&quot;upper .95&quot;</span>],  <span class="co"># 95%置信区间上限</span></span>
+<span id="cb74-46"><a href="#cb74-46" tabindex="-1"></a>                      <span class="at">pvalue =</span> coxSummary<span class="sc">$</span>coefficients[,<span class="st">&quot;Pr(&gt;|z|)&quot;</span>]</span>
+<span id="cb74-47"><a href="#cb74-47" tabindex="-1"></a>                ))</span>
+<span id="cb74-48"><a href="#cb74-48" tabindex="-1"></a>}</span>
+<span id="cb74-49"><a href="#cb74-49" tabindex="-1"></a><span class="co"># 输出单因素Cox分析结果</span></span>
+<span id="cb74-50"><a href="#cb74-50" tabindex="-1"></a><span class="co"># Output univariate Cox analysis results</span></span>
+<span id="cb74-51"><a href="#cb74-51" tabindex="-1"></a><span class="fu">write.table</span>(outTab_uni, <span class="at">file =</span> <span class="st">&quot;output_uniCox.txt&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">row.names =</span> F, <span class="at">quote =</span> F)</span>
+<span id="cb74-52"><a href="#cb74-52" tabindex="-1"></a></span>
+<span id="cb74-53"><a href="#cb74-53" tabindex="-1"></a></span>
+<span id="cb74-54"><a href="#cb74-54" tabindex="-1"></a><span class="do">### 多因素Cox分析（考虑多个基因的联合影响）</span></span>
+<span id="cb74-55"><a href="#cb74-55" tabindex="-1"></a><span class="do">### Multivariate Cox analysis (consider combined effect of multiple genes)</span></span>
+<span id="cb74-56"><a href="#cb74-56" tabindex="-1"></a>mul <span class="ot">&lt;-</span> unicox  <span class="co"># 初始化多因素分析数据（实际应用中需先筛选显著基因）</span></span>
+<span id="cb74-57"><a href="#cb74-57" tabindex="-1"></a><span class="co"># 拟合Cox模型并通过逐步回归筛选变量（direction=&quot;both&quot;表示双向筛选）</span></span>
+<span id="cb74-58"><a href="#cb74-58" tabindex="-1"></a><span class="co"># Fit Cox model and perform stepwise variable selection (direction=&quot;both&quot; for forward-backward selection)</span></span>
+<span id="cb74-59"><a href="#cb74-59" tabindex="-1"></a>multiCox <span class="ot">&lt;-</span> <span class="fu">coxph</span>(<span class="fu">Surv</span>(OStime, OSstat) <span class="sc">~</span> ., <span class="at">data =</span> mul)</span>
+<span id="cb74-60"><a href="#cb74-60" tabindex="-1"></a>multiCox <span class="ot">&lt;-</span> <span class="fu">step</span>(multiCox, <span class="at">direction =</span> <span class="st">&quot;both&quot;</span>, <span class="at">steps =</span> <span class="dv">2000</span>)</span></code></pre></div>
 <pre><code>## Start:  AIC=560.4
 ## Surv(OStime, OSstat) ~ DANCR + `ITGB2-AS1` + LINC00621
 ## 
@@ -2381,31 +2391,31 @@ TILSig scoring system</h2>
 ## + DANCR        1 558.52
 ## + LINC00621    1 558.88
 ## - `ITGB2-AS1`  1 559.53</code></pre>
-<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" tabindex="-1"></a>multiCoxSum <span class="ot">&lt;-</span> <span class="fu">summary</span>(multiCox)  <span class="co"># 获取模型汇总结果</span></span>
-<span id="cb77-2"><a href="#cb77-2" tabindex="-1"></a></span>
-<span id="cb77-3"><a href="#cb77-3" tabindex="-1"></a><span class="co"># 整理多因素分析结果</span></span>
-<span id="cb77-4"><a href="#cb77-4" tabindex="-1"></a><span class="co"># Organize multivariate analysis results</span></span>
-<span id="cb77-5"><a href="#cb77-5" tabindex="-1"></a>outTab_mul <span class="ot">&lt;-</span> <span class="fu">data.frame</span>()</span>
-<span id="cb77-6"><a href="#cb77-6" tabindex="-1"></a>outTab_mul <span class="ot">&lt;-</span> <span class="fu">cbind</span>(</span>
-<span id="cb77-7"><a href="#cb77-7" tabindex="-1"></a>  <span class="at">coef =</span> multiCoxSum<span class="sc">$</span>coefficients[,<span class="st">&quot;coef&quot;</span>],         <span class="co"># 回归系数</span></span>
-<span id="cb77-8"><a href="#cb77-8" tabindex="-1"></a>  <span class="at">HR =</span> multiCoxSum<span class="sc">$</span>conf.int[,<span class="st">&quot;exp(coef)&quot;</span>],         <span class="co"># 风险比</span></span>
-<span id="cb77-9"><a href="#cb77-9" tabindex="-1"></a>  <span class="at">HR.95L =</span> multiCoxSum<span class="sc">$</span>conf.int[,<span class="st">&quot;lower .95&quot;</span>],      <span class="co"># 95%置信区间下限</span></span>
-<span id="cb77-10"><a href="#cb77-10" tabindex="-1"></a>  <span class="at">HR.95H =</span> multiCoxSum<span class="sc">$</span>conf.int[,<span class="st">&quot;upper .95&quot;</span>],      <span class="co"># 95%置信区间上限</span></span>
-<span id="cb77-11"><a href="#cb77-11" tabindex="-1"></a>  <span class="at">pvalue =</span> multiCoxSum<span class="sc">$</span>coefficients[,<span class="st">&quot;Pr(&gt;|z|)&quot;</span>]</span>
-<span id="cb77-12"><a href="#cb77-12" tabindex="-1"></a>)</span>
-<span id="cb77-13"><a href="#cb77-13" tabindex="-1"></a>outTab_mul <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="at">id =</span> <span class="fu">row.names</span>(outTab_mul), outTab_mul)  <span class="co"># 添加基因ID列</span></span>
-<span id="cb77-14"><a href="#cb77-14" tabindex="-1"></a></span>
-<span id="cb77-15"><a href="#cb77-15" tabindex="-1"></a><span class="co"># 输出多因素Cox分析结果</span></span>
-<span id="cb77-16"><a href="#cb77-16" tabindex="-1"></a><span class="co"># Output multivariate Cox analysis results</span></span>
-<span id="cb77-17"><a href="#cb77-17" tabindex="-1"></a><span class="fu">write.table</span>(outTab_mul, <span class="at">file =</span> <span class="st">&quot;output_multiCox.txt&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">row.names =</span> F, <span class="at">quote =</span> F)</span>
-<span id="cb77-18"><a href="#cb77-18" tabindex="-1"></a></span>
-<span id="cb77-19"><a href="#cb77-19" tabindex="-1"></a><span class="co"># 计算风险分数（原文中TILSig值即为此处riskScore）</span></span>
-<span id="cb77-20"><a href="#cb77-20" tabindex="-1"></a><span class="co"># Calculate risk score (TILSig in the paper is equivalent to riskScore here)</span></span>
-<span id="cb77-21"><a href="#cb77-21" tabindex="-1"></a>riskScore <span class="ot">&lt;-</span> <span class="fu">predict</span>(multiCox, <span class="at">type =</span> <span class="st">&quot;risk&quot;</span>, <span class="at">newdata =</span> mul)</span></code></pre></div>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" tabindex="-1"></a>multiCoxSum <span class="ot">&lt;-</span> <span class="fu">summary</span>(multiCox)  <span class="co"># 获取模型汇总结果</span></span>
+<span id="cb76-2"><a href="#cb76-2" tabindex="-1"></a></span>
+<span id="cb76-3"><a href="#cb76-3" tabindex="-1"></a><span class="co"># 整理多因素分析结果</span></span>
+<span id="cb76-4"><a href="#cb76-4" tabindex="-1"></a><span class="co"># Organize multivariate analysis results</span></span>
+<span id="cb76-5"><a href="#cb76-5" tabindex="-1"></a>outTab_mul <span class="ot">&lt;-</span> <span class="fu">data.frame</span>()</span>
+<span id="cb76-6"><a href="#cb76-6" tabindex="-1"></a>outTab_mul <span class="ot">&lt;-</span> <span class="fu">cbind</span>(</span>
+<span id="cb76-7"><a href="#cb76-7" tabindex="-1"></a>  <span class="at">coef =</span> multiCoxSum<span class="sc">$</span>coefficients[,<span class="st">&quot;coef&quot;</span>],         <span class="co"># 回归系数</span></span>
+<span id="cb76-8"><a href="#cb76-8" tabindex="-1"></a>  <span class="at">HR =</span> multiCoxSum<span class="sc">$</span>conf.int[,<span class="st">&quot;exp(coef)&quot;</span>],         <span class="co"># 风险比</span></span>
+<span id="cb76-9"><a href="#cb76-9" tabindex="-1"></a>  <span class="at">HR.95L =</span> multiCoxSum<span class="sc">$</span>conf.int[,<span class="st">&quot;lower .95&quot;</span>],      <span class="co"># 95%置信区间下限</span></span>
+<span id="cb76-10"><a href="#cb76-10" tabindex="-1"></a>  <span class="at">HR.95H =</span> multiCoxSum<span class="sc">$</span>conf.int[,<span class="st">&quot;upper .95&quot;</span>],      <span class="co"># 95%置信区间上限</span></span>
+<span id="cb76-11"><a href="#cb76-11" tabindex="-1"></a>  <span class="at">pvalue =</span> multiCoxSum<span class="sc">$</span>coefficients[,<span class="st">&quot;Pr(&gt;|z|)&quot;</span>]</span>
+<span id="cb76-12"><a href="#cb76-12" tabindex="-1"></a>)</span>
+<span id="cb76-13"><a href="#cb76-13" tabindex="-1"></a>outTab_mul <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="at">id =</span> <span class="fu">row.names</span>(outTab_mul), outTab_mul)  <span class="co"># 添加基因ID列</span></span>
+<span id="cb76-14"><a href="#cb76-14" tabindex="-1"></a></span>
+<span id="cb76-15"><a href="#cb76-15" tabindex="-1"></a><span class="co"># 输出多因素Cox分析结果</span></span>
+<span id="cb76-16"><a href="#cb76-16" tabindex="-1"></a><span class="co"># Output multivariate Cox analysis results</span></span>
+<span id="cb76-17"><a href="#cb76-17" tabindex="-1"></a><span class="fu">write.table</span>(outTab_mul, <span class="at">file =</span> <span class="st">&quot;output_multiCox.txt&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">row.names =</span> F, <span class="at">quote =</span> F)</span>
+<span id="cb76-18"><a href="#cb76-18" tabindex="-1"></a></span>
+<span id="cb76-19"><a href="#cb76-19" tabindex="-1"></a><span class="co"># 计算风险分数（原文中TILSig值即为此处riskScore）</span></span>
+<span id="cb76-20"><a href="#cb76-20" tabindex="-1"></a><span class="co"># Calculate risk score (TILSig in the paper is equivalent to riskScore here)</span></span>
+<span id="cb76-21"><a href="#cb76-21" tabindex="-1"></a>riskScore <span class="ot">&lt;-</span> <span class="fu">predict</span>(multiCox, <span class="at">type =</span> <span class="st">&quot;risk&quot;</span>, <span class="at">newdata =</span> mul)</span></code></pre></div>
 </div>
 <div id="session-info" class="section level2" number="10">
 <h2><span class="header-section-number">10</span> Session Info</h2>
-<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
 <pre><code>## R version 4.5.1 (2025-06-13)
 ## Platform: x86_64-apple-darwin20
 ## Running under: macOS Monterey 12.7.6
