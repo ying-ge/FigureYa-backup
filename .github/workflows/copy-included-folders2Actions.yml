@@ -45,6 +45,7 @@ jobs:
           else
             git diff --name-only "$before" "$after" > changed_files.txt
           fi
+          # 过滤空行与注释到 folder_list.txt 供后续步骤使用
           cat .github/docs/all_included.txt | grep -v '^\s*$' | grep -v '^#' > folder_list.txt
           changed_needed=0
           while read folder; do
@@ -68,6 +69,7 @@ jobs:
         if: steps.changed.outputs.changed_needed == '1'
         run: |
           cd source-repo
+          # 使用已过滤好的 folder_list.txt（避免注释/空行）
           while read folder; do
             if [ -d "$folder" ]; then
               echo "Copying $folder"
@@ -76,7 +78,7 @@ jobs:
             else
               echo "Warning: $folder not found"
             fi
-          done < .github/docs/all_included.txt
+          done < folder_list.txt
 
       - name: List target-repo after sync
         if: steps.changed.outputs.changed_needed == '1'
@@ -89,5 +91,10 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add .
-          git commit -m "Sync folders from FigureYa via workflow" || echo "No changes to commit"
-          git push
+          # 仅当有 staged 更改时才 commit && push
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Sync folders from FigureYa via workflow"
+            git push
+          fi

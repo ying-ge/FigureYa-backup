@@ -1,8 +1,8 @@
 ---
 title: "FigureYa314SingleRScore"
 params:
-  author: "Xiaofan Lu; Yasi Zhang"  
-  reviewer: "Ying Ge"
+  author: "Xiaofan Lu"  
+  reviewer: "Ying Ge, Yasi Zhang"
 output: 
   html_document:
     toc: true
@@ -23,13 +23,11 @@ If you use this code in your work or research, we kindly request that you cite o
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
 
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# 需求描述
-# Demand description
+## 需求描述 Demand description
 
 FigureS5B是怎么实现的？这个计算公式要如何实现？
 
@@ -37,18 +35,12 @@ How is FigureS5B implemented? How to implement this calculation formula?
 
 ![](method.jpeg)
 
-出自：<https://www.cell.com/cell/fulltext/S0092-8674(21)00010-6?_returnURL=https%3A%2F%2Flinkinghub.elsevier.com%2Fretrieve%2Fpii%2FS0092867421000106%3Fshowall%3Dtrue>
-
-图S5. LAMP3+ cDC的起源与调控，与图4相关。
-(B) 基于**三个cDC亚群特征基因评分**的树突状细胞转录组分层。
-
-Source: <https://www.cell.com/cell/fulltext/S0092-8674(21)00010-6?_returnURL=https%3A%2F%2Flinkinghub.elsevier.com%2Fretrieve%2Fpii%2FS0092867421000106%3Fshowall%3Dtrue>
+From <https://www.cell.com/cell/fulltext/S0092-8674(21)00010-6?_returnURL=https%3A%2F%2Flinkinghub.elsevier.com%2Fretrieve%2Fpii%2FS0092867421000106%3Fshowall%3Dtrue>
 
 Figure S5. Origins and regulation of LAMP3+ cDCs, related to Figure 4
 (B) Stratification of cDC transcriptomes by **scores generated from signature genes of three cDC subsets**.
   
-# 应用场景
-# Application scenarios
+## 应用场景 Application scenarios
 
 近期研究表明，LAMP3+ cDCs可能具有同时从cDC1和cDC2分化而来的潜力（Maier et al., 2020; Zhang et al., 2019）。
 
@@ -62,23 +54,11 @@ To validate this hypothesis, the authors employed the following computational ap
 
 Using multiple computational methods, including Monocle2 (Figures 4A), CytoTRACE (Figures S5A), the **direct stratification of LAMP3+ cDCs (Figures S5B，this document)** and SingleR (Figures S5C), we confirmed the two potential origins of the LAMP3+ cDCs among various cancer types.
 
-# 环境设置 Environment Setup
-
-
-Using domestic mirrors for package installation.
+## 环境设置 Environment Setup
 
 ```{r}
 source("install_dependencies.R")
-```
 
-```{r eval=FALSE}
-install.packages("Matrix")
-```
-
-# 加载包
-# Loading packages
-
-```{r}
 library(Matrix)
 library(Seurat)
 library(ggplot2)
@@ -92,8 +72,7 @@ Sys.setenv(LANGUAGE = "en")
 options(stringsAsFactors = FALSE) 
 ```
 
-# 输入文件
-# Input Files
+## 输入文件 Input Files
 
 原文作者已把数据上传到GEO数据库 <https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE154763>。我们从Supplementary file表格里下载csv.gz文件，放到当前目录下的InputData文件夹。
 
@@ -142,8 +121,7 @@ seu <- seu.objs[[1]]
 seu <- subset(seu, MajorCluster %in% c("M03_cDC1_CLEC9A", "M04_cDC2_CD1C", "M05_cDC3_LAMP3")) 
 ```
 
-# 鉴定signature genes（下一步会用它计算得分）
-# Identify signature genes (will be used for scoring in next step)
+## 鉴定signature genes（下一步会用它计算得分） Identify signature genes (will be used for scoring in next step)
 
 三个细胞群：在cDC中发现了三个不同的亚群，包括两个经典的cDC亚群（**CLEC9A+ cDC1s**和**CD1C+ cDC2s**）和一个成熟的cDC亚群（**LAMP3+ cDC**）。
 
@@ -185,8 +163,7 @@ sig.gene <- subset(sig.gene, avg_log2FC > 0.3 & p_val_adj < 0.05)
 sig.gene <- split(sig.gene$gene, sig.gene$cluster)
 ```
 
-# 计算基因集得分
-# Calculate gene set scores
+## 计算基因集得分 Calculate gene set scores
 
 这里提供两种打分策略，自选其一即可：
 
@@ -240,8 +217,7 @@ plot.data$M03_cDC1_CLEC9A <- scale(plot.data$M03_cDC1_CLEC9A)
 plot.data$M05_cDC3_LAMP3 <- scale(plot.data$M05_cDC3_LAMP3)
 ```
 
-# 开始画图
-# Plotting
+## 开始画图 Plotting
 
 ```{r fig.width=6, fig.height=6}
 # 绘制散点图

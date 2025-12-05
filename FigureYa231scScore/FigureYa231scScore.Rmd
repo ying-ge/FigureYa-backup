@@ -2,6 +2,7 @@
 title: "FigureYa231scScore"
 params:
   author: "Yi Xiong"
+  reviewers: "Ying Ge,Hui Huang"
 output: 
   html_document:
     toc: true
@@ -11,10 +12,10 @@ output:
     theme: flatly
     highlight: tango
     code_folding: show
-reviewers: Ying Ge,Hui Huang
 ---
 
 **Author(s)**: `r params$author`  
+**Reviewers**: `r params$reviewers`  
 **Date**: `r Sys.Date()`  
 
 ## Academic Citation
@@ -26,18 +27,15 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# 需求描述
+## 需求描述 Requirement Description
 
 tsne降维，标记GO功能
-
-# Requirement Description
 
 tsne dimensionality reduction, marking GO function
 
 ![](example.png)
 
-出自<https://www.frontiersin.org/articles/10.3389/fimmu.2020.606164/full>
-from<https://www.frontiersin.org/articles/10.3389/fimmu.2020.606164/full>
+From <https://www.frontiersin.org/articles/10.3389/fimmu.2020.606164/full>
 
 FIGURE 2 | Functional enrichment analysis. 
 (D) The distribution of GBM and Control cells in GSE135437. 
@@ -48,11 +46,9 @@ Almost all **M2 macrophages were in the GBM cells**,
 while **M1 macrophages were in the control cells** (Figures 2D, E). 
 Furthermore we explored the **relationship between the biological process and cell types** and found that the signal transduction and angiogenesis enriched in a subgroup of M2 macrophages, however the cell adhesion widely distributed in both control and GBM cells (Figure 2F). 
 
-# 应用场景
+## 应用场景 Application Scenarios
 
 单细胞数据，从matrix到分组，用Single-Cell Signature Explorer 软件计算pathway的表达量，相比于FigureYa160scGSVA所用的GSVA运行速度更快。
-
-# Application Scenarios
 
 Single-cell data, from matrix to grouping, was calculated using Single-Cell Signature Explorer software, which was faster than the GSVA used in the FigureYa160sc GSVA.
 
@@ -72,28 +68,24 @@ You need to compare and contrast the presentation from various angles to find th
 - To show the relationship between the expression of one or several genes (e.g., marker gene) and cell type, refer to FigureYa27t-SNE.
 - Demonstrate a direct relationship between pathway expression and cell type. In the section of this document, "Showing the Expression of a Pathway with Gradient Colors", the score will be calculated using the Single-Cell Signature Explorer. In addition, the expression of pathway can also be displayed in the form of violin diagram, and the significance of the difference of pathway between groups can be calculated, which can be referred to FigureYa160scGSVA.
 
-# 环境设置
-
-# Environment settings
+## 环境设置 Environment settings
 
 ```{r}
 source("install_dependencies.R")
 
-library(tidyverse)
-library(Seurat)
-library(GO.db)
-library(biomaRt)
-library(RColorBrewer)
+library(tidyverse) # 数据处理 # data processing
+library(Seurat) # 单细胞分析 # single cell analysis
+library(GO.db) # GO注释 # GO annotation
+library(biomaRt) # 基因ID转换 # gene ID conversion
+library(RColorBrewer) # 调色板 # color palette
 
 Sys.setenv(LANGUAGE = "en") #显示英文报错信息  # error messages are displayed in English
 options(stringsAsFactors = FALSE) #禁止chr转成factor # chr is not allowed to be converted to factor
 ```
 
-# 标准的seurat流程
+## 标准的seurat流程 Standard Seurat process
 
 GSE135437，从<https://github.com/rsankowski/sankowski-et-al-microglia>下载数据并解压到当前文件夹
-
-# Standard Seurat process
 
 GSE135437, download the data from the <https://github.com/rsankowski/sankowski-et-al-microglia> and extract it to the current folder
 
@@ -144,11 +136,9 @@ ElbowPlot(SeuratObj)
 SeuratObj = RunTSNE(SeuratObj,dims = 1:10)
 ```
 
-# 用不同颜色展示分组
-# Show the grouping with different colors
+## 用不同颜色展示分组 Show the grouping with different colors
 
-## 根据Patient_ID分组
-## Group according to Patient_ID
+### 根据Patient_ID分组 Group according to Patient_ID
 
 查看来自不同人的细胞分布情况
 See the distribution of cells from different people
@@ -162,8 +152,7 @@ DimPlot(SeuratObj,
 可以看出Ctrl在左，GBM在右。下面用两种颜色标注，更直观。
 You can see that Ctrl is on the left and GBM is on the right. The following is marked with two colors, which is more intuitive.
 
-## 根据Diagnosis列分组 - 画图2D
-## Grouping by Diagnosis Column - Paint 2D
+### 根据Diagnosis列分组 - 画图2D Grouping by Diagnosis Column - Paint 2D
 
 GBM和Ctrl两组
 GBM and Ctrl
@@ -176,8 +165,7 @@ DimPlot(SeuratObj,
         pt.size = 1.5)
 ```
 
-## 根据细胞周期分组 - 画图2E
-## Grouping according to cell cycle - Plot 2E
+### 根据细胞周期分组 - 画图2E Grouping according to cell cycle - Plot 2E
 
 ```{r}
 # 根据作者文章的定义对巨噬细胞进行分类
@@ -199,8 +187,7 @@ DimPlot(SeuratObj,
 #saveRDS(SeuratObj,"./SeuratObj.rds")
 ```
 
-# 用渐变色展示pathway的表达量 - Single-Cell Signature Explorer score
-# Single-Cell Signature Explorer score is displayed with gradient color
+## 用渐变色展示pathway的表达量 Single-Cell Signature Explorer score is displayed with gradient color
 
 ```{r eval=FALSE}
 # 读取前面保存的数据
@@ -212,8 +199,7 @@ SeuratObj <- readRDS("./SeuratObj.rds")
 write.table(t(as.matrix(SeuratObj@assays$RNA$data)), "SeuratObj.tsv", sep="\t", row.names = TRUE, col.names=NA)
 ```
 
-## 准备基因集
-## Prepare the gene set
+### 准备基因集 Prepare the gene set
 
 ```{r}
 ensembl <- useMart("ensembl",dataset="hsapiens_gene_ensembl") #uses human ensembl annotations
@@ -254,11 +240,9 @@ for (i in c(1:length(data))) {
 }
 ```
 
-## 使用Single-Cell Signature Explorer进行打分
+### 使用Single-Cell Signature Explorer进行打分 Use the Single-Cell Signature Explorer for scoring
 
 在此下载 <https://sites.google.com/site/fredsoftwares/products/single-cell-signature-explorer>，下载后文件夹下有操作手册。
-
-## Use the Single-Cell Signature Explorer for scoring
 
 In this download <https://sites.google.com/site/fredsoftwares/products/single-cell-signature-explorer>, there is an operation manual under the folder after downloading.
 
@@ -285,8 +269,7 @@ Using Single-Cell Signature Explorer on Windows:
 ![](scorer.png)
 4. The results are in SingleCellSignatureScorer/results
 
-## 读取打分结果并画图
-## Read the scoring results and draw a graph
+### 读取打分结果并画图 Read the scoring results and draw a graph
 
 ```{r}
 # 读入Single-Cell Signature Explorer算出的score
@@ -315,11 +298,9 @@ FeaturePlot(SeuratObj,
 ggsave("scScore.pdf", width = 12, height = 5)
 ```
 
-# 后期处理
+## 后期处理 Post-processing
 
 输出的pdf文件都是矢量图，可以用矢量图工具打开，编辑文字和图形。例如像例文那样删掉坐标轴等。
-
-# Post-processing
 
 The output PDF files are all vector graphics, which can be opened with vector tools to edit text and graphics. For example, delete the axes as in the examples.
 
