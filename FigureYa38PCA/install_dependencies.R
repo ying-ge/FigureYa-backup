@@ -30,7 +30,7 @@ cat("===========================================\n")
 
 # Installing CRAN packages
 cat("\nInstalling CRAN packages...\n")
-cran_packages <- c("dplyr", "ggplot2", "plyr")
+cran_packages <- c("dplyr", "ggplot2", "plyr", "ggrepel")
 
 for (pkg in cran_packages) {
   install_cran_package(pkg)

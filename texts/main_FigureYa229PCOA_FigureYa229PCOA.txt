@@ -1,14 +1,14 @@
-FigureYa229PCOA
+FigureYa229PCoA
 Code
 Show All Code
 Hide All Code
-FigureYa229PCOA
+FigureYa229PCoA
 Author(s)
 : Xiaofan Lu
 Reviewers
 : Ying Ge,Hui Huang
 Date
-: 2025-12-03
+: 2025-12-05
 1
 Academic Citation
 If you use this code in your work or research, we kindly request that
@@ -20,7 +20,7 @@ https://doi.org/10.1002/imm3.70005
 2
 需求描述 Requirement
 Description
-把PCOA的散点图变成这样的：
+把PCoA的散点图变成这样的：
 Turn the scatter plot of PCOA like this:
 From
 https://www.cell.com/cell-metabolism/fulltext/S1550-4131(20)30312-0?_returnURL=https%3A%2F%2Flinkinghub.elsevier.com%2Fretrieve%2Fpii%2FS1550413120303120%3Fshowall%3Dtrue
@@ -59,43 +59,30 @@ in the validation cohort
 3
 应用场景 Application
 Scenarios
-转录组的表达矩阵都有成千上万个基因，这类高维度数据很难直接进行可视化展示。
-为了能够在二维平面上展示，就需要对其进行降维，PCA分析是目前最常用的降维工具。
-实际应用时，想突出强调自己想要展示的特征，就需要变换展示方式：
-样本量不太大、区分比较好，可以画经典的带圈（置信区间）、带箭头的PCA，画法可参考FigureYa38PCA；
-大部分情况两个主成分就够了，有时你可能需要3个主成分才能区分开，就需要画3D
-PCA展示三个主成分，可参考FigureYa164PCA3D；
-想看多次生物学重复的重复效果，需要用不同形状和颜色同时展示分组和重复，可参考FigureYa101PCA；
-当分组（亚型）较多且每组样本量较大时，画散点图相互覆盖很难看清，就可以像例文这样计算相同组的均值以及标准误后画图。这样能够看出各亚型距离较远，两个队列的结果相近。这种眼睛看出来的差异有统计学意义吗？作者用PERMANOVA
-test来做组间差异显著性分析，做法见“附：PERMANOVA test (2-way
-adonis)”。
-The transcriptome expression matrix has thousands of genes, and such
-high-dimensional data is difficult to visualize directly.
-In order to be able to display it on a two-dimensional plane, it is
-necessary to reduce the dimensionality, and PCA analysis is the most
-commonly used dimensionality reduction tool at present.
-In practice, if you want to highlight the features you want to show,
-you need to change the way you display them:
-If the sample size is not too large and the discrimination is good,
-you can draw the classic PCA with circles (confidence intervals) and
-arrows, and refer to FigureYa38PCA for the drawing method;
-In most cases, two principal components are enough, sometimes you
-may need 3 principal components to distinguish them, you need to draw 3D
-PCA to show the three principal components, you can refer to
-FigureYa164PCA3D;
-If you want to see the repetition effect of multiple biological
-replicates, you need to display the grouping and repetition with
-different shapes and colors at the same time, please refer to
-FigureYa101PCA;
-When there are many groups (subtypes) and the sample size of each
-group is large, and it is difficult to see that the scatter plots cover
-each other, you can calculate the mean of the same group and the
-standard error after plotting as in the example. This allows for the
-distantness of the subtypes and the similar results of the two cohorts.
-Is there a statistically significant difference in what the eye sees?
-The authors used the PERMANOVA test to analyze the significance of
-differences between groups, as described in “Appendix: PERMANOVA test
-(2-way adonis)”.
+PCoA（Principal Coordinates
+Analysis，主坐标分析）是一种降维方法，常用于生态学和微生物组学中，用于可视化样本之间的距离或相似性关系。它基于距离矩阵，通过将高维数据投影到低维空间（通常是二维或三维）来展示样本之间的关系。
+PCA从原始数据直接降维，PCoA从距离矩阵降维
+PCA能告诉你”为什么”（载荷），PCoA只能告诉你”样本的相对位置”。
+原文使用Bray-Curtis dissimilarity
+matrix针对非负矩阵，这里表达谱有负值，所以采用普通的欧氏距离。当距离=欧氏距离时，PCA=PCoA。所以，算出来的其实还是
+PCA。
+这种可视化方法也适用于 PCA/UMAP 等。
+PCoA (Principal Coordinates Analysis) is a dimensionality reduction
+method commonly used in ecology and microbiome studies to visualize the
+distance or similarity relationships between samples. It is based on a
+distance matrix and projects high-dimensional data into a
+low-dimensional space (usually two or three dimensions) to show the
+relationships between samples.
+PCA reduces the dimensionality directly from the original data, while
+PCoA reduces the dimensionality from the distance matrix.
+PCA can tell you “why” (loadings), while PCoA can only tell you “the
+relative position of samples.”
+The original method is Bray-Curtis dissimilarity matrix (available
+for non-negative matrices), where the expression spectrum has a negative
+value, so the ordinary Euclidean distance is used. When the distance =
+Euclidean distance, PCA = PCoA. So the calculated result is actually
+PCA.
+The visualization method is also applicable to PCA/UMAP, etc.
 4
 环境设置 Environment
 settings
@@ -108,7 +95,7 @@ library
 #用于计算距离矩阵 # Used to calculate the distance matrix
 library
 (ape)
-#做PCoA # Do PCoA
+#做PCoA # PCoA
 library
 (RColorBrewer)
 #配色 # Color matching
@@ -198,7 +185,7 @@ $
 Cohort)
 # 2个队列
 6
-PCA
+PCoA
 # 计算距离矩阵（非相似性矩阵）
 # Calculating Distance Matrix (Non-Similarity Matrix)
 brca.dist
@@ -400,7 +387,7 @@ Class]
 # Save to file
 write.csv
 (plotinfo,
-"output_PCA1_PCA2.csv"
+"output_PCoA1_PCoA2.csv"
 ,
 quote =
 F)
@@ -635,7 +622,7 @@ F)
 # Drawing
 pdf
 (
-"PoCA.pdf"
+"PCoA.pdf"
 ,
 width =
 5

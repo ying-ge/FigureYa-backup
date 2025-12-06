@@ -31,6 +31,16 @@ jobs:
           path: target-repo
           token: ${{ secrets.FIGUREYA2ACTION }}
 
+      - name: Clean Up Disk Space
+        run: |
+          # 清理不必要的文件以释放磁盘空间
+          sudo rm -rf /usr/share/dotnet
+          sudo rm -rf /opt/ghc
+          sudo rm -rf /usr/local/share/boost
+          sudo apt-get clean
+          sudo docker system prune -af
+          df -h
+
       - name: Determine Changed Folders
         id: changed
         run: |
@@ -72,9 +82,9 @@ jobs:
           # 使用已过滤好的 folder_list.txt（避免注释/空行）
           while read folder; do
             if [ -d "$folder" ]; then
-              echo "Copying $folder"
-              rm -rf ../target-repo/"$folder"
-              cp -r "$folder" ../target-repo/
+              echo "Syncing $folder"
+              # 使用 rsync 只同步变化的文件，节省空间和时间
+              rsync -av --delete "$folder/" ../target-repo/"$folder"/
             else
               echo "Warning: $folder not found"
             fi

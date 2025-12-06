@@ -8,7 +8,7 @@ Author(s)
 Reviewer(s)
 : Ying Ge, Yijing Chen
 Date
-: 2025-11-27
+: 2025-12-05
 1
 Academic Citation
 If you use this code in your work or research, we kindly request that
@@ -59,20 +59,40 @@ batch closer to each other, batch effect?
 4
 环境设置 Environment
 Setup
+# 安装依赖包
+# Install dependency packages
 source
 (
 "install_dependencies.R"
 )
-source
+# 检查R和ggplot2版本
+# Check R and ggplot2 versions
+cat
 (
-"ggord.R"
+"R version:"
+, R.version.string,
+"
+\n
+"
 )
-# from ggord packge, https://github.com/fawda123/ggord
-source
+cat
 (
-"geom_ord_ellipse.R"
+"ggplot2 version:"
+,
+as.character
+(
+packageVersion
+(
+"ggplot2"
+)),
+"
+\n
+"
 )
-# from gglayer package, https://github.com/GuangchuangYu/gglayer
+# 加载必要的包
+# Load necessary packages
+suppressPackageStartupMessages
+({
 library
 (ggplot2)
 # 强大的数据可视化工具 The powerful data visualization tool
@@ -82,6 +102,105 @@ library
 library
 (dplyr)
 # 数据处理 The data processing
+})
+# 加载自定义函数，添加错误处理
+# Load custom functions with error handling
+tryCatch
+({
+source
+(
+"ggord.R"
+)
+# from ggord packge, https://github.com/fawda123/ggord
+cat
+(
+"Successfully loaded ggord.R
+\n
+"
+)
+},
+error =
+function
+(e) {
+cat
+(
+"Error loading ggord.R:"
+, e
+$
+message,
+"
+\n
+"
+)
+stop
+(
+"Failed to load ggord.R"
+)
+})
+tryCatch
+({
+source
+(
+"geom_ord_ellipse.R"
+)
+# from gglayer package, https://github.com/GuangchuangYu/gglayer
+cat
+(
+"Successfully loaded geom_ord_ellipse.R
+\n
+"
+)
+},
+error =
+function
+(e) {
+cat
+(
+"Error loading geom_ord_ellipse.R:"
+, e
+$
+message,
+"
+\n
+"
+)
+stop
+(
+"Failed to load geom_ord_ellipse.R"
+)
+})
+# 检查关键函数是否存在
+# Check if key functions exist
+if
+(
+!
+exists
+(
+"ggord"
+)) {
+stop
+(
+"ggord function not found after loading ggord.R"
+)
+}
+if
+(
+!
+exists
+(
+"StatOrdEllipse"
+)) {
+stop
+(
+"StatOrdEllipse not found after loading geom_ord_ellipse.R"
+)
+}
+cat
+(
+"All dependencies loaded successfully!
+\n
+"
+)
 5
 输入数据 Input
 data
@@ -176,6 +295,24 @@ TRUE
 scale. =
 FALSE
 )
+head
+(pca.results
+$
+rotation[,
+1
+:
+3
+])
+#查看前3个主成分的基因载荷 #view the gene loadings of the first 3 principal components
+head
+(pca.results
+$
+x[,
+1
+:
+3
+])
+#查看前3个主成分的样本坐标 #view the sample coordinates of the first 3 principal components
 #定义足够多的颜色，用于展示分组
 #define enough colors for display groupings
 mycol
@@ -338,10 +475,109 @@ height =
 7.1.2
 箭头版 Arrowhead
 version
-#用ggord画基本PCA图和置信区间背景色
-#draw basic PCA plots and confidence interval background colors with ggord
+用箭头标出对 PCA贡献（载荷² × 对应特征值）最大的 N 个（这里以 3
+为例）基因，把抽象的降维结果转化为可解释的生物学故事。
+Use arrows to mark the top N (3 in this example) genes that
+contribute to PCA (loading² × corresponding eigenvalue), transforming
+abstract dimensionality reduction results into interpretable biological
+stories.
+topN
+<-
+3
+# 定义要标出的基因数量
+# 首先获取PCA解释的变异比例
+# First get the proportion of variance explained by PCA
+pca.pv
+<-
+summary
+(pca.results)
+$
+importance[
+2
+,]
+# 计算每个基因对前两个主成分的贡献度
+# Calculate the contribution of each gene to the first two principal components
+gene_contributions
+<-
+rowSums
+(
+abs
+(pca.results
+$
+rotation[,
+1
+:
+2
+])
+*
+pca.pv[
+1
+:
+2
+])
+# 按贡献度排序，选择Top N 个基因
+# Sort by contribution and select Top N genes
+top_genes
+<-
+names
+(
+sort
+(gene_contributions,
+decreasing =
+TRUE
+))[
+1
+:
+topN]
+cat
+(
+"Top N contributing genes:"
+,
+paste
+(top_genes,
+collapse =
+", "
+),
+"
+\n
+"
+)
+cat
+(
+"Gene contributions:"
+,
+round
+(
+sort
+(gene_contributions,
+decreasing =
+TRUE
+)[
+1
+:
+topN],
+3
+),
+"
+\n
+"
+)
+# 复制原始的PCA结果，但修改rotation只保留Top基因
+# Copy original PCA results, but modify rotation to keep only Top genes
+pca.results.top3
+<-
+pca.results
+pca.results.top3
+$
+rotation
+<-
+pca.results
+$
+rotation[top_genes,]
+# 使用修改后的PCA结果画图（主成分仍基于所有基因）
+# Use modified PCA results for plotting (principal components still based on all genes)
 ggord
-(pca.results,
+(pca.results.top3,
 grp_in =
 meta_df
 $
@@ -353,9 +589,6 @@ alpha =
 0.6
 ,
 #点和置信区间背景设为半透明，以凸显箭头和文字 the point and confidence interval backgrounds are set to semi-transparent to emphasize the arrows and the text
-#或者单独修改置信区间背景的透明度
-#or modify the transparency of the background of the confidence interval individually
-#alpha_el = 0.3,
 ellipse_pro =
 0.95
 ,
@@ -363,9 +596,6 @@ ellipse_pro =
 size =
 2
 ,
-#如果想用默认的颜色，就在下面这行前面加个#
-#if you want to use the default colors, put a # in front of the following line
-#cols = mycol[1:length(unique(meta_df$group))],
 arrow=
 0.2
 ,
@@ -388,6 +618,11 @@ theme
 panel.grid =
 element_blank
 ())
++
+ggtitle
+(
+"PCA with Top N Contributing Genes Highlighted"
+)
 +
 #用gglayer继续添加虚线的置信区间
 #continue to add dashed confidence intervals with gglayer
@@ -417,7 +652,6 @@ ellipse_pro =
 98
 ,
 #再画个.98的圆圈 draw another .98 circle
-#color='grey', #把这行注释掉，就是跟点一样的颜色 comment out this line, it's the same color as the dot
 size=
 0.5
 ,
@@ -428,7 +662,7 @@ lty=
 #save to pdf file
 ggsave
 (
-"PCA_arrow.pdf"
+"PCA_allgenes_topNarrows.pdf"
 ,
 width =
 6
@@ -456,14 +690,8 @@ pca.results
 $
 rotation
 pca.rotation
-pca.pv
-<-
-summary
-(pca.results)
-$
-importance[
-2
-,]
+# pca.pv 在上面已经定义过了
+# pca.pv was already defined above
 pca.pv
 调整数据结构，用于作图
 提取前两个主成分构建数据框，并增加分组信息列
@@ -1016,6 +1244,13 @@ height =
 4
 )
 8
+更新要点 Key points of
+update
+用箭头标出对 PCA 贡献（载荷² × 对应特征值）最大的 N 个（这里以 3
+为例）基因。
+Mark the top N (3 in this example) genes with arrows that contribute
+the most to PCA (loading² × corresponding eigenvalue).
+9
 Session Info
 sessionInfo
 ()
