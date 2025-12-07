@@ -15,7 +15,9 @@
       "Bash(Rscript:*)",
       "Bash(mkdir:*)",
       "Bash(pkill:*)",
-      "Bash(tar:*)"
+      "Bash(tar:*)",
+      "Bash(unzip:*)",
+      "Bash(timeout:*)"
     ],
     "deny": [],
     "ask": []

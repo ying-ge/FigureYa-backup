@@ -8,7 +8,7 @@ Author(s)
 Reviewer(s)
 : Ying Ge, Yijing Chen
 Date
-: 2025-12-05
+: 2025-12-06
 1
 Academic Citation
 If you use this code in your work or research, we kindly request that
@@ -59,40 +59,10 @@ batch closer to each other, batch effect?
 4
 环境设置 Environment
 Setup
-# 安装依赖包
-# Install dependency packages
 source
 (
 "install_dependencies.R"
 )
-# 检查R和ggplot2版本
-# Check R and ggplot2 versions
-cat
-(
-"R version:"
-, R.version.string,
-"
-\n
-"
-)
-cat
-(
-"ggplot2 version:"
-,
-as.character
-(
-packageVersion
-(
-"ggplot2"
-)),
-"
-\n
-"
-)
-# 加载必要的包
-# Load necessary packages
-suppressPackageStartupMessages
-({
 library
 (ggplot2)
 # 强大的数据可视化工具 The powerful data visualization tool
@@ -102,105 +72,28 @@ library
 library
 (dplyr)
 # 数据处理 The data processing
-})
-# 加载自定义函数，添加错误处理
-# Load custom functions with error handling
-tryCatch
-({
 source
 (
 "ggord.R"
 )
 # from ggord packge, https://github.com/fawda123/ggord
-cat
-(
-"Successfully loaded ggord.R
-\n
-"
-)
-},
-error =
-function
-(e) {
-cat
-(
-"Error loading ggord.R:"
-, e
-$
-message,
-"
-\n
-"
-)
-stop
-(
-"Failed to load ggord.R"
-)
-})
-tryCatch
-({
 source
 (
 "geom_ord_ellipse.R"
 )
 # from gglayer package, https://github.com/GuangchuangYu/gglayer
-cat
+Sys.setenv
 (
-"Successfully loaded geom_ord_ellipse.R
-\n
-"
+LANGUAGE =
+"en"
 )
-},
-error =
-function
-(e) {
-cat
+#显示英文报错信息 display English error messages
+options
 (
-"Error loading geom_ord_ellipse.R:"
-, e
-$
-message,
-"
-\n
-"
+stringsAsFactors =
+FALSE
 )
-stop
-(
-"Failed to load geom_ord_ellipse.R"
-)
-})
-# 检查关键函数是否存在
-# Check if key functions exist
-if
-(
-!
-exists
-(
-"ggord"
-)) {
-stop
-(
-"ggord function not found after loading ggord.R"
-)
-}
-if
-(
-!
-exists
-(
-"StatOrdEllipse"
-)) {
-stop
-(
-"StatOrdEllipse not found after loading geom_ord_ellipse.R"
-)
-}
-cat
-(
-"All dependencies loaded successfully!
-\n
-"
-)
+#禁止chr转成factor prohibit the conversion of chr to factor
 5
 输入数据 Input
 data

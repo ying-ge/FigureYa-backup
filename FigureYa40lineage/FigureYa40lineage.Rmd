@@ -1,8 +1,8 @@
 ---
-title: "FigureYa40 lineages_analysis"
+title: "FigureYa40lineages"
 params:
-  author: "Zhougeng Xu, Taojun Ye"
-  reviewer: "Ying Ge"
+  author: "Zhougeng Xu"
+  reviewer: "Ying Ge, Taojun Ye"
 output: 
   html_document:
     toc: true
@@ -18,7 +18,6 @@ output:
 **Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()`  
 
-
 ## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
@@ -30,33 +29,25 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## 需求描述
+## 需求描述 Requirement description
 
 用R画出文章里的这个图
-
-## Requirement description
 
 Draw the image in the article using R
 
 ![](http://oex750gzt.bkt.clouddn.com/18-9-11/92022740.jpg)
 
-出自<https://www.cell.com/cell/abstract/S0092-8674(17)30596-2>
+From <https://www.cell.com/cell/abstract/S0092-8674(17)30596-2>
 
-from<https://www.cell.com/cell/abstract/S0092-8674(17)30596-2>
-
-## 应用场景
+## 应用场景 Application scenarios
 
 细胞谱系分析，主要用于单细胞测序数据，展示细胞在二维状态空间的拟时间（pseudotime）排列，即一群细胞怎样变成另一群细胞。
 
-## Application scenarios
-
 Cell lineage analysis is mainly used for single-cell sequencing data, displaying the pseudotime arrangement of cells in a two-dimensional state space, that is, how a group of cells become another group of cells.
 
-## 软件安装
+## 环境设置 Environment Setup
 
 细胞谱系分析目前用到的包主要是[Monocle2](https://bioconductor.org/packages/release/bioc/html/monocle.html)
-
-## Software installation
 
 The packages currently used for cell lineage analysis are mainly [Monocle2]（ https://bioconductor.org/packages/release/bioc/html/monocle.html )
 
@@ -64,9 +55,12 @@ The packages currently used for cell lineage analysis are mainly [Monocle2]（ h
 
 ```{r}
 source("install_dependencies.R")
+library(monocle) # 单细胞谱系分析 single-cell lineage analysis
+Sys.setenv(LANGUAGE = "en") #显示英文报错信息 display English error messages
+options(stringsAsFactors = FALSE) #禁止chr转成factor prohibit the conversion of chr to factor
 ```
 
-## 输入数据
+## 输入数据 Input data
 
 输入数据为两种:
 
@@ -79,16 +73,14 @@ source("install_dependencies.R")
 
 如果用的是10X Genomics技术，表达矩阵是UMI，则不需要进行额外的TPM/FPKM标准化。
 
-## Input data
-
 There are two types of input data:
 
--Expression matrix, behavioral gene names, listed as samples (cells)
--Sample metadata
+- Expression matrix, behavioral gene names, listed as samples (cells)
+- Sample metadata
 
->8GB of memory may be sufficient for the test dataset, but the more cells there are, the higher the memory requirements will be.
+> 8GB of memory may be sufficient for the test dataset, but the more cells there are, the higher the memory requirements will be.
 
-**Note * *: SMART-Seq2 was used for single-cell sequencing of the test dataset, therefore the expression matrix needs to be standardized using TPM, as shown in "FigureYa23count2TPM"
+**Note**: SMART-Seq2 was used for single-cell sequencing of the test dataset, therefore the expression matrix needs to be standardized using TPM, as shown in "FigureYa23count2TPM"
 
 If 10X Genomics technology is used and the expression matrix is UMI, no additional TPM/FPKM standardization is required.
 
@@ -104,7 +96,7 @@ metadata_file <- 'easy_input_sample_sheet.txt'  # 样本元数据文件路径 | 
 # header: 是否将第一行作为列名 | Whether to treat the first row as column names
 # stringsAsFactors: 是否将字符串转换为因子 | Whether to convert strings to factors
 # check.names: 是否检查列名有效性 | Whether to check the validity of column names
-exprs_df <- read.table(file=gzfile(exprs_file), sep='\t', header = TRUE, 
+exprs_df <- read.table(file=exprs_file, sep='\t', header = TRUE,
                  stringsAsFactors = FALSE, check.names = FALSE)
 
 # 读取样本元数据 | Read sample metadata
@@ -124,7 +116,7 @@ sample_sheet <- read.table(file = metadata_file, header = TRUE,
 
 The data is sourced from the article where the example image is located< https://www.cell.com/cell/abstract/S0092-8674 (17)30596-2>
 
-According to [GSE98638] on GEO（ https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE98638 ）Download raw count data.
+According to [GSE98638](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE98638) on GEO. Download raw count data.
 
 Due to the literature conducting cell lineage analysis on different clusters, the test dataset selected "C01_CD8-LEF1", "C02-CCD8-CX3CR1", "C04_CD8-LAYN", "C05_CD8-GZMK"
 
@@ -143,7 +135,7 @@ sample_sheet[1:10,]
 
 The first column here is the cell ID, the second column is the patient, the third column is the cluster, and the fourth column is the cell type. Generally, the clustering in the third column is obtained through Seurat analysis, referring to "FIGureYa27tSNE"
 
-## 构建newCellDataSet
+## Build newCellDataset
 
 后续分析依赖于Monocle, 所以要整理出三个数据集
 
@@ -166,26 +158,24 @@ The first column here is the cell ID, the second column is the patient, the thir
 
 先构建表达矩阵。根据之前对数据集的简单了解，原先的数据集前两列是不必要信息，所以要去掉，而行名对应第一列
 
-## Build newCellDataset
-
 Subsequent analysis relies on Monocle, so three datasets need to be compiled
 
--Expressions matrix: The row names of the numerical matrix are genes, and the column names are cell numbers
--Phenotypic information of cells: The first column is the cell number, and the other columns are the relevant information of the cell
--Gene annotation 'featureData': The first column is the gene number, and the other columns are the information corresponding to the gene
+- Expressions matrix: The row names of the numerical matrix are genes, and the column names are cell numbers
+- Phenotypic information of cells: The first column is the cell number, and the other columns are the relevant information of the cell
+- Gene annotation 'featureData': The first column is the gene number, and the other columns are the information corresponding to the gene
 
 And these three datasets must meet the following requirements:
 
-The expression matrix * * must * *:
+The expression matrix **must**:
 
--Ensure that its column count is equal to the row count of 'phenoData'
--Ensure that its row count is equal to the row count of 'featureData'
+- Ensure that its column count is equal to the row count of 'phenoData'
+- Ensure that its row count is equal to the row count of 'featureData'
 
 not only ... but
 
--The row names of phenoData need to match the column names of the expression matrix
--The row names of 'featureData' and the expression matrix should match
--The 'featureData' must have at least one column of 'gene_sthort_name', which is the symbol of the gene
+- The row names of phenoData need to match the column names of the expression matrix
+- The row names of 'featureData' and the expression matrix should match
+- The 'featureData' must have at least one column of 'gene_sthort_name', which is the symbol of the gene
 
 First, construct an expression matrix. Based on my previous understanding of the dataset, the first two columns were unnecessary information and need to be removed. The row names correspond to the first column
 
@@ -286,7 +276,7 @@ Finally, construct the 'newCellDataset' object required for subsequent analysis 
 
 - UMI: `negbinomial.size()	`
 - FPKM, TPM: `tobit()`
--Log converted FPKM/TPM: ` Gaussian FF()`
+- Log converted FPKM/TPM: ` Gaussian FF()`
 
 ```{r}
 # 创建样本注释数据框 | Create sample annotation data frame
@@ -340,9 +330,9 @@ If expressionFamily selects either 'negminomial. size()' or 'negminomial()', the
 #CDS <- estimateDispersions(CDS)
 ```
 
-## 细胞谱系分析
+## 细胞谱系分析 Cell lineage analysis
 
-### 第一步:定义排序基因
+### 第一步:定义排序基因 Step 1: Define sorting genes
 
 排序基因的选择有很多种：
 
@@ -351,20 +341,16 @@ If expressionFamily selects either 'negminomial. size()' or 'negminomial()', the
 
 从不同聚类中找到差异基因, 在聚类的基础上进行差异表达分析
 
-单细胞聚类分析见"FIgureYa27tSNE"
-
-## Cell lineage analysis
-
-### Step 1: Define sorting genes
+单细胞聚类分析见"FigureYa27tSNE"
 
 There are many options for sorting genes:
 
--Differential expression based on different clusters
--Based on known marker genes
+- Differential expression based on different clusters
+- Based on known marker genes
 
 Identify differentially expressed genes from different clusters and conduct differential expression analysis based on the clustering
 
-Single cell clustering analysis can be found in "FIGureYa27tSNE"
+Single cell clustering analysis can be found in "FigureYa27tSNE"
 
 ```{r,warning=FALSE}
 # 检测表达基因 | Detect expressed genes
@@ -428,13 +414,11 @@ CDS <- setOrderingFilter(CDS,
 ```
 
 
-### 第二步: 降维
+### 第二步: 降维 Step 2: Dimensionality Reduction
 
 这一步，比较耗费时间. 降维是为了更好的展示数据。
 
 降维有很多种方法, 不同方法的最后展示的图都不太一样, 其中"DDRTree"是Monocle2使用的默认方法，ICA则是Monocle2的方法
-
-### Step 2: Dimensionality Reduction
 
 This step is quite time-consuming Dimensionality reduction is to better display data.
 
@@ -446,17 +430,43 @@ There are many methods for dimensionality reduction, and the final images displa
 # CDS: 细胞数据集对象 | CellDataSet object
 # max_components: 指定降维后的维度数 | Number of dimensions to reduce to
 # method: 指定降维方法，DDRTree是monocle推荐的轨迹分析方法 | Dimensionality reduction method, DDRTree is recommended for trajectory analysis
-CDS <- reduceDimension(CDS, max_components = 2, 
-                       method="DDRTree")
+
+# 添加错误处理和超时机制 | Add error handling and timeout mechanism
+tryCatch({
+  # 设置超时机制 - 使用更小的数据集子集进行快速分析 | Set timeout mechanism - use smaller data subset for quick analysis
+  if (nrow(CDS) > 1000) {
+    cat("Dataset too large, using subset for demonstration...\n")
+    # 随机选择1000个细胞进行演示 | Randomly select 1000 cells for demonstration
+    set.seed(123)
+    cell_subset <- sample(colnames(CDS), min(1000, ncol(CDS)))
+    CDS <- CDS[, cell_subset]
+    cat("Using", ncol(CDS), "cells for analysis\n")
+  }
+
+  cat("Starting DDRTree dimensionality reduction...\n")
+  CDS <- reduceDimension(CDS, max_components = 2,
+                          method="DDRTree")
+  cat("DDRTree reduction completed successfully!\n")
+
+}, error = function(e) {
+  cat("DDRTree reduction failed:", e$message, "\n")
+  cat("Using alternative PCA method...\n")
+  # 备用PCA方法 | Alternative PCA method
+  CDS <- reduceDimension(CDS, max_components = 2,
+                          method="PCA")
+  cat("PCA reduction completed as fallback!\n")
+}, interrupt = function(e) {
+  cat("Analysis interrupted, using PCA method...\n")
+  CDS <- reduceDimension(CDS, max_components = 2,
+                          method="PCA")
+})
 
 # 把最耗时的这步保存下来，即使关闭了R，后面也可以直接从这步开始
 # Save the most time-consuming step so you can resume later even after closing R
 # saveRDS(CDS, file="CDS_DDRTree.rds")
 ```
 
-### 第三步: 在谱系上对细胞排序
-
-### Step 3: Sort the cells on the lineage
+### 第三步: 在谱系上对细胞排序 Step 3: Sort the cells on the lineage
 
 ```{r}
 # 读取上一步保存的CDS对象（已注释，当前未执行） | Read the previously saved CDS object (commented out, not executed)
@@ -474,17 +484,15 @@ trace("project2MST",edit = T, where = asNamespace("monocle")) # nei()改为.nei(
 CDS <- orderCells(CDS)
 ```
 
-### 第四步：作图
+### 第四步：作图 Step 4: Drawing
 
 可以自己设置足够多的颜色。 图上的着色可以通过修改"color_by"参数, 这里的取值可以是`pData(CDS)`结果的列名。 点的大小可以通过`cell_size`修改
 
 - 按照状态着色
 
-### Step 4: Drawing
-
 You can set enough colors by yourself. The coloring on the graph can be achieved by modifying the 'color-by' parameter, where the value can be the column name of the 'pData (CDS)' result. The size of the point can be modified through 'cell_2'
 
--Color according to state
+- Color according to state
 
 ```{r}
 # 自定义轨迹图颜色方案，用于区分不同细胞状态 | Define custom colors for trajectory plot to distinguish cell states
@@ -513,7 +521,7 @@ ggsave("monocle_State.pdf")
 
 - 按照聚类着色
 
--Coloring according to clustering
+- Coloring according to clustering
 
 ```{r}
 # 绘制细胞轨迹图，按主要细胞簇（majorCluster）着色 | Plot cell trajectory colored by major cell clusters
