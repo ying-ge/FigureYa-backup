@@ -93,8 +93,8 @@ Or instead of using expression grouping, use known subtypes (obtained by cluster
 
 ```{r}
 source("install_dependencies.R")
-library("survival")
-library("survminer")
+library("survival") # survival analysis
+library("survminer") # survival curve plotting
 
 Sys.setenv(LANGUAGE = "en") #显示英文报错信息 display English error messages
 options(stringsAsFactors = FALSE) #禁止chr转成factor prohibit the conversion of chr to factor

@@ -1,7 +1,8 @@
 ---
 title: "FigureYa35batch_bestSeparationV3_update"
 params:
-  author: "Hao Li, Xiaofan Lu; Ying Ge, Yijing Chen"
+  author: "Hao Li, Xiaofan Lu"
+  reviewer: "Ying Ge, Yijing Chen"
 output: 
   html_document:
     toc: true
@@ -14,8 +15,8 @@ output:
 ---
 
 **Author(s)**: `r params$author`  
+**Reviewer(s)**: `r params$reviewer`
 **Date**: `r Sys.Date()`  
-
 
 ## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
@@ -26,7 +27,7 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# 需求描述 Requirement Description
+## 需求描述 Requirement Description
 
 需求一：批量画生存分析Best separation的图，所有基因保存到一个文件，或每个基因1个文件。
 
@@ -46,11 +47,9 @@ Requirement 2: Figure A is the survival curve drawn with cutoff grouping, I also
 
 ![](example.png)
 
-出自<https://www.frontiersin.org/articles/10.3389/fonc.2019.00488/full>
+From <https://www.frontiersin.org/articles/10.3389/fonc.2019.00488/full>
 
-from<https://www.frontiersin.org/articles/10.3389/fonc.2019.00488/full>
-
-# 使用场景 Usage Scenario
+## 使用场景 Usage Scenario
 
 在展示基因表达水平（连续变量）对生存期的影响时找到最佳分组，多个基因，一次出图
 
@@ -60,19 +59,17 @@ Find the best grouping when showing the effect of gene expression levels (contin
 
 Later, you can take the `FigureYa36 two-factor survival analysis` to compare the effect of the combination of high and low levels of two genes on the prognosis.
 
-# 环境设置 Environment Setting
+## 环境设置 Environment Setting
 
 ```{r}
 source("install_dependencies.R")
-
-library(survival)
-library(survminer)
-
+library(survival) # 生存分析 survival analysis
+library(survminer) # 生存曲线绘图 survival curve plotting
 Sys.setenv(LANGUAGE = "en") #显示英文报错信息 display English error messages
 options(stringsAsFactors = FALSE) #禁止chr转成factor prohibit the conversion of chr to factor
 ```
 
-# 输入数据 Input Data
+## 输入数据 Input Data
 
 第一列是生存时间、第二列是追踪情况、第三列以后是基因表达水平
 
@@ -85,8 +82,7 @@ dim(svdata)
 head(svdata[1:3,1:6])
 ```
 
-# 数据预处理
-# Data preprocessing
+## 数据预处理 Data preprocessing
 
 找best separation用的是survminer的函数，避免无法切分数据集的情况，添加了`4和5`
 
@@ -134,8 +130,7 @@ res.cut <- surv_cutpoint(svdata, time = "futime",
 res.cat <- surv_categorize(res.cut)
 ```
 
-# 统计作图
-# Statistical graphing
+## 统计作图 Statistical graphing
 
 写循环画生存曲线和事件发生率曲线。
 
@@ -254,8 +249,7 @@ length(pl)
 write.csv(ptable, "pvalue_output.csv", quote = F, row.names = F)
 ```
 
-# 批量出图
-# Batch plot
+## 批量出图 Batch plot
 
 用survminer包自带的函数组图
 

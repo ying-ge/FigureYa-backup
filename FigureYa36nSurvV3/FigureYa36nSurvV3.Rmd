@@ -1,7 +1,8 @@
 ---
 title: "FigureYa36双因子生存分析v3"
 params:
-  author: "Guoshuang Feng; Ying Ge, Yijing Chen"
+  author: "Guoshuang Feng"
+  reviewer: "Ying Ge, Yijing Chen"
 output: 
   html_document:
     toc: true
@@ -14,20 +15,19 @@ output:
 ---
 
 **Author(s)**: `r params$author`  
+**Reviewer(s)**: `r params$reviewer`
 **Date**: `r Sys.Date()`  
-
 
 ## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
 
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# 需求描述 Requirement Description
+## 需求描述 Requirement Description
 
 用R画出paper里的双因子生存分析图，计算p value。
 
@@ -35,27 +35,21 @@ Use R to draw the two-factor survival analysis plot from the paper and calculate
 
 ![](example1.jpg)
 
-出自<https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3282708/>
-
-图 4. 使用DE和HE表达水平组合的总生存率曲线。单变量Cox回归用于确定HR；报告的是对数检验p值；配对比较的Bonferroni多重检验调整 p = 0.05/5 = 0.01。DE：恶性上皮组织中的Decorin 染色。上皮组织中的Decorin染色。HE：恶性上皮组织中的HSP90B1染色。HR：危险比
-
-另外，小伙伴用到这个FigureYa发表了文章，供参考：
-
-from<https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3282708/>
+From <https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3282708/>
 
 Figure 4. Overall survival curves using combinations of DE and HE expression levels. Univariate Cox regression used to determine HR;
 logrank p-values reported; Bonferroni multiple testing adjustment for pairwise comparisons p = 0.05/5 = 0.01. DE: Decorin staining in malignant
 epithelial tissue. HE: HSP90B1 staining in malignant epithelial tissue. HR: Hazard ratio
 
+另外，小伙伴用到这个FigureYa发表了文章，供参考：
+
 Additionally, a colleague used this FigureYa to publish an article for reference:
 
 ![](example2.png){width=300px}")
 
-出自<https://molecular-cancer.biomedcentral.com/articles/10.1186/s12943-020-01170-0>
+From <https://molecular-cancer.biomedcentral.com/articles/10.1186/s12943-020-01170-0>
 
-from<https://molecular-cancer.biomedcentral.com/articles/10.1186/s12943-020-01170-0>
-
-# 应用场景 Application Scenario
+## 应用场景 Application Scenario
 
 对比两个因素对生存的影响。
 
@@ -65,27 +59,17 @@ Compare the effects of two factors on survival.
 
 For example, does high expression of both genes A and B result in longer survival compared to low expression of both genes A and B?
 
-# 环境设置 Environment Setting
-
-
-use the domestic mirror installation package
+## 环境设置 Environment Setting
 
 ```{r}
 source("install_dependencies.R")
-```
-
-
-load package
-
-```{r}
 library(survival)
 library(survminer)
 Sys.setenv(LANGUAGE = "en") #显示英文报错信息 display English error messages
 options(stringsAsFactors = FALSE) #禁止chr转成factor prohibit the conversion of chr to factor
 ```
 
-# 输入文件
-# Input file
+## 输入文件 Input file
 
 至少包含5列：依次是sample名字、Time、Death、第一个基因的表达量（基因名作为列名）、第二个基因的表达量（基因名作为列名）。**顺序不要变**
 
@@ -100,8 +84,7 @@ df <- read.csv("easy_input.csv",row.names = 1)
 head(df)
 ```
 
-# 基因表达量高低的划分
-# Classification of gene expression levels low and high
+## 基因表达量高低的划分 Classification of gene expression levels low and high
 
 这里提供两种方法划分基因表达水平的low和high：
 
@@ -143,8 +126,7 @@ head(df)
 df$group <- df$medGroup
 ```
 
-# 统计运算
-# Statistical operations
+## 统计运算 Statistical operations
 
 ```{r}
 #定义结局变量，生存时间和结局
@@ -184,7 +166,7 @@ hr <- round(coef(summary(coxph.fit))[,2],3)
 HR <- c(1,as.vector(unlist(hr)))
 ```
 
-# 开始画图 Start Drawing
+## 开始画图 Start Drawing
 
 右上角的图例有时会跟曲线重叠，因此，我们把图例画到图右侧。
 
@@ -235,8 +217,7 @@ legend("topright",
 dev.off()
 ```
 
-# 对比两种方法的效果
-# Compare the effects of the two methods
+## 对比两种方法的效果 Compare the effects of the two methods
 
 用FigureYa35找到最佳分组的分界表达量划分low与high
 
