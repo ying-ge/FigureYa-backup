@@ -1,5 +1,5 @@
 ---
-title: "FigureYa36双因子生存分析v3"
+title: "FigureYa36nSurvV3"
 params:
   author: "Guoshuang Feng"
   reviewer: "Ying Ge, Yijing Chen"
@@ -15,7 +15,7 @@ output:
 ---
 
 **Author(s)**: `r params$author`  
-**Reviewer(s)**: `r params$reviewer`
+**Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()`  
 
 ## Academic Citation
@@ -41,11 +41,7 @@ Figure 4. Overall survival curves using combinations of DE and HE expression lev
 logrank p-values reported; Bonferroni multiple testing adjustment for pairwise comparisons p = 0.05/5 = 0.01. DE: Decorin staining in malignant
 epithelial tissue. HE: HSP90B1 staining in malignant epithelial tissue. HR: Hazard ratio
 
-另外，小伙伴用到这个FigureYa发表了文章，供参考：
-
-Additionally, a colleague used this FigureYa to publish an article for reference:
-
-![](example2.png){width=300px}")
+![](example2.png){width=300px}
 
 From <https://molecular-cancer.biomedcentral.com/articles/10.1186/s12943-020-01170-0>
 
@@ -63,8 +59,8 @@ For example, does high expression of both genes A and B result in longer surviva
 
 ```{r}
 source("install_dependencies.R")
-library(survival)
-library(survminer)
+library(survival) # 生存分析 survival analysis
+library(survminer) # 生存曲线绘制 survival curve plotting
 Sys.setenv(LANGUAGE = "en") #显示英文报错信息 display English error messages
 options(stringsAsFactors = FALSE) #禁止chr转成factor prohibit the conversion of chr to factor
 ```
