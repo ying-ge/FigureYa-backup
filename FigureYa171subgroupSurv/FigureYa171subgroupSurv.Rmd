@@ -45,7 +45,7 @@ Figure 7. Subgroup analyses revealed by Kaplan-Meier survival curve. (A) Stratif
 
 本质上就是每次按条件筛选数据，然后做生存分析。
 
-你可能还想看这篇： 8秒完成2万个基因的生存分析，人人都可以！ <https://mp.weixin.qq.com/s/o4e1HzG4zPIQoGT6-7D0ug>
+你可能还想看这篇：8秒完成2万个基因的生存分析，人人都可以！ <https://mp.weixin.qq.com/s/o4e1HzG4zPIQoGT6-7D0ug>
 
 Essentially, we filter the data by condition each time and then perform a survival analysis.
 

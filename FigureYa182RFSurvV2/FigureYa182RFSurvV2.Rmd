@@ -27,38 +27,31 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# 需求描述
-
-# Requirement
+## 需求描述 Requirement
 
 根据随机生存森林分析进一步筛选并优化变量，从而达到降维的功能，完成Figure5的作图
+
 Based on the random survival forest analysis, further screen and optimize the variables to achieve the function of dimensionality reduction and complete the plotting of Figure5
 
 ![](example.png)
 
-出自<https://www.frontiersin.org/articles/10.3389/fonc.2020.00595/full>
-fromhttps://www.frontiersin.org/articles/10.3389/fonc.2020.00595/full
+From <https://www.frontiersin.org/articles/10.3389/fonc.2020.00595/full>
 
 FIGURE 5 | (A) Error rate for the data as a function of the classification tree; (B) out-of-bag importance values for the predictors.
 
-# 应用场景
-
-# Application Scenarios
+## 应用场景 Application Scenarios
 
 使用随机森林对生存数据降维，根据变量重要性排序并筛选基因组成prognostic signature
+
 The survival data was dimensionally reduced using random forest, and the prognostic signature of genetic composition was sorted and screened according to the importance of variables
 
-# 环境设置
-
-# Environment Setup
+## 环境设置 Environment Setup
 
 ```{r}
 source("install_dependencies.R")
-
-library(survival)
-library(randomForestSRC)
-library(randomSurvivalForest)
-
+library(survival) # 生存分析包  # Survival analysis package
+library(randomForestSRC) # 随机森林包  # Random forest package
+library(randomSurvivalForest) # 随机森林包  # Random forest package
 Sys.setenv(LANGUAGE = "en") #显示英文报错信息  # Display an English error message
 options(stringsAsFactors = FALSE) #禁止chr转成factor  # prohibit chr from being converted to factor
 ```
@@ -80,14 +73,14 @@ display.progress = function (index, totalN, breakN=20) {
 # range01 <- function(x){(x-min(x))/(max(x)-min(x))}
 ```
 
-# 输入文件
-
-# Input File
+## 输入文件 Input File
 
 easy_input_expr.csv，表达矩阵。
-easy_input_expr.csv, expressing matrix.
 
 easy_input_cli.csv，临床信息。这两个文件跟FigureYa128Prognostic的一样，可以对比感受一下筛选效果。
+
+easy_input_expr.csv, expressing matrix.
+
 easy_input_cli.csv, clinical information. These two documents are the same as those in FigureYa128Prognostic. You can compare them to get a sense of the screening effect.
 
 ```{r}
@@ -108,14 +101,14 @@ exp <- exp[rowSums(exp) > 0,]
 exp <- log2(exp + 1)
 ```
 
-# 单变量cox模型筛选预后基因
-
-# Univariate cox model for screening prognostic genes
+## 单变量cox模型筛选预后基因 Univariate cox model for screening prognostic genes
 
 理论上表达谱会优先进行一些筛选，如原文使用单变量cox模型筛选预后基因(P < 0.01)。
-Theoretically, the expression profile would prioritize some screenings, such as the original text using a univariate cox model to screen prognostic genes (P < 0.01).
 
 这步运行时间稍长，我这里运行不到10min。
+
+Theoretically, the expression profile would prioritize some screenings, such as the original text using a univariate cox model to screen prognostic genes (P < 0.01).
+
 This step takes a bit longer to run. I run it for less than 10 minutes here.
 
 ```{r}
@@ -153,9 +146,7 @@ head(Coxoutput.OS)
 write.csv(Coxoutput.OS,"univariate cox regression for gene filtering.csv",row.names = F,quote = F)
 ```
 
-# 随机森林进一步降维
-
-# The random forest further reduces dimensions
+## 随机森林进一步降维 The random forest further reduces dimensions
 
 ```{r}
 gene.sel <- Coxoutput.OS[which(Coxoutput.OS$pvalue < cox.pcutoff),"gene"]
@@ -169,13 +160,9 @@ surv.rf <- randomSurvivalForest::rsf(Surv(OS.time, OS) ~ .,
                                      seed = 12345678)
 ```
 
-# 开始画图
+## 开始画图 Start drawing
 
-# Start drawing
-
-## 用包里自带的函数直接出图
-
-## Use the built-in functions in the package to directly generate the graph
+### 用包里自带的函数直接出图 Use the built-in functions in the package to directly generate the graph
 
 ```{r, fig.height=12, fig.width=12}
 pdf("error rate and importance derived from package.pdf",width = 12,height = 12)
@@ -183,9 +170,7 @@ randomSurvivalForest::plot.error(surv.rf)
 dev.off()
 ```
 
-## 自定义画图
-
-## Custom drawing
+### 自定义画图 Custom drawing
 
 ```{r}
 # 图1. 错误率
