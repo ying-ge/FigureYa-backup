@@ -2,6 +2,7 @@
 title: "FigureYa221tenFoldRF"
 params:
   author: "Xiaofan Lu"
+  reviewer: "Ying Ge"
 output: 
   html_document:
     toc: true
@@ -14,8 +15,8 @@ output:
 ---
 
 **Author(s)**: `r params$author`  
+**Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()`  
-
 
 ## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
