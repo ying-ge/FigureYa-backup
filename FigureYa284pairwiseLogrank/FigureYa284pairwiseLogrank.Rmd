@@ -1,8 +1,8 @@
 ---
 title: "FigureYa284pairwiseLogrank"
 params:
-  author: "Xiaofan Lu; Yasi Zhang"  
-  reviewer: "Ying Ge"
+  author: "Xiaofan Lu"  
+  reviewer: "Ying Ge, Yasi Zhang"
 output: 
   html_document:
     toc: true
@@ -21,15 +21,17 @@ output:
 ## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
-Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
+- Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
 
+If you use MOVICS in published research, please cite:
+
+- Xiaofan Lu, Jialin Meng, Yujie Zhou, Liyun Jiang, Fangrong Yan, MOVICS: an R package for multi-omics integration and visualization in cancer subtyping, Bioinformatics, Volume 36, Issue 22-23, December 2020, Pages 5539–5541, https://doi.org/10.1093/bioinformatics/btaa1018
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# 需求描述
-# Requirements Description
+## 需求描述 Requirements Description
 
 希望画出文章里面Figure2的a。
 
@@ -37,17 +39,12 @@ We hope to draw a in Figure2 of the article.
 
 ![](example.png)
 
-出自<https://www.nature.com/articles/s41586-019-1906-8>
-
-图2 | SICs和B细胞对STS患者生存期的预测价值
-b，多变量Cox比例风险回归分析结果，展示所有纳入分析的变量。各变量的参照水平均为首个分组。灰色条形表示P>0.05；绿色和红色条形分别表示该变量在多变量模型中与预后呈显著正相关和负相关。误差线代表95%置信区间。FNCLCC为法国国家抗癌中心联盟的缩写。
-
-Source: <https://www.nature.com/articles/s41586-019-1906-8>
+From <https://www.nature.com/articles/s41586-019-1906-8>
 
 Fig. 2 | SICs and B cells are predictive of the survival of patients with STS. 
 b, Multivariate Cox proportional regression outcome, with all included variables represented. For each variable, the reference level is the first one. A grey bar indicates P > 0.05; and variables indicated by green and red bars are positively and negatively, respectively, significantly associated with prognosis in this multivariate model. Error bars represent the 95% confidence interval. FNCLCC, Fédération Nationale des Centres de Lutte Contrele Cancer.
 
-# 应用场景 Application Scenario
+## 应用场景 Application Scenario
 
 对3组及以上的亚组进行生存分析，并打印配对比较的统计表格。
 
@@ -57,25 +54,15 @@ Survival analysis for 3+ subgroups with pairwise comparison statistics table.
 
 Reference: compSurv() function from MOVICS package <https://github.com/xlucpu/MOVICS/blob/master/R/compSurv.R>
 
-# 环境设置 Environment Setup
-
-
-Using domestic mirrors for package installation.
+## 环境设置 Environment Setup
 
 ```{r}
 source("install_dependencies.R")
-
-```
-
-# 加载包
-# Loading packages
-
-```{r}
-library(survival)
-library(survminer)
-library(RColorBrewer)
-library(tibble)
-library(ggpp)
+library(survival) # 生存分析 survival analysis
+library(survminer) # 生存曲线绘制 survival curve plotting
+library(RColorBrewer) # 颜色调色板 color palettes
+library(tibble) # 数据框增强 enhanced data frames
+library(ggpp) # ggplot2扩展 ggplot2 extensions
 
 # 显示英文报错信息
 # Show English error messages
@@ -86,8 +73,7 @@ Sys.setenv(LANGUAGE = "en")
 options(stringsAsFactors = FALSE) 
 ```
 
-# 输入文件
-# Input Files
+## 输入文件 Input Files
 
 easy_input.csv，生存和分组信息，这里是乳腺癌数据。
 
@@ -99,8 +85,7 @@ easy_input.csv containing survival and grouping information (breast cancer data)
 dat <- read.table("easy_input.txt",sep = "\t",row.names = 1,check.names = F,stringsAsFactors = F,header = T)
 ```
 
-# 生存分析
-# Survival Analysis
+## 生存分析 Survival Analysis
 
 ```{r}
 # 仿照原文将PAM50分型按照ABCDE标记
@@ -140,8 +125,8 @@ ps <- pairwise_survdiff(Surv(OS.time, OS)~ group,
                         p.adjust.method = "none") 
 ```
 
-# 开始画图
-# Start Plotting
+## 开始画图 Start Plotting
+
 ```{r fig.width=6, fig.height=8}
 # 设置颜色
 # Set colors
@@ -217,11 +202,8 @@ print(p)
 dev.off()
 ```
 
-# 会话信息
 ## Session Info
 
 ```{r}
-# 显示会话信息
-# Show session information
 sessionInfo()
 ```
