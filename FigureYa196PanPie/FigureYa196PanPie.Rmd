@@ -2,7 +2,7 @@
 title: "FigureYa196PanPie"
 params:
   author: "Xiaofan Lu"
-  reviewers: Ying Ge,Hui Huang
+  reviewers: "Ying Ge,Hui Huang"
 output: 
   html_document:
     toc: true

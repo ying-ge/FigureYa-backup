@@ -1,36 +1,36 @@
-# install_dependencies.R - 修复后的纯 R 版本
+# install_dependencies.R - Dependency installation script for FigureYa197SmoothHaz
 
 cat("===========================================\n")
-cat("安装 FigureYa197SmoothHaz.Rmd 所需依赖\n")
+cat("Installing dependencies for FigureYa197SmoothHaz.Rmd\n")
 cat("===========================================\n")
 
-# 设置镜像
+# Set CRAN mirror
 options(repos = c(CRAN = "https://cloud.r-project.org/"))
 
-# 检查包是否已安装
+# Check if package is installed
 is_package_installed <- function(package_name) {
   package_name %in% rownames(installed.packages())
 }
 
-# 安装函数
+# Installation function
 install_if_needed <- function(pkg) {
   if (!is_package_installed(pkg)) {
-    cat("安装:", pkg, "\n")
+    cat("Installing:", pkg, "\n")
     tryCatch({
       install.packages(pkg, dependencies = TRUE, quiet = TRUE)
-      cat("✅ 成功安装:", pkg, "\n")
+      cat("Successfully installed:", pkg, "\n")
     }, error = function(e) {
-      cat("❌ 安装失败:", pkg, "-", e$message, "\n")
+      cat("Installation failed:", pkg, "-", e$message, "\n")
     })
   } else {
-    cat("✅ 已安装:", pkg, "\n")
+    cat("Already installed:", pkg, "\n")
   }
 }
 
-# 安装核心包
-cat("安装核心包...\n")
+# Install core packages
+cat("Installing core packages...\n")
 core_packages <- c(
-  "cowplot", "dplyr", "ggplot2", "muhaz", 
+  "cowplot", "dplyr", "ggplot2", "muhaz",
   "openxlsx", "survival", "survminer", "remotes",
   "Rttf2pt1", "extrafontdb"
 )
@@ -39,51 +39,64 @@ for (pkg in core_packages) {
   install_if_needed(pkg)
 }
 
-# 特殊处理 extrafont
-cat("处理 extrafont...\n")
+# Special handling for extrafont
+cat("Handling extrafont...\n")
 if (!is_package_installed("extrafont")) {
-  # 尝试从 CRAN 安装
+  # Try installing from CRAN
   install_if_needed("extrafont")
-  
-  # 如果失败，尝试其他方法
+
+  # If failed, try alternative methods
   if (!is_package_installed("extrafont")) {
-    cat("尝试替代方法安装 extrafont...\n")
+    cat("Trying alternative method to install extrafont...\n")
     tryCatch({
       remotes::install_version("extrafont", version = "0.19")
     }, error = function(e) {
-      cat("版本安装失败，尝试从 GitHub 安装...\n")
+      cat("Version installation failed, trying GitHub installation...\n")
       remotes::install_github("wch/extrafont")
     })
   }
 }
 
-# 验证安装
-cat("验证安装...\n")
+# Verify installation
+cat("Verifying installation...\n")
 required <- c("survival", "survminer", "muhaz", "ggplot2", "extrafont")
 for (pkg in required) {
   if (is_package_installed(pkg)) {
-    cat("✅", pkg, "安装成功\n")
+    cat("OK:", pkg, "installed successfully\n")
   } else {
-    cat("❌", pkg, "安装失败\n")
+    cat("FAIL:", pkg, "installation failed\n")
   }
 }
 
-# 初始化字体（如果安装成功）
+# Initialize fonts (if installed successfully)
 if (is_package_installed("extrafont")) {
-  cat("初始化字体系统...\n")
+  cat("Initializing font system...\n")
   library(extrafont)
   tryCatch({
+    # Import system fonts (Arial and Helvetica only)
     if (length(fonts()) == 0) {
-      cat("导入字体（可能需要几分钟）...\n")
+      cat("Importing Arial and Helvetica fonts (may take a few minutes)...\n")
       font_import(prompt = FALSE)
+    } else {
+      # Import only Arial and Helvetica if fonts already exist
+      cat("Importing Arial and Helvetica fonts...\n")
+      font_import(pattern = "Arial", prompt = FALSE)
+      font_import(pattern = "Helvetica", prompt = FALSE)
     }
-    loadfonts(quiet = TRUE)
-    cat("字体初始化完成\n")
+
+    # Load fonts for PDF device
+    loadfonts(device = "pdf", quiet = TRUE)
+
+    # Verify fonts are registered
+    cat("Available fonts:\n")
+    print(fonttable()[fonttable()$FamilyName %in% c("Arial", "Helvetica"), ])
+
+    cat("Font initialization completed\n")
   }, error = function(e) {
-    cat("字体初始化失败:", e$message, "\n")
+    cat("Font initialization failed:", e$message, "\n")
   })
 }
 
 cat("===========================================\n")
-cat("安装完成！\n")
+cat("Installation completed!\n")
 cat("===========================================\n")

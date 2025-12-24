@@ -17,7 +17,8 @@
       "Bash(pkill:*)",
       "Bash(tar:*)",
       "Bash(unzip:*)",
-      "Bash(timeout:*)"
+      "Bash(timeout:*)",
+      "Bash(fc-list:*)"
     ],
     "deny": [],
     "ask": []
