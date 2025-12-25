@@ -27,54 +27,49 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# 需求描述
-
-# Requirement
+## 需求描述 Requirement
 
 画swimmer plot，草图如下：
+
 Draw the swimmer plot. The sketch is as follows:
 
 ![](draft.png)
 
 类似的文章里的图
+
 Similar pictures in articles
 
 ![](example.png)
 
-出自<https://ascopubs.org/doi/full/10.1200/JCO.2017.76.9901>
-fromhttps://ascopubs.org/doi/full/10.1200/JCO.2017.76.9901
+From <https://ascopubs.org/doi/full/10.1200/JCO.2017.76.9901>
 
-# 应用场景
-
-# Application Scenarios
+## 应用场景 Application Scenarios
 
 根据预后或治疗特点绘制带有记号的时间柱状图。
-Draw a marked time bar chart based on prognosis or treatment characteristics.
 
 通常跟waterfall plot一起用，画法可参考FigureYa39bar。
+
+这里用base plot画，你也可以尝试用ggplot2来画。
+
+Draw a marked time bar chart based on prognosis or treatment characteristics.
+
 It is usually used in conjunction with waterfall plot. For the drawing method, you can refer to FigureYa39bar.
 
-这里用base plot画，还可以尝试用ggplot2来画。
 Here it is drawn using base plot. You can also try to draw it using ggplot2.
 
-# 环境设置
-
-# Environment Setup
+## 环境设置 Environment Setup
 
 ```{r}
 source("install_dependencies.R")
-
 library(shape) #用于画箭头 # For drawing arrows
-
 Sys.setenv(LANGUAGE = "en") #显示英文报错信息  # displays an English error message
 options(stringsAsFactors = FALSE) #禁止chr转成factor  # prohibit chr from being converted to factor
 ```
 
-# 输入文件
-
-# Input File
+## 输入文件 Input File
 
 easy_input.csv，每行一个patient，至少包含三列时间，及其对应的状态。
+
 easy_input.csv, one patient per row, containing at least three columns of time and their corresponding status.
 
 ```{r}
@@ -88,25 +83,24 @@ head(dat)
 dat <- dat[order(dat$OS.time,decreasing = F),]
 ```
 
-# 开始画图
-
-# Start drawing
+## 开始画图 Start drawing
 
 选择哪些配色，特殊符号选什么形状（用?pch查看可选的形状），全凭个人/期刊的喜好了。看注释调整参数，就可以修改成自己喜欢的样子。
-Which color schemes should be chosen? What shapes should be selected for special symbols? It all depends on personal or journal preferences to view the optional shapes on pch. By referring to the annotations and adjusting the parameters, you can modify it to the way you like.
 
 这里分别以需求者提供的草图和例文example为例。**两者主要区别**在于细节的参数调整：坐标轴、颜色、线条粗细、特殊符号的形状，以及特殊符号跟bar之间的间距。
-Here, we take the sketch and the example provided by the demander as examples respectively. The main difference between the two lies in the adjustment of detailed parameters: coordinate axes, color, line thickness, the shape of special symbols, and the distance between special symbols and the bar.
 
 用base plot来画图，优点是自由，想画啥就画啥。
+
+Which color schemes should be chosen? What shapes should be selected for special symbols? It all depends on personal or journal preferences to view the optional shapes on pch. By referring to the annotations and adjusting the parameters, you can modify it to the way you like.
+
+Here, we take the sketch and the example provided by the demander as examples respectively. The main difference between the two lies in the adjustment of detailed parameters: coordinate axes, color, line thickness, the shape of special symbols, and the distance between special symbols and the bar.
+
 Using base plot to draw graphs has the advantage of freedom. You can draw whatever you want.
 
 > 如果你想分段运行，就从plot开始到你要看的代码为止来运行。一定要从plot开始。
 > If you want to run it in segments, run it from plot to the code you want to view. Be sure to start with plot.
 
-## 按需求者提供的草图draft来画
-
-## Draw according to the draft provided by the demander
+### 按需求者提供的草图draft来画 Draw according to the draft provided by the demander
 
 ```{r}
 # 设置颜色
@@ -195,9 +189,7 @@ text(26,1.5,"Missing",pos = 4)
 dev.copy2pdf(file = "swimmer_draft.pdf",width = 6,height = 3)
 ```
 
-## 按例文example来画
-
-## Draw according to the example text
+### 按例文example来画 Draw according to the example text
 
 ```{r}
 # 设置颜色
