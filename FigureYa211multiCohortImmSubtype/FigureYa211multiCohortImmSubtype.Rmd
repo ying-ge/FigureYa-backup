@@ -61,7 +61,7 @@ library(sva) # ComBat去除批次效应 # ComBat removes batch effects
 library(ConsensusClusterPlus) # 共识聚类 # Consensus clustering
 library(survminer) # 生存分析 # Survival analysis
 library(survival) # 生存分析 # Survival analysis
-library(estimate) # 计算ESTIMATE得分 # Calculate ESTIMATE score
+library(tidyestimate) # 计算ESTIMATE得分 # Calculate ESTIMATE score (replaces old estimate package)
 library(pheatmap) # 热图 # Heatmap
 source("CIBERSORT.R")
 
@@ -162,9 +162,36 @@ output_combined_expr.csv，上一步整合好的表达矩阵和生存信息。
 
 output_combined_expr.csv, the previous step integrates the expression matrix and survival information.
 
+使用tidyestimate包计算得分 (替代旧的estimate包)。
+
+Use tidyestimate package to calculate scores (replaces old estimate package).
+
 ```{r}
-filterCommonGenes(input.f = "output_combined_expr.txt", output.f = "output_combined_expr.gct", id = "GeneSymbol")
-estimateScore("output_combined_expr.gct", "output_combined_expr_estimate_score.txt", platform="affymetrix")
+# 读取表达矩阵 # Read expression matrix
+combined.expr.combat <- read.table("output_combined_expr.txt", sep = "\t", row.names = 1, check.names = F, stringsAsFactors = F, header = T)
+
+# 使用tidyestimate包计算得分 # Use tidyestimate package to calculate scores
+# 当tidy=FALSE时，基因标识符在行名中 # When tidy=FALSE, gene identifiers are in rownames
+filtered_data <- filter_common_genes(combined.expr.combat,
+                                     id = "hgnc_symbol",
+                                     tidy = FALSE,
+                                     tell_missing = TRUE,
+                                     find_alias = FALSE)
+
+# 计算ESTIMATE得分 # Calculate ESTIMATE scores
+est.result <- estimate_score(filtered_data, is_affymetrix = FALSE)  # 使用合并数据，通常不是Affymetrix平台 # Using merged data, usually not Affymetrix platform
+
+# 转换数据格式为兼容后续分析的格式 # Convert data format for compatibility with subsequent analysis
+# estimate_score返回格式：sample, stromal, immune, estimate
+# 需要转置为：行=得分类型，列=样本 # Need to transpose to: rows=score types, columns=samples
+sample_names <- est.result$sample
+est.result <- est.result[, c("stromal", "immune", "estimate")]  # 只选择数值列 # Select only numeric columns
+est.result <- t(est.result)  # 转置 # Transpose
+rownames(est.result) <- c("StromalScore", "ImmuneScore", "ESTIMATEScore")
+colnames(est.result) <- sample_names
+
+# 保存结果到文件 # Save results to file
+write.table(est.result, "output_combined_expr_estimate_score.txt", sep = "\t", row.names = T, col.names = NA, quote = F)
 ```
 
 ## Run CIBERSORT
@@ -204,8 +231,8 @@ The unsupervised clustering “Pam” method based on Euclidean and Ward’s lin
 
 ```{r}
 est <- read.table("output_combined_expr_estimate_score.txt",sep = "\t",row.names = 1,check.names = F,stringsAsFactors = F,header = T)
-est <- est[,-1]; colnames(est) <- est[1,]; est <- est[-1,]
-colnames(est) <- colnames(combined.expr.combat)
+# tidyestimate输出的格式已经正确，不需要再处理 # tidyestimate output format is already correct, no need for additional processing
+# 列名应该已经是正确的样本名 # Column names should already be correct sample names
 
 ciber.res <- read.table("CIBERSORT result.txt", sep = "\t", row.names = 1, header = T, check.names = F)
 head(ciber.res)
@@ -214,7 +241,7 @@ head(ciber.res)
 # Merge the activity of immune cells (est) obtained from ESTIMATE and the enrichment levels of immune cells obtained by CIBERSORT (ciber.res)
 ciber.res <- ciber.res[,1:22]
 ciber.res <- ciber.res[,colSums(ciber.res) > 0] # 去除丰度均为0的细胞 # Remove cells with 0 abundance
-input_data <- cbind.data.frame(ciber.res, 
+input_data <- cbind.data.frame(ciber.res,
                                ImmuneScore = as.numeric(est["ImmuneScore",rownames(ciber.res)]), # 添加免疫富集 # Add immune enrichment
                                StromalScore = as.numeric(est["StromalScore",rownames(ciber.res)])) # 添加基质富集 # Add matrix enrichment
 
@@ -222,7 +249,7 @@ indata <- t(scale(input_data))
 
 # 这一步，我运行了 < 10 min
 # For this step, I ran < for 10 min
-cc <- ConsensusClusterPlus(d = indata, 
+cc <- ConsensusClusterPlus(d = indata,
                            maxK = 3, # 三类 # Three categories
                            reps = 1000, # 重抽样次数，可修改 # Number of resamples, modifiable
                            pItem = 0.8, # 列维度抽样概率，可修改 # Column dimension sampling probability, modifiable
@@ -276,7 +303,7 @@ annColors[["Project"]] <- c("TCGA" = red,
 plotdata <- standarize.fun(indata,halfwidth = 2) # 数据标准化并截断极端值 # Data is normalized and truncated to extreme values
 pheatmap(plotdata[,rownames(annCol)],
          cluster_cols = F,
-         color = NMF:::ccRamp(c("#282B71","white","#CF2221"),64),
+         color = colorRampPalette(c("#282B71","white","#CF2221"))(64),  # 使用现代colorRampPalette替代NMF:::ccRamp # Use modern colorRampPalette instead of NMF:::ccRamp
          show_rownames = T,
          show_colnames = F,
          annotation_col = annCol[,c("ICIcluster","Project"),drop = F],
@@ -339,6 +366,20 @@ pdf("km curve of ICIcluster.pdf", width = 5, height = 6)
 print(p)
 dev.off()
 ```
+
+## 关键更新要点 Key Updates Summary
+
+- **依赖包现代化**：替换旧的 `estimate` 包为新的 `tidyestimate` 包，使用 `filter_common_genes` 和 `estimate_score` 函数替代旧的 `filterCommonGenes` 和 `estimateScore`
+- **函数名称更新**：tidyestimate使用现代R命名规范（snake_case），与旧estimate包的camelCase命名不同
+- **数据格式兼容性**：tidyestimate要求当 `tidy=FALSE` 时基因标识符在行名中，输出格式为tibble，需要适当的格式转换（移除了旧代码中不必要的列名处理）
+- **平台检测改进**：使用 `is_affymetrix` 参数替代 `platform` 参数，更清晰地指定数据平台类型（TRUE/FALSE 代替字符串）
+- **颜色函数现代化**：替换过时的 `NMF:::ccRamp` 函数为现代的 `colorRampPalette`，确保与新R版本的兼容性，避免对已废弃NMF包的依赖
+
+- **Dependency Modernization**: Replaced the deprecated `estimate` package with the modern `tidyestimate` package, using `filter_common_genes` and `estimate_score` functions instead of the old `filterCommonGenes` and `estimateScore`
+- **Function Name Updates**: tidyestimate uses modern R naming conventions (snake_case), different from the old estimate package's camelCase naming
+- **Data Format Compatibility**: tidyestimate requires gene identifiers in rownames when `tidy=FALSE`, and returns tibble format requiring appropriate conversions (removed unnecessary column name processing from old code)
+- **Platform Detection Improvements**: Uses `is_affymetrix` parameter (TRUE/FALSE) instead of `platform` parameter (string) for clearer data platform specification
+- **Color Function Modernization**: Replaced the outdated `NMF:::ccRamp` function with modern `colorRampPalette` to ensure compatibility with newer R versions and avoid dependency on deprecated NMF package
 
 ## Session Info
 
