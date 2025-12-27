@@ -27,17 +27,19 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# 需求描述
+## 需求描述 Discription of Need
 
 想实现10折交叉验证的分析方法，FigureYa182RFSurv和FigureYa198SignatureComb 都是根据基因的重要性筛选的，直接根据随机森林的准确度筛选，又是另一种不同的展示方式。
 
+I want to implement a 10-fold cross-validation analysis method. Both FigureYa182RFSurv and FigureYa198SignatureComb select genes based on their importance, while selecting based on the accuracy of random forests offers a different perspective.
+
 ![](example.png)
 
-出自<https://www.aging-us.com/article/102814>
+From <https://www.aging-us.com/article/102814>
 
 Supplementary Figure 4. (A) Relation between classification accuracy and selected genes via recursive feature elimination algorithm.
 
-# 应用场景
+## 应用场景 Application Scenario
 
 随机森林的10折交叉验证。
 
@@ -45,19 +47,22 @@ Using recursive feature elimination (RFE) with random forest as classifier and 1
 
 cox模型的10折交叉验证可参考FigureYa220repeatedLasso
 
-# 环境设置
+cox model with 10-fold cross-validation can be referred to FigureYa220repeatedLasso
+
+## 环境设置 Setup Environment
 
 ```{r}
 source("install_dependencies.R")
-
-library(caret)
-library(survival)
-library(shape)
-Sys.setenv(LANGUAGE = "en") #显示英文报错信息
-options(stringsAsFactors = FALSE) #禁止chr转成factor
+library(caret) # 机器学习 caret machine learning
+library(survival) # 生存分析 survival analysis
+library(shape) # 画箭头 draw arrows
+Sys.setenv(LANGUAGE = "en") # 显示英文报错信息 show error messages in English
+options(stringsAsFactors = FALSE) # 禁止chr转成factor disable chr to factor
 ```
 
 自定义函数
+
+customed function
 
 ```{r}
 display.progress = function (index, totalN, breakN=20) {
@@ -67,7 +72,7 @@ display.progress = function (index, totalN, breakN=20) {
 }
 ```
 
-# 输入文件
+## 输入文件 Input Files
 
 InnateDB_genes.csv，免疫基因集。数据来自<https://www.innatedb.com/redirect.do?go=resourcesGeneLists> Immunogenetic Related Information Source (IRIS)
 
@@ -75,27 +80,40 @@ easy_input_expr.txt，表达谱。
 
 easy_input_surv.txt，生存数据。
 
+InnateDB_genes.csv, immune gene set. Data from <https://www.innatedb.com/redirect.do?go=resourcesGeneLists> Immunogenetic Related Information Source (IRIS)
+
+easy_input_expr.txt, expression profile.
+
+easy_input_surv.txt, survival data.
+
 ```{r}
 # 加载表达谱和生存数据
+# load expression profile and survival data
 expr <- read.table("easy_input_expr.txt",sep = "\t",row.names = 1,check.names = F,stringsAsFactors = F,header = T)
 surv <- read.table("easy_input_surv.txt",sep = "\t",row.names = 1,check.names = F,stringsAsFactors = F,header = T)
 pct <- 0.1
 # 1. 根据情况对表达谱做对数转换
+# 1. Log2 transform the expression profile if needed
 expr <- t(log2(expr + 1))
 
 # 2. 取方差大于1的基因
+# 2. Select genes with standard deviation greater than 0
 expr <- expr[,apply(expr, 2, sd) > 0]
 
 # 3. 取表达量为0的样本数目小于总样本数pct%的样本，这里pct默认为0.1，即10%
+# 3. Select genes with zero expression in less than pct% of samples, here pct is set to 0.1 (10%)
 expr <- expr[,apply(expr, 2, function(x) sum(x == 0) < pct * nrow(expr))]
 
 # 4. 防止基因名出错
+# 4. Make gene names syntactically valid
 colnames(expr) <- make.names(colnames(expr))
 
 # 加载免疫基因集
+# load immune gene set
 immune.gene <- read.csv("InnateDB_genes.csv",row.names = NULL,check.names = F,stringsAsFactors = F,header = T)
 
 # 取出基因和样本
+# Select common genes and samples
 comgene <- unique(intersect(colnames(expr),immune.gene$name))
 comsam <- intersect(rownames(surv),rownames(expr))
 norsam <- rownames(expr)[substr(rownames(expr),14,15) == "11"]
@@ -103,7 +121,7 @@ expr.surv <- cbind.data.frame(surv[comsam,c("OS","OS.time")],
                               as.data.frame(expr[comsam,comgene]))
 ```
 
-# 单变量cox模型筛选基因
+## 单变量cox模型筛选基因 use univariate cox model to screen genes
 
 ```{r}
 Coxoutput <- NULL
@@ -123,64 +141,73 @@ Coxoutput$fdr <- p.adjust(Coxoutput$pvalue, method = "BH") # 矫正P值
 candidate.gene <- Coxoutput[which(Coxoutput$fdr < 0.05),"gene"] # 取出FDR<0.05的基因为候选基因
 ```
 
-# 随机森林筛选过程
+## 随机森林筛选过程 Random Forest Feature Selection Process
 
 There are a number of pre-defined sets of functions for several models, including: linear regression (in the object lmFuncs), random forests (rfFuncs), naive Bayes (nbFuncs), bagged trees (treebagFuncs) and functions that can be used with caret’s train function (caretFuncs).
 
 ```{r}
-set.seed(19991018) # 设置种子
-control <- rfeControl(functions = rfFuncs, # 选择随机森林；详细可参考http://topepo.github.io/caret/recursive-feature-elimination.html#rfe
-                      method = "LGOCV", # 选择交叉验证法
-                      number = 10) # 10折交叉验证
+set.seed(19991018) # 设置种子 set seed for reproducibility
+control <- rfeControl(functions = rfFuncs, # 选择随机森林 # random forest http://topepo.github.io/caret/recursive-feature-elimination.html#rfe
+                      method = "LGOCV", # 选择交叉验证法 # choose cross-validation
+                      number = 10) # 10折交叉验证 # 10-fold cross-validation
 tmp <- cbind.data.frame(tissue = rep(c(1,0),c(length(comsam),length(norsam))),
                         expr[c(comsam,norsam),candidate.gene])
 
 ## 注意，由于原文没有具体写这个随机森林过程的因变量是什么，在我尝试以生存状态为因变量时，预测准确率只有0.7，即便使用原文附件的基因列表(easy_input_gene.txt)也只有0.7不到
+## Therefore, when I tried to use survival status as the dependent variable, the prediction accuracy was only 0.7, even when using the gene list provided in the original supplementary material (easy_input_gene.txt).
 # results <- rfe(x = expr.surv[,candidate.gene], 
 #                y = as.factor(expr.surv$OS), 
 #                metric = "Accuracy",
-#                sizes = 1:(length(candidate.gene)-1), # 步长为1，速度较慢请耐心（约2小时）
+#                sizes = 1:(length(candidate.gene)-1), # 步长为1，速度较慢请耐心（约2小时） # step size is 1, it takes time (about 2 hours)
 #                rfeControl = control)
 
 ## 因此这一步我将因变量改为组织类型，也就是说第一步得到预后相关的基因背景集，第二步得到在这些预后基因里，能够最大限度区分肿瘤与正常组织的预后签名最小子集
+## Therefore, I changed the dependent variable to tissue type, that is, the first step obtains a background set of prognosis-related genes, and the second step identifies the minimal subset of prognostic signatures that can maximally distinguish between tumor and normal tissues among these prognostic genes.
 results <- rfe(x = tmp[,candidate.gene], 
                y = as.factor(tmp$tissue), 
                metric = "Accuracy",
-               sizes = 1:(length(candidate.gene)-1), # 步长为1，速度较慢请耐心（约2小时）
+               sizes = 1:(length(candidate.gene)-1), # 步长为1，速度较慢请耐心（约2小时） # step size is 1, it takes time (about 2 hours)
                rfeControl = control)
-final.gene <- predictors(results) # 取出最终基因
+final.gene <- predictors(results) # 取出最终基因 # get final selected genes
 write.table(final.gene,"output_selected features.txt",sep = "\t",row.names = F,col.names = F,quote = F)
 
-accres <- results$results # 取出迭代结果
+accres <- results$results # 取出迭代结果 # get iteration results
 write.table(accres, "output_accuracy result.txt", sep = "\t", row.names = F,col.names = T,quote = F)
 ```
 
-# 开始画图
+## 开始画图 Start Plotting
 
 ```{r}
 # 设置颜色
+# set colors
 jco <- c("#2874C5","#EABF00")
 
 # 图1：随机森林准确性图
+# Figure 1: Random Forest Accuracy Plot
 pdf(file = "accuracy.pdf", width = 6, height = 4.5)
 par(bty="o", mgp = c(2,0.5,0), mar = c(3.1,4.1,2.1,2.1),tcl=-.25,las = 1)
-index <- which.max(accres$Accuracy) # 取出准确率最大时的索引（基因个数）
+index <- which.max(accres$Accuracy) # 取出准确率最大时的索引（基因个数) # get index of maximum accuracy (number of genes)
 ## 画圈圈
+## Draw plot
 plot(accres$Variables,
      accres$Accuracy,
      ylab = "",
      xlab = "Number of genes",
      col = "steelblue")
 ## 添加连线
+## Add lines
 lines(accres$Variables,accres$Accuracy,col = "steelblue")
 ## 定位最大值
+## Highlight maximum point
 points(index, accres[index,"Accuracy"],
        col = "steelblue",
        pch = 19,
        cex = 1.2)
 ## 补Y轴坐标（在plot时候写会和axis文字重叠）
+## Add Y-axis labels  
 mtext("Accuracy (Repeated Cross-Validation)",side = 2,line = 2.5, las = 3)
 ## 添加好看滴箭头
+## Add nice arrows
 Arrows(x0 = index-15, x1 = index-10,
        y0 = accres[index,"Accuracy"], y1 = accres[index,"Accuracy"],
        arr.length = 0.2,
@@ -188,13 +215,15 @@ Arrows(x0 = index-15, x1 = index-10,
        col = "black",
        arr.type = "triangle")
 ## 添加基因数目信息
+## Add number of genes information
 text(x = index - 15,
      y = accres[index,"Accuracy"],
      labels = paste0("N=",index),
      pos = 2)
 invisible(dev.off())
 
-# 图2：基因集的风险得分及K玛曲县
+# 图2：基因集的风险得分及KM曲线
+# Figure 2: Risk Score and Kaplan-Meier Curve of Gene Set
 fit <- coxph(Surv(OS.time,OS) ~ .,data = expr.surv[,c(final.gene,"OS.time","OS")])
 risk.score <- apply(expr.surv[,final.gene],1,function(x) {x %*% fit$coefficients})
 
