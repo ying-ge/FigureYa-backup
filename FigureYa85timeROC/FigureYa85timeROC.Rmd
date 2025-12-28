@@ -38,6 +38,9 @@ Draw time-dependent AUC for different fitting models.
 
 From <https://academic.oup.com/annonc/article/29/7/1554/4993948>
 
+Figure 3.Area under the curves (AUC) of the baseline, baseline cir-
+culating tumour cell (CTC) and CTC progression survival models.
+
 ## 应用场景 Application scenarios
 
 绘制不同拟合模型的timeROC曲线。

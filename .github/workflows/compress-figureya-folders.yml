@@ -24,63 +24,162 @@ jobs:
           token: ${{ secrets.FIGUREYA2ACTION }}
           path: target
 
-      - name: Determine First Run or Incremental Update
-        id: determine-run
+      - name: Detect Changed Folders
+        id: detect-changes
         run: |
-          if [ -f target/.last_run ]; then
-            echo "Found .last_run file. This is an incremental update."
-            LAST_RUN=$(cat target/.last_run)
-            echo "LAST_RUN=$LAST_RUN" >> $GITHUB_ENV
-            echo "RUN_MODE=incremental" >> $GITHUB_ENV
+          cd source
+
+          # Get the current source commit hash
+          SOURCE_COMMIT=$(git rev-parse HEAD)
+          echo "Source commit: $SOURCE_COMMIT"
+
+          # Try to get the last recorded source commit from target repo
+          # We'll store this in a file in the target repo
+          LAST_SOURCE_COMMIT=""
+          if [ -f "../target/.last_source_commit" ]; then
+            LAST_SOURCE_COMMIT=$(cat ../target/.last_source_commit)
+            echo "Last processed source commit: $LAST_SOURCE_COMMIT"
           else
-            echo "No .last_run file found. This is the first run."
-            echo "LAST_RUN=1970-01-01T00:00:00" >> $GITHUB_ENV
-            echo "RUN_MODE=first" >> $GITHUB_ENV
+            echo "No previous commit record found"
+            LAST_SOURCE_COMMIT=""
           fi
 
-      - name: Compress Each Folder Individually
-        working-directory: source
-        run: |
-          if [ "$RUN_MODE" = "first" ]; then
-            # First run: Compress all folders
-            for foldername in $(find . -maxdepth 1 -type d -name 'FigureYa*' | sed 's|^\./||'); do
-              zipfile="../target/${foldername}.zip"
-              if [ "$foldername" = "FigureYa308IHS" ]; then
-                zip -r -q "$zipfile" "$foldername" -x "$foldername/Results/out_unPruned.rds"
+          # Get list of all FigureYa folders
+          ALL_FOLDERS=$(find . -maxdepth 1 -type d -name 'FigureYa*' | sed 's|^\./||' | sort)
+
+          # If this is the first run or we have a new source commit, check all folders
+          # Otherwise, only check folders that changed since the last commit
+          CHANGED_FOLDERS=""
+
+          if [ -z "$LAST_SOURCE_COMMIT" ]; then
+            # First run: compress all folders
+            echo "First run - all folders will be compressed"
+            CHANGED_FOLDERS="$ALL_FOLDERS"
+          else
+            # Incremental run: only compress folders that changed
+            for folder in $ALL_FOLDERS; do
+              # Check if this folder has changes since the last processed commit
+              CHANGED_FILES=$(git diff --name-only "$LAST_SOURCE_COMMIT" HEAD -- "$folder" 2>/dev/null)
+
+              if [ -n "$CHANGED_FILES" ]; then
+                echo "  ✓ Changed folder: $folder"
+                CHANGED_FOLDERS="$CHANGED_FOLDERS $folder"
               else
-                zip -r -q "$zipfile" "$foldername"
+                echo "  ✗ Unchanged folder: $folder"
               fi
             done
-          else
-            # Incremental update: Compress only modified folders
-            MODIFIED=$(find . -maxdepth 1 -type d -name 'FigureYa*' -newermt "$LAST_RUN" | sed 's|^\./||')
-            if [ -z "$MODIFIED" ]; then
-              echo "No modified folders found."
-            else
-              for foldername in $MODIFIED; do
-                zipfile="../target/${foldername}.zip"
-                if [ "$foldername" = "FigureYa308IHS" ]; then
-                  zip -r -q "$zipfile" "$foldername" -x "$foldername/Results/out_unPruned.rds"
-                else
-                  zip -r -q "$zipfile" "$foldername"
-                fi
-              done
-            fi
           fi
 
-      - name: Update Last Run Timestamp
-        run: |
-          date -u +"%Y-%m-%dT%H:%M:%SZ" > target/.last_run
+          # Save changed folders to environment variable
+          if [ -n "$CHANGED_FOLDERS" ]; then
+            # Trim leading space
+            CHANGED_FOLDERS=$(echo "$CHANGED_FOLDERS" | sed 's/^ //')
+            # Save to a file instead of env variable to avoid parsing issues
+            echo "$CHANGED_FOLDERS" > /tmp/changed_folders.txt
+            {
+              echo 'HAS_CHANGES=true'
+              echo "CHANGED_FOLDERS_COUNT=$(echo "$CHANGED_FOLDERS" | wc -w)"
+            } >> $GITHUB_ENV
+            echo ""
+            echo "Changed folders to compress: $CHANGED_FOLDERS"
 
-      - name: Commit and Push Changes
-        working-directory: target
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add . || true
-          if git diff --staged --quiet; then
-            echo "Nothing to commit"
+            # Save the current source commit for next time
+            echo "$SOURCE_COMMIT" > ../target/.last_source_commit
+            echo "Saved source commit: $SOURCE_COMMIT"
           else
-            git commit -m "Compress updated FigureYa folders [skip ci]"
-            git push
+            echo "HAS_CHANGES=false" >> $GITHUB_ENV
+            echo "CHANGED_FOLDERS_COUNT=0" >> $GITHUB_ENV
+            echo "No changed folders detected"
+          fi
+
+      - name: Compress and Push Changed Folders
+        working-directory: source
+        run: |
+          if [ "$HAS_CHANGES" = "false" ]; then
+            echo "No folders to compress"
+          else
+            # Configure git in target repo
+            cd ../target
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            cd ../source
+
+            # Read folders from file and process each one
+            echo "Reading changed folders from /tmp/changed_folders.txt"
+            cat /tmp/changed_folders.txt
+
+            while IFS= read -r foldername; do
+              # Skip empty lines
+              [ -z "$foldername" ] && continue
+
+              echo "========================================="
+              echo "Processing folder: $foldername"
+              echo "========================================="
+
+              # Validate folder name format
+              if ! echo "$foldername" | grep -qE '^FigureYa[0-9A-Za-z_]+$'; then
+                echo "ERROR: Invalid folder name format: $foldername"
+                continue
+              fi
+
+              zipfile="../target/${foldername}.zip"
+              echo "Compressing $foldername to $zipfile"
+
+              # Check if source folder exists
+              if [ ! -d "$foldername" ]; then
+                echo "ERROR: Source folder $foldername does not exist"
+                continue
+              fi
+
+              # Remove old zip file if it exists
+              rm -f "$zipfile"
+
+              # Create new zip with error handling
+              if [ "$foldername" = "FigureYa308IHS" ]; then
+                zip -r -q "$zipfile" "$foldername" -x "$foldername/Results/out_unPruned.rds" 2>&1 || {
+                  echo "ERROR: Failed to create zip for $foldername"
+                  continue
+                }
+              else
+                zip -r -q "$zipfile" "$foldername" 2>&1 || {
+                  echo "ERROR: Failed to create zip for $foldername"
+                  continue
+                }
+              fi
+
+              # Verify zip file was created
+              if [ ! -f "$zipfile" ]; then
+                echo "ERROR: Zip file was not created: $zipfile"
+                continue
+              fi
+
+              echo "Successfully created zip file"
+
+              # Commit and push immediately
+              cd ../target
+              git add "${foldername}.zip"
+              git add .last_source_commit
+
+              # Check if there are changes to commit
+              if git diff --cached --quiet; then
+                echo "No changes to commit for $foldername"
+              else
+                git commit -m "Update ${foldername}.zip [skip ci]"
+                if git push; then
+                  echo "✓ Pushed $foldername.zip"
+                else
+                  echo "ERROR: Failed to push $foldername.zip"
+                fi
+              fi
+
+              # Clean up: remove the zip to save space (it's already in git)
+              rm -f "${foldername}.zip"
+              git checkout "${foldername}.zip" 2>/dev/null || true
+
+              cd ../source
+            done < /tmp/changed_folders.txt
+
+            echo "========================================="
+            echo "All folders processed"
+            echo "========================================="
           fi
