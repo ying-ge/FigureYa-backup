@@ -12,7 +12,7 @@ permissions:
 
 concurrency:
   group: "pages"
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   deploy:
@@ -21,49 +21,29 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Clean up disk space before checkout
-        run: |
-          sudo apt-get clean || true
-          sudo rm -rf /var/lib/apt/lists/* || true
-          sudo rm -rf /tmp/* || true
-          sudo rm -rf /var/tmp/* || true
-          sudo docker system prune -af || true
-          if [ -n "$AGENT_TOOLSDIRECTORY" ]; then
-            sudo rm -rf "$AGENT_TOOLSDIRECTORY"/* || true
-          fi
-          sudo rm -rf /usr/local/share/boost || true
-          echo "=== Disk space before checkout ==="
-          df -h
-
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 1
 
-      - name: Remove large files to save disk space
+      - name: Create deployment directory structure
         run: |
-          echo "=== Disk space after checkout (before cleanup) ==="
-          df -h
-          du -sh . 2>/dev/null | head -1 || true
-          
-          echo "=== Removing large files ==="
-          # 删除不需要的大文件
-          find . -type f -name "*.Rmd" -delete 2>/dev/null || true
-          find . -type f \( -name "*.rda" -o -name "*.rds" -o -name "*.RData" \) -delete 2>/dev/null || true
-          find . -type f \( -name "*.png" -o -name "*.jpg" -o -name "*.jpeg" -o -name "*.pdf" \) -not -path "*/gallery_compress/*" -delete 2>/dev/null || true
-          find . -type f \( -name "*.gz" -o -name "*.zip" -o -name "*.tar" -o -name "*.tar.gz" \) -delete 2>/dev/null || true
-          find . -type d -name "GDCdata" -exec rm -rf {} + 2>/dev/null || true
-          find . -type d -name "data" -exec rm -rf {} + 2>/dev/null || true
-          find . -type d -name "seurat" -exec rm -rf {} + 2>/dev/null || true
-          find . -type d -name "filtered_gene_bc_matrices" -exec rm -rf {} + 2>/dev/null || true
-          find . -type f \( -name "*.mtx" -o -name "*.tsv" -o -name "*.csv" -o -name "*.bed" -o -name "*.bw" -o -name "*.bam" -o -name "*.sam" \) -delete 2>/dev/null || true
-          
-          find . -type d -name __pycache__ -exec rm -rf {} + 2>/dev/null || true
-          find . -type f -name "*.pyc" -delete 2>/dev/null || true
-          
-          echo "=== Disk space after cleanup ==="
-          df -h
-          du -sh . 2>/dev/null | head -1 || true
+          mkdir -p deploy
+          cp index.html logo.svg deploy/
+          cp -r js deploy/
+          cp -r texts deploy/
+          cp -r gallery_compress deploy/
+          cp chapters.json deploy/
+          cp categories.txt deploy/
+          cp file_list.json deploy/
+
+          # Copy all FigureYa folders (only HTML files to save space)
+          for dir in FigureYa*/; do
+            foldername=$(basename "$dir")
+            mkdir -p "deploy/$foldername"
+            # Copy only HTML files
+            find "$dir" -maxdepth 1 -name "*.html" -exec cp {} "deploy/$foldername/" \;
+          done
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -71,7 +51,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '.'
+          path: 'deploy'
 
       - name: Deploy to GitHub Pages
         id: deployment

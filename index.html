@@ -1,17 +1,380 @@
-
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>FigureYa Results Browser</title>
+  <link rel="icon" type="image/svg+xml" href="logo.svg">
+  <link rel="apple-touch-icon" href="logo.svg">
   <script src="js/fuse.min.js"></script>
+  <script src="js/jszip.min.js"></script>
   <script src="js/search.js" defer></script>
+  <script>
+    function showCitation() {
+      document.getElementById('citationModal').classList.add('active');
+    }
+    function showContact() {
+      document.getElementById('contactModal').classList.add('active');
+    }
+    function closeModal(modalId) {
+      document.getElementById(modalId).classList.remove('active');
+    }
+
+    // Copy to clipboard function
+    async function copyToClipboard(text, buttonElement) {
+      try {
+        await navigator.clipboard.writeText(text);
+
+        // Show success feedback
+        const originalText = buttonElement.innerHTML;
+        buttonElement.innerHTML = '✓ Copied!';
+        buttonElement.style.background = '#48bb78';
+
+        setTimeout(() => {
+          buttonElement.innerHTML = originalText;
+          buttonElement.style.background = '';
+        }, 2000);
+      } catch (err) {
+        console.error('Failed to copy:', err);
+        // Fallback for older browsers
+        const textArea = document.createElement('textarea');
+        textArea.value = text;
+        textArea.style.position = 'fixed';
+        textArea.style.opacity = '0';
+        document.body.appendChild(textArea);
+        textArea.select();
+
+        try {
+          document.execCommand('copy');
+          const originalText = buttonElement.innerHTML;
+          buttonElement.innerHTML = '✓ Copied!';
+          buttonElement.style.background = '#48bb78';
+
+          setTimeout(() => {
+            buttonElement.innerHTML = originalText;
+            buttonElement.style.background = '';
+          }, 2000);
+        } catch (e) {
+          buttonElement.innerHTML = '✗ Failed';
+          buttonElement.style.background = '#f56565';
+        }
+
+        document.body.removeChild(textArea);
+      }
+    }
+
+    // Setup modal overlay click handlers
+    function setupModalOverlayClickHandlers() {
+      document.querySelectorAll('.modal-overlay').forEach(overlay => {
+        overlay.addEventListener('click', function(e) {
+          if (e.target === this) {
+            this.classList.remove('active');
+          }
+        });
+      });
+    }
+
+    // Download functionality
+    let fileListsCache = null;
+
+    async function loadFileLists() {
+      if (fileListsCache) return fileListsCache;
+
+      try {
+        const response = await fetch('file_list.json');
+        fileListsCache = await response.json();
+        return fileListsCache;
+      } catch (error) {
+        console.error('Failed to load file lists:', error);
+        return null;
+      }
+    }
+
+    function getFileIcon(filename) {
+      const ext = filename.split('.').pop().toLowerCase();
+      const iconMap = {
+        'csv': '📊',
+        'r': '📜',
+        'png': '🖼️',
+        'jpg': '🖼️',
+        'jpeg': '🖼️',
+        'svg': '🎨'
+      };
+      return iconMap[ext] || '📄';
+    }
+
+    function formatFileSize(bytes) {
+      if (bytes === 0) return '0 B';
+      const k = 1024;
+      const sizes = ['B', 'KB', 'MB', 'GB'];
+      const i = Math.floor(Math.log(bytes) / Math.log(k));
+      return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + ' ' + sizes[i];
+    }
+
+    async function showDownloadModal(folderName) {
+      const modal = document.getElementById('downloadModal');
+      const modalTitle = document.getElementById('modalTitle');
+      const fileList = document.getElementById('fileList');
+
+      modalTitle.textContent = `Download Files from ${folderName}`;
+
+      // Show loading state
+      fileList.innerHTML = `
+        <div style="text-align:center;padding:40px;color:#718096;">
+          <p>Loading file list...</p>
+        </div>
+      `;
+
+      modal.style.display = 'flex';
+
+      // Load file lists
+      const lists = await loadFileLists();
+
+      if (!lists || !lists[folderName]) {
+        fileList.innerHTML = `
+          <div style="text-align:center;padding:40px;color:#e53e3e;">
+            <p>No file list found for ${folderName}</p>
+            <a href="https://github.com/ying-ge/FigureYa/tree/main/${folderName}" target="_blank"
+               style="color:#3182ce;text-decoration:none;margin-top:16px;display:inline-block;">
+              View on GitHub →
+            </a>
+          </div>
+        `;
+        return;
+      }
+
+      const files = lists[folderName];
+
+      // Render file list with checkboxes
+      let html = `
+        <div style="display:flex;flex-direction:column;height:100%;">
+          <div style="margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid #e2e8f0;flex-shrink:0;">
+            <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-weight:500;">
+              <input type="checkbox" id="selectAllFiles" checked
+                     onchange="toggleAllFiles(this.checked)"
+                     style="width:18px;height:18px;cursor:pointer;">
+              <span>Select All Files (${files.length})</span>
+            </label>
+          </div>
+          <div style="overflow-y:auto;padding-right:8px;flex:1;min-height:0;">
+      `;
+
+      files.forEach((file, index) => {
+        html += `
+          <label style="display:flex;align-items:center;gap:8px;padding:8px;margin-bottom:4px;
+                        border-radius:6px;cursor:pointer;transition:background 0.2s;"
+                 onmouseover="this.style.background='#f7fafc'" onmouseout="this.style.background='transparent'">
+            <input type="checkbox" class="file-checkbox" data-index="${index}"
+                   data-filename="${file.name}" checked
+                   style="width:16px;height:16px;cursor:pointer;">
+            <span style="font-size:1.2em;">${getFileIcon(file.name)}</span>
+            <span style="flex:1;font-family:monospace;font-size:0.9em;word-break:break-all;">${file.name}</span>
+            <span style="font-size:0.85em;color:#718096;">${formatFileSize(file.size)}</span>
+          </label>
+        `;
+      });
+
+      html += `
+          </div>
+          <div style="margin-top:20px;padding-top:16px;border-top:1px solid #e2e8f0;
+                      display:flex;justify-content:space-between;align-items:center;flex-shrink:0;">
+            <a href="https://github.com/ying-ge/FigureYa/tree/main/${folderName}" target="_blank"
+               style="color:#718096;text-decoration:none;font-size:0.9em;">
+              🔗 View on GitHub
+            </a>
+            <div style="display:flex;gap:12px;">
+              <button onclick="closeDownloadModal()"
+                      style="padding:10px 20px;background:#e2e8f0;color:#4a5568;border:none;border-radius:6px;cursor:pointer;">
+                Cancel
+              </button>
+              <button onclick="downloadSelectedFiles('${folderName}')"
+                      style="padding:10px 24px;background:#3182ce;color:#fff;border:none;border-radius:6px;cursor:pointer;font-weight:500;">
+                📦 Download
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+
+      fileList.innerHTML = html;
+    }
+
+    function toggleAllFiles(checked) {
+      document.querySelectorAll('.file-checkbox').forEach(cb => {
+        cb.checked = checked;
+      });
+    }
+
+    function closeDownloadModal() {
+      document.getElementById('downloadModal').style.display = 'none';
+    }
+
+    async function downloadSelectedFiles(folderName) {
+      const selected = [];
+      document.querySelectorAll('.file-checkbox:checked').forEach(cb => {
+        selected.push(cb.dataset.filename);
+      });
+
+      if (selected.length === 0) {
+        alert('Please select at least one file');
+        return;
+      }
+
+      const downloadBtn = document.querySelector('button[onclick^="downloadSelectedFiles"]');
+      const originalText = downloadBtn.innerHTML;
+      downloadBtn.innerHTML = '⏳ Preparing...';
+      downloadBtn.disabled = true;
+
+      try {
+        const zip = new JSZip();
+        const folder = zip.folder(folderName);
+
+        const baseUrl = `https://raw.githubusercontent.com/ying-ge/FigureYa/main/${folderName}/`;
+
+        for (const filename of selected) {
+          const url = baseUrl + filename;
+          const response = await fetch(url);
+          if (response.ok) {
+            const blob = await response.blob();
+            folder.file(filename, blob);
+          }
+        }
+
+        const content = await zip.generateAsync({ type: 'blob' });
+        const downloadUrl = URL.createObjectURL(content);
+        const a = document.createElement('a');
+        a.href = downloadUrl;
+        a.download = `${folderName}_files.zip`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(downloadUrl);
+
+        closeDownloadModal();
+      } catch (error) {
+        console.error('Download failed:', error);
+        alert('Download failed. Please try again or download files from GitHub.');
+      } finally {
+        downloadBtn.innerHTML = originalText;
+        downloadBtn.disabled = false;
+      }
+    }
+  </script>
   <style>
-    body { font-family: sans-serif; }
-    #searchResults { margin-top: 2em; }
-    .result { margin-bottom: 1em; }
-    .result-title { font-weight: bold; }
-    .highlight { background: yellow; }
+    * { box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f5f7fa;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1em 2em;
+      background: #fff;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .header-logo {
+      height: 32px;
+      width: auto;
+    }
+    .header-title {
+      font-size: 1.25em;
+      font-weight: 600;
+      color: #1a202c;
+    }
+    .header-nav {
+      display: flex;
+      gap: 20px;
+    }
+    .header-nav a {
+      color: #4a5568;
+      text-decoration: none;
+      font-size: 0.95em;
+      transition: color 0.2s;
+      cursor: pointer;
+    }
+    .header-nav a:hover {
+      color: #3182ce;
+    }
+    .container {
+      max-width: 1600px;
+      margin: 0 auto;
+      padding: 2em 1em;
+    }
+    .page-title {
+      text-align: center;
+      color: #1a202c;
+      margin-bottom: 1.5em;
+      font-size: 2em;
+      font-weight: 600;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #e2e8f0;
+      margin: 1.5em 0;
+    }
+    .search-section {
+      background: #fff;
+      padding: 1.5em 2em;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      margin-bottom: 2em;
+    }
+    .search-header {
+      text-align: center;
+      margin-bottom: 1.5em;
+    }
+    .search-header h1 {
+      margin: 0;
+      color: #1a202c;
+    }
+    .search-input-wrapper {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 1em;
+    }
+    #searchBox {
+      flex: 1;
+      padding: 12px 16px;
+      font-size: 1.1em;
+      border: 2px solid #e2e8f0;
+      border-radius: 8px;
+      transition: border-color 0.2s;
+    }
+    #searchBox:focus {
+      outline: none;
+      border-color: #3182ce;
+    }
+    .btn {
+      padding: 12px 24px;
+      font-size: 1em;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-primary {
+      background: #3182ce;
+      color: #fff;
+    }
+    .btn-primary:hover {
+      background: #2c5282;
+    }
+    .btn-secondary {
+      background: #e2e8f0;
+      color: #4a5568;
+    }
+    .btn-secondary:hover {
+      background: #cbd5e0;
+    }
     .grid {
       display: flex;
       flex-wrap: wrap;
@@ -20,9 +383,8 @@
       padding: 0;
     }
     .card {
-      flex: 1 0 210px;
-      max-width: 250px;
-      min-width: 180px;
+      flex: 1 1 280px;
+      min-width: 200px;
       background: #fafaff;
       border-radius: 8px;
       padding: 12px;
@@ -57,49 +419,499 @@
       text-align: center;
       word-break: break-all;
     }
-    @media (max-width: 1100px) {
-      .card { flex-basis: 43%; }
+    .card-links a {
+      color: #3182ce;
+      text-decoration: none;
     }
-    @media (max-width: 700px) {
+    .card-links a:hover {
+      text-decoration: underline;
+    }
+    .highlight {
+      background: #fef08a;
+      padding: 0 2px;
+      border-radius: 2px;
+    }
+    .loading, .error, .no-results {
+      padding: 1em;
+      text-align: center;
+      color: #718096;
+    }
+    .error {
+      color: #e53e3e;
+    }
+    .viz-category-section {
+      margin-top: 1.5em;
+      text-align: center;
+    }
+    .viz-category-title {
+      font-size: 0.9em;
+      color: #718096;
+      margin-bottom: 0.8em;
+      font-weight: 500;
+    }
+    .viz-category-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+    .viz-category-btn {
+      padding: 8px 16px;
+      border: 2px solid #e2e8f0;
+      border-radius: 20px;
+      background: #fff;
+      color: #4a5568;
+      font-size: 0.9em;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-weight: 500;
+    }
+    .viz-category-btn:hover {
+      border-color: #3182ce;
+      background: #ebf8ff;
+      color: #3182ce;
+    }
+    .viz-category-btn.active {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-color: transparent;
+      color: #fff;
+      box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+    }
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-overlay.active {
+      display: flex;
+    }
+    .modal-content {
+      background: #fff;
+      padding: 2em;
+      border-radius: 12px;
+      max-width: 700px;
+      width: 90%;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    }
+    .modal-content h3 {
+      margin-top: 0;
+      color: #1a202c;
+    }
+    .modal-close {
+      background: none;
+      border: none;
+      font-size: 1.5em;
+      cursor: pointer;
+      color: #718096;
+      padding: 0;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 4px;
+    }
+    .modal-close:hover {
+      background: #f7fafc;
+      color: #1a202c;
+    }
+    .copy-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 10px;
+      margin-left: 8px;
+      font-size: 0.85em;
+      background: #3182ce;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.2s;
+      vertical-align: middle;
+    }
+    .copy-button:hover {
+      background: #2c5282;
+      transform: translateY(-1px);
+    }
+    .copy-button:active {
+      transform: translateY(0);
+    }
+    .copy-button svg {
+      width: 14px;
+      height: 14px;
+    }
+    .copy-container {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    .copy-container .text-content {
+      flex: 1;
+    }
+    .download-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+    .download-modal-content {
+      background: #fff;
+      padding: 2em;
+      border-radius: 12px;
+      max-width: 600px;
+      width: 90%;
+      max-height: 80vh;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+      display: flex;
+      flex-direction: column;
+    }
+    .file-list {
+      overflow-y: auto;
+      flex: 1;
+    }
+    @media (max-width: 1200px) {
+      .card { flex: 1 1 260px; }
+    }
+    @media (max-width: 900px) {
+      .card { flex: 1 1 240px; }
+    }
+    @media (max-width: 768px) {
       .grid { gap: 15px; }
-      .card { flex-basis: 97%; }
+      .card { flex: 1 1 calc(50% - 15px); }
+    }
+    @media (max-width: 600px) {
+      .card { flex: 1 1 100%; }
+      .header {
+        flex-direction: column;
+        gap: 1em;
+      }
+      .header-nav {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
     }
   </style>
 </head>
 <body>
 
-<div style="font-family: sans-serif; max-width: 800px; margin: 2em auto; padding: 1em; border: 1px solid #ddd; border-radius: 8px; background-color: #f9f9f9;">
-    <h1 style="text-align: center;">FigureYa: Interactive Results Browser</h1>
-    <p>Welcome! This page provides a searchable interface for all reports and figures generated by the <strong>FigureYa</strong> project. It's designed to help you quickly find and explore the results from our manuscript.</p>
-    <hr>
-    <h2>How to Use This Page</h2>
-    <ul>
-        <li><strong>Search Everything:</strong> Use the <strong>search box below</strong> to perform a full-text search across all reports. You can look for a gene name, an R package, a specific analysis, or any other keyword.</li>
-        <li><strong>Browse Visually:</strong> Click on any of the <strong>thumbnails below</strong> to open and view an individual report directly in your browser.</li>
-    </ul>
-    <div style="background-color: #e3f2fd; border-left: 4px solid #2196f3; padding: 12px; margin: 1em 0; border-radius: 4px;">
-        <p style="margin: 0;"><strong>Note:</strong> This repository (<strong>FigureYa</strong>) contains analyses and visualizations that primarily use <strong>R</strong>. For analyses that require <strong>Python</strong> (Jupyter notebooks), please visit: <a href="https://ying-ge.github.io/FigureYapy" target="_blank" style="color: #1976d2; font-weight: bold;">https://ying-ge.github.io/FigureYapy</a></p>
-    </div>
-    <h2>Get the Code and Data</h2>
-    <p>All input files, analysis code (Rmd), and results are publicly available in the <a href="https://github.com/ying-ge/FigureYa/" target="_blank">main GitHub repository</a>. You can browse the files online or download them for offline use.</p>
-<h2>Citation</h2>
-<p>Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. <i>iMetaMed</i>. <a href="https://doi.org/10.1002/imm3.70005" target="_blank">https://doi.org/10.1002/imm3.70005</a></p>
-</div>
-<hr>
+<header class="header">
+  <div class="header-left">
+    <img src="logo.svg" alt="FigureYa Logo" class="header-logo">
+    <span class="header-title">FigureYa</span>
+  </div>
+  <nav class="header-nav">
+    <a onclick="showCitation()">Citation</a>
+    <a href="https://zread.ai/ying-ge/FigureYa" target="_blank">FigureYa AI Assistant</a>
+    <a onclick="showContact()">Contact</a>
+  </nav>
+</header>
 
-<h1>Search and Browse Reports</h1>
-<input type="text" id="searchBox" placeholder="Enter keyword to search all FigureYa reports..." autocomplete="off" style="width:60%; font-size:1.1em;">
-<button onclick="doSearch()">Search</button>
-<button onclick="clearSearch()">Clear</button>
-<div id="searchResults"></div>
-<hr>
-<div id="tocGrid" class="grid"></div>
+<!-- Citation Modal -->
+<div class="modal-overlay" id="citationModal">
+  <div class="modal-content">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+      <h3 style="margin:0;">Citation</h3>
+      <button class="modal-close" style="margin:0;padding:0;width:30px;height:30px;" onclick="closeModal('citationModal')">✕</button>
+    </div>
+    <div class="copy-container">
+      <div class="text-content">
+        <p style="line-height: 1.8; font-size: 0.95em;" id="citationText">Lu, X., Li, K., Li, Z., Lin, A., Zhao, L., Shen, R., Xu, Z., Gao, J., Lv, D., Zhang, Y., Ye, T., Shen, J., Chen, Y., Huang, H., Hao, Z., Zeng, D., Wang, H., Guo, S., Wang, W., Xiong, Y., Li, Y., Li, H., Gao, J., Liu, Q., Wei, B., Shi, J., Cheng, S., Li, G., Tang, Y., Lin, E., Xu, H., Feng, G., He, Y., Sun, Y., Liu, X., Wang, Y., Song, W., Song, J., Tian, S., Zhang, Y., Zhang, J., Xu, Z., Song, C., Zhang, Y., Wu, H., Gao, C., Hu, E., Yang, C., Lou, J., Wang, D., Wang, X., Luo, P., Yu, G. and Ge, Y. (2025), FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. <i>iMetaMed</i>, 1: e70005. <a href="https://doi.org/10.1002/imm3.70005" target="_blank">https://doi.org/10.1002/imm3.70005</a> (<a href="https://onlinelibrary.wiley.com/doi/abs/10.1002/imm3.70013" target="_blank">Cover Story</a>)</p>
+      </div>
+      <button class="copy-button" onclick='copyToClipboard(document.getElementById("citationText").innerText, this)'>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+        </svg>
+        Copy
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Contact Modal -->
+<div class="modal-overlay" id="contactModal">
+  <div class="modal-content">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+      <h3 style="margin:0;">Contact</h3>
+      <button class="modal-close" style="margin:0;padding:0;width:30px;height:30px;" onclick="closeModal('contactModal')">✕</button>
+    </div>
+    <div class="copy-container">
+      <div class="text-content">
+        <p style="margin: 0;">WeChat ID: <strong id="wechatId">epigenomics</strong></p>
+      </div>
+      <button class="copy-button" onclick='copyToClipboard(document.getElementById("wechatId").innerText, this)'>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+        </svg>
+        Copy
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <h1 class="page-title">FigureYa: Interactive Results Browser</h1>
+
+  <hr>
+
+  <div class="search-section">
+    <div class="note-box" style="background-color: #ebf8ff; border-left-color: #3182ce; margin-bottom: 1em;">
+      <p style="margin: 0;"><strong>Note:</strong> This repository (<strong>FigureYa</strong>) contains analyses and visualizations that primarily use <strong>R</strong>. For analyses that require <strong>Python</strong> (Jupyter notebooks), please visit: <a href="https://ying-ge.github.io/FigureYapy" target="_blank" style="color: #1976d2; font-weight: bold;">https://ying-ge.github.io/FigureYapy</a></p>
+    </div>
+    <div class="note-box" style="background-color: #fffbeb; border-left-color: #d69e2e; margin-bottom: 1.5em;">
+      <p style="margin: 0; font-size: 0.95em;"><strong>Big Data Download:</strong> For these larger files: some Rmd files include direct download links for the required data files. For files without direct download links, please visit our Baidu Cloud storage. Join the baidu group: <strong>979397987</strong> to access the download links.</p>
+    </div>
+    <div class="search-header">
+      <h1>Search and Browse Reports</h1>
+    </div>
+    <div class="search-input-wrapper">
+      <input type="text" id="searchBox" placeholder="Search by keyword, gene name, or R package..." autocomplete="off">
+      <button class="btn btn-primary" onclick="doSearch()">Search</button>
+      <button class="btn btn-secondary" onclick="clearSearch()">Clear</button>
+    </div>
+
+    <div class="viz-category-section">
+      <div class="viz-category-title">Filter by Visualization Type</div>
+      <div class="viz-category-buttons" id="vizCategoryButtons">
+        <button class="viz-category-btn active" data-category="all" onclick="filterByVizCategory('all')">All</button>
+        <button class="viz-category-btn" data-category="圆圈图" onclick="filterByVizCategory('圆圈图')">○ Circular</button>
+        <button class="viz-category-btn" data-category="连线图" onclick="filterByVizCategory('连线图')">∞ Network</button>
+        <button class="viz-category-btn" data-category="散点图" onclick="filterByVizCategory('散点图')">• Scatter</button>
+        <button class="viz-category-btn" data-category="相关性" onclick="filterByVizCategory('相关性')">↔ Correlation</button>
+        <button class="viz-category-btn" data-category="PCA" onclick="filterByVizCategory('PCA')">◇ PCA</button>
+        <button class="viz-category-btn" data-category="趋势图之生存分析" onclick="filterByVizCategory('趋势图之生存分析')">▷ Survival</button>
+      </div>
+    </div>
+
+    <div id="searchResults"></div>
+  </div>
+
+  <div id="tocGrid" class="grid"></div>
+</div>
+
+<!-- Download Modal -->
+<div id="downloadModal" class="download-modal">
+  <div class="download-modal-content">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+      <h2 id="modalTitle" style="margin:0;">Download Files</h2>
+      <button onclick="closeDownloadModal()" style="background:none;border:none;font-size:1.5em;cursor:pointer;color:#718096;padding:0;width:30px;height:30px;display:flex;align-items:center;justify-content:center;border-radius:4px;">✕</button>
+    </div>
+    <div id="fileList" class="file-list"></div>
+  </div>
+</div>
+
 <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    document.getElementById("searchBox").addEventListener("keydown", function(e){
-      if (e.key === "Enter") doSearch();
+  // Load chapters.json and render cards
+  let chaptersData = [];
+  let vizCategories = {};
+  let currentVizCategory = 'all';
+
+  async function loadChapters() {
+    try {
+      const response = await fetch('chapters.json');
+      chaptersData = await response.json();
+      renderCards(chaptersData);
+      loadVizCategories();
+    } catch (error) {
+      console.error('Failed to load chapters:', error);
+      document.getElementById('tocGrid').innerHTML =
+        '<div class="error">Failed to load content. Please refresh the page.</div>';
+    }
+  }
+
+  // Load categories on page load
+  async function loadVizCategories() {
+    try {
+      const response = await fetch('categories.txt');
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const text = await response.text();
+      vizCategories = parseVizCategories(text);
+      console.log('Loaded categories:', Object.keys(vizCategories));
+      updateCategoryButtonCounts();
+    } catch (error) {
+      console.error('Failed to load categories:', error);
+      // Disable category buttons on error
+      document.querySelectorAll('.viz-category-btn').forEach(btn => {
+        if (btn.dataset.category !== 'all') {
+          btn.disabled = true;
+          btn.style.opacity = '0.5';
+          btn.style.cursor = 'not-allowed';
+        }
+      });
+    }
+  }
+
+  // Update category button counts
+  function updateCategoryButtonCounts() {
+    Object.keys(vizCategories).forEach(category => {
+      const count = vizCategories[category].length;
+      const btn = document.querySelector(`.viz-category-btn[data-category="${category}"]`);
+      if (btn) {
+        // Add count badge if not already present
+        if (!btn.querySelector('.count-badge')) {
+          const badge = document.createElement('span');
+          badge.className = 'count-badge';
+          badge.textContent = ` (${count})`;
+          badge.style.fontSize = '0.85em';
+          badge.style.opacity = '0.8';
+          btn.appendChild(badge);
+        }
+      }
     });
+  }
+
+  // Parse categories.txt
+  function parseVizCategories(text) {
+    const lines = text.split('\n').filter(line => line.trim());
+    const result = {};
+    let currentCategory = null;
+
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i];
+
+      if (line.includes('小结｜')) {
+        const match = line.match(/^(.+)小结｜/);
+        if (match) {
+          const categoryName = match[1].trim();
+          if (!result[categoryName]) result[categoryName] = [];
+          currentCategory = categoryName;
+        }
+      } else if (line.includes('让')) {
+        continue;
+      } else if (line.startsWith('FigureYa')) {
+        if (currentCategory && result[currentCategory]) {
+          result[currentCategory].push(line.trim());
+        }
+      } else {
+        const knownCategories = ['圆圈图', '连线图', '散点图', '相关性', 'PCA', '趋势图之生存分析'];
+        if (knownCategories.includes(line.trim())) {
+          currentCategory = line.trim();
+          if (!result[currentCategory]) result[currentCategory] = [];
+        }
+      }
+    }
+
+    return result;
+  }
+
+  // Filter by visualization category
+  function filterByVizCategory(category) {
+    currentVizCategory = category;
+
+    // Update button states
+    document.querySelectorAll('.viz-category-btn').forEach(btn => {
+      btn.classList.remove('active');
+      if (btn.dataset.category === category) {
+        btn.classList.add('active');
+      }
+    });
+
+    // Clear search and show filtered results
+    document.getElementById('searchBox').value = '';
+    document.getElementById('searchResults').innerHTML = '';
+
+    if (category === 'all') {
+      renderCards(chaptersData);
+    } else {
+      const modules = vizCategories[category] || [];
+      const filteredChapters = chaptersData.filter(chapter =>
+        modules.some(module => chapter.folder === module || chapter.title.includes(module))
+      );
+      renderCards(filteredChapters);
+      if (filteredChapters.length > 0) {
+        document.getElementById('searchResults').innerHTML =
+          `<p style="text-align:center;color:#3182ce;padding:10px;">Showing ${filteredChapters.length} modules</p>`;
+      }
+    }
+  }
+
+  function renderCards(chapters) {
+    const grid = document.getElementById('tocGrid');
+
+    if (!chapters || chapters.length === 0) {
+      grid.innerHTML = '<div class="no-results">No reports found</div>';
+      return;
+    }
+
+    grid.innerHTML = chapters.map(chapter => `
+      <div class="card" data-id="${chapter.id}" onclick="showDownloadModal('${chapter.folder}')" style="cursor: pointer;">
+        ${chapter.thumb ?
+          `<img src="${chapter.thumb}" alt="${chapter.title}" loading="lazy">` :
+          `<div style="width:160px;height:120px;background:#f7fafc;border-radius:6px;display:flex;align-items:center;justify-content:center;margin-bottom:8px;color:#cbd5e0;font-size:2em;">📊</div>`
+        }
+        <div class="card-title">${chapter.folder}</div>
+        <div class="card-links">
+          <a href="${chapter.html}" target="_blank" onclick="event.stopPropagation()">View Report →</a>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  // Override doSearch to use local chapters data
+  async function doSearch() {
+    const query = document.getElementById('searchBox').value.trim();
+    const resultsDiv = document.getElementById('searchResults');
+
+    if (!query) {
+      resultsDiv.innerHTML = '';
+      renderCards(chaptersData);
+      return;
+    }
+
+    // Simple search through titles and folder names
+    const results = chaptersData.filter(chapter =>
+      chapter.title.toLowerCase().includes(query.toLowerCase()) ||
+      chapter.folder.toLowerCase().includes(query.toLowerCase())
+    );
+
+    if (results.length === 0) {
+      resultsDiv.innerHTML = '<div class="no-results">No results found</div>';
+      renderCards([]);
+    } else {
+      resultsDiv.innerHTML = `<p style="text-align:center;color:#3182ce;padding:10px;">Found ${results.length} result(s)</p>`;
+      renderCards(results);
+    }
+  }
+
+  function clearSearch() {
+    document.getElementById('searchBox').value = '';
+    document.getElementById('searchResults').innerHTML = '';
+    renderCards(chaptersData);
+  }
+
+  // Initialize
+  document.addEventListener("DOMContentLoaded", function() {
+    // Setup modal overlay click handlers
+    setupModalOverlayClickHandlers();
+
+    loadChapters();
+
+    // Search box enter key
+    const searchBox = document.getElementById("searchBox");
+    if (searchBox) {
+      searchBox.addEventListener("keydown", function(e){
+        if (e.key === "Enter") doSearch();
+      });
+    }
   });
 </script>
+
 </body>
 </html>

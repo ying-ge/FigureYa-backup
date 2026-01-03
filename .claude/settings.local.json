@@ -29,7 +29,8 @@
       "Bash(find:*)",
       "Bash(git log:*)",
       "Bash(python3:*)",
-      "mcp__zai-mcp-server__analyze_image"
+      "mcp__zai-mcp-server__analyze_image",
+      "Bash(git pull:*)"
     ],
     "deny": [],
     "ask": []
