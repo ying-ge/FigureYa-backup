@@ -51,7 +51,7 @@ TCGA数据的多种下载渠道：
 count、FPKM，或转换为TPM）
 或者在xena下载你感兴趣的癌症的，除生存信息以外的所有组学数据，下载地址：
 https://xenabrowser.net/datapages/?hub=https://tcga.xenahubs.net:443
-或者在xena下载处理好批次效应的TCGA和GTEx的pan-cancer数据，可参考FigureYa56immune_inflitration，下载Cell处理优化过的生存资料并跟RNA-seq数据对应，参考FigureYa66单因素cox。作者小高提供的下载和预处理代码见How
+或者在xena下载处理好批次效应的TCGA和GTEx的pan-cancer数据，可参考FigureYa56immune_inflitration，下载Cell处理优化过的生存资料并跟RNA-seq数据对应，参考FigureYa66UnivariateCox。作者小高提供的下载和预处理代码见How
 to get easy input from xena pan-cancer file.Rmd。
 临床病理学和生存信息还可以在firehose上下载，下载地址：
 http://gdac.broadinstitute.org/

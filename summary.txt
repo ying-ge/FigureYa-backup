@@ -454,7 +454,7 @@ Execution halted
 [SKIPPED] - ./FigureYa63pubmedMiningV2/FigureYa63pubmedMiningV2.Rmd (Not listed in auto_Knit_online.txt)
 [SKIPPED] - ./FigureYa117multilinearDE/FigureYa117multilinearDE.Rmd (Not listed in auto_Knit_online.txt)
 [SUCCESS] - ./FigureYa303panCircos/FigureYa303panCircos.Rmd
-[SKIPPED] - ./FigureYa66单因素cox/FigureYa66单因素cox.Rmd (Not listed in auto_Knit_online.txt)
+[SKIPPED] - ./FigureYa66UnivariateCox/FigureYa66UnivariateCox.Rmd (Not listed in auto_Knit_online.txt)
 [SUCCESS] - ./FigureYa89ggplotCirco/FigureYa89ggplotCirco.Rmd
 [SKIPPED] - ./FigureYa116supervisedCluster/FigureYa116supervisedCluster.Rmd (Not listed in auto_Knit_online.txt)
 [SKIPPED] - ./FigureYa45V2/FigureYa45iClusterV2.Rmd (Not listed in auto_Knit_online.txt)

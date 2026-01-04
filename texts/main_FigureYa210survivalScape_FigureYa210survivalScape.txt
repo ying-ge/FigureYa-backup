@@ -36,7 +36,7 @@ survival
 基于这一结果，下一步的做法：
 例文分析每个m6A基因在pancancer和GEO多个数据集中的hazard
 ratios，画出森林图Fig. 3b The distribution of hazard ratios across
-different cancer types. 可参考FigureYa66单因素cox。
+different cancer types. 可参考FigureYa66UnivariateCox。
 筛选获得显著影响生存的基因/癌症，然后批量画生存曲线，可参考FigureYa35batch_bestSeparation
 我们还复现过这篇文章的Fig.
 2A，用

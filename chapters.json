@@ -520,12 +520,12 @@
     "thumb": "gallery_compress/FigureYa65SVM.webp"
   },
   {
-    "id": "main_FigureYa66单因素cox_FigureYa66单因素cox",
-    "title": "FigureYa66单因素cox/FigureYa66单因素cox.html",
-    "html": "FigureYa66单因素cox/FigureYa66单因素cox.html",
-    "text": "texts/main_FigureYa66单因素cox_FigureYa66单因素cox.txt",
-    "folder": "FigureYa66单因素cox",
-    "thumb": "gallery_compress/FigureYa66单因素cox.webp"
+    "id": "main_FigureYa66UnivariateCox_FigureYa66UnivariateCox",
+    "title": "FigureYa66UnivariateCox/FigureYa66UnivariateCox.html",
+    "html": "FigureYa66UnivariateCox/FigureYa66UnivariateCox.html",
+    "text": "texts/main_FigureYa66UnivariateCox_FigureYa66UnivariateCox.txt",
+    "folder": "FigureYa66UnivariateCox",
+    "thumb": "gallery_compress/FigureYa66UnivariateCox.webp"
   },
   {
     "id": "main_FigureYa67phastCons_FigureYa67phastCons",

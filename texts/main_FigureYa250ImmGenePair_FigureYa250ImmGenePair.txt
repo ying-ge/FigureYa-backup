@@ -87,7 +87,7 @@ Figure 7可参考FigureYa71ssGSEA和FigureYa165heatmapPvalue；
 https://www.sciencedirect.com/science/article/abs/pii/S088875432030971X
 ，对应的中文解读
 https://mp.weixin.qq.com/s/-9xnZos9UVx4ySaZKBWF3Q
-。用到的FigureYa：FigureYa69cancerSubtype、FigureYa66单因素cox、FigureYa141risk、FigureYa35batch_bestSeparation、FigureYa162boxViolin、FigureYa131CMap、FigureYa30nomogram
+。用到的FigureYa：FigureYa69cancerSubtype、FigureYa66UnivariateCox、FigureYa141risk、FigureYa35batch_bestSeparation、FigureYa162boxViolin、FigureYa131CMap、FigureYa30nomogram
 Application Scenarios
 Gene pairs were constructed in a more traditional way. You can
 continue to run lasso or other model construction algorithms in the

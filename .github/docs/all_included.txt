@@ -45,7 +45,7 @@ FigureYa60GSEA_clusterProfilerV2
 FigureYa62twoAxis
 FigureYa63pubmedMiningV2
 FigureYa65SVM
-FigureYa66单因素cox
+FigureYa66UnivariateCox
 FigureYa67phastCons
 FigureYa68friendsV2
 FigureYa73batchCorrelation

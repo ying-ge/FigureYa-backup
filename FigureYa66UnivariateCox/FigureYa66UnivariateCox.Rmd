@@ -1,89 +1,115 @@
-FigureYa66单因素cox
-FigureYa66单因素cox
-Yin Li, Taojun Ye
-Academic Citation
-If you use this code in your work or research, we kindly request that
-you cite our publication:
-Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization
-Framework for Enhancing Biomedical Data Interpretation and Research
-Efficiency. iMetaMed. doi.org/10.1002/imm3.70005
-To cite package ‘ggstatsplot’ in publications use:
-Patil, I. (2021). Visualizations with statistical details: The
-‘ggstatsplot’ approach. Journal of Open Source Software, 6(61), 3167,
-doi:10.21105/joss.03167
-需求描述
+---
+title: "FigureYa66UnivariateCox"
+params:
+  author: "Yin Li"
+  reviewer: "Ying Ge, Taojun Ye"
+output:
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: flatly
+    highlight: tango
+    code_folding: show
+---
+
+**Author(s)**: `r params$author`  
+**Reviewer(s)**: `r params$reviewer`  
+**Date**: `r Sys.Date()`  
+
+## Academic Citation
+If you use this code in your work or research, we kindly request that you cite our publication:
+
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. doi.org/10.1002/imm3.70005
+
+To cite package 'ggstatsplot' in publications use:
+
+Patil, I. (2021). Visualizations with statistical details: The 'ggstatsplot' approach. Journal of Open Source Software, 6(61), 3167, doi:10.21105/joss.03167
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## 需求描述 Description of requirements
+
 单基因cox分析，并画出像paper里的图。
-计算HR，保存到文件，作为FigureYa6森林图的输入。
-Description of requirements
+
+计算HR，保存到文件，作为FigureYa6rHRs的输入。
+
 Single gene cox analysis and plot like in PAPER.
-Calculate HR and save to file as input for FigureYa6 forest plot.
-出自
-https://www.sciencedirect.com/science/article/pii/S0304383517301258?via%3Dihub
-应用场景
+
+Calculate HR and save to file as input for FigureYa6rHRs.
+
+![](example.png)
+
+Fig. 3. Forrest plots of hazard ratios of survival associated alternative events in LUSC. A, Hazard ratios of top 20 genes with survival associated ES events. B, Hazard ratios of top 20 genes with survival associated RI events. C, Hazard ratios of top 20 genes with survival associated AP events. D, Hazard ratios of top 20 genes with survival associated AT events. E, Hazard ratios of top 20 genes with survival associated AD events. F, Hazard ratios of top 20 genes with survival associated AA events. G, Hazard ratios of 8 genes with survival associated ME events.
+
+From <https://www.sciencedirect.com/science/article/pii/S0304383517301258?via%3Dihub>
+
+## 应用场景 Application Scenarios
+
 cox比例风险回归模型，由英国统计学家D.R.Cox于1972年提出
+
 主要用于肿瘤和其他慢性疾病的预后分析，也可用于队列研究的病因探索
+
 单因素cox分析主要探索单个基因的独立预后影响
+
 cox分析可用于转录组，甲基化，miRNA, LncRNA, 可变剪切等等
-From
-https://www.sciencedirect.com/science/article/pii/S0304383517301258?via%3Dihub
-Application Scenarios
-cox proportional risk regression model, proposed by British
-statistician D.R. Cox in 1972
-Mainly used for prognostic analysis of tumors and other chronic
-diseases, but also used for etiological exploration in cohort
-studies
-One-way cox analysis is used to explore the independent prognostic
-impact of individual genes.
-Cox analysis can be used for transcriptome, methylation, miRNA,
-LncRNA, variable shear, etc.
-环境设置
-Environment settings
+
+cox proportional risk regression model, proposed by British statistician D.R. Cox in 1972
+
+Mainly used for prognostic analysis of tumors and other chronic diseases, but also used for etiological exploration in cohort studies
+
+Univariate Cox analysis is used to explore the independent prognostic impact of individual genes.
+
+Cox analysis can be used for transcriptome, methylation, miRNA, LncRNA, variable shear, etc.
+
+## 环境设置 Environment settings
+
+```{r, message=FALSE}
 source("install_dependencies.R")
 source("ggscatterstats.R") # from ggstatsplot package https://github.com/IndrajeetPatil/ggstatsplot
 source("theme-ggstatsplot.R") # from ggstatsplot package https://github.com/IndrajeetPatil/ggstatsplot
+library(tidyverse) # 数据处理/data processing
+library(ggplot2) # 绘图/plotting
+library(survival) # Cox回归分析/Cox regression analysis
+library(stringr) # 字符串处理/string processing
+library(viridis) # 颜色处理/color processing
+library(scales) # 颜色处理/color processing
+Sys.setenv(LANGUAGE = "en") #显示英文报错信息 | Display English error messages
+options(stringsAsFactors = FALSE) #禁止chr转成factor | prohibit the conversion of chr to factor
+```
 
-library(tidyverse)
-library(ggplot2)
-library(survival)
-library(stringr)
-library(viridis)
-library(scales)
-输入文件的准备
+## 输入文件的准备 Preparation of input files
+
 如果你的数据已经整理成easy_input_4cox.csv的格式，就可以跳过这步，直接进入“单因素cox分析”。
+
 如果你的数据已经整理成cox_output.csv的格式，就可以跳过这步，直接进入“开始画图”。
+
 此处以LUAD为例，从TCGA下载生存资料和表达矩阵，处理为cox分析需要的的easy_input.csv。
-Preparation of input files
-If your data has been organized into easy_input_4coxv.csv format, you
-can skip this step and go directly to “One-way cox analysis”.
-If your data has been organized into cox_output.csv format, you can
-skip this step and go directly to “Start Drawing”.
-Here we take LUAD as an example, download the survival data and
-expression matrix from TCGA, and process them into easy_input.csv for
-cox analysis.
-第一步：样本资料整理，提取LUAD样本名
+
+If your data has been organized into easy_input_4coxv.csv format, you can skip this step and go directly to "Univariate Cox analysis".
+
+If your data has been organized into cox_output.csv format, you can skip this step and go directly to “Start Drawing”.
+
+Here we take LUAD as an example, download the survival data and expression matrix from TCGA, and process them into easy_input.csv for cox analysis.
+
+### 第一步：样本资料整理，提取LUAD样本名 Step 1: Sample information sorting, extract LUAD sample names
+
 数据来源：
-TCGA_phenotype_denseDataOnlyDownload.tsv，TCGA样本资料，下载地址：
-https://pancanatlas.xenahubs.net/download/TCGA_phenotype_denseDataOnlyDownload.tsv.gz
-samplepair.txt，TCGA跟GTEx的组织对应关系，参照GEPIA
-help的Differential analysis：
-http://gepia.cancer-pku.cn/help.html
-，整理成samplepair.txt文件
-Survival_SupplementalTable_S1_20171025_xena_sp，cell处理优化过的生存资料，下载地址：
-https://pancanatlas.xenahubs.net/download/Survival_SupplementalTable_S1_20171025_xena_sp.gz
+
+- TCGA_phenotype_denseDataOnlyDownload.tsv，TCGA样本资料，下载自：<https://pancanatlas.xenahubs.net/download/TCGA_phenotype_denseDataOnlyDownload.tsv.gz>
+- samplepair.txt，TCGA跟GTEx的组织对应关系，参照GEPIA help的Differential analysis：<http://gepia.cancer-pku.cn/help.html>，整理成samplepair.txt文件
+- Survival_SupplementalTable_S1_20171025_xena_sp，cell处理优化过的生存资料，下载自：<https://pancanatlas.xenahubs.net/download/Survival_SupplementalTable_S1_20171025_xena_sp.gz>
+
 Data Source:
-TCGA_phenotype_denseDataOnlyDownload.tsv, TCGA sample data, download
-at <
-https://pancanatlas.xenahubs.net/download/TCGA_phenotype_
-denseDataOnlyDownload.tsv.gz>
-samplepair.txt, TCGA and GTEx organization correspondence, refer to
-the Differential analysis of GEPIA help:
-http://gepia.cancer-pku.cn/help.html
-, organized into
-samplepair.txt file
-Survival_SupplementalTable_S1_20171025_xena_sp, cell processing
-optimized survival information, download address: <
-https://pancanatlas.xenahubs.net/download/Survival_
-SupplementalTable_S1_20171025_xena_sp.gz>
+
+- TCGA_phenotype_denseDataOnlyDownload.tsv, TCGA sample data, download from <https://pancanatlas.xenahubs.net/download/TCGA_phenotype_denseDataOnlyDownload.tsv.gz>
+- samplepair.txt, TCGA and GTEx organization correspondence, refer to the Differential analysis of GEPIA help: <http://gepia.cancer-pku.cn/help.html>, organized into samplepair.txt file
+- Survival_SupplementalTable_S1_20171025_xena_sp, cell processing optimized survival information, download from <https://pancanatlas.xenahubs.net/download/Survival_ SupplementalTable_S1_20171025_xena_sp.gz>
+
+```{r}
 # 建立疾病全称跟缩写的对应关系
 # Create mapping between disease full names and abbreviations
 
@@ -95,7 +121,6 @@ samplepair <- read.delim("samplepair.txt", as.is = TRUE)  # as.is=TRUE保持字�
 # Create tissue naming vector (TCGA codes as values, full names as names)
 tissue <- samplepair$TCGA  # 提取TCGA缩写列/extract TCGA code column
 names(tissue) <- samplepair$Detail  # 设置详细名称为向量名称/set full names as vector names
-
 
 # 提取LUAD的样本资料
 # Extract LUAD (Lung Adenocarcinoma) sample information
@@ -135,10 +160,10 @@ tcgatable <- tcgacase[, c(1, 5:7)]  # 选择第1列和第5-7列/select columns 1
 # 查看前几行数据
 # View first few rows of data
 head(tcgatable)
+
 # 筛选LUAD肿瘤样本
 # Filter LUAD tumor samples
 lung <- filter(tcgatable, tissue == "LUAD", type2 == "tumor")  # LUAD=肺腺癌/Lung Adenocarcinoma
-
 
 # 找到LUAD病人的生存资料，并与RNA-Seq样本比对
 # Find LUAD patient survival data and match with RNA-Seq samples
@@ -150,6 +175,7 @@ survival <- read.delim("Survival_SupplementalTable_S1_20171025_xena_sp", as.is =
 # 查看列名（确认数据内容）
 # View column names (verify data content)
 colnames(survival)
+
 # 筛选LUAD患者的生存数据
 # Filter survival data for LUAD patients
 LUADsur <- filter(survival, cancer.type.abbreviation == 'LUAD')
@@ -182,15 +208,19 @@ surdata <- luadsurvival_tumor[, c(1, 2, 6, 7)]  # 样本ID、生存状态、生�
 # 查看前5行数据的前4列
 # View first 5 rows and first 4 columns of data
 surdata[1:5, 1:4]
-第二步：表达矩阵处理
+```
+
+### 第二步：表达矩阵处理 Step 2: Expression matrix processing
+
 这里直接读取LUAD基因的表达矩阵：easy_input_expr.csv
+
 若要从pan-cancer提取处理好的某个癌症的RNA-seq数据，参考FigureYa55panCancer_violin或FigureYa56immune_inflitrationV2
-Step 2: Expression matrix processing
-Here we read the expression matrix of LUAD gene directly:
-easy_input_expr.csv
-To extract the processed RNA-seq data of a particular cancer from
-pan-cancer, refer to FigureYa55panCancer_violin or
-FigureYa56immune_inflitrationV2
+
+Here we read the expression matrix of LUAD gene directly: easy_input_expr.csv
+
+To extract the processed RNA-seq data of a particular cancer from pan-cancer, refer to FigureYa55panCancer_violin or FigureYa56immune_inflitrationV2
+
+```{r}
 # 读取基因表达数据（TPM值）
 # Read gene expression data (TPM values)
 tcgadatatpm <- read.csv("easy_input_expr.csv", row.names = 1)  # 第一列作为行名/first column as row names
@@ -198,6 +228,7 @@ tcgadatatpm <- read.csv("easy_input_expr.csv", row.names = 1)  # 第一列作为
 # 查看表达数据前5行和前5列
 # View first 5 rows and 5 columns of expression data
 tcgadatatpm[1:5, 1:5]
+
 # 筛选具有生存信息的样本
 # Filter samples with survival information
 luadsample <- intersect(
@@ -220,8 +251,11 @@ luadsurvival_tumortime <- luadsurvival_tumortime[, c(1, 6, 7)]  # 选择第1,6,7
 # 在表达数据中添加样本ID列（方便后续合并）
 # Add sample ID column to expression data (for easier merging)
 tcgadatatpm$sample <- row.names(tcgadatatpm)  # 将行名转为列/convert row names to column
-第三步：整理为cox分析的输入格式
-Step 3: Organize into an input format for cox analysis
+```
+
+### 第三步：整理为cox分析的输入格式 Step 3: Organize into an input format for cox analysis
+
+```{r}
 # 合并生存数据和基因表达数据
 # Merge survival data with gene expression data
 realdata <- merge(
@@ -245,11 +279,15 @@ realdata <- realdata[, -1]
 # 查看合并数据的前5行和前5列
 # View first 5 rows and 5 columns of merged data
 realdata[1:5, 1:5]
+
 # 将合并后的数据保存为CSV文件，供后续Cox分析使用
 # Save merged data as CSV file for subsequent Cox analysis
 write.csv(realdata, "easy_input_4cox.csv")
-单因素cox分析
-One-way cox analysis
+```
+
+## 单因素cox分析 Univariate Cox analysis
+
+```{r}
 # 读取准备好的Cox分析输入数据
 # Read prepared data for Cox analysis
 realdata <- read.csv("easy_input_4cox.csv", row.names = 1)  # 第一列作为行名/first column as row names
@@ -257,6 +295,7 @@ realdata <- read.csv("easy_input_4cox.csv", row.names = 1)  # 第一列作为行
 # 查看数据前3行和前6列
 # View first 3 rows and 6 columns of data
 realdata[1:3, 1:6]
+
 # 初始化空数据框存储Cox分析结果
 # Initialize empty data frame to store Cox results
 Coxoutput <- data.frame()
@@ -303,19 +342,24 @@ Coxoutput <- arrange(Coxoutput, pvalue) %>%
 # 保存Cox分析结果到CSV文件
 # Save Cox results to CSV file
 write.csv(Coxoutput, 'cox_output.csv', row.names = FALSE)  # 不保存行名/exclude row names
-此结果可与FigureYa6森林图衔接，画出不同形式的森林图
-只需把FigureYa6输入文件的Point
-Estimate改为HR，Low改为lower，High改为upper，其余自行添加
-This result can be linked to the FigureYa6 forest plot to draw a
-different form of forest plot.
-Just change Point Estimate to HR, Low to lower, High to upper in the
-input file of FigureYa6, and add the rest by yourself.
-开始画图
-Start drawing
+```
+
+此结果可与FigureYa6rHRs衔接，画出不同形式的森林图
+
+只需把FigureYa6rHRs输入文件的Point Estimate改为HR，Low改为lower，High改为upper，其余自行添加
+
+This result can be linked to the FigureYa6rHRs to draw a different form of forest plot.
+
+Just change Point Estimate to HR, Low to lower, High to upper in the input file of FigureYa6rHRs, and add the rest by yourself.
+
+## 开始画图 Start drawing
+
+```{r}
 # 读取Cox回归分析结果
 # Read Cox regression results
 Coxoutput <- read.csv("cox_output.csv")
 head(Coxoutput)  # 查看前几行数据/View first few rows
+
 # 筛选HR值显著(≤0.92或≥1.15)的基因
 # Filter genes with significant HR (≤0.92 or ≥1.15)
 plotCoxoutput <- filter(Coxoutput, HR <= 0.92 | HR >= 1.15)  
@@ -343,9 +387,10 @@ ggplot(data = plotCoxoutput, aes(x = HR, y = gene, color = pvalue)) +
   # 使用ggstatsplot主题/Use ggstatsplot theme
   theme_ggstatsplot() +  
   # 移除网格线/Remove grid lines
-  theme(panel.grid = element_blank())
+  theme(panel.grid = element_blank()) 
 # 保存图形/Save plot
 ggsave('plot1.pdf', width = 8, height = 9)
+
 # 绘图2：误差线随p值变色
 # Plot 2: Error bars colored by p-value
 ggplot(data = plotCoxoutput, aes(x = HR, y = gene, color = pvalue)) +
@@ -359,8 +404,9 @@ ggplot(data = plotCoxoutput, aes(x = HR, y = gene, color = pvalue)) +
   labs(color = "P value", title = "") +
   scale_color_viridis() + 
   theme_ggstatsplot() +  
-  theme(panel.grid = element_blank())
+  theme(panel.grid = element_blank()) 
 ggsave('plot2.pdf', width = 8, height = 9)
+
 # 绘图3：自定义主题和配色（樱花粉配色）
 # Plot 3: Custom theme and color scheme (cherry blossom color)
 ggplot(data = plotCoxoutput, aes(x = HR, y = gene, color = pvalue)) +
@@ -384,16 +430,21 @@ ggplot(data = plotCoxoutput, aes(x = HR, y = gene, color = pvalue)) +
         axis.title.y = element_text(face = "bold", color = "black", size = 11),
         legend.text = element_text(face = "bold", color = "black", size = 9),
         legend.title = element_text(face = "bold", color = "black", size = 11),
-        panel.border = element_rect(colour = 'black', size = 1.4))
+        panel.border = element_rect(colour = 'black', size = 1.4))   
 ggsave('plot3.pdf', width = 8, height = 9)
-例文的原图复现
+```
+
+## 例文的原图复现 Original image reproduction of example text
+
 下载原文数据（Suptable2)，根据原文原始数据完全重复原文图片
+
 原文有LUAD和LUSC，这里选择LUAD
-Original image reproduction of example text
-Download the original data (Suptable2), and repeat the original
-picture exactly according to the original data of the original text
-There are LUAD and LUSC in the original text, here we choose
-LUAD.
+
+Download the original data (Suptable2), and repeat the original picture exactly according to the original data of the original text
+
+There are LUAD and LUSC in the original text, here we choose LUAD.
+
+```{r}
 # 读取补充表格数据（制表符分隔）
 # Read supplementary table data (tab-delimited)
 df <- read.csv("suptable2LUAD.csv", sep = '\t')
@@ -448,9 +499,15 @@ ggplot(data = AAtop20, aes(x = HR, y = symbol, color = pvalue)) +
   
   # 自定义主题：移除网格线
   # Custom theme: remove grid lines
-  theme(panel.grid = element_blank())
+  theme(panel.grid = element_blank()) 
+
 # 保存图形为PDF（8x9英寸）
 # Save plot as PDF (8x9 inches)
 ggsave('sameplot.pdf', width = 8, height = 9)
-Session Info
+```
+
+## Session Info
+
+```{r}
 sessionInfo()
+```

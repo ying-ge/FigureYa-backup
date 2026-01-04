@@ -68,7 +68,7 @@ from<https://jamanetwork.com/journals/jamaoncology/fullarticle/2643120>
 - Figure 6可以用clusterprofiler实现<https://github.com/YuLab-SMU/clusterProfiler-book>
 - Figure 7可参考FigureYa71ssGSEA和FigureYa165heatmapPvalue；
 
-类似的文章<https://www.sciencedirect.com/science/article/abs/pii/S088875432030971X>，对应的中文解读<https://mp.weixin.qq.com/s/-9xnZos9UVx4ySaZKBWF3Q>。用到的FigureYa：FigureYa69cancerSubtype、FigureYa66单因素cox、FigureYa141risk、FigureYa35batch_bestSeparation、FigureYa162boxViolin、FigureYa131CMap、FigureYa30nomogram
+类似的文章<https://www.sciencedirect.com/science/article/abs/pii/S088875432030971X>，对应的中文解读<https://mp.weixin.qq.com/s/-9xnZos9UVx4ySaZKBWF3Q>。用到的FigureYa：FigureYa69cancerSubtype、FigureYa66UnivariateCox、FigureYa141risk、FigureYa35batch_bestSeparation、FigureYa162boxViolin、FigureYa131CMap、FigureYa30nomogram
 
 # Application Scenarios
 
