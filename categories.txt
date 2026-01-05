@@ -9,7 +9,7 @@
 PCA小结｜维减意存，指标可建
 噪声亦可除，异常样本易辨
 
-圆圈图
+圆圈图小结｜美图如云，理性选择，https://mp.weixin.qq.com/s/mLIAFkcgXl3GpJUblmVuRA
 FigureYa8radar
 FigureYa10chromosomeV2_update
 FigureYa74OmicCircos
@@ -22,7 +22,7 @@ FigureYa313CircularPlot
 FigureYa196PanPie
 FigureYa205immunophenoscore_update
 
-连线图
+连线图小结｜千丝万缕，脉络自现，https://mp.weixin.qq.com/s/BLofrtRd4gS3rfAVTILJIg
 FigureYa272scBulkCCCI
 FigureYa147interaction
 FigureYa81immune_network
@@ -36,7 +36,7 @@ FigureYa259circLink
 FigureYa199crosslink
 FigureYa228linkCor
 
-散点图
+散点图小结｜分层有序，高下立见，https://mp.weixin.qq.com/s/7TrCmuBm6IfnaRNl-E3WEA
 FigureYa321volcanoSE
 FigureYa198SignatureCombinationV2
 FigureYa294HCCdrug
@@ -53,7 +53,7 @@ FigureYa245VarDecompose_update
 FigureYa175quadrant
 FigureYa313circularPlot
 
-相关性
+相关性小结｜因数制宜，各展所长，https://mp.weixin.qq.com/s/wS-YkZ0RF9RWFNdocfKSNg
 FigureYa301scCoExpr
 FigureYa286ExprCorORR
 FigureYa300pancanCor
@@ -68,7 +68,7 @@ FigureYa96R2
 FigureYa62twoAxis
 FigureYa92immune_gene_update
 
-PCA
+PCA小结｜维减意存，指标可建，https://mp.weixin.qq.com/s/iYGMW47LVqrxO01An5Ewow
 FigureYa203ComBat
 FigureYa289TILSig
 FigureYa255TIME
@@ -81,6 +81,15 @@ FigureYa101PCA
 FigureYa38PCA
 
 趋势图之生存分析
+FigureYa31lasso_update
+FigureYa66UnivariateCox
+FigureYa220repeatedLasso
+FigureYa141risk
+FigureYa6rHRsV2
+FigureYa193RiskTable
+FigureYa30nomogram_update
+FigureYa138NiceCalibration
+FigureYa33DCA_update
 FigureYa186swimmerplot
 FigureYa197SmoothHaz
 FigureYa85timeROC

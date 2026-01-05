@@ -1,7 +1,8 @@
 ---
 title: "FIgureYa31lasso_update"
 params:
-  author: "Ya Zhang, Ying Ge; Yijing Chen"
+  author: "Ya Zhang, Ying Ge"
+  reviewer: "Yijing Chen"
 output: 
   html_document:
     toc: true
@@ -14,20 +15,19 @@ output:
 ---
 
 **Author(s)**: `r params$author`  
+**Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()`  
-
 
 ## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
 
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# 需求描述 Requirement Description
+## 需求描述 Requirement Description
 
 画出paper中的lasso回归图，给出图中线所对应的基因顺序。
 
@@ -39,15 +39,16 @@ Fit the variables that are included in the signature to a variable that is used 
 
 ![](example.png)
 
-出自<https://linkinghub.elsevier.com/retrieve/pii/S1470-2045(13)70491-1>
+Figure 1: Construction of the six-miRNA-based classifier
+(B) LASSO coefficient profiles of the 35 colon-cancer-associated miRNAs. A vertical line is drawn at the value chosen by 10-fold cross-validation.
+
+From <https://linkinghub.elsevier.com/retrieve/pii/S1470-2045(13)70491-1>
 
 lasso结果怎么解读？看这篇：<https://mp.weixin.qq.com/s/Odf3zYOu77DvN-ph4gHPJQ>
 
-from<https://linkinghub.elsevier.com/retrieve/pii/S1470-2045(13)70491-1>
-
 How to interpret lasso results? Read this: <https://mp.weixin.qq.com/s/Odf3zYOu77DvN-ph4gHPJQ>
 
-# 应用场景 Application Scenario
+## 应用场景 Application Scenario
 
 筛选差异基因之后，进一步筛选有预后意义的基因，组成基因表达signature。
 
@@ -57,7 +58,7 @@ After screening for differential genes, genes with prognostic significance are f
 
 LASSO is more suitable for high-dimensional, strongly correlated, and small-sample survival data.
 
-# 环境设置 Environment Setting
+## 环境设置 Environment Setting
 
 采用R包`glmnet`，它是目前最好用的拟合广义线性模型的R包，由`LASSO` 回归的发明人，斯坦福统计学家 Trevor Hastie 领衔开发。 
 
@@ -65,16 +66,14 @@ The R package `glmnet` is used, which is the best R package available for fittin
 
 ```{r,fig.width=8, fig.height=6}
 source("install_dependencies.R")
-#install.packages("glmnet")
-#install.packages("survival")
-library("glmnet")
-library("survival")
-source("nonzeroCoef.R")
+library("glmnet") # lasso regression
+library("survival") # 生存分析 survival analysis
+source("nonzeroCoef.R") # from glmnet package
 Sys.setenv(LANGUAGE = "en") #显示英文报错信息 display English error messages
 options(stringsAsFactors = FALSE) #禁止chr转成factor prohibit the conversion of chr to factor
 ```
 
-# 输入数据 Input Data
+## 输入数据 Input Data
 
 输入文件有两个，一个是生存信息`easy_input_suv.csv`，一个是基因表达矩阵`easy_input_exp.csv`。
 
@@ -103,10 +102,9 @@ if (all(colnames(myexpr) %in% rownames(mysurv))){
 }
 ```
 
-# 开始画图 Start Drawing
+## 开始画图 Start Drawing
 
-## 算出lambda值
-## Calculate the lambda value
+### 算出lambda值 Calculate the lambda value
 
 ```{r}
 cvfit = cv.glmnet(t(myexpr), Surv(mysurv$months,mysurv$status), 
@@ -132,8 +130,7 @@ fit <- glmnet(t(myexpr), Surv(mysurv$months,mysurv$status),
 plot(fit, label = TRUE)
 ```
 
-## 修改画图函数
-## Modify the plotting function
+### 修改画图函数 Modify the plotting function
 
 原函数打印序号，需要修改画图函数，改为打印基因名
 
@@ -251,8 +248,7 @@ plot.glmnet_plus <- function (x, xvar = c("norm", "lambda", "dev"), label = FALS
 }
 ```
 
-## 在线的旁边显示基因名
-## Display the gene name next to the line
+### 在线的旁边显示基因名 Display the gene name next to the line
 
 用修改后的函数画图
 
@@ -277,8 +273,7 @@ dev.off()
 
 ![](lasso_name.pdf)
 
-## 以图例的形式展示基因名
-## Show gene names in legend form
+### 以图例的形式展示基因名 Show gene names in legend form
 
 如果筛出来的基因太多，图上太挤，就把基因名用图例的形式标注。
 
@@ -296,8 +291,7 @@ dev.off()
 
 ![](lasso_legend.pdf)
 
-# 输出选中的基因
-# Output selected genes
+## 输出选中的基因 Output selected genes
 
 输出选中的基因及其coefficient，这个coefficient跟lasso图中的纵坐标是一致的
 
@@ -328,8 +322,7 @@ combine <- cbind(geneids, index.min)
 write.csv(combine,"gene_index.csv")
 ```
 
-# 输出用于nomogram作图的文件
-# Output files for nomogram graphing
+## 输出用于nomogram作图的文件 Output files for nomogram graphing
 
 将纳入signature的变量拟合成一个变量，可作为nomogram的输入，对接FigureYa30nomogram，作为easy_input.txt文件的一列。
 
@@ -342,6 +335,8 @@ colnames(signature)[1] <- "lasso"
 row.names = row.names(myexpr)
 write.table(signature,"lasso_output.txt",row.names = T, quote = F)
 ```
+
+## Session Info
 
 ```{r}
 sessionInfo()
