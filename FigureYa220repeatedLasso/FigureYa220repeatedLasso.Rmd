@@ -2,6 +2,7 @@
 title: "FigureYa220repeatedLasso"
 params:
   author: "Xiaofan Lu"
+  reviewers: "Ying Ge, Hui Huang"
 output: 
   html_document:
     toc: true
@@ -11,10 +12,10 @@ output:
     theme: flatly
     highlight: tango
     code_folding: show
-reviewers: Ying Ge,Hui Huang
 ---
 
 **Author(s)**: `r params$author`  
+**Reviewer(s)**: `r params$reviewers`  
 **Date**: `r Sys.Date()`  
 
 ## Academic Citation
@@ -26,7 +27,7 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# 需求描述 Requirement Description
+## 需求描述 Requirement Description
 
 FigureYa182RFSurv和FigureYa198SignatureComb都是根据基因的重要性筛选的。直接根据随机森林的准确度或cox模型的frequency筛选，又是另一种不同的展示方式。
 
@@ -34,13 +35,11 @@ Both FigureYa182RFSurv and FigureYa198SignatureComb were screened based on the i
 
 ![](example.png)
 
-出自<https://translational-medicine.biomedcentral.com/articles/10.1186/s12967-019-1824-4>
-From<https://translational-medicine.biomedcentral.com/articles/10.1186/s12967-019-1824-4>
-
 Fig. 2 a Generation of the ten gene groups after 1000 iteration. The gene model with 30 immune related genes was selected to construct the signature as its highest frequencies of 211 compared to other nine gene models. b The c‐index of both training and testing sets. The c‐index for TCGA dataset, GSE30219, GSE31210, GSE3141, and GSE81089 were 0.723, 0.657, 0.7061, 0.641, and 0.619 respectively
 
-# 应用场景
-# Application Scenarios
+From<https://translational-medicine.biomedcentral.com/articles/10.1186/s12967-019-1824-4>
+
+## 应用场景 Application Scenarios
 
 这里用的cox模型的10折交叉验证
 
@@ -48,12 +47,10 @@ Here is a 10-fold cross-validation of the COX model
 
 Using Cox proportional hazards model (iteration = 1000) with an lasso penalty to find the best gene model.
 
-# 环境设置
-# Environment settings
+## 环境设置 Environment settings
 
 ```{r}
 source("install_dependencies.R")  # 加载依赖安装脚本 # Load dependency installation script
-
 library(survival)  # 用于生存分析的包 # For survival analysis
 library(glmnet)    # 用于Lasso和Elastic-Net正则化的包 # For Lasso and Elastic-Net regularization
 library(pbapply)   # 用于显示进度条的包 # For displaying progress bars
@@ -73,8 +70,7 @@ display.progress = function (index, totalN, breakN=20) {
 } 
 ```
 
-# 输入文件
-# Input files
+## 输入文件 Input files
 
 表达谱文件
 
@@ -133,8 +129,7 @@ expr.surv <- cbind.data.frame(surv[comsam,c("OS","OS.time")],
 expr.surv <- expr.surv[which(expr.surv$OS.time > 0),]
 ```
 
-# 用训练集筛基因
-# Sifting genes with training sets
+## 用训练集筛基因 Sifting genes with training sets
 
 单变量cox模型筛选基因，KM估计筛选基因，二者取交集。
 
@@ -186,7 +181,7 @@ surv.obj <- Surv(expr.surv$OS.time, expr.surv$OS)
 lasso_fea_list <- list()
 
 list.of.seed <- 1:iter.times
-lasso_fea_list <- pblapply(list.of.seed, function(x){ # 大概运行2天 # It will run for about 2 days
+lasso_fea_list <- pblapply(list.of.seed, function(x){
   set.seed(list.of.seed[x])
   cvfit = cv.glmnet(x = as.matrix(expr.surv[,candidate.gene]), 
                     y = surv.obj, 
@@ -234,8 +229,7 @@ for (i in 1:length(uniquelist)) {
 lasso_res$label <- paste(lasso_res$n.gene,"genes",lasso_res$uniquelab,sep = "_") # 最终模型标签 # Final Model Label
 ```
 
-# 训练集 - 计算risk score和C指数
-# Training Set - Calculate the risk score and C-index
+## 训练集 - 计算risk score和C指数 Training Set - Calculate the risk score and C-index
 
 ```{r}
 sel.iter <- lasso_res[which(lasso_res$label == "35_genes_A"),"iteration"][1] # 选中模型为35_genes_A的某一次迭代种子（随便算哪个，基因集合都是一样的） # Select a certain iteration seed with the model as 35_genes_A (either is fine, the gene set is the same)
@@ -263,8 +257,7 @@ cindex.tcga <- concordance.index(risk.score,
                                  method = "noether")
 ```
 
-# 测试集 - 计算riskscore和C指数
-# Test Set - Calculate riskscore and C index
+## 测试集 - 计算riskscore和C指数 Test Set - Calculate riskscore and C index
 
 ```{r}
 ## 加载测试集表达谱和生存数据
@@ -302,7 +295,7 @@ cindex.gse <- concordance.index(risk.score.gse,
 
 ```
 
-# 开始画图 Start Drawing
+## 开始画图 Start Drawing
 
 ```{r}
 par(mfrow = c(1,2)) # 创建画图并分割成左右两块 # Create a drawing and divide it into left and right pieces

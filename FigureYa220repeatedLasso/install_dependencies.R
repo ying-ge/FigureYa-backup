@@ -1,65 +1,65 @@
 #!/usr/bin/env Rscript
-# 修正后的R依赖安装脚本
+# Corrected R dependency installation script
 
-# 设置镜像以改善下载性能
+# Set mirrors to improve download performance
 options("repos" = c(CRAN = "https://cloud.r-project.org/"))
 options(BioC_mirror = "https://bioconductor.org/")
 
-# 检查包是否已安装的函数
+# Function to check if package is installed
 is_package_installed <- function(package_name) {
   return(package_name %in% rownames(installed.packages()))
 }
 
-# 安装CRAN包的函数
+# Function to install CRAN packages
 install_cran_package <- function(package_name) {
   if (!is_package_installed(package_name)) {
-    cat("正在安装CRAN包:", package_name, "\n")
+    cat("Installing CRAN package:", package_name, "\n")
     tryCatch({
       install.packages(package_name, dependencies = TRUE)
-      cat("成功安装:", package_name, "\n")
+      cat("Successfully installed:", package_name, "\n")
     }, error = function(e) {
-      cat("安装失败", package_name, ":", e$message, "\n")
+      cat("Failed to install", package_name, ":", e$message, "\n")
     })
   } else {
-    cat("包已安装:", package_name, "\n")
+    cat("Package already installed:", package_name, "\n")
   }
 }
 
-# 安装Bioconductor包的函数
+# Function to install Bioconductor packages
 install_bioc_package <- function(package_name) {
   if (!is_package_installed(package_name)) {
-    cat("正在安装Bioconductor包:", package_name, "\n")
+    cat("Installing Bioconductor package:", package_name, "\n")
     tryCatch({
       if (!is_package_installed("BiocManager")) {
         install.packages("BiocManager")
       }
       BiocManager::install(package_name, update = FALSE, ask = FALSE)
-      cat("成功安装:", package_name, "\n")
+      cat("Successfully installed:", package_name, "\n")
     }, error = function(e) {
-      cat("安装失败", package_name, ":", e$message, "\n")
+      cat("Failed to install", package_name, ":", e$message, "\n")
     })
   } else {
-    cat("包已安装:", package_name, "\n")
+    cat("Package already installed:", package_name, "\n")
   }
 }
 
-cat("开始安装R包...\n")
+cat("Starting R package installation...\n")
 cat("===========================================\n")
 
-# 安装CRAN包
-cat("\n安装CRAN包...\n")
+# Install CRAN packages
+cat("\nInstalling CRAN packages...\n")
 cran_packages <- c("glmnet", "pbapply", "survival")
 for (pkg in cran_packages) {
   install_cran_package(pkg)
 }
 
-# 安装Bioconductor包
-cat("\n安装Bioconductor包...\n")
+# Install Bioconductor packages
+cat("\nInstalling Bioconductor packages...\n")
 bioc_packages <- c("survcomp")
 for (pkg in bioc_packages) {
   install_bioc_package(pkg)
 }
 
 cat("\n===========================================\n")
-cat("包安装完成！\n")
-cat("现在可以运行此目录中的R脚本了。\n")
+cat("Package installation completed!\n")
+cat("You can now run R scripts in this directory.\n")
