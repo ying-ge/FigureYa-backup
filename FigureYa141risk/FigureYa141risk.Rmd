@@ -18,7 +18,6 @@ output:
 **Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()`  
 
-
 ## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
@@ -31,38 +30,41 @@ knitr::opts_chunk$set(echo = TRUE)
 ## 需求描述 Requirement description
 
 画风险因子关联图，中间用一条竖线把两组分开，signature的热图用两种颜色区分两组。
+
 Draw a risk factor correlation graph, separate the two groups with a vertical line in the middle, and use two colors to distinguish the two groups in the signature heat map.
 
 ![](example1.png)
 
-出自<https://febs.onlinelibrary.wiley.com/doi/full/10.1002/1878-0261.12315>
+Figure 2 Construction of the six-miRNA signature in the training set for determining HCC recurrence risk. (B) The distribution of risk score, RFS, and recurrence status and the prognostic miRNA expression patterns for the 153 patients in the training set. The risk scores are arranged in ascending order from left to right. The number below the curve represents the number of the patients in the high- and low-risk group. The ‘+’ symbols in the panel indicate censored data.
+
 From <https://febs.onlinelibrary.wiley.com/doi/full/10.1002/1878-0261.12315>
 
 ![](example2.png)
 
-出自<https://molecular-cancer.biomedcentral.com/articles/10.1186/s12943-016-0544-0>
+Figure 3 LncRNA risk score analysis of GSE62254 test series. The distribution of 24-lncRNA risk score, patients’ survival status and lncRNA expression signature were analyzed in the GSE62254 test series patients (N = 180). a lncRNA signature risk score distribution; (b) patients’ survival status and time; (c) heatmap of the lncRNA expression profiles. Rows represent lncRNAs, and columns represent patients. The black dotted line represents the median lncRNA risk score cutoff dividing patients into low-risk and high-risk groups
+
 From <https://molecular-cancer.biomedcentral.com/articles/10.1186/s12943-016-0544-0>
 
 ![](example3.png)
 
-出自<https://translational-medicine.biomedcentral.com/articles/10.1186/s12967-019-2032-y>
+Figure 6 Analysis of lncRNA risk score in clear cell renal cell carcinoma (ccRCC) patients. a The entire set (530 tumor samples). b The training set (265 tumor samples). c The validation set (265 tumor samples). Each panel consists of three rows: top row, the low- and high-score group for the lncRNA signature in ccRCC patients; middle row, the survival status and duration of ccRCC cases; bottom row, heatmap showing the expression of the six key lncRNAs. The color, from blue to red shows, low to high expression, respectively
+
 From <https://translational-medicine.biomedcentral.com/articles/10.1186/s12967-019-2032-y>
 
 ## 应用场景 Application scenario
 
 同时展示risk score和表达量
+
 Show risk score and expression at the same time
 
-## 环境设置
-## Environment settings
+## 环境设置 Environment settings
 
 ```{r}
 source("install_dependencies.R")
-library(reshape2)
-library(ggplot2)
-library(scales)
-library(cowplot)
-
+library(reshape2) # 用于数据转换 # For data transformation
+library(ggplot2) # 用于画图 # For drawing
+library(scales) # 用于调色 # For color adjustment
+library(cowplot) # 用于拼图 # For puzzle
 Sys.setenv(LANGUAGE = "en") #显示英文报错信息 #Display English error message
 options(stringsAsFactors = FALSE) #禁止chr转成factor #Disable chr to factor
 ```
@@ -76,19 +78,18 @@ easy_input_sig.txt，signature。可以通过lasso、SVM等方法筛选获得，
 easy_input_sig.txt, signature. It can be obtained by screening through lasso, SVM and other methods, please refer to FigureYa31lasso or FigureYa65SVM-RFE.
 
 ```{r}
-data <- read.csv("easy_input_risk.csv.gz", row.names = 1)
+data <- read.csv("easy_input_risk.csv", row.names = 1)
 data[1:2, 1:4]
 
 bestvars <- read.table("easy_input_sig.txt")$V1
 bestvars
 ```
 
-## 按risk score分组
-## Group by risk score
+## 按risk score分组 Group by risk score
 
 这里用中值做cutoff分组。还可以用X-tile找最佳分组cutoff；或用FigureYa4bestSeparation找到P value最小的分组；或用FigureYa35batch_bestSeparation，从一群基因中批量找最佳分组，并筛选出高低两组有显著差异的基因。可参考这篇的思路：<https://mp.weixin.qq.com/s/4s6X0dpvEqOh-KtxES3sTg>
-Here, the median is used as the cutoff group. You can also use X-tile to find the best grouping cutoff; or use FigureYa4bestSeparation to find the group with the smallest P value; or use FigureYa35batch_bestSeparation to batch find the best grouping from a group of genes and filter out genes with significant differences between the high and low groups. You can refer to the idea of this article: <https://mp.weixin.qq.com/s/4s6X0dpvEqOh-KtxES3sTg>
 
+Here, the median is used as the cutoff group. You can also use X-tile to find the best grouping cutoff; or use FigureYa4bestSeparation to find the group with the smallest P value; or use FigureYa35batch_bestSeparation to batch find the best grouping from a group of genes and filter out genes with significant differences between the high and low groups. You can refer to the idea of this article: <https://mp.weixin.qq.com/s/4s6X0dpvEqOh-KtxES3sTg>
 
 ```{r}
 # risk score，用于画顶部散点图
@@ -118,6 +119,7 @@ exp_data[1:2,1:4]
 ## 开始画图 Start drawing
 
 分别画出最上方的risk score、中间的follow-up和最下面的signature，最后拼图。
+
 Draw the risk score at the top, the follow-up in the middle, and the signature at the bottom, and then complete the puzzle.
 
 ### A - risk score
@@ -208,8 +210,7 @@ plot.C <- p2 + scale_fill_gradient2(name="Genes\nexpression", low="#00A087FF", h
 plot.C
 ```
 
-### 拼图
-### Integration graph
+### 拼图 Integration graph
 
 ```{r, fig.width=7, fig.height=9}
 plot_grid(plot.A, plot.B, plot.C,
@@ -224,10 +225,10 @@ plot_grid(plot.A, plot.B, plot.C,
 ggsave("cox.pdf", width = 7, height = 9)
 ```
 
-## 另一种拼法
-## Another way to spell
+## 另一种拼法 Another way to spell
 
 图AB跟前面一样，C的分类和热图分开画
+
 Graphs AB are the same as before, and the classification and heat map of C are drawn separately
 
 ### C - signature
@@ -261,8 +262,7 @@ annotation_col<- data.frame(Var1 = rs_data$Risk,
 plot.C
 ```
 
-### 分类
-### Classification
+### 分类 Classification
 
 ```{r}
 p4 <- ggplot(tmp.m, aes(Var2, Var1),size=0.5)+
@@ -278,8 +278,7 @@ p4 <- ggplot(tmp.m, aes(Var2, Var1),size=0.5)+
 p4
 ```
 
-### 拼图
-### Integration graph
+### 拼图 Integration graph
 
 ```{r, fig.width=7, fig.height=9}
 plot_grid(plot.A,plot.B,p4,NULL,plot.C,
@@ -291,11 +290,13 @@ plot_grid(plot.A,plot.B,p4,NULL,plot.C,
 ggsave("cox2.pdf", width = 7, height = 9)
 ```
 
-## 后期处理
-## Post-processing
+## 后期处理 Post-processing
 
 如果想要例文那样一通到底的竖直虚线，就在Illustrator里打开PDF文件，删除现有的虚线，另外添加虚线。
+
 If you want a vertical dashed line that goes all the way through like the example, open the PDF file in Illustrator, delete the existing dashed line, and add another one.
+
+## Session Information
 
 ```{r}
 sessionInfo()

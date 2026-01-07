@@ -1,7 +1,8 @@
 ---
 title: "FigureYa65SVM"
 params:
-  author: "Dongqiang Zeng, Yin Li; Ying Ge, Yijing Chen"
+  author: "Dongqiang Zeng, Yin Li"
+  reviewer: "Ying Ge, Yijing Chen"
 output: 
   html_document:
     toc: true
@@ -14,8 +15,8 @@ output:
 ---
 
 **Author(s)**: `r params$author`  
+**Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()`  
-
 
 ## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
@@ -34,9 +35,9 @@ Feature variable screening using svm-rfe and lasso logistic regression to reprod
 
 ![](example.png)
 
-出自<http://ascopubs.org/doi/full/10.1200/JCO.2016.68.2153>
+Fig 3. Two algorithms were used for feature selection. (A) LASSO and (B) SVM-RFE algorithms in the discovery cohort. 
 
-from<http://ascopubs.org/doi/full/10.1200/JCO.2016.68.2153>
+From <http://ascopubs.org/doi/full/10.1200/JCO.2016.68.2153>
 
 ## 应用场景 Application scenario
 
@@ -57,15 +58,13 @@ It is mainly used to filter the feature variables to construct the best classifi
 
 ```{r, message=FALSE}
 source("install_dependencies.R")
-
-library(tidyverse)
-library(glmnet)
-source('msvmRFE.R')   #文件夹内自带 it comes with it in the folder
-library(VennDiagram)
-library(sigFeature)
-library(e1071)
-library(caret)
-library(randomForest)
+library(tidyverse) # 数据处理 data processing
+library(glmnet) # LASSO
+source('msvmRFE.R') # 多分类SVM-RFE的自定义实现 multi-class SVM-RFE custom implementation
+library(VennDiagram) # 画venn图 draw venn plot
+library(sigFeature) # SVM-RFE 的包装实现 wrap implementation of SVM-RFE
+library(e1071) # SVM核心算法（svm()函数） core algorithm of SVM (svm() function)
+library(caret) # Classification And Regression Training
 ```
 
 ## 输入文件 Input file
@@ -98,11 +97,9 @@ train[1:4,1:4]
 
 Next, take train as the input to filter the variables of lasso and SVM-REF respectively
 
-## 图A，用LASSO-logitstic-Algorithm进行特征选择
-## Figure A, feature selection with LASSO-logitstic-Algorithm
+## 图A，用LASSO-logitstic-Algorithm进行特征选择 Figure A, feature selection with LASSO-logitstic-Algorithm
 
-### 找特征
-### Find features
+### 找特征 Find features
 
 ```{r}
 # 转为lasso需要的格式
@@ -142,8 +139,7 @@ lasso_fea <- myCoefs@Dimnames[[1]][which(myCoefs != 0 )]
 write.csv(lasso_fea,"feature_lasso.csv")
 ```
 
-### 效果评估
-### Effect evaluation
+### 效果评估 Effect evaluation
 
 ```{r}
 # 使用选出来的特征进行模型的预测
@@ -158,8 +154,7 @@ table(predict,y)
 
 Seeing that the accuracy of the prediction here is 100%, it is still necessary to find a test set for inspection during the actual operation.
 
-## 图B，使用SVM-REF-Algorithm-进行特征选择
-## Figure B, feature selection using SVM-REF-Algorithm-
+## 图B，使用SVM-REF-Algorithm-进行特征选择 Figure B, feature selection using SVM-REF-Algorithm-
 
 例文用的是e1071包，参考资料：
 
@@ -171,8 +166,7 @@ The example text uses the e1071 package, reference:
 - johncolby's code: <https://github.com/johncolby/SVM-RFE>
 - <http://www.colbyimaging.com/wiki/statistics/msvm-rfe>
 
-### 找特征
-### Find features
+### 找特征 Find features
 
 ```{r, message=FALSE}
 #library(e1071)
@@ -196,8 +190,7 @@ head(top.features)
 write.csv(top.features,"feature_svm.csv")
 ```
 
-### 效果评估（Estimate generalization error）
-### Effect evaluation (Estimate generalization error)
+### 效果评估（Estimate generalization error） Effect evaluation (Estimate generalization error)
 
 > 每个featsweep列表元素都对应于使用多个顶级特征（即 featsweep[1] 仅使用顶级特征，featsweep[2] 使用前2个特征，等等）。其中，svm.list包含外部5折交叉验证中每个10折的泛化误差估计值。这些精度的平均值为误差。
 
@@ -241,8 +234,7 @@ Plotaccuracy(1-errors,no.info=no.info) #查看准确率 view accuracy rate
 which.min(errors) 
 ```
 
-### 比较lasso和SVM-REF方法一找出的特征变量，画Venn图
-### Compare the feature variables found by lasso and SVM-REF method 1, draw the Venn plot
+### 比较lasso和SVM-REF方法一找出的特征变量，画Venn图 Compare the feature variables found by lasso and SVM-REF method 1, draw the Venn plot
 
 ```{r}
 (myoverlap <- intersect(lasso_fea, top.features[1:which.min(errors), "FeatureName"])) #交集 intersection
@@ -260,8 +252,7 @@ grid.draw(venn.plot)
 #dev.off()
 ```
 
-## 跟例文的结果对比
-## Compare the results with the example
+## 跟例文的结果对比 Compare the results with the example
 
 example_lasso.txt，例文用lasso找出来的特征
 
@@ -298,8 +289,7 @@ summary(myoverlap%in%ex_overlap$V1)
 
 There's very little overlap, explore with your buddies!
 
-## 附
-## Appendix
+## 附 Appendix
 
 SVM-RFE算法有多套代码可以实现，这里提供了另外两种SVM-REF-Algorithm的实现方法。
 
