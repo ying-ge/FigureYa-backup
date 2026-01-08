@@ -31,44 +31,42 @@ knitr::opts_chunk$set(echo = TRUE)
 
 临床的亚组分析，我想用R做出文章里的样子。
 
-这里只从形式上复现，如果需要计算过程，请参考FigureYa90subgroup。
-
 Clinical subgroup analysis, I'd like to use R to make what it looks like in the article.
 
-It is only reproduced here formally, if you need the calculation process, please refer to FigureYa90subgroup.
-
 ![](example.png)
-出自<https://ascopubs.org/doi/full/10.1200/JCO.2017.75.6155?url_ver=Z39.88-2003&rfr_id=ori%3Arid%3Acrossref.org&rfr_dat=cr_pub%3Dpubmed>
 
-From<https://ascopubs.org/doi/full/10.1200/JCO.2017.75.6155?url_ver=Z39.88-2003&rfr_id=ori%3Arid%3Acrossref.org&rfr_dat=cr_pub%3Dpubmed>
+From <https://ascopubs.org/doi/full/10.1200/JCO.2017.75.6155?url_ver=Z39.88-2003&rfr_id=ori%3Arid%3Acrossref.org&rfr_dat=cr_pub%3Dpubmed>
 
-## 使用场景 Usage scenario
+## 应用场景 Application Scenarios
 
-场景一：临床的亚组分析。例如，能从参与临床试验的那么多人当中发现EGFR抑制剂唯独对亚洲非吸烟女性有效。
+临床的亚组分析。例如，能从参与临床试验的那么多人当中发现EGFR抑制剂唯独对亚洲非吸烟女性有效。
+这里只从形式上复现。FigureYa66UnivariateCox计算了单因素 HR，其输出文件cox_output.csv可以直接对接FigureYa6rHRsV2，只需调整列名。
+。
 
-场景二：meta分析，是经典的meta分析的图。
+Clinical subgroup analysis. For example, it was discovered that among the numerous participants in a clinical trial, EGFR inhibitors were effective only for Asian non-smoking females.
+It is only reproduced here formally, if you need the calculation process, please refer to FigureYa66UnivariateCox.
+The output file cox_output.csv can be used as input file for FigureYa6rHRsV2, only need to adjust the column names.
 
-Scenario 1: Clinical subgroup analysis. For example, it was discovered that among the numerous participants in a clinical trial, EGFR inhibitors were effective only for Asian non-smoking females.
+## 环境设置 Environment setup
 
-Scenario 2: meta-analysis, a graph of a classic meta-analysis.
+```{r}
+source("install_dependencies.R")
+library("forestplot") # 画森林图 | draw forest plot
+Sys.setenv(LANGUAGE = "en") #显示英文报错信息 | Display English error messages
+options(stringsAsFactors = FALSE) #禁止chr转成factor | prohibit the conversion of chr to factor
+```
 
-## 输入数据 Input data
+## 输入文件 Input file
 
 临床数据，包括分类、样本数、风险比及置信区间(上限及下限)等
 
-Clinical data, including categorization, sample size, hazard ratio, and confidence intervals (upper and lower limits), etc.
-
-## 输入数据的格式化
-## Formatting input data
-
 测试用数据文件为easy_input.csv，分类、样本数、风险比及置信区间(上限及下限)对应的列名分别是Variable、Count、Point.Estimate、Low和High
+
+Clinical data, including categorization, sample size, hazard ratio, and confidence intervals (upper and lower limits), etc.
 
 The data file for testing is easy_input.csv, and the corresponding column names for classification, sample size, hazard ratio, and confidence intervals (upper and lower limits) are Variable, Count, Point.Estimate, Low, and High, respectively.
 
-```{r,message=FALSE,warning=FALSE}
-source("install_dependencies.R")
-library("forestplot")
-
+```{r}
 #读取输入文件，输入数据一般包括分类、样本数、风险比及置信区间（上限及下限）等，需要注意的是输入文件的布局(包括文字缩进)将展示在最后结果中，所见即所得。
 #Read the input file, the input data generally includes classification, sample size, hazard ratio and confidence interval (upper and lower limits), etc. It should be noted that the layout of the input file (including text indentation) will be displayed in the final results, what you see is what you get.
 data <- read.csv("easy_input.csv", stringsAsFactors=FALSE)
