@@ -18,7 +18,6 @@ output:
 **Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()`  
 
-
 ## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
@@ -35,10 +34,9 @@ I want to draw this beautiful calibration graph (A) for logistics regression, wh
 
 ![](example.png)
 
-出自<https://www.frontiersin.org/articles/10.3389/fonc.2019.00488/full>
-From <https://www.frontiersin.org/articles/10.3389/fonc.2019.00488/full>
-
 FIGURE 6 | Model performance and clinical usefulness of the LNM-nomogram. (A) Calibration curve with Hosmer-Lemeshow test of the LNM-nomogram in the training set of TCGA-cohort. Calibration curve depicts the calibration of the fitted model in terms of the **agreement between the predicted risk of LN metastasis and real observed outcomes**. The x-axis represents the predicted LN metastasis risk and y-axis represents the actual LN metastasis rate. The pink solid line represents the performance of the LNM-nomogram, of which a closer fit to the diagonal dotted blue line represents an ideal prediction. The calibration curve was drawn by plotting ˆP on the x-axis and Pc = 1 + exp 􀀀− 0 + 1L−1on the y-axis, where Pc is the actual probability, L = logit ˆP , ˆP is predicted probability, 0 is corrected intercept, and 1 is slope estimates.
+
+From <https://www.frontiersin.org/articles/10.3389/fonc.2019.00488/full>
 
 **Validation of the LNM Nomogram and Its Clinical Usefulness**
 
@@ -48,10 +46,13 @@ Total points calculated by LNM nomogram for each sample in the testing set was d
 **Interpretation of the figure**
 
 上文找到了预测淋巴结转移（LNM）的指标LNM Nomogram，接下来验证和评价其临床可用性。
+
 - 用Calibration来评价一致性/标定度/校准度，即预测值和真实值之间的差异（本文）档）
 - 用ROC来评价区分度，即特异性和敏感性（可参考FigureYa24ROC）；
 - 用DCA来帮助确定高风险的患者进行干预、低风险的患者避免过度医疗（可参考FigureYa33DCA）。
+
 The above article found the indicator LNM Nomogram for predicting lymph node metastasis (LNM). Next, its clinical usability will be verified and evaluated.
+
 - Use Calibration to evaluate consistency/calibration/calibration, that is, the difference between the predicted value and the true value (this article) document)
 - Use ROC to evaluate discrimination, that is, specificity and sensitivity (see FigureYa24ROC);
 - Use DCA to help determine high-risk patients for intervention and low-risk patients to avoid over-medicalization (see FigureYa33DCA).
@@ -59,23 +60,21 @@ The above article found the indicator LNM Nomogram for predicting lymph node met
 ## 应用场景 Application scenario
 
 可用于评价诊断模型，是针对逻辑回归的。不能做预后模型，预后的calibration是不会曲折的。
-It can be used to evaluate diagnostic models, which is for logistic regression. It cannot be used to make prognostic models, and the calibration of prognosis will not be tortuous.
-
 通常用Hosmer-Lemeshow good of fit test（拟合优度检验）来评价预测模型的校准度。Hosmer-Lemeshow检验的思路和SPSS实现方法看这篇：<https://zhuanlan.zhihu.com/p/35574120>
-The Hosmer-Lemeshow good of fit test is usually used to evaluate the calibration of the prediction model. For the idea of Hosmer-Lemeshow test and the SPSS implementation method, please refer to this article: <https://zhuanlan.zhihu.com/p/35574120>
-
 Discrimination（区分度）和Calibration（一致性/标定度）是评价预测模型效能的两个重要指标。例文中都有提及，详情看这篇：<http://www.dxy.cn/bbs/topic/38248198?from=recommend>
+
+It can be used to evaluate diagnostic models, which is for logistic regression. It cannot be used to make prognostic models, and the calibration of prognosis will not be tortuous.
+The Hosmer-Lemeshow good of fit test is usually used to evaluate the calibration of the prediction model. For the idea of Hosmer-Lemeshow test and the SPSS implementation method, please refer to this article: <https://zhuanlan.zhihu.com/p/35574120>
 Discrimination (discrimination) and Calibration (consistency/calibration) are two important indicators for evaluating the effectiveness of prediction models. They are mentioned in the example text. For details, please refer to this article: <http://www.dxy.cn/bbs/topic/38248198?from=recommend>
 
-## 环境设置
-## Environment settings
+## 环境设置 Environment settings
 
 ```{r}
 source("install_dependencies.R")
 
-library(rms)
-library(scales)
-library(ResourceSelection)
+library(rms) # 画calibration图 plot calibration curve
+library(scales) # 颜色透明度 color transparency
+library(ResourceSelection) # Hosmer-Lemeshow goodness of fit test
 
 Sys.setenv(LANGUAGE = "en") #显示英文报错信息 #Display English error message
 options(stringsAsFactors = FALSE) #禁止chr转成factor #Disable conversion of chr to factor
@@ -84,9 +83,12 @@ options(stringsAsFactors = FALSE) #禁止chr转成factor #Disable conversion of 
 ## 输入文件 Input file
 
 easy_input.csv，每行一个sample。
+
 - 第一列MetaScore和第二列MLL2突变，自变量；
 - 第三列MetaStatus生存信息，因变量。
+
 easy_input.csv, one sample per line.
+
 - The first column is MetaScore and the second column is MLL2 mutation, independent variables;
 - The third column is MetaStatus survival information, dependent variable.
 

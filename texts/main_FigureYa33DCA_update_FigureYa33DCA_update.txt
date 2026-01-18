@@ -1,10 +1,15 @@
 FigureYa33DCA_update
+Code
+Show All Code
+Hide All Code
 FigureYa33DCA_update
 Author(s)
-: Dongqiang Zeng; Ying Ge, Yijing
-Chen
+: Dongqiang Zeng
+Reviewer(s)
+: Ying Ge, Yijing Chen
 Date
-: 2025-09-22
+: 2026-01-17
+1
 Academic Citation
 If you use this code in your work or research, we kindly request that
 you cite our publication:
@@ -12,16 +17,34 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization
 Framework for Enhancing Biomedical Data Interpretation and Research
 Efficiency. iMetaMed.
 https://doi.org/10.1002/imm3.70005
-需求描述
-Requirement description
+2
+需求描述 Requirement
+description
 画出paper里的DCA曲线
 Draw the DCA curve from the paper
-出自
+Fig. 4 – Net decision curve analyses demonstrating the benefit for
+predicting sPC on biopsy: (A) for biopsy-naı¨ve men and (C) for men
+after previous biopsy. The turquoise line is the net benefit of
+providing all patients with MRI/TRUS fusion biopsy, and the horizontal
+black line is the net benefit of providing no patients with biopsy. The
+net benefit provided by each prediction tool is given (green line for
+ERSPC-RCs, pink line for refitted ERSPC- RCs, yellow line for mpMRI
+Likert PI-RADS, blue line for ERSPC-RC3/4 + mpMRI PI-RADSv1.0, and
+orange line for the RMs). The net reduction analyses demonstrate in how
+many patients a biopsy could be avoided without missing any sPC, based
+on the decision derived from the RMs (orange lines), ERSPC-RCs (green
+lines), refitted ERSPC-RCs (pink lines), mpMRI PI-RADS (yellow lines),
+and ERSPC-RC3/4 + mpMRI PI-RADSv1.0 (blue lines) in (B) in biopsy-naı¨ve
+and (D) postbiopsy men. ERSPC = European Randomised Study of Screening
+for Prostate Cancer; mpMRI = multiparametric magnetic resonance imaging;
+MRI = magnetic resonance imaging; PI-RADS = Prostate Imaging Reporting
+and Data System; RC = risk calculator; RM = risk model; sPC =
+significant prostate cancer; TRUS = transrectal ultrasound
+From
 https://www.europeanurology.com/article/S0302-2838(17)30267-1/fulltext
-from
-https://www.europeanurology.com/article/S0302-2838(17)30267-1/fulltext
-应用场景
-Application scenario
+3
+应用场景 Application
+Scenario
 生存数据因为带了时间和事件发生的混合因素，适合用
 stdca.R
 这个function，是MSKCC的统计学专家写的。
@@ -35,20 +58,37 @@ In cohort studies, like the B-figure in the example, there are both
 opt-in and opt-out choices to help identify high-risk patients for
 intervention and low-risk patients to avoid overmedication. The ultimate
 purpose of this graph is to demonstrate this value.
-环境设置
-Environment setting
-use the domestic mirror installation package
-source("install_dependencies.R")
-install.packages("magick")
-install.packages("cmprsk")
-load package
-library(survival)
-library(ggplotify)
-library(magick)
-library(cowplot)
-
-Sys.setenv(LANGUAGE = "en") #显示英文报错信息 display English error messages
-options(stringsAsFactors = FALSE) #禁止chr转成factor prohibit the conversion of chr to factor
+4
+环境设置 Environment
+Setting
+source
+(
+"install_dependencies.R"
+)
+library
+(survival)
+# 生存分析 survival analysis
+library
+(ggplotify)
+# 把基础图形转换为ggplot对象 ggplotify package converts basic graphics into ggplot objects
+library
+(magick)
+# 图像处理 image processing
+library
+(cowplot)
+# 图形组合 plot combination
+Sys.setenv
+(
+LANGUAGE =
+"en"
+)
+#显示英文报错信息 display English error messages
+options
+(
+stringsAsFactors =
+FALSE
+)
+#禁止chr转成factor prohibit the conversion of chr to factor
 加载自定义函数
 stdca.R
 文件里的画图函数来自：
@@ -77,9 +117,14 @@ Use
 to mark the modified code
 before and after the modifications, search for ‘#Ya#’ to find the
 modifications.
-source("stdca.R") #stdca.R文件位于当前文件夹 stdca.R file is located in the current folder
-输入文件
-Input file
+source
+(
+"stdca.R"
+)
+#stdca.R文件位于当前文件夹 stdca.R file is located in the current folder
+5
+输入文件 Input
+file
 easy_input.txt，跟
 FigureYa30nomogram
 里的easy_input.txt是同一个文件，来自
@@ -90,19 +135,77 @@ FigureYa30nomogram
 , from the
 survival
 package.
-pbc <- read.table("easy_input.txt")
-pbc <- pbc[complete.cases(pbc),] #删掉缺失数据 delete missing data
+pbc
+<-
+read.table
+(
+"easy_input.txt"
+)
+pbc
+<-
+pbc[
+complete.cases
+(pbc),]
+#删掉缺失数据 delete missing data
 #先把bili分为三类：低、中、高
 #first, categorize bili into three groups: low, medium, and high
-pbc$catbili <- cut(pbc$bili,breaks=c(-Inf, 2, 4, Inf),
-                   labels=c("low","medium","high"))
-
+pbc
+$
+catbili
+<-
+cut
+(pbc
+$
+bili,
+breaks=
+c
+(
+-
+Inf
+,
+2
+,
+4
+,
+Inf
+),
+labels=
+c
+(
+"low"
+,
+"medium"
+,
+"high"
+))
 #把status分为两类，原来的2为变成1，原来的1和0变成0
 #split status into two categories, the original 2 to become 1, the original 1 and 0 to become 0
-pbc$died <- pbc$status==2
-pbc$status <- ifelse(pbc$died=="TRUE",1,0)
-
-head(pbc)
+pbc
+$
+died
+<-
+pbc
+$
+status
+==
+2
+pbc
+$
+status
+<-
+ifelse
+(pbc
+$
+died
+==
+"TRUE"
+,
+1
+,
+0
+)
+head
+(pbc)
 模仿
 easy_input.txt
 ，修改你手里数据的格式。
@@ -110,10 +213,17 @@ Mimic
 easy_input.txt
 and modify the format of the data
 you have in hand.
+6
 利用系数重新预测模型
 Repredict the model using the coefficients
-Srv = Surv(pbc$time, pbc$died)
-
+Srv
+=
+Surv
+(pbc
+$
+time, pbc
+$
+died)
 #此处选择5年的时间节点，输入文件的time列的单位是天，5年是1825天。
 #下面每两行计算1种cox模型的系数，后面将画图对比
 #这里模型的名字写为model1、model2，相应的图中也会显示这个名字。
@@ -122,68 +232,372 @@ Srv = Surv(pbc$time, pbc$died)
 #Below, every two lines calculate the coefficients of one type of Cox model, followed by a comparison through plotting.
 #Here the name of the model is written as model1, model2, and the corresponding graph will show this name.
 #When you use them in practice, change them to the names you want to show in the graph.
-coxmod1 = coxph(Srv ~ trt + age + sex + hepato + catbili + copper + stage, data=pbc)
-pbc$model1 = c(1 - (summary(survfit(coxmod1, newdata=pbc), times=1825)$surv))
-
-coxmod2 = coxph(Srv ~ ascites + spiders + edema + chol + albumin + alk.phos + ast + trig + platelet + protime, data=pbc)
-pbc$model2 = c(1 - (summary(survfit(coxmod2,newdata=pbc), times=1825)$surv))
-
-coxmod3 = coxph(Srv ~ trt + age + sex + hepato + catbili + copper + stage + ascites + spiders + edema + chol + albumin + alk.phos + ast + trig + platelet + protime, data=pbc)
-pbc$model3 = c(1 - (summary(survfit(coxmod3,newdata=pbc), times=1825)$surv))
-
-coxmod4 = coxph(Srv ~ stage, data=pbc)
-pbc$model4 = c(1 - (summary(survfit(coxmod4,newdata=pbc), times=1825)$surv))
-
-head(pbc)
-开始画图
-Start drawing
-画Net benefit
-Draw Net benefit
+coxmod1
+=
+coxph
+(Srv
+~
+trt
++
+age
++
+sex
++
+hepato
++
+catbili
++
+copper
++
+stage,
+data=
+pbc)
+pbc
+$
+model1
+=
+c
+(
+1
+-
+(
+summary
+(
+survfit
+(coxmod1,
+newdata=
+pbc),
+times=
+1825
+)
+$
+surv))
+coxmod2
+=
+coxph
+(Srv
+~
+ascites
++
+spiders
++
+edema
++
+chol
++
+albumin
++
+alk.phos
++
+ast
++
+trig
++
+platelet
++
+protime,
+data=
+pbc)
+pbc
+$
+model2
+=
+c
+(
+1
+-
+(
+summary
+(
+survfit
+(coxmod2,
+newdata=
+pbc),
+times=
+1825
+)
+$
+surv))
+coxmod3
+=
+coxph
+(Srv
+~
+trt
++
+age
++
+sex
++
+hepato
++
+catbili
++
+copper
++
+stage
++
+ascites
++
+spiders
++
+edema
++
+chol
++
+albumin
++
+alk.phos
++
+ast
++
+trig
++
+platelet
++
+protime,
+data=
+pbc)
+pbc
+$
+model3
+=
+c
+(
+1
+-
+(
+summary
+(
+survfit
+(coxmod3,
+newdata=
+pbc),
+times=
+1825
+)
+$
+surv))
+coxmod4
+=
+coxph
+(Srv
+~
+stage,
+data=
+pbc)
+pbc
+$
+model4
+=
+c
+(
+1
+-
+(
+summary
+(
+survfit
+(coxmod4,
+newdata=
+pbc),
+times=
+1825
+)
+$
+surv))
+head
+(pbc)
+7
+开始画图 Start
+Drawing
+7.1
+画Net benefit Draw
+Net benefit
 画一条
 Draw one
-mod1 <- stdca(data=pbc, outcome="status", ttoutcome="time", timepoint=1825, 
-                 predictors="model1", # 跟上一步模型的名字一致 same name as the model in the previous step
-              cmprsk=TRUE, smooth=TRUE, xstop=0.5,intervention="FALSE")
-#mod2 <- stdca(data=pbc, outcome="status", ttoutcome="time", timepoint=1825, 
+mod1
+<-
+stdca
+(
+data=
+pbc,
+outcome=
+"status"
+,
+ttoutcome=
+"time"
+,
+timepoint=
+1825
+,
+predictors=
+"model1"
+,
+# 跟上一步模型的名字一致 same name as the model in the previous step
+cmprsk=
+TRUE
+,
+smooth=
+TRUE
+,
+xstop=
+0.5
+,
+intervention=
+"FALSE"
+)
+#mod2 <- stdca(data=pbc, outcome="status", ttoutcome="time", timepoint=1825,
 #             predictors="model2", cmprsk=TRUE, smooth=TRUE, xstop=0.5,intervention="FALSE")
-
-#mod3 <- stdca(data=pbc, outcome="status", ttoutcome="time", timepoint=1825, 
+#mod3 <- stdca(data=pbc, outcome="status", ttoutcome="time", timepoint=1825,
 #             predictors="model3", cmprsk=TRUE, smooth=TRUE, xstop=0.5,intervention="FALSE")
-
-#mod4 <- stdca(data=pbc, outcome="status", ttoutcome="time", timepoint=1825, 
+#mod4 <- stdca(data=pbc, outcome="status", ttoutcome="time", timepoint=1825,
 #             predictors="model4", cmprsk=TRUE, smooth=TRUE, xstop=0.5,intervention="FALSE")
 多条对比
 Multiple comparisons
-pdf("net_benefit.pdf",width = 6,height = 6)
-stdca(data=pbc, outcome="status", ttoutcome="time", timepoint=1825,
-      predictors=c("model1","model2","model3","model4"), # 跟前面模型的名字保持一致 consistent with the name of the previous model
-      cmprsk=TRUE, smooth=TRUE, 
-      xstop=0.5,intervention="FALSE")
-dev.off()
+pdf
+(
+"net_benefit.pdf"
+,
+width =
+6
+,
+height =
+6
+)
+stdca
+(
+data=
+pbc,
+outcome=
+"status"
+,
+ttoutcome=
+"time"
+,
+timepoint=
+1825
+,
+predictors=
+c
+(
+"model1"
+,
+"model2"
+,
+"model3"
+,
+"model4"
+),
+# 跟前面模型的名字保持一致 consistent with the name of the previous model
+cmprsk=
+TRUE
+,
+smooth=
+TRUE
+,
+xstop=
+0.5
+,
+intervention=
+"FALSE"
+)
+dev.off
+()
+7.2
 画干预的net reduction
 Draw intervention for net reduction
 画一条
 Draw one
-mod1 <- stdca(data=pbc, outcome="status", ttoutcome="time", timepoint=1825, 
-      predictors="model1", cmprsk=TRUE, smooth=TRUE, xstop=0.5,intervention="TRUE")
-#mod2 <- stdca(data=pbc, outcome="status", ttoutcome="time", timepoint=1825, 
+mod1
+<-
+stdca
+(
+data=
+pbc,
+outcome=
+"status"
+,
+ttoutcome=
+"time"
+,
+timepoint=
+1825
+,
+predictors=
+"model1"
+,
+cmprsk=
+TRUE
+,
+smooth=
+TRUE
+,
+xstop=
+0.5
+,
+intervention=
+"TRUE"
+)
+#mod2 <- stdca(data=pbc, outcome="status", ttoutcome="time", timepoint=1825,
 #      predictors="model2", cmprsk=TRUE, smooth=TRUE, xstop=0.5,intervention="TRUE")
-
-#mod3 <- stdca(data=pbc, outcome="status", ttoutcome="time", timepoint=1825, 
+#mod3 <- stdca(data=pbc, outcome="status", ttoutcome="time", timepoint=1825,
 #      predictors="model3", cmprsk=TRUE, smooth=TRUE, xstop=0.5,intervention="TRUE")
-
-#mod4 <- stdca(data=pbc, outcome="status", ttoutcome="time", timepoint=1825, 
+#mod4 <- stdca(data=pbc, outcome="status", ttoutcome="time", timepoint=1825,
 #      predictors="model4", cmprsk=TRUE, smooth=TRUE, xstop=0.5,intervention="TRUE")
 多条对比
 Multiple comparisons
-pdf("net_reduction.pdf",width = 6,height = 6)
-stdca(data=pbc, outcome="status", ttoutcome="time", timepoint=1825,
-      predictors=c("model1","model2","model3","model4"), 
-      cmprsk=TRUE, smooth=TRUE, 
-      xstop=0.5,intervention="TRUE")
-dev.off()
-其他参考资料
-Other references
+pdf
+(
+"net_reduction.pdf"
+,
+width =
+6
+,
+height =
+6
+)
+stdca
+(
+data=
+pbc,
+outcome=
+"status"
+,
+ttoutcome=
+"time"
+,
+timepoint=
+1825
+,
+predictors=
+c
+(
+"model1"
+,
+"model2"
+,
+"model3"
+,
+"model4"
+),
+cmprsk=
+TRUE
+,
+smooth=
+TRUE
+,
+xstop=
+0.5
+,
+intervention=
+"TRUE"
+)
+dev.off
+()
+8
+其他参考资料 Other
+references
 DCA很年轻，资料不多，这里提供两个资料，供参考：
 优缺点看这篇：
 http://jama.jamanetwork.com/article.aspx?articleID=2091968
@@ -195,4 +609,7 @@ See this one for advantages and disadvantages:
 http://jama.jamanetwork.com/article.aspx?articleID=2091968
 There are also tutorials, R and Stata codes here:
 https://www.mskcc.org/sites/default/files/node/4509/documents/dca-tutorial-2015-2-26.pdf
-sessionInfo()
+9
+Session Info
+sessionInfo
+()
