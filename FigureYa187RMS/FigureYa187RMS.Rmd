@@ -27,37 +27,30 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# 需求描述
-
-# Requirement
+## 需求描述 Requirement
 
 用c-index比较两个预后模型，并画出图A。
+
 Compare the two prognostic models using c-index and draw Figure A.
 
 ![](example.png)
 
-出自<https://onlinelibrary.wiley.com/doi/full/10.1111/cpr.12861>
-fromhttps://onlinelibrary.wiley.com/doi/full/10.1111/cpr.12861
-
 FIGURE 6 RMS curves for RPGI and the integrated PCPI scores are plotted for: A, the TCGA cohort, B, validation set 1 and C, validation set 2. Each point represents the RMS time of corresponding RPGI and PCPI scores. The RMS curves show a larger slope in all three data sets for PCPI, indicating superior estimation of survival with PCPI. C-indexes for RPGI and PCPI are also provided. P values represent the difference between the two models in terms of C-index.
 
-# 应用场景
+From <https://onlinelibrary.wiley.com/doi/full/10.1111/cpr.12861>
 
-# Application Scenarios
+## 应用场景 Application Scenarios
 
 计算限制性生存时间，并比较不同因素的预后价值
 Calculate the restrictive survival time and compare the prognostic value of different factors
 
-# 环境设置
-
-# Environment Setup
+## 环境设置 Environment Setup
 
 ```{r}
 source("install_dependencies.R")
-
-library(survival)
-library(survcomp)
-library(survRM2)
+library(survival) # 生存分析 Survival analysis
+library(survcomp) # C-index比较 C-index comparison
+library(survRM2) # 限制性平均生存时间计算 Restricted mean survival time calculation
 Sys.setenv(LANGUAGE = "en") #显示英文报错信息  # Display an English error message
 options(stringsAsFactors = FALSE) #禁止chr转成factor  # prohibit chr from being converted to factor
 ```
@@ -144,14 +137,14 @@ rms2curve <- function(survdt = NULL,
 }
 ```
 
-# 输入文件
-
-# Input File
+## 输入文件 Input File
 
 easy_input.csv，包括一个baseline score。一般是预后模型如LASSO得到的基因得分（可参考FigurejYa31lasso的输出文件lasso_output.txt），以及其他额外变量，这些变量可能提高预后的预测性能。
-easy_input.csv, including a baseline score. Generally, it is the gene score obtained from prognostic models such as LASSO (refer to the output file lasso_output.txt of FigurejYa31lasso), as well as other additional variables, which may improve the predictive performance of prognosis.
 
 此处的输入数据来自原文，包括由多变量Cox + LASSO惩罚得到的riskscore（例文为RNA processing gene index，缩写为RPGI），以及两个临床变量（年龄、stage），还有time-to-event数据。
+
+easy_input.csv, including a baseline score. Generally, it is the gene score obtained from prognostic models such as LASSO (refer to the output file lasso_output.txt of FigurejYa31lasso), as well as other additional variables, which may improve the predictive performance of prognosis.
+
 The input data here are from the original text, including the riskscore obtained by multivariate Cox + LASSO penalty (the example text is RNA processing gene index, abbreviated as RPGI), as well as two clinical variables (age, stage), and time-to-event data.
 
 ```{r}
@@ -165,9 +158,7 @@ head(dat)
 jco <- c("#2874C5","#EABF00")
 ```
 
-# 多变量cox模型得到新的score
-
-# The multivariate cox model has obtained a new score
+## 多变量cox模型得到新的score The multivariate cox model has obtained a new score
 
 例文为Processing-Clinical prognostic index (PCPI)
 Example text: Processing-Clinical prognostic index (PCPI)
@@ -179,9 +170,7 @@ base.score <- dat$Riskscore
 new.score <- as.numeric(apply(dat[,c("Riskscore","Age","Stage")], 1, function(x) {x %*% as.numeric(tmp$coefficients)}))
 ```
 
-# 开始画图
-
-# Start drawing
+## 开始画图 Start drawing
 
 用自定义的函数画图
 Draw graphs using custom functions

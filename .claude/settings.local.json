@@ -34,7 +34,9 @@
       "Bash(git checkout:*)",
       "Bash(git merge:*)",
       "mcp__web-reader__webReader",
-      "Bash(mv:*)"
+      "Bash(mv:*)",
+      "Bash(ls:*)",
+      "Bash(git restore:*)"
     ],
     "deny": [],
     "ask": []

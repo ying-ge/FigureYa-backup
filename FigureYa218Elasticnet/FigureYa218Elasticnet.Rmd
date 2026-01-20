@@ -1,7 +1,8 @@
 ---
 title: "FigureYa218Elasticnet"
 params:
-  author: "Xiaofan Lu; Ying Ge, Yijing Chen"
+  author: "Xiaofan Lu"
+  reviewer: "Ying Ge, Yijing Chen"
 output: 
   html_document:
     toc: true
@@ -14,8 +15,8 @@ output:
 ---
 
 **Author(s)**: `r params$author`  
+**Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()`  
-
 
 ## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
@@ -26,7 +27,7 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# 需求描述 Requirement Description
+## 需求描述 Requirement Description
 
 我想实现弹性网络筛选和分类的数据分析。根据表达矩阵，绘制figure2的A,B,C筛选和系数图，再根据结果绘制分类效果E图，得到准确率。
 
@@ -34,43 +35,33 @@ I would like to try data analysis for resilient network screening and classifica
 
 ![](example.png)
 
-出自<https://www.frontiersin.org/articles/10.3389/fgene.2020.00857/full>
-
 FIGURE 2 | The screening and validation of 15 genes conducted by the diagnostic classifier. 
 (A,B) Binomial deviance as a function of the regularization parameter lambda for leave-one-study-out cross-validation on the training datasets. Points correspond to the means, and error bars correspond to the standard deviations. Coefficients of 15 genes were selected by the lambda with the minimum binomial deviance marked by the blue dashed line (lambda = 0.025, ln(lambda) = −3.692). 
 (C) Coefficient values for each of the fifteen selected genes. A positive coefficient for a gene signature within its class indicates that elevated expression of this gene increases the probability of a specimen belonging to its tissue type. 
 (D) Heatmap for describing the expression levels of selected genes in the binomial classifier erected by training datasets. Each row is a gene with its Entrez Gene ID in parentheses; each column is a sample. 
 (E) Estimated probabilities for samples in testing datasets (GSE101685 and ICGC). For each sample, there are two points, corresponding to the probability that the sample belongs to the respective class. Within each dataset and class, samples are sorted by the probability of the true class. For most samples, the probability of the true subtype is near 1, indicating an unambiguous classification.
 
-from<https://www.frontiersin.org/articles/10.3389/fgene.2020.00857/full>
+From <https://www.frontiersin.org/articles/10.3389/fgene.2020.00857/full>
 
-FIGURE 2 | The screening and validation of 15 genes conducted by the diagnostic classifier. 
-(A,B) Binomial deviance as a function of the regularization parameter lambda for leave-one-study-out cross-validation on the training datasets. Points correspond to the means, and error bars correspond to the standard deviations. Coefficients of 15 genes were selected by the lambda with the minimum binomial deviance marked by the blue dashed line (lambda = 0.025, ln(lambda) = −3.692). 
-(C) Coefficient values for each of the fifteen selected genes. A positive coefficient for a gene signature within its class indicates that elevated expression of this gene increases the probability of a specimen belonging to its tissue type. 
-(D) Heatmap for describing the expression levels of selected genes in the binomial classifier erected by training datasets. Each row is a gene with its Entrez Gene ID in parentheses; each column is a sample. 
-(E) Estimated probabilities for samples in testing datasets (GSE101685 and ICGC). For each sample, there are two points, corresponding to the probability that the sample belongs to the respective class. Within each dataset and class, samples are sorted by the probability of the true class. For most samples, the probability of the true subtype is near 1, indicating an unambiguous classification.
-
-# 应用场景 Application Scenario
+## 应用场景 Application Scenario
 
 根据弹性网络筛选变量构建分类模型，生成筛选和系数图，以及分类效果图。
 
 Construct a classification model by selecting variables based on the elastic net, generate screening and coefficient diagrams, as well as classification effect diagrams.
 
-# 环境设置 Environment Setting
+## 环境设置 Environment Setting
 
 ```{r}
 source("install_dependencies.R")
-
-library(data.table)
-library(glmnet)
-library(limma)
-library(ggplot2)
+library(data.table) # 数据标准化 Data standardization
+library(glmnet) # 弹性网络 Elastic net
+library(limma) # 差异表达分析 Differential expression analysis
+library(ggplot2) # 画图 Plotting
 Sys.setenv(LANGUAGE = "en") #显示英文报错信息 display English error messages
 options(stringsAsFactors = FALSE) #禁止chr转成factor prohibit the conversion of chr to factor
 ```
 
-# 输入文件的获得
-# Acquisition of input files
+## 输入文件的获得 Acquisition of input files
 
 提取感兴趣的肿瘤及对照组织的表达数据。如果你已经准备好，就跳过这步，直接进入“输入文件”。
 
@@ -144,8 +135,7 @@ if(length(unique(phenotype_tissue$`_study`)) == 2) { # 必须同时含有TCGA和
 write.table(combined.tpm,paste0("tpms_",tissue,"_TCGAGTEX.txt"),sep = "\t",row.names = T,col.names = NA,quote = F)
 ```
 
-# 输入文件
-# Input Files
+## 输入文件 Input Files
 
 - 训练集：
   - tpms_Liver_TCGAGTEX.txt，TCGA（肝癌）和GTEX（正常组织）表达矩阵。
@@ -216,12 +206,11 @@ gse.sinfo <- data.frame(samID = c(gse.tumsam,gse.norsam),
                         stringsAsFactors = F)
 ```
 
-# 构建弹性网络预测模型，查看效果
-# Construct an elastic net prediction model and check the effect
+## 构建弹性网络预测模型，查看效果 Construct an elastic net prediction model and check the effect
 
 根据弹性网络筛选变量构建分类模型。
 
-在训练集构建弹性网络预测模型，分别查看模型在训练集和测试集的效果。
+在训练集构建弹性网络预测模型，分别查看模型在训练集和测试集的效果.
 
 Build a classification model by selecting variables based on the elastic net.
 
@@ -285,7 +274,7 @@ pred_test <- data.frame(prob = round(predict(cvfit, newx = x,type="response"),4)
                         tissue = gse.sinfo$tissue)
 ```
 
-# 开始画图 Start Drawing
+## 开始画图 Start Drawing
 
 生成筛选和系数图，以及分类效果图。
 

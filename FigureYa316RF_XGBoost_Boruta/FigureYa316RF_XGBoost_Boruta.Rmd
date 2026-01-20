@@ -1,8 +1,8 @@
 ---
 title: "FigureYa316RF_XGBoost_Boruta"
 params:
-  author: "Guoqi Li; Yasi Zhang"  
-  reviewer: "Ying Ge"
+  author: "Guoqi Li"  
+  reviewer: "Ying Ge; Yasi Zhang"
 output: 
   html_document:
     toc: true
@@ -27,8 +27,7 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# 需求描述
-# Demand description
+## 需求描述 Demand description
 
 想实现这篇文章的Figure S2；就是用4种机器学习来筛选生物标志物。
 
@@ -36,16 +35,11 @@ We want to draw Figure S2 from this paper; which uses 4 machine learning methods
 
 ![](example.png)
 
-出自：<https://www.ijbs.com/v18p0360>
-
-通过LASSO、SVM-RFE、随机森林(RF)和XGBoost算法，分别筛选出36、15、35和31个基于mRNAsi表型的差异表达基因(DEGs)，各算法的具体结果如图S2所示。
-
-Source: <https://www.ijbs.com/v18p0360>
-
 A total of 36, 15, 35 and 31 mRNAsi phenotype-based DEGs were selected by LASSO, SVM-RFE, RF and XGBoost, separately; results of each algorithm were shown in Figure S2.
 
-# 应用场景
-# Application scenarios
+From <https://www.ijbs.com/v18p0360>
+
+## 应用场景 Application scenarios
 
 文章补充图2中展示的图形为4种算法的结果（LASSO，XGBoost，RF，Boruta），但方法学描述的确是5种（LASSO，SVM-REF，XGBoost，RF，Boruta）。
 
@@ -136,11 +130,25 @@ In addition, the FigureYa we have crowdsourced can realize several of the images
 - Figure 5K, Leverage FigureYa131CMap
 - Figure 6D, Reproduce using FigureYa102multipanelROC
 
-# 环境设置
-# Requirements Description
+## 环境设置 Requirements Description
 
 ```{r}
 source("install_dependencies.R")
+library(randomForest)
+library(xgboost)
+library(Matrix)
+#install.packages("Ckmeans.1d.dp")
+#如果此处报错，例如
+#Error in install.packages : ERROR: failed to lock directory ‘C:\Users\96251\Documents\R\win-library\4.1’ for modifying
+#Try removing ‘C:\Users\96251\Documents\R\win-library\4.1/00LOCK’
+#只需要去上述所指定的路径下（例子为C:\Users\96251\Documents\R\win-library\4.1/）删除00LOCK文件夹即可
+
+#install.packages("Ckmeans.1d.dp")
+#If encountering errors like:
+#Error in install.packages : ERROR: failed to lock directory ‘C:\Users\96251\Documents\R\win-library\4.1’ for modifying
+#Try removing the ‘00LOCK’ folder at the specified path (e.g., C:\Users\96251\Documents\R\win-library\4.1/)
+library(Boruta)
+library(mlbench)
 
 # 显示英文报错信息
 # Show English error messages
@@ -151,8 +159,7 @@ Sys.setenv(LANGUAGE = "en")
 options(stringsAsFactors = FALSE) 
 ```
 
-# 输入文件
-# Input Files
+## 输入文件 Input Files
 
 easy_input.csv，带有分组信息的矩阵。来自FigureYa65 。
 
@@ -177,12 +184,9 @@ data <- read.csv("easy_input.csv", row.names = 1, as.is = F)
 set.seed(100)
 ```
 
-# RF算法
-# Random Forest Algorithm
+## RF算法 Random Forest Algorithm
 
 ```{r fig.width=5, fig.height=5}
-library(randomForest)
-
 # 为了节约时间，使用部分数据进行展示
 # Use partial data for demonstration
 rf_input <- data[, 1:51]
@@ -240,23 +244,9 @@ varImpPlot(rf)
 dev.off()
 ```
 
-# XGBoost算法
-# XGBoost Algorithm
+## XGBoost算法 XGBoost Algorithm
 
 ```{r fig.width=5, fig.height=5}
-library(xgboost)
-library(Matrix)
-#install.packages("Ckmeans.1d.dp")
-#如果此处报错，例如
-#Error in install.packages : ERROR: failed to lock directory ‘C:\Users\96251\Documents\R\win-library\4.1’ for modifying
-#Try removing ‘C:\Users\96251\Documents\R\win-library\4.1/00LOCK’
-#只需要去上述所指定的路径下（例子为C:\Users\96251\Documents\R\win-library\4.1/）删除00LOCK文件夹即可
-
-#install.packages("Ckmeans.1d.dp")
-#If encountering errors like:
-#Error in install.packages : ERROR: failed to lock directory ‘C:\Users\96251\Documents\R\win-library\4.1’ for modifying
-#Try removing the ‘00LOCK’ folder at the specified path (e.g., C:\Users\96251\Documents\R\win-library\4.1/)
-
 # 数据准备
 # Prepare data
 matrix <- sparse.model.matrix(group ~ .-1, data = data)
@@ -285,13 +275,9 @@ xgb.ggplot.importance(xgb.importance)
 dev.off()
 ```
 
-# Boruta算法
-# Boruta Algorithm
+## Boruta算法 Boruta Algorithm
 
 ```{r fig.width=5, fig.height=5}
-library(Boruta)
-library(mlbench)
-
 # 为了节约时间，使用部分数据进行展示
 # Use partial data for demonstration
 Boruta_input <- data[, 1:51]

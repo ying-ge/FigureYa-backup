@@ -1,7 +1,8 @@
 ---
 title: "FigureYa47HR2table"
 params:
-  author: "Yuan Tang; Ying Ge, Yijing Chen"
+  author: "Yuan Tang"
+  reviewer: "Ying Ge, Yijing Chen"
 output: 
   html_document:
     toc: true
@@ -14,6 +15,7 @@ output:
 ---
 
 **Author(s)**: `r params$author`  
+**Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()`  
 
 ## Academic Citation
@@ -33,9 +35,7 @@ Calculate coxHR, univariate cox and multivariate cox, output as table
 
 ![](example.png)
 
-出自<https://jhoonline.biomedcentral.com/articles/10.1186/s13045-017-0445-8>
-
-from<https://jhoonline.biomedcentral.com/articles/10.1186/s13045-017-0445-8>
+From <https://jhoonline.biomedcentral.com/articles/10.1186/s13045-017-0445-8>
 
 ## 应用场景 Application scenario
 
@@ -47,12 +47,10 @@ Compare and demonstrate the impact of clinical-related factors and gene expressi
 
 For example, TCGA data, large-scale clinical trial data, etc.
 
-# 环境设置 Environment Setting
+## 环境设置 Environment Setting
 
 ```{r}
 source("install_dependencies.R")
-# 加载所需的R包
-# Load required R packages
 library(survival)    # 用于生存分析的包 # For survival analysis
 library(caret)       # 用于机器学习和数据分割的包 # For machine learning and data partitioning
 library(kableExtra)  # 用于增强表格输出的包 # For enhanced table outputs
@@ -92,11 +90,9 @@ As a result, the values in the final generated table differ from those in the or
 
 Now we begin numerical calculation and table plotting:
 
-## 数值计算
-## Numerical calculation
+## 数值计算 Numerical calculation
 
-### 临床数据和表达量的预处理
-### Preprocessing of clinical data and expression
+### 临床数据和表达量的预处理 Preprocessing of clinical data and expression
 
 ```{r}
 #性别
@@ -155,8 +151,7 @@ clin_mRNA_miRNA$YAP1<-factor(clin_mRNA_miRNA$YAP1,ordered = T)
 str(clin_mRNA_miRNA)
 ```
 
-### 回归分析
-### Regression analysis
+### 回归分析 Regression analysis
 
 ```{r}
 #单因素回归分析
@@ -217,8 +212,7 @@ uni_multi<-dplyr::full_join(univartable1,multicox,by="characteristics")
 uni_multi$characteristics <- as.character(uni_multi$characteristics)
 ```
 
-### 验证
-### Validation
+### 验证 Validation
 
 由于文章没上传验证数据集数据，用`p = 0.7`参数从clin_mRNA_miRNA中 随机抽取取70%做训练集，其余为验证集
 
@@ -289,12 +283,7 @@ uni_multi2<-dplyr::full_join(univartable2,multicox2,by="characteristics")
 uni_multi2$characteristics <- as.character(uni_multi2$characteristics)
 ```
 
-## 输出html格式表格
-## Output html format table
-
-在Rstudio里点击Knit运行
-
-Click on Knit in Rstudio to run it
+## 输出html格式表格 Output html format table
 
 ```{r}
 #合并TCGA与验证集单因素多因素表格
@@ -328,8 +317,7 @@ cohort and independent validation cohort",
              footnote_as_chunk = T)
 ```
 
-## 生成csv格式的表格
-## Generate a table in CSV format
+## 生成csv格式的表格 Generate a table in CSV format
 
 ```{r}
 #合并TCGA与验证集单因素多因素表格
@@ -348,8 +336,7 @@ str(comtable)
 write.csv(comtable,"Table2.csv", quote = F, row.names = F)
 ```
 
-## 生成word格式的表格
-## Generate a table in word format
+## 生成word格式的表格 Generate a table in word format
 
 ```{r}
 #合并TCGA与验证集单因素多因素表格
@@ -397,6 +384,8 @@ read_docx() %>% styles_info() %>%
 #用这些参数，把表格设置成你想要的形式
 #use these parameters to set the table to your desired format
 ```
+
+## Session Info
 
 ```{r}
 sessionInfo()

@@ -50,7 +50,22 @@ cat("===========================================\n")
 
 # Installing CRAN packages
 cat("\nInstalling CRAN packages...\n")
-cran_packages <- c("caret", "kableExtra", "officer", "survival")
+
+# Install caret from local file
+if (!is_package_installed("caret")) {
+  cat("Installing caret from local file: caret_7.0-1.tar.gz\n")
+  tryCatch({
+    install.packages("caret_7.0-1.tar.gz", repos = NULL, type = "source")
+    cat("Successfully installed: caret\n")
+  }, error = function(e) {
+    cat("Failed to install caret:", e$message, "\n")
+  })
+} else {
+  cat("Package already installed: caret\n")
+}
+
+# Install other CRAN packages
+cran_packages <- c("kableExtra", "officer", "survival")
 
 for (pkg in cran_packages) {
   install_cran_package(pkg)

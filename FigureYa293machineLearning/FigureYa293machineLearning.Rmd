@@ -1,8 +1,8 @@
 ---
 title: "FigureYa293machineLearningV2"
 params:
-  author: "Guoqi Li; Yasi Zhang"  
-  reviewer: "Ying Ge"
+  author: "Guoqi Li"  
+  reviewer: "Ying Ge; Yasi Zhang"
 output: 
   html_document:
     toc: true
@@ -37,24 +37,13 @@ Zuguang Gu. Complex Heatmap Visualization, iMeta, 2022.
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# 需求描述
-# Demand description
+## 需求描述 Demand description
 
 这个文章里比较不同的模型放在一个图，以及比较不同的算法放在一个图。
 
 In this article, different models are compared in one graph, and different algorithms are compared in another graph.
 
 ![](example.png)
-
-出自<https://www.nature.com/articles/s41467-022-28421-6>
-
-图2 通过基于机器学习的整合流程，开发并验证了一种共识性IRLS模型。
-A 在LOOCV框架下构建了共计101种预测模型，并计算了各模型在所有验证数据集中的C指数。
-B 在TCGA-CRC队列（n = 584）中，当偏似然偏差达到最小值时确定最优λ值，并进一步生成最具预后价值基因的Lasso系数。数据以均值±95%置信区间[CI]表示。
-C 逐步Cox回归最终获得的16个lncRNA系数。
-D–K 基于IRLS的TCGA-CRC患者总生存期（OS）Kaplan-Meier曲线（对数秩检验：P = 9.16e−19）。
-
-Source: <https://www.nature.com/articles/s41467-022-28421-6>
 
 Fig. 2 A consensus IRLS was developed and validated via the machine learning-based integrative procedure. 
 A A total of 101 kinds of prediction models
@@ -63,8 +52,9 @@ B In the TCGA-CRC cohort (n = 584), the determination of the optimal λ was obta
 C Coefficients of 16 lncRNAs finally obtained in stepwise.
 Cox regression. D–K Kaplan–Meier curves of OS according to the IRLS in TCGA-CRC (log-rank test: P = 9.16e−19).
 
-# 应用场景
-# Application scenarios
+From <https://www.nature.com/articles/s41467-022-28421-6>
+
+## 应用场景 Application scenarios
 
 基于这10种算法的组合去构建模型，会受到输入数据集的基因数目和质量的影响。
 
@@ -96,31 +86,31 @@ For reference on figure design, you may consult FigureYa:
 - Figure 6，FigureYa105GDSC
 - Figure 7，FigureYa71ssGSEA、FigureYa152DouleCorPlotexamples.
 
-# 环境设置 Environment Setup
+## 环境设置 Environment Setup
 
 ```{r}
 source("install_dependencies.R")
 
-library(survival)
-library(randomForestSRC)
-library(glmnet)
-library(plsRcox)
-library(superpc)
-library(gbm)
-library(CoxBoost)
-library(survivalsvm)
-library(dplyr)
-library(tibble)
-library(BART)
-library(miscTools)
-library(compareC)
-library(ggplot2)
-library(ggsci)
-library(tidyr)
-library(ggbreak)
-library(ComplexHeatmap)
-library(circlize)
-library(RColorBrewer)
+library(survival) # 生存分析 Survival analysis
+library(randomForestSRC) # 随机生存森林 Random Survival Forest
+library(glmnet) # 弹性网回归 Elastic Net Regression
+library(plsRcox) # 偏最小二乘回归 PLS Regression
+library(superpc) # 超级主成分分析 Super Principal Component Analysis
+library(gbm) # 梯度提升机 Gradient Boosting Machine
+library(CoxBoost) # Cox提升回归 Cox Boosting Regression
+library(survivalsvm) # 生存支持向量机 Survival Support Vector Machine
+library(dplyr) # 数据操作 Data Manipulation
+library(tibble) # 数据框操作 Data Frame Manipulation
+library(BART) # 贝叶斯加性回归树 Bayesian Additive Regression Trees
+library(miscTools) # 杂项工具 Miscellaneous Tools
+library(compareC) # 比较C指数 Compare C-index
+library(ggplot2) # 数据可视化 Data Visualization
+library(ggsci) # 科学插图 Scientific Illustrations
+library(tidyr) # 数据整理 Data Tidying
+library(ggbreak) # 图形断点 Graph Breaks
+library(ComplexHeatmap) # 复杂热图 Complex Heatmaps
+library(circlize) # 环形可视化 Circular Visualization
+library(RColorBrewer) # 颜色调色板 Color Palettes
 
 # 显示英文报错信息
 # Show English error messages
@@ -131,8 +121,7 @@ Sys.setenv(LANGUAGE = "en")
 options(stringsAsFactors = FALSE) 
 ```
 
-# 输入文件
-# Input Files
+## 输入文件 Input Files
 
 TCGA.txt，GSE57303.txt，GSE62254.txt，数据集。行为样本，第一列为样本名，第二三列为生存时间和生存状态，后面的列均为基因。
 
@@ -180,7 +169,7 @@ seed <- 123
 
 Below starts the implementation of 10 methods: 
 
-# 1.RSF
+## RSF
 
 ```{r}
 ## 1-1.RSF
@@ -504,7 +493,7 @@ cc$Model <- paste0('RSF + ', 'survival-SVM')
 result <- rbind(result,cc)
 ```
 
-# 2.Enet
+## Enet
 
 ```{r}
 x1 <- as.matrix(est_dd[, pre_var])
@@ -520,7 +509,7 @@ for (alpha in seq(0.1, 0.9, 0.1)) {
   }
 ```
 
-# 3.StepCox
+## StepCox
 
 ```{r}
 for (direction in c("both", "backward", "forward")) {
@@ -661,7 +650,7 @@ for (direction in c("both", "backward", "forward")) {
   }
 ```
 
-# 4.CoxBoost
+## CoxBoost
 
 ```{r}
 ## 4-1.CoxBoost
@@ -893,7 +882,7 @@ cc$Model <- paste0('CoxBoost + ', 'survival-SVM')
 result <- rbind(result, cc)
 ```
 
-# 5.plsRcox
+## plsRcox
 
 ```{r}
 set.seed(seed)
@@ -906,7 +895,7 @@ cc$Model <- paste0('plsRcox')
 result <- rbind(result, cc)
 ```
 
-# 6.superpc
+## superpc
 
 ```{r}
 data <- list(x = t(est_dd[, -c(1,2)]), y = est_dd$OS.time, censoring.status = est_dd$OS, featurenames = colnames(est_dd)[-c(1, 2)])
@@ -932,7 +921,7 @@ cc$Model <- paste0('SuperPC')
 result <- rbind(result, cc)
 ```
 
-# 7.GBM
+## GBM
 
 ```{r}
 set.seed(seed)
@@ -961,7 +950,7 @@ cc$Model <- paste0('GBM')
 result <- rbind(result, cc)
 ```
 
-# 8.survivalsvm
+## survivalsvm
 
 ```{r}
 fit = survivalsvm(Surv(OS.time,OS)~., data = est_dd, gamma.mu = 1)
@@ -972,7 +961,7 @@ cc$Model <- paste0('survival - SVM')
 result <- rbind(result, cc)
 ```
 
-# 9.Ridge
+## Ridge
 
 ```{r}
 x1 <- as.matrix(est_dd[, pre_var])
@@ -992,7 +981,7 @@ cc$Model <- paste0('Ridge')
 result <- rbind(result, cc)
 ```
 
-# 10.Lasso
+## Lasso
 
 ```{r}
 x1 <- as.matrix(est_dd[, pre_var])
@@ -1277,11 +1266,9 @@ fit = glmnet(x1, x2, family = "binomial", alpha = 1, lambda = NULL)
 mypal <- pal_npg("nrc")(10)
 ```
 
-# 开始画图
-# Plotting
+## 开始画图 Plotting
 
-## 图B - Lasso作图
-## Figure B - Lasso plot
+### 图B - Lasso作图 Figure B - Lasso plot
 
 ```{r}
 pdf("A_lasso.pdf", width = 8, height = 6)
@@ -1321,8 +1308,7 @@ A_lasso.pdf可以把基因名标注在图上，方法可参考FigureYa31lasso
 
 For A_lasso.pdf, gene names can be labeled on the plot. Refer to FigureYa31lasso for method: 
 
-## 图A - C指数的热图
-## Figure A - Heatmap of C-indices
+### 图A - C指数的热图 Figure A - Heatmap of C-indices
 
 ```{r}
 # 根据C指数排序
@@ -1405,8 +1391,7 @@ dev.off()
 
 ![](ComplexHeatmap.pdf)
 
-# 图C - 模型比较
-# Figure C - Model Comparison
+### 图C - 模型比较 Figure C - Model Comparison
 
 ```{r}
 # 首先获取TCGA样本的StepCox[forward] + lasso模型的风险分数

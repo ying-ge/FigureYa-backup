@@ -1,7 +1,8 @@
 ---
 title: "FigureYa24 ROC"
 params:
-  author: "yeoli; Ying Ge, Yijing Chen"
+  author: "yeoli"
+  reviewer: "Ying Ge, Yijing Chen"
 output: 
   html_document:
     toc: true
@@ -14,14 +15,13 @@ output:
 ---
 
 **Author(s)**: `r params$author`  
+**Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()`  
-
 
 ## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
 
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
-
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -47,8 +47,7 @@ Scenario 1: Compare the diagnostic performance of multiple biomarkers or clinica
 
 Scenario 2: Compare the classification performance of multiple algorithms
 
-## 输入文件
-## Input data
+## 输入文件 Input data
 
 包含至少两列，第一列是分组，此处第二列至第五列是miRNA的表达量。
 
@@ -158,6 +157,8 @@ dev.off()
 ```
 
 ![](ROC.pdf)
+
+## Session Info
 
 ```{r}
 sessionInfo()

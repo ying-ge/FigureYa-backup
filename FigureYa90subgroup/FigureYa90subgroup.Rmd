@@ -27,45 +27,29 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## 需求描述
+## 需求描述 Requirement description
 
 计算HR和P value，画出森林图。
-
-## Requirement description
 
 Calculate HR and P values and draw a forest map.
 
 ![](example.png)
 
-出自<http://cancerimmunolres.aacrjournals.org/content/early/2019/03/06/2326-6066.CIR-18-0436>
+From <http://cancerimmunolres.aacrjournals.org/content/early/2019/03/06/2326-6066.CIR-18-0436>
 
-from<http://cancerimmunolres.aacrjournals.org/content/early/2019/03/06/2326-6066.CIR-18-0436>
-
-## 应用场景
+## 应用场景 Application scenarios
 
 临床亚组分析。
 
-## Application scenarios
-
 Clinical subgroup analysis.
 
-## 环境设置
-
-## Environment settings
+## 环境设置 Environment settings
 
 ```{r}
 source("install_dependencies.R")
-# 加载tidyverse包，提供数据处理和可视化工具
-# Load the tidyverse package, which provides data processing and visualization tools
-library(tidyverse)
-
-# 加载生存分析包，用于生存数据的统计分析
-# Load the survival package for statistical analysis of survival data
-library(survival)
-
-# 加载森林图包，用于创建森林图可视化结果
-# Load the forestplot package to create forest plot visualizations
-library(forestplot)
+library(tidyverse) # 数据处理和可视化 Data manipulation and visualization
+library(survival) # 生存分析 Survival analysis
+library(forestplot) # 森林图绘制 Forest plot drawing
 
 # 设置环境语言为英文，确保报错信息以英文显示
 # Set the environment language to English to display error messages in English
@@ -76,13 +60,11 @@ Sys.setenv(LANGUAGE = "en")
 options(stringsAsFactors = FALSE) 
 ```
 
-## 输入文件
+## 输入文件 Input file
 
 easy_input.csv，score（连续变量）和score_binary（二分类变量）至少包含其中一列，后面分别提供两种计算方式。
 
 如果你的数据已经整理成subgroup.csv的格式，就可以跳过这步，直接进入“开始画图”。
-
-## Input file
 
 EasyInput. csv, Score (continuous variable) and Score_binary (binary variable) should contain at least one column, with two calculation methods provided later.
 
@@ -117,9 +99,7 @@ head(input)
 dim(input)
 ```
 
-## 计算HR和P value
-
-## Calculate HR and P values
+## 计算HR和P value Calculate HR and P values
 
 ```{r}
 #' @明确亚组的信息
@@ -262,15 +242,13 @@ forestplot_input <- rbind(
 write.csv(forestplot_input, "subgroup.csv", quote = F)
 ```
 
-## 开始画图
+## 开始画图 Start drawing
 
-从“FigureYa6森林图”改写而来。
+从“FigureYa6rHRs”改写而来。
 
 重点修改`hrzl_lines`参数里的第三行，画最下面一条黑线，""中数字为nrow(data)+5，此处是12行 + 5 = 17
 
-## Start drawing
-
-Rewrite from "FigureYa6 Forest Map".
+Rewrite from "FigureYa6rHRs".
 
 Focus on modifying the third line of the 'hrzlylines' parameter, draw the bottom black line, where the number in' 'is nrow (data)+5, and here it is line 12+5=17
 

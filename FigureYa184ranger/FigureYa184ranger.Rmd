@@ -27,37 +27,31 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# 需求描述
-
-# Requirement
+## 需求描述 Requirement 
 
 实现随机森林滑动窗口法。
 Implement the random forest sliding window method.
 
 ![](example.png)
 
-出自<https://www.tandfonline.com/doi/full/10.1080/15592294.2019.1573066>
-fromhttps://www.tandfonline.com/doi/full/10.1080/15592294.2019.1573066
-
 Figure 2. Ranger provides variable importance score (VIS) for each CpG probe for lung adenocarcinoma (LUAD) patients only in the discovery phase and the validation phase. "Out of bag (OOB)" error rate of top CpG probes in the model, when probes were included one by one based on their VIS ranks in the discovery (A) and the validation phase (B).
 
-# 应用场景
+From <https://www.tandfonline.com/doi/full/10.1080/15592294.2019.1573066>
 
-# Application Scenarios
+## 应用场景 Application Scenarios
 
 使用加权随机森林对生存数据降维，根据sliding windows sequential forward feature selection法筛选变量
+
 The weighted random forest was used to reduce the dimension of the survival data, and the variables were screened according to the sliding windows sequential forward feature selection method
 
-# 环境设置
-
-# Environment Setup
+## 环境设置 Environment Setup
 
 ```{r}
 source("install_dependencies.R")
 
-library(ranger)
-library(randomForest)
-library(survival)
+library(ranger) # 随机森林 Random forest
+library(randomForest) # 随机森林 Random forest
+library(survival) # 生存分析 Survival analysis
 Sys.setenv(LANGUAGE = "en") #显示英文报错信息  # Display an English error message
 options(stringsAsFactors = FALSE) #禁止chr转成factor  # prohibit chr from being converted to factor
 ```
@@ -75,14 +69,14 @@ display.progress = function (index, totalN, breakN=20) {
 }  
 ```
 
-# 输入文件
-
-# Input File
+## 输入文件 Input File
 
 easy_input_expr.csv，表达矩阵。
-easy_input_expr.csv, expressing matrix.
 
 easy_input_cli.csv，临床信息。这两个文件跟FigureYa128Prognostic、FigureYa182RFSurv的一样，可以对比感受一下筛选效果。
+
+easy_input_expr.csv, expressing matrix.
+
 easy_input_cli.csv, clinical information. These two documents are the same as those of FigureYa128Prognostic and FigureYa182RFSurv. You can compare them to get a sense of the screening effect.
 
 ```{r}
@@ -108,9 +102,7 @@ exp <- exp[rowSums(exp == 0) < 0.1 * ncol(exp),]
 exp <- log(exp + 1)
 ```
 
-# 单变量cox模型筛选预后基因
-
-# Univariate cox model for screening prognostic genes
+## 单变量cox模型筛选预后基因 Univariate cox model for screening prognostic genes
 
 理论上表达谱会优先进行一些筛选避免增加运算时间，如使用单变量cox模型筛选预后基因(P < 0.01)
 Theoretically, the expression profile would prioritize some screenings to avoid increasing the operation time, such as using a univariate cox model to screen prognostic genes (P < 0.01).
@@ -154,9 +146,7 @@ write.csv(Coxoutput.OS,"univariate cox regression for gene filtering.csv",row.na
 前面跟FigureYa182RFSurv的相同，下面就不一样了。
 The front part is the same as that of Figure A182 RFSURV, but the bottom part is different.
 
-# 加权随机森林进一步降维
-
-# Weighted random forests further reduce dimensions
+## 加权随机森林进一步降维 Weighted random forests further reduce dimensions
 
 ```{r}
 gene.sel <- Coxoutput.OS[which(Coxoutput.OS$pvalue < cox.pcutoff),"gene"]
@@ -183,14 +173,14 @@ surv.rf <- ranger(formula = OS ~ .,
 var.imp <- sort(ranger::importance(surv.rf),decreasing = T)
 ```
 
-# 逐步回归筛选变量
-
-# Stepwise regression screens for variables
+## 逐步回归筛选变量 Stepwise regression screens for variables
 
 例文采用sliding windows sequential forward feature selection
-The example text adopts sliding windows sequential forward feature selection
 
 简单思路为，根据重要性逐步纳入基因，每一次做当前基因组合下的随机森林并计算oob，取oob达到最小时的组合。
+
+The example text adopts sliding windows sequential forward feature selection
+
 The simple idea is to gradually incorporate genes based on their importance. Each time, create a random forest under the current gene combination and calculate the oob. Take the combination with the smallest oob.
 
 ```{r}
@@ -218,9 +208,7 @@ write.table(data.frame(signature = names(signature),importance = as.numeric(sign
             "signature with importance.txt",sep = "\t",row.names = F,quote = F)
 ```
 
-# 开始画图
-
-# Start drawing
+## 开始画图 Start drawing
 
 ```{r}
 #pdf("oob from swsfs.pdf",width = 6,height = 5.5)
