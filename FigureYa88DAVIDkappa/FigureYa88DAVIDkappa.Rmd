@@ -1,7 +1,8 @@
 ---
 title: "FigureYa88DAVIDkappa"
 params:
-  author: "Ying Ge, Taojun Ye"
+  author: "Ying Ge"
+  reviewer: "Taojun Ye"
 output: 
   html_document:
     toc: true
@@ -14,8 +15,8 @@ output:
 ---
 
 **Author(s)**: `r params$author`  
+**Reviewer(s)**: `r params$reviewer`  
 **Date**: `r Sys.Date()`  
-
 
 ## Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
@@ -27,15 +28,13 @@ knitr::opts_chunk$set(echo = TRUE)
 # 设置knitr的全局代码块选项 / Set global chunk options for knitr
 ```
 
-## 需求描述
+## 需求描述 Requirement description
 
 富集分析得到太多term，其中好多还是相似的，怎样合理的合并？clusterProfiler有一个simplify函数，能给富集分析结果瘦身by removing redundancy of enriched GO terms，但有时瘦的不够多。
 
 FigureYa80GOclustering用GOSemSim计算GO term之间的相似性，但是只能合并GO注释，对其他来源的注释无能为力。
 
 想要合并来源于不同数据库的term，参考DAVID的方法。
-
-## Requirement description
 
 Enrichment analysis yields too many terms, many of which are still similar. How to merge them reasonably? ClusterProfiler has a simplify function that can thin down enriched GO terms by removing redundancy of enriched GO terms, but sometimes not enough weight is lost.
 
@@ -45,9 +44,7 @@ To merge terms from different databases, refer to DAVID's method.
 
 ![](example.png)
 
-出自<https://www.nature.com/articles/nature22973>
-
-from<https://www.nature.com/articles/nature22973>
+From <https://www.nature.com/articles/nature22973>
 
 **方法探讨：**
 
@@ -65,7 +62,7 @@ H Ma and others wrote R code to calculate Kappa value：[Use of DAVID algorithms
 
 Calculate Kappa value based on the first part of the code provided in this article. Then use ggtree to display the relationships between various terms and achieve the annotation effect of similar terms in the example text.
 
-## 应用场景
+## 应用场景 Application scenarios
 
 基于term里的基因间overlap来衡量term之间的相似性。
 
@@ -73,41 +70,22 @@ Calculate Kappa value based on the first part of the code provided in this artic
 
 原理见：<https://david.ncifcrf.gov/helps/linear_search.html#kappa>
 
-## Application scenarios
-
 Measure the similarity between terms based on the overlap between genes in the term.
 
 Calculate Kappa value, which can be used to find similar annotations and classify them.
 
-The principle is as follows:< https://david.ncifcrf.gov/helps/linear_search.html#kappa >
+The principle is as follows:<https://david.ncifcrf.gov/helps/linear_search.html#kappa>
 
-## 环境设置
-
-## Environment settings
+## 环境设置 Environment settings
 
 ```{r}
 source("install_dependencies.R")
-
-# 加载ape包，用于系统发育树分析和比较基因组学
-# Load the ape package for phylogenetic tree analysis and comparative genomics
-library(ape)
-
-# 加载ggtree包，用于可视化和注释系统发育树
-# Load the ggtree package for visualizing and annotating phylogenetic trees
-library(ggtree)
-
-# 加载scales包，用于ggplot2中的坐标轴缩放和格式化
-# Load the scales package for axis scaling and formatting in ggplot2
-library(scales)
-
-# 加载ggplot2包，用于创建优雅的数据可视化
-# Load the ggplot2 package for creating elegant data visualizations
-library(ggplot2)
-
-# 拼图
-# Combing
-library(patchwork)
-library(ggplotify)
+library(ape) # 邻接法构建进化树 Neighbor-Joining method for phylogenetic tree construction
+library(ggtree) # 进化树 visualization of phylogenetic tree
+library(scales) # 颜色调色板 color palettes
+library(ggplot2) # 数据可视化 data visualization
+library(patchwork) # 组合多个ggplot2图形 Combine multiple ggplot2 plots
+library(ggplotify) # 将非ggplot对象转换为ggplot对象 Convert non-ggplot objects to ggplot objects
 
 # 设置环境变量，使R显示英文错误信息
 # Set environment variable to display error messages in English
@@ -118,15 +96,13 @@ Sys.setenv(LANGUAGE = "en")
 options(stringsAsFactors = FALSE)
 ```
 
-## 输入文件
+## 输入文件 Input file
 
 easy_input.csv，注释信息跟Gene ID的对应关系。至少包含两列：
 
 - 第一列：GO、KEGG等无所谓什么来源的注释term；
 - 第二列：Gene ID，此处是ENTREZ ID，也可以是gene symbol等无所谓什么来源的基因ID。
 - 后面画热图时需要的logFC、Pvalue、zscore等信息也放在这里。如果要多组富集分析结果做对比，也都放到这里。多组合并的方法可参考FigureYa80GOclustering。
-
-## Input file
 
 easy_input.csv， The correspondence between annotation information and Gene ID. Include at least two columns:
 
@@ -144,9 +120,7 @@ D <- read.csv("easy_input.csv")
 head(D)
 ```
 
-## 计算Kappa value，用它来衡量注释之间的相似性
-
-## Calculate Kappa value to measure the similarity between annotations
+## 计算Kappa value，用它来衡量注释之间的相似性 Calculate Kappa value to measure the similarity between annotations
 
 ```{r}
 # 按基因标识符对数据框进行升序排序
@@ -287,11 +261,9 @@ for(i in 2:(M+1)){
 write.table(Kappa_matrix, "kappa_matrix.txt", sep="\t", quote = F, col.names = F, row.names = F)
 ```
 
-## 开始画图
+## 开始画图 Start drawing
 
 下面的画图代码跟FigureYa80GOclustering相似。
-
-## Start drawing
 
 The following drawing code is similar to FigureYa80GOclustering.
 
